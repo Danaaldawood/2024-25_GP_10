@@ -1,0 +1,145 @@
+ 
+ .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#004D60;
+    color: white;
+    padding: 15px 20px;
+    border-bottom-left-radius: 15px; /* Adjust radius as desired */
+    border-bottom-right-radius: 15px;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .logo-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+    animation: popUp 1s ease-out;
+  }
+  
+  @keyframes popUp {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+  }
+  
+  .site-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto; /* هذا يجعل القسم في منتصف الصفحة أفقياً */
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  
+  .info-section:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+  }
+  
+  .section-title {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #009688;
+    margin-bottom: 0.5rem;
+   }
+  
+  .section-description {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+  
+  /* الأزرار وتنسيقها */
+  .nav-buttons {
+    margin-top: 1.5rem;
+  }
+  
+  button {
+    margin: 0.5rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #009688;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    align-items: center;
+  }
+  
+  button:hover {
+     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+  }
+  
+   .animated-logo {
+    width: 180px;
+    border-radius: 50%;
+    margin-top: 1rem;
+    animation: fadeAndScale 1.2s ease;
+  }
+  
+  
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .animated-logo {
+      animation: rotateAnimation infinite 20s linear;
+    }
+  }
+  
+  @keyframes rotateAnimation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  
+  
+  
+  }
+  
+  
+  
+  /* Media Queries للتحكم حسب حجم الشاشة */
+  @media (max-width: 768px) {
+    .logo {
+      width: 50%; /* اجعل الحجم أصغر */
+    }
+    .button {
+      max-width: 100%; /* اجعل الأزرار تأخذ العرض الكامل للشاشة */
+    }
+    h1, p {
+      font-size: 1.2rem; /* تصغير حجم النص */
+    }
+  }
+  

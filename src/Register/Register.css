@@ -1,0 +1,244 @@
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  .sign-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;   
+   }
+  
+  .sign-container {
+    display: flex;
+    width: 100px;
+    background-color: #ffffff;
+      border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .sign-form {
+    padding: 2rem;
+    flex: 1;
+  }
+  
+  .sign-title {
+    font-size: 20px;
+    margin-bottom: 1rem;
+    text-align: center;
+  
+  
+  }
+   
+  
+  .sign-user-type-container {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .sign-user-type-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    background-color: #cccaca;
+    color: #333;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    font-size: 10px;
+  }
+  
+  .sign-user-type-btn.sign-active {
+    background-color: #2b5a77;
+    color: #fff;
+  }
+   
+  .sign-label {
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+    color: #000000;
+   }
+  
+   .sign-input, .sign-select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+    font-size: 12px; 
+  }
+  
+  .sign-input:focus, .sign-select:focus {
+    border-color: #3F7EA6;
+    outline: none;
+  }
+  
+   .sign-culture-domain {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .sign-culture-options {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .sign-culture-options input[type="radio"] {
+    margin-right: 0.5rem;
+    accent-color: #2b5a77; 
+    transform: scale(1.2); 
+  }
+  
+  .sign-culture-options label {
+    font-size: 12px;
+    color: #000000;
+  }
+  
+  .logo-welcome-container {
+    display: flex;
+    flex-direction: column; /* وضع العناصر فوق بعضها */
+    align-items: center;
+  }
+  
+  .logo-welcome-container img {
+    transform: translateY(-30px); /* تعديل القيمة لرفع الصورة للأعلى */
+  }
+  .logo-welcome-container h2 {
+    margin: 0; /* إزالة الهامش لضبط النص */
+  }
+  
+  
+  .sign-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2b5a77;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 0rem; 
+   }
+  
+  
+  .sign-btn:hover {
+    background-color: #2a5d77;
+    box-shadow: 0 4px 8px rgba(63, 126, 166, 0.4);
+  }
+  
+  
+  .sign-login {
+    margin-top: 1rem;
+    text-align: center;
+     
+  }
+  
+  .sign-link {
+    color: #3F7EA6;
+    text-decoration: none;
+  }
+  
+  .sign-link:hover {
+    text-decoration: underline;
+  }
+   
+  /* Right Section Style */
+  .right-section {
+    flex: 1;
+    background: linear-gradient(500deg, #0b2c58,#7290B0);
+      color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .right-section h2 {
+    font-size:40px;
+    margin-bottom: 1rem;
+  }
+  
+  .right-section p {
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.5;
+   
+  }
+  
+   
+  .sign-culture-domain legend {
+    font-size: 15px;  
+    }
+  .sign-form{
+    background-color:#f7f8f8;
+    border-radius: 20px;
+  }
+   
+  
+  
+  /*Responsive*/
+  
+  /* للهواتف المحمولة */
+  @media (max-width: 768px) {
+    .sign-container {
+      flex-direction: column;
+      width: 90%; /* ضبط عرض الصفحة للهواتف */
+    }
+  
+    .right-section {
+      display: none; /* إخفاء القسم الأيمن على الشاشات الصغيرة */
+    }
+  
+    .sign-form {
+      padding: 1.5rem;
+    }
+  }
+  
+  /* للأجهزة اللوحية */
+  @media (max-width: 1024px) {
+    .sign-container {
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .sign-form {
+      padding: 2rem;
+    }
+  }
+  
+  /* إعدادات أخرى للأجهزة الأكبر حجماً */
+  @media (min-width: 1200px) {
+    .sign-container {
+      width: 900px;
+    }
+  
+    .sign-form {
+      padding: 3rem;
+    }
+    @media (max-width: 768px) {
+      .Wtxt {
+        font-size: 14px; /* تقليل حجم الخط على الشاشات الصغيرة */
+      }
+    }
+    
+  }
+  
+  
+  .Wtxt {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل للنص */
+    line-height: 1.5; /* ارتفاع السطر */
+  }
