@@ -1,0 +1,193 @@
+/* Main container for the form */
+.Compare-form-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 50px;
+    background: #fff;
+    width: 530px !important;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px 1px rgb(76 104 136);
+    padding-bottom: 30px; 
+}
+
+/* Add error styling */
+.error {
+    border: 2px solid red;
+    color: red;
+}
+
+/* Placeholder color for error */
+.Compare-input select.error::placeholder {
+    color: red;
+}
+
+
+
+/* Form header  */
+.Compare-form-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    background: #007B7F;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Text in the form header */
+.Compare-text {
+    color:#072040;
+    font-size: 20px; 
+    font-weight: bold;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Compare-inputs {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Compare-label {
+    font-size: 20px; 
+    color: #072040;
+    font-weight: 500;
+    margin-right: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Input container for each field */
+.Compare-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+/* Dropdown styling */
+.Compare-cultureDomain, .Compare-dimension {
+    width: 250px;
+    height: 35px;
+    padding: 5px;
+}
+
+.Compare-cultureDomain option, .Compare-dimension option {
+    text-align: center;
+}
+/* Error placeholder style for dropdown */
+.Compare-input select[placeholder-error] {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+/* Submit button container */
+.Compare-submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.Compare-submit button {
+    width: 200px; 
+    height: 50px;
+    color: #fff;
+    background-color: #009688;
+    border: none;
+    border-radius: 10px; 
+    font-size: 20px; 
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Compare-submit button:hover {
+    background-color: #5f7c9c;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#004D60;/* Dark Blue */
+    color: white;
+    padding: 15px 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-menu a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.nav-menu a:hover {
+    border-bottom: 2px solid white;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.menu-dropdown p {
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-dropdown p:hover {
+    background-color: #f4f4f4;
+}
+
+.sign-out {
+    color: red;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background-color: #072040;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 50px; 
+}
