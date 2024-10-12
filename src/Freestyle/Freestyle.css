@@ -1,0 +1,217 @@
+.conversation-container {
+    max-width: 44rem;
+    margin: 0 auto;
+    margin: 2rem auto; 
+
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .conversation-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .conversation-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1a202c;
+  }
+  
+  .title-underline {
+    margin-top: 0.5rem;
+    width: 15rem;
+    height: 0.25rem;
+    background-color: #7290B0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 9999px;
+  }
+  
+  .message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .message {
+    display: flex;
+  }
+  
+  .ai-message {
+    justify-content: flex-start;
+  }
+  
+  .user-message {
+    justify-content: flex-end;
+  }
+  
+  .message-content {
+    max-width: 70%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+  
+  .ai-message .message-content {
+    background-color: #e6f3ff;
+    color: #1e3a8a;
+  }
+  
+  .user-message .message-content {
+    background-color: #f3f4f6;
+    color: #1f2937;
+  }
+  
+  .input-container {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .message-input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem 0 0 0.375rem;
+    font-size: 1rem;
+  }
+  
+  .message-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+  
+  .send-button {
+    padding: 0.5rem 1rem;
+    background-color: #7290B0;
+    color: white;
+    border: none;
+    border-radius: 0 0.375rem 0.375rem 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover {
+    background-color: #365171;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .edit-dataset-button,
+  .end-conversation-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-dataset-button {
+    background-color: #365171;
+    color: white;
+  }
+  
+  .edit-dataset-button:hover {
+    background-color: #5f7c9c;
+  }
+  
+  .end-conversation-button {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .end-conversation-button:hover {
+    background-color: #dc2626;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 28rem;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+  }
+  
+  .select-container {
+    position: relative;
+  }
+  
+  .question-select {
+    width: 100%;
+    appearance: none;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #1f2937;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .question-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .add-dataset-button,
+  .cancel-button {
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-dataset-button {
+    background-color: #365171;
+    color: white;
+  }
+  
+  .add-dataset-button:hover {
+    background-color: #5f7c9c;
+  }
+  
+  .cancel-button {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .cancel-button:hover {
+    background-color: #dc2626;
+  }

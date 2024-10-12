@@ -1,0 +1,162 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d3dbe4; 
+  color: #052949;
+  padding: 15px 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-menu a {
+  color:#052949;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.nav-menu a:hover {
+  border-bottom: 2px solid #052949;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color:#052949;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.menu-dropdown p {
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-dropdown p:hover {
+  background-color: #f4f4f4;
+}
+
+.sign-out {
+  color: red;
+  font-weight: bold;
+}
+
+.footer {
+  background-color:#d3dbe4; 
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.evalcontainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 200px;
+  background: #fff;
+  width: 600px !important;
+  border-radius: 8px;
+  box-shadow: 2px 4px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.evalheader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(500deg, #072040, #7290B0);
+  padding: 20px;
+  border-radius: 8px 8px 0 0;
+}
+
+.eval-title {
+  text-align: center;
+  margin-top: 15px; 
+  font-size: 28px;
+  font-weight: 600;
+  color: #072040;
+}
+
+.evalinputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.evalinput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  width: 480px;
+  height: 80px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.evalinput label {
+  font-size: 20px;
+  color: #072040;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
+.evalinput select {
+  width: 250px;
+  height: 30px;
+}
+
+.evalinput select option {
+  text-align: center;
+}
+
+.submit-container {
+  display: flex;
+  gap: 30px;
+  margin: 40px auto;
+}
+
+.evalsubmit button {
+  width: 160px;
+  height: 40px;
+  color: #fff;
+  background-color: #365171;
+  border: none;
+  border-radius: 15px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.evalsubmit button:hover {
+  background: #5f7c9c;
+}
