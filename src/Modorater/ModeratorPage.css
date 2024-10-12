@@ -109,11 +109,11 @@
 }
 
 .toggle-buttons button.active {
-    background-color: #072040;
+    background-color: #004D60;
 }
 
 .toggle-buttons button:hover {
-    background-color: #072040;
+    background-color: #004D60;
 }
 
 /* Page Name Styling */

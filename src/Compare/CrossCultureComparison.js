@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CrossCultureComparison.css';  
 import CLogo from './Clogo.png';
-// This is how it's imported
+
 
 import { useNavigate } from 'react-router-dom';
 

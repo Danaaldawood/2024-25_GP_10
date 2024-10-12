@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import resultImage from './result.png';  // Import your result image
-import './CompareResult.css';  // Ensure the CSS file is correctly imported
+import resultImage from '../images/result.png';  
+import './CompareResult.css'; 
 import { FaArrowLeft } from 'react-icons/fa'; // Import arrow icon
 
 const CompareResult = () => {
