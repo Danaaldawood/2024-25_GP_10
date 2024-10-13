@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import './CrossCultureComparison.css';  
-import CLogo from './Clogo.png';
-
+import LOGOC from '../images/Logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const CrossCultureComparison = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cultureDomain, setCultureDomain] = useState('');
-  const [dimension, setDimension] = useState('');
-  const [cultureDomainPlaceholder, setCultureDomainPlaceholder] = useState('Select a Culture Region');
-  const [dimensionPlaceholder, setDimensionPlaceholder] = useState('Select a Dimension');
+  const [cultureRegion, setCultureRegion] = useState('');
+  const [topic, setTopic] = useState('');
+  const [cultureRegionPlaceholder, setCultureRegionPlaceholder] = useState('Select a Region');
+  const [topicPlaceholder, setTopicPlaceholder] = useState('Select a Topic');
   const [hasError, setHasError] = useState(false);
   
   const navigate = useNavigate();
@@ -31,29 +30,26 @@ const CrossCultureComparison = () => {
 
     let error = false;
 
-    // Check if fields are empty and update the placeholder with an error message
-    if (!cultureDomain) {
-      setCultureDomainPlaceholder('Please select a Domain');
+    if (!cultureRegion) {
+      setCultureRegionPlaceholder('Please select a Region');
       error = true;
     } else {
-      setCultureDomainPlaceholder('Select a Domain');
+      setCultureRegionPlaceholder('Select a Region');
     }
 
-    if (!dimension) {
-      setDimensionPlaceholder('Please select a Dimension');
+    if (!topic) {
+      setTopicPlaceholder('Please select a Topic');
       error = true;
     } else {
-      setDimensionPlaceholder('Select a Dimension');
+      setTopicPlaceholder('Select a Topic');
     }
 
     setHasError(error);
 
-    // If there's an error, prevent navigation
     if (error) return;
 
-    // If no validation errors, proceed with navigation
     navigate('/compare-result', {
-      state: { cultureDomain: cultureDomain, dimension: dimension },
+      state: { cultureRegion: cultureRegion, topic: topic },
     });
   };
 
@@ -62,8 +58,8 @@ const CrossCultureComparison = () => {
       {/* Header */}
       <header className="header">
         <div className="header-left">
-          <img src={CLogo} alt="CultureLens Logo" className="logo-img" />
-          <h1 className="logo-title">CultureLens</h1>
+        <img src={LOGOC} alt="CultureLens Logo" className="logo-img" /> 
+        <h1 className="logo-title">CultureLens</h1>
         </div>
 
         <nav className="nav-menu">
@@ -93,36 +89,33 @@ const CrossCultureComparison = () => {
         <div className="Compare-inputs">
           <div className='Compare-text'>Cross-Cultural Comparison</div>
 
-          {/* Culture Domain Field */}
           <div className="Compare-input">
-            <label className="Compare-label">Culture Region:</label>
+            <label className="Compare-label">Region:</label>
             <select
-              name="cultureDomain"
-              id="cultureDomain"
-              className={`Compare-cultureDomain ${hasError && !cultureDomain ? 'error' : ''}`}
-              value={cultureDomain}
-              onChange={(e) => setCultureDomain(e.target.value)}
+              name="cultureRegion"
+              id="cultureRegion"
+              className={`Compare-cultureRegion ${hasError && !cultureRegion ? 'error' : ''}`}
+              value={cultureRegion}
+              onChange={(e) => setCultureRegion(e.target.value)}
               required
             >
-              <option value="" disabled>{cultureDomainPlaceholder}</option>
+              <option value="" disabled>{cultureRegionPlaceholder}</option>
               <option value="Arab">Arab</option>
               <option value="Western">Western</option>
               <option value="Chinese">Chinese</option>
             </select>
           </div>
-
-          {/* Dimension Field */}
           <div className="Compare-input">
-            <label className="Compare-label">Dimension:</label>
+            <label className="Compare-label">Topic:</label>
             <select
-              name="dimension"
-              id="dimension"
-              className={`Compare-dimension ${hasError && !dimension ? 'error' : ''}`}
-              value={dimension}
-              onChange={(e) => setDimension(e.target.value)}
+              name="topic"
+              id="topic"
+              className={`Compare-topic ${hasError && !topic ? 'error' : ''}`}
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
               required
             >
-              <option value="" disabled>{dimensionPlaceholder}</option>
+              <option value="" disabled>{topicPlaceholder}</option>
               <option value="Food">Food</option>
               <option value="Sport">Sport</option>
               <option value="Family">Family</option>
@@ -134,7 +127,6 @@ const CrossCultureComparison = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="Compare-submit-container">
           <div className="Compare-submit">
             <button onClick={handleCompareClick}>Compare</button>
@@ -151,4 +143,3 @@ const CrossCultureComparison = () => {
 };
 
 export default CrossCultureComparison;
-
