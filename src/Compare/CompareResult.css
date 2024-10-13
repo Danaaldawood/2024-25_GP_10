@@ -1,7 +1,6 @@
 
-/* Title container styling */
 .title-container {
-    background-color:#004D60; /* Dark blue background */
+    background-color:#6084a9; 
     padding: 10px 20px;
     border-radius: 0; 
     width: 100vw; 
@@ -25,7 +24,7 @@
     margin: 0 auto; 
 }
 
-/* Back button styling */
+
 .back-btn {
     background: none;
     border: none;
@@ -46,7 +45,7 @@
     font-size: 22px;
 }
 
-/* Main container styling */
+
 .result-container {
     display: flex;
     flex-direction: column;
@@ -70,7 +69,7 @@
     font-weight: bold;
 }
 
-/* Image styling */
+
 .result-image {
     max-width: 60%;
     height: auto;
@@ -108,14 +107,18 @@
 }
 
 .recompare-btn {
-    background-color: #004D60;
+    background-color: #2d5174;
     color: white;
 }
 
 .recompare-btn:hover {
-    background-color: #365171;
+    background-color: #2a5d77;
 }
 
+
+
+
+  
 
 
 

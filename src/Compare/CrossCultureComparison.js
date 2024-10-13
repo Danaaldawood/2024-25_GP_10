@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './CrossCultureComparison.css';  
 import CLogo from './Clogo.png';
-import Header from '../Header'; 
+
 import { useNavigate } from 'react-router-dom';
 
 const CrossCultureComparison = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cultureDomain, setCultureDomain] = useState('');
   const [dimension, setDimension] = useState('');
-  const [cultureDomainPlaceholder, setCultureDomainPlaceholder] = useState('Select a Domain');
+  const [cultureDomainPlaceholder, setCultureDomainPlaceholder] = useState('Select a Culture Region');
   const [dimensionPlaceholder, setDimensionPlaceholder] = useState('Select a Dimension');
   const [hasError, setHasError] = useState(false);
-
+  
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
@@ -95,7 +95,7 @@ const CrossCultureComparison = () => {
 
           {/* Culture Domain Field */}
           <div className="Compare-input">
-            <label className="Compare-label">Culture Domain:</label>
+            <label className="Compare-label">Culture Region:</label>
             <select
               name="cultureDomain"
               id="cultureDomain"
@@ -109,9 +109,6 @@ const CrossCultureComparison = () => {
               <option value="Western">Western</option>
               <option value="Chinese">Chinese</option>
             </select>
-            {hasError && !cultureDomain && (
-              <p className="error-text">Please select a Culture Domain</p>
-            )}
           </div>
 
           {/* Dimension Field */}
@@ -134,21 +131,13 @@ const CrossCultureComparison = () => {
               <option value="Education">Education</option>
               <option value="Greeting">Greeting</option> 
             </select>
-            {hasError && !dimension && (
-              <p className="error-text">Please select a Dimension</p>
-            )}
           </div>
         </div>
 
         {/* Submit Button */}
         <div className="Compare-submit-container">
           <div className="Compare-submit">
-            <button 
-              onClick={handleCompareClick}
-              disabled={!cultureDomain || !dimension}  // Disable button until fields are selected
-            >
-              Compare
-            </button>
+            <button onClick={handleCompareClick}>Compare</button>
           </div>
         </div>
       </div>
@@ -162,6 +151,4 @@ const CrossCultureComparison = () => {
 };
 
 export default CrossCultureComparison;
-
-
 

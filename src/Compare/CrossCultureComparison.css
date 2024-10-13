@@ -1,9 +1,11 @@
 /* Main container for the form */
 .Compare-form-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     background: #fff;
     width: 530px !important;
     border-radius: 8px;
@@ -11,17 +13,16 @@
     padding-bottom: 30px; 
 }
 
-/* Add error styling */
+
 .error {
     border: 2px solid red;
     color: red;
 }
 
-/* Placeholder color for error */
+
 .Compare-input select.error::placeholder {
     color: red;
 }
-
 
 
 /* Form header  */
@@ -30,17 +31,18 @@
     flex-direction: column;
     align-items: center;
     gap: 9px;
-    background: linear-gradient(500deg, #072040, #7290B0);
-    padding: 20px;
+    padding: 5px;
+    margin: 10px;
     border-radius: 8px 8px 0 0;
 }
 
-/* Text in the form header */
+
 .Compare-text {
     color:#072040;
-    font-size: 20px; 
-    font-weight: bold;
     text-align: center;
+  margin-top: 5px; 
+  font-size: 28px;
+  font-weight: 500;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -59,7 +61,7 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-/* Input container for each field */
+
 .Compare-input {
     display: flex;
     align-items: center;
@@ -71,7 +73,7 @@
     padding: 10px;
 }
 
-/* Dropdown styling */
+
 .Compare-cultureDomain, .Compare-dimension {
     width: 250px;
     height: 35px;
@@ -81,13 +83,9 @@
 .Compare-cultureDomain option, .Compare-dimension option {
     text-align: center;
 }
-/* Error placeholder style for dropdown */
-.Compare-input select[placeholder-error] {
-    border-color: #ff0000;
-    color: #ff0000;
-}
 
-/* Submit button container */
+
+
 .Compare-submit-container {
     display: flex;
     justify-content: center;
@@ -96,20 +94,19 @@
 
 
 .Compare-submit button {
-    width: 200px; 
-    height: 50px;
+    background-color: #2d5174;
+    width: 160px;
+    height: 40px;
     color: #fff;
-    background-color: #072040;
     border: none;
-    border-radius: 10px; 
-    font-size: 20px; 
+    border-radius: 15px;
+    font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .Compare-submit button:hover {
-    background-color: #5f7c9c;
+    background-color: #2a5d77;
 }
 
 /* Header */
@@ -117,10 +114,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:#004D60;/* Dark Blue */
+    background-color:#6084a9;
     color: white;
     padding: 15px 20px;
-    border-bottom-left-radius: 15px; /* Adjust radius as desired */
+    border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
 
@@ -186,10 +183,10 @@
 
 /* Footer */
 .footer {
-    background-color:#004D60;
+    background-color:#6084a9;
     color: white;
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    margin-top: 50px; 
+    margin-top: 80px; 
 }
