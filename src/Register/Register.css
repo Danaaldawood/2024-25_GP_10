@@ -153,8 +153,8 @@ body{
   /* Right Section Style */
   .right-section {
     flex: 1;
-    background: linear-gradient(500deg, #0b2c58,#7290B0);
-      color: #fff;
+    background: linear-gradient(700deg, #004D60, #7290B0);
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;

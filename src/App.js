@@ -2,7 +2,9 @@ import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./Register/Login"; //    
 import Sign from "./Register/sign"; //      
-import Index from "./Fpage/Fpage"; // تأكد من أن الاسم الآن كبير
+import Index from "./Fpage/Fpage"; //
+import HomePage from "./HomePage/HomePage";
+
  function App() {
    const route = createBrowserRouter([
     {
@@ -10,13 +12,17 @@ import Index from "./Fpage/Fpage"; // تأكد من أن الاسم الآن ك�
       element: <Index />, // تغيير إلى Index
     },
     {
-      path: "/login",  // مسار صفحة تسجيل الدخول
+      path: "/login",  
       element: <Login />,
     },
     {
-      path: "/sign",  // مسار صفحة التسجيل
-      element: <Sign />, // تأكد من أن المكون Sign صحيح
+      path: "/sign",  
+      element: <Sign />,
     },
+    {
+      path: "/homepage",  
+      element: <HomePage />, 
+    }
      
   ]);
 

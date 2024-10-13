@@ -1,0 +1,284 @@
+ 
+
+  
+
+ 
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004D60; /* Dark Blue */
+    color: white;
+    padding: 15px 20px;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .logo-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-menu a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+  }
+  
+  .nav-menu a:hover {
+    border-bottom: 2px solid white;
+  }
+  
+  .menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .menu-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  .menu-dropdown p {
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .menu-dropdown p:hover {
+    background-color: #f4f4f4;
+  }
+  
+  
+  .sign-out {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .footer {
+    background-color: #072040; 
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+  /* محتوى الصفحة */
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+     margin-top: 40px;
+     position: relative;
+  
+  }
+  
+  .welcome-text {
+    
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #003f5c;
+      
+  } 
+  .text-center{
+    align-items: center;
+  }
+  
+  
+  
+  .description-text {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .learn-more-btn {
+     color: #fff;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #43618b;
+  }
+  
+  .map-logo {
+    height: 300px;
+    width: auto;
+    border-radius: 8px;
+    margin-left: 20px;
+  }
+  
+  /* بطاقات الثقافة */
+   
+  
+  .domains-container {
+    display: flex;
+    justify-content: center;
+    gap: 80px; /* المسافة بين الكروت */
+    margin: 40px 0;
+    flex-wrap: wrap; /* للسماح بالتفاف الكروت على الأسطر التالية في حال ضيق العرض */
+  }
+  
+  .domain-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(14, 82, 142, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    cursor: pointer; /* لتوضيح أن العنصر قابل للنقر */
+  }
+  
+  .domain-card:hover {
+    transform: translateY(-5px); /* تحريك الكارد عند التمرير فوقه */
+    box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2); /* تعزيز الظل */
+  }
+  
+  
+  .domain-card h3 {
+    color: #003f5c;
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .domain-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .dashboard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  
+  }
+  
+  .dashboard-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #003f5c;
+   
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* لمحاذاة العناصر عمودياً في المنتصف */
+    gap: 30px;
+    margin-top: 30px;
+   }
+  
+   .chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px; /* عرض ثابت للرسم البياني والنص */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .chart-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #13313f;
+   }
+  
+   .total-questions-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(
+      #419dff 0% 33%, /* القسم الأول */
+      #68aeff 33% 66%, /* القسم الثاني */
+      #365271 66% 100% /* القسم الثالث */
+    );
+    -webkit-mask: radial-gradient(circle, transparent 50%, black 51%); /* قناع دائري */
+    mask: radial-gradient(circle, transparent 50%, black 51%);
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+  }
+  
+  .total-questions-circle h1 {
+    font-size: 2.6rem;
+    color: #333; /* لون النص */
+    margin: 0;
+  }
+  
+  
+  
+  
+  
+  .chart:hover {
+    transform: translateY(-5px); /* تأثير hover */
+  }
+   
+  
+   
+  
+  
+  .chart p span {
+    font-size: 1.2rem; /* حجم النص */
+    font-weight: bold; /* اجعل النص عريض */
+    color: #1a436c; /* اللون */
+     padding: 5px 10px; /* إضافة مسافة داخلية */
+    border-radius: 5px; /* جعل الحواف مستديرة */
+    margin-bottom: 10px; /* مسافة أسفل العنصر */
+    display: inline-block; /* لتطبيق الحواف والمسافات بشكل أفضل */
+  }
+  
+  
+  /* الفوتر */
+  .footer {
+    background-color: #003f5c;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .map-logo {
+      animation: rotateLogo infinite 20s linear;
+    }
+  }
+  
+  @keyframes rotateLogo { /* تغيير اسم keyframes إلى "rotateLogo" */
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
