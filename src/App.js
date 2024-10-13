@@ -16,7 +16,7 @@ function App() {
   const route = createBrowserRouter([
     {
       path: "/",  
-      element: <Index />,  // Default page
+      element: <Index />,  
     },
     {
       path: "/home",  
@@ -44,11 +44,11 @@ function App() {
     },
     {
       path: "/compare",  
-      element: <ComparePage />,  // Compare page
+      element: <ComparePage />, 
     },
     {
       path: "/compare-result",  
-      element: <CompareResult />,  // Compare Result page, make sure it's defined
+      element: <CompareResult />,  
     },
     {
       path: "/evaluation",  
