@@ -9,6 +9,8 @@ import ComparePage from './Compare/CrossCultureComparison';
 import { Evaluation } from './Evaluation/Evaluation';
 import View from './ViewPages/View';
 import CompareResult from './Compare/CompareResult';  // Import CompareResult page
+import  {Plot}  from './Plot/Plot'; // 
+import {ConversationLayout} from './Freestyle/Freestyle'
 
 function App() {
   const route = createBrowserRouter([
@@ -51,6 +53,14 @@ function App() {
     {
       path: "/evaluation",  
       element: <Evaluation />,
+    },
+    {
+      path: "/plot",  
+      element: <Plot />,
+    },
+    {
+      path: "/freestyle",  
+      element: <ConversationLayout />,
     },
   ]);
 

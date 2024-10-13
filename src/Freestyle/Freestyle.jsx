@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Freestyle.css';
-import logo from '../images/logo.png';
+import logo from '../images/Logo.png';
 
 
 export const ConversationLayout = () => {
