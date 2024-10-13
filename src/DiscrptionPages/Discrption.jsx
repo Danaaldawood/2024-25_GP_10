@@ -1,14 +1,11 @@
 
 
-
 import React, { useState } from 'react'; // Import React and useState only once
 import { Link, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Discrption.css';
 
-import './Discrption.css';
-import logo from '../images/Culturelogo.png';
-
+// import logo from '../images/Culturelogo.png';
 
 import Cardtopic from './Cardtopic.jsx';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -19,40 +16,79 @@ import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import TodayIcon from '@mui/icons-material/Today';
 
-import logo from '../images/Group6.png';
+import ball from '../images/Group6.png';
 
 
-import logo from '../images/aboutdata.png';
+import about from '../images/aboutdata.png';
+
+import CLogo from '../Compare/Clogo.png';
+
 
 
 
 function Header() {
-    const [isMenuOpen, setMenuOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showMore, setShowMore] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedDomain, setSelectedDomain] = useState(''); // إضافة حالة لحفظ المجال المختار
 
-    const toggleMenu = () => {
-        setMenuOpen(!isMenuOpen);
-    };
+  const userName = "Haya";
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log("بحث عن:", searchQuery);
+  };
+
+  const toggleProfileMenu = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
+
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleProfileClick = () => {
+    console.log("عرض الصفحة الشخصية");
+  };
+
+  const handleSignOut = () => {
+    console.log("تسجيل الخروج");
+  };
+ 
 
     return (
     
-        <header className="app-header">
-            <img src={logo} className="app-logo" alt="logo" />
-
-            <nav className="header-right">
-                <a className="nav-link active" href="#home">Home</a>
-                <a className="nav-link" href="#compare">Compare</a>
-                <a className="nav-link" href="#evaluation">Evaluation</a>
-                <a className="nav-link" href="#Edit">Edit</a>
-
-
+       
+        <header className="header">
+            <div className="header-left">
+              <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
+              {/* <h1 className="logo-title ">CultureLens</h1> */}
+            </div>
+    
+            <nav className="nav-menu ">
+              <a href="HomePage" >Home</a>
+              <a href="/culturevalues" >Cultural Values</a>
+              <a href="/edit" >Edit</a>
+              <a href="/compare" >Compare</a>
+              <a href="/evaluation">Evaluation</a>
+             
 
             </nav>
-            
+    
+            <button className="menu-btn" onClick={handleMenuToggle}>
+              <span className="menu-icon">&#9776;</span>
+            </button>
+            {menuOpen && (
+              <div className="menu-dropdown ">
+                <p onClick={handleProfileClick}>Profile</p>
+                <p onClick={handleSignOut} className="sign-out ">Sign out</p>
+              </div>
+            )}
+          </header>
 
-            {/* Menu icon for toggling */}
-            <MenuIcon className="menu-icon" onClick={toggleMenu} />
-        </header>
     );
+
 }
 
 const Discrption = () => {
@@ -63,7 +99,7 @@ const Discrption = () => {
                 <section id="CoreDimintion">
                   
                 <img src={about} id="aboutlogo" alt="aboutlogo" />
-                    <h2>About Dataset:</h2>
+                   
         
                     
                      
@@ -72,10 +108,8 @@ const Discrption = () => {
                         <div>
                         
                             <p>
-                                Our dataset was created  by mixing more than datset  in 200k and more to cover the dtata attribute or 
-                                Topic and give a more knowldge and diversity  to know about three main region in world  which is Arab ,Chines, Westiren regions .
-                                Our dataset was created  by mixing more than datset  in 200k and more to cover the dtata attribute or 
-                                Topic and give a more knowldge and diversity  to know about three main region in world  which is Arab ,Chines, Westiren regions .
+                            Our cultural values integrates information from multiple sources, encompassing over 200,000 entries to ensure thorough coverage across diverse attributes and topics. This extensive dataset provides in-depth insights into three primary cultural regions: Arab, Chinese, and Western. By integrating multiple datasets, it encapsulates a broad spectrum of perspectives, delivering refined knowledge on cultural topics and regional variances. This framework not only enriches cultural understanding but also supports precise
+                             analysis and comparison across these distinct regions.
                             </p>
                             
                         </div>
@@ -87,7 +121,7 @@ const Discrption = () => {
                 <section id="cardsection">
                 <img src={ball}  id="corner-ball" alt=",,"/>
                     <h2>Dataset Topics</h2>
-                    <div className="container">
+                    <div className="containerrows">
                         <div className="row">
                             {/* First Card */}
                             <div className="col-md-6">

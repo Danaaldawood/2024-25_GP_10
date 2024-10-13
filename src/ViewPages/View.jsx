@@ -1,106 +1,74 @@
-// import React from 'react';
-// import './View.css';
-// import { useNavigate } from 'react-router-dom';
-
-
-// function View(){
-
-// return(
-//     <main>
-//         <section>
-// <table class="table">
-//   <thead>
-//     <tr>
-//     <th>UserID</th>
-//           <th>AttributID</th>
-//           <th>Reigon</th>
-//           <th>Qustion</th>
-//           <th>Value</th>
-//           <th>Reason</th>
-//           <th>CultureLevel</th>
-//           <th>Dimintion</th>
-//           <th>Actions</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr>
-//       <th scope="row">1</th>
-//       <td>Mark</td>
-//       <td>Otto</td>
-//       <td>@mdo</td>
-//       <td>Mark</td>
-//       <td>Otto</td>
-//       <td>@mdo</td>
-//       <td>Mark</td>
-     
-//       <td>
-//             <button id="editvalue">Edit</button>
-//     </td>
-
-//     </tr>
-//     <tr>
-//       <th scope="row">2</th>
-//       <td>Jacob</td>
-//       <td>Thornton</td>
-//       <td>@fat</td>
-//       <td>Mark</td>
-//       <td>Otto</td>
-//       <td>@mdo</td>
-//       <td>Otto</td>
-//       <td>
-//             <button>Edit</button>
-//     </td>
-      
-//     </tr>
-//     <tr>
-//       <th scope="row">3</th>
-//       <td colspan="2">Larry the Bird</td>
-//       <td>@twitter</td>
-//       <td>Otto</td>
-//       <td>@mdo</td>
-//       <td>@twitter</td>
-//       <td>Otto</td>
-//       <td>
-//             <button id='btn-editvalue'>Edit</button>
-//     </td>
-      
-//     </tr>
-//   </tbody>
-// </table>
-
-
-
-
-
-
-
-
-// </section>
-
-
-// <footer className="footer">
-//         <p>© 2024 CultureLens. All rights reserved.</p>
-//       </footer>
-
-// </main>
-
-
-
-
-
-   
-//     );
-// }
-////////////////////just static////////////////
-// export default View;
-
-
-
-//static have filter and  search 
 
 import React, { useState } from 'react';
 import './View.css';
 import { useNavigate } from 'react-router-dom';
+
+
+import CLogo from '../Compare/Clogo.png';
+
+function Header() {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+const [searchQuery, setSearchQuery] = useState('');
+const [showMore, setShowMore] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
+
+
+const handleSearch = (e) => {
+  e.preventDefault();
+  console.log("بحث عن:", searchQuery);
+};
+
+const toggleProfileMenu = () => {
+  setIsProfileOpen(!isProfileOpen);
+};
+
+const handleMenuToggle = () => {
+  setMenuOpen(!menuOpen);
+};
+
+const handleProfileClick = () => {
+  console.log("عرض الصفحة الشخصية");
+};
+
+const handleSignOut = () => {
+  console.log("تسجيل الخروج");
+};
+
+
+  return (
+  
+     
+      <header className="header">
+          <div className="header-left">
+            <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
+            {/* <h1 className="logo-title ">CultureLens</h1> */}
+          </div>
+  
+          <nav className="nav-menu ">
+            <a href="HomePage" >Home</a>
+            <a href="/culturevalues" >CultureValues</a>
+            <a href="/edit" >Edit</a>
+            <a href="/compare" >Compare</a>
+            <a href="/evaluation">Evaluation</a>
+           
+
+          </nav>
+  
+          <button className="menu-btn" onClick={handleMenuToggle}>
+            <span className="menu-icon">&#9776;</span>
+          </button>
+          {menuOpen && (
+            <div className="menu-dropdown ">
+              <p onClick={handleProfileClick}>Profile</p>
+              <p onClick={handleSignOut} className="sign-out ">Sign out</p>
+            </div>
+          )}
+        </header>
+
+  );
+
+}
+
 
 function View() {
   const [searchTerm, setSearchTerm] = useState(''); // State for search input

@@ -10,23 +10,95 @@
 // };
 
 
-import React from 'react';
+
+import React, { useState } from 'react';
 import './Edit.css';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../Header'; 
+import CLogo from '../Compare/Clogo.png';
+
+
+
+function Header() {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+const [searchQuery, setSearchQuery] = useState('');
+const [showMore, setShowMore] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
+
+
+const handleSearch = (e) => {
+  e.preventDefault();
+  console.log("بحث عن:", searchQuery);
+};
+
+const toggleProfileMenu = () => {
+  setIsProfileOpen(!isProfileOpen);
+};
+
+const handleMenuToggle = () => {
+  setMenuOpen(!menuOpen);
+};
+
+const handleProfileClick = () => {
+  console.log("عرض الصفحة الشخصية");
+};
+
+const handleSignOut = () => {
+  console.log("تسجيل الخروج");
+};
+
+
+  return (
+  
+     
+      <header className="header">
+          <div className="header-left">
+            <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
+            {/* <h1 className="logo-title ">CultureLens</h1> */}
+          </div>
+  
+          <nav className="nav-menu ">
+            <a href="HomePage" >Home</a>
+            <a href="/culturevalues" >Cultural Values</a>
+            <a href="/edit" >Edit</a>
+            <a href="/compare" >Compare</a>
+            <a href="/evaluation">Evaluation</a>
+           
+
+          </nav>
+  
+          <button className="menu-btn" onClick={handleMenuToggle}>
+            <span className="menu-icon">&#9776;</span>
+          </button>
+          {menuOpen && (
+            <div className="menu-dropdown ">
+              <p onClick={handleProfileClick}>Profile</p>
+              <p onClick={handleSignOut} className="sign-out ">Sign out</p>
+            </div>
+          )}
+        </header>
+
+  );
+
+}
+
 
 export const Edit = () => {
 const navigate = useNavigate();
 
  const handleEditClick = () => {
-    navigate('/description');
+    navigate('/culturevalues');
  };
-
+ 
   return (
-    
+   <div>
+     <Header/>
+  
+   
     <div className='formcontainer'>
       
+      
+     
       <div className='header'>
         
         <div className='text'>Edit</div>
@@ -86,6 +158,8 @@ const navigate = useNavigate();
         </div>
       </div>
     </div>
+    </div>
   );
+
 };
 export default Edit;

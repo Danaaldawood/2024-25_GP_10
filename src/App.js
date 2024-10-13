@@ -4,13 +4,15 @@ import Login from "./Register/Login";
 import Sign from './Register/sign';  // Ensure case matches the file on disk
 import Index from "./Fpage/Fpage";
 import HomePage from "./HomePage/HomePage";
-import EditPage from './EditPages/Edit';
+import Edit from './EditPages/Edit';
 import ComparePage from './Compare/CrossCultureComparison';
 import { Evaluation } from './Evaluation/Evaluation';
 import View from './ViewPages/View';
 import CompareResult from './Compare/CompareResult';  // Import CompareResult page
 import  {Plot}  from './Plot/Plot'; // 
 import {ConversationLayout} from './Freestyle/Freestyle'
+import Discrption from './DiscrptionPages/Discrption';
+
 
 function App() {
   const route = createBrowserRouter([
@@ -40,7 +42,7 @@ function App() {
     },
     {
       path: "/edit",  
-      element: <EditPage />,
+      element: <Edit />,
     },
     {
       path: "/compare",  
@@ -61,6 +63,10 @@ function App() {
     {
       path: "/freestyle",  
       element: <ConversationLayout />,
+    },
+    {
+      path: "/culturevalues",  
+      element: <Discrption />,
     },
   ]);
 
