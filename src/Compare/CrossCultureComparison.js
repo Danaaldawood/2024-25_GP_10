@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import './CrossCultureComparison.css';  
 import CLogo from './Clogo.png';
-import Header from '../Header'; // Go up one directory to src, then import Header
-
-
-
+import Header from '../Header'; 
 import { useNavigate } from 'react-router-dom';
 
 const CrossCultureComparison = () => {
@@ -14,7 +11,7 @@ const CrossCultureComparison = () => {
   const [cultureDomainPlaceholder, setCultureDomainPlaceholder] = useState('Select a Domain');
   const [dimensionPlaceholder, setDimensionPlaceholder] = useState('Select a Dimension');
   const [hasError, setHasError] = useState(false);
-  
+
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
@@ -112,6 +109,9 @@ const CrossCultureComparison = () => {
               <option value="Western">Western</option>
               <option value="Chinese">Chinese</option>
             </select>
+            {hasError && !cultureDomain && (
+              <p className="error-text">Please select a Culture Domain</p>
+            )}
           </div>
 
           {/* Dimension Field */}
@@ -134,13 +134,21 @@ const CrossCultureComparison = () => {
               <option value="Education">Education</option>
               <option value="Greeting">Greeting</option> 
             </select>
+            {hasError && !dimension && (
+              <p className="error-text">Please select a Dimension</p>
+            )}
           </div>
         </div>
 
         {/* Submit Button */}
         <div className="Compare-submit-container">
           <div className="Compare-submit">
-            <button onClick={handleCompareClick}>Compare</button>
+            <button 
+              onClick={handleCompareClick}
+              disabled={!cultureDomain || !dimension}  // Disable button until fields are selected
+            >
+              Compare
+            </button>
           </div>
         </div>
       </div>
@@ -154,5 +162,6 @@ const CrossCultureComparison = () => {
 };
 
 export default CrossCultureComparison;
+
 
 

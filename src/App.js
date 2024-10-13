@@ -1,28 +1,24 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./Register/Login";
-import Sign from './Register/sign'; // Ensure case matches the file on disk
+import Sign from './Register/sign';  // Ensure case matches the file on disk
 import Index from "./Fpage/Fpage";
 import HomePage from "./HomePage/HomePage";
 import EditPage from './EditPages/Edit';
-import ComparePage from './Compare/CrossCultureComparison'; 
+import ComparePage from './Compare/CrossCultureComparison';
 import { Evaluation } from './Evaluation/Evaluation';
-import  View  from './ViewPages/View'; // 
-
-
-
-
-
+import View from './ViewPages/View';
+import CompareResult from './Compare/CompareResult';  // Import CompareResult page
 
 function App() {
   const route = createBrowserRouter([
     {
       path: "/",  
-      element: <Index />, // Default page
+      element: <Index />,  // Default page
     },
     {
       path: "/home",  
-      element: <HomePage />, 
+      element: <HomePage />,
     },
     {
       path: "/login",  
@@ -34,28 +30,28 @@ function App() {
     },
     {
       path: "/homepage",  
-      element: <HomePage />, // HomePage with the navigation bar
+      element: <HomePage />,
     },
     {
       path: "/view",  
-      element: <View />, // HomePage with the navigation bar
+      element: <View />,
     },
-
     {
       path: "/edit",  
-      element: <EditPage />, // Edit page
+      element: <EditPage />,
     },
     {
       path: "/compare",  
-      element: <ComparePage />, // Compare page
+      element: <ComparePage />,  // Compare page
     },
-    
+    {
+      path: "/compare-result",  
+      element: <CompareResult />,  // Compare Result page, make sure it's defined
+    },
     {
       path: "/evaluation",  
-      element: <Evaluation />, // Evaluation page
+      element: <Evaluation />,
     },
-    
-
   ]);
 
   return (
@@ -66,5 +62,4 @@ function App() {
 }
 
 export default App;
-
 
