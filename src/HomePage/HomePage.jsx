@@ -105,7 +105,7 @@ const HomePage = () => {
         </div>
 
         <nav className="nav-menu">
-          <a href="/">Home</a>
+          <a href="/home">Home</a>
           <a href="/dataset">Dataset</a>
           <a href="/edit">Edit</a>
           <a href="/compare">Compare</a>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  
 import './Plot.css';
-import plotImage from '../images/plot1.png';
-import logo from '../images/logo.png';
+import plotImage from './images/plot1.png';
+import logo from './images/Logo.png';
 
 
 export const Plot = () => {

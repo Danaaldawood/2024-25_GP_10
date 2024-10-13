@@ -6,7 +6,12 @@ import Index from "./Fpage/Fpage";
 import HomePage from "./HomePage/HomePage";
 import EditPage from './EditPages/Edit';
 import ComparePage from './Compare/CrossCultureComparison'; 
-import  Evaluation  from './Evaluation/Evaluation'; // Named import
+import { Evaluation } from './Evaluation/Evaluation';
+import  View  from './ViewPages/View'; // 
+
+
+
+
 
 
 function App() {
@@ -14,6 +19,10 @@ function App() {
     {
       path: "/",  
       element: <Index />, // Default page
+    },
+    {
+      path: "/home",  
+      element: <HomePage />, 
     },
     {
       path: "/login",  
@@ -27,6 +36,10 @@ function App() {
       path: "/homepage",  
       element: <HomePage />, // HomePage with the navigation bar
     },
+    {
+      path: "/view",  
+      element: <View />, // HomePage with the navigation bar
+    },
 
     {
       path: "/edit",  
@@ -36,10 +49,12 @@ function App() {
       path: "/compare",  
       element: <ComparePage />, // Compare page
     },
+    
     {
       path: "/evaluation",  
-      element: <evaluationPage />, // Evaluation page
-    }
+      element: <Evaluation />, // Evaluation page
+    },
+    
 
   ]);
 
