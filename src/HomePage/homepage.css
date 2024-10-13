@@ -1,284 +1,221 @@
- 
 
-  
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+   margin-top: 40px;
+   position: relative;
+   
 
- 
-/* Header */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #004D60; /* Dark Blue */
-    color: white;
-    padding: 15px 20px;
-  }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-img {
-    width: 50px;
+}
+ .map-photo {
+  display: block;
+  margin: 0 auto;  
+   height: auto;  
+  padding: 20px 0;
+  width: 80%;
+    max-width: 1000px;
     height: auto;
-    margin-right: 10px;
-  }
+}
+
+.welcome-text {
   
-  .logo-title {
-    font-size: 24px;
+    font-size: 2.2rem;
     font-weight: bold;
-  }
-  
-  .nav-menu a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-  }
-  
-  .nav-menu a:hover {
-    border-bottom: 2px solid white;
-  }
-  
-  .menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .menu-dropdown {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-  }
-  
-  .menu-dropdown p {
-    margin: 0;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .menu-dropdown p:hover {
-    background-color: #f4f4f4;
-  }
-  
-  
-  .sign-out {
-    color: red;
-    font-weight: bold;
-  }
-  
-  .footer {
-    background-color: #072040; 
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-  }
-  /* محتوى الصفحة */
-  .content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px;
-     margin-top: 40px;
-     position: relative;
-  
-  }
-  
-  .welcome-text {
+    color: #003f5c;
     
-      font-size: 2.2rem;
-      font-weight: bold;
-      color: #003f5c;
-      
-  } 
-  .text-center{
-    align-items: center;
-  }
+} 
+
+.description-text {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+.learn-more-btn {
+  margin: 0.5rem;
+  padding: 0.8rem  ;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #2d5174 ;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  width: 150px; 
+}
+
+.learn-more-btn:hover {
+  background-color: #2a5d77;
+  box-shadow: 0 4px 8px rgba(63, 126, 166, 0.4);
+
+}
+
+.map-logo {
+  height: 300px;
+  width: auto;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
   
-  
-  
-  .description-text {
-    font-size: 1.2rem;
-    color: #555;
-    margin-top: 10px;
-  }
-  
-  .learn-more-btn {
-     color: #fff;
-    padding: 8px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .learn-more-btn:hover {
-    background-color: #43618b;
-  }
-  
+
+.domains-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;  
+  margin: 40px 0;
+  flex-wrap: wrap; 
+}
+
+.domain-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(14, 82, 142, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 200px;
+  cursor: pointer; 
+}
+
+.domain-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2); 
+}
+
+
+.domain-card h3 {
+  color: #003f5c;
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.domain-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+ 
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #003f5c;
+ 
+}
+
+ 
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.chart {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 280px; /* عرض ثابت */
+  height: 280px; /* ارتفاع ثابت */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.doughnut-container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart canvas {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+
+.chart h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.chart-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.chart p span {
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  color: #1a436c; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  margin-bottom: 10px; 
+  display: inline-block; 
+}
+
+.chart:hover {
+  transform: translateY(-5px); 
+}
+
+.total-questions-circle {
+  background: conic-gradient(
+    #419dff 0% 33%, 
+    #68aeff 33% 66%,
+    #365271 66% 100%
+  );
+  -webkit-mask: radial-gradient(circle, transparent 50%, black 51%); 
+  mask: radial-gradient(circle, transparent 50%, black 51%);
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+}
+
+.total-questions-circle h1 {
+  font-size: 2.6rem;
+  color: #333; 
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .map-logo {
-    height: 300px;
-    width: auto;
-    border-radius: 8px;
-    margin-left: 20px;
+    animation: rotateLogo infinite 20s linear;
   }
-  
-  /* بطاقات الثقافة */
-   
-  
-  .domains-container {
-    display: flex;
-    justify-content: center;
-    gap: 80px; /* المسافة بين الكروت */
-    margin: 40px 0;
-    flex-wrap: wrap; /* للسماح بالتفاف الكروت على الأسطر التالية في حال ضيق العرض */
+}
+
+@keyframes rotateLogo {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .domain-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(14, 82, 142, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 200px;
-    cursor: pointer; /* لتوضيح أن العنصر قابل للنقر */
+  to {
+    transform: rotate(360deg);
   }
-  
-  .domain-card:hover {
-    transform: translateY(-5px); /* تحريك الكارد عند التمرير فوقه */
-    box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2); /* تعزيز الظل */
-  }
-  
-  
-  .domain-card h3 {
-    color: #003f5c;
-    font-size: 1.5rem;
-    margin: 10px 0;
-  }
-  
-  .domain-card p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .dashboard {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  
-  }
-  
-  .dashboard-title {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    color: #003f5c;
-   
-  }
-  
-  .charts {
-    display: flex;
-    justify-content: space-around;
-    align-items: center; /* لمحاذاة العناصر عمودياً في المنتصف */
-    gap: 30px;
-    margin-top: 30px;
-   }
-  
-   .chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px; /* عرض ثابت للرسم البياني والنص */
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .chart-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #13313f;
-   }
-  
-   .total-questions-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: conic-gradient(
-      #419dff 0% 33%, /* القسم الأول */
-      #68aeff 33% 66%, /* القسم الثاني */
-      #365271 66% 100% /* القسم الثالث */
-    );
-    -webkit-mask: radial-gradient(circle, transparent 50%, black 51%); /* قناع دائري */
-    mask: radial-gradient(circle, transparent 50%, black 51%);
-    border-radius: 50%;
-    width: 160px;
-    height: 160px;
-  }
-  
-  .total-questions-circle h1 {
-    font-size: 2.6rem;
-    color: #333; /* لون النص */
-    margin: 0;
-  }
-  
-  
-  
-  
-  
-  .chart:hover {
-    transform: translateY(-5px); /* تأثير hover */
-  }
-   
-  
-   
-  
-  
-  .chart p span {
-    font-size: 1.2rem; /* حجم النص */
-    font-weight: bold; /* اجعل النص عريض */
-    color: #1a436c; /* اللون */
-     padding: 5px 10px; /* إضافة مسافة داخلية */
-    border-radius: 5px; /* جعل الحواف مستديرة */
-    margin-bottom: 10px; /* مسافة أسفل العنصر */
-    display: inline-block; /* لتطبيق الحواف والمسافات بشكل أفضل */
-  }
-  
-  
-  /* الفوتر */
-  .footer {
-    background-color: #003f5c;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-  
-  
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .map-logo {
-      animation: rotateLogo infinite 20s linear;
-    }
-  }
-  
-  @keyframes rotateLogo { /* تغيير اسم keyframes إلى "rotateLogo" */
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
+
+.text-center {
+  color: #003f5c;
+}

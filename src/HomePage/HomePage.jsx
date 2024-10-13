@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './homepage.css';
- import { Doughnut, Bar } from 'react-chartjs-2';
+import LOGO from '../images/Logo.png';
+import { Doughnut, Bar } from 'react-chartjs-2';
 import photo from '../images/MAP-logo.png';
-import LOGOC from '../images/Logo.png';
-import Header from '../Header'; // Go up one directory to src, then import Header
-
-
-
 import 'chart.js/auto';
-
+import MAPPhoto from '../images/result.png';
+import Header from'../Header'
 const HomePage = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -81,6 +78,7 @@ const HomePage = () => {
     ],
   };
 
+
   const barOptions = {
     scales: {
       y: {
@@ -93,20 +91,32 @@ const HomePage = () => {
       },
     },
   };
+const totalAttributeData = {
+  labels: ['Arab', 'Chinese', 'Western'], // Label segments as needed
+  datasets: [
+    {
+      data: [50, 60, 40],  // Values for each segment
+      backgroundColor: ['#003f5c', '#2f4b7c', '#43618b'], // Matching colors
+      borderWidth: 1, 
+    },
+  ],
+};
+
+ 
 
   return (
     <div className="homepage">
       
 {/* Header */}
-      <header className="header">
+<header className="header">
         <div className="header-left">
-          <img src={LOGOC} alt="CultureLens Logo" className="logo-img" /> 
+          <img src={LOGO} alt="CultureLens Logo" className="logo-img" /> 
           <h1 className="logo-title">CultureLens</h1>
         </div>
 
         <nav className="nav-menu">
-          <a href="/home">Home</a>
-          <a href="/culturevalues">Cultural Values</a>
+          <a href="/">Home</a>
+          <a href="/dataset">CultureValue</a>
           <a href="/edit">Edit</a>
           <a href="/compare">Compare</a>
           <a href="/evaluation">Evaluation</a>
@@ -123,13 +133,13 @@ const HomePage = () => {
         )}
       </header>
    
+   
 
       <div className="content container">
         <div className="text-content">
           <p className="welcome-text">About us</p>
           <p className="description-text">
-          CultureLens, an innovative platform that aims to assess the compatibility of multilingual models with different social and cultural values and standards.
-  {showMore && (
+CultureLens, an innovative platform that aims to assess the compatibility of multilingual models with different social and cultural values and standards {showMore && (
     <span> CultureLens is designed to provide a comprehensive analysis that promotes understanding of cultural diversity and helps researchers and developers improve model compatibility with multicultures.  
 At CultureLens, we focus on many key cultural areas, including Arab, Western, and Chinese cultures.</span>
   )}
@@ -142,7 +152,7 @@ At CultureLens, we focus on many key cultural areas, including Arab, Western, an
         <img src={photo} alt="Map Logo" className="map-logo" />
       </div>
 
-      <h2 className="text-center">Culture Domains</h2>
+      <h2 className="text-center">Sub Culture</h2>
       <div className="domains-container">
         <div className="domain-card" onClick={() => handleDomainChange('Arab')}>
           <div className="card-body">
@@ -153,7 +163,7 @@ At CultureLens, we focus on many key cultural areas, including Arab, Western, an
         <div className="domain-card" onClick={() => handleDomainChange('Western')}>
           <div className="card-body">
             <h3>Western</h3>
-            <p>Understand Western social norms, ideologies, and cultural practices.</p>
+            <p>Understand Western social norms, , and cultural practices.</p>
           </div>
         </div>
         <div className="domain-card" onClick={() => handleDomainChange('Chinese')}>
@@ -167,23 +177,29 @@ At CultureLens, we focus on many key cultural areas, including Arab, Western, an
       <div className="dashboard">
          <div className="charts">
           <div className="chart">
-            <p><span>Category</span></p>
+            <p><span>Dimension</span></p>
             <Doughnut data={categoryData} options={doughnutOptions} />
           </div>
+          
           <div className="chart">
-            <p><span>Culture Comparison</span></p>
-            <Bar data={barData} options={barOptions} />
+          <p><span>Sub Region Comparison</span></p>
+
+             <Bar data={barData} options={barOptions} />
           </div>
           <div className="chart">
-            <p><span>Total Questions</span></p>
-            <div className="total-questions-circle">
-              <div className="circle">
-                <h1>300</h1>
-              </div>
-            </div>
-          </div>
+          <p><span>Total Attribute</span></p>
+   <div className="doughnut-container">
+    <Doughnut data={totalAttributeData} options={doughnutOptions} />
+ 
+    <div className="total-value">
+     </div>
+  </div>
+</div>
+ 
         </div>
+ 
       </div>
+      <img src={MAPPhoto} alt="MapPhoto" className="map-photo" />
 
       <footer className="footer ">
         <p className="footer">© 2024 CultureLens. All rights reserved.</p>

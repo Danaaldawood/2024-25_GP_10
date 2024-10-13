@@ -82,6 +82,8 @@ body{
     display: flex;
     align-items: center;
     margin-top: 1rem;
+    border: none; /* إزالة الحدود */
+  outline: none; /* إزالة أي خطوط خارجية */
   }
   
   .sign-culture-options {
