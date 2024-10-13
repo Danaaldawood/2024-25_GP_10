@@ -14,6 +14,7 @@ import React from 'react';
 import './Edit.css';
 import { useNavigate } from 'react-router-dom';
 
+import Header from '../Header'; 
 export const Edit = () => {
 const navigate = useNavigate();
 
@@ -22,8 +23,10 @@ const navigate = useNavigate();
  };
 
   return (
+    
     <div className='formcontainer'>
       <div className='header'>
+        
         <div className='text'>Edit</div>
         <div className='underline'></div>
       </div>

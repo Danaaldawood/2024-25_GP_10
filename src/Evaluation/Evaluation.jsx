@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Evaluation.css';
-import logo from '../images/logo.png';
+import logo from '../images/Logo.png';
+import Header from '../Header'; 
+
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -117,3 +120,4 @@ export const Evaluation = () => {
     </div>
   );
 };
+export default Evaluation;

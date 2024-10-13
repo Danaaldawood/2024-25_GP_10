@@ -1,15 +1,19 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Login from "./Register/Login"; //    
-import Sign from "./Register/sign"; //      
-import Index from "./Fpage/Fpage"; //
+import Login from "./Register/Login";
+import Sign from './Register/sign'; // Ensure case matches the file on disk
+import Index from "./Fpage/Fpage";
 import HomePage from "./HomePage/HomePage";
+import EditPage from './EditPages/Edit';
+import ComparePage from './Compare/CrossCultureComparison'; 
+import  Evaluation  from './Evaluation/Evaluation'; // Named import
 
- function App() {
-   const route = createBrowserRouter([
+
+function App() {
+  const route = createBrowserRouter([
     {
-      path: "/",  // الصفحة الافتراضية
-      element: <Index />, // تغيير إلى Index
+      path: "/",  
+      element: <Index />, // Default page
     },
     {
       path: "/login",  
@@ -21,9 +25,22 @@ import HomePage from "./HomePage/HomePage";
     },
     {
       path: "/homepage",  
-      element: <HomePage />, 
+      element: <HomePage />, // HomePage with the navigation bar
+    },
+
+    {
+      path: "/edit",  
+      element: <EditPage />, // Edit page
+    },
+    {
+      path: "/compare",  
+      element: <ComparePage />, // Compare page
+    },
+    {
+      path: "/evaluation",  
+      element: <evaluationPage />, // Evaluation page
     }
-     
+
   ]);
 
   return (
@@ -34,4 +51,5 @@ import HomePage from "./HomePage/HomePage";
 }
 
 export default App;
+
 

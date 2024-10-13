@@ -3,6 +3,9 @@ import './homepage.css';
  import { Doughnut, Bar } from 'react-chartjs-2';
 import photo from '../images/MAP-logo.png';
 import LOGOC from '../images/Logo.png';
+import Header from '../Header'; // Go up one directory to src, then import Header
+
+
 
 import 'chart.js/auto';
 
