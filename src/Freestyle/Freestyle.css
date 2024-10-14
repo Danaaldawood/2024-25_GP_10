@@ -1,217 +1,244 @@
+.freestylepage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.freestyle-page-header {
+  border-radius: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  background-color:#6084a9;
+  color: white;
+  padding: 15px 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.freestyle-back-btn {
+  background: none;
+  border: none;
+  color: #fff; 
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+.freestyle-back-btn:hover {
+  color: #c0c0c0;
+}
+.freestyle-back-icon {
+  margin-right: 8px;
+  font-size: 22px;
+}
+.footer {
+  background-color: #6084a9; 
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
 .conversation-container {
-    max-width: 44rem;
-    margin: 0 auto;
-    margin: 2rem auto; 
-
-    padding: 1.5rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .conversation-header {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .conversation-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #1a202c;
-  }
-  
-  .title-underline {
-    margin-top: 0.5rem;
-    width: 15rem;
-    height: 0.25rem;
-    background-color: #7290B0;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 9999px;
-  }
-  
-  .message-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .message {
-    display: flex;
-  }
-  
-  .ai-message {
-    justify-content: flex-start;
-  }
-  
-  .user-message {
-    justify-content: flex-end;
-  }
-  
-  .message-content {
-    max-width: 70%;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-  }
-  
-  .ai-message .message-content {
-    background-color: #e6f3ff;
-    color: #1e3a8a;
-  }
-  
-  .user-message .message-content {
-    background-color: #f3f4f6;
-    color: #1f2937;
-  }
-  
-  .input-container {
-    display: flex;
-    margin-bottom: 1rem;
-  }
-  
-  .message-input {
-    flex-grow: 1;
-    padding: 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem 0 0 0.375rem;
-    font-size: 1rem;
-  }
-  
-  .message-input:focus {
-    outline: none;
-    border-color: #3b82f6;
-  }
-  
-  .send-button {
-    padding: 0.5rem 1rem;
-    background-color: #7290B0;
-    color: white;
-    border: none;
-    border-radius: 0 0.375rem 0.375rem 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .send-button:hover {
-    background-color: #365171;
-  }
-  
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .edit-dataset-button,
-  .end-conversation-button {
-    width: 100%;
-    padding: 0.75rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .edit-dataset-button {
-    background-color: #365171;
-    color: white;
-  }
-  
-  .edit-dataset-button:hover {
-    background-color: #5f7c9c;
-  }
-  
-  .end-conversation-button {
-    background-color: #ef4444;
-    color: white;
-  }
-  
-  .end-conversation-button:hover {
-    background-color: #dc2626;
-  }
-  
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    width: 100%;
-    max-width: 28rem;
-  }
-  
-  .modal-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #1f2937;
-  }
-  
-  .select-container {
-    position: relative;
-  }
-  
-  .question-select {
-    width: 100%;
-    appearance: none;
-    background-color: #f3f4f6;
-    border: 1px solid #d1d5db;
-    color: #1f2937;
-    padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  .question-select:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-  }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-  }
-  
-  .add-dataset-button,
-  .cancel-button {
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-dataset-button {
-    background-color: #365171;
-    color: white;
-  }
-  
-  .add-dataset-button:hover {
-    background-color: #5f7c9c;
-  }
-  
-  .cancel-button {
-    background-color: #ef4444;
-    color: white;
-  }
-  
-  .cancel-button:hover {
-    background-color: #dc2626;
-  }
+  max-width: 44rem;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); 
+}
+.conversation-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.conversation-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a202c;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.freestyle-title-underline {
+  margin-top: 0.5rem;
+  width: 15rem;
+  height: 0.25rem;
+  background-color: #7290B0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 9999px;
+}
+.freestyle-message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.message {
+  display: flex;
+}
+.ai-message {
+  justify-content: flex-start;
+}
+.user-message {
+  justify-content: flex-end;
+}
+.freestyle-message-content {
+  max-width: 70%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+.ai-message .freestyle-message-content {
+  background-color: #e6f3ff;
+  color: #1e3a8a;
+}
+.user-message .freestyle-message-content {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+.freestyle-input-container {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.freestyle-message-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem 0 0 0.375rem;
+  font-size: 1rem;
+}
+.freestyle-message-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+.freestyle-send-button {
+  padding: 0.5rem 1rem;
+  background-color: #6084a9;
+  color: white;
+  border: none;
+  border-radius: 0 0.375rem 0.375rem 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.freestyle-send-button:hover {
+  background-color: #2a5d77;
+}
+.freestyle-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.freestyle-edit-dataset-button,
+.freestyle-end-conversation-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.freestyle-edit-dataset-button {
+  background-color: #6084a9;
+  color: white;
+}
+.freestyle-edit-dataset-button:hover {
+  background-color: #2a5d77;
+}
+.freestyle-end-conversation-button {
+  background-color: #ef4444;
+  color: white;
+}
+.freestyle-end-conversation-button:hover {
+  background-color: #dc2626;
+}
+.freestyle-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.freestyle-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+.freestyle-question-select.error {
+  border-color: red;
+  color: red;
+}
+.freestyle-question-select.error option {
+  color: red;
+}
+.freestyle-modal-title {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #2a5d77;
+}
+.freestyle-select-container {
+  position: relative;
+}
+.freestyle-question-select {
+  width: 100%;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #1f2937;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+.freestyle-modal-buttons {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.freestyle-add-dataset-button {
+  background-color: #6084a9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.freestyle-add-dataset-button:hover {
+  background-color: #2a5d77;
+}
+.freestyle-cancel-button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.freestyle-cancel-button:hover {
+  background-color: #dc2626;
+}
+.freestyle-confirm-button {
+  background-color: #6084a9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.freestyle-confirm-button:hover {
+  background-color: #2a5d77;
+}

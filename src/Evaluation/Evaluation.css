@@ -8,9 +8,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #d3dbe4; 
-  color: #052949;
+  background-color: #6084a9; 
+  color: white;
   padding: 15px 20px;
+  border-bottom-left-radius: 15px; 
+border-bottom-right-radius: 15px;
 }
 
 .header-left {
@@ -27,23 +29,22 @@
 .logo-title {
   font-size: 24px;
   font-weight: bold;
-  color: white;
 }
 
 .nav-menu a {
-  color: #052949;
+  color: white;
   margin: 0 15px;
   text-decoration: none;
 }
 
 .nav-menu a:hover {
-  border-bottom: 2px solid #052949;
+  border-bottom: 2px solid white;
 }
 
 .menu-btn {
   background: none;
   border: none;
-  color: #052949;
+  color: white;
   font-size: 24px;
   cursor: pointer;
 }
@@ -74,6 +75,14 @@
   font-weight: bold;
 }
 
+.footer {
+  background-color: #6084a9; 
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
 .evalcontainer {
   flex: 1;
   display: flex;
@@ -84,24 +93,24 @@
   background: #fff;
   width: 600px !important;
   border-radius: 8px;
-  box-shadow: 2px 4px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 2px 1px rgb(76 104 136);
 }
 
 .evalheader {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(500deg, #072040, #7290B0);
   padding: 20px;
   border-radius: 8px 8px 0 0;
 }
 
 .eval-title {
   text-align: center;
-  margin-top: 15px; 
   font-size: 28px;
   font-weight: 600;
   color: #072040;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .evalinputs {
@@ -127,11 +136,15 @@
   color: #072040;
   font-weight: 500;
   margin-right: 20px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .evalinput select {
+  border-radius: 5px;
   width: 250px;
   height: 30px;
+  background-color: #efefef;
 }
 
 .evalinput select option {
@@ -145,10 +158,10 @@
 }
 
 .evalsubmit button {
-  width: 160px;
+  width: 300px;
   height: 40px;
   color: #fff;
-  background-color: #365171;
+  background-color: #6084a9;
   border: none;
   border-radius: 15px;
   font-size: 19px;
@@ -157,13 +170,10 @@
 }
 
 .evalsubmit button:hover {
-  background: #5f7c9c;
+  background: #2a5d77;
 }
 
-.footer {
-  background-color: #d3dbe4;
-  color: #052949;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
+.error{
+border: 2px solid red;
+color: red;
 }
