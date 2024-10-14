@@ -1,39 +1,64 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
- import LOGO from '../images/Logo.png';
- 
- import './Register.css';
+import LOGO from '../images/Logo.png';
+import { auth, db } from "./firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import './Register.css';
+
 const Login = () => {
- 
-
-
-
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [userType, setUserType] = useState('User');
+  const [errorMessage, setErrorMessage] = useState(""); 
   const navigate = useNavigate();
 
   const handleUserTypeChange = (type) => {
     setUserType(type);
   };
 
-  const handleCreateAccount = (e) => {
+  const handleCreateAccount = async (e) => {
     e.preventDefault();
-    navigate('/HomePage');
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // تحقق من المجموعة التي ينتمي إليها المستخدم
+      const userDoc = await getDoc(doc(db, "Users", user.uid));
+      const moderatorDoc = await getDoc(doc(db, "Moderators", user.uid));
+
+      if (userDoc.exists()) {
+        // توجيه المستخدم إلى الصفحة الرئيسية
+        navigate('/HomePage');
+      } else if (moderatorDoc.exists()) {
+        // توجيه المشرف إلى صفحة المشرف
+        navigate('/moderator');
+      } else {
+        // في حال عدم وجود المستخدم في أي من المجموعتين
+        setErrorMessage("User type not recognized. Please contact support.");
+      }
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        setErrorMessage("No account found with this email.");
+      } else if (error.code === 'auth/wrong-password') {
+        setErrorMessage("Incorrect password. Please try again.");
+      } else {
+        setErrorMessage("Invalid Email/Password.");
+      }
+      console.log(error.message);
+    }
   };
 
   return (
-
     <div className="sign-page">
-       <div className="sign-container">
+      <div className="sign-container">
         {/* Right Section */}
         <div className="right-section">
           <div className="logo-welcome-container">
             <img src={LOGO} alt="Logo" width="100" height="100" />
             <h2>Welcome Back!</h2>
           </div>
-          <p className="Wtxt">"To CultureLens! We’re glad to have you with us again to explore more cultural diversity.
-
-</p>
+          <p className="Wtxt">To CultureLens! We’re glad to have you with us again to explore more cultural diversity.</p>
         </div>
 
         {/* Form Section */}
@@ -65,6 +90,7 @@ const Login = () => {
             placeholder="Enter your Email Address"
             className="sign-input"
             required
+            onChange={(e) => setEmail(e.target.value)}      
           />
 
           <label htmlFor="password" className="sign-label">Password</label>
@@ -75,7 +101,11 @@ const Login = () => {
             placeholder="Enter your Password"
             className="sign-input"
             required
+            onChange={(e) => setPassword(e.target.value)}      
           />
+
+          {/* عرض رسالة الخطأ هنا */}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           <button type="submit" className="sign-btn" style={{ marginTop: '1rem', fontSize: '15px' }}>Login</button>
           <div className='sign-login'>
@@ -87,7 +117,4 @@ const Login = () => {
   );
 };
 
- 
-
 export default Login;
-

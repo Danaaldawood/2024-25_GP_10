@@ -12,7 +12,8 @@ import CompareResult from './Compare/CompareResult';  // Import CompareResult pa
 import  {Plot}  from './Plot/Plot'; // 
 import {ConversationLayout} from './Freestyle/Freestyle'
 import Discrption from './DiscrptionPages/Discrption';
-
+import ModeratorPage from './Modorater/ModeratorPage';
+import{ToastContainer} from "react-toastify";
 
 function App() {
   const route = createBrowserRouter([
@@ -20,6 +21,8 @@ function App() {
       path: "/",  
       element: <Index />,  
     },
+    
+    
     {
       path: "/home",  
       element: <HomePage />,
@@ -68,12 +71,19 @@ function App() {
       path: "/culturevalues",  
       element: <Discrption />,
     },
+    {
+      path: "/moderator",   
+      element: <ModeratorPage />,
+    },
   ]);
 
   return (
     <div className="App">
       <RouterProvider router={route}></RouterProvider>
+      <ToastContainer />
+
     </div>
+    
   );
 }
 
