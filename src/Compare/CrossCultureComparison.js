@@ -64,7 +64,7 @@ const CrossCultureComparison = () => {
 
         <nav className="nav-menu">
           <a href="/">Home</a>
-          <a href="/dataset">Dataset</a>
+          <a href="/dataset">CultureValue</a>
           <a href="/edit">Edit</a>
           <a href="/compare">Compare</a>
           <a href="/evaluation">Evaluation</a>

@@ -11,7 +11,7 @@ const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showMore, setShowMore] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedDomain, setSelectedDomain] = useState(''); // إضافة حالة لحفظ المجال المختار
+  const [selectedDomain, setSelectedDomain] = useState(''); 
 
   const userName = "Haya";
 
@@ -36,7 +36,7 @@ const HomePage = () => {
     console.log("تسجيل الخروج");
   };
 
-  // تعريف handleDomainChange للتفاعل مع اختيارات المستخدم
+
   const handleDomainChange = (domain) => {
     setSelectedDomain(domain);
     console.log("المجال المختار:", domain);
@@ -92,11 +92,11 @@ const HomePage = () => {
     },
   };
 const totalAttributeData = {
-  labels: ['Arab', 'Chinese', 'Western'], // Label segments as needed
+  labels: ['Arab', 'Chinese', 'Western'], 
   datasets: [
     {
-      data: [50, 60, 40],  // Values for each segment
-      backgroundColor: ['#003f5c', '#2f4b7c', '#43618b'], // Matching colors
+      data: [50, 60, 40], 
+      backgroundColor: ['#003f5c', '#2f4b7c', '#43618b'], 
       borderWidth: 1, 
     },
   ],
@@ -116,7 +116,7 @@ const totalAttributeData = {
 
         <nav className="nav-menu">
           <a href="/">Home</a>
-          <a href="/dataset">CultureValue</a>
+          <a href="/culturevalues">Culture Value</a>
           <a href="/edit">Edit</a>
           <a href="/compare">Compare</a>
           <a href="/evaluation">Evaluation</a>

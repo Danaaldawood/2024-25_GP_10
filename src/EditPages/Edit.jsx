@@ -54,7 +54,7 @@ const handleSignOut = () => {
       <header className="header">
           <div className="header-left">
             <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
-            {/* <h1 className="logo-title ">CultureLens</h1> */}
+            <h1 className="logo-title">CultureLens</h1>
           </div>
   
           <nav className="nav-menu ">

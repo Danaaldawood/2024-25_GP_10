@@ -68,7 +68,7 @@ export const Evaluation = () => {
         </div>
         <nav className="nav-menu">
           <a href="/home">Home</a>
-          <a href="/dataset">Dataset</a>
+          <a href="/culturevalues">Culture Value</a>
           <a href="/edit">Edit</a>
           <a href="/compare">Compare</a>
           <a href="/evaluation">Evaluation</a>

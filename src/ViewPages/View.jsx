@@ -4,7 +4,7 @@ import './View.css';
 import { useNavigate } from 'react-router-dom';
 
 
-import CLogo from '../Compare/Clogo.png';
+import LOGO from '../images/Logo.png';
 
 function Header() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -40,8 +40,9 @@ const handleSignOut = () => {
      
       <header className="header">
           <div className="header-left">
-            <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
-            {/* <h1 className="logo-title ">CultureLens</h1> */}
+        
+          <img src={LOGO} alt="CultureLens Logo" className="logo-img" /> 
+          <h1 className="logo-title">CultureLens</h1>
           </div>
   
           <nav className="nav-menu ">

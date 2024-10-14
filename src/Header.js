@@ -1,7 +1,7 @@
 // Header.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from './images/Logo.png'; // Correct import path for Logo.png inside src/images
+import logo from './images/Logo.png'; 
 
 
 const Header = () => {
@@ -23,13 +23,13 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-      <img src={logo} alt="Logo" className="logo-img" /> {/* Use 'logo' instead of 'LOGOC' */}
+      <img src={logo} alt="Logo" className="logo-img" /> 
         <h1 className="logo-title">CultureLens</h1>
       </div>
 
       <nav className="nav-menu">
         <a href="/">Home</a>
-        <a href="/dataset">Dataset</a>
+        <a href="/culturevalues">Cultural value</a>
         <a href="/edit">Edit</a>
         <a href="/compare">Compare</a>
         <a href="/evaluation">Evaluation</a>

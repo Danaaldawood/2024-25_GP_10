@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react'; // Import React and useState only once
+import React, { useState } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Discrption.css';
@@ -60,32 +60,34 @@ function Header() {
     return (
     
        
-        <header className="header">
-            <div className="header-left">
-              <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
-              {/* <h1 className="logo-title ">CultureLens</h1> */}
-            </div>
-    
-            <nav className="nav-menu ">
-              <a href="HomePage" >Home</a>
-              <a href="/culturevalues" >Cultural Values</a>
-              <a href="/edit" >Edit</a>
-              <a href="/compare" >Compare</a>
-              <a href="/evaluation">Evaluation</a>
-             
+       
+     
+      <header className="header">
+      <div className="header-left">
+        <img src={CLogo} alt="CultureLens Logo" className="logo-img " />
+        <h1 className="logo-title">CultureLens</h1>
+      </div>
 
-            </nav>
-    
-            <button className="menu-btn" onClick={handleMenuToggle}>
-              <span className="menu-icon">&#9776;</span>
-            </button>
-            {menuOpen && (
-              <div className="menu-dropdown ">
-                <p onClick={handleProfileClick}>Profile</p>
-                <p onClick={handleSignOut} className="sign-out ">Sign out</p>
-              </div>
-            )}
-          </header>
+      <nav className="nav-menu ">
+        <a href="HomePage" >Home</a>
+        <a href="/culturevalues" >Cultural Values</a>
+        <a href="/edit" >Edit</a>
+        <a href="/compare" >Compare</a>
+        <a href="/evaluation">Evaluation</a>
+       
+
+      </nav>
+
+      <button className="menu-btn" onClick={handleMenuToggle}>
+        <span className="menu-icon">&#9776;</span>
+      </button>
+      {menuOpen && (
+        <div className="menu-dropdown ">
+          <p onClick={handleProfileClick}>Profile</p>
+          <p onClick={handleSignOut} className="sign-out ">Sign out</p>
+        </div>
+      )}
+    </header>
 
     );
 
