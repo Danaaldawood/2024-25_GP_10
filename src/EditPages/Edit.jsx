@@ -95,26 +95,26 @@ const navigate = useNavigate();
      <Header/>
   
    
-    <div className='formcontainer'>
+    <div className='editformcontainer'>
       
       
      
-      <div className='header'>
+      <div className='editheader'>
         
-        <div className='text'>Edit</div>
+        <div className='edit-title'>Edit</div>
         <div className='underline'></div>
       </div>
-      <div className="inputs">
-      <div className="input">
+      <div className="edit-inputs">
+      <div className="edit-input">
           <label className="label">Email:</label>
           <input type="text" id="email" name="email" placeholder="Enter your email"  required/>                    
         </div>
          
 
-        <div className="input">
-          <label className="label">Dimension:</label>
+        <div className="edit-input">
+          <label className="label">Topic:</label>
           <select name="dimension" id="dimension" className="dimension">
-            <option value="" disabled selected>Select a dimension</option>
+            <option value="" disabled selected>Select a Topic</option>
             <option value="Food">Food</option>
             <option value="Sport">Sport</option>
             <option value="Family">Family</option>
@@ -124,13 +124,13 @@ const navigate = useNavigate();
           </select>
         </div>
 
-        <div className="input">
+        <div className="edit-input">
           <label className="label">Value:</label>
           <input type="text" id="value"  placeholder="Enter value"  name="value"  required/>                    
         </div>
 
         
-        <div className="input">
+        <div className="edit-input">
           <label className="label">Region:</label>
           <select name="domain" id="domain" className="domain">
             <option value="" disabled selected>Select a reigon</option>
@@ -141,7 +141,7 @@ const navigate = useNavigate();
           </select>
         </div>
       
-        <div className="input">
+        <div className="edit-input">
           <label className="label">Edit Reason:</label>
           <input type="radio" class="reason" name="reason" value="Subculture"/> 
           Subculture
@@ -152,12 +152,15 @@ const navigate = useNavigate();
         
         </div>
       </div>
-      <div className="submit-container">
-        <div className="submit">
+      <div className="edisubmit-container">
+        <div className="edit-submit">
           <button onClick={handleEditClick}>Edit</button>
         </div>
       </div>
     </div>
+    <footer className="footer">
+        <p>© 2024 CultureLens. All rights reserved.</p>
+      </footer>
     </div>
   );
 

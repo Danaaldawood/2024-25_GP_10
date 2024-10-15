@@ -1,21 +1,29 @@
-.formcontainer{
+.editformcontainer{
+   flex: 1;
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     background: #fff;
-    width: 600px !important;
+    width: 530px !important;
     border-radius: 8px;
-    box-shadow: 2px 4px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px 1px rgb(76 104 136);
+    padding-bottom: 30px; 
 }
 
-.text {
-    color: #fff;
-    font-size: 35px;
+.edit-title {
+    color: #072040;
+    text-align: center;
+    margin-top: 5px; 
+    font-size: 28px;
     font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    
 }
 
-.inputs {
+.edit-inputs {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -25,18 +33,20 @@
     
 }
 
-.input label {
-    font-size: 18px;
+.edit-input label {
+   
+    font-size: 20px; 
     color: #072040;
-    color: #000000;
     font-weight: 500;
-    margin-right: 20px;
+    margin-right: 10px; 
+    margin-left: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
 
 
 }
 
-.input {
+.edit-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,19 +57,28 @@
     border-radius: 6px;
     padding: 10px;
     
+
+  
     
 }
 
 
 
 
-.input select,
-.input input[type="text"] {
+.edit-input select,
+.edit-input input[type="text"] {
     width: 250px;
     height: 30px;
-    border: 1px solid #ddd;
-    border-radius:4px ;
-    font-size: 14px; 
+    border: 1px solid #655e5e;
+    border-radius:5px ;
+
+   
+    background-color: #efefef; 
+  
+    font-size: 16px; 
+    color: #333; 
+    transition: background-color 0.3s ease; 
+    
 }
 
 .reason input[type="radio"] {
@@ -68,29 +87,30 @@
     transform: scale(1.2); 
   }
   
-.input select option {
+.edit-input select option {
     text-align: center;
 }
 
-.submit-container {
+.edisubmit-container {
     display: flex;
     gap: 30px;
     margin: 40px auto;
 }
 
-.submit button {
-    width: 100%;
-    color: #fff;
-    background-color: #365171;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
+.edit-submit button {
+    width: 300px;
+  height: 40px;
+  color: #fff;
+  background-color: #6084a9;
+  border: none;
+  border-radius: 15px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.submit button:hover {
-    background: #5f7c9c;
+.edit-submit button:hover {
+    background: #2a5d77;
 }
 
 

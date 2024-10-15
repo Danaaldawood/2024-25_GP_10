@@ -94,6 +94,11 @@ function Header() {
 }
 
 const Discrption = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/view');
+  };
     return (
         <div>
           <Header/>
@@ -110,12 +115,11 @@ const Discrption = () => {
                         <div>
                         
                             <p>
-                            Our cultural values integrates information from multiple sources, encompassing over 200,000 entries to ensure thorough coverage across diverse attributes and topics. This extensive dataset provides in-depth insights into three primary cultural regions: Arab, Chinese, and Western. By integrating multiple datasets, it encapsulates a broad spectrum of perspectives, delivering refined knowledge on cultural topics and regional variances. This framework not only enriches cultural understanding but also supports precise
-                             analysis and comparison across these distinct regions.
+                            Our cultural values dataset integrates information from multiple sources, encompassing a large number of entries to ensure comprehensive coverage across diverse attributes and topics. This extensive dataset offers in-depth insights into three primary cultural regions: Arab, Chinese, and Western. By uniting multiple datasets, it encapsulates a wide spectrum of perspectives, providing refined knowledge on cultural topics and regional variances. This framework enriches cultural understanding and supports precise analysis and comparison across these distinct regions.
                             </p>
                             
                         </div>
-                        <button type="button" className="normal-button">View</button>
+                        <button type="button" onClick={handleClick}  className="normal-button">View</button>
                         
                     </div>
                    
