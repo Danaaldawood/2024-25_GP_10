@@ -1,6 +1,7 @@
+//Import Page ,Package//
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Register.css';
+import './Signin.css';
 import LOGO from '../images/Logo.png';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
@@ -8,9 +9,9 @@ import Flag from 'react-world-flags';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
- import { SuccessMessage, ErrorMessage } from './Message';     
+import './Pop-Message.css'
 
-const Sign = () => {
+ const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
@@ -23,60 +24,64 @@ const Sign = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
- 
+//  Handel Password
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password.length < 8) {
       setErrorMessage("Password must be at least 8 characters long.");
       setShowError(true);
-      setTimeout(() => setShowError(false), 3000); 
+      setTimeout(() => setShowError(false), 5000); 
       return;
     }
-  
-    
-  
+    //  Handel Email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       setErrorMessage("Please enter a valid email address.");
       setShowError(true);
+      setTimeout(() => setShowError(false), 5000); 
       return;
     }
   
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-  
+    
       if (user) {
         const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
         let userData = userType === 'User'
           ? {
+              User_Id: user.uid,  //   UserId    
               email: user.email,
               fullName: fname,
               age: age || null,
-              region: region ? region.value : null,
+              region: region ? region.label.props.children[1] : null,
               subRegion: subRegion || null
             }
           : {
-              email: user.email,
+              Moderator_Id: user.uid,  //   ModeratorId  
+               email: user.email,
               fullName: fname
             };
-        
+
+  
         userData = Object.fromEntries(Object.entries(userData).filter(([_, v]) => v !== null && v !== ""));
         await setDoc(doc(db, collectionPath, user.uid), userData);
   
         setShowSuccess(true);  
-        
+  
         setTimeout(() => {
           navigate(userType === 'User' ? '/Home' : '/moderator');
-        }, 1000);
+        }, 3000); 
       }
       
     } catch (error) {
       console.log(error.message);
       setErrorMessage("Something went wrong. Please try again.");
       setShowError(true); 
+      setTimeout(() => setShowError(false), 5000);
     }
   };
+  
   
 
   const handleUserTypeChange = (type) => {
@@ -102,19 +107,33 @@ const Sign = () => {
   }));
  
   return (
-    <div className="sign-page">
-      {showSuccess && <SuccessMessage onClose={() => setShowSuccess(false)} />}
-      {showError && <ErrorMessage onClose={() => setShowError(false)} errorMessage={errorMessage} />}
-
-      {!showSuccess && !showError && (
+       <div className="sign-page">
+        {errorMessage && (
+          <div className="error-popup">
+            <h3 className="error-title">Warning!</h3>
+            <p className="error-message">{errorMessage}</p>
+            <div className="error-actions">
+              <button className="confirm-btn" onClick={() => setErrorMessage("")}>Try again</button>
+            </div>
+          </div>
+        )}
+        
+        {showSuccess && (
+          <div className="success-popup">
+            <h3 className="success-title">Success!</h3>
+            <p className="success-message">Your account has been created successfully.</p>
+            <div className="success-actions">
+             </div>
+          </div>
+        )}
         <div className="sign-container">
-          {/* Right Section */}
-          <div className="right-section">
+          {/* Left Section */}
+          <div className="Left-section">
             <div className="logo-welcome-container">
               <img src={LOGO} alt="Logo" width="100" height="100" />
               <h2>Welcome</h2>
             </div>
-            <p className="Wtxt">To CultureLens! Let's explore cultural diversity together.</p>
+            <p className="Welcome-txt">To CultureLens! Let's explore cultural diversity together.</p>
           </div>
 
           {/* Form Section */}
@@ -179,7 +198,7 @@ const Sign = () => {
                 />
                 <label className="sign-label">Region:</label>
 
-          <Select 
+                <Select 
   options={countryOptions} 
   value={region}
   onChange={handleCountryChange}
@@ -188,26 +207,33 @@ const Sign = () => {
     control: (styles, { isFocused }) => ({
       ...styles,
       width: '100%',
-      borderColor: isFocused ? '#3F7EA6' : '#ddd',
-      borderRadius: '4px',
-      backgroundColor: '#ffffff',
-      transition: 'border-color 0.3s ease',
+      height: '50px',   
+      borderRadius: '5px',
       fontSize: '13px',
-      height: '50px', 
+      padding: '0',   
       boxShadow: 'none',
-      '&:hover': { borderColor: '#3F7EA6' },
-      marginBottom: '20px', // تعديل: إضافة مسافة بين الحقلين
+      borderColor: isFocused ? '#004D60' : '#ddd',  // لون التركيز عند تفعيل isFocused
+      '&:hover': { borderColor: '#004D60' },        // تطبيق نفس اللون عند hover
+      marginBottom: '20px',
     }),
     valueContainer: (styles) => ({
       ...styles,
-      padding: '0 0.75rem',
+      padding: '10px', 
     }),
+    placeholder: (styles) => ({
+      ...styles,
+      fontSize: '13px',
+    }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      padding: '0 8px',   
+    })
   }}
 />
 
 
 
-                {/* Password */}
+             {/* Password */}
                 <label htmlFor="password" className="sign-label" >Password:</label>
                 <input 
                   type="password" 
@@ -270,7 +296,7 @@ const Sign = () => {
             </div>
           </form>
         </div>
-      )}
+      
     </div>
   );
 };

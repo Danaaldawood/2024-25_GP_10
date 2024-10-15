@@ -4,8 +4,9 @@ import LOGO from '../images/Logo.png';
 import { auth, db } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import './Register.css';
- 
+import './Login.css';//import desgine page
+import './Pop-Message.css'
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,101 +35,114 @@ const Login = () => {
         navigate(userType === 'User' ? '/HomePage' : '/moderator');
       } else {
         setErrorMessage("User type not recognized. Please contact support.");
+        setIsLoading(false);
+
       }
       
     } catch (error) {
-      if (error.code === 'auth/user-not-found') {
-        setErrorMessage("No account found with this email.");
-      } else if (error.code === 'auth/wrong-password') {
-        setErrorMessage("Incorrect password. Please try again.");
-      } else {
-        setErrorMessage("An error occurred. Please check your credentials and try again.");
-      }
+      setErrorMessage("An error occurred. Incorrect Email/Password.");
       console.log(error.message);
-    } finally {
       setIsLoading(false);
     }
+    
+  };
+  const handleInvalidInput = (event) => {
+    event.target.setCustomValidity('Please fill in this field.');
+  };
+  
+  const resetCustomValidity = (event) => {
+    event.target.setCustomValidity('');
   };
 
   return (
-    <div className="sign-page">
-      <div className="sign-container">
-        {/* Right Section */}
-        <div className="right-section">
-          <div className="logo-welcome-container">
-            <img src={LOGO} alt="Logo" width="100" height="100" />
-            <h2>Welcome Back!</h2>
+    <>
+      {errorMessage && (
+        <div className="error-popup">
+          <h3 className="error-title">Warning!</h3>
+          <p className="error-message">{errorMessage}</p>
+          <div className="error-actions">
+            <button className="confirm-btn" onClick={() => setErrorMessage("")}>Try again</button>
           </div>
-          <p className="Wtxt">To CultureLens! We’re glad to have you with us again to explore more cultural diversity.</p>
         </div>
-
-        {/* Form Section */}
-        <form className="sign-form" onSubmit={handleCreateAccount}>
-          <h2 className="sign-title">Log-in</h2>
-          
-          <div className="sign-user-type-container">
-            <button 
-              type="button" 
-              className={`sign-user-type-btn ${userType === 'User' ? 'sign-active' : ''}`} 
-              onClick={() => handleUserTypeChange('User')}
-            >
-              User
-            </button>
-            <button 
-              type="button" 
-              className={`sign-user-type-btn ${userType === 'Moderator' ? 'sign-active' : ''}`} 
-              onClick={() => handleUserTypeChange('Moderator')}
-            >
-              Moderator
-            </button>
+      )}
+      
+      <div className="Login-page">
+        <div className="Login-container">
+          {/* left Section */}
+          <div className="left-section">
+            <div className="logo-welcome-container">
+              <img src={LOGO} alt="Logo" width="100" height="100" />
+              <h2>Welcome Back!</h2>
+            </div>
+            <p className="Welcome-txt">To CultureLens! We’re glad to have you with us again to explore more cultural diversity.</p>
           </div>
+  
+          {/* Form Section */}
+          <form className="Login-form" onSubmit={handleCreateAccount}>
+            <h2 className="Login-title">Log-in</h2>
+            
+            <div className="Login-user-type-container">
+              <button 
+                type="button" 
+                className={`Login-user-type-btn ${userType === 'User' ? 'Login-active' : ''}`} 
+                onClick={() => handleUserTypeChange('User')}
+              >
+                User
+              </button>
+              <button 
+                type="button" 
+                className={`Login-user-type-btn ${userType === 'Moderator' ? 'Login-active' : ''}`} 
+                onClick={() => handleUserTypeChange('Moderator')}
+              >
+                Moderator
+              </button>
+            </div>
+  
+            <label htmlFor="email" className="Login-label">Email Address:</label>
+<div className="input-container">
+  <input 
+    type="email" 
+    id="email" 
+    autoComplete="off" 
+    placeholder="Enter your Email Address"
+    className="Login-input"
+    required
+    onChange={(e) => setEmail(e.target.value)}   
+     
+  />
+ </div>
 
-          <label htmlFor="email" className="sign-label">Email Address</label>
-          <input 
-            type='email' 
-            id="email" 
-            autoComplete='off' 
-            placeholder="Enter your Email Address"
-            className="sign-input"
-            required
-            onChange={(e) => setEmail(e.target.value)}      
-          />
-
-          <label htmlFor="password" className="sign-label">Password</label>
-          <input 
-            type='password' 
-            id="password" 
-            autoComplete='off' 
-            placeholder="Enter your Password"
-            className="sign-input"
-            required
-            onChange={(e) => setPassword(e.target.value)}      
-          />
-<p className="forget-password" style={{ textAlign: 'right'}}>
-  <Link to="/ResetPassword" className="sign-link">
-    Forget Password?
-  </Link>
-</p>
-
-
-
-
-
-           {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-          <button type="submit" className="sign-btn" style={{ marginTop: '1rem', fontSize: '15px' }} disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
-          </button>
-          <div className='sign-login'>
+<label htmlFor="password" className="Login-label">Password:</label>
+<div className="input-container">
+  <input 
+    type="password" 
+    id="password" 
+    autoComplete="off" 
+    placeholder="Enter your Password"
+    className="Login-input"
+    required
+    onChange={(e) => setPassword(e.target.value)}   
     
+  />
+ </div>
 
-            <p style={{ fontSize: '15px' }}>Don't have an account? <Link to="/Sign" className="sign-link">Create account</Link></p>
-   
-          </div>
-        </form>
+ 
+            <p className="forget-password" >
+              <Link to="/ResetPassword" className="Login-link">
+                Forget Password?
+              </Link>
+            </p>
+  
+            <button type="submit" className="Login-btn"  disabled={isLoading}>
+              {isLoading ? "Logging in.." : "Login"}
+            </button>
+            <div className='Login-login'>
+              <p style={{ fontSize: '15px' }}>Don't have an account? <Link to="/Sign" className="Login-link">Create account</Link></p>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
-};
-
+};  
 export default Login;
