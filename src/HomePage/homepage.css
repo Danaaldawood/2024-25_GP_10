@@ -1,31 +1,29 @@
-
+.homepage {
+  overflow-x: hidden;
+}
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 40px;
-   margin-top: 40px;
-   position: relative;
-   
-
+  margin-top: 40px;
+  position: relative;
 }
- .map-photo {
+.map-photo {
   display: block;
-  margin: 0 auto;  
-   height: auto;  
+  margin: 0 auto;
+  height: auto;
   padding: 20px 0;
   width: 80%;
-    max-width: 1000px;
-    height: auto;
+  max-width: 1000px;
+  height: auto;
 }
 
 .welcome-text {
-  
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #003f5c;
-    
-} 
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #003f5c;
+}
 
 .description-text {
   font-size: 1.2rem;
@@ -35,24 +33,23 @@
 
 .learn-more-btn {
   margin: 0.5rem;
-  padding: 0.8rem  ;
+  padding: 0.8rem;
   font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
-  background-color: #2d5174 ;
+  background-color: #2d5174;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   align-items: center;
-  width: 150px; 
+  width: 150px;
 }
 
 .learn-more-btn:hover {
   background-color: #2a5d77;
-  box-shadow: 0 4px 8px rgba(63, 126, 166, 0.4);
-
+  box-shadow: 0 4px 8px rgba(63, 126,  166,  0.4);
 }
 
 .map-logo {
@@ -62,14 +59,12 @@
   margin-left: 20px;
 }
 
-  
-
 .domains-container {
   display: flex;
   justify-content: center;
-  gap: 80px;  
+  gap: 80px;
   margin: 40px 0;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .domain-card {
@@ -81,14 +76,13 @@
   box-shadow: 0 4px 8px rgba(14, 82, 142, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 200px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .domain-card:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2); 
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2);
 }
-
 
 .domain-card h3 {
   color: #003f5c;
@@ -101,17 +95,13 @@
   color: #666;
 }
 
- 
-
 .dashboard-title {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
   color: #003f5c;
- 
 }
 
- 
 .dashboard {
   display: flex;
   justify-content: space-around;
@@ -132,8 +122,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  width: 280px; 
-  height: 280px; 
+  width: 280px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,7 +143,6 @@
   height: 200px !important;
 }
 
-
 .chart h3 {
   font-size: 1.2rem;
   font-weight: bold;
@@ -169,26 +158,22 @@
 }
 
 .chart p span {
-  font-size: 1.2rem; 
-  font-weight: bold; 
-  color: #1a436c; 
-  padding: 5px 10px; 
-  border-radius: 5px; 
-  margin-bottom: 10px; 
-  display: inline-block; 
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a436c;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 
 .chart:hover {
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
 }
 
 .total-questions-circle {
-  background: conic-gradient(
-    #419dff 0% 33%, 
-    #68aeff 33% 66%,
-    #365271 66% 100%
-  );
-  -webkit-mask: radial-gradient(circle, transparent 50%, black 51%); 
+  background: conic-gradient(#419dff 0% 33%, #68aeff 33% 66%, #365271 66% 100%);
+  -webkit-mask: radial-gradient(circle, transparent 50%, black 51%);
   mask: radial-gradient(circle, transparent 50%, black 51%);
   border-radius: 50%;
   width: 160px;
@@ -197,7 +182,7 @@
 
 .total-questions-circle h1 {
   font-size: 2.6rem;
-  color: #333; 
+  color: #333;
   margin: 0;
 }
 

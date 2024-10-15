@@ -1,83 +1,44 @@
-
-import React, { useState } from 'react';
-import './View.css';
-import { useNavigate } from 'react-router-dom';
-
-
-import LOGO from '../images/Logo.png';
-
-function Header() {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-const [searchQuery, setSearchQuery] = useState('');
-const [showMore, setShowMore] = useState(false);
-const [menuOpen, setMenuOpen] = useState(false);
-
-
-const handleSearch = (e) => {
-  e.preventDefault();
-  console.log("بحث عن:", searchQuery);
-};
-
-const toggleProfileMenu = () => {
-  setIsProfileOpen(!isProfileOpen);
-};
-
-const handleMenuToggle = () => {
-  setMenuOpen(!menuOpen);
-};
-
-const handleProfileClick = () => {
-  console.log("عرض الصفحة الشخصية");
-};
-
-const handleSignOut = () => {
-  console.log("تسجيل الخروج");
-};
-
-
-  return (
-  
-     
-      <header className="header">
-          <div className="header-left">
-        
-          <img src={LOGO} alt="CultureLens Logo" className="logo-img" /> 
-          <h1 className="logo-title">CultureLens</h1>
-          </div>
-  
-          <nav className="nav-menu ">
-            <a href="HomePage" >Home</a>
-            <a href="/culturevalues" >CultureValues</a>
-            <a href="/edit" >Edit</a>
-            <a href="/compare" >Compare</a>
-            <a href="/evaluation">Evaluation</a>
-           
-
-          </nav>
-  
-          <button className="menu-btn" onClick={handleMenuToggle}>
-            <span className="menu-icon">&#9776;</span>
-          </button>
-          {menuOpen && (
-            <div className="menu-dropdown ">
-              <p onClick={handleProfileClick}>Profile</p>
-              <p onClick={handleSignOut} className="sign-out ">Sign out</p>
-            </div>
-          )}
-        </header>
-
-  );
-
-}
+import React, { useState } from "react";
+import "./View.css";
+import { useNavigate } from "react-router-dom";
+import {Header} from '../Header/Header'
+import {Footer} from '../Footer/Footer'
 
 
 function View() {
-  const [searchTerm, setSearchTerm] = useState(''); // State for search input
-  const [filterRegion, setFilterRegion] = useState(''); // State for filtering by region
+  const [searchTerm, setSearchTerm] = useState(""); // State for search input
+  const [filterRegion, setFilterRegion] = useState(""); // State for filtering by region
   const [data, setData] = useState([
-    { userId: 1, attributId: 'Mark', region: 'North', question: 'What is your name?', value: 'Mark', reason: 'Curiosity', cultureLevel: 'High', dimension: 'Personal' },
-    { userId: 2, attributId: 'Jacob', region: 'South', question: 'What is your age?', value: '25', reason: 'Demographics', cultureLevel: 'Medium', dimension: 'Age' },
-    { userId: 3, attributId: 'Larry', region: 'East', question: 'What is your favorite color?', value: 'Blue', reason: 'Preference', cultureLevel: 'Low', dimension: 'Preference' },
+    {
+      userId: 1,
+      attributId: "Mark",
+      region: "North",
+      question: "What is your name?",
+      value: "Mark",
+      reason: "Curiosity",
+      cultureLevel: "High",
+      dimension: "Personal",
+    },
+    {
+      userId: 2,
+      attributId: "Jacob",
+      region: "South",
+      question: "What is your age?",
+      value: "25",
+      reason: "Demographics",
+      cultureLevel: "Medium",
+      dimension: "Age",
+    },
+    {
+      userId: 3,
+      attributId: "Larry",
+      region: "East",
+      question: "What is your favorite color?",
+      value: "Blue",
+      reason: "Preference",
+      cultureLevel: "Low",
+      dimension: "Preference",
+    },
   ]);
 
   // Handle search input change
@@ -101,12 +62,15 @@ function View() {
       item.cultureLevel.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.dimension.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesFilterRegion = filterRegion === '' || item.region === filterRegion;
+    const matchesFilterRegion =
+      filterRegion === "" || item.region === filterRegion;
 
     return matchesSearchTerm && matchesFilterRegion;
   });
 
   return (
+    <div className="viewpage">
+      <Header/>
     <main>
       <section>
         <input
@@ -114,9 +78,13 @@ function View() {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearchChange}
-          style={{ margin: '20px 0', padding: '10px', width: '100%' }}
+          style={{ margin: "20px 0", padding: "10px", width: "100%" }}
         />
-        <select value={filterRegion} onChange={handleFilterChange} style={{ padding: '10px', margin: '20px 0', width: '100%' }}>
+        <select
+          value={filterRegion}
+          onChange={handleFilterChange}
+          style={{ padding: "10px", margin: "20px 0", width: "100%" }}
+        >
           <option value="">All Regions</option>
           <option value="North">North</option>
           <option value="South">South</option>
@@ -156,21 +124,15 @@ function View() {
           </tbody>
         </table>
       </section>
-
-      <footer className="footer">
-        <p>© 2024 CultureLens. All rights reserved.</p>
-      </footer>
     </main>
+    <Footer/>
+    </div>
   );
 }
 
 export default View;
 
-
-
-
-
-/////////////////////////////// for dynamic data  from firebase with search 
+/////////////////////////////// for dynamic data  from firebase with search
 // import React, { useState, useEffect } from 'react';
 // import './View.css';
 // import { useNavigate } from 'react-router-dom';

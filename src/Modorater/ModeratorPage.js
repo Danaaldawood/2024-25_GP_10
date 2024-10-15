@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './ModeratorPage.css'; 
 import { useNavigate } from 'react-router-dom';
-import Clogo from './Clogo.png';  
+import Logo from '../images/Logo.png';  
+import {Footer} from '../Footer/Footer'
+import '../Header/Header.css'; 
 
 
 const ModeratorPage = () => {
@@ -26,7 +28,7 @@ const ModeratorPage = () => {
       {/* Header */}
       <header className="header">
         <div className="header-left">
-          <img src={Clogo} alt="CultureLens Logo" className="logo-img" />
+          <img src={Logo} alt="CultureLens Logo" className="logo-img" />
           <h1 className="logo-title">CultureLens</h1>
         </div>
 
@@ -137,9 +139,7 @@ const ModeratorPage = () => {
       )}
 
       {/* Footer */}
-      <footer className="footer">
-        <p>© 2024 CultureLens. All rights reserved.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 };

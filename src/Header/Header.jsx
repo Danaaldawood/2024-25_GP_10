@@ -1,10 +1,11 @@
 // Header.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from './images/Logo.png'; 
+import logo from '../images/Logo.png'; 
+import './Header.css'
 
 
-const Header = () => {
+export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const Header = () => {
   };
 
   const handleSignOut = () => {
-    alert("Signed out!");
+    navigate('/fpage');
   };
 
   return (
@@ -28,7 +29,7 @@ const Header = () => {
       </div>
 
       <nav className="nav-menu">
-        <a href="/">Home</a>
+        <a href="/home">Home</a>
         <a href="/culturevalues">Cultural value</a>
         <a href="/edit">Edit</a>
         <a href="/compare">Compare</a>
@@ -48,4 +49,3 @@ const Header = () => {
   );
 };
 
-export default Header;

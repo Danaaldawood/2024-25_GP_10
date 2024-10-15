@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  
-import './Plot.css';
-import plotImage from '../images/plot1.JPG';
-import logo from '../images/Logo.png';
-import { FaArrowLeft } from 'react-icons/fa'; 
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Plot.css";
+import plotImage from "../images/plot1.JPG";
+import { FaArrowLeft } from "react-icons/fa";
+import { Footer } from "../Footer/Footer";
 
 export const Plot = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const [selectedDimension, setSelectedDimension] = useState('');
-  const [dimensionPlaceholder, setDimensionPlaceholder] = useState('Select a topic');
+  const [selectedDimension, setSelectedDimension] = useState("");
+  const [dimensionPlaceholder, setDimensionPlaceholder] =
+    useState("Select a topic");
   const [hasError, setHasError] = useState(false);
-  const navigate = useNavigate();  
-
+  const navigate = useNavigate();
 
   const openDialog = () => {
     setPopupOpen(true);
@@ -24,33 +23,35 @@ export const Plot = () => {
 
   const handleDimensionChange = (event) => {
     setSelectedDimension(event.target.value);
-    setHasError(false); 
+    setHasError(false);
   };
 
   const handleNext = () => {
     if (!selectedDimension) {
-      setDimensionPlaceholder('Please select a topic');
+      setDimensionPlaceholder("Please select a topic");
       setHasError(true);
       return;
     }
 
-    console.log('Selected Dimension:', selectedDimension);
+    console.log("Selected Dimension:", selectedDimension);
     closeDialog();
-    navigate('/Freestyle');  
+    navigate("/Freestyle");
   };
 
   return (
     <div className="plotpage">
-
-       <div className="plot-page-header">
-        <button className='plot-back-btn' onClick={() => navigate('/evaluation')}>
-          <FaArrowLeft className='plot-back-icon' /> 
+      <div className="plot-page-header">
+        <button
+          className="plot-back-btn"
+          onClick={() => navigate("/evaluation")}
+        >
+          <FaArrowLeft className="plot-back-icon" />
         </button>
       </div>
 
-      <div className='plotheader'>
+      <div className="plotheader">
         <h3>The overall evaluation</h3>
-        <pre>Topic: Food  |  Baseline LLM |  Evaluation method: CAR score </pre>
+        <pre>Topic: Food | Baseline LLM | Evaluation method: CAR score </pre>
 
         <img src={plotImage} alt="Evaluation Plot" />
         <div className="plotsubmit-container">
@@ -64,14 +65,16 @@ export const Plot = () => {
             <dialog open className="plotpopup-dialog">
               <div className="plotpopup-content">
                 <h2>Select Topic</h2>
-                <select 
-                  name="plotDim" 
-                  id="plotDim" 
-                  className={`plotDim ${hasError ? 'error' : ''}`} 
-                  value={selectedDimension} 
+                <select
+                  name="plotDim"
+                  id="plotDim"
+                  className={`plotDim ${hasError ? "error" : ""}`}
+                  value={selectedDimension}
                   onChange={handleDimensionChange}
                 >
-                  <option value="" disabled>{dimensionPlaceholder}</option>
+                  <option value="" disabled>
+                    {dimensionPlaceholder}
+                  </option>
                   <option value="food">Food</option>
                   <option value="sport">Sport</option>
                   <option value="family">Family</option>
@@ -80,16 +83,16 @@ export const Plot = () => {
                   <option value="work-life">Work-life</option>
                 </select>
                 <div>
-                  <button className="plot-button2" onClick={handleNext}>Next</button>
+                  <button className="plot-button2" onClick={handleNext}>
+                    Next
+                  </button>
                 </div>
               </div>
             </dialog>
           </div>
         )}
       </div>
-      <footer className="footer ">
-        <p className="footer">© 2024 CultureLens. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

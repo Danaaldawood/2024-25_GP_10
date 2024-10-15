@@ -1,268 +1,139 @@
-
-  
-  main {
-    width: 90%;
-    max-width: 90rem;
-    margin: auto;
-    padding-bottom: 5%;
-  }
-  
-  
-
-  
-  button {
-    background-color: #d3dbe4; /* Green background */
-    border: none; /* No border */
-    color:#052949;
-    
-
-   /* White text */
-    padding: 10px 25px; /* Some padding */
-    text-align: center; /* Center text */
-    text-decoration: none; /* No underline */
-    display: inline-block; /* Get it to act like a block */
-    font-size: 16px; /* Larger text */
-    margin: 4px 5px; /* Some margin */
-    cursor: pointer; /* Pointer cursor on hover */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
-  }
-  
-  button:hover {
-    background-color: #5f7c9c; /* Darker green on hover */
-
-  }
-  
-  
-  
-  
-  #CoreDimintion{
-    
-    border: 1px solid #ddd ;
-    border-radius: 5px;
-  
-    justify-content: center;
-    padding: 5rem;
-    margin-bottom: 3rem;
-    color:white;
-
-    background-color: #ced2d4;
-    background: linear-gradient(500deg, #004D60,#a9bdd2);
-
-   
-
-
-  
-    padding: 6rem;
-    margin-bottom: 4rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
-   
-    margin-top: 2rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-
-  }
-
-  
-#cardsection{
-  
-
-
-    border: 2px solid #ddd ;
-    border-radius: 6px;
-    padding: 20px;
-    justify-content: center;
-    background-color:#4f6b8b;
-
-    background-color:#0f375dee;
-    background-color:  #4c62682b;
-    
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-    
-   
+.descrptionpage{
+  overflow-x: hidden;
 }
+
+main {
+  width: 90%;
+  max-width: 90rem;
+  margin: auto;
+  padding-bottom: 5%;
   
-
-
-#cardsection h2{
-    padding-left: 33vw;
-    padding-bottom: 5vw;
-    
-    color: #061D38;
-
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
-  
-  .row {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: row; /* Stack items vertically */
-    align-items:center; /* Center items horizontally */
-    justify-content:space-around; /* Center items vertically */
-    width: 100%; /* Full width of the card */
-    padding: 10px; /* Add padding around the row */
-    margin: 0; /* Remove default margin */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-  }
+
+button {
+  background-color: #d3dbe4; /* Green background */
+  border: none; /* No border */
+  color: #052949;
+  /* White text */
+  padding: 10px 25px; /* Some padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Get it to act like a block */
+  font-size: 16px; /* Larger text */
+  margin: 4px 5px; /* Some margin */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+  background-color: #5f7c9c; /* Darker green on hover */
+}
+
+#CoreDimintion {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  justify-content: center;
+  padding: 5rem;
+  margin-bottom: 3rem;
+  color: white;
+
+  background-color: #ced2d4;
+  background: linear-gradient(500deg, #004d60, #a9bdd2);
+
+  padding: 6rem;
+  margin-bottom: 4rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  margin-top: 2rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#cardsection {
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  justify-content: center;
+  background-color: #4f6b8b;
+
+  background-color: #0f375dee;
+  background-color: #4c62682b;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#cardsection h2 {
+  padding-left: 33vw;
+  padding-bottom: 5vw;
+
+  color: #061d38;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.row {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: space-around; /* Center items vertically */
+  width: 100%; /* Full width of the card */
+  padding: 10px; /* Add padding around the row */
+  margin: 0; /* Remove default margin */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
 /* chang name of container in github*/
-  .containerrows {
-    display: flex; /* Use Flexbox to arrange children */
-    flex-wrap: wrap; /* Allow wrapping to the next line */
-    justify-content: center; /* Center items horizontally */
-    margin: 0 auto; /* Center the container */
-  }
-  
-  .row {
-    width: 100%; /* Ensures row takes full width */
-    display: flex; /* Use Flexbox to align children */
-    justify-content: space-around; /* edit to git hub */
-    margin: 15px 0; /* Space between rows */
-  }
-  
-  .col-md-6 {
-    display: flex; /* Use Flexbox for each column */
-    justify-content: center; /* Center the card within the column */
-  }
-  
+.containerrows {
+  display: flex; /* Use Flexbox to arrange children */
+  flex-wrap: wrap; /* Allow wrapping to the next line */
+  justify-content: center; /* Center items horizontally */
+  margin: 0 auto; /* Center the container */
+}
 
+.row {
+  width: 100%; /* Ensures row takes full width */
+  display: flex; /* Use Flexbox to align children */
+  justify-content: space-around; /* edit to git hub */
+  margin: 15px 0; /* Space between rows */
+}
 
-
- 
-
+.col-md-6 {
+  display: flex; /* Use Flexbox for each column */
+  justify-content: center; /* Center the card within the column */
+}
 
 #corner-ball {
   position: relative; /* Use absolute positioning */
   top: 3rem; /* Distance from the top */
-  left: 22rem;/* Distance from the left */
+  left: 22rem; /* Distance from the left */
   /* Set the desired width */
   height: auto; /* Maintain aspect ratio */
   z-index: 10;
   width: 5%;
-  height: 20%; 
+  height: 20%;
 
   /* Ensure it appears above other elements */
 }
 
-#aboutlogo{
+#aboutlogo {
   position: relative; /* Use absolute positioning */
   top: 2.5rem; /* Distance from the top */
-  right:3rem ;/* Distance from the left */
+  right: 3rem; /* Distance from the left */
   /* Set the desired width */
   height: auto; /* Maintain aspect ratio */
   z-index: 10;
   width: 5%;
-  height: 20%; 
-
+  height: 20%;
 }
 
-
-/* Footer styling */
-.footer {
-  width: 100%; /* Ensure footer takes full width */
-  background-color: #072040;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  margin-top: auto; 
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-
-/* header styling */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #6084a9; /* light Blue */
-    color: white;
-    padding: 15px 20px;
-    border-bottom-left-radius: 15px; /* Adjust radius as desired */
-  border-bottom-right-radius: 15px;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-.logo-img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-}
-
-.logo-title {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.nav-menu a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-.nav-menu a:hover {
-    border-bottom: 2px solid white;
-}
-
-.menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.menu-dropdown {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-}
-
-.menu-dropdown p {
-    margin: 0;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.menu-dropdown p:hover {
-    background-color: #f4f4f4;
-}
-
-.sign-out {
-    color: red;
-    font-weight: bold;
-}
-
-.footer {
-    background-color: #6084a9; 
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-}
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-  }
-}
 

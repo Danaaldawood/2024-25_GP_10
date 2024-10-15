@@ -4,6 +4,7 @@
   min-height: 100vh;
 }
 .freestyle-page-header {
+  box-sizing: border-box;
   border-radius: 0;
   width: 100%;
   text-align: center;
@@ -12,16 +13,17 @@
   align-items: center;
   justify-content: space-between;
   top: 0;
-  background-color:#6084a9;
+  background-color: #6084a9;
   color: white;
   padding: 15px 20px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  overflow: hidden;
 }
 .freestyle-back-btn {
   background: none;
   border: none;
-  color: #fff; 
+  color: #fff;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -35,20 +37,14 @@
   margin-right: 8px;
   font-size: 22px;
 }
-.footer {
-  background-color: #6084a9; 
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-}
+
 .conversation-container {
   max-width: 44rem;
   margin: 2rem auto;
   padding: 1.5rem;
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 .conversation-header {
   margin-bottom: 2rem;
@@ -58,13 +54,14 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #1a202c;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .freestyle-title-underline {
   margin-top: 0.5rem;
   width: 15rem;
   height: 0.25rem;
-  background-color: #7290B0;
+  background-color: #7290b0;
   margin-left: auto;
   margin-right: auto;
   border-radius: 9999px;

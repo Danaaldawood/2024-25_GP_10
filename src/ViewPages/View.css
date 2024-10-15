@@ -1,3 +1,12 @@
+.viewpage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+  }
+  
+  main {
+    flex-grow: 1; 
+  }
 section{
 border: 1px solid rgb(159, 155, 155);
 
@@ -13,13 +22,4 @@ border-radius: 3px;
 }
 
 
-
-
-.footer {
-    background-color: #6084a9; 
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-}
 

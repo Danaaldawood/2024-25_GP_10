@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import resultImage from '../images/result.png';  
 import './CompareResult.css'; 
 import { FaArrowLeft } from 'react-icons/fa'; 
+import {Footer} from '../Footer/Footer'
+
 
 const CompareResult = () => {
   const location = useLocation();
@@ -20,11 +22,11 @@ const CompareResult = () => {
   return (
     <div className='result-container'>
 
-      <div className="result-title-container">
+      <header className="result-title-container">
         <button className='result-back-btn' onClick={() => navigate('/compare')}>
           <FaArrowLeft className='result-back-icon' /> 
         </button>
-      </div>
+      </header>
 
       <h1 className="result-title">Cross-Cultural Comparison Result</h1>
 
@@ -43,6 +45,8 @@ const CompareResult = () => {
         <button className='result-btn result-done-btn' onClick={handleDone}>Done</button>
         <button className='result-btn result-recompare-btn' onClick={handleRecompare}>Recompare</button>
       </div>
+      {/* Footer */}
+      <Footer/>
     </div>
   );
 };

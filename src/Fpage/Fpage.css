@@ -1,12 +1,8 @@
- 
-  
- 
-
 .site-title {
   font-size: 2.2rem;
   font-weight: bold;
   color: var(--primary-color);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .info-section {
@@ -17,14 +13,13 @@
   background-color: white;
   border-radius: 15px;
   padding: 2rem;
-  margin: 2rem auto;  
+  margin: 2rem auto;
   width: 90%;
   max-width: 500px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   text-align: center;
 }
-
 
 .info-section:hover {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
@@ -35,7 +30,7 @@
   font-weight: bold;
   color: #2d5174;
   margin-bottom: 0.5rem;
- }
+}
 
 .section-description {
   font-size: 1rem;
@@ -44,11 +39,9 @@
   margin-top: 0.5rem;
 }
 
- 
-
 .BFpage {
   margin: 0.5rem;
-  padding: 0.8rem  ;
+  padding: 0.8rem;
   font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
@@ -59,25 +52,20 @@
   transition: all 0.3s ease;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   align-items: center;
-  width: 150px; 
-
+  width: 150px;
 }
 
 .BFpage:hover {
-  
-    background-color: #2a5d77;
-    box-shadow: 0 4px 8px rgba(63, 126, 166, 0.4);
-  
+  background-color: #2a5d77;
+  box-shadow: 0 4px 8px rgba(63, 126, 166, 0.4);
 }
 
- .animated-logo {
+.animated-logo {
   width: 180px;
   border-radius: 50%;
   margin-top: 1rem;
   animation: fadeAndScale 1.2s ease;
 }
-
-
 
 @media (prefers-reduced-motion: no-preference) {
   .animated-logo {
@@ -92,31 +80,28 @@
   to {
     transform: rotate(360deg);
   }
-
-
-
 }
 
 @keyframes popUp {
   from {
-      opacity: 0;
-      transform: scale(0.5);
+    opacity: 0;
+    transform: scale(0.5);
   }
   to {
-      opacity: 1;
-      transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
   }
 }
- 
+
 @media (max-width: 768px) {
   .logo {
-    width: 50%; 
+    width: 50%;
   }
   .button {
-    max-width: 100%; 
+    max-width: 100%;
   }
-  h1, p {
-    font-size: 1.2rem; 
+  h1,
+  p {
+    font-size: 1.2rem;
   }
 }
-  
