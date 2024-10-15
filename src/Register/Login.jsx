@@ -5,7 +5,7 @@ import { auth, db } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import './Register.css';
-
+ 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -104,6 +104,15 @@ const Login = () => {
             required
             onChange={(e) => setPassword(e.target.value)}      
           />
+<p className="forget-password" style={{ textAlign: 'right'}}>
+  <Link to="/ResetPassword" className="sign-link">
+    Forget Password?
+  </Link>
+</p>
+
+
+
+
 
            {errorMessage && <p className="error-message">{errorMessage}</p>}
 
@@ -111,7 +120,10 @@ const Login = () => {
             {isLoading ? "Logging in..." : "Login"}
           </button>
           <div className='sign-login'>
+    
+
             <p style={{ fontSize: '15px' }}>Don't have an account? <Link to="/Sign" className="sign-link">Create account</Link></p>
+   
           </div>
         </form>
       </div>
