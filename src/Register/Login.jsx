@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState('User');
   const [errorMessage, setErrorMessage] = useState(""); 
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleUserTypeChange = (type) => {
@@ -19,33 +20,33 @@ const Login = () => {
 
   const handleCreateAccount = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage(""); 
+    
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
-      // تحقق من المجموعة التي ينتمي إليها المستخدم
-      const userDoc = await getDoc(doc(db, "Users", user.uid));
-      const moderatorDoc = await getDoc(doc(db, "Moderators", user.uid));
+      
+      const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
+      const userDoc = await getDoc(doc(db, collectionPath, user.uid));
 
       if (userDoc.exists()) {
-        // توجيه المستخدم إلى الصفحة الرئيسية
-        navigate('/HomePage');
-      } else if (moderatorDoc.exists()) {
-        // توجيه المشرف إلى صفحة المشرف
-        navigate('/moderator');
+        navigate(userType === 'User' ? '/HomePage' : '/moderator');
       } else {
-        // في حال عدم وجود المستخدم في أي من المجموعتين
         setErrorMessage("User type not recognized. Please contact support.");
       }
+      
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         setErrorMessage("No account found with this email.");
       } else if (error.code === 'auth/wrong-password') {
         setErrorMessage("Incorrect password. Please try again.");
       } else {
-        setErrorMessage("Invalid Email/Password.");
+        setErrorMessage("An error occurred. Please check your credentials and try again.");
       }
       console.log(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -104,10 +105,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}      
           />
 
-          {/* عرض رسالة الخطأ هنا */}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-          <button type="submit" className="sign-btn" style={{ marginTop: '1rem', fontSize: '15px' }}>Login</button>
+          <button type="submit" className="sign-btn" style={{ marginTop: '1rem', fontSize: '15px' }} disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
           <div className='sign-login'>
             <p style={{ fontSize: '15px' }}>Don't have an account? <Link to="/Sign" className="sign-link">Create account</Link></p>
           </div>

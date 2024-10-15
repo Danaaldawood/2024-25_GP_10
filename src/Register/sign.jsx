@@ -8,7 +8,7 @@ import Flag from 'react-world-flags';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
- import { SuccessMessage, ErrorMessage } from './Message'; // استيراد مكونات الرسائل
+ import { SuccessMessage, ErrorMessage } from './Message';     
 
 const Sign = () => {
   const [email, setEmail] = useState("");
@@ -24,62 +24,60 @@ const Sign = () => {
   const navigate = useNavigate();
 
  
- const handleRegister = async (e) => {
-  e.preventDefault();
-  if (password.length <= 8) {
-    setErrorMessage("Password must be at least 8 characters long.");
-    setShowError(true);
-    return;
-  }
-    
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    setErrorMessage("Please enter a valid email address.");
-    setShowError(true);
-    return;
-  }
-
-  try {
-     await createUserWithEmailAndPassword(auth, email, password);
-    const user = auth.currentUser;
-    
-    if (user) {
-      const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
-      
-       let userData = userType === 'User'
-        ? {
-            email: user.email,
-            fullName: fname,
-            age: age || null,
-            region: region ? region.value : null,
-            subRegion: subRegion || null
-          }
-        : {
-            email: user.email,
-            fullName: fname
-          };
-      
-       userData = Object.fromEntries(Object.entries(userData).filter(([_, v]) => v !== null && v !== ""));
-      
-       await setDoc(doc(db, collectionPath, user.uid), userData);
-      
-      setShowSuccess(true);  
-      
-       setTimeout(() => {
-        if (userType === 'User') {
-          navigate('/Home');
-        } else {
-          navigate('/moderator');
-        }
-      }, 2000);
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (password.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long.");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000); 
+      return;
     }
+  
     
-  } catch (error) {
-    console.log(error.message);
-    setErrorMessage("Something went wrong. Please try again.");
-    setShowError(true); // 
-  }
-};
+  
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      setShowError(true);
+      return;
+    }
+  
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+  
+      if (user) {
+        const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
+        let userData = userType === 'User'
+          ? {
+              email: user.email,
+              fullName: fname,
+              age: age || null,
+              region: region ? region.value : null,
+              subRegion: subRegion || null
+            }
+          : {
+              email: user.email,
+              fullName: fname
+            };
+        
+        userData = Object.fromEntries(Object.entries(userData).filter(([_, v]) => v !== null && v !== ""));
+        await setDoc(doc(db, collectionPath, user.uid), userData);
+  
+        setShowSuccess(true);  
+        
+        setTimeout(() => {
+          navigate(userType === 'User' ? '/Home' : '/moderator');
+        }, 1000);
+      }
+      
+    } catch (error) {
+      console.log(error.message);
+      setErrorMessage("Something went wrong. Please try again.");
+      setShowError(true); 
+    }
+  };
+  
 
   const handleUserTypeChange = (type) => {
     setUserType(type);
@@ -102,7 +100,7 @@ const Sign = () => {
       </div>
     ),
   }));
-
+ 
   return (
     <div className="sign-page">
       {showSuccess && <SuccessMessage onClose={() => setShowSuccess(false)} />}
@@ -261,6 +259,7 @@ const Sign = () => {
             )}
 
             {/* Submit Button */}
+ 
             <button type="submit" className="sign-btn" style={{ marginTop: '1rem', fontSize: '15px' }}>
               Create Account
             </button>
