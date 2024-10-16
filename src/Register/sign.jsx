@@ -6,10 +6,11 @@ import LOGO from '../images/Logo.png';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import Flag from 'react-world-flags';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, validatePassword } from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
 import './Pop-Message.css'
+import { Password } from '@mui/icons-material';
 
  const Sign = () => {
   const [email, setEmail] = useState("");
@@ -19,68 +20,65 @@ import './Pop-Message.css'
   const [region, setRegion] = useState("");
   const [subRegion, setSubRegion] = useState("");
   const [userType, setUserType] = useState('User');
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
+ const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-//  Handel Password
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (password.length < 8) {
-      setErrorMessage("Password must be at least 8 characters long.");
-      setShowError(true);
-      setTimeout(() => setShowError(false), 5000); 
+    
+    // Age validate
+     if (age < 0) {
+      setErrorMessage("Invalied age,age cannot be negative.");
       return;
     }
-    //  Handel Email
+  // Password validate
+     if (password.length < 8) {
+      setErrorMessage("Password should be at least 8 characters.");
+      return;
+    }
+    // Email validate
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       setErrorMessage("Please enter a valid email address.");
-      setShowError(true);
-      setTimeout(() => setShowError(false), 5000); 
       return;
     }
   
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-    
       if (user) {
         const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
         let userData = userType === 'User'
-          ? {
-              User_Id: user.uid,  //   UserId    
-              email: user.email,
-              fullName: fname,
-              age: age || null,
-              region: region ? region.label.props.children[1] : null,
-              subRegion: subRegion || null
-            }
-          : {
-              Moderator_Id: user.uid,  //   ModeratorId  
-               email: user.email,
-              fullName: fname
-            };
+  ? {
+      User_Id: user.uid,  // UserId    
+      email: user.email,
+      fullName: fname,
+      age: age || null,
+      region: region ? region.label.props.children[1] : null,
+      subRegion: subRegion || null
+    }
+  : {
+      Moderator_Id: user.uid,  // ModeratorId  
+      email: user.email,
+      fullName: fname
+    };
 
-  
-        userData = Object.fromEntries(Object.entries(userData).filter(([_, v]) => v !== null && v !== ""));
         await setDoc(doc(db, collectionPath, user.uid), userData);
   
-        setShowSuccess(true);  
-  
+        setShowSuccess(true);
+        
         setTimeout(() => {
           navigate(userType === 'User' ? '/Home' : '/moderator');
-        }, 3000); 
+        }, 3000);
       }
-      
     } catch (error) {
       console.log(error.message);
       setErrorMessage("Something went wrong. Please try again.");
-      setShowError(true); 
-      setTimeout(() => setShowError(false), 5000);
     }
   };
+  
+  
   
   
 
@@ -119,13 +117,20 @@ import './Pop-Message.css'
         )}
         
         {showSuccess && (
-          <div className="success-popup">
-            <h3 className="success-title">Success!</h3>
-            <p className="success-message">Your account has been created successfully.</p>
-            <div className="success-actions">
-             </div>
-          </div>
-        )}
+  <div className="success-popup">
+    <h3 className="success-title">Success!</h3>
+    <p className="success-message">Your account has been created successfully.</p>
+    <div className="success-actions">
+      <button className="Continue-btn" onClick={() => {
+        setShowSuccess(false);
+        navigate(userType === 'User' ? '/Home' : '/moderator');
+      }}>
+        Continue
+      </button>
+    </div>
+  </div>
+)}
+
         <div className="sign-container">
           {/* Left Section */}
           <div className="Left-section">
@@ -212,8 +217,8 @@ import './Pop-Message.css'
       fontSize: '13px',
       padding: '0',   
       boxShadow: 'none',
-      borderColor: isFocused ? '#004D60' : '#ddd',  // لون التركيز عند تفعيل isFocused
-      '&:hover': { borderColor: '#004D60' },        // تطبيق نفس اللون عند hover
+      borderColor: isFocused ? '#004D60' : '#ddd',              
+      '&:hover': { borderColor: '#004D60' },           
       marginBottom: '20px',
     }),
     valueContainer: (styles) => ({
@@ -233,7 +238,7 @@ import './Pop-Message.css'
 
 
 
-             {/* Password */}
+        {/* Password */}
                 <label htmlFor="password" className="sign-label" >Password:</label>
                 <input 
                   type="password" 
