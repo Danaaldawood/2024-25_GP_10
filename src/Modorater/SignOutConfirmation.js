@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteConfirmation = ({ onConfirm, onCancel }) => {
+const SignOutConfirmation = ({ onConfirm, onCancel }) => {
   const modalStyles = {
     position: 'fixed',
     top: '50%',
@@ -35,7 +35,7 @@ const DeleteConfirmation = ({ onConfirm, onCancel }) => {
   };
 
   const confirmButtonStyles = {
-    backgroundColor: '#dc3545', 
+    backgroundColor: '#dc3545',
     color: '#fff',
     border: 'none',
     borderRadius: '5px',
@@ -47,7 +47,7 @@ const DeleteConfirmation = ({ onConfirm, onCancel }) => {
   const cancelButtonStyles = {
     backgroundColor: '#ffffff',
     color: '#721c24',
-    border: '1px solid #f5c6cb',  
+    border: '1px solid #f5c6cb',
     borderRadius: '5px',
     padding: '10px 20px',
     cursor: 'pointer',
@@ -61,7 +61,7 @@ const DeleteConfirmation = ({ onConfirm, onCancel }) => {
       </div>
 
       <div style={modalBodyStyles}>
-        <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+        <p>Are you sure you want to sign out?</p>
         <div style={buttonContainerStyles}>
           <button style={confirmButtonStyles} onClick={onConfirm}>Confirm</button>
           <button style={cancelButtonStyles} onClick={onCancel}>Cancel</button>
@@ -71,4 +71,4 @@ const DeleteConfirmation = ({ onConfirm, onCancel }) => {
   );
 };
 
-export default DeleteConfirmation;
+export default SignOutConfirmation;

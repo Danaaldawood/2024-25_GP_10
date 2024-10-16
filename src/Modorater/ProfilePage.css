@@ -11,8 +11,8 @@
 .profile-header {
   display: flex;
   align-items: center;
-   background-color: #004D60;
-    border-bottom-left-radius: 15px; /* Adjust radius as desired */
+  background-color: #6084a9; 
+    border-bottom-left-radius: 15px; 
   border-bottom-right-radius: 15px;
   padding: 10px;
   color: white;
@@ -65,7 +65,7 @@
 /* Profile details (left side) */
 .profile-details {
   width: 35%;
-  background: linear-gradient(700deg, #004D60, #7290B0);
+  background: linear-gradient(700deg, #004D60, #6084a9);
   border-radius: 20px;
   padding: 40px;
   text-align: center;
@@ -148,19 +148,7 @@
   background-color: #ff3b3b;
 }
 
-/* Footer styling */
-.footer {
-  width: 100%; 
- background-color: #004D60;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  margin-top: auto; 
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
+
 
 
 

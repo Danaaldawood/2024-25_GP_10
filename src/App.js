@@ -13,6 +13,7 @@ import  {Plot}  from './Plot/Plot'; //
 import {ConversationLayout} from './Freestyle/Freestyle'
 import Discrption from './DiscrptionPages/Discrption';
 import ModeratorPage from './Modorater/ModeratorPage';
+import ProfilePage from './Modorater/ProfilePage';
 import{ToastContainer} from "react-toastify";
  
 function App() {
@@ -73,7 +74,11 @@ function App() {
     },
     {
       path: "/moderator",   
-      element: <ModeratorPage />,
+      element: <ModeratorPage />, 
+    },
+    {
+      path: "/profile",  
+      element: <ProfilePage />,
     },
   ]);
 
@@ -88,4 +93,3 @@ function App() {
 }
 
 export default App;
-

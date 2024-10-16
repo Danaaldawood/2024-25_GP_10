@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import './ModeratorPage.css'; 
+import './ModeratorPage.css';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../images/Logo.png';  
-import {Footer} from '../Footer/Footer'
-import '../Header/Header.css'; 
-
+import Logo from '../images/Logo.png';
+import { Footer } from '../Footer/Footer';
+import '../Header/Header.css';
+import SignOutConfirmation from './SignOutConfirmation'; 
 
 const ModeratorPage = () => {
   const [view, setView] = useState('view-edit');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showSignOutModal, setShowSignOutModal] = useState(false); 
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
@@ -16,11 +17,24 @@ const ModeratorPage = () => {
   };
 
   const handleProfileClick = () => {
+    console.log('Navigating to profile page');
     navigate('/profile');
   };
 
-  const handleSignOut = () => { 
-    alert("Signed out!");
+  // Show sign-out confirmation modal
+  const handleSignOut = () => {
+    setShowSignOutModal(true); 
+  };
+
+  // Confirm sign-out
+  const handleConfirmSignOut = () => {
+    setShowSignOutModal(false);
+    navigate('/Login'); 
+  };
+
+  // Cancel sign-out
+  const handleCancelSignOut = () => {
+    setShowSignOutModal(false); 
   };
 
   return (
@@ -67,59 +81,50 @@ const ModeratorPage = () => {
       {/* Content Views */}
       {view === 'view-edit' && (
         <div className="table-container">
-          <h2 className='pagename'>View Edit Dataset</h2>
+          <h2 className="pagename">View Edit Dataset</h2>
           <table className="styled-table">
             <thead>
               <tr>
-                <th>Dimension</th>
+                <th>Attribute-ID</th>
+                <th>UserID</th>
+                <th>Region</th>
+                <th>Topic</th>
                 <th>Value</th>
-                <th>QID</th>
-                <th>Timestamp</th>
                 <th>Reason</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+              <td>Na-ko-39</td>
+              <td>user_47</td>
+              <td>Western</td>
                 <td>Food</td>
                 <td>Tea</td>
-                <td>Q1-123</td>
-                <td>2024-09-30 09:30</td>
                 <td>Sub-culture</td>
               </tr>
               <tr>
+              <td>Ara-ko-39</td>
+              <td>user_80</td>
+              <td>Arab</td>
                 <td>Food</td>
                 <td>Coffee</td>
-                <td>Q2-1234</td>
-                <td>2024-09-30 10:00</td>
                 <td>Variance</td>
               </tr>
               <tr>
+              <td>by-da-30</td>
+              <td>user_40</td>
+              <td>Western</td>
                 <td>Holiday</td>
                 <td>New Year</td>
-                <td>Q10-1234</td>
-                <td>2024-09-30 10:00</td>
                 <td>Variance</td>
               </tr>
               <tr>
-                <td>Food</td>
-                <td>Coffee</td>
-                <td>Q2-1234</td>
-                <td>2024-09-30 10:00</td>
+              <td>Chi_311</td>
+              <td>user_99</td>
+              <td>Chines</td>
+                <td>Sport</td>
+                <td>Water</td>
                 <td>Variance</td>
-              </tr>
-              <tr>
-                <td>Greeting</td>
-                <td>Right Hand</td>
-                <td>Q3-1234</td>
-                <td>2024-09-30 10:00</td>
-                <td>Sub-Culture</td>
-              </tr>
-              <tr>
-                <td>Work Life</td>
-                <td>Abaya</td>
-                <td>Q8-1234</td>
-                <td>2024-09-30 10:00</td>
-                <td>Sub-Culture</td>
               </tr>
             </tbody>
           </table>
@@ -133,16 +138,22 @@ const ModeratorPage = () => {
 
       {view === 'notifications' && (
         <div className="notifications-container">
-          <h2 className='pagename'>Notifications</h2>
+          <h2 className="pagename">Notifications</h2>
           <p>No new notifications.</p>
         </div>
       )}
 
-      {/* Footer */}
-      <Footer/>
+      {/* Sign-out confirmation modal */}
+      {showSignOutModal && (
+        <SignOutConfirmation onConfirm={handleConfirmSignOut} onCancel={handleCancelSignOut} />
+      )}
+
+        {/* Footer */}
+        <footer className="footer">
+        <p>© 2024 CultureLens. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
 
 export default ModeratorPage;
-
