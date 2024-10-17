@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { Table } from 'react-bootstrap';
 import { realtimeDb } from '../Register/firebase';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export function RealtimeData() {
   const [tableData, setTableData] = useState([]);
@@ -40,6 +42,7 @@ export function RealtimeData() {
           <th>#</th>
           <th>Region</th>
           <th>Attribute</th>
+          <th>Reason</th>
           <th>Topic</th>
         </tr>
       </thead>
@@ -49,6 +52,7 @@ export function RealtimeData() {
             <td>{index + 1}</td>
             <td>{row.region_name}</td>
             <td>{row.en_question}</td>
+            <td>Variation</td>
             <td>{row.topic}{row.annotations?.en_values}</td>
           </tr>
         ))}
