@@ -42,8 +42,10 @@ export function RealtimeData() {
           <th>#</th>
           <th>Region</th>
           <th>Attribute</th>
-          <th>Reason</th>
+          <th>Values</th>
           <th>Topic</th>
+          <th>Reason</th>
+       
         </tr>
       </thead>
       <tbody>
@@ -52,8 +54,22 @@ export function RealtimeData() {
             <td>{index + 1}</td>
             <td>{row.region_name}</td>
             <td>{row.en_question}</td>
-            <td>Variation</td>
+           
+            <td>
+              <select>
+                {row.annotations?.map((annotation, i) => (
+                  <option key={i} value={annotation.en_values[0]}>
+                    {annotation.en_values[0]}
+                  </option>
+                ))}
+              </select>
+            </td>
             <td>{row.topic}{row.annotations?.en_values}</td>
+            <td>Variation</td>
+          
+            
+            
+            
           </tr>
         ))}
       </tbody>
