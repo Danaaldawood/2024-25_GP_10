@@ -7,10 +7,10 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #6084a9; /* light Blue */
+    background-color: #6084a9;
     color: white;
     padding: 15px 20px;
-    border-bottom-left-radius: 15px; /* Adjust radius as desired */
+    border-bottom-left-radius: 15px; 
   border-bottom-right-radius: 15px;
   margin: 0;
 

@@ -10,8 +10,8 @@ import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { deleteUser } from 'firebase/auth';
 
 const ProfilePage = () => {
-  const [profileName, setProfileName] = useState('');
-  const [email, setEmail] = useState('');
+  const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
+  const [email, setEmail] = useState(localStorage.getItem('email') || '');
   const [notification, setNotification] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -27,6 +27,8 @@ const ProfilePage = () => {
             const userData = userDoc.data();
             setProfileName(userData.fullName || '');
             setEmail(userData.email || '');
+            localStorage.setItem('profileName', userData.fullName || '');
+            localStorage.setItem('email', userData.email || '');
           } else {
             console.log('No such document!');
           }
@@ -53,12 +55,14 @@ const ProfilePage = () => {
       const user = auth.currentUser;
       if (user) {
         const userDocRef = doc(db, 'Moderators', user.uid);
-        const userDoc = await getDoc(userDocRef);
 
         await updateDoc(userDocRef, {
           fullName: profileName,
           email: email,
         });
+
+        localStorage.setItem('profileName', profileName);
+        localStorage.setItem('email', email);
 
         setNotification({ type: 'success', message: 'Profile saved successfully!' });
       } else {
@@ -84,20 +88,15 @@ const ProfilePage = () => {
         return;
       }
 
-      // Check if the Firestore document exists
+      // Delete moderator authentication from Firebase Auth
+      await deleteUser(user);
+
+      // Delete moderator document from Firestore
       const userDocRef = doc(db, 'Moderators', user.uid);
-      const userDoc = await getDoc(userDocRef);
-
-      if (!userDoc.exists()) {
-        setNotification({ type: 'error', message: 'User document not found.' });
-        return;
-      }
-
-      // Delete moderater document from Firestore
       await deleteDoc(userDocRef);
 
-      // Delete moderater authentication from Firebase Auth
-      await deleteUser(user);
+      localStorage.removeItem('profileName');
+      localStorage.removeItem('email');
 
       setNotification({ type: 'success', message: 'Account deleted successfully.' });
 
@@ -120,7 +119,7 @@ const ProfilePage = () => {
         <button className="back-btn" onClick={() => navigate('/moderator')}>
           <FaArrowLeft className="back-icon" />
         </button>
-        <h1>Profile Management</h1>
+        <h1>Moderator Profile </h1>
       </header>
 
       <div className="profile-content">
@@ -129,10 +128,11 @@ const ProfilePage = () => {
           <h3>{profileName}</h3>
         </div>
         <div className="profile-form-container">
-          <h2 className='headname'>Profile</h2>
+          <h2 className='headname'>Moderator Information</h2>
           <div className="profile-form">
-
+         
             <div className="form-row">
+            <label>Full Name</label>
               <input
                 type="text"
                 className="formProf-input"
@@ -143,6 +143,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="form-row">
+            <label>Email</label>
               <input
                 type="email"
                 className="formProf-input"
@@ -151,7 +152,6 @@ const ProfilePage = () => {
                 readOnly 
               />
             </div>
-
 
             {/* Save and Delete buttons */}
             <button className="save-button" onClick={handleSaveProfile}>
