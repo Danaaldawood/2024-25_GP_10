@@ -137,14 +137,14 @@ console.log("Password:", password);
     required
   />
   <span onClick={togglePasswordVisibility} className="password-icon">
-    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
   </span>
 </div>
 
 
  
             <p className="forget-password" >
-              <Link to="/ResetPassword" className="Login-link">
+              <Link to="/forgot" className="Login-link">
                 Forget Password?
               </Link>
             </p>

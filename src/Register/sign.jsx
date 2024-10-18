@@ -265,7 +265,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
     required
   />
   <span onClick={togglePasswordVisibility} className="password-icon">
-    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
   </span>
 </div>
 <ul className="password-requirements">

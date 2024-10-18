@@ -16,6 +16,8 @@ import ModeratorPage from './Modorater/ModeratorPage';
 import ProfilePage from './Modorater/ProfilePage';
 import UserProfilePage from './userprofile/UserProfilePage'; 
 import{ToastContainer} from "react-toastify";
+import {ForgotPassword} from './ResetPassword/ForgotPassword';
+import {ResetPassword} from './ResetPassword/ResetPassword';
  
 function App() {
   const route = createBrowserRouter([
@@ -32,6 +34,14 @@ function App() {
     {
       path: "/login",  
       element: <Login />,
+    },
+    {
+      path: "/forgot",  
+      element: <ForgotPassword />,
+    },
+    {
+      path: "/reset",  
+      element: <ResetPassword />,
     },
     {
       path: "/sign",  
