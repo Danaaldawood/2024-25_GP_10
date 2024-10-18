@@ -10,8 +10,8 @@ import { createUserWithEmailAndPassword, validatePassword } from 'firebase/auth'
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
 import './Pop-Message.css'
-import { Password } from '@mui/icons-material';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
  const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,20 +23,32 @@ import { Password } from '@mui/icons-material';
  const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false); 
 
+  const togglePasswordVisibility = () => {
+   setShowPassword(!showPassword);
+ };
   const handleRegister = async (e) => {
     e.preventDefault();
     
     // Age validate
-     if (age < 0) {
-      setErrorMessage("Invalied age,age cannot be negative.");
+    if (age <= 0 && userType === 'User') {
+      setErrorMessage("Invalid age, age must be greater than zero.");
       return;
     }
+    
+    
   // Password validate
-     if (password.length < 8) {
-      setErrorMessage("Password should be at least 8 characters.");
-      return;
-    }
+  if (password.length < 8) {
+    setErrorMessage("Password should be at least 8 characters.");
+    return;
+  }
+  
+  if (!/[A-Z]/.test(password)) {
+    setErrorMessage("Password should contain at least one uppercase letter.");
+    return;
+  }
+  
     // Email validate
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
@@ -50,22 +62,23 @@ import { Password } from '@mui/icons-material';
       if (user) {
         const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
         let userData = userType === 'User'
-  ? {
-      User_Id: user.uid,  // UserId    
-      email: user.email,
-      fullName: fname,
-      age: age || null,
-      region: region ? region.label.props.children[1] : null,
-      subRegion: subRegion || null
-    }
-  : {
-      Moderator_Id: user.uid,  // ModeratorId  
-      email: user.email,
-      fullName: fname
-    };
+        ? {
+            User_Id: user.uid,
+            email: user.email,
+            fullName: fname,
+            age: age || null,
+            region: region,  // قيمة region من الاختيار
+            subRegion: subRegion ? subRegion.label : null // تخزين اسم الدولة المختارة من القائمة
+          }
+        : {
+            Moderator_Id: user.uid,
+            email: user.email,
+            fullName: fname
+          };
 
-        await setDoc(doc(db, collectionPath, user.uid), userData);
-  
+          await setDoc(doc(db, collectionPath, user.uid), userData);
+          console.log("User data added to Firestore");
+            
         setShowSuccess(true);
         
         setTimeout(() => {
@@ -87,8 +100,8 @@ import { Password } from '@mui/icons-material';
   };
 
   const handleCountryChange = (selectedOption) => {
-    setRegion(selectedOption);
-  };
+    setSubRegion(selectedOption);  // تأكد من تخزين الخيار المختار بالكامل
+};
 
   const handleSubRegionChange = (e) => {
     setSubRegion(e.target.value);
@@ -201,29 +214,28 @@ import { Password } from '@mui/icons-material';
                   onChange={(e) => setAge(e.target.value)}
                   required
                 />
-                <label className="sign-label">Region:</label>
-
+                <label className="sign-label">ٍSub Region:</label>
                 <Select 
   options={countryOptions} 
-  value={region}
+  value={subRegion}  // تأكد من أن subRegion يتم تحديثه بشكل صحيح عند التحديد
   onChange={handleCountryChange}
-  placeholder="Select Region"
+  placeholder="Select Sub Region"
   styles={{
     control: (styles, { isFocused }) => ({
       ...styles,
       width: '100%',
-      height: '50px',   
+      height: '50px',
       borderRadius: '5px',
       fontSize: '13px',
-      padding: '0',   
+      padding: '0',
       boxShadow: 'none',
-      borderColor: isFocused ? '#004D60' : '#ddd',              
-      '&:hover': { borderColor: '#004D60' },           
+      borderColor: isFocused ? '#004D60' : '#ddd',
+      '&:hover': { borderColor: '#004D60' },
       marginBottom: '20px',
     }),
     valueContainer: (styles) => ({
       ...styles,
-      padding: '10px', 
+      padding: '10px',
     }),
     placeholder: (styles) => ({
       ...styles,
@@ -231,61 +243,81 @@ import { Password } from '@mui/icons-material';
     }),
     dropdownIndicator: (styles) => ({
       ...styles,
-      padding: '0 8px',   
+      padding: '0 8px',
     })
   }}
 />
 
 
 
+
+
         {/* Password */}
-                <label htmlFor="password" className="sign-label" >Password:</label>
-                <input 
-                  type="password" 
-                  id="password" 
-                  placeholder="Enter your password"
-                  className="sign-input"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+        <label className="Login-label" htmlFor="password">Password:</label>
+<div className="password-container">
+  <input 
+    type={showPassword ? "text" : "password"} 
+    id="password" 
+    placeholder="Enter your password"
+    className="Login-input"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    required
+  />
+  <span onClick={togglePasswordVisibility} className="password-icon">
+    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+  </span>
+</div>
+<ul className="password-requirements">
+            <li>Password should be at least 8 characters.</li>
+            <li>Contain at least one uppercase letter.</li>
+          </ul>
 
                 {/* Culture Domain */}
                 <fieldset className="sign-culture-domain">
-                  <legend>Sub Region:</legend>
-                  <div className="sign-culture-options">
-                    <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={handleSubRegionChange} required />
-                    <label htmlFor="Arab">Arab</label>
-                  </div>
-                  <div className="sign-culture-options">
-                    <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={handleSubRegionChange} required />
-                    <label htmlFor="Western">Western</label>
-                  </div>
-                  <div className="sign-culture-options">
-                    <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={handleSubRegionChange} required />
-                    <label htmlFor="Chinese">Chinese</label>
-                  </div>
-                  <div className="sign-culture-options">
-                    <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={handleSubRegionChange} required />
-                    <label htmlFor="Other">Other</label>
-                  </div>
-                </fieldset>
-              </>
+  <legend>Region:</legend>
+  <div className="sign-culture-options">
+    <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
+    <label htmlFor="Arab">Arab</label>
+  </div>
+  <div className="sign-culture-options">
+    <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)} required />
+    <label htmlFor="Western">Western</label>
+  </div>
+  <div className="sign-culture-options">
+    <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)} required />
+    <label htmlFor="Chinese">Chinese</label>
+  </div>
+  <div className="sign-culture-options">
+    <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)} required />
+    <label htmlFor="Other">Other</label>
+  </div>
+</fieldset>
+</>
             )}
 
             {/* Password for Moderator */}
             {userType === 'Moderator' && (
               <div>
-                <label htmlFor="password" className="sign-label">Password:</label>
-                <input 
-                  type="password" 
-                  id="password" 
-                  placeholder="Enter your password"
-                  className="sign-input"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <label className="Login-label" htmlFor="password">Password:</label>
+<div className="password-container">
+  <input 
+    type={showPassword ? "text" : "password"} 
+    id="password" 
+    placeholder="Enter your password"
+    className="Login-input"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    required
+  />
+  <span onClick={togglePasswordVisibility} className="password-icon">
+    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+  </span>
+</div>
+<ul className="password-requirements">
+            <li>Password should be at least 8 characters.</li>
+            <li>Contain at least one uppercase letter.</li>
+          </ul>
               </div>
             )}
 

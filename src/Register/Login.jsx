@@ -6,7 +6,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import './Login.css';//import desgine page
 import './Pop-Message.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +16,11 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const [showPassword, setShowPassword] = useState(false); 
+
+   const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleUserTypeChange = (type) => {
     setUserType(type);
   };
@@ -98,33 +104,31 @@ const Login = () => {
               </button>
             </div>
   
-            <label htmlFor="email" className="Login-label">Email Address:</label>
-<div className="input-container">
-  <input 
-    type="email" 
-    id="email" 
-    autoComplete="off" 
-    placeholder="Enter your Email Address"
-    className="Login-input"
-    required
-    onChange={(e) => setEmail(e.target.value)}   
-     
-  />
- </div>
+            <label className="Login-label" htmlFor="email">Email Address:</label>
+<input 
+  type="email" 
+  id="email" 
+  placeholder="Enter your Email Address" 
+  className="Login-input" 
+  required
+/>
 
-<label htmlFor="password" className="Login-label">Password:</label>
-<div className="input-container">
+<label className="Login-label" htmlFor="password">Password:</label>
+<div className="password-container">
   <input 
-    type="password" 
+    type={showPassword ? "text" : "password"} 
     id="password" 
-    autoComplete="off" 
-    placeholder="Enter your Password"
+    placeholder="Enter your password"
     className="Login-input"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
     required
-    onChange={(e) => setPassword(e.target.value)}   
-    
   />
- </div>
+  <span onClick={togglePasswordVisibility} className="password-icon">
+    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+  </span>
+</div>
+
 
  
             <p className="forget-password" >

@@ -1,215 +1,203 @@
- *{
+* {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
- }
-    
-    /* Page */
-    .Login-page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: #ffffff;
-      }
-      
-      /* Form*/
-      .Login-container {
-        display: flex;
-        align-items: stretch;
-        width: 900px;
-        background-color: #ffffff;
-        border-radius: 20px;
-        overflow: hidden;
-        gap: 0;
-        margin: 0;
-      }
-      
-       .Login-form {
-        padding: 2rem;
-        flex: 1;
-        background-color: #f7f8f8;
-        border-radius: 20px 0 0 20px;
-      }
-      
-      .Login-title {
-        font-size: 20px;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      
-      /* User Type*/
-      .Login-user-type-container {
-        display: flex;
-        margin-bottom: 1rem;
-      }
-      
-      .Login-user-type-btn {
-        flex: 1;
-        padding: 0.5rem;
-        border: none;
-        cursor: pointer;
-        background-color: #cccaca;
-        color: #333;
-        font-weight: bold;
-        margin-right: 0.5rem;
-        border-radius: 4px;
-        font-size: 10px;
-      }
-      
-      .Login-user-type-btn.Login-active {
-        background-color: #004D60;
-        color: #fff;
-      }
-      
-      
-      
-       .Login-label {
-        font-size: 15px;
-        margin-bottom: 0.5rem;
-        color: #000000;
-      }
-      
-      .Login-input, .Login-select {
-           width: 100%;
-          height: 50px;
-          border-radius: 5px;
-          font-size: 15px;
-          padding: 10px;
-          border: 1px solid #ddd;
-          box-sizing: border-box;
-       font-size: 13px;
-        
-        
-      }
-      
-      .Login-input:focus, .Login-select:focus {
-        border-color: #004D60;
-        outline: none;
-      }
-      
-       .Login-culture-domain {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-      }
-      
-       
-      .logo-welcome-container img {
-        transform: translateY(-30px);
-      }
-      
-      .logo-welcome-container h2 {
-        margin: 0;
-      }
-      
-      /* Button*/
-      .Login-btn { 
-        width: 100%;
-        padding: 0.75rem;
-        background-color: #2d5174;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 0rem;
-         margin-top: '1rem';
-       font-size:15px ;
-      }
-      
-      .Login-btn:hover {
-        background-color: #004D60;
-       }
-      
-       .Login-login {
-        margin-top: 1rem;
-        text-align: center;
-      }
-      
-      .Login-link,.forget-password {
-        color: #3f6da6;
-        text-decoration: none;
-        font-weight: bold;
-        text-align: right;
-      }
-       
-      
-      .Login-link:hover {
-        text-decoration: underline;
-      }
-      
-       .left-section {
-        flex: 1;
-        background: linear-gradient(700deg, #004D60, #6084a9);
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-        border-radius: 0 20px 20px 0;
-      }
-      
-      .left-section h2 {
-        font-size: 40px;
-        margin-bottom: 1rem;
-      }
-      
-      .left-section p {
-        font-size: 20px;
-        text-align: center;
-        line-height: 1.5;
-      }
-      
-       .Welcome-txt {
-        font-size: 18px;
-        color: #ffffff;
-        font-weight: bold;
-        text-align: center;
-        margin: 20px 0;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        line-height: 1.5;
-      }
-      
-       /* Responsive */
-       @media (max-width: 768px) {
-        .Login-container {
-          flex-direction: column;
-          width: 90%;
-        }
-      
-        .left-section {
-          display: none;
-        }
-      
-        .Login-form {
-          padding: 1.5rem;
-          border-radius: 20px;
-        }
-      }
-      
-       @media (max-width: 1024px) {
-        .Login-container {
-          width: 100%;
-          flex-direction: column;
-        }
-      
-        .Login-form {
-          padding: 2rem;
-        }
-      }
-      
-       @media (min-width: 1200px) {
-        .Login-container {
-          width: 900px;
-        }
-      
-        .Login-form {
-          padding: 3rem;
-        }
-      }
-       
-    
-     
-      
+}
+
+/* Page */
+.Login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+/* Form Container */
+.Login-container {
+  display: flex;
+  align-items: stretch;
+  width: 850px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Login-form {
+  padding: 1.5rem;
+  flex: 1;
+  background-color: #f7f8f8;
+}
+
+.Login-title {
+  font-size: 20px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* User Type Buttons */
+.Login-user-type-container {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.Login-user-type-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background-color: #cccaca;
+  color: #333;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.Login-user-type-btn.Login-active {
+  background-color: #004D60;
+  color: #fff;
+}
+
+.Login-label {
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 0rem;
+}
+
+.Login-input, .Login-select {
+  width: 100%;
+  height: 50px;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+  font-size: 13px;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.Login-input:focus, .Login-select:focus {
+  border-color: #004D60;
+  outline: none;
+}
+
+/* Left Section */
+.left-section {
+  flex: 1;
+  background: linear-gradient(700deg, #004D60, #6084a9);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 0 20px 20px 0;
+}
+
+.left-section h2 {
+  font-size: 36px;
+  margin-bottom: 1rem;
+}
+
+.left-section p {
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.Welcome-txt {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+/* Button */
+.Login-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2d5174;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.Login-btn:hover {
+  background-color: #004D60;
+}
+
+.Login-login {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.Login-link, .forget-password {
+  color: #3f6da6;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: right;
+}
+
+.Login-link:hover {
+  text-decoration: underline;
+}
+
+/* Password Container */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: gray;
+  height: 20px;
+  width: 20px;
+}
+
+/* Password Requirements */
+.password-requirements {
+  list-style-type: disc;
+  color: rgb(82, 81, 81);
+  font-size: 11px;
+  padding-left: 15px;
+  margin: 0 0 1rem 0;
+}
+
+.password-requirements li {
+  margin-bottom: 4px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .Login-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .left-section {
+    display: none;
+  }
+
+  .Login-form {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Login-container {
+    width: 800px;
+  }
+}
