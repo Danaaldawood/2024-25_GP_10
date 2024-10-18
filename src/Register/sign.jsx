@@ -68,7 +68,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
             fullName: fname,
             age: age || null,
             region: region,  // قيمة region من الاختيار
-            subRegion: subRegion ? subRegion.label : null // تخزين اسم الدولة المختارة من القائمة
+            subRegion: subRegion && subRegion.label && subRegion.label.props ? subRegion.label.props.children[1] : null
           }
         : {
             Moderator_Id: user.uid,
@@ -83,7 +83,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
         
         setTimeout(() => {
           navigate(userType === 'User' ? '/Home' : '/moderator');
-        }, 3000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error.message);

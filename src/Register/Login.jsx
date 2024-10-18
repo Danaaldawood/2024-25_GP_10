@@ -36,19 +36,26 @@ const Login = () => {
       
       const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
       const userDoc = await getDoc(doc(db, collectionPath, user.uid));
-
+      
       if (userDoc.exists()) {
+        console.log("User found in Firestore.");
         navigate(userType === 'User' ? '/HomePage' : '/moderator');
       } else {
+        console.log("User not found in Firestore. Collection Path:", collectionPath, "User ID:", user.uid);
         setErrorMessage("User type not recognized. Please contact support.");
         setIsLoading(false);
-
       }
+      
+      
+      
       
     } catch (error) {
       setErrorMessage("An error occurred. Incorrect Email/Password.");
       console.log(error.message);
       setIsLoading(false);
+      console.log("Email:", email);
+console.log("Password:", password);
+
     }
     
   };
@@ -104,14 +111,19 @@ const Login = () => {
               </button>
             </div>
   
-            <label className="Login-label" htmlFor="email">Email Address:</label>
-<input 
-  type="email" 
-  id="email" 
-  placeholder="Enter your Email Address" 
-  className="Login-input" 
-  required
-/>
+            <label htmlFor="email" className="Login-label">Email Address:</label>
+<div className="input-container">
+  <input 
+    type="email" 
+    id="email" 
+    autoComplete="off" 
+    placeholder="Enter your Email Address"
+    className="Login-input"
+    required
+    onChange={(e) => setEmail(e.target.value)}   
+     
+  />
+ </div>
 
 <label className="Login-label" htmlFor="password">Password:</label>
 <div className="password-container">
