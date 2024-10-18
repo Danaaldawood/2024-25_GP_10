@@ -1,19 +1,20 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./Register/Login";
-import Sign from './Register/sign';  // Ensure case matches the file on disk
+import Sign from './Register/sign';  
 import Index from "./Fpage/Fpage";
 import HomePage from "./HomePage/HomePage";
 import Edit from './EditPages/Edit';
 import ComparePage from './Compare/CrossCultureComparison';
 import { Evaluation } from './Evaluation/Evaluation';
 import View from './ViewPages/View';
-import CompareResult from './Compare/CompareResult';  // Import CompareResult page
-import  {Plot}  from './Plot/Plot'; // 
+import CompareResult from './Compare/CompareResult';  
+import  {Plot}  from './Plot/Plot'; 
 import {ConversationLayout} from './Freestyle/Freestyle'
 import Discrption from './DiscrptionPages/Discrption';
 import ModeratorPage from './Modorater/ModeratorPage';
 import ProfilePage from './Modorater/ProfilePage';
+import UserProfilePage from './userprofile/UserProfilePage'; 
 import{ToastContainer} from "react-toastify";
  
 function App() {
@@ -80,6 +81,11 @@ function App() {
       path: "/profile",  
       element: <ProfilePage />,
     },
+    
+{
+  path: "/userprofile",  
+  element: <UserProfilePage />,
+},
   ]);
 
   return (

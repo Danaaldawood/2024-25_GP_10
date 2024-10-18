@@ -1,0 +1,155 @@
+/* Main container for the profile page */
+.profile-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Header with back arrow */
+.profile-header {
+  display: flex;
+  align-items: center;
+  background-color: #6084a9; 
+    border-bottom-left-radius: 15px; 
+  border-bottom-right-radius: 15px;
+  padding: 10px;
+  color: white;
+  width: 100%;
+}
+
+.profile-header h1 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 24px;
+}
+
+.back-btn {
+  background: none;  
+  border: none;  
+  color: white;  
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px; 
+  text-decoration: none; 
+}
+
+.back-btn:hover {
+  color: #ffffff; 
+}
+
+.back-icon {
+  margin-right: 8px;
+  font-size: 22px;
+}
+
+
+/* Profile content section */
+.profile-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 35px auto;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  color: #072040;
+  font-family: 'Lucida Sans', sans-serif;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+/* Profile details (left side) */
+.profile-details {
+  width: 35%;
+  background: linear-gradient(700deg, #004D60, #6084a9);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-top: 60px;
+  border: 5px solid white;
+}
+
+.profile-details h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Profile form (right side) */
+.profile-form-container {
+  width: 60%;
+  background-color: #f7f8f8;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #3F7EA6;
+}
+
+.profile-form .form-row {
+  margin-bottom: 20px;
+}
+
+.formProf-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #3F7EA6;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f4f6f9;
+}
+
+.save-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2b5a77;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #366994;
+}
+
+.delete-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #ff3b3b;
+}
+
+
+
+
+
+  

@@ -139,7 +139,7 @@ const ModeratorPage = () => {
       {view === 'notifications' && (
         <div className="notifications-container">
           <h2 className="pagename">Notifications</h2>
-          <p>No new notifications.</p>
+          <p>No Notifications.</p>
         </div>
       )}
 

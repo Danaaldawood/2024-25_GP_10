@@ -6,13 +6,12 @@ import defaultProfilePic from './userpro.jpg';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase';
-import { doc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { deleteUser } from 'firebase/auth';
 
 const ProfilePage = () => {
   const [profileName, setProfileName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [notification, setNotification] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -31,6 +30,8 @@ const ProfilePage = () => {
           } else {
             console.log('No such document!');
           }
+        } else {
+          console.error('No authenticated user.');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -40,83 +41,76 @@ const ProfilePage = () => {
     fetchUserData();
   }, []);
 
-  // Function to check if email is valid
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  // Function to check if email exists in Firestore
-  const isEmailInUse = async (email) => {
-    const q = query(collection(db, 'Moderators'), where('email', '==', email));
-    const querySnapshot = await getDocs(q);
-    return !querySnapshot.empty;
-  };
-
   // Function to handle saving profile data
   const handleSaveProfile = async () => {
-    try {
-      if (!isValidEmail(email)) {
-        setNotification({ type: 'warning', message: 'Invalid email format. Please try again.' });
-        return;
-      }
+    if (!profileName.trim()) {
+      // Check if full name is null or empty
+      setNotification({ type: 'warning', message: 'Full name cannot be empty. Please enter a valid name.' });
+      return;
+    }
 
+    try {
       const user = auth.currentUser;
       if (user) {
         const userDocRef = doc(db, 'Moderators', user.uid);
         const userDoc = await getDoc(userDocRef);
 
-        // Only check if email is in use if it has changed
-        if (userDoc.exists() && email !== userDoc.data().email) {
-          const emailExists = await isEmailInUse(email);
-          if (emailExists) {
-            setNotification({ type: 'warning', message: 'Email already in use. Please choose another one.' });
-            return;
-          }
-        }
-
-        // Update Firestore document with new data
         await updateDoc(userDocRef, {
           fullName: profileName,
           email: email,
         });
 
-        setNotification({ type: 'success', message: 'Profile Saved Successfully!' });
+        setNotification({ type: 'success', message: 'Profile saved successfully!' });
+      } else {
+        setNotification({ type: 'error', message: 'No user logged in.' });
       }
     } catch (error) {
-      console.error('Error updating profile:', error);
+      console.error('Error saving profile:', error);
       setNotification({ type: 'error', message: 'Failed to save profile.' });
     }
   };
 
   // Function to handle deleting account
   const handleDeleteAccount = () => {
-    setShowModal(true); // Show confirmation modal
+    setShowModal(true); 
   };
 
   // Function to confirm account deletion
   const handleConfirmDelete = async () => {
     try {
       const user = auth.currentUser;
-      if (user) {
-        const userDocRef = doc(db, 'Moderators', user.uid);
-
-        await deleteDoc(userDocRef); // Delete user document from Firestore
-        await deleteUser(user); // Delete user authentication
-
-        setNotification({ type: 'success', message: 'Account deleted successfully.' });
-
-        navigate('/sign'); // Redirect to sign-in page
+      if (!user) {
+        setNotification({ type: 'error', message: 'No user is logged in.' });
+        return;
       }
+
+      // Check if the Firestore document exists
+      const userDocRef = doc(db, 'Moderators', user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (!userDoc.exists()) {
+        setNotification({ type: 'error', message: 'User document not found.' });
+        return;
+      }
+
+      // Delete moderater document from Firestore
+      await deleteDoc(userDocRef);
+
+      // Delete moderater authentication from Firebase Auth
+      await deleteUser(user);
+
+      setNotification({ type: 'success', message: 'Account deleted successfully.' });
+
+      navigate('/sign'); 
     } catch (error) {
-      console.error('Error deleting account:', error);
-      setNotification({ type: 'error', message: 'Failed to delete account.' });
+      console.error('Error deleting account:', error.message);
+      setNotification({ type: 'error', message: `Failed to delete account: ${error.message}` });
     }
-    setShowModal(false); // Hide confirmation modal
+    setShowModal(false); 
   };
 
   const closeNotification = () => {
-    setNotification(null); // Close notification
+    setNotification(null); 
   };
 
   return (
@@ -154,19 +148,10 @@ const ProfilePage = () => {
                 className="formProf-input"
                 placeholder="Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                readOnly 
               />
             </div>
 
-            <div className="form-row">
-              <input
-                type="password"
-                className="formProf-input"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
 
             {/* Save and Delete buttons */}
             <button className="save-button" onClick={handleSaveProfile}>
@@ -200,4 +185,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage; 
+export default ProfilePage;
