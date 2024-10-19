@@ -25,10 +25,12 @@ const Discrption = () => {
     <div className="descrptionpage">
       <Header />
       <main>
+      
         <section id="CoreDimintion">
-          <img src={about} id="aboutlogo" alt="aboutlogo" />
+        {/* <img src={about} id="aboutlogo" alt="aboutlogo"  /> */}
 
           <div className="discrptionbox">
+             
             <div>
               <p>
                 Our cultural values dataset integrates information from multiple
@@ -38,7 +40,7 @@ const Discrption = () => {
                 primary cultural regions: Arab, Chinese, and Western. By uniting
                 multiple datasets, it encapsulates a wide spectrum of
                 perspectives, providing refined knowledge on cultural topics and
-                regional variances. This framework enriches cultural
+                regional variances. This framework improve a cultural
                 understanding and supports precise analysis and comparison
                 across these distinct regions.
               </p>
@@ -53,8 +55,9 @@ const Discrption = () => {
           </div>
         </section>
         <section id="cardsection">
-          <img src={ball} id="corner-ball" alt=",," />
-          <h2>Dataset Topics</h2>
+        
+          <h2 class='datasettopic'>Dataset Topics</h2>
+          {/* <img src={ball} id="corner-ball" alt=",," /> */}
           <div className="containerrows">
             <div className="row">
               {/* First Card */}
@@ -88,7 +91,7 @@ const Discrption = () => {
                 <Cardtopic
                   Icon={WorkHistoryIcon}
                   title="Work-life"
-                  text="Professional  hi holife and work culture."
+                  text="What is the maximum number of hours one can work per week in your country?"
                 />
               </div>
             </div>
@@ -98,7 +101,7 @@ const Discrption = () => {
                 <Cardtopic
                   Icon={WavingHandIcon}
                   title="Greeting"
-                  text="Greetings and customs in wister is using a thmp"
+                  text="What are the common greeting gestures in your culture ?"
                 />
               </div>
               {/* Sixth Card */}

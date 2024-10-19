@@ -57,13 +57,14 @@
   padding: 8px;
   text-align: left;
   border-radius: 4px;
-  background-color: #e6e3e383;
-
+  background-color:rgba(239, 235, 235, 0.264);
+  
  
 }
 
 .data-table th {
   background-color: #6085a9ea;
+
   color: white;
   font-size: 18px;
   
@@ -74,4 +75,14 @@
 
 padding: 8px;
 border-radius: 20px;
+}
+
+.table-title{
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #003f5c;
+
+  margin-left: 1px;
+  padding-top: 20px;
+
 }

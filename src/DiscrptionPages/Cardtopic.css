@@ -33,22 +33,23 @@
   backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
+/* Style the front side */
 .flip-card-front {
   color: #042844;
   border-radius: 6px;
 
   background: rgb(217, 220, 224);
-  background: linear-gradient(500deg, #e8e9eb, #c6cace);
+  /* background: linear-gradient(500deg, #e8e9eb, #c6cace);
   background: linear-gradient(500deg, #004d60, #a9bdd2);
-  background: #1b5a6a;
+  background: #1b5a6a; */
+  background-color: #6084a9;
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 2px solid rgba(118, 115, 115, 0.307);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
-  color: #dce6ef;
+  color: #f1f3f4;
 }
 .flip-card-front h1 {
   padding-bottom: 40px;
@@ -56,7 +57,7 @@
   padding-top: 20px;
   color: #042844;
 
-  color: #dce6ef;
+  color: #eff0f1;
 }
 
 /* Style the back side */
@@ -64,10 +65,17 @@
   color: #061d38;
   color: #ebf2f9;
   color: #061d38;
-
+   
   transform: rotateY(180deg);
   border-radius: 6px;
-  padding-top: 20px;
-  background-color: #cedbeb; /* Solid color without transparency */
-  background-color: #1a6f8582;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #8eabceb7; /* Solid color without transparency */
+ 
+  
+font-size: 16px;
+font-weight: 600;
+font-family: sans-serif;
+
 }

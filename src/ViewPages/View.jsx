@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
+import Arrow from "@mui/icons-material/ArrowRight";
 import './View.css';
 
 
@@ -54,17 +55,25 @@ export function RealtimeData() {
     setSearchTerm(e.target.value);
   };
 
-  //filter section
+ 
+
   const filteredData = tableData.filter((row) => {
-    //check match of reigon that select
+    //filter  section that check on the selection reigon to filter 
     const matchesRegion = filterRegion === '' || row.region_name === filterRegion;
-   
-    const matchesSearch =
-      row.region_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      row.topic?.toLowerCase().includes(searchTerm.toLowerCase());
-    
+    // search  section to check for match any content of  any coulmn 
+    const matchesSearch = 
+      row.region_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      row.en_question?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      row.topic?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      row.annotations?.some((annotation) => 
+        annotation.en_values[0].toLowerCase().includes(searchTerm.toLowerCase()) 
+      ) || 
+      // for reason column just for limit time is static 
+      "Variation".toLowerCase().includes(searchTerm.toLowerCase()); 
+  
     return matchesRegion && matchesSearch;
   });
+  
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -81,7 +90,10 @@ export function RealtimeData() {
       <Header />
 
       <div className="container mt-5">
-        <h2>Cultures Data</h2>
+      {/* <Arrow style={{ color: 'grey', fontSize: '45px',marginBottom: '3px' }}/> */}
+      <h2 class='table-title'>Cultures Data</h2>
+     
+       
 
         {/* Search and filter inputs container */}
         <div className="filter-Search-inputs-container">
