@@ -81,9 +81,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
             
         setShowSuccess(true);
         
-        setTimeout(() => {
-          navigate(userType === 'User' ? '/Home' : '/moderator');
-        }, 1000);
+        
       }
     } catch (error) {
       console.log(error.message);
@@ -135,7 +133,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
     <p className="success-message">Your account has been created successfully.</p>
     <div className="success-actions">
       <button className="Continue-btn" onClick={() => {
-        setShowSuccess(false);
+        setShowSuccess(false);  
         navigate(userType === 'User' ? '/Home' : '/moderator');
       }}>
         Continue
@@ -143,6 +141,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
     </div>
   </div>
 )}
+
 
         <div className="sign-container">
           {/* Left Section */}

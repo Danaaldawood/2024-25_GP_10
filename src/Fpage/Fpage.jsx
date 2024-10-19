@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LOGO from "../images/Logo.png";
 import photo from "../images/MAP-logo.png";
 import "./Fpage.css";
-import "chart.js/auto";
-import "../Header/Header.css";
+ import "../Header/Header.css";
 
 
 const Fpage = () => {
@@ -32,10 +31,10 @@ const Fpage = () => {
           </p>
           <nav className="nav-buttons">
             <Link to="/Sign">
-              <button className="BFpage">Get Started</button>
+              <button className="Button-Register">Get Started</button>
             </Link>
             <Link to="/Login">
-              <button className="BFpage">Log in</button>
+              <button className="Button-Register">Log in</button>
             </Link>
           </nav>
         </div>

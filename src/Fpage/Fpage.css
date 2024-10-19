@@ -39,7 +39,7 @@
   margin-top: 0.5rem;
 }
 
-.BFpage {
+.Button-Register {
   margin: 0.5rem;
   padding: 0.8rem;
   font-size: 1.1rem;
@@ -55,7 +55,7 @@
   width: 150px;
 }
 
-.BFpage:hover {
+.Button-Register:hover {
   background-color: #2a5d77;
   box-shadow: 0 4px 8px rgba(63, 126, 166, 0.4);
 }

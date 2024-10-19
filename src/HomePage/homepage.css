@@ -1,5 +1,6 @@
 .homepage {
   overflow-x: hidden;
+  
 }
 .content {
   display: flex;
@@ -62,7 +63,7 @@
 .domains-container {
   display: flex;
   justify-content: center;
-  gap: 80px;
+  gap: 220px;
   margin: 40px 0;
   flex-wrap: wrap;
 }
@@ -104,32 +105,40 @@
 
 .dashboard {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  margin: 40px 0;
-}
-
-.charts {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  width: 100%;
+  justify-content: center;  
+  gap: 50px; 
+  flex-wrap: wrap; 
+  margin: 70px 0;
+  background-color:#fff;
+  
 }
 
 .chart {
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  width: 280px;
-  height: 280px;
+  width: 280px;  
+  height: 280px;  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+ }
+
+.charts {
+  display: flex;
+  justify-content: center;
+  gap: 220px; 
 }
+
+.chart:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2);
+
+}
+
 .doughnut-container {
   width: 200px;
   height: 200px;
@@ -204,3 +213,4 @@
 .text-center {
   color: #003f5c;
 }
+ 
