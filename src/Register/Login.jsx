@@ -89,7 +89,6 @@ console.log("Password:", password);
             </div>
             <p className="Welcome-txt">To CultureLens! We’re glad to have you with us again to explore more cultural diversity.</p>
           </div>
-  
           {/* Form Section */}
           <form className="Login-form" onSubmit={handleCreateAccount}>
             <h2 className="Login-title">Log-in</h2>

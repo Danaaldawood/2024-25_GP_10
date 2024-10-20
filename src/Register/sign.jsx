@@ -12,7 +12,8 @@ import { auth, db } from './firebase';
 import './Pop-Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
- const Sign = () => {
+
+const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
@@ -20,37 +21,40 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
   const [region, setRegion] = useState("");
   const [subRegion, setSubRegion] = useState("");
   const [userType, setUserType] = useState('User');
- const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); 
+  
+   const isMinCharacters = password.length >= 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const isPasswordValid = isMinCharacters && hasUppercase && hasSpecialChar;
 
   const togglePasswordVisibility = () => {
-   setShowPassword(!showPassword);
- };
+    setShowPassword(!showPassword);
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    
-    // Age validate
-    if (age <= 0 && userType === 'User') {
+
+    if (!isPasswordValid) {
+      let errorMessages = [];
+      if (!isMinCharacters) errorMessages.push("Password must be at least 8 characters.");
+      if (!hasUppercase) errorMessages.push("Password must contain at least one uppercase letter.");
+      if (!hasSpecialChar) errorMessages.push("Password must contain at least one special character.");
+      setPasswordErrorMessage(errorMessages.join(" "));
+      return;
+    }
+
+     if (age <= 0 && userType === 'User') {
       setErrorMessage("Invalid age, age must be greater than zero.");
       return;
     }
-    
-    
-  // Password validate
-  if (password.length < 8) {
-    setErrorMessage("Password should be at least 8 characters.");
-    return;
-  }
-  
-  if (!/[A-Z]/.test(password)) {
-    setErrorMessage("Password should contain at least one uppercase letter.");
-    return;
-  }
-  
-    // Email validate
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Email validate  
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       setErrorMessage("Please enter a valid email address.");
       return;
@@ -67,7 +71,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
             email: user.email,
             fullName: fname,
             age: age || null,
-            region: region,  // قيمة region من الاختيار
+            region: region,  
             subRegion: subRegion && subRegion.label && subRegion.label.props ? subRegion.label.props.children[1] : null
           }
         : {
@@ -76,33 +80,20 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
             fullName: fname
           };
 
-          await setDoc(doc(db, collectionPath, user.uid), userData);
-          console.log("User data added to Firestore");
-            
+        await setDoc(doc(db, collectionPath, user.uid), userData);
         setShowSuccess(true);
-        
-        
       }
     } catch (error) {
-      console.log(error.message);
       setErrorMessage("Something went wrong. Please try again.");
     }
   };
-  
-  
-  
-  
 
   const handleUserTypeChange = (type) => {
     setUserType(type);
   };
 
   const handleCountryChange = (selectedOption) => {
-    setSubRegion(selectedOption);  // تأكد من تخزين الخيار المختار بالكامل
-};
-
-  const handleSubRegionChange = (e) => {
-    setSubRegion(e.target.value);
+    setSubRegion(selectedOption);  
   };
 
   const countryOptions = countryList().getData().map((country) => ({
@@ -213,10 +204,10 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
                   onChange={(e) => setAge(e.target.value)}
                   required
                 />
-                <label className="sign-label">ٍSub Region:</label>
+                <label className="sign-label">Sub Region:</label>
                 <Select 
   options={countryOptions} 
-  value={subRegion}  // تأكد من أن subRegion يتم تحديثه بشكل صحيح عند التحديد
+  value={subRegion}   
   onChange={handleCountryChange}
   placeholder="Select Sub Region"
   styles={{
@@ -252,28 +243,37 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
         {/* Password */}
-        <label className="Login-label" htmlFor="password">Password:</label>
-<div className="password-container">
-  <input 
-    type={showPassword ? "text" : "password"} 
-    id="password" 
-    placeholder="Enter your password"
-    className="Login-input"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    required
-  />
-  <span onClick={togglePasswordVisibility} className="password-icon">
-    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-  </span>
-</div>
-<ul className="password-requirements">
-            <li>Password should be at least 8 characters.</li>
-            <li>Contain at least one uppercase letter.</li>
-          </ul>
+        <div>
+      <label className="Login-label" htmlFor="password">Password:</label>
+      <div className="password-container">
+        <input
+          type={showPassword ? "text" : "password"}
+          id="password"
+          placeholder="Enter your password"
+          className="Login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <span onClick={togglePasswordVisibility} className="password-icon">
+          <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+        </span>
+      </div>
 
-                {/* Culture Domain */}
-                <fieldset className="sign-culture-domain">
+      <ul className="password-requirements">
+        <li className={isMinCharacters ? 'valid' : 'invalid'}>
+          ✔ Password should be at least 8 characters.
+        </li>
+        <li className={hasUppercase ? 'valid' : 'invalid'}>
+          ✔ Contain at least one uppercase letter.
+        </li>
+        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+          ✔ Contain at least one special character.
+        </li>
+      </ul>
+      
+    </div>
+    <fieldset className="sign-culture-domain">
   <legend>Region:</legend>
   <div className="sign-culture-options">
     <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
@@ -292,38 +292,48 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
     <label htmlFor="Other">Other</label>
   </div>
 </fieldset>
+
 </>
             )}
 
-            {/* Password for Moderator */}
-            {userType === 'Moderator' && (
-              <div>
-                <label className="Login-label" htmlFor="password">Password:</label>
-<div className="password-container">
-  <input 
-    type={showPassword ? "text" : "password"} 
-    id="password" 
-    placeholder="Enter your password"
-    className="Login-input"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    required
-  />
-  <span onClick={togglePasswordVisibility} className="password-icon">
-    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-  </span>
-</div>
-<ul className="password-requirements">
-            <li>Password should be at least 8 characters.</li>
-            <li>Contain at least one uppercase letter.</li>
-          </ul>
-              </div>
-            )}
+    {/* Password for Moderator */}
+{userType === 'Moderator' && (
+  <div>
+    {/* Password */}
+    <label className="Login-label" htmlFor="password">Password:</label>
+    <div className="password-container">
+      <input
+        type={showPassword ? "text" : "password"}
+        id="password"
+        placeholder="Enter your password"
+        className="Login-input"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <span onClick={togglePasswordVisibility} className="password-icon">
+        <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+      </span>
+    </div>
+    <ul className="password-requirements">
+      <li className={isMinCharacters ? 'valid' : 'invalid'}>
+        ✔ Password should be at least 8 characters.
+      </li>
+      <li className={hasUppercase ? 'valid' : 'invalid'}>
+        ✔ Contain at least one uppercase letter.
+      </li>
+      <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+        ✔ Contain at least one special character.
+      </li>
+    </ul>
+  </div>
+)}
+
 
             {/* Submit Button */}
  
-            <button type="submit" className="sign-btn" style={{ marginTop: '1rem', fontSize: '15px' }}>
-              Create Account
+            <button type="submit" className="sign-btn" disabled={!isPasswordValid} style={{ marginTop: '1rem', fontSize: '15px' }}>
+            Create Account
             </button>
             <div className="sign-login">
               <p style={{ fontSize: '15px' }}>
@@ -332,9 +342,10 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
             </div>
           </form>
         </div>
-      
+    
     </div>
   );
 };
 
 export default Sign;
+

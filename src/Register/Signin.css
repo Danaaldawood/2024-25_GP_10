@@ -92,8 +92,7 @@ p{
   font-size: 13px;
   box-sizing: border-box;
 }
-/* Ridio button style */
-.sign-input:focus, .sign-select:focus {
+ .sign-input:focus, .sign-select:focus {
   border-color: #004D60;
   outline: none;
 }
@@ -121,6 +120,9 @@ p{
   margin-right: 1rem;
   color: #000000;
 }
+ 
+
+ 
 
 /* Left Section */
 .Left-section {
@@ -200,16 +202,25 @@ p{
   text-decoration: underline;
 }
 
-/* Password Container */
+/* Password */
+.password-requirements {
+  list-style-type: none;
+  padding: 0;
+   font-weight: bold;
+}
+
+.password-requirements li {
+  color: red;
+}
+
+.password-requirements li.valid {
+  color: green;
+}
+
 .password-container {
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.password-container input {
-  width: 100%;
-  padding-right: 40px; 
 }
 
 .password-icon {
@@ -218,23 +229,9 @@ p{
   cursor: pointer;
   top: 25px;
   transform: translateY(-50%);
- }
 
-
-/* Password Requirements */
-.password-requirements {
-  list-style-type: disc;
-  color: rgb(82, 81, 81);
-  font-size: 11px;
-  padding-left: 15px;
-  margin: 0 0 1rem 0;
-margin-bottom: 10px;
 }
-
-.password-requirements li {
-  margin-bottom: 3px;
-}
-
+ 
 /* Media Queries */
 @media (max-width: 768px) {
   .sign-container {

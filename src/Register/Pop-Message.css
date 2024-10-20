@@ -88,13 +88,13 @@ z-index: 1000;
 
 .success-title {
 font-weight: bold;
-color: #155724; /* عنوان بلون أخضر داكن */
+color: #155724;  
 margin-bottom: 10px;
 }
 
 .success-message {
 margin-bottom: 20px;
-color: #155724; /* لون نص الرسالة */
+color: #155724;  
 }
 
 .success-actions {
