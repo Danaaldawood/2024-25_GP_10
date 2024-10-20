@@ -135,6 +135,7 @@ export function RealtimeData() {
               <th>Values</th>
               <th>Topic</th>
               <th>Reason</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -156,6 +157,7 @@ export function RealtimeData() {
                 </td>
                 <td>{row.topic}</td>
                 <td>Variation</td>
+                <td><button class="editbutn">Edit</button></td>
               </tr>
             ))}
           </tbody>

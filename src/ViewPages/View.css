@@ -67,6 +67,7 @@
 
   color: white;
   font-size: 18px;
+  text-align: center;
   
 }
 
@@ -85,4 +86,25 @@ border-radius: 20px;
   margin-left: 1px;
   padding-top: 20px;
 
+}
+.editbutn{
+  background-color: #0fbe66; /* Green background */
+  border: none; /* No border */
+  color:white;
+  /* White text */
+  padding: 10px 25px; /* Some padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Get it to act like a block */
+  font-size: 16px; /* Larger text */
+  margin: 4px 5px; /* Some margin */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s;
+ 
+}
+
+.editbutn:hover {
+  background-color: #beb6b6;
+  color: black;
 }
