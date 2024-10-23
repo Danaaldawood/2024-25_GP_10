@@ -2,91 +2,84 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh; 
-
 }
 
 .filter-Search-inputs-container {
-display: flex;
-justify-content: space-between;
-margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .search-container {
-display: flex;
-align-items: center;
-flex: 1;
-margin-right: 10px; 
-border: 1px solid rgb(224, 223, 223);
-border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 10px; 
+  border: 1px solid rgb(224, 223, 223);
+  border-radius: 6px;
 }
 
 .search-input {
-padding: 8px;
-width: 100%;
-border: 1px solid #ccc;
-border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .filter-container {
-flex: 1;
+  flex: 1;
 }
 
 .filter-select {
-padding: 9px;
-border: 1px solid #ccc;
-border-radius: 4px;
-width: 50%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 50%;
 }
 
 .data-table {
-width: 100%;
-border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse; /* Keep rows separate but collapse borders */
+  margin-bottom: 20px; /* Add space between the table and footer */
 }
 
 .data-table th,
 .data-table td {
-border: 1.7px solid rgba(183, 183, 183, 0.651);
-padding: 8px;
-text-align: left;
-border-radius: 4px;
-background-color: rgba(239, 235, 235, 0.264);
+  border: none; /* Remove the solid border */
+  padding: 8px;
+  text-align: left;
+  background-color: rgba(239, 235, 235, 0.264);
 }
 
 .data-table th {
-background-color: #6085a9ea;
-color: white;
-font-size: 18px;
+  background-color: #6085a9ea;
+  color: white;
+  font-size: 18px;
+}
+
+.data-table tr {
+  border-bottom: 1.7px solid rgba(183, 183, 183, 0.651); /* Border between rows */
 }
 
 .search-icon {
-padding: 8px;
-border-radius: 20px;
+  padding: 8px;
+  border-radius: 20px;
 }
 
 .table-title {
-font-size: 2.2rem;
-font-weight: bold;
-color: #003f5c;
-margin-left: 1px;
-padding-top: 20px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #003f5c;
+  margin-left: 1px;
+  padding-top: 20px;
 }
 
 .rows-per-page-container {
-margin-bottom: 20px;
-font-size: 16px;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
 .rows-per-page-container select {
-padding: 5px;
-border-radius: 4px;
-margin-left: 5px;
-}
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px; /* Add this line to create space between the table and footer */
-}
-
-.container {
-  margin-bottom: 50px; /* Add this line to create more space if needed */
+  padding: 5px;
+  border-radius: 4px;
 }
