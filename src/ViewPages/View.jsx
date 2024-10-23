@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+
 import './View.css';
 
 export function RealtimeData() {
@@ -97,7 +99,17 @@ export function RealtimeData() {
     <div className='viewpage'>
       <Header />
       <div className="container mt-5">
-        <h2 className='table-title'>Cultures Data</h2>
+
+<div class='notification-btn-container'>
+<button  class='notification-btn'  > Notifications {<NotificationsActiveIcon />}</button>
+
+</div>
+        
+<section class='tabel_header'>
+<h2 className='table-title'>Cultures Data</h2>
+</section>
+       
+
         <div className="filter-Search-inputs-container">
           <div className="search-container">
             <span className="search-icon">
@@ -130,10 +142,10 @@ export function RealtimeData() {
             <label>entries</label>
           </div>
         </div>
-
+       <div class='table_container'>
         <table className="data-table">
           <thead>
-            <tr>
+            <tr class="tabel_titles">
               <th></th>
               <th>Region</th>
               <th>Attribute</th>
@@ -167,6 +179,7 @@ export function RealtimeData() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
       <Footer />
     </div>
