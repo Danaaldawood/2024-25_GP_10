@@ -9,24 +9,22 @@ import ComparePage from './Compare/CrossCultureComparison';
 import { Evaluation } from './Evaluation/Evaluation';
 import View from './ViewPages/View';
 import CompareResult from './Compare/CompareResult';  
-import  {Plot}  from './Plot/Plot'; 
-import {ConversationLayout} from './Freestyle/Freestyle'
+import { Plot } from './Plot/Plot'; 
+import { ConversationLayout } from './Freestyle/Freestyle';
 import Discrption from './DiscrptionPages/Discrption';
 import ModeratorPage from './Modorater/ModeratorPage';
 import ProfilePage from './Modorater/ProfilePage';
 import UserProfilePage from './userprofile/UserProfilePage'; 
-import{ToastContainer} from "react-toastify";
-import {ForgotPassword} from './ResetPassword/ForgotPassword';
-import {ResetPassword} from './ResetPassword/ResetPassword';
- 
+import { ToastContainer } from "react-toastify";
+import { ForgotPassword } from './ResetPassword/ForgotPassword';
+import { ResetPassword } from './ResetPassword/ResetPassword';
+
 function App() {
   const route = createBrowserRouter([
     {
       path: "/",  
       element: <Index />,  
     },
-    
-    
     {
       path: "/home",  
       element: <HomePage />,
@@ -56,7 +54,7 @@ function App() {
       element: <View />,
     },
     {
-      path: "/edit",  
+      path: "/edit/:id",  // Updated path to include the dynamic ID parameter
       element: <Edit />,
     },
     {
@@ -91,20 +89,17 @@ function App() {
       path: "/profile",  
       element: <ProfilePage />,
     },
-    
-{
-  path: "/userprofile",  
-  element: <UserProfilePage />,
-},
+    {
+      path: "/userprofile",  
+      element: <UserProfilePage />,
+    },
   ]);
 
   return (
     <div className="App">
       <RouterProvider router={route}></RouterProvider>
       <ToastContainer />
-
     </div>
-    
   );
 }
 

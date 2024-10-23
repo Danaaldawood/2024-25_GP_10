@@ -1,5 +1,6 @@
-.editformcontainer{
-   flex: 1;
+
+.editformcontainer {
+    flex: 1;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -9,108 +10,101 @@
     width: 530px !important;
     border-radius: 8px;
     box-shadow: 1px 1px 2px 1px rgb(76 104 136);
-    padding-bottom: 30px; 
-}
-
-.edit-title {
+    padding-bottom: 30px;
+  }
+  
+  .edit-title {
     color: #072040;
     text-align: center;
-    margin-top: 5px; 
+    margin-top: 5px;
     font-size: 28px;
     font-weight: 500;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
-    
+  }
+  .attribute-display{
+    color: #072040;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
-.edit-inputs {
+  
+  .edit-inputs {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 25px;
- 
-    
-    
-}
-
-.edit-input label {
-   
-    font-size: 20px; 
+  }
+  
+  .edit-input label {
+    font-size: 20px;
     color: #072040;
     font-weight: 500;
-    margin-right: 10px; 
+    margin-right: 10px;
     margin-left: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
-
-
-}
-
-.edit-input {
+  }
+  
+  .edit-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: auto;
     width: 480px;
     height: 80px;
-  
     border-radius: 6px;
     padding: 10px;
-    
-
+  }
   
-    
-}
-
-
-
-
-.edit-input select,
-.edit-input input[type="text"] {
+  .edit-input select,
+  .edit-input input[type="text"] {
     width: 250px;
     height: 30px;
     border: 1px solid #655e5e;
-    border-radius:5px ;
-
-   
-    background-color: #efefef; 
-  
-    font-size: 16px; 
-    color: #333; 
-    transition: background-color 0.3s ease; 
-    
-}
-
-.reason input[type="radio"] {
-    margin-right: 0.5rem;
-    accent-color: #2b5a77; 
-    transform: scale(1.2); 
+    border-radius: 5px;
+    background-color: #efefef;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  .edit-input.error input {
+    border: 2px solid red; 
   }
   
-.edit-input select option {
+  .edit-input.error input::placeholder {
+    color: red; 
+  }
+  
+  .reason input[type="radio"] {
+    margin-right: 0.5rem;
+    accent-color: #2b5a77;
+    transform: scale(1.2);
+  }
+  
+  .edit-input select option {
     text-align: center;
-}
-
-.edisubmit-container {
+  }
+  
+  .edisubmit-container {
     display: flex;
     gap: 30px;
     margin: 40px auto;
-}
-
-.edit-submit button {
+  }
+  
+  .edit-submit button {
     width: 300px;
-  height: 40px;
-  color: #fff;
-  background-color: #6084a9;
-  border: none;
-  border-radius: 15px;
-  font-size: 19px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.edit-submit button:hover {
+    height: 40px;
+    color: #fff;
+    background-color: #6084a9;
+    border: none;
+    border-radius: 15px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  .edit-submit button:hover {
     background: #2a5d77;
-}
-
-
+  }
+  

@@ -7,10 +7,10 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #6084a9;
+    background-color: #6084a9; /* light Blue */
     color: white;
     padding: 15px 20px;
-    border-bottom-left-radius: 15px; 
+    border-bottom-left-radius: 15px; /* Adjust radius as desired */
   border-bottom-right-radius: 15px;
   margin: 0;
 
@@ -19,21 +19,18 @@ body, html {
 .header-left {
     display: flex;
     align-items: center;
-
 }
 
 .logo-img {
     width: 50px;
     height: auto;
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
 .logo-title {
     font-size: 24px;
     font-weight: bold;
     font-family:Arial, Helvetica, sans-serif;
-    padding-top: 1rem;
-    padding-right: 1rem;
 
 }
 
