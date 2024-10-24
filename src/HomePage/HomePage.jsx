@@ -17,43 +17,44 @@ const HomePage = () => {
     setSelectedDomain(domain);
     console.log("Selected Domain:", domain);
   };
-
+  
+  
   const doughnutOptions = {
     plugins: {
       legend: {
         display: true,
         position: "left",
         labels: {
-          boxWidth: 10,
-          padding: 15,
+          boxWidth: 20,
+          padding: 25,
         },
       },
     },
-    cutout: "50%",
+    cutout: "60%", 
   };
-
+  
   const categoryData = {
     labels: ["Food", "Family", "Sport", "Greeting", "Education", "Work Life", "Holiday"],
     datasets: [
       {
         data: [10, 20, 15, 8, 12, 18, 17],
-        backgroundColor: ["#003f5c", "#2f4b7c", "#43618b", "#5a7091", "#6f87a1", "#8baac4", "#9cc3de"],
+        backgroundColor: ["#1E3A8A", "#3B82F6", "#60A5FA", "#93C5FD", "#BFDBFE", "#DBEAFE", "#EFF6FF"], // تدرجات زرقاء حيوية
         borderWidth: 0,
       },
     ],
   };
-
+  
   const barData = {
     labels: ["Arab", "Chinese", "Western"],
     datasets: [
       {
         label: "Culture Comparison",
         data: [600, 550, 350],
-        backgroundColor: ["#003f5c", "#2f4b7c", "#43618b"],
+        backgroundColor: ["#1E40AF", "#3B82F6", "#60A5FA"],
       },
     ],
   };
-
+  
   const barOptions = {
     scales: {
       y: {
@@ -66,17 +67,18 @@ const HomePage = () => {
       },
     },
   };
-
+  
   const totalAttributeData = {
     labels: ["Arab", "Chinese", "Western"],
     datasets: [
       {
         data: [50, 60, 40],
-        backgroundColor: ["#003f5c", "#2f4b7c", "#43618b"],
+        backgroundColor: ["#1E40AF", "#3B82F6", "#60A5FA"], 
         borderWidth: 1,
       },
     ],
   };
+  
 
   return (
     <div className="homepage">
@@ -106,45 +108,59 @@ const HomePage = () => {
         <div className="domain-card" onClick={() => handleDomainChange("Arab")}>
           <div className="card-body">
             <h3>Arab</h3>
-            <p>Explore the rich traditions and values of the Arab world.</p>
+        <p>The Arab world, also known as the Arab nation, includes countries in West Asia and North Africa, characterized by rich cultural diversity and various Arabic dialects.
+
+            </p>
           </div>
         </div>
         <div className="domain-card" onClick={() => handleDomainChange("Western")}>
           <div className="card-body">
             <h3>Western</h3>
-            <p>Understand Western cultural practices and norms.</p>
+            <p>
+  A broad term used to describe the social norms, belief systems, traditions, customs, values, and so forth that have their origin in Europe or are based on European culture.
+</p>
+
           </div>
         </div>
         <div className="domain-card" onClick={() => handleDomainChange("Chinese")}>
           <div className="card-body">
-            <h3>Chinese</h3>
-            <p>Discover the heritage and dynamics of Chinese culture.</p>
+          <div class="text-container">
+  <h3>Chinese</h3>
+     <p>
+    The culture prevails across a large geographical region in East Asia with sinosphere in whole and is extremely diverse, with customs and traditions varying greatly between counties, provinces, cities, and towns.  
+    </p>
+  </div>
+</div>
           </div>
         </div>
-      </div>
+ 
+   
 
       <div className="dashboard">
-        <div className="charts">
-          <div className="chart">
-            <p><span>Dimension</span></p>
-            <Doughnut data={categoryData} options={doughnutOptions} />
-          </div>
+      <div className="charts">
+        <div className="chart">
+          <h3>Topic</h3> 
+          <Doughnut data={categoryData} options={doughnutOptions} />
+        </div>
 
-          <div className="chart">
-            <p><span>Region Comparison</span></p>
-            <Bar data={barData} options={barOptions} />
-          </div>
+        <div className="chart">
+           <h3>Region Comparison</h3>
+          <Bar data={barData} options={barOptions} />
+        </div>
 
-          <div className="chart">
-            <p><span>Total Attribute</span></p>
-            <div className="doughnut-container">
-              <Doughnut data={totalAttributeData} options={doughnutOptions} />
-              <div className="total-value"></div>
-            </div>
+        <div className="chart">
+         <h3>Total Attribute</h3>
+          <div className="doughnut-container">
+            <Doughnut data={totalAttributeData} options={doughnutOptions} />
+            <div className="total-value"></div>
           </div>
         </div>
-      </div>
+      
 
+ 
+ 
+        </div>
+      </div>
       <img src={MAPPhoto} alt="MapPhoto" className="map-photo" />
 
       <Footer />

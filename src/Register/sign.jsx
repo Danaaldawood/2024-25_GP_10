@@ -19,7 +19,7 @@ const Sign = () => {
   const [fname, setFname] = useState("");
   const [age, setAge] = useState("");
   const [region, setRegion] = useState("");
-  const [subRegion, setSubRegion] = useState("");
+  const [country, setCountry] = useState("");
   const [userType, setUserType] = useState('User');
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -72,7 +72,7 @@ const Sign = () => {
             fullName: fname,
             age: age || null,
             region: region,  
-            subRegion: subRegion && subRegion.label && subRegion.label.props ? subRegion.label.props.children[1] : null
+            country: country && country.label && country.label.props ? country.label.props.children[1] : null
           }
         : {
             Moderator_Id: user.uid,
@@ -93,7 +93,7 @@ const Sign = () => {
   };
 
   const handleCountryChange = (selectedOption) => {
-    setSubRegion(selectedOption);  
+    setCountry(selectedOption);  
   };
 
   const countryOptions = countryList().getData().map((country) => ({
@@ -204,10 +204,10 @@ const Sign = () => {
                   onChange={(e) => setAge(e.target.value)}
                   required
                 />
-                <label className="sign-label">Sub Region:</label>
+                <label className="sign-label">Country:</label>
                 <Select 
   options={countryOptions} 
-  value={subRegion}   
+  value={country}   
   onChange={handleCountryChange}
   placeholder="Select Sub Region"
   styles={{
