@@ -20,6 +20,13 @@ export const ResetPassword = () => {
   const query = new URLSearchParams(location.search);
   const oobCode = query.get('oobCode');
 
+  // Password validation checks
+  const isMinCharacters = newPassword.length >= 8;
+  const hasUppercase = /[A-Z]/.test(newPassword);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
+  const isPasswordValid = isMinCharacters && hasUppercase && hasSpecialChar;
+  const doPasswordsMatch = newPassword === confirmPassword;
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -33,19 +40,17 @@ export const ResetPassword = () => {
     setError('');
     setLoading(true);
 
-    if (newPassword.length < 8) {
-      setError('Password must be at least 8 characters.');
+    if (!isPasswordValid) {
+      let errorMessages = [];
+      if (!isMinCharacters) errorMessages.push("Password must be at least 8 characters.");
+      if (!hasUppercase) errorMessages.push("Password must contain at least one uppercase letter.");
+      if (!hasSpecialChar) errorMessages.push("Password must contain at least one special character.");
+      setError(errorMessages.join(" "));
       setLoading(false);
       return;
     }
 
-    if (!/[A-Z]/.test(newPassword)) {
-      setError('Password should contain at least one uppercase letter.');
-      setLoading(false);
-      return;
-    }
-
-    if (newPassword !== confirmPassword) {
+    if (!doPasswordsMatch) {
       setError('Passwords do not match.');
       setLoading(false);
       return;
@@ -116,9 +121,21 @@ export const ResetPassword = () => {
               required
             />
             <span onClick={togglePasswordVisibility} className="reset-password-icon">
-              <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash } />
+              <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
             </span>
           </div>
+
+          <ul className="password-requirements">
+            <li className={isMinCharacters ? 'valid' : 'invalid'}>
+              ✔ Password should be at least 8 characters.
+            </li>
+            <li className={hasUppercase ? 'valid' : 'invalid'}>
+              ✔ Contain at least one uppercase letter.
+            </li>
+            <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+              ✔ Contain at least one special character.
+            </li>
+          </ul>
           
           <label className="reset-password-label" htmlFor="confirmPassword">Confirm Password:</label>
           <div className="reset-password-input-container">
@@ -132,16 +149,23 @@ export const ResetPassword = () => {
               required
             />
             <span onClick={toggleConfirmPasswordVisibility} className="reset-password-icon">
-              <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+              <FontAwesomeIcon icon={showConfirmPassword ? faEye : faEyeSlash} />
             </span>
           </div>
           
-          <ul className="reset-password-requirements">
-            <li>Password should be at least 8 characters.</li>
-            <li>Contain at least one uppercase letter.</li>
-          </ul>
+          {confirmPassword && (
+            <ul className="password-requirements">
+              <li className={doPasswordsMatch ? 'valid' : 'invalid'}>
+                ✔ Passwords match
+              </li>
+            </ul>
+          )}
 
-          <button type="submit" className="reset-password-btn" disabled={loading}>
+          <button 
+            type="submit" 
+            className="reset-password-btn" 
+            disabled={loading || !isPasswordValid || !doPasswordsMatch}
+          >
             {loading ? "Updating..." : "Update Password"}
           </button>
         </form>
