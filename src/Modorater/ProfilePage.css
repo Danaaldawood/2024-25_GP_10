@@ -94,8 +94,8 @@
 
 .profile-details p {
   margin: 5px 0 15px;
+  color:#fff;
 }
-
 /* Profile form (right side) */
 .profile-form-container {
   width: 60%;

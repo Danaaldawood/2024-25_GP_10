@@ -6,55 +6,53 @@ const SignOutConfirmation = ({ onConfirm, onCancel }) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#fff',
-    padding: '0',
+    backgroundColor: '#fff', 
+    padding: '20px',
     borderRadius: '10px',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',  
     zIndex: 1000,
     width: '300px',
-    maxWidth: '90%',
     textAlign: 'center',
-    overflow: 'hidden',
   };
 
   const modalHeaderStyles = {
-    backgroundColor: '#f8d7da',
-    color: '#721c24',
-    padding: '20px',
-    borderBottom: '1px solid #f5c6cb',
-    fontSize: '18px',  
+    fontWeight: 'bold',
+    color: '#dc172b',  
+    marginBottom: '10px',
+    fontSize: '30px',
   };
 
   const modalBodyStyles = {
-    padding: '20px',
-    fontSize: '16px',  
-    color: '#333', 
+    color: '#000',  
+    fontSize: '17px',
+    fontFamily: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif",
+    marginBottom: '20px',
   };
 
   const buttonContainerStyles = {
     display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: '20px',
+    justifyContent: 'center',
+    gap: '10px',
   };
 
   const confirmButtonStyles = {
-    backgroundColor: '#dc3545',
+    backgroundColor: '#dc172b', 
     color: '#fff',
     border: 'none',
+    padding: '8px 16px',
     borderRadius: '5px',
-    padding: '10px 20px',
     cursor: 'pointer',
-    fontSize: '14px',
+    fontSize: '15px',
   };
 
   const cancelButtonStyles = {
-    backgroundColor: '#ffffff',
-    color: '#721c24',
-    border: '1px solid #f5c6cb',
+    backgroundColor: '#fff',  
+    color: '#dc172b',  
+    border: '1px solid #f5c6cb',  
     borderRadius: '5px',
-    padding: '10px 20px',
+    padding: '8px 16px',
     cursor: 'pointer',
-    fontSize: '14px',
+    fontSize: '15px',
   };
 
   return (

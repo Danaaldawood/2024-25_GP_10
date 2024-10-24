@@ -16,7 +16,6 @@ const ProfilePage = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch moderator data from Firestore
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -43,10 +42,8 @@ const ProfilePage = () => {
     fetchUserData();
   }, []);
 
-  // Function to handle saving profile data
   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
-      // Check if full name is null or empty
       setNotification({ type: 'warning', message: 'Full name cannot be empty. Please enter a valid name.' });
       return;
     }
@@ -65,6 +62,9 @@ const ProfilePage = () => {
         localStorage.setItem('email', email);
 
         setNotification({ type: 'success', message: 'Profile saved successfully!' });
+        setTimeout(() => {
+          setNotification(null); 
+        }, 1); 
       } else {
         setNotification({ type: 'error', message: 'No user logged in.' });
       }
@@ -74,12 +74,10 @@ const ProfilePage = () => {
     }
   };
 
-  // Function to handle deleting account
   const handleDeleteAccount = () => {
     setShowModal(true); 
   };
 
-  // Function to confirm account deletion
   const handleConfirmDelete = async () => {
     try {
       const user = auth.currentUser;
@@ -88,10 +86,7 @@ const ProfilePage = () => {
         return;
       }
 
-      // Delete moderator authentication from Firebase Auth
       await deleteUser(user);
-
-      // Delete moderator document from Firestore
       const userDocRef = doc(db, 'Moderators', user.uid);
       await deleteDoc(userDocRef);
 
@@ -114,12 +109,11 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page-container">
-
       <header className="profile-header">
         <button className="back-btn" onClick={() => navigate('/moderator')}>
           <FaArrowLeft className="back-icon" />
         </button>
-        <h1>Moderator Profile </h1>
+        <h1>Moderator Profile</h1>
       </header>
 
       <div className="profile-content">
@@ -130,9 +124,8 @@ const ProfilePage = () => {
         <div className="profile-form-container">
           <h2 className='headname'>Moderator Information</h2>
           <div className="profile-form">
-         
             <div className="form-row">
-            <label>Full Name</label>
+              <label>Full Name</label>
               <input
                 type="text"
                 className="formProf-input"
@@ -143,7 +136,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="form-row">
-            <label>Email</label>
+              <label>Email</label>
               <input
                 type="email"
                 className="formProf-input"
@@ -153,7 +146,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* Save and Delete buttons */}
             <button className="save-button" onClick={handleSaveProfile}>
               Save Profile
             </button>
@@ -165,10 +157,8 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      {/* Show delete confirmation modal */}
       {showModal && <DeleteConfirmation onConfirm={handleConfirmDelete} onCancel={() => setShowModal(false)} />}
 
-      {/* Show notifications */}
       {notification && (
         <Notification
           type={notification.type}
@@ -177,7 +167,6 @@ const ProfilePage = () => {
         />
       )}
 
-      {/* Footer */}
       <footer className="footer">
         <p>© 2024 CultureLens. All rights reserved.</p>
       </footer>

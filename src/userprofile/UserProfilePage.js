@@ -74,6 +74,10 @@ const UserProfilePage = () => {
         localStorage.setItem('region', region);
 
         setNotification({ type: 'success', message: 'Profile saved successfully!' });
+
+        setTimeout(() => {
+          setNotification(null); 
+        }, 1000); 
       } else {
         setNotification({ type: 'error', message: 'No user logged in.' });
       }
@@ -109,6 +113,7 @@ const UserProfilePage = () => {
       localStorage.removeItem('email');
       localStorage.removeItem('region');
 
+      // Trigger success notification with checkmark icon
       setNotification({ type: 'success', message: 'Account deleted successfully.' });
 
       // Redirect to sign-in page immediately after successful deletion

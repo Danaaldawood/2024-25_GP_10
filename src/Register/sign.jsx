@@ -11,7 +11,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
 import './Pop-Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash ,faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 
 const Sign = () => {
   const [email, setEmail] = useState("");
@@ -79,14 +79,20 @@ const Sign = () => {
             email: user.email,
             fullName: fname
           };
-
-        await setDoc(doc(db, collectionPath, user.uid), userData);
-        setShowSuccess(true);
+          await setDoc(doc(db, collectionPath, user.uid), userData);
+          setShowSuccess(true);
+          setTimeout(() => {
+            navigate(userType === 'User' ? '/Home' : '/moderator');
+          }, 1000);
+        }
+      } catch (error) {
+        if (error.code === 'auth/email-already-in-use') {
+          setErrorMessage("The email address provided is already in use.");
+        } else {
+          setErrorMessage("Something went wrong. Please try again.");
+        }
       }
-    } catch (error) {
-      setErrorMessage("Something went wrong. Please try again.");
-    }
-  };
+    };
 
   const handleUserTypeChange = (type) => {
     setUserType(type);
@@ -120,19 +126,10 @@ const Sign = () => {
         
         {showSuccess && (
   <div className="success-popup">
-    <h3 className="success-title">Success!</h3>
+    <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
     <p className="success-message">Your account has been created successfully.</p>
-    <div className="success-actions">
-      <button className="Continue-btn" onClick={() => {
-        setShowSuccess(false);  
-        navigate(userType === 'User' ? '/Home' : '/moderator');
-      }}>
-        Continue
-      </button>
-    </div>
   </div>
 )}
-
 
         <div className="sign-container">
           {/* Left Section */}
