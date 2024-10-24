@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { auth, db } from "../Register/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import './ForgotPassword.css';
 import LOGO from '../images/Logo.png';
 import '../Register/Pop-Message.css'
-
 
 export function ForgotPassword() {
   const navigate = useNavigate();
@@ -16,15 +15,36 @@ export function ForgotPassword() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const checkEmailExists = async (email) => {
-    const usersQuery = query(collection(db, "Users"), where("email", "==", email));
-    const moderatorsQuery = query(collection(db, "Moderators"), where("email", "==", email));
+    // Convert input email to lowercase
+    const normalizedEmail = email.toLowerCase();
+    
+    // Get all users and moderators (we'll filter in memory for case-insensitive comparison)
+    const usersRef = collection(db, "Users");
+    const moderatorsRef = collection(db, "Moderators");
 
-    const [usersSnapshot, moderatorsSnapshot] = await Promise.all([
-      getDocs(usersQuery),
-      getDocs(moderatorsQuery)
-    ]);
+    try {
+      const [usersSnapshot, moderatorsSnapshot] = await Promise.all([
+        getDocs(usersRef),
+        getDocs(moderatorsRef)
+      ]);
 
-    return !usersSnapshot.empty || !moderatorsSnapshot.empty;
+      // Check users collection
+      const userExists = usersSnapshot.docs.some(doc => {
+        const userEmail = doc.data().email;
+        return userEmail && userEmail.toLowerCase() === normalizedEmail;
+      });
+
+      // Check moderators collection
+      const moderatorExists = moderatorsSnapshot.docs.some(doc => {
+        const moderatorEmail = doc.data().email;
+        return moderatorEmail && moderatorEmail.toLowerCase() === normalizedEmail;
+      });
+
+      return userExists || moderatorExists;
+    } catch (error) {
+      console.error("Error checking email existence:", error);
+      throw error;
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -84,8 +104,7 @@ export function ForgotPassword() {
         <div className="forgot-password-left-section">
           <div className="forgot-password-logo-welcome-container">
             <img src={LOGO} alt="Logo" width="100" height="100" />
-            <h2>Verify your email
-            </h2>
+            <h2>Verify your email</h2>
           </div>
           <p className="forgot-password-welcome-txt">Enter your email to reset your password.</p>
         </div>
@@ -106,8 +125,8 @@ export function ForgotPassword() {
             {loading ? "Sending..." : "Send"}
           </button>
           <div className='forgot-login'>
-              <p style={{ fontSize: '15px' }}>Remember your password? <Link to="/login" className="forgot-link">Login</Link></p>
-            </div>
+            <p style={{ fontSize: '15px' }}>Remember your password? <Link to="/login" className="forgot-link">Login</Link></p>
+          </div>
         </form>
       </div>
     </div>
