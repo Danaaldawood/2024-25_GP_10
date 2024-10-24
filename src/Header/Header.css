@@ -1,13 +1,14 @@
 body, html {
     margin: 0;
     padding: 0;
+    
   }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #6084a9; /* light Blue */
+    background-color:  #003f5c; /* dark Blue */
     color: white;
     padding: 15px 20px;
     border-bottom-left-radius: 15px; /* Adjust radius as desired */

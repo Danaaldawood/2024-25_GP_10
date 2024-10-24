@@ -102,6 +102,7 @@ const CrossCultureComparison = () => {
         <div className="Compare-submit-container">
           <div className="Compare-submit">
             <button onClick={handleCompareClick}>Compare</button>
+            
           </div>
         </div>
       </div>

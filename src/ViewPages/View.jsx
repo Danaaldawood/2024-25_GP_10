@@ -77,15 +77,16 @@ export function RealtimeData() {
   
   const filteredData = tableData.filter((row) => {
     const matchesRegion = filterRegion === '' || row.region_name === filterRegion;
+    
     const matchesSearch = 
-      row.region_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      row.region_name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       row.en_question?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       row.topic?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       row.annotations?.some((annotation) => 
-        annotation.en_values[0].toLowerCase().includes(searchTerm.toLowerCase()) 
+        annotation.en_values[0]?.toLowerCase().includes(searchTerm.toLowerCase()) 
       ) || 
       "Variation".toLowerCase().includes(searchTerm.toLowerCase());
-
+  
     return matchesRegion && matchesSearch;
   });
 
@@ -162,13 +163,14 @@ export function RealtimeData() {
                 <td>{row.region_name}</td>
                 <td>{row.en_question}</td>
                 <td>
-                  <select>
-                    {row.annotations?.map((annotation, i) => (
-                      <option key={i} value={annotation.en_values[0]}>
-                        {annotation.en_values[0]}
-                      </option>
-                    ))}
-                  </select>
+                <select className="value-select">
+  {row.annotations?.map((annotation, i) => (
+    <option key={i} value={annotation.en_values[0]}>
+      {annotation.en_values[0]}
+    </option>
+  ))}
+</select>
+
                 </td>
                 <td>{row.topic}</td>
                 <td>Variation</td>

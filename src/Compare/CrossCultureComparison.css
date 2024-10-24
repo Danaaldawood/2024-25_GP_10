@@ -6,104 +6,90 @@
 
 }
 
-.Compare-form-container {
-    flex: 0 1;
+ .Compare-form-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 450px;
+    margin: 50px auto;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background: #fff;
-    width: 530px !important;
-    border-radius: 8px;
-    box-shadow: 1px 1px 2px 1px rgb(76 104 136);
-    padding-bottom: 30px; 
+    align-items: center;
 }
 
+.Compare-form-container:hover {
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
 
-
-.Compare-text {
-    color: #072040;
+ .Compare-text {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
     text-align: center;
-    margin-top: 5px; 
-    font-size: 28px;
-    font-weight: 500;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #333;
 }
 
-.Compare-inputs {
-    margin-top: 20px;
+ .Compare-input {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .Compare-label {
-    font-size: 20px; 
-    color: #072040;
+    font-size: 17px;
     font-weight: 500;
-    margin-right: 10px; 
-    margin-left: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.Compare-input {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px;
-    width: 480px;
-    height: 80px;
-    border-radius: 6px;
-    padding: 10px;
+    margin-bottom: 10px;
+    color: #333;
 }
 
 .Compare-cultureRegion, .Compare-topic {
-    width: 250px;
-    height: 30px;
-    padding: 5px;
-    background-color: #efefef; 
-    border-radius: 5px; 
-    font-size: 16px; 
-    color: #333; 
-    transition: background-color 0.3s ease; 
-}
-
-
-.Compare-cultureRegion.error, .Compare-topic.error {
-    border: 2px solid red; 
-    color: red; 
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: border 0.3s ease;
 }
 
 .Compare-cultureRegion:focus, .Compare-topic:focus {
-    background-color: #e0e0e0; 
-    outline: none; 
+    border-color: #10a37f;
+    box-shadow: #095c47;  
+    outline: none;
 }
 
-
-.Compare-cultureRegion option, .Compare-topic option {
-    text-align: center;
+ .Compare-cultureRegion.error, .Compare-topic.error {
+    border: 1px solid red;
 }
 
-.Compare-submit-container {
+ .Compare-submit {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;  
+    gap: 10px;
     margin-top: 30px;
 }
 
 .Compare-submit button {
-    background-color: #6084a9;
-    width: 300px;
-    height: 40px;
-    color: #fff;
+    width: 200px;
+    padding: 12px;
     border: none;
-    border-radius: 15px;
-    font-size: 19px;
-    font-weight: 700;
+    border-radius: 10px;
+    background-color: #10a37f;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .Compare-submit button:hover {
-    background-color: #2a5d77;
+    background-color: #095c47;
+    transform: translateY(-2px);
 }
+
+ 
 

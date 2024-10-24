@@ -17,8 +17,7 @@ const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
-  const [age, setAge] = useState("");
-  const [region, setRegion] = useState("");
+   const [region, setRegion] = useState("");
   const [country, setCountry] = useState("");
   const [userType, setUserType] = useState('User');
   const [showSuccess, setShowSuccess] = useState(false);
@@ -48,10 +47,7 @@ const Sign = () => {
       return;
     }
 
-     if (age <= 0 && userType === 'User') {
-      setErrorMessage("Invalid age, age must be greater than zero.");
-      return;
-    }
+     
 
 // Email validate  
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -70,8 +66,7 @@ const Sign = () => {
             User_Id: user.uid,
             email: user.email,
             fullName: fname,
-            age: age || null,
-            region: region,  
+             region: region,  
             country: country && country.label && country.label.props ? country.label.props.children[1] : null
           }
         : {
@@ -87,7 +82,7 @@ const Sign = () => {
         }
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
-          setErrorMessage("The email address provided is already in use.");
+          setErrorMessage("This email address is already registered.");
         } else {
           setErrorMessage("Something went wrong. Please try again.");
         }
@@ -190,23 +185,13 @@ const Sign = () => {
             {/* Additional Fields for User Type */}
             {userType === 'User' && (
               <>
-                {/* Age */}
-                <label htmlFor="age" className="sign-label">Age:</label>
-                <input 
-                  type="number" 
-                  id="age" 
-                  placeholder="Enter your age"
-                  className="sign-input"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  required
-                />
+                 
                 <label className="sign-label">Country:</label>
                 <Select 
   options={countryOptions} 
   value={country}   
   onChange={handleCountryChange}
-  placeholder="Select Sub Region"
+  placeholder="Select your country"
   styles={{
     control: (styles, { isFocused }) => ({
       ...styles,
@@ -218,7 +203,7 @@ const Sign = () => {
       boxShadow: 'none',
       borderColor: isFocused ? '#004D60' : '#ddd',
       '&:hover': { borderColor: '#004D60' },
-      marginBottom: '20px',
+      marginBottom: '10px',
     }),
     valueContainer: (styles) => ({
       ...styles,

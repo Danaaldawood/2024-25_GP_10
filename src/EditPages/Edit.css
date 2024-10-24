@@ -1,110 +1,112 @@
-
 .editformcontainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background: #fff;
-    width: 530px !important;
-    border-radius: 8px;
-    box-shadow: 1px 1px 2px 1px rgb(76 104 136);
-    padding-bottom: 30px;
-  }
-  
-  .edit-title {
-    color: #072040;
-    text-align: center;
-    margin-top: 5px;
-    font-size: 28px;
-    font-weight: 500;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  .attribute-display{
-    color: #072040;
-    text-align: center;
-    margin-top: 5px;
-    font-size: 20px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 450px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-  
-  .edit-inputs {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-  }
-  
-  .edit-input label {
-    font-size: 20px;
-    color: #072040;
-    font-weight: 500;
-    margin-right: 10px;
-    margin-left: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  
-  .edit-input {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: auto;
-    width: 480px;
-    height: 80px;
-    border-radius: 6px;
-    padding: 10px;
-  }
-  
-  .edit-input select,
-  .edit-input input[type="text"] {
-    width: 250px;
-    height: 30px;
-    border: 1px solid #655e5e;
-    border-radius: 5px;
-    background-color: #efefef;
-    font-size: 16px;
-    color: #333;
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-  .edit-input.error input {
-    border: 2px solid red; 
-  }
-  
-  .edit-input.error input::placeholder {
-    color: red; 
-  }
-  
-  .reason input[type="radio"] {
-    margin-right: 0.5rem;
-    accent-color: #2b5a77;
-    transform: scale(1.2);
-  }
-  
-  .edit-input select option {
-    text-align: center;
-  }
-  
-  .edisubmit-container {
-    display: flex;
-    gap: 30px;
-    margin: 40px auto;
-  }
-  
-  .edit-submit button {
-    width: 300px;
-    height: 40px;
-    color: #fff;
-    background-color: #6084a9;
+.editformcontainer:hover {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
+ .edit-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.attribute-display {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+ .edit-inputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+ .edit-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.edit-input label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.edit-input select,
+.edit-input input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f3f3f3;
+  color: #333;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.edit-input select:focus,
+.edit-input input[type="text"]:focus {
+  border-color: #10a37f;
+  box-shadow: #095c47;  
+  outline: none;
+}
+
+ .edit-input.error input {
+  border: 2px solid red; 
+}
+
+.edit-input.error input::placeholder {
+  color: red; 
+}
+
+ .reason input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #2b5a77;
+  transform: scale(1.2);
+}
+
+ .edit-input select option {
+  text-align: center;
+}
+
+ .edisubmit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.edit-submit button {
+  width: 200px;
+      padding: 12px;
     border: none;
-    border-radius: 15px;
-    font-size: 19px;
-    font-weight: 700;
+    border-radius: 10px;
+    background-color: #10a37f;;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
     cursor: pointer;
-  }
-  
-  .edit-submit button:hover {
-    background: #2a5d77;
-  }
-  
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-submit button:hover {
+  background-color: #095c47;
+    transform: translateY(-2px);
+}
