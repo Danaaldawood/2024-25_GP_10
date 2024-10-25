@@ -7,9 +7,9 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase'; 
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { deleteUser, onAuthStateChanged } from 'firebase/auth';
+import { deleteUser, onAuthStateChanged, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 import { Footer } from '../Footer/Footer';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 const UserProfilePage = () => {
   const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
@@ -17,13 +17,13 @@ const UserProfilePage = () => {
   const [region, setRegion] = useState(localStorage.getItem('region') || '');
   const [notification, setNotification] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   // Fetch user data from Firestore when authentication state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Fetch user data from Firestore
         const fetchUserData = async () => {
           try {
             const userDoc = await getDoc(doc(db, 'Users', user.uid));
@@ -32,32 +32,24 @@ const UserProfilePage = () => {
               setProfileName(userData.fullName || '');
               setEmail(userData.email || '');
               setRegion(userData.region || '');
-
-              // Store in local storage for persistence
               localStorage.setItem('profileName', userData.fullName || '');
               localStorage.setItem('email', userData.email || '');
               localStorage.setItem('region', userData.region || '');
-            } else {
-              console.log('No such document!');
             }
           } catch (error) {
             console.error('Error fetching user data:', error);
           }
         };
-
         fetchUserData();
-      } else {
-        console.log('No authenticated user.');
       }
     });
-
-    return () => unsubscribe(); // Cleanup subscription on component unmount
+    return () => unsubscribe();
   }, []);
 
-  // Function to handle saving profile data
+  // Handle Save Profile
   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
-      setNotification({ type: 'warning', message: 'Full name cannot be empty. Please enter a valid name.' });
+      setNotification({ type: 'error', message: 'Full name cannot be empty. Please enter a valid name.' });
       return;
     }
 
@@ -65,6 +57,7 @@ const UserProfilePage = () => {
       const user = auth.currentUser;
       if (user) {
         const userDocRef = doc(db, 'Users', user.uid);
+
         await updateDoc(userDocRef, {
           fullName: profileName,
           email: email,
@@ -77,9 +70,6 @@ const UserProfilePage = () => {
 
         setNotification({ type: 'success', message: 'Profile saved successfully!' });
 
-        setTimeout(() => {
-          setNotification(null); 
-        }, 1000); 
       } else {
         setNotification({ type: 'error', message: 'No user logged in.' });
       }
@@ -89,13 +79,12 @@ const UserProfilePage = () => {
     }
   };
 
-  // Function to handle deleting account
   const handleDeleteAccount = () => {
-    setShowModal(true); 
+    setShowModal(true);
   };
 
-  // Function to confirm account deletion
-  const handleConfirmDelete = async () => {
+  const handleConfirmDelete = async (password) => {
+    setErrorMessage('');
     try {
       const user = auth.currentUser;
       if (!user) {
@@ -103,41 +92,41 @@ const UserProfilePage = () => {
         return;
       }
 
-      // Delete user document from Firestore first
+      const credential = EmailAuthProvider.credential(user.email, password);
+
+      // Re-authenticate the user
+      await reauthenticateWithCredential(user, credential);
+
       const userDocRef = doc(db, 'Users', user.uid);
       await deleteDoc(userDocRef);
-
-      // Delete user authentication from Firebase Auth
       await deleteUser(user);
 
-      // Clear local storage
       localStorage.removeItem('profileName');
       localStorage.removeItem('email');
       localStorage.removeItem('region');
 
-      // Trigger success notification with checkmark icon
       setNotification({ type: 'success', message: 'Account deleted successfully.' });
-
-      // Redirect to sign-in page immediately after successful deletion
-      navigate('/sign'); 
+      navigate('/sign');
     } catch (error) {
-      console.error('Error deleting account:', error.message);
-      setNotification({ type: 'error', message: `Failed to delete account: ${error.message}` });
-    } finally {
-      setShowModal(false); 
+      if (error.code === 'auth/wrong-password') {
+        setErrorMessage('Incorrect password. Please try again.');
+      } else {
+        setErrorMessage(`Error: ${error.message}`);
+      }
     }
   };
 
   const closeNotification = () => {
-    setNotification(null); 
+    setNotification(null);
   };
 
   return (
     <div className="profile-page-container">
-         <Helmet>
-          <title>Profile Page</title>
-          <meta name="description" content="This is Profile page" />
-        </Helmet> 
+      <Helmet>
+        <title>Profile Page</title>
+        <meta name="description" content="This is Profile page" />
+      </Helmet>
+
       <header className="profile-header">
         <button className="back-btn" onClick={() => navigate('/HomePage')}>
           <FaArrowLeft className="back-icon" />
@@ -147,13 +136,13 @@ const UserProfilePage = () => {
 
       <div className="profile-content">
         <div className="profile-details">
-          <img src={defaultProfilePic} alt="Profile" className="profile-pic" /> 
+          <img src={defaultProfilePic} alt="Profile" className="profile-pic" />
           <h3>{profileName}</h3>
           <p>{region}</p>
         </div>
+
         <div className="profile-form-container">
           <h2>User Information</h2>
-
           <div className="form-row">
             <label>Full Name</label>
             <input
@@ -194,7 +183,13 @@ const UserProfilePage = () => {
         </div>
       </div>
 
-      {showModal && <DeleteConfirmation onConfirm={handleConfirmDelete} onCancel={() => setShowModal(false)} />}
+      {showModal && (
+        <DeleteConfirmation
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setShowModal(false)}
+          errorMessage={errorMessage}
+        />
+      )}
 
       {notification && (
         <Notification
@@ -204,7 +199,7 @@ const UserProfilePage = () => {
         />
       )}
 
-    <Footer/>
+      <Footer />
     </div>
   );
 };

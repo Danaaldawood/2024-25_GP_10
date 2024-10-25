@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; 
 
 const Notification = ({ type, message, onClose }) => {
+  // Automatically close the notification after 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose(); // Close the notification after 2 seconds
+    }, 2000); // 2 seconds
+
+    // Clean up the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
   // Styles based on notification type (success, warning, error)
   const notificationStyles = {
     position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: type === 'warning' || type === 'error' ? '#f8d7da' : '#fff', 
-    color: type === 'warning' || type === 'error' ? '#721c24' : '#28a745', 
+    backgroundColor: type === 'warning' || type === 'error' ? '#f8d7da' : '#d4edda', 
+    color: type === 'warning' || type === 'error' ? '#721c24' : '#155724', 
     border: type === 'warning' || type === 'error' ? '2px solid #f5c6cb' : '2px solid #c3e6cb',
     borderRadius: '10px',
     padding: '20px',
@@ -27,37 +37,12 @@ const Notification = ({ type, message, onClose }) => {
     marginBottom: '15px',
   };
 
-  const buttonStyles = {
-    backgroundColor: type === 'warning' || type === 'error' ? '#dc3545' : '#28a745',
-    border: 'none',
-    color: 'white',
-    padding: '10px 20px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '14px',
-    marginTop: '15px',
-  };
-
-  const overlayStyles = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 9998,
-  };
-
   return (
-    <>
-      {/* Overlay to prevent interaction with the rest of the page */}
-      <div style={overlayStyles} onClick={onClose}></div>
-      <div style={notificationStyles}>
-        {/* Show checkmark icon if success */}
-        {type === 'success' && <FontAwesomeIcon icon={faCheckCircle} style={iconStyles} />}    
-        <p>{message}</p>
-      </div>
-    </>
+    <div style={notificationStyles}>
+      {/* Show checkmark icon if success */}
+      {type === 'success' && <FontAwesomeIcon icon={faCheckCircle} style={iconStyles} />}    
+      <p>{message}</p>
+    </div>
   );
 };
 

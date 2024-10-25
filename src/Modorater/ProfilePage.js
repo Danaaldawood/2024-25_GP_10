@@ -9,13 +9,13 @@ import { auth, db } from '../Register/firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { deleteUser } from 'firebase/auth';
 import { Footer } from '../Footer/Footer';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 const ProfilePage = () => {
   const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
   const [notification, setNotification] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false); // State to handle the modal visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const ProfilePage = () => {
         setNotification({ type: 'success', message: 'Profile saved successfully!' });
         setTimeout(() => {
           setNotification(null); 
-        }, 1); 
+        }, 3000);
       } else {
         setNotification({ type: 'error', message: 'No user logged in.' });
       }
@@ -77,7 +77,7 @@ const ProfilePage = () => {
   };
 
   const handleDeleteAccount = () => {
-    setShowModal(true); 
+    setShowModal(true); // Show the modal on clicking delete
   };
 
   const handleConfirmDelete = async () => {
@@ -97,24 +97,24 @@ const ProfilePage = () => {
 
       setNotification({ type: 'success', message: 'Account deleted successfully.' });
 
-      navigate('/sign'); 
+      navigate('/sign'); // Navigate to sign-up or login page after deletion
     } catch (error) {
       console.error('Error deleting account:', error.message);
       setNotification({ type: 'error', message: `Failed to delete account: ${error.message}` });
     }
-    setShowModal(false); 
+    setShowModal(false); // Hide the modal after the action
   };
 
   const closeNotification = () => {
-    setNotification(null); 
+    setNotification(null); // Close the notification
   };
 
   return (
     <div className="profile-page-container">
-        <Helmet>
-          <title>Profile Page</title>
-          <meta name="description" content="This is Profile page" />
-        </Helmet>
+      <Helmet>
+        <title>Profile Page</title>
+        <meta name="description" content="This is Profile page" />
+      </Helmet>
       <header className="profile-header">
         <button className="back-btn" onClick={() => navigate('/moderator')}>
           <FaArrowLeft className="back-icon" />
@@ -128,7 +128,7 @@ const ProfilePage = () => {
           <h3>{profileName}</h3>
         </div>
         <div className="profile-form-container">
-          <h2 className='headname'>Moderator Information</h2>
+          <h2 className="headname">Moderator Information</h2>
           <div className="profile-form">
             <div className="form-row">
               <label>Full Name</label>
@@ -163,8 +163,10 @@ const ProfilePage = () => {
         </div>
       </div>
 
+      {/* Modal Confirmation for Account Deletion */}
       {showModal && <DeleteConfirmation onConfirm={handleConfirmDelete} onCancel={() => setShowModal(false)} />}
 
+      {/* Notification system */}
       {notification && (
         <Notification
           type={notification.type}
@@ -173,7 +175,7 @@ const ProfilePage = () => {
         />
       )}
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };
