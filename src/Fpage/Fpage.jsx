@@ -4,15 +4,20 @@ import LOGO from "../images/Logo.png";
 import photo from "../images/MAP-logo.png";
 import "./Fpage.css";
  import "../Header/Header.css";
-
+ import { Helmet } from 'react-helmet';
 
 const Fpage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div>
+      
       {/* Header */}
       <header className="header">
+      <Helmet>
+      <title>Welcome Page</title>
+      <meta name="description" content="This is the Welcome Page of may website" />
+    </Helmet>
         <div className="header-left">
           <img src={LOGO} alt="CultureLens Logo" className="logo-img" />
           <h1 className="logo-title">CultureLens</h1>

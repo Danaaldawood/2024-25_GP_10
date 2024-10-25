@@ -12,6 +12,7 @@ import { auth, db } from './firebase';
 import './Pop-Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash ,faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet';
 
 const Sign = () => {
   const [email, setEmail] = useState("");
@@ -109,6 +110,11 @@ const Sign = () => {
  
   return (
        <div className="sign-page">
+        <Helmet>
+      <title>Create Account Page</title>
+      <meta name="description" content="This is the Create Account of My website" />
+    </Helmet>      
+   
         {errorMessage && (
           <div className="error-popup">
             <h3 className="error-title">Warning!</h3>

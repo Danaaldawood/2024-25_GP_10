@@ -7,7 +7,7 @@ import "chart.js/auto";
 import MAPPhoto from "../images/result.png";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
-
+import { Helmet } from 'react-helmet';
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showMore, setShowMore] = useState(false);
@@ -83,6 +83,10 @@ const HomePage = () => {
   return (
     <div className="homepage">
       <Header />
+      <Helmet>
+      <title>HomePage</title>
+      <meta name="description" content="This is the Home Page  of may website" />
+    </Helmet>
       <div className="content container">
         <div className="text-content">
           <p className="welcome-text">About Us</p>

@@ -8,7 +8,7 @@ import './Login.css';
 import './Pop-Message.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
+import { Helmet } from 'react-helmet';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ const Login = () => {
         navigate(userType === 'User' ? '/HomePage' : '/moderator');
       } else {
         console.log("User not found in Firestore. Collection Path:", collectionPath, "User ID:", user.uid);
-        setErrorMessage("User type not recognized. Please contact support.");
+        setErrorMessage("Access denied. Please check your account type.");
         setIsLoading(false);
       }
     } catch (error) {
@@ -65,7 +65,11 @@ const Login = () => {
 
   return (
     <>
-      {errorMessage && (
+    <Helmet>
+      <title>Login Page</title>
+      <meta name="description" content="This is theLog-in page of My website" />
+    </Helmet>      
+       {errorMessage && (
         <div className="error-popup">
           <h3 className="error-title">Warning!</h3>
           <p className="error-message">{errorMessage}</p>
