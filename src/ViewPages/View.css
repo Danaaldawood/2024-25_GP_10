@@ -9,41 +9,6 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
- .value-select {
-  width: 250px;  
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  appearance: none;  
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image:  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMUwxIDFMOCw3TDE1LDFDMTUsMSAxLDEgMSwxeiIgZmlsbD0iIzAwM2Y1YyIvPjwvc3ZnPg==');
-  background-position: right 10px center;
-  background-repeat: no-repeat;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-align: center;
-  background-size: 20px;
-}
-
-.value-select:hover {
-  box-shadow: 0 6px 8px rgba(9, 14, 161, 0.15);
-}
-
-.value-select:focus {
-  border-color: #003f5c;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
-  outline: none;
-}
-
- .value-select option {
-  padding: 10px;
-  font-size: 16px;
-}
-
 
 .search-container {
   display: flex;
@@ -74,7 +39,7 @@
 
 .data-table {
   width: 100%;
-  border-collapse: collapse; /* Keep rows separate but collapse borders */
+  border-collapse: collapse; 
   margin-bottom: 20px; 
   
     
@@ -85,12 +50,12 @@
   
    
   
-  /* Add space between the table and footer */
+  
 }
 
 .data-table th,
 .data-table td {
-  border: none; /* Remove the solid border */
+  border: none; 
   padding: 8px;
   text-align: left;
   background-color: rgba(239, 235, 235, 0.264);
@@ -102,8 +67,9 @@
 
 
 .data-table th {
-  background-color: #6085a9ea;
+  background-color: #003f5c99;
   color: white;
+    text-align: justify;
   font-size: 18px;
   
   
@@ -178,14 +144,15 @@ tbody tr:hover {
 
 .notification-btn {
   display: flex;
-  align-items: center;
+  align-items:center;
   padding: 10px 20px;
   background-color: #d00c4d;
-  
+  justify-content: space-between;
   color: white;
   border:  none;
   border-radius: 5px;
   cursor: pointer;
+
 
   position: absolute;
  

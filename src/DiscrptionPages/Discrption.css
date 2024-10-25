@@ -11,7 +11,8 @@ main {
 }
 
 button {
-  background-color: #d3dbe4; /* Green background */
+  background-color: #d3dbe4;
+  /* Green background */
   border: none; /* No border */
   color: #052949;
   /* White text */
@@ -40,7 +41,10 @@ button:hover {
   color: white;
 
   background-color: #ced2d4;
-  background: linear-gradient(500deg, #527aa1, #93aac2);
+  background:  linear-gradient(500deg,#002a40, #99b3ce); 
+  background: #406882;
+
+
 
   padding: 6rem;
   margin-bottom: 4rem;
@@ -52,14 +56,20 @@ button:hover {
   margin-top: 2rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-
+p.discrptiontext{
+  color: white;
+  inline: size 1px;
+  text-align: justify;
+}
 #cardsection {
   border: 2px solid #ddd;
   border-radius: 6px;
   padding: 20px;
   justify-content: center;
  
-  background-color: #4c62682b;
+  /* background-color: #4c62682b; */
+  background-color: #4c62681d;
+
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

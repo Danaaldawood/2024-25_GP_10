@@ -5,7 +5,7 @@ function Cardtopic({ Icon, title, text }) {
   return (
     <div
       className="flip-card"
-      style={{ width: "230px", height: "230px", margin: "15px" }}
+   
     >
       <div className="flip-card-inner">
         <div className="flip-card-front">

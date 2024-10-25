@@ -102,7 +102,7 @@ export function RealtimeData() {
       <div className="container mt-5">
 
 <div class='notification-btn-container'>
-<button  class='notification-btn'  > Notifications {<NotificationsActiveIcon />}</button>
+<button  class='notification-btn'  >   Notify moderator   {<NotificationsActiveIcon />}</button>
 
 </div>
         

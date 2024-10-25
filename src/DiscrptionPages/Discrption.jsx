@@ -31,8 +31,8 @@ const Discrption = () => {
 
           <div className="discrptionbox">
              
-            <div>
-              <p>
+            <div >
+              <p class='discrptiontext'>
                 Our cultural values dataset integrates information from multiple
                 sources, encompassing a large number of entries to ensure
                 comprehensive coverage across diverse attributes and topics.

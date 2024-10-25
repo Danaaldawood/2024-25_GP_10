@@ -1,9 +1,9 @@
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #b3babdb5;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  width: 250px;
+  height: 260px;
+  border: 1px solid #b3babd55;
+  perspective: 1000px; 
   border-radius: 6px;
 }
 
@@ -35,14 +35,14 @@
 
 /* Style the front side */
 .flip-card-front {
-  color: #042844;
+
   border-radius: 6px;
 
-  background: rgb(217, 220, 224);
-  /* background: linear-gradient(500deg, #e8e9eb, #c6cace);
-  background: linear-gradient(500deg, #004d60, #a9bdd2);
-  background: #1b5a6a; */
-  background-color: #6084a9;
+  
+  
+  background: linear-gradient(50deg, #205168, #003f5c);
+  background: #003f5cdd;
+
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -55,23 +55,22 @@
   padding-bottom: 40px;
   font-size: 30px;
   padding-top: 20px;
-  color: #042844;
+ 
 
   color: #eff0f1;
 }
 
 /* Style the back side */
 .flip-card-back {
-  color: #061d38;
-  color: #ebf2f9;
-  color: #061d38;
+
+  color: #04162a;
    
   transform: rotateY(180deg);
   border-radius: 6px;
   padding-top: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  background-color: #8eabceb7; /* Solid color without transparency */
+  background-color:#003f5c5c; /* Solid color without transparency */
  
   
 font-size: 16px;
