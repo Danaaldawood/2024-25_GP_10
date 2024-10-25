@@ -5,6 +5,7 @@ import Logo from '../images/Logo.png';
 import { Footer } from '../Footer/Footer';
 import '../Header/Header.css';
 import SignOutConfirmation from './SignOutConfirmation'; 
+import {Helmet} from 'react-helmet';
 
 const ModeratorPage = () => {
   const [view, setView] = useState('view-edit');
@@ -39,6 +40,10 @@ const ModeratorPage = () => {
 
   return (
     <div className="moderator-container">
+        <Helmet>
+          <title>Moderator Page</title>
+          <meta name="description" content="This is Moderator page" />
+        </Helmet>
       {/* Header */}
       <header className="header">
         <div className="header-left">

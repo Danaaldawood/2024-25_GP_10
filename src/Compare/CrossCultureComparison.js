@@ -3,6 +3,7 @@ import "./CrossCultureComparison.css";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import {Helmet} from 'react-helmet';
 
 const CrossCultureComparison = () => {
   const [cultureRegion, setCultureRegion] = useState("");
@@ -43,7 +44,13 @@ const CrossCultureComparison = () => {
   };
 
   return (
+
     <div className="comparison-container">
+      <Helmet>
+  <title>Compare Page</title>
+  <meta name="description" content="This is the Cross Culture Comparison" />
+</Helmet>  
+
       {/* Header */}
       <Header />
 

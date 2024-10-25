@@ -5,16 +5,20 @@ import { realtimeDb } from '../Register/firebase';
 import "./Edit.css";
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
+import {Helmet} from 'react-helmet';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; 
 
 export const EditCultureValue = () => {
   const { id } = useParams(); // Get the row ID from the URL
   const location = useLocation(); // Get the passed state from navigate
   const navigate = useNavigate(); 
+  const [showSuccess, setShowSuccess] = useState(false); // State to control the success popup visibility
 
   useEffect(() => {
     if (!location.state) {
       alert("No data available to edit");
-      navigate("/");
+      navigate("/View");
     }
   }, [location.state, navigate]);
 
@@ -50,8 +54,14 @@ export const EditCultureValue = () => {
         value: itemData.value, 
         region: itemData.region, // Update region as well if needed
       });
-      alert("Data updated successfully!");
-      navigate("/"); // Navigate back to the list page after successful Edit
+      
+      // Show the success popup instead of alert
+      setShowSuccess(true);
+      
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate("/View"); 
+      }, 1000);
     } catch (error) {
       console.error("Error updating data:", error);
     }
@@ -61,6 +71,10 @@ export const EditCultureValue = () => {
     <div>
       <Header />
       <div className="editformcontainer">
+        <Helmet>
+          <title>Edit Page</title>
+          <meta name="description" content="This is Edit page" />
+        </Helmet>  
         <div className="editheader">
           <div className="edit-title">Edit Culture Value</div>
           <div className="underline"></div>
@@ -115,6 +129,14 @@ export const EditCultureValue = () => {
             <button onClick={handleEditClick}>Edit</button>
           </div>
         </div>
+        
+        {/* Success Popup Message */}
+        {showSuccess && (
+          <div className="success-popup">
+            <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+            <p className="success-message">Value edited successfully.</p>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

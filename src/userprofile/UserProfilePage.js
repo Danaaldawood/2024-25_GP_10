@@ -9,7 +9,7 @@ import { auth, db } from '../Register/firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { deleteUser, onAuthStateChanged } from 'firebase/auth';
 import { Footer } from '../Footer/Footer';
-
+import {Helmet} from 'react-helmet';
 
 const UserProfilePage = () => {
   const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
@@ -134,6 +134,10 @@ const UserProfilePage = () => {
 
   return (
     <div className="profile-page-container">
+         <Helmet>
+          <title>Profile Page</title>
+          <meta name="description" content="This is Profile page" />
+        </Helmet> 
       <header className="profile-header">
         <button className="back-btn" onClick={() => navigate('/HomePage')}>
           <FaArrowLeft className="back-icon" />

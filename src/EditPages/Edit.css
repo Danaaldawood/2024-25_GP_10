@@ -1,3 +1,4 @@
+/* Edit form container styling */
 .editformcontainer {
   background-color: #ffffff;
   border-radius: 10px;
@@ -9,10 +10,13 @@
   flex-direction: column;
   align-items: center;
 }
+
 .editformcontainer:hover {
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
 }
- .edit-title {
+
+/* Title styling */
+.edit-title {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -28,7 +32,7 @@
   color: #333;
 }
 
- .edit-inputs {
+.edit-inputs {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -36,7 +40,7 @@
   width: 100%;
 }
 
- .edit-input {
+.edit-input {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -69,7 +73,8 @@
   outline: none;
 }
 
- .edit-input.error input {
+/* Error state for input fields */
+.edit-input.error input {
   border: 2px solid red; 
 }
 
@@ -77,36 +82,55 @@
   color: red; 
 }
 
- .reason input[type="radio"] {
-  margin-right: 0.5rem;
-  accent-color: #2b5a77;
-  transform: scale(1.2);
-}
-
- .edit-input select option {
-  text-align: center;
-}
-
- .edisubmit-container {
+/* Submit button container */
+.edisubmit-container {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
 
+/* Submit button styling */
 .edit-submit button {
   width: 200px;
-      padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background-color: #10a37f;;
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #10a37f;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .edit-submit button:hover {
   background-color: #095c47;
-    transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+/* Success Popup Message */
+.success-popup {
+  background-color: #fff;
+  color: #28a745;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.success-icon {
+  font-size: 48px; 
+  color: #28a745; 
+  margin-bottom: 15px;
+}
+
+.success-message {
+  font-size: 16px;
+  color: #28a745;
 }
