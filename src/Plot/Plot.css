@@ -8,9 +8,9 @@
   align-items: center;
   justify-content: space-between;
   top: 0;
-  background-color: #6084a9;
+  background-color: #003f5c;
   color: white;
-  padding: 15px 20px;
+  padding: 22px 22px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   overflow: hidden;
@@ -79,10 +79,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 220px;
+  width: 240px;
   height: 50px;
   color: #fff;
-  background: #6084a9;
+  background: #10a37f;
   border-radius: 15px;
   font-size: 19px;
   font-weight: 700;
@@ -91,7 +91,7 @@
 }
 
 .plotsubmit:hover {
-  background: #2a5d77;
+  background: #095c47;
 }
 
 .plotheader pre {
@@ -155,7 +155,7 @@
 }
 
 .plot-button2 {
-  background-color: #6084a9;
+  background-color: #10a37f;
   color: white;
   border: none;
   border-radius: 10px;
@@ -166,5 +166,25 @@
 }
 
 .plot-button2:hover {
-  background-color: #2a5d77;
+  background-color: #095c47;
 }
+
+
+/* .evalsubmit button {
+  width: 200px;
+  padding: 12px;
+border: none;
+border-radius: 10px;
+background-color: #10a37f;
+color: white;
+font-size: 20px;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+
+}
+
+.evalsubmit button:hover {
+  background-color: #095c47;
+  transform: translateY(-2px);
+} */

@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { deleteUser } from 'firebase/auth';
+import { Footer } from '../Footer/Footer';
+
 
 const ProfilePage = () => {
   const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
@@ -167,9 +169,7 @@ const ProfilePage = () => {
         />
       )}
 
-      <footer className="footer">
-        <p>© 2024 CultureLens. All rights reserved.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 };

@@ -4,6 +4,8 @@ import "./Plot.css";
 import plotImage from "../images/plot1.JPG";
 import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
+import { Helmet } from 'react-helmet';
+
 
 export const Plot = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -40,6 +42,10 @@ export const Plot = () => {
 
   return (
     <div className="plotpage">
+      <Helmet>
+      <title>Plot</title>
+      <meta name="description" content="Plot page" />
+    </Helmet>
       <div className="plot-page-header">
         <button
           className="plot-back-btn"

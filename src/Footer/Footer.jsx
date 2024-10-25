@@ -3,6 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import './Footer.css';
+import { RiTwitterXLine } from "react-icons/ri";
+import { IoLogoInstagram } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+
+
+
   
 
 export const Footer = () => {
@@ -12,13 +18,14 @@ export const Footer = () => {
     <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
 <div className="footer-icons">
   <a href="mailto:Culturelens@outlook.com" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faEnvelope} className="footer-icon" />
+    <MdEmail className="footer-icon" />
   </a>
   <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faTwitter} className="footer-icon" />
+  <RiTwitterXLine className="footer-icon"/>
+
   </a>
   <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
-    <FontAwesomeIcon icon={faInstagram} className="footer-icon" />
+    <IoLogoInstagram className="footer-icon" />
   </a>
 </div>
 </footer>

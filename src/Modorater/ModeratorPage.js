@@ -149,9 +149,7 @@ const ModeratorPage = () => {
       )}
 
         {/* Footer */}
-        <footer className="footer">
-        <p>© 2024 CultureLens. All rights reserved.</p>
-      </footer>
+        <Footer/>
     </div>
   );
 };

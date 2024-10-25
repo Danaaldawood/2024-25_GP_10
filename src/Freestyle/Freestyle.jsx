@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./Freestyle.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
+import { Helmet } from 'react-helmet';
+
 
 export const ConversationLayout = () => {
   const navigate = useNavigate();
@@ -107,6 +109,10 @@ export const ConversationLayout = () => {
 
   return (
     <div className="freestylepage">
+       <Helmet>
+      <title>Free style chatting</title>
+      <meta name="description" content="Free style chatting page" />
+    </Helmet>
       <div className="freestyle-page-header">
         <button
           className="freestyle-back-btn"

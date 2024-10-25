@@ -4,13 +4,14 @@ import "./Evaluation.css";
 import logo from "../images/Logo.png";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import { Helmet } from 'react-helmet';
 
 export const Evaluation = () => {
   const [evalDimension, setEvalDimension] = useState("");
   const [evalLLM, setEvalLLM] = useState("");
   const [evalMethod, setEvalMethod] = useState("");
   const [dimensionPlaceholder, setDimensionPlaceholder] =
-    useState("Select a dimension");
+    useState("Select a topic");
   const [llmPlaceholder, setLLMPlaceholder] = useState("Select a model");
   const [evalMethodPlaceholder, setEvalMethodPlaceholder] = useState(
     "Select evaluation method"
@@ -54,7 +55,10 @@ export const Evaluation = () => {
   return (
     <div className="Evaluationpage">
       <Header />
-
+      <Helmet>
+      <title>Evaluation</title>
+      <meta name="description" content="Evaluation page" />
+    </Helmet>
       <div className="evalcontainer">
         <h3 className="eval-title">Evaluation</h3>
         <div className="evalinputs">
