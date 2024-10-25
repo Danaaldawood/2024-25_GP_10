@@ -16,14 +16,14 @@ export const ConversationLayout = () => {
     { type: "ai", content: "Hello, how can I assist you today?" },
     {
       type: "user",
-      content: "What is a common snack for preschool kids in the Arab region?",
-    },
-    { type: "ai", content: "Fruits" },
-    {
-      type: "user",
       content: "What is the most popular fruit in the Arab region?",
     },
-    { type: "ai", content: "Apple" },
+    { type: "ai", content: "Kiwi" },
+    {
+      type: "user",
+      content: "Apple is the most popular fruit in the Arab",
+    },
+    
   ]);
   const [dimensionPlaceholder, setDimensionPlaceholder] =
     useState("Select a question");

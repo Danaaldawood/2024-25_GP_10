@@ -15,10 +15,8 @@ export function ForgotPassword() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const checkEmailExists = async (email) => {
-    // Convert input email to lowercase
     const normalizedEmail = email.toLowerCase();
     
-    // Get all users and moderators (we'll filter in memory for case-insensitive comparison)
     const usersRef = collection(db, "Users");
     const moderatorsRef = collection(db, "Moderators");
 
@@ -28,13 +26,11 @@ export function ForgotPassword() {
         getDocs(moderatorsRef)
       ]);
 
-      // Check users collection
       const userExists = usersSnapshot.docs.some(doc => {
         const userEmail = doc.data().email;
         return userEmail && userEmail.toLowerCase() === normalizedEmail;
       });
 
-      // Check moderators collection
       const moderatorExists = moderatorsSnapshot.docs.some(doc => {
         const moderatorEmail = doc.data().email;
         return moderatorEmail && moderatorEmail.toLowerCase() === normalizedEmail;

@@ -20,7 +20,6 @@ export const ResetPassword = () => {
   const query = new URLSearchParams(location.search);
   const oobCode = query.get('oobCode');
 
-  // Password validation checks
   const isMinCharacters = newPassword.length >= 8;
   const hasUppercase = /[A-Z]/.test(newPassword);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);

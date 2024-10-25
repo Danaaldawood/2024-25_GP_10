@@ -10,10 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; 
 
 export const EditCultureValue = () => {
-  const { id } = useParams(); // Get the row ID from the URL
-  const location = useLocation(); // Get the passed state from navigate
-  const navigate = useNavigate(); 
-  const [showSuccess, setShowSuccess] = useState(false); // State to control the success popup visibility
+  const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (!location.state) {
@@ -23,10 +23,11 @@ export const EditCultureValue = () => {
   }, [location.state, navigate]);
 
   const [itemData, setItemData] = useState({
-    topic: location.state?.topic || "", // Get topic from passed state
-    attribute: location.state?.attribute || "", // Get attribute from passed state
-    value: "", 
-    region: location.state?.region || localStorage.getItem('region') || "", // Get region from passed state or localStorage
+    topic: location.state?.topic || "",
+    attribute: location.state?.attribute || "",
+    value: location.state?.selectedValue || "",
+    region: location.state?.region || localStorage.getItem('region') || "",
+    allValues: location.state?.allValues || [],
   });
 
   const handleInputChange = (e) => {
@@ -38,29 +39,26 @@ export const EditCultureValue = () => {
   };
 
   const handleEditClick = async () => {
-    const valueInput = document.getElementById('value');
+    const valueSelect = document.getElementById('value');
+    valueSelect.classList.remove('error');
 
-    valueInput.classList.remove('error');
-
-    if (!itemData.value.trim()) {
-      valueInput.placeholder = 'Please enter a value';
-      valueInput.classList.add('error'); 
+    if (!itemData.value) {
+      valueSelect.classList.add('error');
       return;
     }
 
     try {
-      const itemRef = ref(realtimeDb, `Items/${id}`);
+      const itemRef = ref(realtimeDb, `${id}`);
       await update(itemRef, {
-        value: itemData.value, 
-        region: itemData.region, // Update region as well if needed
+        value: itemData.value,
+        region: itemData.region,
       });
       
-      // Show the success popup instead of alert
       setShowSuccess(true);
       
       setTimeout(() => {
         setShowSuccess(false);
-        navigate("/View"); 
+        navigate("/View");
       }, 1000);
     } catch (error) {
       console.error("Error updating data:", error);
@@ -74,18 +72,21 @@ export const EditCultureValue = () => {
         <Helmet>
           <title>Edit Page</title>
           <meta name="description" content="This is Edit page" />
-        </Helmet>  
+        </Helmet>
+          
         <div className="editheader">
           <div className="edit-title">Edit Culture Value</div>
           <div className="underline"></div>
         </div>
         <div className="edit-inputs">
-          {/* Display attribute */}
+                    {/* Display attribute */}
+
           <div className="edit-input attribute-container">
             <div className="attribute-display">{itemData.attribute}</div>
           </div>
 
           {/* Topic field */}
+
           <div className="edit-input">
             <label className="label">Topic:</label>
             <input
@@ -100,15 +101,32 @@ export const EditCultureValue = () => {
           {/* Value field */}
           <div className="edit-input">
             <label className="label">Value:</label>
-            <input
-              type="text"
+            <select
               id="value"
               name="value"
               value={itemData.value}
               onChange={handleInputChange}
-              placeholder="Enter value"
               required
-              className={itemData.value.trim() ? '' : 'error'}
+              className={itemData.value ? '' : 'error'}
+            >
+              <option value="">Select a value</option>
+              {itemData.allValues.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* New value field */}
+          <div className="edit-input">
+            <label className="label">New value:</label>
+            <input
+              type="text"
+              id="newvalue"
+              name="newvalue"
+              placeholder="Enter value"
+            
             />
           </div>
 
@@ -129,8 +147,8 @@ export const EditCultureValue = () => {
             <button onClick={handleEditClick}>Edit</button>
           </div>
         </div>
-        
-        {/* Success Popup Message */}
+
+        {/* Success popup message */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />

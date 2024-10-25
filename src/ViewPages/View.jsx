@@ -24,7 +24,6 @@ export function RealtimeData() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch user's region from Firestore
     const fetchUserRegion = async () => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -45,7 +44,6 @@ export function RealtimeData() {
 
     fetchUserRegion();
 
-    // Fetch table data from Firebase Realtime Database
     const dbRef = ref(realtimeDb, '/');
     const unsubscribe = onValue(
       dbRef,
@@ -101,10 +99,16 @@ export function RealtimeData() {
 
   const handleEditClick = (row) => {
     if (row.region_name === userRegion) {
+      const dropdownElement = document.querySelector(`select[data-row-id="${row.id}"]`);
+      const selectedValue = dropdownElement ? dropdownElement.value : '';
+      
       navigate(`/edit/${row.id}`, {
         state: {
           attribute: row.en_question,
           topic: row.topic,
+          region: row.region_name,
+          allValues: row.annotations?.map(annotation => annotation.en_values[0]) || [],
+          selectedValue: selectedValue
         },
       });
     }
@@ -137,11 +141,11 @@ export function RealtimeData() {
     <div className='viewpage'>
       <Header />
       <div className="container mt-5">
-        <div class='notification-btn-container'>
-          <button class='notification-btn'>Notify moderator {<NotificationsActiveIcon />}</button>
+        <div className='notification-btn-container'>
+          <button className='notification-btn'>Notify moderator {<NotificationsActiveIcon />}</button>
         </div>
 
-        <section class='tabel_header'>
+        <section className='tabel_header'>
           <h2 className='table-title'>Cultures Data</h2>
         </section>
 
@@ -188,10 +192,10 @@ export function RealtimeData() {
           </div>
         </div>
 
-        <div class='table_container'>
+        <div className='table_container'>
           <table className="data-table">
             <thead>
-              <tr class="tabel_titles">
+              <tr className="tabel_titles">
                 <th></th>
                 <th>Region</th>
                 <th>Attribute</th>
@@ -208,7 +212,10 @@ export function RealtimeData() {
                   <td>{row.region_name}</td>
                   <td>{row.en_question}</td>
                   <td>
-                    <select className="value-select">
+                    <select 
+                      className="value-select"
+                      data-row-id={row.id}
+                    >
                       {row.annotations?.map((annotation, i) => (
                         <option key={i} value={annotation.en_values[0]}>
                           {annotation.en_values[0]}

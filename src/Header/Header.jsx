@@ -8,7 +8,7 @@ import './Header.css';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showSignOutModal, setShowSignOutModal] = useState(false); // State for sign-out modal
+  const [showSignOutModal, setShowSignOutModal] = useState(false); 
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
@@ -16,19 +16,17 @@ export const Header = () => {
   };
 
   const handleProfileClick = () => {
-    navigate('/userprofile'); // Correct route for user profile page
+    navigate('/userprofile'); 
   };
 
   const handleSignOut = () => {
-    // Show the sign-out confirmation modal
     setShowSignOutModal(true);
   };
 
   const confirmSignOut = () => {
-    // Perform sign-out using Firebase Auth
     signOut(auth)
       .then(() => {
-        navigate('/Login'); 
+        navigate('/'); 
       })
       .catch((error) => {
         console.error('Error during sign-out:', error);
@@ -65,7 +63,7 @@ export const Header = () => {
         </div>
       )}
 
-      {/* Show sign-out confirmation modal */}
+      {/* sign-out confirmation modal */}
       {showSignOutModal && (
         <SignOutConfirmation onConfirm={confirmSignOut} onCancel={cancelSignOut} />
       )}

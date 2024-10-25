@@ -1,93 +1,93 @@
 html {
-    overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    overflow-y: auto; 
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #003f5c; 
-    color: white;
-    padding: 15px 20px;
-    border-bottom-left-radius: 15px; 
-    border-bottom-right-radius: 15px;
-    margin: 0;
-    width: 100%; 
-    position: relative; 
-    z-index: 1000; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #003f5c;
+  color: white;
+  padding: 15px 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
 }
 
 .header-left {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo-img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
 }
 
 .logo-title {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-menu a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
 }
 
 .nav-menu a:hover {
-    border-bottom: 2px solid white;
+  border-bottom: 2px solid white;
 }
 
 .menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .menu-dropdown {
-    border-radius: 2px;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    z-index: 1000;
+  border-radius: 2px;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
 }
 
 .menu-dropdown p {
-    margin: 0;
-    padding: 10px;
-    cursor: pointer;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .menu-dropdown p:hover {
-    background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 
 .sign-out {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-    }
+  .header {
+    flex-direction: column;
+  }
 }

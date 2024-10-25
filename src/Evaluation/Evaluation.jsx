@@ -54,12 +54,14 @@ export const Evaluation = () => {
 
   return (
     <div className="Evaluationpage">
+      {/* Header */}
       <Header />
       <Helmet>
       <title>Evaluation</title>
       <meta name="description" content="Evaluation page" />
     </Helmet>
       <div className="evalcontainer">
+        {/* Evaluation form */}
         <h3 className="eval-title">Evaluation</h3>
         <div className="evalinputs">
           <div className="evalinput">
@@ -126,6 +128,7 @@ export const Evaluation = () => {
           </div>
         </div>
       </div>
+      {/* Footer */}
       <Footer />
     </div>
   );

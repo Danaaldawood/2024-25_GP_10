@@ -35,7 +35,6 @@ export const Plot = () => {
       return;
     }
 
-    console.log("Selected Dimension:", selectedDimension);
     closeDialog();
     navigate("/Freestyle");
   };
@@ -46,6 +45,7 @@ export const Plot = () => {
       <title>Plot</title>
       <meta name="description" content="Plot page" />
     </Helmet>
+    {/* Header */}
       <div className="plot-page-header">
         <button
           className="plot-back-btn"
@@ -55,6 +55,7 @@ export const Plot = () => {
         </button>
       </div>
 
+      {/* Plot content */}
       <div className="plotheader">
         <h3>The overall evaluation</h3>
         <pre>Topic: Food | Baseline LLM | Evaluation method: CAR score </pre>
@@ -98,6 +99,7 @@ export const Plot = () => {
           </div>
         )}
       </div>
+      {/* Footer */}
       <Footer />
     </div>
   );
