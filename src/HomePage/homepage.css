@@ -147,52 +147,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;  
+  justify-content: flex-start;
+   
+    
 }
 
  
 
-.doughnut-container, .bar-container {
-  width: 250px !important;  
-  height: 240px !important;   
+.doughnut-container, .bar-container, .chart canvas {
+  width: 250px !important;
+  height: 240px !important;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.chart canvas {
-  width: 250px !important;  
-  height: 240px !important;  
-}
-
-.chart,h3 {
-  font-size: 12px;  
-   color: #003f5c;  
+ 
+.chart h3 {
+  font-size: 1.5rem; /* حجم أفضل للعنوان */
+  color: #0c4c6a;
   text-align: center;
-  align-items: center; 
- }
- h3{
   margin-top: 20px;
- }
+}
+ 
 
  
 
 
 
-@media (prefers-reduced-motion: no-preference) {
-  .map-logo {
-    animation: rotateLogo infinite 20s linear;
+@media (max-width: 768px) {
+  .charts {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .chart {
+    width: 100%;
+    height: auto;
+    padding: 20px;
   }
 }
 
-@keyframes rotateLogo {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .text-center {
   color: #003f5c;
