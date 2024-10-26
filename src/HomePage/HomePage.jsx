@@ -25,9 +25,10 @@ const HomePage = () => {
         display: true,
         position: "left",
         labels: {
-          boxWidth: 20,
-          padding: 25,
+          boxWidth: 10,
+          padding: 15,
         },
+        
       },
     },
     cutout: "60%", 
@@ -38,8 +39,8 @@ const HomePage = () => {
     datasets: [
       {
         data: [10, 20, 15, 8, 12, 18, 17],
-        backgroundColor: ["#1E3A8A", "#3B82F6", "#60A5FA", "#93C5FD", "#BFDBFE", "#DBEAFE", "#EFF6FF"], // تدرجات زرقاء حيوية
-        borderWidth: 0,
+        backgroundColor: ["#003f5c", "#2f4b7c", "#43618b", "#5a7091", "#6f87a1", "#8baac4", "#9cc3de"],       
+         borderWidth: 0,
       },
     ],
   };
@@ -50,8 +51,7 @@ const HomePage = () => {
       {
         label: "Culture Comparison",
         data: [600, 550, 350],
-        backgroundColor: ["#1E40AF", "#3B82F6", "#60A5FA"],
-      },
+        backgroundColor: ["#003f5c", "#2f4b7c", "#43618b"],      },
     ],
   };
   
@@ -73,8 +73,8 @@ const HomePage = () => {
     datasets: [
       {
         data: [50, 60, 40],
-        backgroundColor: ["#1E40AF", "#3B82F6", "#60A5FA"], 
-        borderWidth: 1,
+        backgroundColor: ["#003f5c", "#2f4b7c", "#43618b"],
+                borderWidth: 1,
       },
     ],
   };
