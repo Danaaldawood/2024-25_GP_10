@@ -15,7 +15,7 @@ const Fpage = () => {
       {/* Header */}
       <header className="header">
       <Helmet>
-      <title>Welcome Page</title>
+      <title>CultureLens</title>
       <meta name="description" content="This is the Welcome Page of may website" />
     </Helmet>
         <div className="header-left">
