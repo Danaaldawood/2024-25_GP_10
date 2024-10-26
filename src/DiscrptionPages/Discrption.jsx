@@ -14,6 +14,7 @@ import ball from "../images/Group6.png";
 import about from "../images/aboutdata.png";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { Helmet } from 'react-helmet';
 
 const Discrption = () => {
   const navigate = useNavigate();
@@ -24,6 +25,10 @@ const Discrption = () => {
   return (
     <div className="descrptionpage">
       <Header />
+      <Helmet>
+          <title>CultureLens</title>
+          <meta name="description" content="This is Cultural Values page" />
+        </Helmet>
       <main>
       
         <section id="CoreDimintion">
