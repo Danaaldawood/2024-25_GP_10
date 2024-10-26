@@ -20,9 +20,9 @@ export function RealtimeData() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [userRegion, setUserRegion] = useState("");
   const [filterTopic, setFilterTopic] = useState("");
+  const [hoveredRow, setHoveredRow] = useState(null); // Track hovered row for tooltip
 
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const fetchUserRegion = async () => {
@@ -71,31 +71,14 @@ export function RealtimeData() {
   const handleRegionChange = (e) => setFilterRegion(e.target.value);
 
   const handleSearchChange = (e) => {
-    const searchValue = e.target.value;
-    setSearchTerm(searchValue);
-
-    const matchedRow = tableData.find(
-      (row) =>
-        (row.en_question &&
-          row.en_question.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (row.topic &&
-          row.topic.toLowerCase().includes(searchValue.toLowerCase()))
-    );
-
-    if (matchedRow) {
-      setFilterTopic(matchedRow.topic);
-    } else {
-      setFilterTopic("");
-    }
+    setSearchTerm(e.target.value);
   };
 
   const handleTopicChange = (e) => {
     const selectedTopic = e.target.value;
     setSearchTerm("");
     setFilterTopic(
-      selectedTopic === "Holiday"
-        ? "Holidays/Celebration/Leisure"
-        : selectedTopic
+      selectedTopic === "Holiday" ? "Holidays/Celebration/Leisure" : selectedTopic
     );
   };
 
@@ -269,33 +252,29 @@ export function RealtimeData() {
                     {row.topic}
                   </td>
                   <td>Variation</td>
-                  <td>
+                  <td
+                    onMouseEnter={() => setHoveredRow(row.id)}
+                    onMouseLeave={() => setHoveredRow(null)}
+                    style={{ position: "relative" }}
+                  >
                     <button
                       onClick={() => handleEditClick(row)}
-                      className={`edit-button ${
-                        row.region_name !== userRegion
-                          ? "disabled-edit-button"
-                          : ""
-                      }`}
+                      className="edit-button"
                       style={{
                         backgroundColor:
-                          row.region_name === userRegion
-                            ? "#10a37f"
-                            : "#d3d3d3",
+                          row.region_name === userRegion ? "#10a37f" : "#d3d3d3",
                         cursor:
-                          row.region_name === userRegion
-                            ? "pointer"
-                            : "not-allowed",
+                          row.region_name === userRegion ? "pointer" : "not-allowed",
                       }}
                       disabled={row.region_name !== userRegion}
-                      title={
-                        row.region_name !== userRegion
-                          ? "You don't belong to this region"
-                          : ""
-                      }
                     >
                       Edit
                     </button>
+                    {row.region_name !== userRegion && hoveredRow === row.id && (
+                      <div className="custom-tooltip">
+                        You don't belong to this region
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}

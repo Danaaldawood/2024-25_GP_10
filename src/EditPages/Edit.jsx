@@ -126,7 +126,22 @@ export const EditCultureValue = () => {
               className={showError ? "newvalue-error-placeholder" : ""}
             />
           </div>
-
+          <div className="edit-input">
+  <label className="label">Reason:</label>
+  <select
+    id="reason"
+    name="reason"
+    value={itemData.reason}
+    onChange={(e) => handleInputChange(e)}
+    className={showError ? "reason-error-placeholder" : ""}
+  >
+    <option value="" disabled>
+      {showError ? "Please enter a reason" : "Select your reason"}
+    </option>
+    <option value="variance">Variance</option>
+    <option value="subculture">Subculture</option>
+  </select>
+</div>
           <div className="edit-input">
             <label className="label">Region:</label>
             <input
