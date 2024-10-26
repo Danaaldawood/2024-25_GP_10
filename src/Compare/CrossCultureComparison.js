@@ -3,14 +3,11 @@ import "./CrossCultureComparison.css";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 const CrossCultureComparison = () => {
-  const [cultureRegion, setCultureRegion] = useState("");
-  const [topic, setTopic] = useState("");
-  const [cultureRegionPlaceholder, setCultureRegionPlaceholder] =
-    useState("Select a Region");
-  const [topicPlaceholder, setTopicPlaceholder] = useState("Select a Topic");
+  const [selectedRegions, setSelectedRegions] = useState([]);
+  const [selectedTopics, setSelectedTopics] = useState([]);
   const [hasError, setHasError] = useState(false);
 
   const navigate = useNavigate();
@@ -20,41 +17,47 @@ const CrossCultureComparison = () => {
 
     let error = false;
 
-    if (!cultureRegion) {
-      setCultureRegionPlaceholder("Please select a Region");
+    if (selectedRegions.length === 0 || selectedTopics.length === 0) {
       error = true;
+      setHasError(true);
     } else {
-      setCultureRegionPlaceholder("Select a Region");
+      setHasError(false);
     }
-
-    if (!topic) {
-      setTopicPlaceholder("Please select a Topic");
-      error = true;
-    } else {
-      setTopicPlaceholder("Select a Topic");
-    }
-
-    setHasError(error);
 
     if (error) return;
 
     navigate("/compare-result", {
-      state: { cultureRegion: cultureRegion, topic: topic },
+      state: { cultureRegion: selectedRegions, topic: selectedTopics },
     });
   };
 
-  return (
+  const handleRegionChange = (e) => {
+    const { value } = e.target;
+    setSelectedRegions((prevRegions) =>
+      prevRegions.includes(value)
+        ? prevRegions.filter((region) => region !== value)
+        : [...prevRegions, value]
+    );
+  };
 
+  const handleTopicChange = (e) => {
+    const { value } = e.target;
+    setSelectedTopics((prevTopics) =>
+      prevTopics.includes(value)
+        ? prevTopics.filter((topic) => topic !== value)
+        : [...prevTopics, value]
+    );
+  };
+
+  return (
     <div className="comparison-container">
       <Helmet>
-  <title>Compare Page</title>
-  <meta name="description" content="This is the Cross Culture Comparison" />
-</Helmet>  
+        <title>Compare Page</title>
+        <meta name="description" content="This is the Cross Culture Comparison" />
+      </Helmet>  
 
-      {/* Header */}
       <Header />
 
-      {/* Form Section */}
       <div className="Compare-form-container">
         <header className="Compare-form-header">
           <div className="Compare-underline"></div>
@@ -62,59 +65,118 @@ const CrossCultureComparison = () => {
         <div className="Compare-inputs">
           <div className="Compare-text">Cross-Cultural Comparison</div>
 
+          {/* Region Selection with Checkboxes */}
           <div className="Compare-input">
-            <label className="Compare-label">Region:</label>
-            <select
-              name="cultureRegion"
-              id="cultureRegion"
-              className={`Compare-cultureRegion ${
-                hasError && !cultureRegion ? "error" : ""
-              }`}
-              value={cultureRegion}
-              onChange={(e) => setCultureRegion(e.target.value)}
-              required
-            >
-              <option value="" disabled>
-                {cultureRegionPlaceholder}
-              </option>
-              <option value="Arab">Arab</option>
-              <option value="Western">Western</option>
-              <option value="Chinese">Chinese</option>
-            </select>
+            <label className="Compare-label">Regions:</label>
+            <div className={`Compare-cultureRegion ${hasError && selectedRegions.length === 0 ? "error" : ""}`}>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Arab"
+                  checked={selectedRegions.includes("Arab")}
+                  onChange={handleRegionChange}
+                />
+                Arab
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Western"
+                  checked={selectedRegions.includes("Western")}
+                  onChange={handleRegionChange}
+                />
+                Western
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Chinese"
+                  checked={selectedRegions.includes("Chinese")}
+                  onChange={handleRegionChange}
+                />
+                Chinese
+              </label>
+            </div>
           </div>
+
+          {/* Topic Selection with Checkboxes */}
           <div className="Compare-input">
-            <label className="Compare-label">Topic:</label>
-            <select
-              name="topic"
-              id="topic"
-              className={`Compare-topic ${hasError && !topic ? "error" : ""}`}
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-              required
-            >
-              <option value="" disabled>
-                {topicPlaceholder}
-              </option>
-              <option value="Food">Food</option>
-              <option value="Sport">Sport</option>
-              <option value="Family">Family</option>
-              <option value="Holiday">Holiday</option>
-              <option value="Work-life">Work-life</option>
-              <option value="Education">Education</option>
-              <option value="Greeting">Greeting</option>
-            </select>
+            <label className="Compare-label">Topics:</label>
+            <div className={`Compare-topicRegion ${hasError && selectedTopics.length === 0 ? "error" : ""}`}>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Food"
+                  checked={selectedTopics.includes("Food")}
+                  onChange={handleTopicChange}
+                />
+                Food
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Sport"
+                  checked={selectedTopics.includes("Sport")}
+                  onChange={handleTopicChange}
+                />
+                Sport
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Family"
+                  checked={selectedTopics.includes("Family")}
+                  onChange={handleTopicChange}
+                />
+                Family
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Holiday"
+                  checked={selectedTopics.includes("Holiday")}
+                  onChange={handleTopicChange}
+                />
+                Holiday
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Work-life"
+                  checked={selectedTopics.includes("Work-life")}
+                  onChange={handleTopicChange}
+                />
+                Work-life
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Education"
+                  checked={selectedTopics.includes("Education")}
+                  onChange={handleTopicChange}
+                />
+                Education
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="Greeting"
+                  checked={selectedTopics.includes("Greeting")}
+                  onChange={handleTopicChange}
+                />
+                Greeting
+              </label>
+            </div>
           </div>
         </div>
 
         <div className="Compare-submit-container">
           <div className="Compare-submit">
             <button onClick={handleCompareClick}>Compare</button>
-            
           </div>
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
