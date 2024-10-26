@@ -5,7 +5,7 @@ import './ResetPassword.css';
 import LOGO from '../images/Logo.png';
 import '../Register/Pop-Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash ,faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet';
 
 
@@ -89,7 +89,7 @@ export const ResetPassword = () => {
       
       {showSuccess && (
         <div className="success-popup">
-          <h3 className="success-title">Success!</h3>
+          <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
           <p className="success-message">Password updated successfully!</p>
           <div className="success-actions">
             
