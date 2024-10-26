@@ -5,28 +5,21 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from 'react-helmet';
 
-
 export const ConversationLayout = () => {
   const navigate = useNavigate();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [inputMessage, setInputMessage] = useState("");
   const [messages, setMessages] = useState([
     { type: "ai", content: "Hello, how can I assist you today?" },
-    {
-      type: "user",
-      content: "What is the most popular fruit in the Arab region?",
-    },
+    { type: "user", content: "What is the most popular fruit in the Arab region?" },
     { type: "ai", content: "Kiwi" },
-    {
-      type: "user",
-      content: "Apple is the most popular fruit in the Arab",
-    },
-    
+    { type: "user", content: "Apple is the most popular fruit in the Arab" },
   ]);
-  const [dimensionPlaceholder, setDimensionPlaceholder] =
-    useState("Select a question");
+
+  const [dimensionPlaceholder, setDimensionPlaceholder] = useState("Select a question");
   const [hasError, setHasError] = useState(false);
 
   const handleEditClick = () => {
@@ -47,27 +40,28 @@ export const ConversationLayout = () => {
     }
   };
 
+  // Function to update the input message on each keystroke
   const handleInputChange = (e) => {
     setInputMessage(e.target.value);
   };
 
+  // Function to add user's message to conversation and trigger an AI response
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
       setMessages([...messages, { type: "user", content: inputMessage }]);
-      setInputMessage("");
+      setInputMessage(""); 
 
+      // AI response simulated with a delay
       setTimeout(() => {
         setMessages((prevMessages) => [
           ...prevMessages,
-          {
-            type: "ai",
-            content: "I received your message. How can I help you further?",
-          },
+          { type: "ai", content: "I received your message. How can I help you further?" },
         ]);
       }, 1000);
     }
   };
 
+  // Allows sending a message with the Enter key
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSendMessage();
@@ -80,9 +74,8 @@ export const ConversationLayout = () => {
       setHasError(true);
       return;
     }
-
-    setIsModalOpen(false);
-    setIsConfirmationModalOpen(true);
+    setIsModalOpen(false); 
+    setIsConfirmationModalOpen(true); 
   };
 
   const handleConfirmAddToDataset = () => {
@@ -110,24 +103,26 @@ export const ConversationLayout = () => {
   return (
     <div className="freestylepage">
        <Helmet>
-      <title>Free style chatting</title>
-      <meta name="description" content="Free style chatting page" />
-    </Helmet>
+         <title>Free style chatting</title>
+         <meta name="description" content="Free style chatting page" />
+       </Helmet>
+
+       {/* Header */}
       <div className="freestyle-page-header">
-        <button
-          className="freestyle-back-btn"
-          onClick={() => navigate("/plot")}
-        >
+        <button className="freestyle-back-btn" onClick={() => navigate("/plot")}>
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
       </div>
 
+      {/* Main conversation container */}
       <div className="conversation-container">
+        {/* Header for conversation */}
         <div className="conversation-header">
           <h2 className="conversation-title">Baseline Model</h2>
           <div className="freestyle-title-underline"></div>
         </div>
 
+        {/* Message list displaying each message */}
         <div className="freestyle-message-list">
           {messages.map((message, index) => (
             <div key={index} className={`message ${message.type}-message`}>
@@ -136,6 +131,7 @@ export const ConversationLayout = () => {
           ))}
         </div>
 
+        {/* Input field and send button for user messages */}
         <div className="freestyle-input-container">
           <input
             type="text"
@@ -150,117 +146,61 @@ export const ConversationLayout = () => {
           </button>
         </div>
 
+        {/* Buttons for editing dataset and ending the conversation */}
         <div className="freestyle-button-container">
-          <button
-            className="freestyle-edit-dataset-button"
-            onClick={handleEditClick}
-          >
+          <button className="freestyle-edit-dataset-button" onClick={handleEditClick}>
             Edit Dataset
           </button>
-
-          <button
-            className="freestyle-end-conversation-button"
-            onClick={handleEndConversation}
-          >
+          <button className="freestyle-end-conversation-button" onClick={handleEndConversation}>
             End Conversation
           </button>
         </div>
 
+        {/* Modal for question selection*/}
         {isModalOpen && (
           <div className="freestyle-modal-overlay">
             <div className="freestyle-modal-content">
-              <h3 className="freestyle-modal-title">
-                What question do you want to add to the dataset?
-              </h3>
+              <h3 className="freestyle-modal-title">What question do you want to add to the dataset?</h3>
               <div className="freestyle-select-container">
                 <select
                   value={selectedQuestion || ""}
                   onChange={handleQuestionSelect}
-                  className={`freestyle-question-select ${
-                    hasError ? "error" : ""
-                  }`}
+                  className={`freestyle-question-select ${hasError ? "error" : ""}`}
                 >
-                  <option value="" disabled>
-                    {dimensionPlaceholder}
-                  </option>
-                  <option value="q1">
-                    Q1: What is a common snack for preschool kids in the Arab
-                    region?
-                  </option>
-                  <option value="q2">
-                    Q2: What is the most popular fruit in the Arab region?
-                  </option>
-                  <option value="q3">
-                    Q3: What is the traditional meal during holidays in the Arab
-                    region?
-                  </option>
-                  <option value="q4">
-                    Q4: What are the traditional breakfast foods in the Arab
-                    region?
-                  </option>
-                  <option value="q5">
-                    Q5: What is the most popular dish served at weddings in the
-                    Arab region?
-                  </option>
-                  <option value="q6">
-                    Q6: What is the typical food served during Ramadan in the
-                    Arab region?
-                  </option>
-                  <option value="q7">
-                    Q7: What are the staple foods in the daily diet of people in
-                    the Arab region?
-                  </option>
+                  <option value="" disabled>{dimensionPlaceholder}</option>
+                  <option value="q1">Q1: What is a common snack for preschool kids in the Arab region?</option>
+                  <option value="q2">Q2: What is the most popular fruit in the Arab region?</option>
+                  <option value="q3">Q3: What is the traditional meal during holidays in the Arab region?</option>
+                  <option value="q4">Q4: What are the traditional breakfast foods in the Arab region?</option>
+                  <option value="q5">Q5: What is the most popular dish served at weddings in the Arab region?</option>
+                  <option value="q6">Q6: What is the typical food served during Ramadan in the Arab region?</option>
+                  <option value="q7">Q7: What are the staple foods in the daily diet of people in the Arab region?</option>
                 </select>
               </div>
               <div className="freestyle-modal-buttons">
-                <button
-                  className="freestyle-add-dataset-button"
-                  onClick={handleAddToDataset}
-                >
-                  Add to Dataset
-                </button>
-                <button
-                  className="freestyle-cancel-button"
-                  onClick={handleCloseModal}
-                >
-                  Cancel
-                </button>
+                <button className="freestyle-add-dataset-button" onClick={handleAddToDataset}>Add to Dataset</button>
+                <button className="freestyle-cancel-button" onClick={handleCloseModal}>Cancel</button>
               </div>
             </div>
           </div>
         )}
 
+        {/* Confirmation modal to adding question to dataset */}
         {isConfirmationModalOpen && (
           <div className="freestyle-modal-overlay">
             <div className="freestyle-modal-content">
-              <h3 className="freestyle-modal-title">
-                Confirm Adding to Dataset
-              </h3>
-              <p>
-                Are you sure you want to add the following question to the
-                dataset?
-              </p>
-              <p className="freestyle-selected-question">
-                {getQuestionText(selectedQuestion)} and the value is Apple
-              </p>
+              <h3 className="freestyle-modal-title">Confirm Adding to Dataset</h3>
+              <p>Are you sure you want to add the following question to the dataset?</p>
+              <p className="freestyle-selected-question">{getQuestionText(selectedQuestion)} and the value is Apple</p>
               <div className="freestyle-modal-buttons">
-                <button
-                  className="freestyle-confirm-button"
-                  onClick={handleConfirmAddToDataset}
-                >
-                  Confirm
-                </button>
-                <button
-                  className="freestyle-cancel-button"
-                  onClick={() => setIsConfirmationModalOpen(false)}
-                >
-                  Cancel
-                </button>
+                <button className="freestyle-confirm-button" onClick={handleConfirmAddToDataset}>Confirm</button>
+                <button className="freestyle-cancel-button" onClick={() => setIsConfirmationModalOpen(false)}>Cancel</button>
               </div>
             </div>
           </div>
         )}
       </div>
+      {/* Footer */}
       <Footer />
     </div>
   );

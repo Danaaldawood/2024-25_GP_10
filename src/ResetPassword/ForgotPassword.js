@@ -86,12 +86,7 @@ export function ForgotPassword() {
           <h3 className="success-title">Success!</h3>
           <p className="success-message">Password reset email sent! Please check your inbox.</p>
           <div className="success-actions">
-            <button className="Continue-btn" onClick={() => {
-              setShowSuccess(false);
-              navigate("/");
-            }}>
-              Continue
-            </button>
+           
           </div>
         </div>
       )}
