@@ -5,15 +5,16 @@ import { realtimeDb } from '../Register/firebase';
 import "./Edit.css";
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; 
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const EditCultureValue = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     if (!location.state) {
@@ -28,6 +29,7 @@ export const EditCultureValue = () => {
     value: location.state?.selectedValue || "",
     region: location.state?.region || localStorage.getItem('region') || "",
     allValues: location.state?.allValues || [],
+    newvalue: "",
   });
 
   const handleInputChange = (e) => {
@@ -36,14 +38,14 @@ export const EditCultureValue = () => {
       ...prevState,
       [name]: value,
     }));
+    if (name === 'newvalue' && value.length > 0) {
+      setShowError(false);
+    }
   };
 
   const handleEditClick = async () => {
-    const valueSelect = document.getElementById('value');
-    valueSelect.classList.remove('error');
-
-    if (!itemData.value) {
-      valueSelect.classList.add('error');
+    if (!itemData.newvalue) {
+      setShowError(true);
       return;
     }
 
@@ -52,6 +54,7 @@ export const EditCultureValue = () => {
       await update(itemRef, {
         value: itemData.value,
         region: itemData.region,
+        newvalue: itemData.newvalue,
       });
       
       setShowSuccess(true);
@@ -79,13 +82,9 @@ export const EditCultureValue = () => {
           <div className="underline"></div>
         </div>
         <div className="edit-inputs">
-                    {/* Display attribute */}
-
           <div className="edit-input attribute-container">
             <div className="attribute-display">{itemData.attribute}</div>
           </div>
-
-          {/* Topic field */}
 
           <div className="edit-input">
             <label className="label">Topic:</label>
@@ -98,7 +97,6 @@ export const EditCultureValue = () => {
             />
           </div>
 
-          {/* Value field */}
           <div className="edit-input">
             <label className="label">Value:</label>
             <select
@@ -106,10 +104,8 @@ export const EditCultureValue = () => {
               name="value"
               value={itemData.value}
               onChange={handleInputChange}
-              required
-              className={itemData.value ? '' : 'error'}
             >
-              <option value="">Select a value</option>
+              <option value="" disabled>Select a value</option>
               {itemData.allValues.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -118,19 +114,19 @@ export const EditCultureValue = () => {
             </select>
           </div>
 
-          {/* New value field */}
           <div className="edit-input">
-            <label className="label">New value:</label>
+            <label className="label">New Value:</label>
             <input
               type="text"
               id="newvalue"
               name="newvalue"
-              placeholder="Enter value"
-            
+              value={itemData.newvalue}
+              onChange={handleInputChange}
+              placeholder={showError ? "Please enter a new value" : "Enter a new value"}
+              className={showError ? "newvalue-error-placeholder" : ""}
             />
           </div>
 
-          {/* Region field */}
           <div className="edit-input">
             <label className="label">Region:</label>
             <input
@@ -148,7 +144,6 @@ export const EditCultureValue = () => {
           </div>
         </div>
 
-        {/* Success popup message */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />

@@ -109,6 +109,8 @@
   width: 100%;
   overflow-x: auto;
   margin-bottom: 1rem;
+    overflow: visible;  /* Allow tooltips to overflow */
+
 }
 
 tbody tr:nth-child(even) {
@@ -196,4 +198,38 @@ tbody td select {
 .edit-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+.disabled-edit-button {
+  position: relative;
+}
+
+.disabled-edit-button:hover::before {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  margin-bottom: 5px;
+  z-index: 1000;
+}
+
+.disabled-edit-button:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  pointer-events: none;
+  margin-bottom: -5px;
+  z-index: 300000;
 }
