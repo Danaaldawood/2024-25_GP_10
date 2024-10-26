@@ -6,6 +6,8 @@ import LOGO from '../images/Logo.png';
 import '../Register/Pop-Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet';
+
 
 export const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -71,6 +73,10 @@ export const ResetPassword = () => {
 
   return (
     <div className="reset-password-page">
+      <Helmet>
+      <title>Rest Password</title>
+      <meta name="description" content="Rest Password page" />
+    </Helmet>
       {error && (
         <div className="error-popup">
           <h3 className="error-title">Warning!</h3>
@@ -86,12 +92,7 @@ export const ResetPassword = () => {
           <h3 className="success-title">Success!</h3>
           <p className="success-message">Password updated successfully!</p>
           <div className="success-actions">
-            <button className="Continue-btn" onClick={() => {
-              setShowSuccess(false);
-              navigate('/');
-            }}>
-              Continue
-            </button>
+            
           </div>
         </div>
       )}

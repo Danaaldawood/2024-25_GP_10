@@ -6,6 +6,8 @@ import { collection, query, getDocs } from "firebase/firestore";
 import './ForgotPassword.css';
 import LOGO from '../images/Logo.png';
 import '../Register/Pop-Message.css'
+import { Helmet } from 'react-helmet';
+
 
 export function ForgotPassword() {
   const navigate = useNavigate();
@@ -71,6 +73,10 @@ export function ForgotPassword() {
 
   return (
     <div className="forgot-password-page">
+      <Helmet>
+      <title>Forgot Password</title>
+      <meta name="description" content="Forgot Password page" />
+    </Helmet>
       {error && (
         <div className="error-popup">
           <h3 className="error-title">Warning!</h3>
