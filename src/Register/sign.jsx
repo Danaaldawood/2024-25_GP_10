@@ -18,7 +18,8 @@ const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
-   const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("");
+  const [regionM, setRegionM] = useState("");
   const [country, setCountry] = useState("");
   const [userType, setUserType] = useState('User');
   const [showSuccess, setShowSuccess] = useState(false);
@@ -73,7 +74,8 @@ const Sign = () => {
         : {
             Moderator_Id: user.uid,
             email: user.email,
-            fullName: fname
+            fullName: fname,
+            regionM:regionM
           };
           await setDoc(doc(db, collectionPath, user.uid), userData);
           setShowSuccess(true);
@@ -284,37 +286,59 @@ const Sign = () => {
 </>
             )}
 
-    {/* Password for Moderator */}
 {userType === 'Moderator' && (
-  <div>
-    {/* Password */}
-    <label className="Login-label" htmlFor="password">Password:</label>
-    <div className="password-container">
-      <input
-        type={showPassword ? "text" : "password"}
-        id="password"
-        placeholder="Enter your password"
-        className="Login-input"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <span onClick={togglePasswordVisibility} className="password-icon">
-        <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-      </span>
+  <>
+    <div>
+      {/* Password */}
+      <label className="Login-label" htmlFor="password">Password:</label>
+      <div className="password-container">
+        <input
+          type={showPassword ? "text" : "password"}
+          id="password"
+          placeholder="Enter your password"
+          className="Login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <span onClick={togglePasswordVisibility} className="password-icon">
+          <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+        </span>
+      </div>
+      <ul className="password-requirements">
+        <li className={isMinCharacters ? 'valid' : 'invalid'}>
+          ✔ Password should be at least 8 characters.
+        </li>
+        <li className={hasUppercase ? 'valid' : 'invalid'}>
+          ✔ Contain at least one uppercase letter.
+        </li>
+        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+          ✔ Contain at least one special character.
+        </li>
+      </ul>
     </div>
-    <ul className="password-requirements">
-      <li className={isMinCharacters ? 'valid' : 'invalid'}>
-        ✔ Password should be at least 8 characters.
-      </li>
-      <li className={hasUppercase ? 'valid' : 'invalid'}>
-        ✔ Contain at least one uppercase letter.
-      </li>
-      <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-        ✔ Contain at least one special character.
-      </li>
-    </ul>
-  </div>
+    <div>
+      <fieldset className="sign-culture-domain">
+        <legend>Region:</legend>
+        <div className="sign-culture-options">
+          <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)} required />
+          <label htmlFor="Arab">Arab</label>
+        </div>
+        <div className="sign-culture-options">
+          <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)} required />
+          <label htmlFor="Western">Western</label>
+        </div>
+        <div className="sign-culture-options">
+          <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)} required />
+          <label htmlFor="Chinese">Chinese</label>
+        </div>
+        <div className="sign-culture-options">
+          <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)} required />
+          <label htmlFor="Other">Other</label>
+        </div>
+      </fieldset>
+    </div>
+  </>
 )}
 
 
@@ -325,7 +349,7 @@ const Sign = () => {
             </button>
             <div className="sign-login">
               <p style={{ fontSize: '15px' }}>
-                Already have an account? <Link to="/Login" className="sign-link">Login</Link>
+                Already have an account? <Link to="/Login" className="sign-link">Log-in</Link>
               </p>
             </div>
           </form>

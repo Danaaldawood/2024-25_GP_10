@@ -62,7 +62,7 @@ const SignOutConfirmation = ({ onConfirm, onCancel }) => {
       </div>
 
       <div style={modalBodyStyles}>
-        <p>Are you sure you want to sign out?</p> 
+        <p>Are you sure you want to Log out?</p> 
         <div style={buttonContainerStyles}>
           <button style={confirmButtonStyles} onClick={onConfirm}>Confirm</button>
           <button style={cancelButtonStyles} onClick={onCancel}>Cancel</button>

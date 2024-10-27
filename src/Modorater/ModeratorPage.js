@@ -57,7 +57,7 @@ const ModeratorPage = () => {
         {menuOpen && (
           <div className="menu-dropdown">
             <p onClick={handleProfileClick}>Profile</p>
-            <p onClick={handleSignOut} className="sign-out">Sign out</p>
+            <p onClick={handleSignOut} className="sign-out">Log out</p>
           </div>
         )}
       </header>
