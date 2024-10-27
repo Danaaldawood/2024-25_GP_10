@@ -1,36 +1,33 @@
+/* Main Container */
 .moderator-container {
-    min-height: 100vh; 
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; 
-    justify-content: flex-start; 
+    flex-direction: column;
     font-family: Arial, sans-serif;
 }
 
-
-
-/* Header banner with title */
+/* Header Styling */
 .header-banner {
-    width: 100%; 
+    width: 100%;
     text-align: center;
-    background-color: #2b5a77; 
+    background-color: #2b5a77;
     color: white;
-    padding: 20px 0; 
-    margin: 20px 0 10px; 
+    padding: 20px 0;
+    margin: 20px 0 10px;
     border-radius: 10px;
 }
 
 .header-banner h1 {
     margin: 0;
     font-size: 28px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
 
-/* Toggle buttons */
+/* Toggle Buttons */
 .toggle-buttons {
     display: flex;
     justify-content: center;
-    margin: 10px 0; 
+    margin: 10px 0;
 }
 
 .toggle-buttons button {
@@ -41,7 +38,6 @@
     color: white;
     cursor: pointer;
     font-size: 16px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 4px;
 }
 
@@ -56,13 +52,12 @@
 /* Page Name Styling */
 .pagename {
     text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
-    color:  #072040;
+    color: #072040;
     margin: 20px 0;
 }
 
-/* Table styling */
+/* Table Styling */
 .table-container {
     margin-top: 30px;
     text-align: center;
@@ -72,22 +67,20 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 16px;
-    margin: 0 auto; 
-    max-width: 1200px; 
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-bottom: 20px; 
 }
 
 .styled-table th, .styled-table td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .styled-table th {
-    background-color: #2b5a77; 
+    background-color: #2b5a77;
     color: white;
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
 
@@ -99,34 +92,62 @@
     background-color: #eaeaea;
 }
 
-/* Pagination */
-.pagination {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+/* Notifications Container */
+.notifications-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px; 
 }
 
-.pagination-btn {
-    margin: 15px;
-    padding: 10px;
-    background-color: #7290B0;
+/* Dismiss All Button Positioning */
+.dismiss-all-container {
+    text-align: left;
+    margin: 10px 0 20px;
+    padding-left: 30px; 
+}
+
+.dismiss-all-btn {
+    background-color: #dc172b;
     color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.pagination-btn.active {
-    background-color: #072040;
+.dismiss-all-btn:hover {
+    background-color: #b01523; 
 }
 
-.pagination-btn:hover {
-    background-color: #072040;
+/* Delete Button Styling */
+.delete-btn {
+    background-color: #dc172b;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-/* Notifications container */
-.notifications-container {
-    text-align: center;
-    margin-top: 30px;
+.delete-btn:hover {
+    background-color: #b01523; 
 }
 
+/* Status Dropdown Styling */
+.status-select {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Status-Specific Colors */
+.status-select.in-progress {
+    color: #FFA500;
+}
+
+.status-select.done {
+    color: #32CD32;
+}
+
+.status-select.dismissed {
+    color: #dc172b;
+}

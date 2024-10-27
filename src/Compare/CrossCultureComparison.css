@@ -44,9 +44,8 @@
     color: #333;
 }
 
-/* Common styling for both regions and topics checkboxes */
-.Compare-cultureRegion,
-.Compare-topicRegion {
+/* Region checkboxes styling */
+.Compare-cultureRegion {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -57,8 +56,7 @@
     transition: border 0.3s ease;
 }
 
-.Compare-cultureRegion label,
-.Compare-topicRegion label {
+.Compare-cultureRegion label {
     display: flex;
     align-items: center;
     font-size: 15px;
@@ -66,8 +64,8 @@
     gap: 8px;
 }
 
-.Compare-cultureRegion input[type="checkbox"],
-.Compare-topicRegion input[type="checkbox"] {
+/* Checkbox with green check styling */
+.Compare-cultureRegion input[type="checkbox"] {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -79,14 +77,12 @@
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.Compare-cultureRegion input[type="checkbox"]:checked,
-.Compare-topicRegion input[type="checkbox"]:checked {
+.Compare-cultureRegion input[type="checkbox"]:checked {
     background-color: #10a37f;
     border-color: #10a37f;
 }
 
-.Compare-cultureRegion input[type="checkbox"]:checked::after,
-.Compare-topicRegion input[type="checkbox"]:checked::after {
+.Compare-cultureRegion input[type="checkbox"]:checked::after {
     content: "✔";
     color: white;
     font-size: 14px;
@@ -94,6 +90,31 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* Topic single-choice dropdown styling */
+.Compare-topicRegion {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #333;
+    transition: border 0.3s ease;
+}
+
+.Compare-topicRegion.error {
+    border-color: red;
+}
+
+.Compare-topicRegion select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background-color: transparent;
 }
 
 .Compare-submit {

@@ -31,7 +31,7 @@ const CompareResult = () => {
       {/* Display Regions and Topic */}
       {cultureRegion && topic ? (
         <div className="comparison-info">
-          <p>Regions: <strong>{cultureRegion.join(', ')}</strong> | Topic: <strong>{topic.join(', ')}</strong></p>
+         <p>Regions: <strong>{cultureRegion.join(', ')}</strong> | Topic: <strong>{topic}</strong></p>
           <img src={resultImage} alt="Comparison Result" className="result-image" />
         </div>
       ) : (

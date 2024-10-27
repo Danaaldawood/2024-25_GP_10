@@ -3,11 +3,11 @@ import "./CrossCultureComparison.css";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
 const CrossCultureComparison = () => {
   const [selectedRegions, setSelectedRegions] = useState([]);
-  const [selectedTopics, setSelectedTopics] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState(""); // Single topic selection
   const [hasError, setHasError] = useState(false);
 
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const CrossCultureComparison = () => {
 
     let error = false;
 
-    if (selectedRegions.length === 0 || selectedTopics.length === 0) {
+    if (selectedRegions.length === 0 || selectedTopic === "") {
       error = true;
       setHasError(true);
     } else {
@@ -27,7 +27,7 @@ const CrossCultureComparison = () => {
     if (error) return;
 
     navigate("/compare-result", {
-      state: { cultureRegion: selectedRegions, topic: selectedTopics },
+      state: { cultureRegion: selectedRegions, topic: selectedTopic },
     });
   };
 
@@ -41,12 +41,7 @@ const CrossCultureComparison = () => {
   };
 
   const handleTopicChange = (e) => {
-    const { value } = e.target;
-    setSelectedTopics((prevTopics) =>
-      prevTopics.includes(value)
-        ? prevTopics.filter((topic) => topic !== value)
-        : [...prevTopics, value]
-    );
+    setSelectedTopic(e.target.value); // Set single topic
   };
 
   return (
@@ -99,74 +94,23 @@ const CrossCultureComparison = () => {
             </div>
           </div>
 
-          {/* Topic Selection with Checkboxes */}
+          {/* Topic Selection with Single-Choice Dropdown */}
           <div className="Compare-input">
             <label className="Compare-label">Topics:</label>
-            <div className={`Compare-topicRegion ${hasError && selectedTopics.length === 0 ? "error" : ""}`}>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Food"
-                  checked={selectedTopics.includes("Food")}
-                  onChange={handleTopicChange}
-                />
-                Food
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Sport"
-                  checked={selectedTopics.includes("Sport")}
-                  onChange={handleTopicChange}
-                />
-                Sport
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Family"
-                  checked={selectedTopics.includes("Family")}
-                  onChange={handleTopicChange}
-                />
-                Family
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Holiday"
-                  checked={selectedTopics.includes("Holiday")}
-                  onChange={handleTopicChange}
-                />
-                Holiday
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Work-life"
-                  checked={selectedTopics.includes("Work-life")}
-                  onChange={handleTopicChange}
-                />
-                Work-life
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Education"
-                  checked={selectedTopics.includes("Education")}
-                  onChange={handleTopicChange}
-                />
-                Education
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Greeting"
-                  checked={selectedTopics.includes("Greeting")}
-                  onChange={handleTopicChange}
-                />
-                Greeting
-              </label>
-            </div>
+            <select
+              value={selectedTopic}
+              onChange={handleTopicChange}
+              className={`Compare-topicRegion ${hasError && selectedTopic === "" ? "error" : ""}`}
+            >
+              <option value="" disabled>Select a topic</option>
+              <option value="Food">Food</option>
+              <option value="Sport">Sport</option>
+              <option value="Family">Family</option>
+              <option value="Holiday">Holiday</option>
+              <option value="Work-life">Work-life</option>
+              <option value="Education">Education</option>
+              <option value="Greeting">Greeting</option>
+            </select>
           </div>
         </div>
 
