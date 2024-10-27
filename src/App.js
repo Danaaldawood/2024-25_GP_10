@@ -18,6 +18,7 @@ import UserProfilePage from './userprofile/UserProfilePage';
 import { ToastContainer } from "react-toastify";
 import { ForgotPassword } from './ResetPassword/ForgotPassword';
 import { ResetPassword } from './ResetPassword/ResetPassword';
+import {Notifymodrator} from './Notifymodratorpages/Notifymodrator';
 
 function App() {
   const route = createBrowserRouter([
@@ -93,6 +94,12 @@ function App() {
       path: "/userprofile",  
       element: <UserProfilePage />,
     },
+
+    {
+      path: "/Notifymodrator",  
+      element: <Notifymodrator/>,
+    },
+
   ]);
 
   return (

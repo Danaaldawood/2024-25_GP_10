@@ -13,6 +13,7 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import "./View.css";
 
 export function RealtimeData() {
+
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
@@ -23,6 +24,13 @@ export function RealtimeData() {
   const [hoveredRow, setHoveredRow] = useState(null); // Track hovered row for tooltip
 
   const navigate = useNavigate();
+  
+  
+
+  const handleClick = () => {
+    navigate("/Notifymodrator");
+  };
+
 
   useEffect(() => {
     const fetchUserRegion = async () => {
@@ -153,11 +161,21 @@ export function RealtimeData() {
     <div className="viewpage">
       <Header />
       <div className="container mt-5">
+
+     
         <div className="notification-btn-container">
-          <button className="notification-btn">
+        
+          <button   type="button" onClick={handleClick}  className="notification-btn">
             Notify moderator {<NotificationsActiveIcon />}
           </button>
+         
+        
         </div>
+
+        
+       
+        
+        
 
         <section className="tabel_header">
           <h2 className="table-title">Cultures Data</h2>

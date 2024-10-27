@@ -26,7 +26,7 @@ const Discrption = () => {
     <div className="descrptionpage">
       <Header />
       <Helmet>
-          <title>CultureLens</title>
+          <title>Cultural Values</title>
           <meta name="description" content="This is Cultural Values page" />
         </Helmet>
       <main>
