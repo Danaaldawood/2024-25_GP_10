@@ -1,4 +1,3 @@
-//Import Page ,Package//
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Signin.css';
@@ -6,12 +5,12 @@ import LOGO from '../images/Logo.png';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import Flag from 'react-world-flags';
-import { createUserWithEmailAndPassword, validatePassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
 import './Pop-Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash ,faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet';
 
 const Sign = () => {
@@ -28,7 +27,7 @@ const Sign = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); 
   
-   const isMinCharacters = password.length >= 8;
+  const isMinCharacters = password.length >= 8;
   const hasUppercase = /[A-Z]/.test(password);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
   const isPasswordValid = isMinCharacters && hasUppercase && hasSpecialChar;
@@ -49,12 +48,16 @@ const Sign = () => {
       return;
     }
 
-     
-
-// Email validate  
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Email validate  
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    // Check if moderator selected "Other" region
+    if (userType === 'Moderator' && regionM === 'Other') {
+      setErrorMessage("We currently only accept moderators from Arab, Western, or Chinese regions.");
       return;
     }
   
@@ -68,14 +71,14 @@ const Sign = () => {
             User_Id: user.uid,
             email: user.email,
             fullName: fname,
-             region: region,  
+            region: region,  
             country: country && country.label && country.label.props ? country.label.props.children[1] : null
           }
         : {
             Moderator_Id: user.uid,
             email: user.email,
             fullName: fname,
-            regionM:regionM
+            regionM: regionM
           };
           await setDoc(doc(db, collectionPath, user.uid), userData);
           setShowSuccess(true);
@@ -111,253 +114,248 @@ const Sign = () => {
   }));
  
   return (
-       <div className="sign-page">
-        <Helmet>
-      <title>Create Account Page</title>
-      <meta name="description" content="This is the Create Account of My website" />
-    </Helmet>      
+    <div className="sign-page">
+      <Helmet>
+        <title>Create Account Page</title>
+        <meta name="description" content="This is the Create Account of My website" />
+      </Helmet>      
    
-        {errorMessage && (
-          <div className="error-popup">
-            <h3 className="error-title">Warning!</h3>
-            <p className="error-message">{errorMessage}</p>
-            <div className="error-actions">
-              <button className="confirm-btn" onClick={() => setErrorMessage("")}>Try again</button>
-            </div>
+      {errorMessage && (
+        <div className="error-popup">
+          <h3 className="error-title">Warning!</h3>
+          <p className="error-message">{errorMessage}</p>
+          <div className="error-actions">
+            <button className="confirm-btn" onClick={() => setErrorMessage("")}>Try again</button>
           </div>
-        )}
+        </div>
+      )}
         
-        {showSuccess && (
-  <div className="success-popup">
-    <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-    <p className="success-message">Your account has been created successfully.</p>
-  </div>
-)}
+      {showSuccess && (
+        <div className="success-popup">
+          <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+          <p className="success-message">Your account has been created successfully.</p>
+        </div>
+      )}
 
-        <div className="sign-container">
-          {/* Left Section */}
-          <div className="Left-section">
-            <div className="logo-welcome-container">
-              <img src={LOGO} alt="Logo" width="100" height="100" />
-              <h2>Welcome</h2>
-            </div>
-            <p className="Welcome-txt">To CultureLens! Let's explore cultural diversity together.</p>
+      <div className="sign-container">
+        {/* Left Section */}
+        <div className="Left-section">
+          <div className="logo-welcome-container">
+            <img src={LOGO} alt="Logo" width="100" height="100" />
+            <h2>Welcome</h2>
+          </div>
+          <p className="Welcome-txt">To CultureLens! Let's explore cultural diversity together.</p>
+        </div>
+
+        {/* Form Section */}
+        <form className="sign-form" onSubmit={handleRegister}>
+          <h2 className="sign-title">Create Account</h2>
+
+          {/* User Type Selection */}
+          <div className="sign-user-type-container">
+            <button 
+              type="button" 
+              className={`sign-user-type-btn ${userType === 'User' ? 'sign-active' : ''}`} 
+              onClick={() => handleUserTypeChange('User')}
+            >
+              User
+            </button>
+            <button 
+              type="button" 
+              className={`sign-user-type-btn ${userType === 'Moderator' ? 'sign-active' : ''}`} 
+              onClick={() => handleUserTypeChange('Moderator')}
+            >
+              Moderator
+            </button>
           </div>
 
-          {/* Form Section */}
-          <form className="sign-form" onSubmit={handleRegister}>
-            <h2 className="sign-title">Create Account</h2>
+          {/* Full Name */}
+          <label htmlFor="name" className="sign-label">Full Name:</label>
+          <input 
+            type="text" 
+            id="name" 
+            placeholder="Enter your full name"
+            className="sign-input"
+            value={fname}
+            onChange={(e) => setFname(e.target.value)}
+            required
+          />
 
-            {/* User Type Selection */}
-            <div className="sign-user-type-container">
-              <button 
-                type="button" 
-                className={`sign-user-type-btn ${userType === 'User' ? 'sign-active' : ''}`} 
-                onClick={() => handleUserTypeChange('User')}
-              >
-                User
-              </button>
-              <button 
-                type="button" 
-                className={`sign-user-type-btn ${userType === 'Moderator' ? 'sign-active' : ''}`} 
-                onClick={() => handleUserTypeChange('Moderator')}
-              >
-                Moderator
-              </button>
-            </div>
+          {/* Email */}
+          <label htmlFor="email" className="sign-label">Email Address:</label>
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="Enter your email address"
+            className="sign-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-            {/* Full Name */}
-            <label htmlFor="name" className="sign-label">Full Name:</label>
-            <input 
-              type="text" 
-              id="name" 
-              placeholder="Enter your full name"
-              className="sign-input"
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              required
-            />
+          {/* Additional Fields for User Type */}
+          {userType === 'User' && (
+            <>
+              <label className="sign-label">Country:</label>
+              <Select 
+                options={countryOptions} 
+                value={country}   
+                onChange={handleCountryChange}
+                placeholder="Select your country"
+                styles={{
+                  control: (styles, { isFocused }) => ({
+                    ...styles,
+                    width: '100%',
+                    height: '50px',
+                    borderRadius: '5px',
+                    fontSize: '13px',
+                    padding: '0',
+                    boxShadow: 'none',
+                    borderColor: isFocused ? '#004D60' : '#ddd',
+                    '&:hover': { borderColor: '#004D60' },
+                    marginBottom: '10px',
+                  }),
+                  valueContainer: (styles) => ({
+                    ...styles,
+                    padding: '10px',
+                  }),
+                  placeholder: (styles) => ({
+                    ...styles,
+                    fontSize: '13px',
+                  }),
+                  dropdownIndicator: (styles) => ({
+                    ...styles,
+                    padding: '0 8px',
+                  })
+                }}
+              />
 
-            {/* Email */}
-            <label htmlFor="email" className="sign-label">Email Address:</label>
-            <input 
-              type="email" 
-              id="email" 
-              placeholder="Enter your email address"
-              className="sign-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+              {/* Password */}
+              <div>
+                <label className="Login-label" htmlFor="password">Password:</label>
+                <div className="password-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Enter your password"
+                    className="Login-input"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span onClick={togglePasswordVisibility} className="password-icon">
+                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                  </span>
+                </div>
 
-            {/* Additional Fields for User Type */}
-            {userType === 'User' && (
-              <>
-                 
-                <label className="sign-label">Country:</label>
-                <Select 
-  options={countryOptions} 
-  value={country}   
-  onChange={handleCountryChange}
-  placeholder="Select your country"
-  styles={{
-    control: (styles, { isFocused }) => ({
-      ...styles,
-      width: '100%',
-      height: '50px',
-      borderRadius: '5px',
-      fontSize: '13px',
-      padding: '0',
-      boxShadow: 'none',
-      borderColor: isFocused ? '#004D60' : '#ddd',
-      '&:hover': { borderColor: '#004D60' },
-      marginBottom: '10px',
-    }),
-    valueContainer: (styles) => ({
-      ...styles,
-      padding: '10px',
-    }),
-    placeholder: (styles) => ({
-      ...styles,
-      fontSize: '13px',
-    }),
-    dropdownIndicator: (styles) => ({
-      ...styles,
-      padding: '0 8px',
-    })
-  }}
-/>
+                <ul className="password-requirements">
+                  <li className={isMinCharacters ? 'valid' : 'invalid'}>
+                    ✔ Password should be at least 8 characters.
+                  </li>
+                  <li className={hasUppercase ? 'valid' : 'invalid'}>
+                    ✔ Contain at least one uppercase letter.
+                  </li>
+                  <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+                    ✔ Contain at least one special character.
+                  </li>
+                </ul>
+              </div>
 
+              <fieldset className="sign-culture-domain">
+                <legend>Region:</legend>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
+                  <label htmlFor="Arab">Arab</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)} required />
+                  <label htmlFor="Western">Western</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)} required />
+                  <label htmlFor="Chinese">Chinese</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)} required />
+                  <label htmlFor="Other">Other</label>
+                </div>
+              </fieldset>
+            </>
+          )}
 
+          {userType === 'Moderator' && (
+            <>
+              <div>
+                <label className="Login-label" htmlFor="password">Password:</label>
+                <div className="password-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Enter your password"
+                    className="Login-input"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span onClick={togglePasswordVisibility} className="password-icon">
+                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                  </span>
+                </div>
 
+                <ul className="password-requirements">
+                  <li className={isMinCharacters ? 'valid' : 'invalid'}>
+                    ✔ Password should be at least 8 characters.
+                  </li>
+                  <li className={hasUppercase ? 'valid' : 'invalid'}>
+                    ✔ Contain at least one uppercase letter.
+                  </li>
+                  <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+                    ✔ Contain at least one special character.
+                  </li>
+                </ul>
+              </div>
 
+              <fieldset className="sign-culture-domain">
+                <legend>Region:</legend>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)} required />
+                  <label htmlFor="Arab">Arab</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)} required />
+                  <label htmlFor="Western">Western</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)} required />
+                  <label htmlFor="Chinese">Chinese</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)} required />
+                  <label htmlFor="Other">Other</label>
+                </div>
+              </fieldset>
+            </>
+          )}
 
-        {/* Password */}
-        <div>
-      <label className="Login-label" htmlFor="password">Password:</label>
-      <div className="password-container">
-        <input
-          type={showPassword ? "text" : "password"}
-          id="password"
-          placeholder="Enter your password"
-          className="Login-input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <span onClick={togglePasswordVisibility} className="password-icon">
-          <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-        </span>
-      </div>
-
-      <ul className="password-requirements">
-        <li className={isMinCharacters ? 'valid' : 'invalid'}>
-          ✔ Password should be at least 8 characters.
-        </li>
-        <li className={hasUppercase ? 'valid' : 'invalid'}>
-          ✔ Contain at least one uppercase letter.
-        </li>
-        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-          ✔ Contain at least one special character.
-        </li>
-      </ul>
-      
-    </div>
-    <fieldset className="sign-culture-domain">
-  <legend>Region:</legend>
-  <div className="sign-culture-options">
-    <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
-    <label htmlFor="Arab">Arab</label>
-  </div>
-  <div className="sign-culture-options">
-    <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)} required />
-    <label htmlFor="Western">Western</label>
-  </div>
-  <div className="sign-culture-options">
-    <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)} required />
-    <label htmlFor="Chinese">Chinese</label>
-  </div>
-  <div className="sign-culture-options">
-    <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)} required />
-    <label htmlFor="Other">Other</label>
-  </div>
-</fieldset>
-
-</>
-            )}
-
-{userType === 'Moderator' && (
-  <>
-    <div>
-      {/* Password */}
-      <label className="Login-label" htmlFor="password">Password:</label>
-      <div className="password-container">
-        <input
-          type={showPassword ? "text" : "password"}
-          id="password"
-          placeholder="Enter your password"
-          className="Login-input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <span onClick={togglePasswordVisibility} className="password-icon">
-          <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-        </span>
-      </div>
-      <ul className="password-requirements">
-        <li className={isMinCharacters ? 'valid' : 'invalid'}>
-          ✔ Password should be at least 8 characters.
-        </li>
-        <li className={hasUppercase ? 'valid' : 'invalid'}>
-          ✔ Contain at least one uppercase letter.
-        </li>
-        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-          ✔ Contain at least one special character.
-        </li>
-      </ul>
-    </div>
-    <div>
-      <fieldset className="sign-culture-domain">
-        <legend>Region:</legend>
-        <div className="sign-culture-options">
-          <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)} required />
-          <label htmlFor="Arab">Arab</label>
-        </div>
-        <div className="sign-culture-options">
-          <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)} required />
-          <label htmlFor="Western">Western</label>
-        </div>
-        <div className="sign-culture-options">
-          <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)} required />
-          <label htmlFor="Chinese">Chinese</label>
-        </div>
-        <div className="sign-culture-options">
-          <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)} required />
-          <label htmlFor="Other">Other</label>
-        </div>
-      </fieldset>
-    </div>
-  </>
-)}
-
-
-            {/* Submit Button */}
- 
-            <button type="submit" className="sign-btn" disabled={!isPasswordValid} style={{ marginTop: '1rem', fontSize: '15px' }}>
+          {/* Submit Button */}
+          <button 
+            type="submit" 
+            className="sign-btn" 
+            disabled={!isPasswordValid} 
+            style={{ marginTop: '1rem', fontSize: '15px' }}
+          >
             Create Account
-            </button>
-            <div className="sign-login">
-              <p style={{ fontSize: '15px' }}>
-                Already have an account? <Link to="/Login" className="sign-link">Log-in</Link>
-              </p>
-            </div>
-          </form>
-        </div>
-    
+          </button>
+          
+          <div className="sign-login">
+            <p style={{ fontSize: '15px' }}>
+              Already have an account? <Link to="/Login" className="sign-link">Log-in</Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default Sign;
-
