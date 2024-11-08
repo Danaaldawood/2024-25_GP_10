@@ -153,6 +153,12 @@ export function RealtimeData() {
   const displayedFilterTopic =
     filterTopic === "Holidays/Celebration/Leisure" ? "Holiday" : filterTopic;
 
+    const [hoveredEditRow, setHoveredEditRow] = useState(null);
+    const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
+    
+    
+    
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -162,20 +168,7 @@ export function RealtimeData() {
       <Header />
       <div className="container mt-5">
 
-     
-        <div className="notification-btn-container">
-        
-          <button   type="button" onClick={handleClick}  className="notification-btn">
-            Notify moderator {<NotificationsActiveIcon />}
-          </button>
-         
-        
-        </div>
-
-        
-       
-        
-        
+    
 
         <section className="tabel_header">
           <h2 className="table-title">Cultures Data</h2>
@@ -243,60 +236,81 @@ export function RealtimeData() {
                 <th>Topic</th>
                 <th>Reason</th>
                 <th>Edit</th>
+                <th>Notify</th>
               </tr>
             </thead>
-            <tbody>
-              {dataToShow.map((row, index) => (
-                <tr key={row.id}>
-                  <td>{index + 1}</td>
-                  <td>{row.region_name}</td>
-                  <td>{row.en_question}</td>
-                  <td>
-                    <select className="value-select" data-row-id={row.id}>
-                      {row.annotations?.map((annotation, i) => (
-                        <option key={i} value={annotation.en_values[0]}>
-                          {annotation.en_values[0]}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td
-                    className={`topic-column ${
-                      row.topic === "Holidays/Celebration/Leisure"
-                        ? "left-align"
-                        : "center-align"
-                    }`}
-                  >
-                    {row.topic}
-                  </td>
-                  <td>Variation</td>
-                  <td
-                    onMouseEnter={() => setHoveredRow(row.id)}
-                    onMouseLeave={() => setHoveredRow(null)}
-                    style={{ position: "relative" }}
-                  >
-                    <button
-                      onClick={() => handleEditClick(row)}
-                      className="edit-button"
-                      style={{
-                        backgroundColor:
-                          row.region_name === userRegion ? "#10a37f" : "#d3d3d3",
-                        cursor:
-                          row.region_name === userRegion ? "pointer" : "not-allowed",
-                      }}
-                      disabled={row.region_name !== userRegion}
-                    >
-                      Edit
-                    </button>
-                    {row.region_name !== userRegion && hoveredRow === row.id && (
-                      <div className="custom-tooltip">
-                        You don't belong to this region
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+<tbody>
+  {dataToShow.map((row, index) => (
+    <tr key={row.id}>
+      <td>{index + 1}</td>
+      <td>{row.region_name}</td>
+      <td>{row.en_question}</td>
+      <td>
+        <select className="value-select" data-row-id={row.id}>
+          {row.annotations?.map((annotation, i) => (
+            <option key={i} value={annotation.en_values[0]}>
+              {annotation.en_values[0]}
+            </option>
+          ))}
+        </select>
+      </td>
+      <td
+        className={`topic-column ${
+          row.topic === "Holidays/Celebration/Leisure" ? "left-align" : "center-align"
+        }`}
+      >
+        {row.topic}
+      </td>
+      <td>Variation</td>
+      <td
+        onMouseEnter={() => setHoveredEditRow(row.id)}
+        onMouseLeave={() => setHoveredEditRow(null)}
+        style={{ position: "relative" }}
+      >
+        {/* Edit Button */}
+        <button
+          onClick={() => handleEditClick(row)}
+          className="edit-button"
+          style={{
+            backgroundColor: row.region_name === userRegion ? "#10a37f" : "#d3d3d3",
+            cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
+          }}
+          disabled={row.region_name !== userRegion}
+        >
+          Edit
+        </button>
+        {row.region_name !== userRegion && hoveredEditRow === row.id && !hoveredNotifyRow && (
+          <div className="custom-tooltip">
+            You don't belong to this region
+          </div>
+        )}
+      </td>
+      <td
+  onMouseEnter={() => setHoveredNotifyRow(row.id)}
+  onMouseLeave={() => setHoveredNotifyRow(null)}
+  style={{ position: "relative" }}
+>
+  <button
+    onClick={() => handleClick()}
+    className="notify-button"
+    style={{
+      backgroundColor: row.region_name === userRegion ? "#d00c4d" : "#d3d3d3",
+      cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
+    }}
+    disabled={row.region_name !== userRegion}
+  >
+    Notify 
+  </button>
+  {row.region_name !== userRegion && hoveredNotifyRow === row.id && !hoveredEditRow && (
+    <div className="custom-tooltip">
+      You don't belong to this region
+    </div>
+  )}
+</td>
+
+    </tr>
+  ))}
+</tbody>
           </table>
         </div>
       </div>
