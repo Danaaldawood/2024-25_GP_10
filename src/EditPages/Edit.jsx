@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { ref, update } from 'firebase/database';
-import { realtimeDb } from '../Register/firebase';
-import "./Edit.css";
+import { realtimeDb, auth } from '../Register/firebase';
+import { onAuthStateChanged } from "firebase/auth";
+import "./Add.css";
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-export const EditCultureValue = () => {
+export const AddCultureValue = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [showErrorPopup, setShowErrorPopup] = useState(false); // State to control error popup visibility
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     if (!location.state) {
-      alert("No data available to edit");
+      alert("No data available to add");
       navigate("/View");
     }
   }, [location.state, navigate]);
@@ -30,7 +33,21 @@ export const EditCultureValue = () => {
     region: location.state?.region || localStorage.getItem('region') || "",
     allValues: location.state?.allValues || [],
     newvalue: "",
+    reason: ""
   });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const lastFourUID = user.uid.slice(-4); 
+        setUserId(`user_${lastFourUID}`);
+      } else {
+        console.error("User is not authenticated");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,26 +56,47 @@ export const EditCultureValue = () => {
       [name]: value,
     }));
     if (name === 'newvalue' && value.length > 0) {
-      setShowError(false);
+      setShowErrorPopup(false); // Hide error popup on new input
     }
   };
 
-  const handleEditClick = async () => {
+  const handleAddClick = async () => {
     if (!itemData.newvalue) {
-      setShowError(true);
+      setShowErrorPopup(true);
+      setErrorMessage("Please enter a new value.");
+      return;
+    }
+
+    const newValueLower = itemData.newvalue.toLowerCase();
+    const allValuesLower = itemData.allValues.map(value => value.toLowerCase());
+
+    if (allValuesLower.includes(newValueLower)) {
+      setErrorMessage(`The value "${itemData.newvalue}" is already present in the dataset.`);
+      setShowErrorPopup(true);
       return;
     }
 
     try {
-      const itemRef = ref(realtimeDb, `${id}`);
+      const newAnnotation = {
+        en_values: [itemData.newvalue],
+        reason: itemData.reason,
+        user_id: userId || "user_undefined",
+        values: [itemData.newvalue]
+      };
+
+      const itemRef = ref(realtimeDb, `${id}/annotations`);
       await update(itemRef, {
-        value: itemData.value,
-        region: itemData.region,
-        newvalue: itemData.newvalue,
+        [itemData.allValues.length]: newAnnotation
       });
-      
+
+      setItemData((prevState) => ({
+        ...prevState,
+        allValues: [...prevState.allValues, itemData.newvalue],
+        newvalue: ""
+      }));
+
       setShowSuccess(true);
-      
+
       setTimeout(() => {
         setShowSuccess(false);
         navigate("/View");
@@ -71,50 +109,45 @@ export const EditCultureValue = () => {
   return (
     <div>
       <Header />
-      <div className="editformcontainer">
+      <div className="addformcontainer">
         <Helmet>
-          <title>Edit Page</title>
-          <meta name="description" content="This is Edit page" />
+          <title>Add Page</title>
+          <meta name="description" content="This is Add page" />
         </Helmet>
-          
-        <div className="editheader">
-          <div className="edit-title">Edit Culture Value</div>
+
+        <div className="addheader">
+          <div className="add-title">Add Culture Value</div>
           <div className="underline"></div>
         </div>
-        <div className="edit-inputs">
-          <div className="edit-input attribute-container">
+
+        <div className="add-inputs">
+          <div className="add-input attribute-container">
             <div className="attribute-display">{itemData.attribute}</div>
           </div>
 
-          <div className="edit-input">
+          <div className="add-input">
             <label className="label">Topic:</label>
             <input
               type="text"
               id="topic"
               name="topic"
               value={itemData.topic}
-              readOnly 
+              readOnly
             />
           </div>
 
-          <div className="edit-input">
-            <label className="label">Value:</label>
-            <select
-              id="value"
-              name="value"
-              value={itemData.value}
-              onChange={handleInputChange}
-            >
-              <option value="" disabled>Select a value</option>
+          <div className="add-input">
+            <label className="label">All Values:</label>
+            <ul className="all-values-list">
               {itemData.allValues.map((value, index) => (
-                <option key={index} value={value}>
+                <li key={index} className="value-item">
                   {value}
-                </option>
+                </li>
               ))}
-            </select>
+            </ul>
           </div>
 
-          <div className="edit-input">
+          <div className="add-input">
             <label className="label">New Value:</label>
             <input
               type="text"
@@ -122,47 +155,64 @@ export const EditCultureValue = () => {
               name="newvalue"
               value={itemData.newvalue}
               onChange={handleInputChange}
-              placeholder={showError ? "Please enter a new value" : "Enter a new value"}
-              className={showError ? "newvalue-error-placeholder" : ""}
+              placeholder={showErrorPopup ? "Please enter a new value" : "Enter a new value"}
+              className={showErrorPopup ? "newvalue-error-placeholder" : ""}
             />
           </div>
-          <div className="edit-input">
-  <label className="label">Reason:</label>
-  <select
-    id="reason"
-    name="reason"
-    value={itemData.reason}
-    onChange={(e) => handleInputChange(e)}
-    className={showError ? "reason-error-placeholder" : ""}
-  >
-    <option value="" disabled>
-      {showError ? "Please enter a reason" : "Select your reason"}
-    </option>
-    <option value="variance">Variance</option>
-    <option value="subculture">Subculture</option>
-  </select>
-</div>
-          <div className="edit-input">
+
+          <div className="add-input">
+            <label className="label">Reason:</label>
+            <select
+              id="reason"
+              name="reason"
+              value={itemData.reason}
+              onChange={handleInputChange}
+              className={showErrorPopup ? "reason-error-placeholder" : ""}
+            >
+              <option value="" disabled>
+                {showErrorPopup ? "Please enter a reason" : "Select your reason"}
+              </option>
+              <option value="variance">variation</option>
+              <option value="subculture">Subculture</option>
+            </select>
+          </div>
+
+          <div className="add-input">
             <label className="label">Region:</label>
             <input
               type="text"
               id="region"
               name="region"
               value={itemData.region}
-              readOnly 
+              readOnly
             />
           </div>
         </div>
-        <div className="edisubmit-container">
-          <div className="edit-submit">
-            <button onClick={handleEditClick}>Edit</button>
+
+        <div className="addsubmit-container">
+          <div className="add-submit">
+            <button onClick={handleAddClick} disabled={!userId}>
+              {userId ? "Add" : "Loading..."}
+            </button>
           </div>
         </div>
 
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-            <p className="success-message">Value edited successfully.</p>
+            <p className="success-message">Value added successfully.</p>
+          </div>
+        )}
+
+        {showErrorPopup && (
+          <div className="error-popup">
+            <div className="error-title">Error</div>
+            <div className="error-message">{errorMessage}</div>
+            <div className="error-actions">
+              <button className="confirm-btn" onClick={() => setShowErrorPopup(false)}>
+                OK
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -171,4 +221,4 @@ export const EditCultureValue = () => {
   );
 };
 
-export default EditCultureValue;
+export default AddCultureValue;

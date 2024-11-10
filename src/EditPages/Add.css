@@ -1,5 +1,5 @@
-/* Edit form container styling */
-.editformcontainer {
+/* Add form container styling */
+.addformcontainer {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -11,12 +11,12 @@
   align-items: center;
 }
 
-.editformcontainer:hover {
+.addformcontainer:hover {
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* Title styling */
-.edit-title {
+.add-title {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -32,7 +32,7 @@
   color: #333;
 }
 
-.edit-inputs {
+.add-inputs {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -40,21 +40,21 @@
   width: 100%;
 }
 
-.edit-input {
+.add-input {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.edit-input label {
+.add-input label {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
   color: #333;
 }
 
-.edit-input select,
-.edit-input input[type="text"] {
+.add-input select,
+.add-input input[type="text"] {
   width: 100%;
   padding: 12px;
   border-radius: 6px;
@@ -66,31 +66,31 @@
   text-align: center;
 }
 
-.edit-input select:focus,
-.edit-input input[type="text"]:focus {
+.add-input select:focus,
+.add-input input[type="text"]:focus {
   border-color: #10a37f;
   box-shadow: #095c47;  
   outline: none;
 }
 
 /* Error state for input fields */
-.edit-input.error input {
+.add-input.error input {
   border: 2px solid red; 
 }
 
-.edit-input.error input::placeholder {
+.add-input.error input::placeholder {
   color: red; 
 }
 
 /* Submit button container */
-.edisubmit-container {
+.addsubmit-container {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
 
 /* Submit button styling */
-.edit-submit button {
+.add-submit button {
   width: 200px;
   padding: 12px;
   border: none;
@@ -103,7 +103,7 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.edit-submit button:hover {
+.add-submit button:hover {
   background-color: #095c47;
   transform: translateY(-2px);
 }
@@ -137,4 +137,64 @@
 
 .newvalue-error-placeholder::placeholder {
   color: red;
+}
+/* List styling for all values */
+.all-values-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: #333;
+}
+
+.value-item {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+/* Popup Error Message */
+.error-popup {
+  background-color: #fff;
+  color: #dc172b;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.error-title {
+  font-weight: bold;
+  color: #dc172b;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  margin-bottom: 20px;
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.error-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.confirm-btn {
+  background-color: #dc172b;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background-color: #ff5c5c;
 }

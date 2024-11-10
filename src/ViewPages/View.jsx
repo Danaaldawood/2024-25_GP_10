@@ -13,7 +13,6 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import "./View.css";
 
 export function RealtimeData() {
-
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
@@ -21,17 +20,17 @@ export function RealtimeData() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [userRegion, setUserRegion] = useState("");
   const [filterTopic, setFilterTopic] = useState("");
-  const [hoveredRow, setHoveredRow] = useState(null); // Track hovered row for tooltip
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [reasons, setReasons] = useState({});
 
   const navigate = useNavigate();
-  
 
   const handleClick = () => {
     navigate("/Notifymodrator");
   };
 
-
   useEffect(() => {
+    console.log("Fetching user region...");
     const fetchUserRegion = async () => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -40,6 +39,7 @@ export function RealtimeData() {
             if (userDoc.exists()) {
               const userData = userDoc.data();
               setUserRegion(userData.region || "");
+              console.log("User region set:", userData.region);
             } else {
               console.log("No user region data found.");
             }
@@ -63,12 +63,24 @@ export function RealtimeData() {
             ...value,
           }));
           setTableData(dataArray);
+          console.log("Fetched data:", dataArray);
+
+          // Initialize reasons for each row if there's an initial value
+          const initialReasons = dataArray.reduce((acc, row) => {
+            const firstAnnotation = row.annotations?.[0];
+            acc[row.id] = firstAnnotation ? firstAnnotation.reason : "Variation";
+            return acc;
+          }, {});
+          setReasons(initialReasons);
+          console.log("Reasons set:", initialReasons);
         } else {
           setError("No data available in Firebase.");
+          console.log("No data available in Firebase.");
         }
       },
       (error) => {
         setError("Error fetching data: " + error.message);
+        console.error("Error fetching data:", error.message);
       }
     );
 
@@ -96,6 +108,9 @@ export function RealtimeData() {
   };
 
   const handleEditClick = (row) => {
+    console.log("User Region:", userRegion); // Log user region for troubleshooting
+    console.log("Row Region Name:", row.region_name); // Log row region for troubleshooting
+
     if (row.region_name === userRegion) {
       const dropdownElement = document.querySelector(
         `select[data-row-id="${row.id}"]`
@@ -112,6 +127,21 @@ export function RealtimeData() {
           selectedValue: selectedValue,
         },
       });
+    } else {
+      console.log("Region does not match; cannot edit.");
+    }
+  };
+
+  const handleValueChange = (rowId, selectedValue) => {
+    const row = tableData.find((row) => row.id === rowId);
+    if (row) {
+      const selectedAnnotation = row.annotations.find(
+        (annotation) => annotation.en_values[0] === selectedValue
+      );
+      setReasons((prev) => ({
+        ...prev,
+        [rowId]: selectedAnnotation ? selectedAnnotation.reason : "Variation",
+      }));
     }
   };
 
@@ -132,15 +162,12 @@ export function RealtimeData() {
         (annotation) =>
           annotation.en_values &&
           annotation.en_values[0] &&
-          annotation.en_values[0]
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+          annotation.en_values[0].toLowerCase().includes(searchTerm.toLowerCase())
       );
 
     const matchesTopic =
       !filterTopic ||
-      (row.topic &&
-        row.topic.toLowerCase().includes(filterTopic.toLowerCase()));
+      (row.topic && row.topic.toLowerCase().includes(filterTopic.toLowerCase()));
 
     return matchesRegion && matchesSearch && matchesTopic;
   });
@@ -152,11 +179,8 @@ export function RealtimeData() {
   const displayedFilterTopic =
     filterTopic === "Holidays/Celebration/Leisure" ? "Holiday" : filterTopic;
 
-    const [hoveredEditRow, setHoveredEditRow] = useState(null);
-    const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
-    
-    
-    
+  const [hoveredEditRow, setHoveredEditRow] = useState(null);
+  const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -166,9 +190,6 @@ export function RealtimeData() {
     <div className="viewpage">
       <Header />
       <div className="container mt-5">
-
-    
-
         <section className="tabel_header">
           <h2 className="table-title">Cultures Data</h2>
         </section>
@@ -234,82 +255,80 @@ export function RealtimeData() {
                 <th>Values</th>
                 <th>Topic</th>
                 <th>Reason</th>
-                <th>Edit</th>
+                <th>Add</th>
                 <th>Notify</th>
               </tr>
             </thead>
-<tbody>
-  {dataToShow.map((row, index) => (
-    <tr key={row.id}>
-      <td>{index + 1}</td>
-      <td>{row.region_name}</td>
-      <td>{row.en_question}</td>
-      <td>
-        <select className="value-select" data-row-id={row.id}>
-          {row.annotations?.map((annotation, i) => (
-            <option key={i} value={annotation.en_values[0]}>
-              {annotation.en_values[0]}
-            </option>
-          ))}
-        </select>
-      </td>
-      <td
-        className={`topic-column ${
-          row.topic === "Holidays/Celebration/Leisure" ? "left-align" : "center-align"
-        }`}
-      >
-        {row.topic}
-      </td>
-      <td>Variation</td>
-      <td
-        onMouseEnter={() => setHoveredEditRow(row.id)}
-        onMouseLeave={() => setHoveredEditRow(null)}
-        style={{ position: "relative" }}
-      >
-        {/* Edit Button */}
-        <button
-          onClick={() => handleEditClick(row)}
-          className="edit-button"
-          style={{
-            backgroundColor: row.region_name === userRegion ? "#10a37f" : "#d3d3d3",
-            cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
-          }}
-          disabled={row.region_name !== userRegion}
-        >
-          Edit
-        </button>
-        {row.region_name !== userRegion && hoveredEditRow === row.id && !hoveredNotifyRow && (
-          <div className="custom-tooltip">
-            You don't belong to this region
-          </div>
-        )}
-      </td>
-      <td
-  onMouseEnter={() => setHoveredNotifyRow(row.id)}
-  onMouseLeave={() => setHoveredNotifyRow(null)}
-  style={{ position: "relative" }}
->
-  <button
-    onClick={() => handleClick()}
-    className="notify-button"
-    style={{
-      backgroundColor: row.region_name === userRegion ? "#d00c4d" : "#d3d3d3",
-      cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
-    }}
-    disabled={row.region_name !== userRegion}
-  >
-    Notify 
-  </button>
-  {row.region_name !== userRegion && hoveredNotifyRow === row.id && !hoveredEditRow && (
-    <div className="custom-tooltip">
-      You don't belong to this region
-    </div>
-  )}
-</td>
-
-    </tr>
-  ))}
-</tbody>
+            <tbody>
+              {dataToShow.map((row, index) => (
+                <tr key={row.id}>
+                  <td>{index + 1}</td>
+                  <td>{row.region_name}</td>
+                  <td>{row.en_question}</td>
+                  <td>
+                    <select
+                      className="value-select"
+                      data-row-id={row.id}
+                      onChange={(e) => handleValueChange(row.id, e.target.value)}
+                    >
+                      {row.annotations?.map((annotation, i) => (
+                        <option key={i} value={annotation.en_values[0]}>
+                          {annotation.en_values[0]}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td
+                    className={`topic-column ${
+                      row.topic === "Holidays/Celebration/Leisure" ? "left-align" : "center-align"
+                    }`}
+                  >
+                    {row.topic}
+                  </td>
+                  <td>{reasons[row.id] || "Variation"}</td>
+                  <td
+                    onMouseEnter={() => setHoveredEditRow(row.id)}
+                    onMouseLeave={() => setHoveredEditRow(null)}
+                    style={{ position: "relative" }}
+                  >
+                    <button
+                      onClick={() => handleEditClick(row)}
+                      className="edit-button"
+                      style={{
+                        backgroundColor: row.region_name === userRegion ? "#10a37f" : "#d3d3d3",
+                        cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
+                      }}
+                      disabled={row.region_name !== userRegion}
+                    >
+                      Add
+                    </button>
+                    {row.region_name !== userRegion && hoveredEditRow === row.id && !hoveredNotifyRow && (
+                      <div className="custom-tooltip">You don't belong to this region</div>
+                    )}
+                  </td>
+                  <td
+                    onMouseEnter={() => setHoveredNotifyRow(row.id)}
+                    onMouseLeave={() => setHoveredNotifyRow(null)}
+                    style={{ position: "relative" }}
+                  >
+                    <button
+                      onClick={() => handleClick()}
+                      className="notify-button"
+                      style={{
+                        backgroundColor: row.region_name === userRegion ? "#d00c4d" : "#d3d3d3",
+                        cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
+                      }}
+                      disabled={row.region_name !== userRegion}
+                    >
+                      Notify
+                    </button>
+                    {row.region_name !== userRegion && hoveredNotifyRow === row.id && !hoveredEditRow && (
+                      <div className="custom-tooltip">You don't belong to this region</div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
@@ -319,6 +338,3 @@ export function RealtimeData() {
 }
 
 export default RealtimeData;
-
-
-
