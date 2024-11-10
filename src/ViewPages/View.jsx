@@ -25,9 +25,26 @@ export function RealtimeData() {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/Notifymodrator");
+  const handleClick = (row) => {
+    if (row.region_name === userRegion) {
+      const dropdownElement = document.querySelector(
+        `select[data-row-id="${row.id}"]`
+      );
+      const selectedValue = dropdownElement ? dropdownElement.value : "";
+      
+      navigate(`/Notifymodrator/${row.id}`, {
+        state: {
+          id: row.id,
+          topic: row.topic,
+          attribute: row.en_question,
+          region: row.region_name,
+          selectedValue: selectedValue, 
+          allValues: row.annotations?.map((annotation) => annotation.en_values[0]) || [] 
+        }
+      });
+    }
   };
+
 
   useEffect(() => {
     console.log("Fetching user region...");
@@ -68,7 +85,9 @@ export function RealtimeData() {
           // Initialize reasons for each row if there's an initial value
           const initialReasons = dataArray.reduce((acc, row) => {
             const firstAnnotation = row.annotations?.[0];
-            acc[row.id] = firstAnnotation ? firstAnnotation.reason : "Variation";
+            acc[row.id] = firstAnnotation
+              ? firstAnnotation.reason
+              : "Variation";
             return acc;
           }, {});
           setReasons(initialReasons);
@@ -97,7 +116,9 @@ export function RealtimeData() {
     const selectedTopic = e.target.value;
     setSearchTerm("");
     setFilterTopic(
-      selectedTopic === "Holiday" ? "Holidays/Celebration/Leisure" : selectedTopic
+      selectedTopic === "Holiday"
+        ? "Holidays/Celebration/Leisure"
+        : selectedTopic
     );
   };
 
@@ -162,12 +183,15 @@ export function RealtimeData() {
         (annotation) =>
           annotation.en_values &&
           annotation.en_values[0] &&
-          annotation.en_values[0].toLowerCase().includes(searchTerm.toLowerCase())
+          annotation.en_values[0]
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
       );
 
     const matchesTopic =
       !filterTopic ||
-      (row.topic && row.topic.toLowerCase().includes(filterTopic.toLowerCase()));
+      (row.topic &&
+        row.topic.toLowerCase().includes(filterTopic.toLowerCase()));
 
     return matchesRegion && matchesSearch && matchesTopic;
   });
@@ -269,7 +293,9 @@ export function RealtimeData() {
                     <select
                       className="value-select"
                       data-row-id={row.id}
-                      onChange={(e) => handleValueChange(row.id, e.target.value)}
+                      onChange={(e) =>
+                        handleValueChange(row.id, e.target.value)
+                      }
                     >
                       {row.annotations?.map((annotation, i) => (
                         <option key={i} value={annotation.en_values[0]}>
@@ -280,7 +306,9 @@ export function RealtimeData() {
                   </td>
                   <td
                     className={`topic-column ${
-                      row.topic === "Holidays/Celebration/Leisure" ? "left-align" : "center-align"
+                      row.topic === "Holidays/Celebration/Leisure"
+                        ? "left-align"
+                        : "center-align"
                     }`}
                   >
                     {row.topic}
@@ -295,16 +323,26 @@ export function RealtimeData() {
                       onClick={() => handleEditClick(row)}
                       className="edit-button"
                       style={{
-                        backgroundColor: row.region_name === userRegion ? "#10a37f" : "#d3d3d3",
-                        cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
+                        backgroundColor:
+                          row.region_name === userRegion
+                            ? "#10a37f"
+                            : "#d3d3d3",
+                        cursor:
+                          row.region_name === userRegion
+                            ? "pointer"
+                            : "not-allowed",
                       }}
                       disabled={row.region_name !== userRegion}
                     >
                       Add
                     </button>
-                    {row.region_name !== userRegion && hoveredEditRow === row.id && !hoveredNotifyRow && (
-                      <div className="custom-tooltip">You don't belong to this region</div>
-                    )}
+                    {row.region_name !== userRegion &&
+                      hoveredEditRow === row.id &&
+                      !hoveredNotifyRow && (
+                        <div className="custom-tooltip">
+                          You don't belong to this region
+                        </div>
+                      )}
                   </td>
                   <td
                     onMouseEnter={() => setHoveredNotifyRow(row.id)}
@@ -312,19 +350,29 @@ export function RealtimeData() {
                     style={{ position: "relative" }}
                   >
                     <button
-                      onClick={() => handleClick()}
+                      onClick={() => handleClick(row)}
                       className="notify-button"
                       style={{
-                        backgroundColor: row.region_name === userRegion ? "#d00c4d" : "#d3d3d3",
-                        cursor: row.region_name === userRegion ? "pointer" : "not-allowed",
+                        backgroundColor:
+                          row.region_name === userRegion
+                            ? "#d00c4d"
+                            : "#d3d3d3",
+                        cursor:
+                          row.region_name === userRegion
+                            ? "pointer"
+                            : "not-allowed",
                       }}
                       disabled={row.region_name !== userRegion}
                     >
                       Notify
                     </button>
-                    {row.region_name !== userRegion && hoveredNotifyRow === row.id && !hoveredEditRow && (
-                      <div className="custom-tooltip">You don't belong to this region</div>
-                    )}
+                    {row.region_name !== userRegion &&
+                      hoveredNotifyRow === row.id &&
+                      !hoveredEditRow && (
+                        <div className="custom-tooltip">
+                          You don't belong to this region
+                        </div>
+                      )}
                   </td>
                 </tr>
               ))}

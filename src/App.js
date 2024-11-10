@@ -117,7 +117,7 @@ function App() {
     },
 
     {
-      path: "/Notifymodrator",  
+      path: "/Notifymodrator/:id",  
       element: <Notifymodrator/>,
     },
 

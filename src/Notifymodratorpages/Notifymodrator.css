@@ -1,133 +1,153 @@
-/* Notify form container styling */
-.notifypage {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 450px;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .notifypage:hover {
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Title styling */
-  .notifyform-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-  }
-  
-  .notifyforminputs {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    width: 100%;
-  }
-  
-  .notifyinput {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .notifylabel {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .notifyinput select,
-  .notifyinput input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    background-color: #f3f3f3;
-    color: #333;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-  
-  .notifyinput.error input {
-    border: 2px solid red;
-    border-radius: 6px;
-  }
-  
-   .notifyinput.error input::placeholder {
-    color: red;
-  }
-  
-   .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-    text-align: center;
-  }
+.notify-form-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 500px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  /* Submit button container */
-  .submitM-container {
-    display: flex;
-    justify-content: center;
+.notify-form-container:hover {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.notify-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.notify-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.notiyfy-attribute-display {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+  margin-top: 2px;
+}
+
+.notify-inputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+.notify-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.notify-input label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.notify-input select,
+.notify-input input[type="text"],
+.notify-input input[type="email"],
+.notify-input textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #f8f9fa;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.notify-input textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.readonly-input {
+  background-color: #e9ecef !important;
+  cursor: not-allowed;
+}
+
+.error-input {
+  border-color: #e74c3c !important;
+}
+
+.error-input::placeholder {
+  color: #e74c3c;
+}
+
+.notify-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.notify-submit-button {
+  width: 200px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #10a37f;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.notify-submit-button:hover {
+  background-color: #095c47;
+  transform: translateY(-2px);
+}
+
+.success-popup {
+  background-color: #fff;
+  color: #2ecc71;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.success-icon {
+  font-size: 48px;
+  color: #2ecc71;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  font-size: 16px;
+  color: #2ecc71;
+}
+
+@media (max-width: 600px) {
+  .notify-form-container {
+    width: 90%;
     margin-top: 30px;
   }
   
-  /* Submit button styling */
-  .submit-modrator button {
-    width: 200px;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background-color: #10a37f;
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  .notify-title {
+    font-size: 24px;
   }
-  
-  .submit-modrator button:hover {
-    background-color: #095c47;
-    transform: translateY(-2px);
-  }
-  
-  /* Success Popup Message */
-  .success-popup {
-    background-color: #fff;
-    color: #28a745;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-  }
-  
-  .success-icon {
-    font-size: 48px;
-    color: #28a745;
-    margin-bottom: 15px;
-  }
-  
-  .success-message {
-    font-size: 16px;
-    color: #28a745;
-  }
-  
-  .notify-discrption-error-placeholder::placeholder {
-    color: red;
-  }
-  
+}

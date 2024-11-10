@@ -1,152 +1,159 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { ref, update } from 'firebase/database';
+import { realtimeDb } from '../Register/firebase';
 import "./Notifymodrator.css";
-import logo from "../images/Logo.png";
-import { Footer } from "../Footer/Footer";
-import { Header } from "../Header/Header";
+import { Header } from '../Header/Header';
+import { Footer } from '../Footer/Footer';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const Notifymodrator = () => {
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [errors, setErrors] = useState({});
+  const { id } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
-  const [formData, setFormData] = useState({
-    region: "",
-    topic: "",
-    attribute: "",
-    value: "",
-    description: ""
+  useEffect(() => {
+    if (!location.state) {
+      alert("No data available for notification");
+      navigate("/View");
+    }
+  }, [location.state, navigate]);
+
+  const [notificationData, setNotificationData] = useState({
+    topic: location.state?.topic || "",
+    description: "",
+    suggestion: "",
+    PreviousValue: location.state?.selectedValue || "", 
+    status: "pending",
+    timestamp: new Date().toISOString()
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: false })); 
+    setNotificationData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    if (name === 'description' && value.length > 0) {
+      setShowError(false);
+    }
   };
 
-  const handleNotify = () => {
-    const newErrors = {};
-    let hasError = false;
-
-     Object.keys(formData).forEach((key) => {
-      if (!formData[key]) {
-        newErrors[key] = true;
-        hasError = true;
-      }
-    });
-
-    if (hasError) {
-      setErrors(newErrors);
+  const handleSubmitNotification = async () => {
+    if (!notificationData.description) {
+      setShowError(true);
       return;
     }
 
     try {
+      const notificationRef = ref(realtimeDb, `notifications/${id}`);
+      await update(notificationRef, {
+        ...notificationData,
+        timestamp: new Date().toISOString()
+      });
+      
       setShowSuccess(true);
+      
       setTimeout(() => {
         setShowSuccess(false);
         navigate("/View");
-      }, 1000);
+      }, 2000);
     } catch (error) {
-      console.error("Error updating data:", error);
+      console.error("Error submitting notification:", error);
     }
   };
 
   return (
-    <div className="Notifypage">
+    <div>
       <Header />
-      <Helmet>
-        <title>Notify</title>
-        <meta name="description" content="Notify page" />
-      </Helmet>
-      <div className="evalcontainer">
-        <h3 className="notifyform-title">Notify request</h3>
-        <div className="notifyforminputs">
-          <div className={`notifyinput ${errors.region ? "error" : ""}`}>
-            <label className="notifylabel">Region:</label>
-            <select
-              name="region"
-              id="notyfyreigon"
-              value={formData.region}
-              onChange={handleInputChange}
-            >
-              <option value="" disabled></option>
-              <option value="Arab">Arab</option>
-              <option value="Chines">Chinese</option>
-              <option value="Westren">Western</option>
-            </select>
-            {errors.region && <p className="error-message">Please select a region</p>}
+      <div className="notify-form-container">
+        <Helmet>
+          <title>Notify Moderator</title>
+          <meta name="description" content="Notify moderator page" />
+        </Helmet>
+          
+        <div className="notify-header">
+          <div className="notify-title">
+            Notify Moderator
           </div>
+          <div className="underline"></div>
+          <div className="notiyfy-attribute-display">
+            {location.state?.attribute}
+          </div>
+        </div>
 
-          <div className={`notifyinput ${errors.topic ? "error" : ""}`}>
-            <label className="notifylabel">Topic:</label>
-            <select
+        <div className="notify-inputs">
+          <div className="notify-input">
+            <label className="label">Topic:</label>
+            <input
+              type="text"
               name="topic"
-              id="notifytopic"
-              value={formData.topic}
+              value={notificationData.topic}
+              readOnly 
+            />
+          </div>
+
+          <div className="notify-input">
+            <label className="label">Previous Value:</label>
+            <select
+              name="PreviousValue"
+              value={notificationData.PreviousValue}
               onChange={handleInputChange}
+              className="notify-select"
             >
-              <option value="" disabled></option>
-              <option value="food">Food</option>
-              <option value="sport">Sport</option>
-              <option value="family">Family</option>
-              <option value="education">Education</option>
-              <option value="holidays">Holidays</option>
-              <option value="work-life">Work-life</option>
+              {location.state?.selectedValue && (
+                <option value={location.state.selectedValue}>
+                  {location.state.selectedValue}
+                </option>
+              )}
+              {location.state?.allValues
+                ?.filter(value => value !== location.state.selectedValue)
+                .map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+              ))}
             </select>
-            {errors.topic && <p className="error-message">Please select a topic</p>}
           </div>
 
-          <div className={`notifyinput ${errors.attribute ? "error" : ""}`}>
-            <label className="notifylabel">Attribute:</label>
-            <input
-              type="text"
-              name="attribute"
-              className="notifyattribute"
-              value={formData.attribute}
-              onChange={handleInputChange}
-            />
-            {errors.attribute && <p className="error-message">Please enter an attribute</p>}
-          </div>
-
-          <div className={`notifyinput ${errors.value ? "error" : ""}`}>
-            <label className="notifylabel">Value:</label>
-            <input
-              type="text"
-              name="value"
-              className="notifyvalue"
-              value={formData.value}
-              onChange={handleInputChange}
-            />
-            {errors.value && <p className="error-message">Please enter a value</p>}
-          </div>
-
-          <div className={`notifyinput ${errors.description ? "error" : ""}`}>
-            <label className="notifylabel">Description:</label>
-            <input
-              type="text"
+          <div className="notify-input">
+            <label className="label">Description:</label>
+            <textarea
               name="description"
-              className="notifydiscrption"
-              value={formData.description}
+              value={notificationData.description}
               onChange={handleInputChange}
+              placeholder={showError ? "Please provide a description" : "Describe the issue in detail"}
+              className={showError && !notificationData.description ? "error-input" : ""}
+              rows={4}
             />
-            {errors.description && <p className="error-message">Please enter a description</p>}
           </div>
 
-        </div>
-        
-        <div className="submitM-container">
-          <div className="submit-modrator">
-            <button onClick={handleNotify}>Submit</button>
+          <div className="notify-input">
+            <label className="label">Suggestion for New Value (optional):</label>
+            <input
+              type="text"
+              name="suggestion"
+              value={notificationData.suggestion}
+              onChange={handleInputChange}
+              placeholder="Suggest a new value"
+            />
           </div>
         </div>
+
+        <div className="notify-submit-container">
+  <button onClick={handleSubmitNotification} className="notify-submit-button">
+    Notify
+  </button>
+</div>
 
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-            <p className="success-message">Send notification to moderator successfully.</p>
+            <p className="success-message">Notification submitted successfully.</p>
           </div>
         )}
       </div>
