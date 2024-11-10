@@ -1,0 +1,108 @@
+{
+    "en": {
+      "culturalValuesTitle": "Cultural Values",
+      "metaDescription": "This is Cultural Values page",
+      "coreDescription": "Our cultural values dataset integrates information from multiple sources, encompassing a large number of entries to ensure comprehensive coverage across diverse attributes and topics. This extensive dataset offers in-depth insights into three primary cultural regions: Arab, Chinese, and Western. By uniting multiple datasets, it encapsulates a wide spectrum of perspectives, providing refined knowledge on cultural topics and regional variances. This framework improves cultural understanding and supports precise analysis and comparison across these distinct regions.",
+      "viewButton": "View",
+      "datasetTopics": "Dataset Topics",
+      "foodCard": {
+        "title": "Food",
+        "text": "What is a common snack for preschool kids in your country?"
+      },
+      "familyCard": {
+        "title": "Family",
+        "text": "What is a popular outdoor place for families to have fun with little kids in your country?"
+      },
+      "sportCard": {
+        "title": "Sport",
+        "text": "What is the most popular sport team in your country?"
+      },
+      "workLifeCard": {
+        "title": "Work-life",
+        "text": "What is the maximum number of hours one can work per week in your country?"
+      },
+      "greetingCard": {
+        "title": "Greeting",
+        "text": "What are the common greeting gestures in your culture?"
+      },
+      "educationCard": {
+        "title": "Education",
+        "text": "What is a popular second language for high school students in your country?"
+      },
+      "holidaysCard": {
+        "title": "Holidays",
+        "text": "What do people do to celebrate New Year's Day in your country?"
+      }
+    },
+    "ar": {
+      "culturalValuesTitle": "القيم الثقافية",
+      "metaDescription": "هذه صفحة القيم الثقافية",
+      "coreDescription": "يتكامل مجموعة بيانات القيم الثقافية لدينا من مصادر متعددة، وتشمل عددًا كبيرًا من الإدخالات لضمان تغطية شاملة عبر السمات والمواضيع المتنوعة. توفر هذه المجموعة من البيانات رؤى عميقة حول ثلاثة مناطق ثقافية رئيسية: العربية والصينية والغربية. من خلال دمج مجموعات بيانات متعددة، تلخص هذه الإطارات طيفًا واسعًا من وجهات النظر، وتوفر معرفة متطورة حول المواضيع الثقافية والفروق الإقليمية. يدعم هذا الإطار الفهم الثقافي ويساعد على التحليل والمقارنة الدقيقة عبر هذه المناطق المختلفة.",
+      "viewButton": "عرض",
+      "datasetTopics": "مواضيع مجموعة البيانات",
+      "foodCard": {
+        "title": "الطعام",
+        "text": "ما هو الوجبة الخفيفة الشائعة للأطفال في مرحلة ما قبل المدرسة في بلدك؟"
+      },
+      "familyCard": {
+        "title": "العائلة",
+        "text": "ما هو المكان الشعبي للعائلات للاستمتاع مع الأطفال الصغار في بلدك؟"
+      },
+      "sportCard": {
+        "title": "الرياضة",
+        "text": "ما هو الفريق الرياضي الأكثر شعبية في بلدك؟"
+      },
+      "workLifeCard": {
+        "title": "الحياة العملية",
+        "text": "ما هو الحد الأقصى لعدد الساعات التي يمكن أن يعملها شخص في الأسبوع في بلدك؟"
+      },
+      "greetingCard": {
+        "title": "التحية",
+        "text": "ما هي إيماءات التحية الشائعة في ثقافتك؟"
+      },
+      "educationCard": {
+        "title": "التعليم",
+        "text": "ما هي اللغة الثانية الشهيرة لطلاب الثانوية في بلدك؟"
+      },
+      "holidaysCard": {
+        "title": "العطلات",
+        "text": "ماذا يفعل الناس للاحتفال بيوم رأس السنة في بلدك؟"
+      }
+    },
+    "ch": {
+      "culturalValuesTitle": "文化价值观",
+      "metaDescription": "这是文化价值观页面",
+      "coreDescription": "我们的文化价值观数据集整合了来自多个来源的信息，涵盖了大量条目，确保在不同的属性和主题之间进行全面覆盖。这个庞大的数据集提供了对三个主要文化区域的深入洞察：阿拉伯、中国和西方。通过将多个数据集结合在一起，它概括了广泛的观点，提供了有关文化主题和区域差异的精炼知识。这个框架提高了文化理解，并支持在这些不同区域之间进行精确的分析和比较。",
+      "viewButton": "查看",
+      "datasetTopics": "数据集主题",
+      "foodCard": {
+        "title": "食物",
+        "text": "在您的国家，学龄前儿童常吃的零食是什么？"
+      },
+      "familyCard": {
+        "title": "家庭",
+        "text": "在您的国家，哪些是适合家庭和小孩一起玩的热门户外场所？"
+      },
+      "sportCard": {
+        "title": "体育",
+        "text": "在您的国家，最受欢迎的体育队是哪支？"
+      },
+      "workLifeCard": {
+        "title": "工作与生活",
+        "text": "在您的国家，一个人每周最多可以工作多少小时？"
+      },
+      "greetingCard": {
+        "title": "问候",
+        "text": "在您的文化中，常见的问候手势是什么？"
+      },
+      "educationCard": {
+        "title": "教育",
+        "text": "在您的国家，高中生的第二外语是什么？"
+      },
+      "holidaysCard": {
+        "title": "节日",
+        "text": "在您的国家，人们如何庆祝新年？"
+      }
+    }
+  }
+  

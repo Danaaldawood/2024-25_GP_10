@@ -1,0 +1,75 @@
+{
+    "en": {
+      "loginPage": {
+        "helmetTitle": "Login Page",
+        "helmetDescription": "This is the Log-in page of My website",
+        "errorTitle": "Warning!",
+        "tryAgain": "Try again",
+        "welcomeBack": "Welcome Back!",
+        "welcomeText": "To CultureLens! We’re glad to have you with us again to explore more cultural diversity.",
+        "loginTitle": "Log-in",
+        "userTypeUser": "User",
+        "userTypeModerator": "Moderator",
+        "emailLabel": "Email Address:",
+        "emailPlaceholder": "Enter your Email Address",
+        "passwordLabel": "Password:",
+        "passwordPlaceholder": "Enter your password",
+        "forgetPassword": "Forget Password?",
+        "loginButton": "Login",
+        "loggingIn": "Logging in..",
+        "noAccount": "Don't have an account?",
+        "createAccountLink": "Create account",
+        "accessDenied": "Access denied. Please check your account type.",
+        "errorIncorrectCredentials": "An error occurred. Incorrect Email/Password."
+      }
+    },
+    "ch": {
+      "loginPage": {
+        "helmetTitle": "登录页面",
+        "helmetDescription": "这是我的网站的登录页面",
+        "errorTitle": "警告！",
+        "tryAgain": "再试一次",
+        "welcomeBack": "欢迎回来！",
+        "welcomeText": "欢迎来到 CultureLens！我们很高兴再次与您一起探索更多文化多样性。",
+        "loginTitle": "登录",
+        "userTypeUser": "用户",
+        "userTypeModerator": "主持人",
+        "emailLabel": "电子邮件地址：",
+        "emailPlaceholder": "输入您的电子邮件地址",
+        "passwordLabel": "密码：",
+        "passwordPlaceholder": "输入您的密码",
+        "forgetPassword": "忘记密码？",
+        "loginButton": "登录",
+        "loggingIn": "正在登录..",
+        "noAccount": "还没有账户？",
+        "createAccountLink": "创建账户",
+        "accessDenied": "访问被拒绝。请检查您的账户类型。",
+        "errorIncorrectCredentials": "发生错误。电子邮件/密码不正确。"
+      }
+    },
+    "ar": {
+      "loginPage": {
+        "helmetTitle": "صفحة تسجيل الدخول",
+        "helmetDescription": "هذه هي صفحة تسجيل الدخول لموقعي",
+        "errorTitle": "تحذير!",
+        "tryAgain": "حاول مرة أخرى",
+        "welcomeBack": "أهلاً بعودتك!",
+        "welcomeText": "مرحبًا بك في CultureLens! نحن سعداء بعودتك لإستكشاف المزيد من التنوع الثقافي.",
+        "loginTitle": "تسجيل الدخول",
+        "userTypeUser": "مستخدم",
+        "userTypeModerator": "مشرف",
+        "emailLabel": "عنوان البريد الإلكتروني:",
+        "emailPlaceholder": "أدخل عنوان بريدك الإلكتروني",
+        "passwordLabel": "كلمة المرور:",
+        "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+        "forgetPassword": "نسيت كلمة المرور؟",
+        "loginButton": "تسجيل الدخول",
+        "loggingIn": "جارٍ تسجيل الدخول..",
+        "noAccount": "ليس لديك حساب؟",
+        "createAccountLink": "إنشاء حساب",
+        "accessDenied": "تم رفض الوصول. يرجى التحقق من نوع حسابك.",
+        "errorIncorrectCredentials": "حدث خطأ, البريد الإلكتروني/كلمة المرور غير صحيحة."
+      }
+    }
+  }
+  

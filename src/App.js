@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from 'react';  
+import { useTranslation } from 'react-i18next';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./Register/Login";
 import Sign from './Register/sign';  
@@ -20,7 +22,26 @@ import { ForgotPassword } from './ResetPassword/ForgotPassword';
 import { ResetPassword } from './ResetPassword/ResetPassword';
 import {Notifymodrator} from './Notifymodratorpages/Notifymodrator';
 
+import Switcher from './Switcher';
+
+import './i18next/i18n';
+
+
 function App() {
+
+  const { t, i18n } = useTranslation();
+  
+  useEffect(() => {
+
+    if (i18n.language === 'ar') {
+      document.body.classList.add('rtl');
+    } else {
+      document.body.classList.remove('rtl');
+    }
+  }, [i18n.language]);
+
+ 
+
   const route = createBrowserRouter([
     {
       path: "/",  
@@ -104,9 +125,12 @@ function App() {
 
   return (
     <div className="App">
+          <Switcher/>
       <RouterProvider router={route}></RouterProvider>
       <ToastContainer />
+   
     </div>
+   
   );
 }
 

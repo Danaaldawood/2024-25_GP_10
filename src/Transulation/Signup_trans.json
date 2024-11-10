@@ -1,0 +1,81 @@
+{
+    "en": {
+      "createAccountTitle": "Create Account Page",
+      "errorTitle": "Warning!",
+      "errorTryAgain": "Try again",
+      "welcomeTitle": "Welcome",
+      "welcomeText": "To CultureLens! Let's explore cultural diversity together.",
+      "signTitle": "Create Account",
+      "fullName": "Full Name:",
+      "emailAddress": "Email Address:",
+      "country": "Country:",
+      "password": "Password:",
+      "passwordRequirements": {
+        "minLength": "Password should be at least 8 characters.",
+        "uppercase": "Contain at least one uppercase letter.",
+        "specialChar": "Contain at least one special character."
+      },
+      "region": "Region:",
+      "login": "Log-in",
+      "alreadyHaveAccount": "Already have an account?",
+      "user": "User",
+      "moderator": "Moderator",
+      "errorMessage": "Please enter a valid email address.",
+      "passwordErrorMessage": "Password must meet the requirements.",
+      "userError": "We currently only accept moderators from Arab, Western, or Chinese regions.",
+      "successMessage": "Your account has been created successfully."
+    },
+    "ar": {
+      "createAccountTitle": "إنشاء حساب",
+      "errorTitle": "تحذير!",
+      "errorTryAgain": "حاول مرة أخرى",
+      "welcomeTitle": "مرحبًا",
+      "welcomeText": "مرحبًا بك في CultureLens! دعونا نستكشف التنوع الثقافي معًا.",
+      "signTitle": "إنشاء حساب",
+      "fullName": "الاسم الكامل:",
+      "emailAddress": "عنوان البريد الإلكتروني:",
+      "country": "الدولة:",
+      "password": "كلمة المرور:",
+      "passwordRequirements": {
+        "minLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.",
+        "uppercase": "يجب أن تحتوي على حرف كبير واحد على الأقل.",
+        "specialChar": "يجب أن تحتوي على حرف خاص واحد على الأقل."
+      },
+      "region": "المنطقة:",
+      "login": "تسجيل الدخول",
+      "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+      "user": "مستخدم",
+      "moderator": "مشرف",
+      "errorMessage": "الرجاء إدخال عنوان بريد إلكتروني صالح.",
+      "passwordErrorMessage": "يجب أن تلبي كلمة المرور المتطلبات.",
+      "userError": "نقبل حاليًا المشرفين من المناطق العربية والغربية والصينية فقط.",
+      "successMessage": "تم إنشاء حسابك بنجاح."
+    },
+    "ch": {
+      "createAccountTitle": "创建帐户",
+      "errorTitle": "警告！",
+      "errorTryAgain": "再试一次",
+      "welcomeTitle": "欢迎",
+      "welcomeText": "欢迎来到CultureLens！让我们一起探索文化多样性。",
+      "signTitle": "创建帐户",
+      "fullName": "全名：",
+      "emailAddress": "电子邮件地址：",
+      "country": "国家：",
+      "password": "密码：",
+      "passwordRequirements": {
+        "minLength": "密码至少应包含8个字符。",
+        "uppercase": "必须至少包含一个大写字母。",
+        "specialChar": "必须至少包含一个特殊字符。"
+      },
+      "region": "地区：",
+      "login": "登录",
+      "alreadyHaveAccount": "已经有账户？",
+      "user": "用户",
+      "moderator": "主持人",
+      "errorMessage": "请输入有效的电子邮件地址。",
+      "passwordErrorMessage": "密码必须符合要求。",
+      "userError": "目前只接受来自阿拉伯、西方或中国地区的主持人。",
+      "successMessage": "您的帐户已成功创建。"
+    }
+  }
+  

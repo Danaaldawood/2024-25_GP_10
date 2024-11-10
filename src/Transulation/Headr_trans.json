@@ -1,0 +1,30 @@
+{
+    "en": {
+   
+      "home": "Home",
+      "culturalValues": "Cultural Values",
+      "compare": "Compare",
+      "evaluation": "Evaluation",
+      "profile": "Profile",
+      "signOut": "Log out"
+    },
+    "ar": {
+  
+      "home": "الصفحة الرئيسية",
+      "culturalValues": "القيم الثقافية",
+      "compare": "مقارنة",
+      "evaluation": "التقييم",
+      "profile": "الملف الشخصي",
+      "signOut": "تسجيل الخروج"
+    },
+    "ch": {
+   
+      "home": "首页",
+      "culturalValues": "文化价值",
+      "compare": "比较",
+      "evaluation": "评估",
+      "profile": "个人资料",
+      "signOut": "登出"
+    }
+  }
+  

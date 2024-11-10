@@ -25,7 +25,6 @@ export function RealtimeData() {
 
   const navigate = useNavigate();
   
-  
 
   const handleClick = () => {
     navigate("/Notifymodrator");
@@ -320,3 +319,6 @@ export function RealtimeData() {
 }
 
 export default RealtimeData;
+
+
+
