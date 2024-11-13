@@ -112,9 +112,7 @@ const AdminLogin = () => {
             {isLoading ? "Logging in..." : "Login"}
           </button>
 
-          <div className="Adminlogin-register">
-            <p style={{ fontSize: '15px' }}>Don't have an account? <Link to="/adminR" className="Adminlogin-link">Create Account</Link></p>
-          </div>
+          
         </form>
       </div>
     </div>

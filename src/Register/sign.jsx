@@ -739,19 +739,19 @@ const Sign = () => {
               <fieldset className="sign-culture-domain">
                 <legend>{t('region')}</legend>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
+                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)} required />
                   <label htmlFor="Arab">{t('arab')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)} required />
+                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)} required />
                   <label htmlFor="Western">{t('western')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)} required />
+                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)} required />
                   <label htmlFor="Chinese">{t('chinese')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)} required />
+                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)} required />
                   <label htmlFor="Other">{t('other')}</label>
                 </div>
               </fieldset>

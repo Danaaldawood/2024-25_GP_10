@@ -92,8 +92,8 @@ const Fpage = () => {
             <Link to="/Login">
               <button className="Button-Register">{t("loginButton")}</button>
             </Link>
-            <Link to="/adminR">
-              <button className="Button-Register">Log in</button>
+            <Link to="/adminlogin">
+              <button className="Button-Register">Admin</button>
             </Link>
           </nav>
         </div>
