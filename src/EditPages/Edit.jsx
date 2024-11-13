@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { ref, update } from 'firebase/database';
+import { ref, update, push } from 'firebase/database';
 import { realtimeDb, auth } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import "./Add.css";
@@ -15,14 +15,14 @@ export const AddCultureValue = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showErrorPopup, setShowErrorPopup] = useState(false); // State to control error popup visibility
-  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [showErrorPopup, setShowErrorPopup] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState(""); 
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
     if (!location.state) {
       alert("No data available to add");
-      navigate("/View");
+      navigate("/view");
     }
   }, [location.state, navigate]);
 
@@ -56,7 +56,7 @@ export const AddCultureValue = () => {
       [name]: value,
     }));
     if (name === 'newvalue' && value.length > 0) {
-      setShowErrorPopup(false); // Hide error popup on new input
+      setShowErrorPopup(false); 
     }
   };
 
@@ -71,7 +71,7 @@ export const AddCultureValue = () => {
     const allValuesLower = itemData.allValues.map(value => value.toLowerCase());
 
     if (allValuesLower.includes(newValueLower)) {
-      setErrorMessage(`The value "${itemData.newvalue}" is already present in the dataset.`);
+      setErrorMessage(`The value "${itemData.newvalue}" is already exist in the dataset.`);
       setShowErrorPopup(true);
       return;
     }
@@ -84,22 +84,25 @@ export const AddCultureValue = () => {
         values: [itemData.newvalue]
       };
 
-      const itemRef = ref(realtimeDb, `${id}/annotations`);
-      await update(itemRef, {
-        [itemData.allValues.length]: newAnnotation
-      });
+      const itemRef = ref(realtimeDb, `${id}/annotations/${itemData.allValues.length}`);
+      await update(itemRef, newAnnotation);
 
-      setItemData((prevState) => ({
-        ...prevState,
-        allValues: [...prevState.allValues, itemData.newvalue],
-        newvalue: ""
-      }));
+      const viewEditRef = ref(realtimeDb, `Viewedit/${itemData.region}`);
+      const newEntry = {
+        attribute: itemData.attribute,
+        userId: userId,
+        region: itemData.region,
+        topic: itemData.topic,
+        value: itemData.newvalue,
+        reason: itemData.reason
+      };
+      await push(viewEditRef, newEntry);
 
       setShowSuccess(true);
 
       setTimeout(() => {
         setShowSuccess(false);
-        navigate("/View");
+        navigate("/view");
       }, 1000);
     } catch (error) {
       console.error("Error updating data:", error);
@@ -172,7 +175,7 @@ export const AddCultureValue = () => {
               <option value="" disabled>
                 {showErrorPopup ? "Please enter a reason" : "Select your reason"}
               </option>
-              <option value="variance">variation</option>
+              <option value="variance">Variation</option>
               <option value="subculture">Subculture</option>
             </select>
           </div>

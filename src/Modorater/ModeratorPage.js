@@ -1,43 +1,161 @@
-// ModeratorPage.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ref, onValue, remove, update, get } from 'firebase/database';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db, realtimeDb } from '../Register/firebase';
 import './ModeratorPage.css';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../images/Logo.png';
 import { Footer } from '../Footer/Footer';
-import SignOutConfirmation from './SignOutConfirmation'; 
+import SignOutConfirmation from './SignOutConfirmation';
 import { Helmet } from 'react-helmet';
+import Logo from '../images/Logo.png';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const ModeratorPage = () => {
   const [view, setView] = useState('view-edit');
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
-  const [notifications, setNotifications] = useState([
-    { id: 1, userId: 'user_123', attribute: 'Ara-ko-36', description: 'Attribute contains null value', status: 'In Progress' },
-    { id: 2, userId: 'user_456', attribute: 'Ara-ko-59', description: 'The value for attribute is wrong', status: 'Done' },
-    { id: 3, userId: 'user_789', attribute: 'Ara-ko-39', description: 'No value', status: 'In Progress' },
-  ]);
-
+  const [viewEditEntries, setViewEditEntries] = useState([]);
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchModeratorData = async (user) => {
+      try {
+        const moderatorRef = doc(db, 'Moderators', user.uid);
+        const moderatorSnap = await getDoc(moderatorRef);
+
+        if (moderatorSnap.exists()) {
+          const { regionM } = moderatorSnap.data();
+
+          // Fetch ViewEdit entries based on the moderator's region
+          const viewEditRef = ref(realtimeDb, `Viewedit/${regionM}`);
+          onValue(viewEditRef, (snapshot) => {
+            if (snapshot.exists()) {
+              const entries = [];
+              snapshot.forEach((childSnapshot) => {
+                entries.push({
+                  id: childSnapshot.key,
+                  ...childSnapshot.val()
+                });
+              });
+              setViewEditEntries(entries);
+            } else {
+              setViewEditEntries([]);
+            }
+          });
+
+          // Fetch Notifications based on the moderator's region
+          const notificationsRef = ref(realtimeDb, `notifications`);
+          onValue(notificationsRef, (snapshot) => {
+            if (snapshot.exists()) {
+              const notificationsData = [];
+              snapshot.forEach((childSnapshot) => {
+                const notification = childSnapshot.val();
+                // Only include notifications that match the moderator's region
+                if (notification.region === regionM) {
+                  notificationsData.push({
+                    id: childSnapshot.key,
+                    ...notification
+                  });
+                }
+              });
+              setNotifications(notificationsData);
+            } else {
+              setNotifications([]);
+            }
+          });
+        } else {
+          console.error("Moderator document not found");
+        }
+      } catch (error) {
+        console.error("Error fetching moderator data:", error);
+      }
+    };
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchModeratorData(user);
+      } else {
+        console.error("User not authenticated");
+      }
+    });
+
+    // Cleanup listener on component unmount
+    return () => unsubscribe();
+  }, []);
 
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
   const handleProfileClick = () => navigate('/profile');
   const handleSignOut = () => setShowSignOutModal(true);
-  const handleConfirmSignOut = () => { setShowSignOutModal(false); navigate('/Login'); };
+  const handleConfirmSignOut = () => {
+    setShowSignOutModal(false);
+    navigate('/Login');
+  };
   const handleCancelSignOut = () => setShowSignOutModal(false);
 
-  const handleDeleteNotification = (id) => {
-    setNotifications(notifications.filter(notification => notification.id !== id));
+  const handleDeleteValue = async (notificationId, attributeId, previousValue) => {
+    try {
+      const dataRef = ref(realtimeDb, `/${attributeId}`);
+      const snapshot = await get(dataRef);
+
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+
+        // Update annotations by removing entries with the previous value or null
+        const updatedAnnotations = data.annotations.filter(annotation => {
+          return annotation.en_values[0] !== previousValue && annotation.en_values[0] != null;
+        });
+
+        // Update with the new annotations
+        await update(dataRef, { ...data, annotations: updatedAnnotations });
+
+        // Remove the notification
+        const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
+        await remove(notificationRef);
+        setNotifications(notifications.filter(n => n.id !== notificationId));
+      }
+    } catch (error) {
+      console.error('Error deleting value:', error);
+    }
   };
 
-  const handleDismissAllNotifications = () => {
-    setNotifications(notifications.map(notification => ({ ...notification, status: 'Dismissed' })));
+  const handleDenyRequest = async (notificationId) => {
+    try {
+      const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
+      await remove(notificationRef);
+      setNotifications(notifications.filter(n => n.id !== notificationId));
+    } catch (error) {
+      console.error('Error denying request:', error);
+    }
   };
 
-  const handleStatusChange = (id, newStatus) => {
-    setNotifications(notifications.map(notification => 
-      notification.id === id ? { ...notification, status: newStatus } : notification
-    ));
+  const handleReplaceValue = async (notification) => {
+    try {
+      const dataRef = ref(realtimeDb, `/${notification.id}`);
+      const snapshot = await get(dataRef);
+
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+
+        const updatedAnnotations = notification.PreviousValue
+          ? data.annotations.map(annotation => {
+              if (annotation.en_values[0] === notification.PreviousValue) {
+                return { ...annotation, en_values: [notification.suggestion] };
+              }
+              return annotation;
+            })
+          : data.annotations; // If PreviousValue is null, don't change annotations
+
+        await update(dataRef, { ...data, annotations: updatedAnnotations });
+
+        // Remove the notification
+        const notificationRef = ref(realtimeDb, `notifications/${notification.id}`);
+        await remove(notificationRef);
+        setNotifications(notifications.filter(n => n.id !== notification.id));
+      }
+    } catch (error) {
+      console.error('Error replacing value:', error);
+    }
   };
 
   return (
@@ -69,8 +187,18 @@ const ModeratorPage = () => {
       </div>
 
       <div className="toggle-buttons">
-        <button className={view === 'view-edit' ? 'active' : ''} onClick={() => setView('view-edit')}>View Edit</button>
-        <button className={view === 'notifications' ? 'active' : ''} onClick={() => setView('notifications')}>Notifications</button>
+        <button 
+          className={view === 'view-edit' ? 'active' : ''} 
+          onClick={() => setView('view-edit')}
+        >
+          View Edit
+        </button>
+        <button 
+          className={view === 'notifications' ? 'active' : ''} 
+          onClick={() => setView('notifications')}
+        >
+          Notifications
+        </button>
       </div>
 
       {view === 'view-edit' && (
@@ -79,8 +207,8 @@ const ModeratorPage = () => {
           <table className="styled-table">
             <thead>
               <tr>
-                <th>Attribute-ID</th>
-                <th>UserID</th>
+                <th>Attribute</th>
+                <th>User ID</th>
                 <th>Region</th>
                 <th>Topic</th>
                 <th>Value</th>
@@ -88,38 +216,16 @@ const ModeratorPage = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Ara-ko-39</td>
-                <td>user_47</td>
-                <td>Arab</td>
-                <td>Food</td>
-                <td>Tea</td>
-                <td>Sub-culture</td>
-              </tr>
-              <tr>
-                <td>Ara-ko-71</td>
-                <td>user_80</td>
-                <td>Arab</td>
-                <td>Food</td>
-                <td>Coffee</td>
-                <td>Variance</td>
-              </tr>
-              <tr>
-                <td>Ara-de-20</td>
-                <td>user_40</td>
-                <td>Arab</td>
-                <td>Holiday</td>
-                <td>New Year</td>
-                <td>Variance</td>
-              </tr>
-              <tr>
-                <td>Ara-ko-89</td>
-                <td>user_99</td>
-                <td>Arab</td>
-                <td>Sport</td>
-                <td>Water</td>
-                <td>Variance</td>
-              </tr>
+              {viewEditEntries.map((entry) => (
+                <tr key={entry.id}>
+                  <td>{entry.attribute}</td>
+                  <td>{entry.userId}</td>
+                  <td>{entry.region}</td>
+                  <td>{entry.topic}</td>
+                  <td>{entry.value}</td>
+                  <td>{entry.reason}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -128,38 +234,57 @@ const ModeratorPage = () => {
       {view === 'notifications' && (
         <div className="notifications-container">
           <h2 className="pagename">Notifications</h2>
-          <div className="dismiss-all-container">
-            <button className="dismiss-all-btn" onClick={handleDismissAllNotifications}>Dismiss All</button>
-          </div>
           <table className="styled-table">
             <thead>
               <tr>
                 <th>User ID</th>
+                <th>Attribute ID</th>
                 <th>Attribute</th>
-                <th>Problem Description</th>
-                <th>Status</th>
+                <th>Topic</th>
+                <th>Previous Value</th>
+                <th>Suggested Value</th>
+                <th>Description</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {notifications.map(notification => (
                 <tr key={notification.id}>
-                  <td>{notification.userId}</td>
-                  <td>{notification.attribute}</td>
-                  <td>{notification.description}</td>
-                  <td>
-                    <select
-                      value={notification.status}
-                      onChange={(e) => handleStatusChange(notification.id, e.target.value)}
-                      className={`status-select ${notification.status.toLowerCase().replace(" ", "-")}`}
+                  <td>{notification.userId || 'N/A'}</td>
+                  <td>{notification.id || 'N/A'}</td>
+                  <td>{notification.attribute || 'N/A'}</td>
+                  <td>{notification.topic || 'N/A'}</td>
+                  <td>{notification.PreviousValue || 'N/A'}</td>
+                  <td>{notification.suggestion || 'N/A'}</td>
+                  <td>{notification.description || 'N/A'}</td>
+                  <td className="action-buttons">
+                    <button
+                      onClick={() => handleDeleteValue(
+                        notification.id,
+                        notification.id,
+                        notification.PreviousValue
+                      )}
+                      className="action-btn delete-btn"
+                      title="Delete this value from the dataset"
                     >
-                      <option value="In Progress">In Progress</option>
-                      <option value="Done">Done</option>
-                      <option value="Dismissed">Dismissed</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button className="delete-btn" onClick={() => handleDeleteNotification(notification.id)}>Delete</button>
+                      Delete Value
+                    </button>
+                    <button
+                      onClick={() => handleDenyRequest(notification.id)}
+                      className="action-btn deny-btn"
+                      title="Deny this notification request"
+                    >
+                      Deny Request
+                    </button>
+                    {notification.suggestion && (
+                      <button
+                        onClick={() => handleReplaceValue(notification)}
+                        className="action-btn replace-btn"
+                        title="Replace with suggested value"
+                      >
+                        Replace Value
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -169,7 +294,10 @@ const ModeratorPage = () => {
       )}
 
       {showSignOutModal && (
-        <SignOutConfirmation onConfirm={handleConfirmSignOut} onCancel={handleCancelSignOut} />
+        <SignOutConfirmation 
+          onConfirm={handleConfirmSignOut} 
+          onCancel={handleCancelSignOut} 
+        />
       )}
 
       <Footer />
