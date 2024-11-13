@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useEffect } from 'react';  
 import { useTranslation } from 'react-i18next';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -23,11 +24,13 @@ import { ResetPassword } from './ResetPassword/ResetPassword';
 import {Notifymodrator} from './Notifymodratorpages/Notifymodrator';
 
 import Switcher from './Switcher';
+import TranslationButton from'./TranslationButton';
 
 import './i18next/i18n';
 
 
 function App() {
+
 
   const { t, i18n } = useTranslation();
   
@@ -125,10 +128,14 @@ function App() {
 
   return (
     <div className="App">
+      
+      <TranslationButton/>
           <Switcher/>
       <RouterProvider router={route}></RouterProvider>
-      <ToastContainer />
    
+      <ToastContainer />
+
+    
     </div>
    
   );

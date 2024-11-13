@@ -13,6 +13,7 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import "./View.css";
 
 export function RealtimeData() {
+
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
@@ -386,3 +387,4 @@ export function RealtimeData() {
 }
 
 export default RealtimeData;
+

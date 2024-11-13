@@ -67,11 +67,15 @@ import logintrans from '../Transulation/Login_trans.json';
 import signuptrans from '../Transulation/Signup_trans.json';
 import discrptiontran from '../Transulation/DiscrptionPage_trans.json';
 import viewtrans from '../Transulation/Viewpage_trans.json';
+// import addtrans from '../Transulation/Add_trans.json';
+import comparetrans from '../Transulation/Compare_trans.json';
+import evalutiontrans from'../Transulation/Evalution_trans.json';
+
 
 i18n.use(initReactI18next).init({
   lng: localStorage.getItem('i18nextLng') || 'en', // Load from localStorage if available, else default to 'en'
   fallbackLng: 'ar', // fallback language
-  ns: ['headerpage', 'homepage', 'viewPage', 'fpage', 'login', 'signup', 'descriptionPage', 'EdiPage'],
+  ns: ['headerpage','evalutionpage' ,'comparepage','addpage','homepage', 'viewPage', 'fpage', 'login', 'signup', 'descriptionPage', 'EdiPage'],
   defaultNS: 'viewPage', // default namespace if not specified
   resources: {
     en: {
@@ -82,6 +86,9 @@ i18n.use(initReactI18next).init({
       signup: signuptrans.en,
       descriptionPage: discrptiontran.en,
       viewPage:viewtrans.en,
+      comparepage:comparetrans.en,
+      evalutionpage:evalutiontrans.en,
+      // addpage:addtrans.en,
     },
     ar: {
       headerpage: headertrans.ar,
@@ -91,6 +98,9 @@ i18n.use(initReactI18next).init({
       signup: signuptrans.ar,
       descriptionPage: discrptiontran.ar,
       viewPage:viewtrans.ar,
+      comparepage:comparetrans.ar,
+      evalutionpage:evalutiontrans.ar,
+      // addpage:addtrans.ar,
     },
     ch: {
       headerpage: headertrans.ch,
@@ -100,6 +110,9 @@ i18n.use(initReactI18next).init({
       signup: signuptrans.ch,
       descriptionPage: discrptiontran.ch,
       viewPage:viewtrans.ch,
+      comparepage:comparetrans.ch,
+      evalutionpage:evalutiontrans.ch,
+      // addpage:addtrans.ch,
     },
   },
   react: {
