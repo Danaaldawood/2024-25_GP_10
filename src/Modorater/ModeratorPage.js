@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { ref, onValue, remove, update, get } from 'firebase/database';
 import { doc, getDoc } from 'firebase/firestore';
@@ -157,7 +159,6 @@ const ModeratorPage = () => {
       console.error('Error replacing value:', error);
     }
   };
-
   return (
     <div className="moderator-container">
       <Helmet>
@@ -194,10 +195,10 @@ const ModeratorPage = () => {
           View Edit
         </button>
         <button 
-          className={view === 'notifications' ? 'active' : ''} 
+          className={`notification-btn ${view === 'notifications' ? 'active' : ''}`} 
           onClick={() => setView('notifications')}
         >
-          Notifications
+          Notifications {notifications.length > 0 && <span className="notification-badge">{notifications.length}</span>}
         </button>
       </div>
 
@@ -234,62 +235,66 @@ const ModeratorPage = () => {
       {view === 'notifications' && (
         <div className="notifications-container">
           <h2 className="pagename">Notifications</h2>
-          <table className="styled-table">
-            <thead>
-              <tr>
-                <th>User ID</th>
-                <th>Attribute ID</th>
-                <th>Attribute</th>
-                <th>Topic</th>
-                <th>Previous Value</th>
-                <th>Suggested Value</th>
-                <th>Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {notifications.map(notification => (
-                <tr key={notification.id}>
-                  <td>{notification.userId || 'N/A'}</td>
-                  <td>{notification.id || 'N/A'}</td>
-                  <td>{notification.attribute || 'N/A'}</td>
-                  <td>{notification.topic || 'N/A'}</td>
-                  <td>{notification.PreviousValue || 'N/A'}</td>
-                  <td>{notification.suggestion || 'N/A'}</td>
-                  <td>{notification.description || 'N/A'}</td>
-                  <td className="action-buttons">
-                    <button
-                      onClick={() => handleDeleteValue(
-                        notification.id,
-                        notification.id,
-                        notification.PreviousValue
-                      )}
-                      className="action-btn delete-btn"
-                      title="Delete this value from the dataset"
-                    >
-                      Delete Value
-                    </button>
-                    <button
-                      onClick={() => handleDenyRequest(notification.id)}
-                      className="action-btn deny-btn"
-                      title="Deny this notification request"
-                    >
-                      Deny Request
-                    </button>
-                    {notification.suggestion && (
-                      <button
-                        onClick={() => handleReplaceValue(notification)}
-                        className="action-btn replace-btn"
-                        title="Replace with suggested value"
-                      >
-                        Replace Value
-                      </button>
-                    )}
-                  </td>
+          {notifications.length > 0 ? (
+            <table className="styled-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Attribute ID</th>
+                  <th>Attribute</th>
+                  <th>Topic</th>
+                  <th>Previous Value</th>
+                  <th>Suggested Value</th>
+                  <th>Description</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {notifications.map(notification => (
+                  <tr key={notification.id}>
+                    <td>{notification.userId || 'N/A'}</td>
+                    <td>{notification.id || 'N/A'}</td>
+                    <td>{notification.attribute || 'N/A'}</td>
+                    <td>{notification.topic || 'N/A'}</td>
+                    <td>{notification.PreviousValue || 'N/A'}</td>
+                    <td>{notification.suggestion || 'N/A'}</td>
+                    <td>{notification.description || 'N/A'}</td>
+                    <td className="action-buttons">
+                      <button
+                        onClick={() => handleDeleteValue(
+                          notification.id,
+                          notification.id,
+                          notification.PreviousValue
+                        )}
+                        className="action-btn delete-btn-not"
+                        title="Delete this value from the dataset"
+                      >
+                        Delete Value
+                      </button>
+                      <button
+                        onClick={() => handleDenyRequest(notification.id)}
+                        className="action-btn deny-btn-not"
+                        title="Deny this notification request"
+                      >
+                        Deny Request
+                      </button>
+                      {notification.suggestion && (
+                        <button
+                          onClick={() => handleReplaceValue(notification)}
+                          className="action-btn replace-btn"
+                          title="Replace with suggested value"
+                        >
+                          Replace Value
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="no-notifications">No notifications available</p>
+          )}
         </div>
       )}
 

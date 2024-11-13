@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { ref, update } from 'firebase/database';
-import { realtimeDb } from '../Register/firebase';
+import { realtimeDb, auth } from '../Register/firebase';
 import "./Notifymodrator.css";
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export const Notifymodrator = () => {
   const { id } = useParams();
@@ -15,6 +16,19 @@ export const Notifymodrator = () => {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const lastFourUID = user.uid.slice(-4);
+        setUserId(`user_${lastFourUID}`);
+      } else {
+        console.error("User is not authenticated");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (!location.state) {
@@ -29,8 +43,20 @@ export const Notifymodrator = () => {
     suggestion: "",
     PreviousValue: location.state?.selectedValue || "", 
     status: "pending",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    attribute: location.state?.attribute || "",
+    userId: "",
+    region: location.state?.region || ""
   });
+
+  useEffect(() => {
+    if (userId) {
+      setNotificationData(prev => ({
+        ...prev,
+        userId: userId
+      }));
+    }
+  }, [userId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
