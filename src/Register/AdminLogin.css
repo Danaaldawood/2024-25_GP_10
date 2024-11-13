@@ -1,0 +1,198 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  /* Page */
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 1rem;
+  }
+  
+  /* Form Container */
+  .login-container {
+    display: flex;
+    align-items: stretch;
+    width: 850px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form {
+    padding: 1.5rem;
+    flex: 1;
+    background-color: #f7f8f8;
+  }
+  
+  .login-title {
+    font-size: 20px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  /* Input and Select Fields */
+  .login-label {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 0rem;
+  }
+  
+  .login-input, .login-select {
+    width: 100%;
+    height: 50px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+    font-size: 13px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+  
+  .login-input:focus, .login-select:focus {
+    border-color: #004D60;
+    outline: none;
+  }
+  
+  /* Left Section */
+  .Adminleft-section {
+    flex: 1;
+    background: rgb(72, 141, 92);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 0 20px 20px 0;
+  }
+  
+  .Adminleft-section h2 {
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+  
+  .Adminleft-section p {
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  .welcome-txt {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+  
+  /* Button */
+  .Adminlogin-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgb(58, 120, 75);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Adminlogin-btn:hover {
+    background-color: rgb(73, 148, 93);
+    
+  }
+  
+  .Adminlogin-register {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .Adminlogin-link, .forget-password {
+    color: rgb(47, 95, 60);
+     font-weight: bold;
+    text-align: right;
+  }
+  
+  .Adminlogin-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Password Container */
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .password-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: gray;
+    height: 20px;
+    width: 20px;
+  }
+  .Adminforgot-password {
+    text-align: right;
+    margin-top: 10px;
+    color: rgb(47, 95, 60);
+
+  }
+  
+  .Adminlogin-link {
+    color: rgb(47, 95, 60);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  }
+  
+  .Adminlogin-link:hover {
+    text-decoration: none;
+  }
+  
+  /* Password Requirements */
+  .password-requirements {
+    list-style-type: disc;
+    color: rgb(82, 81, 81);
+    font-size: 11px;
+    padding-left: 15px;
+    margin: 0 0 1rem 0;
+  }
+  
+  .password-requirements li {
+    margin-bottom: 4px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .left-section {
+      display: none;
+    }
+  
+    .login-form {
+      padding: 1rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .login-container {
+      width: 800px;
+    }
+  }
+  

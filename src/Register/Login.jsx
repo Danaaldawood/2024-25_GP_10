@@ -206,17 +206,36 @@ const Login = () => {
       const userDoc = await getDoc(doc(db, collectionPath, user.uid));
       
       if (userDoc.exists()) {
-        navigate(userType === 'User' ? '/HomePage' : '/moderator');
+        const userData = userDoc.data();
+        
+        if (userType === 'Moderator') {
+          if (userData.status === 'Pending') {
+            setErrorMessage(t('Sorry, your request is pending until approval. '));
+            setIsLoading(false);
+          } else if (userData.status === 'Denied') {
+            setErrorMessage(t('Sory your request is denied'));
+            setIsLoading(false);
+          } else if (userData.status === 'Approved') {
+            navigate('/moderator');
+          } else {
+            setErrorMessage(t('loginPage.accessDenied'));
+            setIsLoading(false);
+          }
+        } else {
+          // For regular users
+          navigate('/HomePage');
+        }
       } else {
+        // If the document does not exist, display an access denied message
         setErrorMessage(t('loginPage.accessDenied'));
         setIsLoading(false);
       }
     } catch (error) {
+      // If an error occurs during sign-in, display an error message
       setErrorMessage(t('loginPage.errorIncorrectCredentials'));
       setIsLoading(false);
     }
   };
-
   return (
     <>
       <Helmet>

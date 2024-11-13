@@ -1,0 +1,218 @@
+/* Header Styling */
+.header-admin{
+  background-color: rgb(72, 141, 92);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   color: white;
+  padding: 15px 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+}
+ 
+.Adminlogout-btn {
+  background-color:  rgb(83, 152, 101);;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+.Adminlogout-btn:hover{
+  background-color: rgba(72, 141, 92, 0.1);
+
+}
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.requests-table th, .requests-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.requests-table th {
+  background-color: rgb(72, 141, 92);
+  color: white;
+  font-weight: bold;
+}
+
+.requests-table tr:hover {
+  background-color: rgba(72, 141, 92, 0.1);
+}
+
+.requests-table td {
+  font-size: 14px;
+  justify-content: flex-start;
+  align-items: center; /* للتأكد من أن الأزرار متسقة رأسياً */
+ }
+ 
+  
+
+ .requests-table .approve-btn,
+ .requests-table .deny-btn {
+   padding: 6px;
+   background-color: #10a37f;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   box-sizing: border-box;
+ }
+ 
+
+  
+ 
+
+ 
+
+ .requests-table .approve-btn {
+  background-color: #29a329;
+}
+
+.requests-table .approve-btn:hover {
+  background-color: #218121;
+}
+
+.requests-table .deny-btn {
+  background-color: #d42f2f;
+}
+
+.requests-table .deny-btn:hover {
+  background-color: #b22929;
+}
+
+.requests-table .actions button {
+  width: 100%;  /* Ensure actions buttons also have full width */
+}
+
+.filter-container {
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.filter-container label {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.filter-container select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.admin-header-banner {
+  width: 100%;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  padding: 20px 0;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.admin-header-banner h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.admin-toggle-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+ }
+
+.admin-toggle-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  background-color: rgb(169, 206, 179);;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.admin-toggle-buttons button.active {
+  background-color: rgb(72, 141, 92);
+}
+
+.admin-toggle-buttons button:hover {
+  background-color: rgb(72, 141, 92);
+}
+
+.requests-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+ .approve-btn {
+  background-color: #29a329;
+}
+
+.approve-btn:hover {
+  background-color: #218121;
+}
+
+.deny-btn {
+  background-color: #d42f2f;
+}
+
+.deny-btn:hover {
+  background-color: #b22929;
+}
+
+.model-upload-section {
+  text-align: center;
+  padding: 40px;
+}
+
+.model-upload-section h2 {
+  font-size: 22px;
+  color: #1e4862;
+}
+
+.model-upload-box {
+  display: inline-block;
+  padding: 40px;
+  background-color: #eef4f7;
+  border: 2px dashed #1e4862;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.model-upload-box:hover {
+  background-color: #ddeaf1;
+}
+
+.upload-btn {
+  display: block;
+  background-color: #29a329;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px auto 0;
+}
+
+.upload-btn:hover {
+  background-color: #218121;
+}

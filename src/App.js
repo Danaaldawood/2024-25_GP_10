@@ -27,7 +27,11 @@ import Switcher from './Switcher';
 import TranslationButton from'./TranslationButton';
 
 import './i18next/i18n';
-
+import AdminPage from './Register/AdminPage';
+import AdminLogin from './Register/AdminLogin';
+import AdminRegister from'./Register/AdminRegister';
+import AdminForgetPass from './AdminPassword/AdminForgetPass';
+import AdminRestPass from './AdminPassword/AdminRestPass'
 
 function App() {
 
@@ -58,6 +62,28 @@ function App() {
       path: "/login",  
       element: <Login />,
     },
+    {
+      path:"adminlogin",
+      element:<AdminLogin/>,
+    },
+    
+    {
+      path: "/adminR",  
+      element: <AdminRegister />,
+    },
+    {
+      path: "/admin",  
+      element: <AdminPage />,  
+    },
+    {
+      path: "/adminforgetpass",
+      element: <AdminForgetPass />
+    },
+    {
+      path: "/adminrestpass",
+      element: <AdminRestPass />
+    },
+
     {
       path: "/forgot",  
       element: <ForgotPassword />,

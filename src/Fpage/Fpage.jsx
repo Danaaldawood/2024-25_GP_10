@@ -92,6 +92,9 @@ const Fpage = () => {
             <Link to="/Login">
               <button className="Button-Register">{t("loginButton")}</button>
             </Link>
+            <Link to="/adminR">
+              <button className="Button-Register">Log in</button>
+            </Link>
           </nav>
         </div>
         <img src={photo} alt={t("headerTitle")} className="animated-logo" />

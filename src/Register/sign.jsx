@@ -362,14 +362,14 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Signin.css';
 import LOGO from '../images/Logo.png';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import Flag from 'react-world-flags';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword ,onAuthStateChanged} from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from './firebase'; 
 import './Pop-Message.css'
@@ -387,11 +387,14 @@ const Sign = () => {
   const [fname, setFname] = useState("");
   const [region, setRegion] = useState("");
   const [regionM, setRegionM] = useState("");
+  const[reason,setReason]=useState("");
   const [country, setCountry] = useState("");
   const [userType, setUserType] = useState('User');
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const [isRequestSent, setIsRequestSent] = useState(false);
+  const [userId, setUserId] = useState("");  // For storing last 4 digits of user ID
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); 
   
@@ -403,10 +406,23 @@ const Sign = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Get the last four characters of the user ID
+        const lastFourUID = user.uid.slice(-4); 
+        setUserId(`user_${lastFourUID}`);
+      } else {
+        console.error("User is not authenticated");
+      }
+    });
 
+    // Cleanup the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
   const handleRegister = async (e) => {
     e.preventDefault();
-
+   
     if (!isPasswordValid) {
       let errorMessages = [];
       if (!isMinCharacters) errorMessages.push("Password must be at least 8 characters.");
@@ -432,6 +448,7 @@ const Sign = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
+  
       if (user) {
         const collectionPath = userType === 'User' ? 'Users' : 'Moderators';
         let userData = userType === 'User'
@@ -439,20 +456,26 @@ const Sign = () => {
             User_Id: user.uid,
             email: user.email,
             fullName: fname,
-            region: region,  
-            country: country && country.label && country.label.props ? country.label.props.children[1] : null
+            region,
+            country: country?.label?.props?.children[1] || null,
           }
         : {
             Moderator_Id: user.uid,
-            email: user.email,
+            email:email,   
             fullName: fname,
-            regionM: regionM
+            regionM,
+            reason,
+            status: 'Pending',  
           };
-          await setDoc(doc(db, collectionPath, user.uid), userData);
+      
+      await setDoc(doc(db, collectionPath, user.uid), userData);
+      
           setShowSuccess(true);
           setTimeout(() => {
-            navigate(userType === 'User' ? '/Home' : '/moderator');
-          }, 1000);
+            if (userType === 'User') {
+              navigate('/Home');
+            }
+                      }, 1000);
         }
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
@@ -484,42 +507,46 @@ const Sign = () => {
   return (
     <div className="sign-page">
       <Helmet>
-        <title>Create Account Page</title>
-        <meta name="description" content="This is the Create Account of My website" />
-      </Helmet>      
-   
+        <title>{t('createAccount')} - My Website</title>
+        <meta name="description" content="Create an account on My website" />
+      </Helmet>
+
       {errorMessage && (
         <div className="error-popup">
-          <h3 className="error-title">Warning!</h3>
+          <h3 className="error-title">{t('warning')}!</h3>
           <p className="error-message">{errorMessage}</p>
           <div className="error-actions">
-            <button className="confirm-btn" onClick={() => setErrorMessage("")}>Try again</button>
+            <button className="confirm-btn" onClick={() => setErrorMessage("")}>{t('tryAgain')}</button>
           </div>
         </div>
       )}
-        
+
       {showSuccess && (
         <div className="success-popup">
           <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-          <p className="success-message">Your account has been created successfully.</p>
+          <p className="success-message">
+            {userType === 'User' 
+              ? t('accountCreated') 
+              : t('requestSubmitted')}
+          </p>
+          {userType !== 'User' && (
+            <button className="ok-btn" onClick={() => setShowSuccess(false)}>{t('ok')}</button>
+          )}
         </div>
       )}
 
       <div className="sign-container">
-        {/* Left Section */}
         <div className="Left-section">
           <div className="logo-welcome-container">
-            <img src={LOGO} alt="Logo" width="100" height="100" />
-            <h2> {t('welcome')}</h2>
+            <img src="logo.png" alt="Logo" width="100" height="100" />
+            <h2>{t('welcome')}</h2>
           </div>
           <p className="Welcome-txt">{t('toCultureLens')}</p>
         </div>
 
-        {/* Form Section */}
         <form className="sign-form" onSubmit={handleRegister}>
           <h2 className="sign-title">{t('createAccount')}</h2>
 
-          {/* User Type Selection */}
           <div className="sign-user-type-container">
             <button 
               type="button" 
@@ -533,43 +560,37 @@ const Sign = () => {
               className={`sign-user-type-btn ${userType === 'Moderator' ? 'sign-active' : ''}`} 
               onClick={() => handleUserTypeChange('Moderator')}
             >
-                            {t('moderatorType')}
-
+              {t('moderatorType')}
             </button>
           </div>
 
-          {/* Full Name */}
-          <label htmlFor="name" className="sign-label"> {t('fullName')}</label>
-          <input 
-            type="text" 
-            id="name" 
-            placeholder=  {t('enterFullName')}
-            className="sign-input"
-            value={fname}
-            onChange={(e) => setFname(e.target.value)}
-            required
-          />
-
-          {/* Email */}
-          <label htmlFor="email" className="sign-label">{t('email')}</label>
-          <input 
-            type="email" 
-            id="email" 
-            placeholder={t('enterEmail')}
-            className="sign-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          {/* Additional Fields for User Type */}
           {userType === 'User' && (
             <>
-              <label className="sign-label">{t('country')}   </label>
+              <label htmlFor="name" className="sign-label">{t('fullName')}</label>
+              <input 
+                type="text" 
+                id="name" 
+                placeholder={t('enterFullName')}
+                className="sign-input"
+                value={fname}
+                onChange={(e) => setFname(e.target.value)}
+                required
+              />
+              <label htmlFor="email" className="sign-label">{t('email')}</label>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder={t('enterEmail')}
+                className="sign-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label className="sign-label">{t('country')}</label>
               <Select 
                 options={countryOptions} 
                 value={country}   
-                onChange={handleCountryChange}
+                onChange={setCountry}
                 placeholder={t('selectCountry')}
                 styles={{
                   control: (styles, { isFocused }) => ({
@@ -597,9 +618,8 @@ const Sign = () => {
                     padding: '0 8px',
                   })
                 }}
+                
               />
-
-              {/* Password */}
               <div>
                 <label className="Login-label" htmlFor="password">{t('password')}</label>
                 <div className="password-container">
@@ -617,24 +637,18 @@ const Sign = () => {
                   </span>
                 </div>
 
+               
                 <ul className="password-requirements">
-                  <li className={isMinCharacters ? 'valid' : 'invalid'}>
-                  
-                 
-                    {t('passwordRequirements.minChars')}
-                  </li>
-                  <li className={hasUppercase ? 'valid' : 'invalid'}>
-                  
-                 
-                    {t('passwordRequirements.uppercase')}
-                    
-                  </li>
-                  <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-                   
-                   
-                    {t('passwordRequirements.specialChar')}
-                  </li>
-                </ul>
+        <li className={isMinCharacters ? 'valid' : 'invalid'}>
+           {t('passwordRequirements.minChars')}
+        </li>
+        <li className={hasUppercase ? 'valid' : 'invalid'}>
+           {t('passwordRequirements.uppercase')}
+        </li>
+        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+           {t('passwordRequirements.specialChar')}
+        </li>
+      </ul>
               </div>
 
               <fieldset className="sign-culture-domain">
@@ -656,11 +670,42 @@ const Sign = () => {
                   <label htmlFor="Other">{t('other')}</label>
                 </div>
               </fieldset>
+
+              <button type="submit" className="sign-btn" disabled={!isPasswordValid}>{t('createAccount')}</button>
             </>
           )}
-           
+
           {userType === 'Moderator' && (
             <>
+              <label htmlFor="name" className="sign-label">{t('fullName')}</label>
+              <input 
+                type="text" 
+                id="name" 
+                placeholder={t('enterFullName')}
+                className="sign-input"
+                value={fname}
+                onChange={(e) => setFname(e.target.value)}
+                required
+              />
+              <label htmlFor="email" className="sign-label">{t('email')}</label>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder={t('enterEmail')}
+                className="sign-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label htmlFor="reason" className="sign-label">{t('Reason')}</label>
+              <textarea 
+                id="reason" 
+                placeholder={t('ُEnter your reason')}
+                className="sign-input" 
+                value={reason} 
+                onChange={(e) => setReason(e.target.value)} 
+                required
+              />
               <div>
                 <label className="Login-label" htmlFor="password">{t('password')}</label>
                 <div className="password-container">
@@ -679,59 +724,44 @@ const Sign = () => {
                 </div>
 
                 <ul className="password-requirements">
-                  <li className={isMinCharacters ? 'valid' : 'invalid'}>
-                  
-                  {t('passwordRequirements.minChars')}
-                  </li>
-                  <li className={hasUppercase ? 'valid' : 'invalid'}>
-                    
-                    {t('passwordRequirements.uppercase')}
-                  </li>
-                  <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-                    
-                    {t('passwordRequirements.specialChar')}
-
-                  </li>
-                </ul>
+        <li className={isMinCharacters ? 'valid' : 'invalid'}>
+           {t('passwordRequirements.minChars')}
+        </li>
+        <li className={hasUppercase ? 'valid' : 'invalid'}>
+           {t('passwordRequirements.uppercase')}
+        </li>
+        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+           {t('passwordRequirements.specialChar')}
+        </li>
+      </ul>
               </div>
 
               <fieldset className="sign-culture-domain">
                 <legend>{t('region')}</legend>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)} required />
+                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
                   <label htmlFor="Arab">{t('arab')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)} required />
-                  <label htmlFor="Western"> {t('western')}</label>
+                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)} required />
+                  <label htmlFor="Western">{t('western')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)} required />
-                  <label htmlFor="Chinese"> {t('chinese')}</label>
+                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)} required />
+                  <label htmlFor="Chinese">{t('chinese')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)} required />
+                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)} required />
                   <label htmlFor="Other">{t('other')}</label>
                 </div>
               </fieldset>
+
+              <button type="submit" className="sign-btn">{t('Send Request')}</button>
             </>
           )}
-
-          {/* Submit Button */}
-          <button 
-            type="submit" 
-            className="sign-btn" 
-            disabled={!isPasswordValid} 
-            style={{ marginTop: '1rem', fontSize: '15px' }}
-          >
-        
-            {t('createAccount')}
-          </button>
           
           <div className="sign-login">
-            <p style={{ fontSize: '15px' }}>
-            {t('alreadyHaveAccount')} <Link to="/Login" className="sign-link">{t('logIn')}</Link>
-            </p>
+            <p>{t('alreadyHaveAccount')} <Link to="/Login" className="sign-link">{t('login')}</Link></p>
           </div>
         </form>
       </div>

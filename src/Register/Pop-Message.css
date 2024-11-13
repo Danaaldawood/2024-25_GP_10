@@ -94,3 +94,16 @@ background-color: #ff5c5c;
   margin-bottom: 15px;
   border-radius: none; 
 }
+.ok-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4caf50; /* Success green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ok-btn:hover {
+  background-color: #45a049;
+}

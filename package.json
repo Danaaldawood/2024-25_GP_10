@@ -16,6 +16,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4",
+    "emailjs-com": "^3.2.0",
     "firebase": "^10.14.1",
     "i18next": "^23.16.5",
     "i18next-browser-languagedetector": "^8.0.0",

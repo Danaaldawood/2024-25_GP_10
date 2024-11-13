@@ -1,0 +1,152 @@
+.Adminreset-password-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 1rem;
+  }
+  
+  .Adminreset-password-container {
+    display: flex;
+    align-items: stretch;
+    width: 850px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Adminreset-password-form {
+    padding: 2rem;
+    flex: 1;
+    background-color: #f7f8f8;
+  }
+  
+  .Adminreset-password-title {
+    font-size: 20px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .Adminreset-password-label {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .Adminreset-password-input-container {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .Adminreset-password-input {
+    width: 100%;
+    height: 50px;
+    padding: 0.75rem;
+    padding-right: 2.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .Adminreset-password-input:focus {
+    border-color: #004D60;
+    outline: none;
+  }
+  
+  .Adminreset-password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .Adminreset-password-requirements {
+    list-style-type: disc;
+    color: rgb(82, 81, 81);
+    font-size: 12px;
+    padding-left: 20px;
+    margin: 0 0 1rem 0;
+  }
+  
+  .Adminreset-password-requirements li {
+    margin-bottom: 5px;
+  }
+  
+  .Adminreset-password-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2d5174;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+  }
+  
+  .Adminreset-password-btn:hover {
+    background-color: #004D60;
+  }
+  
+
+  
+  .Adminreset-password-left-section {
+    flex: 1;
+    background: linear-gradient(700deg, #004D60, #6084a9);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .Adminreset-password-logo-welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Adminreset-password-logo-welcome-container img {
+    margin-bottom: 1rem;
+  }
+  
+  .Adminreset-password-logo-welcome-container h2 {
+    font-size: 32px;
+    margin: 0;
+  }
+  
+  .Adminreset-password-welcome-txt {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .Adminreset-password-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .Adminreset-password-left-section {
+      display: none;
+    }
+  
+    .Adminreset-password-form {
+      padding: 1.5rem;
+    }
+  }
+  
