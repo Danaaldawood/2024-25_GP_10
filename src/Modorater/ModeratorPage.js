@@ -238,59 +238,66 @@ const ModeratorPage = () => {
           {notifications.length > 0 ? (
             <table className="styled-table">
               <thead>
-                <tr>
-                  <th>User ID</th>
-                  <th>Attribute ID</th>
-                  <th>Attribute</th>
-                  <th>Topic</th>
-                  <th>Previous Value</th>
-                  <th>Suggested Value</th>
-                  <th>Description</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {notifications.map(notification => (
-                  <tr key={notification.id}>
-                    <td>{notification.userId || 'N/A'}</td>
-                    <td>{notification.id || 'N/A'}</td>
-                    <td>{notification.attribute || 'N/A'}</td>
-                    <td>{notification.topic || 'N/A'}</td>
-                    <td>{notification.PreviousValue || 'N/A'}</td>
-                    <td>{notification.suggestion || 'N/A'}</td>
-                    <td>{notification.description || 'N/A'}</td>
-                    <td className="action-buttons">
-                      <button
-                        onClick={() => handleDeleteValue(
-                          notification.id,
-                          notification.id,
-                          notification.PreviousValue
-                        )}
-                        className="action-btn delete-btn-not"
-                        title="Delete this value from the dataset"
-                      >
-                        Delete Value
-                      </button>
-                      <button
-                        onClick={() => handleDenyRequest(notification.id)}
-                        className="action-btn deny-btn-not"
-                        title="Deny this notification request"
-                      >
-                        Deny Request
-                      </button>
-                      {notification.suggestion && (
-                        <button
-                          onClick={() => handleReplaceValue(notification)}
-                          className="action-btn replace-btn"
-                          title="Replace with suggested value"
-                        >
-                          Replace Value
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+    <tr>
+    <th>User ID</th>
+    <th>Notification ID</th>
+    <th>Attribute</th>
+    <th>Topic</th>
+    <th>Previous Value</th>
+    <th>Suggestion</th>
+    <th>Description</th>
+    <th>Delete Value</th>       
+    <th>Deny Request</th>      
+    <th>Replace Value</th>    
+  </tr>
+</thead>
+<tbody>
+  {notifications.map(notification => (
+    <tr key={notification.id}>
+      <td>{notification.userId || 'N/A'}</td>
+      <td>{notification.id || 'N/A'}</td>
+      <td>{notification.attribute || 'N/A'}</td>
+      <td>{notification.topic || 'N/A'}</td>
+      <td>{notification.PreviousValue || 'N/A'}</td>
+      <td>{notification.suggestion || 'N/A'}</td>
+      <td>{notification.description || 'N/A'}</td>
+      <td className="action-buttons">
+         <button
+          onClick={() => handleDeleteValue(
+            notification.id,
+            notification.id,
+            notification.PreviousValue
+          )}
+          className="action-btn delete-btn-not"
+          title="Delete this value from the dataset"
+        >
+          Delete Value
+        </button>
+      </td>
+      <td className="action-buttons">
+         <button
+          onClick={() => handleDenyRequest(notification.id)}
+          className="action-btn deny-btn-not"
+          title="Deny this notification request"
+        >
+          Deny Request
+        </button>
+      </td>
+      <td className="action-buttons">
+         {notification.suggestion && (
+          <button
+            onClick={() => handleReplaceValue(notification)}
+            className="action-btn replace-btn"
+            title="Replace with suggested value"
+          >
+            Replace Value
+          </button>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
             </table>
           ) : (
             <p className="no-notifications">No notifications available</p>

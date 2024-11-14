@@ -133,32 +133,43 @@
   margin: 40px 0;
 }
 
-.delete-btn-not {
+ 
+.action-btn {
+  width: 80px;            
+  height: 40px;   
+   color: white;
+   gap:10px;
+  border: none;
+  border-radius: 5px;       
+  cursor: pointer;
+  font-size: 12px;         
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  transition: background-color 0.3s;  
+}
+
+ .delete-btn-not {
   background-color: #dc172b;
-  color: white;
-}
-
-.deny-btn-not {
-  background-color: #737272;
-  color: white;
-}
-
-.replace-btn {
-  background-color: #10a37f;
-  color: white;
 }
 
 .delete-btn-not:hover {
   background-color: #ff5264;
-  color: white;
+}
+
+ .deny-btn-not {
+  background-color: #737272;
 }
 
 .deny-btn-not:hover {
   background-color: #929191;
-  color: white;
+}
+
+ .replace-btn {
+  background-color: #10a37f;
 }
 
 .replace-btn:hover {
   background-color: #74c3b0;
-  color: white;
 }
+
