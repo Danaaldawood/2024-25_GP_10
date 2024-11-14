@@ -3,7 +3,7 @@ import './UserProfilePage.css';
 import Notification from '../Modorater/Notification';
 import DeleteConfirmation from '../Modorater/DeleteConfirmation';
 import defaultProfilePic from '../Modorater/userpro.jpg';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaTrash } from 'react-icons/fa';  // Import FaTrash
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase'; 
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
@@ -20,7 +20,6 @@ const UserProfilePage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  // Fetch user data from Firestore when authentication state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -46,7 +45,6 @@ const UserProfilePage = () => {
     return () => unsubscribe();
   }, []);
 
-  // Handle Save Profile
   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
       setNotification({ type: 'error', message: 'Full name cannot be empty. Please enter a valid name.' });
@@ -94,7 +92,6 @@ const UserProfilePage = () => {
 
       const credential = EmailAuthProvider.credential(user.email, password);
 
-      // Re-authenticate the user
       await reauthenticateWithCredential(user, credential);
 
       const userDocRef = doc(db, 'Users', user.uid);
@@ -178,8 +175,9 @@ const UserProfilePage = () => {
           </button>
 
           <button className="delete-button" onClick={handleDeleteAccount}>
-            Delete Account
-          </button>
+  Delete Account <FaTrash className="trash-icon" />
+</button>
+
         </div>
       </div>
 

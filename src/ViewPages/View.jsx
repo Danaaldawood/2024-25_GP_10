@@ -9,11 +9,11 @@ import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import AddIcon from "@mui/icons-material/Add"; // Import Add icon
 
 import "./View.css";
 
 export function RealtimeData() {
-
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
@@ -39,13 +39,12 @@ export function RealtimeData() {
           topic: row.topic,
           attribute: row.en_question,
           region: row.region_name,
-          selectedValue: selectedValue, 
-          allValues: row.annotations?.map((annotation) => annotation.en_values[0]) || [] 
+          selectedValue: selectedValue,
+          allValues: row.annotations?.map((annotation) => annotation.en_values[0]) || []
         }
       });
     }
   };
-
 
   useEffect(() => {
     console.log("Fetching user region...");
@@ -83,7 +82,6 @@ export function RealtimeData() {
           setTableData(dataArray);
           console.log("Fetched data:", dataArray);
 
-          // Initialize reasons for each row if there's an initial value
           const initialReasons = dataArray.reduce((acc, row) => {
             const firstAnnotation = row.annotations?.[0];
             acc[row.id] = firstAnnotation
@@ -129,9 +127,9 @@ export function RealtimeData() {
     setRowsPerPage(value);
   };
 
-  const handleEditClick = (row) => {
-    console.log("User Region:", userRegion); // Log user region for troubleshooting
-    console.log("Row Region Name:", row.region_name); // Log row region for troubleshooting
+  const handleAddClick = (row) => {
+    console.log("User Region:", userRegion);
+    console.log("Row Region Name:", row.region_name);
 
     if (row.region_name === userRegion) {
       const dropdownElement = document.querySelector(
@@ -150,7 +148,7 @@ export function RealtimeData() {
         },
       });
     } else {
-      console.log("Region does not match; cannot edit.");
+      console.log("Region does not match; cannot add.");
     }
   };
 
@@ -162,7 +160,7 @@ export function RealtimeData() {
       );
       setReasons((prev) => ({
         ...prev,
-        [rowId]: selectedAnnotation ? selectedAnnotation.reason : "Variation",
+        [rowId]: selectedAnnotation ? selectedAnnotation.reason : "variation",
       }));
     }
   };
@@ -204,7 +202,7 @@ export function RealtimeData() {
   const displayedFilterTopic =
     filterTopic === "Holidays/Celebration/Leisure" ? "Holiday" : filterTopic;
 
-  const [hoveredEditRow, setHoveredEditRow] = useState(null);
+  const [hoveredAddRow, setHoveredAddRow] = useState(null);
   const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
 
   if (error) {
@@ -314,31 +312,21 @@ export function RealtimeData() {
                   >
                     {row.topic}
                   </td>
-                  <td>{reasons[row.id] || "Variation"}</td>
+                  <td>{reasons[row.id] || "variation"}</td>
                   <td
-                    onMouseEnter={() => setHoveredEditRow(row.id)}
-                    onMouseLeave={() => setHoveredEditRow(null)}
+                    onMouseEnter={() => setHoveredAddRow(row.id)}
+                    onMouseLeave={() => setHoveredAddRow(null)}
                     style={{ position: "relative" }}
                   >
                     <button
-                      onClick={() => handleEditClick(row)}
-                      className="edit-button"
-                      style={{
-                        backgroundColor:
-                          row.region_name === userRegion
-                            ? "#10a37f"
-                            : "#d3d3d3",
-                        cursor:
-                          row.region_name === userRegion
-                            ? "pointer"
-                            : "not-allowed",
-                      }}
+                      onClick={() => handleAddClick(row)}
+                      className="add-button"
                       disabled={row.region_name !== userRegion}
                     >
-                      Add
+                      <AddIcon style={{ marginRight: "5px" }} /> Add
                     </button>
                     {row.region_name !== userRegion &&
-                      hoveredEditRow === row.id &&
+                      hoveredAddRow === row.id &&
                       !hoveredNotifyRow && (
                         <div className="custom-tooltip">
                           You don't belong to this region
@@ -353,23 +341,13 @@ export function RealtimeData() {
                     <button
                       onClick={() => handleClick(row)}
                       className="notify-button"
-                      style={{
-                        backgroundColor:
-                          row.region_name === userRegion
-                            ? "#d00c4d"
-                            : "#d3d3d3",
-                        cursor:
-                          row.region_name === userRegion
-                            ? "pointer"
-                            : "not-allowed",
-                      }}
                       disabled={row.region_name !== userRegion}
                     >
                       Notify
                     </button>
                     {row.region_name !== userRegion &&
                       hoveredNotifyRow === row.id &&
-                      !hoveredEditRow && (
+                      !hoveredAddRow && (
                         <div className="custom-tooltip">
                           You don't belong to this region
                         </div>
@@ -387,4 +365,3 @@ export function RealtimeData() {
 }
 
 export default RealtimeData;
-
