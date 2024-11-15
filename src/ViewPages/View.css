@@ -183,3 +183,12 @@ tbody td select {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.notification-item {
+  display: flex;
+  align-items: center;  
+  font-size: 16px;
+  color: #ffffff;
+}
+
+ 

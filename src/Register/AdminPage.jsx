@@ -239,20 +239,17 @@ export const AdminPage = () => {
                                 </td>
 
                                 <td>
-  <div className="button-container">
-    {request.status !== 'Approved' && (
-        <button className="approve-btn" onClick={() => handleApproveRequest(request.id, request.email)}>
-            Approve
-        </button>
-    )}
-    {request.status !== 'Denied' && (
-        <button className="deny-btn" onClick={() => handleDenyRequest(request.id, request.email)}>
-            Deny
-        </button>
-    )}
-  </div>
-</td>
-
+                                    {request.status !== 'Approved' && (
+                                        <button className="approve-btn" onClick={() => handleApproveRequest(request.id, request.email)}>
+                                            Approve
+                                        </button>
+                                    )}
+                                    {request.status !== 'Denied' && (
+                                        <button className="deny-btn" onClick={() => handleDenyRequest(request.id, request.email)}>
+                                            Deny
+                                        </button>
+                                    )}
+                                </td>
                             </tr>
                         ))}
                       </tbody>

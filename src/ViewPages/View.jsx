@@ -8,9 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive"; //import Notification icon
 import AddIcon from "@mui/icons-material/Add"; // Import Add icon
-
+ 
 import "./View.css";
 
 export function RealtimeData() {
@@ -343,8 +343,12 @@ export function RealtimeData() {
                       className="notify-button"
                       disabled={row.region_name !== userRegion}
                     >
-                      Notify
-                    </button>
+ <div className="notification-container">
+           <div className="notification-item">
+            <NotificationsActiveIcon style={{ marginRight: "5px" }} />  
+            <span>Notify</span>  
+          </div>
+        </div>                    </button>
                     {row.region_name !== userRegion &&
                       hoveredNotifyRow === row.id &&
                       !hoveredAddRow && (

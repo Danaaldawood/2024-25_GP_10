@@ -58,7 +58,7 @@
 .Adminforgot-password-btn {
   width: 100%;
   padding: 0.75rem;
-  background-color: rgb(58, 120, 75);
+  background-color: #456b90;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -69,12 +69,12 @@
 }
 
 .Adminforgot-password-btn:hover {
-  background-color: rgb(73, 148, 93);
+  background-color:#254d75;
 }
 
 .Adminforgot-password-left-section {
   flex: 1;
-  background: rgb(72, 141, 92);
+  background: #2d5174;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@
 }
 
 .Adminforgot-link {
-  color: rgb(58, 120, 75);
+  color: #254d75;;
   text-decoration: none;
   font-weight: bold;
 }
