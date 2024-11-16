@@ -8,8 +8,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive"; //import Notification icon
-import AddIcon from "@mui/icons-material/Add"; // Import Add icon
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import AddIcon from "@mui/icons-material/Add";
  
 import "./View.css";
 
@@ -21,7 +21,6 @@ export function RealtimeData() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [userRegion, setUserRegion] = useState("");
   const [filterTopic, setFilterTopic] = useState("");
-  const [hoveredRow, setHoveredRow] = useState(null);
   const [reasons, setReasons] = useState({});
 
   const navigate = useNavigate();
@@ -57,8 +56,6 @@ export function RealtimeData() {
               const userData = userDoc.data();
               setUserRegion(userData.region || "");
               console.log("User region set:", userData.region);
-            } else {
-              console.log("No user region data found.");
             }
           } catch (error) {
             console.error("Error fetching user region:", error);
@@ -69,16 +66,29 @@ export function RealtimeData() {
 
     fetchUserRegion();
 
+    // Modified to handle new data structure
     const dbRef = ref(realtimeDb, "/");
     const unsubscribe = onValue(
       dbRef,
       (snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          const dataArray = Object.entries(data).map(([key, value]) => ({
-            id: key,
-            ...value,
-          }));
+          const dataArray = [];
+          
+          // Process each region
+          Object.entries(data).forEach(([regionKey, regionData]) => {
+            if (regionData.Details) {
+              // Process details within each region
+              Object.entries(regionData.Details).forEach(([key, value]) => {
+                dataArray.push({
+                  id: `${regionKey}-${key}`,
+                  ...value,
+                  region_name: value.region_name || regionKey.replace('C', '')
+                });
+              });
+            }
+          });
+
           setTableData(dataArray);
           console.log("Fetched data:", dataArray);
 
@@ -90,15 +100,13 @@ export function RealtimeData() {
             return acc;
           }, {});
           setReasons(initialReasons);
-          console.log("Reasons set:", initialReasons);
         } else {
           setError("No data available in Firebase.");
-          console.log("No data available in Firebase.");
         }
       },
       (error) => {
         setError("Error fetching data: " + error.message);
-        console.error("Error fetching data:", error.message);
+        console.error("Error fetching data:", error);
       }
     );
 
@@ -128,9 +136,6 @@ export function RealtimeData() {
   };
 
   const handleAddClick = (row) => {
-    console.log("User Region:", userRegion);
-    console.log("Row Region Name:", row.region_name);
-
     if (row.region_name === userRegion) {
       const dropdownElement = document.querySelector(
         `select[data-row-id="${row.id}"]`
@@ -147,15 +152,13 @@ export function RealtimeData() {
           selectedValue: selectedValue,
         },
       });
-    } else {
-      console.log("Region does not match; cannot add.");
     }
   };
 
   const handleValueChange = (rowId, selectedValue) => {
     const row = tableData.find((row) => row.id === rowId);
     if (row) {
-      const selectedAnnotation = row.annotations.find(
+      const selectedAnnotation = row.annotations?.find(
         (annotation) => annotation.en_values[0] === selectedValue
       );
       setReasons((prev) => ({
@@ -343,12 +346,13 @@ export function RealtimeData() {
                       className="notify-button"
                       disabled={row.region_name !== userRegion}
                     >
- <div className="notification-container">
-           <div className="notification-item">
-            <NotificationsActiveIcon style={{ marginRight: "5px" }} />  
-            <span>Notify</span>  
-          </div>
-        </div>                    </button>
+                      <div className="notification-container">
+                        <div className="notification-item">
+                          <NotificationsActiveIcon style={{ marginRight: "5px" }} />
+                          <span>Notify</span>
+                        </div>
+                      </div>
+                    </button>
                     {row.region_name !== userRegion &&
                       hoveredNotifyRow === row.id &&
                       !hoveredAddRow && (

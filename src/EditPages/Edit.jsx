@@ -19,6 +19,9 @@ export const AddCultureValue = () => {
   const [errorMessage, setErrorMessage] = useState(""); 
   const [userId, setUserId] = useState("");
 
+  // Parse the composite ID to get region code and detail ID
+  const [regionCode, detailId] = (id || "").split("-");
+
   useEffect(() => {
     if (!location.state) {
       alert("No data available to add");
@@ -77,6 +80,8 @@ export const AddCultureValue = () => {
     }
 
     try {
+      // Updated path for the new data structure
+      const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${itemData.allValues.length}`);
       const newAnnotation = {
         en_values: [itemData.newvalue],
         reason: itemData.reason,
@@ -84,7 +89,6 @@ export const AddCultureValue = () => {
         values: [itemData.newvalue]
       };
 
-      const itemRef = ref(realtimeDb, `${id}/annotations/${itemData.allValues.length}`);
       await update(itemRef, newAnnotation);
 
       const viewEditRef = ref(realtimeDb, `Viewedit/${itemData.region}`);
