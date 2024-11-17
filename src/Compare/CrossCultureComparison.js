@@ -140,9 +140,9 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
 const CrossCultureComparison = () => {
-  const { t } = useTranslation('comparepage');  // Hook for translations
+  const { t } = useTranslation('comparepage'); // Hook for translations
   const [selectedRegions, setSelectedRegions] = useState([]);
-  const [selectedTopic, setSelectedTopic] = useState(""); // Single topic selection
+  const [selectedTopics, setSelectedTopics] = useState([]);
   const [hasError, setHasError] = useState(false);
 
   const navigate = useNavigate();
@@ -150,19 +150,14 @@ const CrossCultureComparison = () => {
   const handleCompareClick = (e) => {
     e.preventDefault();
 
-    let error = false;
-
-    if (selectedRegions.length === 0 || selectedTopic === "") {
-      error = true;
+    if (selectedRegions.length === 0 || selectedTopics.length === 0) {
       setHasError(true);
-    } else {
-      setHasError(false);
+      return;
     }
-
-    if (error) return;
+    setHasError(false);
 
     navigate("/compare-result", {
-      state: { cultureRegion: selectedRegions, topic: selectedTopic },
+      state: { cultureRegion: selectedRegions, topics: selectedTopics },
     });
   };
 
@@ -176,7 +171,28 @@ const CrossCultureComparison = () => {
   };
 
   const handleTopicChange = (e) => {
-    setSelectedTopic(e.target.value); // Set single topic
+    const { value } = e.target;
+    const allTopics = [
+      "Food",
+      "Sport",
+      "Family",
+      "Holiday",
+      "Work-life",
+      "Education",
+      "Greeting",
+    ];
+
+    if (value === "All") {
+      setSelectedTopics((prevTopics) =>
+        prevTopics.length === allTopics.length ? [] : allTopics
+      );
+    } else {
+      setSelectedTopics((prevTopics) =>
+        prevTopics.includes(value)
+          ? prevTopics.filter((topic) => topic !== value)
+          : [...prevTopics, value]
+      );
+    }
   };
 
   return (
@@ -198,7 +214,11 @@ const CrossCultureComparison = () => {
           {/* Region Selection with Checkboxes */}
           <div className="Compare-input">
             <label className="Compare-label">{t("regions")}</label>
-            <div className={`Compare-cultureRegion ${hasError && selectedRegions.length === 0 ? "error" : ""}`}>
+            <div
+              className={`Compare-cultureRegion ${
+                hasError && selectedRegions.length === 0 ? "error" : ""
+              }`}
+            >
               <label>
                 <input
                   type="checkbox"
@@ -229,23 +249,43 @@ const CrossCultureComparison = () => {
             </div>
           </div>
 
-          {/* Topic Selection with Single-Choice Dropdown */}
+          {/* Topic Selection with Checkboxes */}
           <div className="Compare-input">
             <label className="Compare-label">{t("topics")}</label>
-            <select
-              value={selectedTopic}
-              onChange={handleTopicChange}
-              className={`Compare-topicRegion ${hasError && selectedTopic === "" ? "error" : ""}`}
+            <div
+              className={`Compare-cultureRegion ${
+                hasError && selectedTopics.length === 0 ? "error" : ""
+              }`}
             >
-              <option value="" disabled>{t("selectTopic")}</option>
-              <option value="Food">{t("food")}</option>
-              <option value="Sport">{t("sport")}</option>
-              <option value="Family">{t("family")}</option>
-              <option value="Holiday">{t("holiday")}</option>
-              <option value="Work-life">{t("workLife")}</option>
-              <option value="Education">{t("education")}</option>
-              <option value="Greeting">{t("greeting")}</option>
-            </select>
+              <label>
+                <input
+                  type="checkbox"
+                  value="All"
+                  checked={selectedTopics.length === 7} // Automatically check if all are selected
+                  onChange={handleTopicChange}
+                />
+                {t("selectAll")}
+              </label>
+              {[
+                "Food",
+                "Sport",
+                "Family",
+                "Holiday",
+                "Work-life",
+                "Education",
+                "Greeting",
+              ].map((topic) => (
+                <label key={topic}>
+                  <input
+                    type="checkbox"
+                    value={topic}
+                    checked={selectedTopics.includes(topic)}
+                    onChange={handleTopicChange}
+                  />
+                  {t(topic.toLowerCase())}
+                </label>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -262,3 +302,4 @@ const CrossCultureComparison = () => {
 };
 
 export default CrossCultureComparison;
+
