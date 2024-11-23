@@ -3,7 +3,7 @@ import './ProfilePage.css';
 import Notification from './Notification';
 import DeleteConfirmation from './DeleteConfirmation';
 import defaultProfilePic from './userpro.jpg';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaTrash } from 'react-icons/fa';  
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
@@ -155,10 +155,9 @@ const ProfilePage = () => {
             <button className="save-button" onClick={handleSaveProfile}>
               Save Profile
             </button>
-
             <button className="delete-button" onClick={handleDeleteAccount}>
-              Delete Account
-            </button>
+  Delete Account <FaTrash className="trash-icon" />
+</button>
           </div>
         </div>
       </div>

@@ -172,4 +172,24 @@
 .replace-btn:hover {
   background-color: #74c3b0;
 }
+.no-records {
+  text-align: center;
+  color: #555;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.action-btn.eye-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem; 
+  color: #10a37f; 
+  transition: color 0.3s;
+}
+
+.action-btn.eye-btn:hover {
+  color: #74c3b0; 
+}
+
 

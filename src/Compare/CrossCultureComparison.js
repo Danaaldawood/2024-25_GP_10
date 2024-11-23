@@ -131,7 +131,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import "./CrossCultureComparison.css";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
@@ -140,34 +140,39 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
 const CrossCultureComparison = () => {
-  const { t } = useTranslation('comparepage'); // Hook for translations
-  const [selectedRegions, setSelectedRegions] = useState([]);
+  const { t } = useTranslation('comparepage');
+  const [baseRegion, setBaseRegion] = useState("");
+  const [compareRegion, setCompareRegion] = useState("");
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [hasError, setHasError] = useState(false);
+  const [availableCompareRegions, setAvailableCompareRegions] = useState([]);
 
   const navigate = useNavigate();
+  const allRegions = ["Arab", "Western", "Chinese"];
+
+  useEffect(() => {
+    if (baseRegion) {
+      setAvailableCompareRegions(allRegions.filter(region => region !== baseRegion));
+      setCompareRegion(""); // Reset compare region when base region changes
+    } else {
+      setAvailableCompareRegions([]);
+    }
+  }, [baseRegion]);
 
   const handleCompareClick = (e) => {
     e.preventDefault();
-
-    if (selectedRegions.length === 0 || selectedTopics.length === 0) {
+    if (!baseRegion || !compareRegion || selectedTopics.length === 0) {
       setHasError(true);
       return;
     }
     setHasError(false);
-
     navigate("/compare-result", {
-      state: { cultureRegion: selectedRegions, topics: selectedTopics },
+      state: { 
+        baseRegion,
+        compareRegion,
+        topics: selectedTopics 
+      },
     });
-  };
-
-  const handleRegionChange = (e) => {
-    const { value } = e.target;
-    setSelectedRegions((prevRegions) =>
-      prevRegions.includes(value)
-        ? prevRegions.filter((region) => region !== value)
-        : [...prevRegions, value]
-    );
   };
 
   const handleTopicChange = (e) => {
@@ -205,51 +210,45 @@ const CrossCultureComparison = () => {
       <Header />
 
       <div className="Compare-form-container">
-        <header className="Compare-form-header">
-          <div className="Compare-underline"></div>
-        </header>
         <div className="Compare-inputs">
           <div className="Compare-text">{t("header")}</div>
 
-          {/* Region Selection with Checkboxes */}
+          {/* Base Region Dropdown */}
           <div className="Compare-input">
-            <label className="Compare-label">{t("regions")}</label>
-            <div
-              className={`Compare-cultureRegion ${
-                hasError && selectedRegions.length === 0 ? "error" : ""
-              }`}
+            <label className="Compare-label">{t("Base Region")}</label>
+            <select 
+              className={`Compare-topicRegion ${hasError && !baseRegion ? "error" : ""}`}
+              value={baseRegion}
+              onChange={(e) => setBaseRegion(e.target.value)}
             >
-              <label>
-                <input
-                  type="checkbox"
-                  value="Arab"
-                  checked={selectedRegions.includes("Arab")}
-                  onChange={handleRegionChange}
-                />
-                {t("arab")}
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Western"
-                  checked={selectedRegions.includes("Western")}
-                  onChange={handleRegionChange}
-                />
-                {t("western")}
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  value="Chinese"
-                  checked={selectedRegions.includes("Chinese")}
-                  onChange={handleRegionChange}
-                />
-                {t("chinese")}
-              </label>
-            </div>
+              <option value="">{t("selectRegion")}</option>
+              {allRegions.map(region => (
+                <option key={region} value={region}>
+                  {t(region.toLowerCase())}
+                </option>
+              ))}
+            </select>
           </div>
 
-          {/* Topic Selection with Checkboxes */}
+          {/* Compare Region Dropdown */}
+          <div className="Compare-input">
+            <label className="Compare-label">{t("Compare Region")}</label>
+            <select 
+              className={`Compare-topicRegion ${hasError && !compareRegion ? "error" : ""}`}
+              value={compareRegion}
+              onChange={(e) => setCompareRegion(e.target.value)}
+              disabled={!baseRegion}
+            >
+              <option value="">{t("selectRegion")}</option>
+              {availableCompareRegions.map(region => (
+                <option key={region} value={region}>
+                  {t(region.toLowerCase())}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Topics Selection */}
           <div className="Compare-input">
             <label className="Compare-label">{t("topics")}</label>
             <div
@@ -261,7 +260,7 @@ const CrossCultureComparison = () => {
                 <input
                   type="checkbox"
                   value="All"
-                  checked={selectedTopics.length === 7} // Automatically check if all are selected
+                  checked={selectedTopics.length === 7}
                   onChange={handleTopicChange}
                 />
                 {t("selectAll")}
