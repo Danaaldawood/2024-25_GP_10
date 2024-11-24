@@ -38,6 +38,25 @@
   line-height: 1.6;
   margin-top: 0.5rem;
 }
+.ButtonAdmin-Login{
+  margin: 0.5rem;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color:  #10a37f;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  width: 150px;
+}
+.ButtonAdmin-Login:hover {
+  background-color: #095c47;
+  transform: translateY(-2px);
+}
 
 .Button-Register {
   margin: 0.5rem;

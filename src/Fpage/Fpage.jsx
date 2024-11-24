@@ -76,6 +76,9 @@ const Fpage = () => {
           <img src={LOGO} alt={t("headerTitle")} className="logo-img" />
           <h1 className="logo-title">{t("CultureLens")}</h1>
         </div>
+        <Link to="/adminlogin">
+              <button className="ButtonAdmin-Login">Admin</button>
+            </Link>
       </header>
 
       {/* About us section */}
@@ -92,9 +95,7 @@ const Fpage = () => {
             <Link to="/Login">
               <button className="Button-Register">{t("loginButton")}</button>
             </Link>
-            <Link to="/adminlogin">
-              <button className="Button-Register">Admin</button>
-            </Link>
+             
           </nav>
         </div>
         <img src={photo} alt={t("headerTitle")} className="animated-logo" />

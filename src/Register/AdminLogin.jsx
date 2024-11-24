@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
 import LOGO from '../images/Logo.png';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase'; 
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from './firebase';   
 import './Pop-Message.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +17,7 @@ const AdminLogin = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false); 
   const [isLoading, setIsLoading] = useState(false);
+  const [nonAdminMessage, setNonAdminMessage] = useState("");   
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -25,13 +28,22 @@ const AdminLogin = () => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMessage(""); 
+    setNonAdminMessage("");   
 
     try {
-      const adminCredential = await signInWithEmailAndPassword(auth, email, password);
+       const adminCredential = await signInWithEmailAndPassword(auth, email, password);
       const admin = adminCredential.user;
 
-      // After successful login, navigate to admin dashboard or desired route
-      navigate('/admin'); // You can replace this with the actual path of the admin dashboard
+       const adminDocRef = doc(db, 'Admin', admin.uid);  
+      const adminDocSnap = await getDoc(adminDocRef);
+
+      if (adminDocSnap.exists()) {
+       // After successful login, navigate to admin dashboard or desired route
+        navigate('/admin');
+      } else {
+      // If  the account is not stored to admin table in database
+        setNonAdminMessage('Sorry, you don’t have the privilege to be an admin.');
+      }
 
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
@@ -62,6 +74,16 @@ const AdminLogin = () => {
         </div>
       )}
 
+      {nonAdminMessage && (
+        <div className="error-popup">
+          <h3 className="error-title">Access Denied</h3>
+          <p className="error-message">{nonAdminMessage}</p>
+          <div className="error-actions">
+            <button className="confirm-btn" onClick={() => setNonAdminMessage("")}>Try again</button>
+          </div>
+        </div>
+      )}
+
       <div className="login-container">
         {/* Left Section */}
         <div className="Adminleft-section">
@@ -69,7 +91,7 @@ const AdminLogin = () => {
             <img src={LOGO} alt="Logo" width="100" height="100" />
             <h2>Welcome Admin!</h2>
           </div>
-         </div>
+        </div>
 
         {/* Form Section */}
         <form className="login-form" onSubmit={handleLogin}>
@@ -111,8 +133,6 @@ const AdminLogin = () => {
           <button type="submit" className="Adminlogin-btn" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </button>
-
-          
         </form>
       </div>
     </div>
