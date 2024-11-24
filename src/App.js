@@ -139,7 +139,6 @@ function App() {
 
   return (
     <div className="App">
-      <TranslationButton />
       <Switcher />
 
       <RouterProvider router={route}></RouterProvider>
