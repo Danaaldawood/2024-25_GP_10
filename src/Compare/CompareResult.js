@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import "./CompareResult.css";
 import { ComparisonMap } from "./ComparisonMap";
+import {Footer} from "../Footer/Footer";
 
 function CompareResult() {
   const location = useLocation();
@@ -37,11 +38,8 @@ function CompareResult() {
 
         if (!response.ok) throw new Error(`Server error: ${response.status}`);
         const data = await response.json();
-
-        console.log("Backend Response:", data); // Debug backend response
         setSimilarities(data.similarity_scores || {});
       } catch (err) {
-        console.error("Error fetching similarity data:", err); // Log error
         setError(err.message);
       } finally {
         setLoading(false);
@@ -52,46 +50,47 @@ function CompareResult() {
   }, [baseRegion, compareRegion, topics]);
 
   return (
-    <div className="result-container">
-      {/* Header Section */}
-      <header className="result-title-container">
+    <div className="compare-result-page">
+      <header className="compare-result-header">
         <button
-          className="result-back-btn"
+          className="compare-result-back-btn"
           onClick={() => navigate("/compare")}
         >
-          <FaArrowLeft className="result-back-icon" />
-          
+          <FaArrowLeft className="compare-result-back-icon" />
         </button>
       </header>
-      <h1 className="result-title">Cross-Cultural Comparison Result</h1>
 
-      <div className="min-h-screen bg-gray-50 p-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="comparison-info">
-            Comparing {baseRegion} and {compareRegion}
+      <h1 className="compare-result-title">Cross-Cultural Comparison Result</h1>
+
+      <div className="compare-result-content">
+        <div className="compare-result-container">
+          <h2 className="compare-result-comparison-info">
+            Comparing <span className="compare-result-region-name">{baseRegion}</span> And{" "}
+            <span className="compare-result-region-name">{compareRegion}</span>
           </h2>
 
           {loading ? (
-            <div className="text-center py-8">
-              <div className="animate-spin h-8 w-8 border-4 border-blue-600 rounded-full border-t-transparent mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading...</p>
+            <div className="compare-result-loading">
+              <div className="compare-result-spinner"></div>
+              <p className="compare-result-loading-text">Loading...</p>
             </div>
           ) : error ? (
-            <div className="text-red-500 text-center py-8">
+            <div className="compare-result-error">
               <p>{error}</p>
             </div>
           ) : topics.length === 0 ? (
-            <p className="text-center text-red-500">
+            <p className="compare-result-error">
               No topics available for comparison.
             </p>
           ) : (
-            <div className="space-y-8">
-              {topics.length > 1 && (
-                <div className="flex justify-center mb-6">
+            <div className="compare-result-content-wrapper">
+              <div className="compare-result-topic-container">
+                <span>Similarity for </span>
+                {topics.length > 1 ? (
                   <select
                     value={selectedTopic}
                     onChange={(e) => setSelectedTopic(e.target.value)}
-                    className="px-4 py-2 border rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="compare-result-topic-select"
                   >
                     {topics.map((topic) => (
                       <option key={topic} value={topic}>
@@ -99,42 +98,38 @@ function CompareResult() {
                       </option>
                     ))}
                   </select>
-                </div>
-              )}
+                ) : (
+                  <span>{selectedTopic}</span>
+                )}
+                <span className="compare-result-similarity-score">
+                  : {(similarities[selectedTopic] || 0).toFixed(2)}%
+                </span>
+              </div>
 
               {selectedTopic && (
-                <>
-                 
-                  {/* Pass similarity text to the map */}
-                  <ComparisonMap
-                    baseRegion={baseRegion}
-                    compareRegion={compareRegion}
-                    similarity={similarities[selectedTopic] || 0}
-                    topic={selectedTopic}
-                    hideSimilarityText={true} // Custom prop to disable rendering similarity in the map
-                  />
-                </>
+                <ComparisonMap
+                  baseRegion={baseRegion}
+                  compareRegion={compareRegion}
+                  similarity={similarities[selectedTopic] || 0}
+                  topic={selectedTopic}
+                  hideSimilarityText={true}
+                />
               )}
             </div>
           )}
         </div>
       </div>
 
-      {/* Footer Section */}
-      <div className="result-btn-container">
+      <div className="compare-result-button-container">
         <button
-          className="result-btn result-done-btn"
+          className="compare-result-recompare-btn"
           onClick={() => navigate("/HomePage")}
         >
           Done
         </button>
-        <button
-          className="result-btn result-recompare-btn"
-          onClick={() => navigate("/compare")}
-        >
-          Recompare
-        </button>
       </div>
+      
+      <Footer />
     </div>
   );
 }

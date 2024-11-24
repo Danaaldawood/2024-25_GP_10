@@ -2,28 +2,51 @@ import firebase_admin
 from firebase_admin import credentials, db
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable Cross-Origin Resource Sharing (CORS)
 
-# Initialize Firebase Admin with Realtime Database URL
-cred = credentials.Certificate("serviceAccountKey.json")  # Replace with your Firebase Admin key path
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'  # Your Realtime Database URL
+# Configure CORS
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
+        "methods": ["POST", "OPTIONS", "GET"],
+        "allow_headers": ["Content-Type"]
+    }
 })
 
-# Function to calculate Jaccard Similarity
+# Initialize Firebase Admin
+# Make sure to place your serviceAccountKey.json in the same directory
+if not firebase_admin._apps:
+    cred = credentials.Certificate("serviceAccountKey.json")
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
+    })
+
 def jaccard_similarity(list1, list2):
+    """Calculate Jaccard similarity between two lists"""
     s1 = set(list1)
     s2 = set(list2)
-    if not s1 and not s2:  # Handle empty sets
+    if not s1 and not s2:
         return 0.0
     return float(len(s1.intersection(s2)) / len(s1.union(s2)))
 
-# Main route to calculate similarity
-@app.route('/api/compare', methods=['POST'])
+@app.route('/api/compare', methods=['GET', 'POST'])
 def compare():
+    if request.method == 'GET':
+        return jsonify({
+            "message": "Cultural Lens API is running",
+            "usage": {
+                "method": "POST",
+                "endpoint": "/api/compare",
+                "body": {
+                    "regions": ["Arab", "Western", "Chinese"],
+                    "topics": ["your_topic_here"]
+                }
+            }
+        })
+
     try:
         # Parse request data
         data = request.json
@@ -32,6 +55,7 @@ def compare():
 
         selected_regions = data.get("regions", [])
         selected_topics = data.get("topics", [])
+        
         if not selected_regions or not selected_topics:
             return jsonify({"error": "Regions and topics are required"}), 400
 
@@ -55,15 +79,18 @@ def compare():
             if region in region_map:
                 mapped_regions.append(region_map[region])
             else:
-                return jsonify({"error": f"Region {region} not found"}), 404
+                return jsonify({"error": f"Invalid region: {region}"}), 400
 
         similarity_scores = {}
         overall_scores = []
         debug_data = {}
 
+        # Calculate similarities for each topic
         for topic in selected_topics:
             topic_scores = []
             region_data = {}
+            
+            # Fetch data for each region
             for region_key in mapped_regions:
                 try:
                     ref = db.reference(f'/{region_key}/Details')
@@ -75,12 +102,13 @@ def compare():
                                 for annotation in detail.get("annotations", []):
                                     values.extend(annotation.get("en_values", []))
                         region_data[region_key] = values
-                        debug_data[region_key] = values
+                        debug_data[f"{region_key}_{topic}"] = values
                     else:
                         region_data[region_key] = []
                 except Exception as e:
-                    return jsonify({"error": f"Failed to retrieve data for region {region_key}: {e}"}), 500
+                    return jsonify({"error": f"Database error for {region_key}: {str(e)}"}), 500
 
+            # Calculate pairwise similarities
             region_keys = list(region_data.keys())
             for i in range(len(region_keys)):
                 for j in range(i + 1, len(region_keys)):
@@ -89,12 +117,13 @@ def compare():
                     similarity = jaccard_similarity(region_data[region1], region_data[region2])
                     topic_scores.append(similarity)
 
+            # Calculate average similarity for the topic
             avg_score = sum(topic_scores) / len(topic_scores) if topic_scores else 0
-            similarity_scores[topic] = round(avg_score * 100)  # Convert to percentage and round
+            similarity_scores[topic] = round(avg_score * 100)
             overall_scores.append(avg_score)
 
-
-        overall_consensus = sum(overall_scores) / len(overall_scores) if overall_scores else 0
+        # Calculate overall consensus
+        overall_consensus = round((sum(overall_scores) / len(overall_scores) if overall_scores else 0) * 100)
 
         return jsonify({
             "similarity_scores": similarity_scores,
@@ -102,9 +131,18 @@ def compare():
             "region_countries": region_countries,
             "debug_data": debug_data
         })
-    except Exception as e:
-        return jsonify({"error": f"Unexpected error occurred: {e}"}), 500
 
-# Run the Flask app
+    except Exception as e:
+        return jsonify({"error": f"Server error: {str(e)}"}), 500
+
+@app.errorhandler(405)
+def method_not_allowed(e):
+    return jsonify({
+        "error": "Method not allowed",
+        "message": "This endpoint only supports GET and POST requests",
+        "allowed_methods": ["GET", "POST"]
+    }), 405
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, port=port)
