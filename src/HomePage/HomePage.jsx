@@ -10,7 +10,7 @@ import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { ref, get } from "firebase/database";
-import { realtimeDb } from "../Register/firebase"; // Adjust the import path based on your project structure
+import { realtimeDb } from "../Register/firebase";
 
 const HomePage = () => {
   const { t } = useTranslation("homepage");
@@ -50,7 +50,7 @@ const HomePage = () => {
         display: true,
       },
     },
-    maintainAspectRatio: false, // Allow chart to stretch based on container size
+    maintainAspectRatio: false,
   };
 
   // Fetch data for Topic Chart
@@ -127,13 +127,18 @@ const HomePage = () => {
       const regionTopicData = await fetchRegionTopicComparisonData();
       const totalData = await fetchTotalAttributesData();
 
+      // Use the fetched topics for region comparison, but modify the label for display
       const topics = Array.from(
         new Set(Object.values(regionTopicData).flatMap((region) => Object.keys(region)))
-      );
+      ).map((topic) => (topic === "Holidays/Celebration/Leisure" ? "Holidays" : topic));
 
       const topicDatasets = Object.keys(regionTopicData).map((region) => ({
         label: region,
-        data: topics.map((topic) => regionTopicData[region][topic] || 0),
+        data: topics.map((topic) => {
+          // Use original key to access data, but display modified label
+          const originalTopic = topic === "Holidays" ? "Holidays/Celebration/Leisure" : topic;
+          return regionTopicData[region][originalTopic] || 0;
+        }),
         backgroundColor: region === "Arab" ? "#003f5c" : region === "Chinese" ? "#2f4b7c" : "#43618b",
       }));
 
@@ -143,7 +148,9 @@ const HomePage = () => {
       });
 
       setTopicChartData({
-        labels: Object.keys(topicData),
+        labels: Object.keys(topicData).map((topic) =>
+          topic === "Holidays/Celebration/Leisure" ? "Holidays" : topic
+        ),
         datasets: [
           {
             data: Object.values(topicData),

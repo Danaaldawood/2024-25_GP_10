@@ -171,7 +171,7 @@
 .deny-btn:hover {
   background-color: #b22929;
 }
-
+/* Form Styling */
 .model-upload-section {
   text-align: center;
   padding: 40px;
@@ -182,31 +182,103 @@
   color: #1e4862;
 }
 
-.model-upload-box {
-  display: inline-block;
-  padding: 40px;
-  background-color: #eef4f7;
-  border: 2px dashed #1e4862;
+.model-upload-form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+  background-color: #f9fbfc;
+  padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.model-upload-box:hover {
-  background-color: #ddeaf1;
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-field:focus {
+  border-color: #6084a9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(96, 132, 169, 0.5);
+}
+
+/* Error Input Styling */
+.input-field.error {
+  border: 2px solid #dc172b;
+  color: #dc172b;
+}
+
+.input-field.error::placeholder {
+  color: #dc172b;
+  opacity: 1; /* Make placeholder fully visible */
 }
 
 .upload-btn {
-  display: block;
-  background-color:  #456b90;
-  color: white;
+  width: 100%;
   padding: 10px 20px;
+  background-color: #456b90;
+  color: white;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  margin: 20px auto 0;
+  margin-top: 10px;
 }
 
 .upload-btn:hover {
-  background-color:#254d75;
+  background-color: #254d75;
+}
+.popup-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f44336; /* Red for error messages */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.popup-container.success {
+  background-color: #4CAF50; /* Green for success */
+}
+
+.popup-message {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.popup-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
