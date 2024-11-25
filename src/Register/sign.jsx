@@ -465,7 +465,8 @@ const Sign = () => {
             fullName: fname,
             regionM,
             reason,
-            status: 'Pending',  
+            status: 'Pending', 
+            RequestDate: new Date().toISOString(), // Capture current date and time
           };
       
       await setDoc(doc(db, collectionPath, user.uid), userData);

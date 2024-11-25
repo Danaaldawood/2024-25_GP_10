@@ -6,7 +6,18 @@
   align-items: center;
   color: #fff;
   padding: 20px 30px;
-  border-radius: 10px;
+ }
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #ff1a1a;
 }
 
 .Adminlogout-btn {
@@ -282,3 +293,20 @@
     transform: translateY(0);
   }
 }
+.footer-admin {
+  background: linear-gradient(700deg, #2d5174, #6084a9);
+  display: flex;
+  justify-content: center;  
+  align-items: center;  
+  color: #fff;
+  padding: 20px 30px;
+   bottom: 0;  
+  left: 0;
+  right: 0;
+}
+.footer-admin p {
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
+}
+

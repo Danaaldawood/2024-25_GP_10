@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { db, auth } from './firebase';
-import { collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc, deleteDoc,query ,orderBy} from "firebase/firestore";
 import emailjs from 'emailjs-com';
 import './AdminPage.css';
 import { Helmet } from 'react-helmet';
@@ -11,6 +11,8 @@ import LOGO from '../images/Logo.png';
 import SignOutConfirmation from '../Modorater/SignOutConfirmation'; 
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth'; 
+ 
+ 
 
 export const AdminPage = () => {
   const [view, setView] = useState('moderator-requests');
@@ -32,9 +34,13 @@ export const AdminPage = () => {
   useEffect(() => {
     const fetchModeratorRequests = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'Moderators'));
+        const q = query(collection(db, 'Moderators'), orderBy('RequestDate', 'desc'));
+        const querySnapshot = await getDocs(q);
+        
         const requestsData = querySnapshot.docs.map(doc => {
           const data = doc.data();
+  
+         
           return { id: doc.id, ...data };
         });
         setRequests(requestsData);
@@ -47,6 +53,7 @@ export const AdminPage = () => {
   
     fetchModeratorRequests();
   }, []);
+  
   
   const handleInputChange = (e, field) => {
     const { value } = e.target;
@@ -293,6 +300,7 @@ export const AdminPage = () => {
                   <th>Email</th>
                   <th>Region</th>
                   <th>Reason</th>
+                  <th>Request Date</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -305,6 +313,7 @@ export const AdminPage = () => {
                     <td>{request.email}</td>
                     <td>{request.regionM}</td>
                     <td>{request.reason}</td>
+                    <td>{request.RequestDate ? new Date(request.RequestDate).toLocaleString() : 'N/A'}</td> {/* Display Request Date */}
                     <td className={`status status-${request.status ? request.status.toLowerCase() : ''}`}>
                       {request.status}
                     </td>
@@ -376,7 +385,7 @@ export const AdminPage = () => {
                 onChange={(e) => handleInputChange(e, 'cloudLink')}
               />
             </div>
-            <button type="submit" className="upload-btn">Submit</button>
+            <button type="submit" className="upload-btn">Upload</button>
           </form>
         </div>
       )}
@@ -400,9 +409,15 @@ export const AdminPage = () => {
           )}
         </div>
       )}
+ 
 
-      <Footer />
-    </div>
+      <footer className="footer-admin">
+      <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
+      
+    </footer>
+  
+
+     </div>
   );
 };
 
