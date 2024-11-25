@@ -61,6 +61,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .style("padding", "8px")
           .style("font-size", "12px")
           .style("pointer-events", "none")
+          .style("color", "#10a37f")  // Added green color to tooltip text
           .style("box-shadow", "0 4px 8px rgba(0, 0, 0, 0.1)");
 
         svg
@@ -71,17 +72,15 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("d", path)
           .attr("fill", (d) => {
             const countryId = parseInt(d.id);
-            // If no base region selected, or country is base region, show grey
             if (!baseRegion || regionToIds[baseRegion]?.includes(countryId)) {
               return "#C0C0C0";
             }
-            // Color comparison regions based on similarity
             for (const [region, score] of Object.entries(similarities)) {
               if (regionToIds[region]?.includes(countryId)) {
                 return regionColor(score);
               }
             }
-            return "#e0e0e0"; // Default color for other countries
+            return "#e0e0e0";
           })
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
@@ -125,10 +124,11 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
         if (Object.keys(similarities).length > 0) {
           const legendWidth = 200;
           const legendHeight = 15;
+          const legendY = height - 70;
 
           const legend = svg
             .append("g")
-            .attr("transform", `translate(${(width - legendWidth) / 2}, ${height - 50})`);
+            .attr("transform", `translate(${(width - legendWidth) / 2}, ${legendY})`);
 
           const gradient = svg
             .append("defs")
@@ -155,6 +155,31 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           const legendScale = d3.scaleLinear().domain([0, 100]).range([0, legendWidth]);
           const legendAxis = d3.axisBottom(legendScale).ticks(5).tickFormat((d) => `${d}%`);
           legend.append("g").attr("transform", `translate(0, ${legendHeight})`).call(legendAxis);
+
+          // Add legend title
+          const legendTitle = legend
+            .append("text")
+            .attr("x", legendWidth / 2)
+            .attr("y", legendHeight + 30)
+            .attr("text-anchor", "middle")
+            .style("font-size", "12px")
+            .style("cursor", "help")
+            .text("Similarity Index");
+
+          // Add mouseover behavior for legend title with green text
+          legendTitle
+            .on("mouseover", (event) => {
+              tooltip
+                .style("visibility", "visible")
+                .html(
+                  "This cross-culture index shows the similarity<br>between the culture values and it uses Jaccard similarity for calculation"
+                )
+                .style("top", `${event.pageY + 10}px`)
+                .style("left", `${event.pageX + 10}px`);
+            })
+            .on("mouseout", () => {
+              tooltip.style("visibility", "hidden");
+            });
         }
       } catch (error) {
         console.error("Error drawing map:", error);

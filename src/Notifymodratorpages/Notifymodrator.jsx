@@ -16,6 +16,8 @@ export const Notifymodrator = () => {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [userId, setUserId] = useState('');
 
   useEffect(() => {
@@ -30,13 +32,6 @@ export const Notifymodrator = () => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    if (!location.state) {
-      alert("No data available for notification");
-      navigate("/View");
-    }
-  }, [location.state, navigate]);
-
   const [notificationData, setNotificationData] = useState({
     topic: location.state?.topic || "",
     description: "",
@@ -48,6 +43,13 @@ export const Notifymodrator = () => {
     userId: "",
     region: location.state?.region || ""
   });
+
+  useEffect(() => {
+    if (!location.state) {
+      alert("No data available for notification");
+      navigate("/View");
+    }
+  }, [location.state, navigate]);
 
   useEffect(() => {
     if (userId) {
@@ -73,6 +75,18 @@ export const Notifymodrator = () => {
     if (!notificationData.description) {
       setShowError(true);
       return;
+    }
+
+    // Check if suggestion exists in allValues
+    if (notificationData.suggestion) {
+      const suggestionLower = notificationData.suggestion.toLowerCase();
+      const allValuesLower = location.state?.allValues.map(value => value.toLowerCase()) || [];
+      
+      if (allValuesLower.includes(suggestionLower)) {
+        setErrorMessage(`The value "${notificationData.suggestion}" already exists in the dataset.`);
+        setShowErrorPopup(true);
+        return;
+      }
     }
 
     try {
@@ -171,15 +185,27 @@ export const Notifymodrator = () => {
         </div>
 
         <div className="notify-submit-container">
-  <button onClick={handleSubmitNotification} className="notify-submit-button">
-    Notify
-  </button>
-</div>
+          <button onClick={handleSubmitNotification} className="notify-submit-button">
+            Notify
+          </button>
+        </div>
 
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
             <p className="success-message">Notification submitted successfully.</p>
+          </div>
+        )}
+
+        {showErrorPopup && (
+          <div className="error-popup">
+            <div className="error-title">Error</div>
+            <div className="error-message">{errorMessage}</div>
+            <div className="error-actions">
+              <button className="confirm-btn" onClick={() => setShowErrorPopup(false)}>
+                OK
+              </button>
+            </div>
           </div>
         )}
       </div>

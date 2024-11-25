@@ -9,7 +9,27 @@ import SignOutConfirmation from './SignOutConfirmation';
 import { Helmet } from 'react-helmet';
 import Logo from '../images/Logo.png';
 import { onAuthStateChanged } from 'firebase/auth';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importing icons
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed">
+      <div className="modal-content">
+        <p className="modal-message">{message}</p>
+        <div className="modal-buttons">
+          <button className="modal-btn confirm-btn" onClick={onConfirm}>
+            Confirm
+          </button>
+          <button className="modal-btn cancel-btn" onClick={onCancel}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ModeratorPage = () => {
   const [view, setView] = useState('view-edit');
@@ -17,6 +37,11 @@ const ModeratorPage = () => {
   const [showSignOutModal, setShowSignOutModal] = useState(false);
   const [viewEditEntries, setViewEditEntries] = useState([]);
   const [notifications, setNotifications] = useState([]);
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    message: '',
+    onConfirm: null
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +53,6 @@ const ModeratorPage = () => {
         if (moderatorSnap.exists()) {
           const { regionM } = moderatorSnap.data();
 
-          // Fetch ViewEdit entries based on the moderator's region
           const viewEditRef = ref(realtimeDb, `Viewedit/${regionM}`);
           onValue(viewEditRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -36,7 +60,7 @@ const ModeratorPage = () => {
               snapshot.forEach((childSnapshot) => {
                 entries.push({
                   id: childSnapshot.key,
-                  isReviewed: false, // New state for review status
+                  isReviewed: false,
                   ...childSnapshot.val()
                 });
               });
@@ -46,7 +70,6 @@ const ModeratorPage = () => {
             }
           });
 
-          // Fetch Notifications based on the moderator's region
           const notificationsRef = ref(realtimeDb, `notifications`);
           onValue(notificationsRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -65,8 +88,6 @@ const ModeratorPage = () => {
               setNotifications([]);
             }
           });
-        } else {
-          console.error("Moderator document not found");
         }
       } catch (error) {
         console.error("Error fetching moderator data:", error);
@@ -76,8 +97,6 @@ const ModeratorPage = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         fetchModeratorData(user);
-      } else {
-        console.error("User not authenticated");
       }
     });
 
@@ -94,93 +113,104 @@ const ModeratorPage = () => {
   const handleCancelSignOut = () => setShowSignOutModal(false);
 
   const handleDeleteValue = async (notificationId, attributeId, previousValue) => {
-    try {
-      const [region, detailKey] = attributeId.split('-');
-      const dataRef = ref(realtimeDb, `/${region}/Details/${detailKey}`);
-      const snapshot = await get(dataRef);
+    setConfirmModal({
+      isOpen: true,
+      message: 'Are you sure you want to delete this value?',
+      onConfirm: async () => {
+        try {
+          const [region, detailKey] = attributeId.split('-');
+          const dataRef = ref(realtimeDb, `/${region}/Details/${detailKey}`);
+          const snapshot = await get(dataRef);
 
-      if (snapshot.exists()) {
-        const data = snapshot.val();
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            const updatedAnnotations = data.annotations.filter(annotation => 
+              annotation.en_values[0] !== previousValue && annotation.en_values[0] != null
+            );
 
-        const updatedAnnotations = data.annotations.filter(annotation => {
-          return annotation.en_values[0] !== previousValue && annotation.en_values[0] != null;
-        });
-
-        if (updatedAnnotations.length > 0) {
-          await update(dataRef, { ...data, annotations: updatedAnnotations });
-        } else {
-          console.warn('Warning: Cannot delete last annotation value');
-          return;
+            if (updatedAnnotations.length > 0) {
+              await update(dataRef, { ...data, annotations: updatedAnnotations });
+              const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
+              await remove(notificationRef);
+              setNotifications(prev => prev.filter(n => n.id !== notificationId));
+            }
+          }
+        } catch (error) {
+          console.error('Error deleting value:', error);
         }
-
-        const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
-        await remove(notificationRef);
-        setNotifications(notifications.filter(n => n.id !== notificationId));
+        setConfirmModal({ isOpen: false, message: '', onConfirm: null });
       }
-    } catch (error) {
-      console.error('Error deleting value:', error);
-    }
+    });
   };
 
   const handleDenyRequest = async (notificationId) => {
-    try {
-      const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
-      await remove(notificationRef);
-      setNotifications(notifications.filter(n => n.id !== notificationId));
-    } catch (error) {
-      console.error('Error denying request:', error);
-    }
+    setConfirmModal({
+      isOpen: true,
+      message: 'Are you sure you want to deny this request?',
+      onConfirm: async () => {
+        try {
+          const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
+          await remove(notificationRef);
+          setNotifications(prev => prev.filter(n => n.id !== notificationId));
+        } catch (error) {
+          console.error('Error denying request:', error);
+        }
+        setConfirmModal({ isOpen: false, message: '', onConfirm: null });
+      }
+    });
   };
 
   const handleReplaceValue = async (notification) => {
-    try {
-      const [region, detailKey] = notification.id.split('-');
-      const dataRef = ref(realtimeDb, `/${region}/Details/${detailKey}`);
-      const snapshot = await get(dataRef);
+    setConfirmModal({
+      isOpen: true,
+      message: 'Are you sure you want to replace this value?',
+      onConfirm: async () => {
+        try {
+          const [region, detailKey] = notification.id.split('-');
+          const dataRef = ref(realtimeDb, `/${region}/Details/${detailKey}`);
+          const snapshot = await get(dataRef);
 
-      if (snapshot.exists()) {
-        const data = snapshot.val();
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            const updatedAnnotations = notification.PreviousValue
+              ? data.annotations.map(annotation => {
+                  if (annotation.en_values[0] === notification.PreviousValue) {
+                    return { 
+                      ...annotation, 
+                      en_values: [notification.suggestion],
+                      reason: annotation.reason || 'Updated value'
+                    };
+                  }
+                  return annotation;
+                })
+              : data.annotations;
 
-        const updatedAnnotations = notification.PreviousValue
-          ? data.annotations.map(annotation => {
-              if (annotation.en_values[0] === notification.PreviousValue) {
-                return { 
-                  ...annotation, 
-                  en_values: [notification.suggestion],
-                  reason: annotation.reason || 'Updated value'
-                };
-              }
-              return annotation;
-            })
-          : data.annotations;
-
-        await update(dataRef, { ...data, annotations: updatedAnnotations });
-
-        const notificationRef = ref(realtimeDb, `notifications/${notification.id}`);
-        await remove(notificationRef);
-        setNotifications(notifications.filter(n => n.id !== notification.id));
+            await update(dataRef, { ...data, annotations: updatedAnnotations });
+            const notificationRef = ref(realtimeDb, `notifications/${notification.id}`);
+            await remove(notificationRef);
+            setNotifications(prev => prev.filter(n => n.id !== notification.id));
+          }
+        } catch (error) {
+          console.error('Error replacing value:', error);
+        }
+        setConfirmModal({ isOpen: false, message: '', onConfirm: null });
       }
-    } catch (error) {
-      console.error('Error replacing value:', error);
-    }
+    });
   };
 
   const handleDeleteEntry = async (entryId, region) => {
     try {
       const entryRef = ref(realtimeDb, `Viewedit/${region}/${entryId}`);
       await remove(entryRef);
-
-      setViewEditEntries((prevEntries) =>
-        prevEntries.filter((entry) => entry.id !== entryId)
-      );
+      setViewEditEntries(prev => prev.filter(entry => entry.id !== entryId));
     } catch (error) {
       console.error("Error deleting entry:", error);
     }
   };
 
   const handleToggleReviewed = (entryId) => {
-    setViewEditEntries((prevEntries) =>
-      prevEntries.map((entry) =>
+    setViewEditEntries(prev =>
+      prev.map(entry =>
         entry.id === entryId ? { ...entry, isReviewed: !entry.isReviewed } : entry
       )
     );
@@ -190,7 +220,7 @@ const ModeratorPage = () => {
     <div className="moderator-container">
       <Helmet>
         <title>Moderator Page</title>
-        <meta name="description" content="This is Moderator page" />
+        <meta name="description" content="Moderator page" />
       </Helmet>
 
       <header className="header">
@@ -215,9 +245,20 @@ const ModeratorPage = () => {
       </div>
 
       <div className="toggle-buttons">
-        <button className={view === 'view-edit' ? 'active' : ''} onClick={() => setView('view-edit')}>View Edit</button>
-        <button className={`notification-btn ${view === 'notifications' ? 'active' : ''}`} onClick={() => setView('notifications')}>
-          Notifications {notifications.length > 0 && <span className="notification-badge">{notifications.length}</span>}
+        <button 
+          className={view === 'view-edit' ? 'active' : ''} 
+          onClick={() => setView('view-edit')}
+        >
+          View Edit
+        </button>
+        <button 
+          className={`notification-btn ${view === 'notifications' ? 'active' : ''}`} 
+          onClick={() => setView('notifications')}
+        >
+          Notifications 
+          {notifications.length > 0 && (
+            <span className="notification-badge">{notifications.length}</span>
+          )}
         </button>
       </div>
 
@@ -299,9 +340,13 @@ const ModeratorPage = () => {
                     <td>{notification.description || 'N/A'}</td>
                     <td className="action-buttons">
                       <button
-                        onClick={() => handleDeleteValue(notification.id, notification.id, notification.PreviousValue)}
+                        onClick={() => handleDeleteValue(
+                          notification.id, 
+                          notification.id, 
+                          notification.PreviousValue
+                        )}
                         className="action-btn delete-btn-not"
-                        title="Delete this value from the dataset"
+                        title="Delete this value"
                       >
                         Delete Value
                       </button>
@@ -310,7 +355,7 @@ const ModeratorPage = () => {
                       <button
                         onClick={() => handleDenyRequest(notification.id)}
                         className="action-btn deny-btn-not"
-                        title="Deny this notification request"
+                        title="Deny request"
                       >
                         Deny Request
                       </button>
@@ -320,7 +365,7 @@ const ModeratorPage = () => {
                         <button
                           onClick={() => handleReplaceValue(notification)}
                           className="action-btn replace-btn"
-                          title="Replace with suggested value"
+                          title="Replace value"
                         >
                           Replace Value
                         </button>
@@ -342,6 +387,13 @@ const ModeratorPage = () => {
           onCancel={handleCancelSignOut}
         />
       )}
+
+      <ConfirmationModal 
+        isOpen={confirmModal.isOpen}
+        message={confirmModal.message}
+        onConfirm={confirmModal.onConfirm}
+        onCancel={() => setConfirmModal({ isOpen: false, message: '', onConfirm: null })}
+      />
 
       <Footer />
     </div>
