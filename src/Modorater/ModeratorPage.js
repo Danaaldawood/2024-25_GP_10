@@ -11,6 +11,7 @@ import Logo from '../images/Logo.png';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+// Modal component for confirmations (delete, deny, replace actions)
 const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }) => {
   if (!isOpen) return null;
 
@@ -19,10 +20,10 @@ const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }) => {
       <div className="modal-content">
         <p className="modal-message">{message}</p>
         <div className="modal-buttons">
-          <button className="modal-btn confirm-btn" onClick={onConfirm}>
+          <button className="modal-btn confirm-btn-not" onClick={onConfirm}>
             Confirm
           </button>
-          <button className="modal-btn cancel-btn" onClick={onCancel}>
+          <button className="modal-btn cancel-btn-not" onClick={onCancel}>
             Cancel
           </button>
         </div>
@@ -32,18 +33,21 @@ const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }) => {
 };
 
 const ModeratorPage = () => {
-  const [view, setView] = useState('view-edit');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showSignOutModal, setShowSignOutModal] = useState(false);
-  const [viewEditEntries, setViewEditEntries] = useState([]);
-  const [notifications, setNotifications] = useState([]);
+  // State variables for managing the component
+  const [view, setView] = useState('view-edit'); 
+  const [menuOpen, setMenuOpen] = useState(false); 
+  const [showSignOutModal, setShowSignOutModal] = useState(false); 
+  const [viewEditEntries, setViewEditEntries] = useState([]); 
+  const [notifications, setNotifications] = useState([]); 
   const [confirmModal, setConfirmModal] = useState({
-    isOpen: false,
-    message: '',
-    onConfirm: null
+    isOpen: false, 
+    message: '', 
+    onConfirm: null 
   });
-  const navigate = useNavigate();
 
+  const navigate = useNavigate(); 
+
+  // Fetch moderator-specific data after authentication
   useEffect(() => {
     const fetchModeratorData = async (user) => {
       try {
@@ -53,6 +57,7 @@ const ModeratorPage = () => {
         if (moderatorSnap.exists()) {
           const { regionM } = moderatorSnap.data();
 
+          // Fetch entries in "View Edit" specific to the moderator's region
           const viewEditRef = ref(realtimeDb, `Viewedit/${regionM}`);
           onValue(viewEditRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -70,6 +75,7 @@ const ModeratorPage = () => {
             }
           });
 
+          // Fetch notifications related to the moderator's region
           const notificationsRef = ref(realtimeDb, `notifications`);
           onValue(notificationsRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -94,15 +100,17 @@ const ModeratorPage = () => {
       }
     };
 
+    // Subscribe to auth changes to fetch user-specific data
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         fetchModeratorData(user);
       }
     });
 
-    return () => unsubscribe();
+    return () => unsubscribe(); // Cleanup auth listener
   }, []);
 
+  // Handlers for various UI actions
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
   const handleProfileClick = () => navigate('/profile');
   const handleSignOut = () => setShowSignOutModal(true);
@@ -112,6 +120,7 @@ const ModeratorPage = () => {
   };
   const handleCancelSignOut = () => setShowSignOutModal(false);
 
+  // Deletes a specific value and updates the notification list
   const handleDeleteValue = async (notificationId, attributeId, previousValue) => {
     setConfirmModal({
       isOpen: true,
@@ -143,6 +152,7 @@ const ModeratorPage = () => {
     });
   };
 
+  // Deny a user request by removing the corresponding notification
   const handleDenyRequest = async (notificationId) => {
     setConfirmModal({
       isOpen: true,
@@ -160,6 +170,7 @@ const ModeratorPage = () => {
     });
   };
 
+  // Replace a value with the user's suggested value
   const handleReplaceValue = async (notification) => {
     setConfirmModal({
       isOpen: true,
@@ -198,6 +209,7 @@ const ModeratorPage = () => {
     });
   };
 
+  // Deletes an entry from the "View Edit" table
   const handleDeleteEntry = async (entryId, region) => {
     try {
       const entryRef = ref(realtimeDb, `Viewedit/${region}/${entryId}`);
@@ -208,6 +220,7 @@ const ModeratorPage = () => {
     }
   };
 
+  // Toggles the reviewed status of a "View Edit" entry
   const handleToggleReviewed = (entryId) => {
     setViewEditEntries(prev =>
       prev.map(entry =>
@@ -216,13 +229,16 @@ const ModeratorPage = () => {
     );
   };
 
+  // Render the component
   return (
     <div className="moderator-container">
+      {/* Page metadata */}
       <Helmet>
         <title>Moderator Page</title>
         <meta name="description" content="Moderator page" />
       </Helmet>
 
+      {/* Header with logo and menu */}
       <header className="header">
         <div className="header-left">
           <img src={Logo} alt="CultureLens Logo" className="logo-img" />
@@ -240,162 +256,129 @@ const ModeratorPage = () => {
         )}
       </header>
 
-      <div className="header-banner">
-        <h1>Moderator Page</h1>
-      </div>
-
-      <div className="toggle-buttons">
-        <button 
-          className={view === 'view-edit' ? 'active' : ''} 
+      {/* Tabs */}
+      <div className="tabs">
+        <button
+          className={view === 'view-edit' ? 'active' : ''}
           onClick={() => setView('view-edit')}
         >
-          View Edit
+          View/Edit
         </button>
-        <button 
-          className={`notification-btn ${view === 'notifications' ? 'active' : ''}`} 
+        <button
+          className={view === 'notifications' ? 'active' : ''}
           onClick={() => setView('notifications')}
         >
-          Notifications 
-          {notifications.length > 0 && (
-            <span className="notification-badge">{notifications.length}</span>
-          )}
+          Notifications
         </button>
       </div>
 
-      {view === 'view-edit' && (
-        <div className="table-container">
-          <h2 className="pagename">View Edit Dataset</h2>
-          {viewEditEntries.length > 0 ? (
-            <table className="styled-table">
-              <thead>
-                <tr>
-                  <th>Attribute</th>
-                  <th>User ID</th>
-                  <th>Region</th>
-                  <th>Topic</th>
-                  <th>Value</th>
-                  <th>Reason</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {viewEditEntries.map((entry) => (
-                  <tr key={entry.id}>
-                    <td>{entry.attribute}</td>
-                    <td>{entry.userId}</td>
-                    <td>{entry.region}</td>
-                    <td>{entry.topic}</td>
-                    <td>{entry.value}</td>
-                    <td>{entry.reason}</td>
-                    <td>
-                      <button
-                        className="action-btn eye-btn"
-                        onClick={() => {
-                          handleToggleReviewed(entry.id);
-                          if (!entry.isReviewed) {
-                            handleDeleteEntry(entry.id, entry.region);
-                          }
-                        }}
-                        title={entry.isReviewed ? "Mark as not reviewed" : "Mark as reviewed"}
-                      >
-                        {entry.isReviewed ? <FaEye /> : <FaEyeSlash />}
-                      </button>
-                    </td>
+      {/* Conditional rendering of tab content */}
+      <div className="content">
+        {view === 'view-edit' && (
+          <div className="view-edit-tab">
+            <h2>View/Edit</h2>
+            {viewEditEntries.length > 0 ? (
+              <table className="entries-table">
+                <thead>
+                  <tr>
+                    <th>Details</th>
+                    <th>Actions</th>
+                    <th>Reviewed</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className="no-records">There is no edit to view</p>
-          )}
-        </div>
-      )}
-
-      {view === 'notifications' && (
-        <div className="notifications-container">
-          <h2 className="pagename">Notifications</h2>
-          {notifications.length > 0 ? (
-            <table className="styled-table">
-              <thead>
-                <tr>
-                  <th>User ID</th>
-                  <th>Attribute</th>
-                  <th>Topic</th>
-                  <th>Previous Value</th>
-                  <th>Suggestion</th>
-                  <th>Description</th>
-                  <th>Delete Value</th>
-                  <th>Deny Request</th>
-                  <th>Replace Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {notifications.map((notification) => (
-                  <tr key={notification.id}>
-                    <td>{notification.userId || 'N/A'}</td>
-                    <td>{notification.attribute || 'N/A'}</td>
-                    <td>{notification.topic || 'N/A'}</td>
-                    <td>{notification.PreviousValue || 'N/A'}</td>
-                    <td>{notification.suggestion || 'N/A'}</td>
-                    <td>{notification.description || 'N/A'}</td>
-                    <td className="action-buttons">
-                      <button
-                        onClick={() => handleDeleteValue(
-                          notification.id, 
-                          notification.id, 
-                          notification.PreviousValue
-                        )}
-                        className="action-btn delete-btn-not"
-                        title="Delete this value"
-                      >
-                        Delete Value
-                      </button>
-                    </td>
-                    <td className="action-buttons">
-                      <button
-                        onClick={() => handleDenyRequest(notification.id)}
-                        className="action-btn deny-btn-not"
-                        title="Deny request"
-                      >
-                        Deny Request
-                      </button>
-                    </td>
-                    <td className="action-buttons">
-                      {notification.suggestion && (
+                </thead>
+                <tbody>
+                  {viewEditEntries.map(entry => (
+                    <tr key={entry.id}>
+                      <td>{entry.details}</td>
+                      <td>
                         <button
-                          onClick={() => handleReplaceValue(notification)}
-                          className="action-btn replace-btn"
-                          title="Replace value"
+                          className="delete-btn"
+                          onClick={() => handleDeleteEntry(entry.id, entry.region)}
                         >
-                          Replace Value
+                          Delete
                         </button>
-                      )}
-                    </td>
+                      </td>
+                      <td>
+                        <button
+                          className={`reviewed-btn ${entry.isReviewed ? 'reviewed' : ''}`}
+                          onClick={() => handleToggleReviewed(entry.id)}
+                        >
+                          {entry.isReviewed ? 'Reviewed' : 'Not Reviewed'}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No entries available.</p>
+            )}
+          </div>
+        )}
+
+        {view === 'notifications' && (
+          <div className="notifications-tab">
+            <h2>Notifications</h2>
+            {notifications.length > 0 ? (
+              <table className="notifications-table">
+                <thead>
+                  <tr>
+                    <th>Message</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className="no-notifications">No notifications available</p>
-          )}
-        </div>
-      )}
+                </thead>
+                <tbody>
+                  {notifications.map(notification => (
+                    <tr key={notification.id}>
+                      <td>{notification.message}</td>
+                      <td>
+                        <button
+                          className="replace-btn"
+                          onClick={() => handleReplaceValue(notification)}
+                        >
+                          Replace
+                        </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDeleteValue(notification.id)}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className="deny-btn"
+                          onClick={() => handleDenyRequest(notification.id)}
+                        >
+                          Deny
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No notifications available.</p>
+            )}
+          </div>
+        )}
+      </div>
 
-      {showSignOutModal && (
-        <SignOutConfirmation
-          onConfirm={handleConfirmSignOut}
-          onCancel={handleCancelSignOut}
-        />
-      )}
-
-      <ConfirmationModal 
+      {/* Confirmation modal */}
+      <ConfirmationModal
         isOpen={confirmModal.isOpen}
         message={confirmModal.message}
         onConfirm={confirmModal.onConfirm}
         onCancel={() => setConfirmModal({ isOpen: false, message: '', onConfirm: null })}
       />
 
+      {/* Footer */}
       <Footer />
+
+      {/* Sign-out confirmation modal */}
+      <SignOutConfirmation
+        isOpen={showSignOutModal}
+        onConfirm={handleConfirmSignOut}
+        onCancel={handleCancelSignOut}
+      />
     </div>
   );
 };

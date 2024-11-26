@@ -237,20 +237,20 @@
   transition: background-color 0.3s;
 }
 
-.confirm-btn {
-  background-color: #74c3b0;
+.confirm-btn-not {
+  background-color: #10a37f;
   color: white;
 }
 
-.confirm-btn:hover {
-  background-color: #10a37f;
+.confirm-btn-not:hover {
+  background-color:  #74c3b0;
 }
 
-.cancel-btn {
+.cancel-btn-not {
   background-color: #dc172b;
   color: white;
 }
 
-.cancel-btn:hover {
+.cancel-btn-not:hover {
   background-color: #ff5264;
 }
