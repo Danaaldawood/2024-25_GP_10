@@ -1,80 +1,77 @@
+
 .flip-card {
   background-color: transparent;
   width: 250px;
   height: 260px;
-  border: 1px solid #b3babd55;
   perspective: 1000px; 
-  border-radius: 6px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 15px; 
 }
 
-/* This container is needed to position the front and back side */
+
 .flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.8s ease-in-out;
   transform-style: preserve-3d;
-  border-radius: 6px;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
+/* Flip Effect */
 .flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); 
 }
-
-/* Position the front and back side */
 .flip-card-front,
 .flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; 
 }
 
-/* Style the front side */
+
 .flip-card-front {
-
-  border-radius: 6px;
-
-  
-  
-  background: linear-gradient(50deg, #205168, #003f5c);
-  background: #003f5cdd;
-
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid rgba(118, 115, 115, 0.307);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-  color: #f1f3f4;
+ 
+  background: #406882;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+/* Front Face */
 .flip-card-front h1 {
-  padding-bottom: 40px;
-  font-size: 30px;
-  padding-top: 20px;
- 
-
-  color: #eff0f1;
+  font-size: 2rem !important;  /* Force the change */
+  font-weight: bold;
 }
 
-/* Style the back side */
+
+/* Back Face */
 .flip-card-back {
-
-  color: #04162a;
-   
+  background-color: #f8f9fa;
+  color: #333;
   transform: rotateY(180deg);
-  border-radius: 6px;
-  padding-top: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background-color:#003f5c5c; /* Solid color without transparency */
- 
-  
-font-size: 16px;
-font-weight: 600;
-font-family: sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
 
+
+.flip-card:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+}
+
+
+.flip-card-front .icon {
+  font-size: 50px;
+  margin: 10px 0;
+  color: #f0f8ff;
 }

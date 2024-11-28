@@ -10,25 +10,25 @@ main {
   
 }
 
-.normall-button {
+.view-btn{
   background-color: #d3dbe4;
-  /* Green background */
-  border: none; /* No border */
-  color: #052949;
-  /* White text */
-  padding: 10px 25px; /* Some padding */
-  text-align: center; /* Center text */
-  text-decoration: none; /* No underline */
-  display: inline-block; /* Get it to act like a block */
-  font-size: 16px; /* Larger text */
-  margin: 4px 5px; /* Some margin */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+ 
+  border: none; 
+  color: #0d395a;
+  padding: 10px 25px; 
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 5px; 
+  cursor: pointer; 
+  border-radius: 5px; 
+  transition: background-color 0.3s; 
 }
 
-.normall-button:hover {
-  background-color: #afc6de; /* Darker green on hover */
+
+.view-btn:hover {
+  background-color:whitesmoke; 
 }
 
 #CoreDimintion {
@@ -58,7 +58,7 @@ main {
 }
 p.discrptiontext{
   color: white;
-  inline: size 1px;
+ 
   text-align: justify;
 }
 #cardsection {
@@ -92,58 +92,57 @@ padding-top: 2rem;
 
 }
 
-.row {
-  display: flex; /* Use flexbox for layout */
-  flex-direction: row; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: space-around; /* Center items vertically */
-  width: 100%; /* Full width of the card */
-  padding: 10px; /* Add padding around the row */
-  margin: 0; /* Remove default margin */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-/* chang name of container in github*/
-.containerrows {
-  display: flex; /* Use Flexbox to arrange children */
-  flex-wrap: wrap; /* Allow wrapping to the next line */
-  justify-content: center; /* Center items horizontally */
-  margin: 0 auto; /* Center the container */
-}
+
 
 .row {
-  width: 100%; /* Ensures row takes full width */
-  display: flex; /* Use Flexbox to align children */
-  justify-content: space-around; /* edit to git hub */
-  margin: 15px 0; /* Space between rows */
+  width: 100%; 
+  display: flex; 
+  justify-content: space-around; 
+  margin: 15px 0; 
 }
 
 .col-md-6 {
-  display: flex; /* Use Flexbox for each column */
-  justify-content: center; /* Center the card within the column */
+  display: flex; 
+  justify-content: center; 
 }
 
 #corner-ball {
-  position: relative; /* Use absolute positioning */
-  top: 3rem; /* Distance from the top */
-  left: 22rem; /* Distance from the left */
-  /* Set the desired width */
-  height: auto; /* Maintain aspect ratio */
+  position: relative; 
+  top: 3rem;
+  left: 22rem; 
+  
+  height: auto;
   z-index: 10;
   width: 5%;
   height: 20%;
 
-  /* Ensure it appears above other elements */
+ 
 }
 
 #aboutlogo {
-  position: relative; /* Use absolute positioning */
-  top: 2.5rem; /* Distance from the top */
-  right: 3rem; /* Distance from the left */
-  /* Set the desired width */
-  height: auto; /* Maintain aspect ratio */
+  position: relative; 
+  top: 2.5rem;
+  right: 3rem; 
+
+  height: auto; 
   z-index: 10;
   width: 5%;
   height: 20%;
 }
 
 
+.containerrows {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; 
+  margin: 0 auto;
+  gap: 20px; 
+}
+
+.row {
+  width: 100%; 
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-evenly; 
+  margin-bottom: 20px; 
+}

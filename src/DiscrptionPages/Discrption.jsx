@@ -176,7 +176,7 @@ const Discrption = () => {
             <button
               type="button"
               onClick={handleClick}
-              className="normal-button"
+              className="view-btn"
             >
               {t('viewButton')}
             </button>
