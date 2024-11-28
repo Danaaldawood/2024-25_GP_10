@@ -397,7 +397,8 @@ const Sign = () => {
   const [userId, setUserId] = useState("");  // For storing last 4 digits of user ID
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); 
-  
+  const [isTyping, setIsTyping] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);  
   const isMinCharacters = password.length >= 8;
   const hasUppercase = /[A-Z]/.test(password);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
@@ -405,6 +406,16 @@ const Sign = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+
+    if (newPassword.length > 0) {
+      setIsTyping(true);   
+    } else {
+      setIsTyping(false);   
+    }
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -630,7 +641,9 @@ const Sign = () => {
                     placeholder={t('enterPassword')}
                     className="Login-input"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onFocus={() => setIsPasswordFocused(true)}   
+                    onBlur={() => setIsPasswordFocused(false)}
+                    onChange={handlePasswordChange}  // use handlePasswordChange
                     required
                   />
                   <span onClick={togglePasswordVisibility} className="password-icon">
@@ -639,19 +652,21 @@ const Sign = () => {
                 </div>
 
                
-                <ul className="password-requirements">
-        <li className={isMinCharacters ? 'valid' : 'invalid'}>
-           {t('passwordRequirements.minChars')}
-        </li>
-        <li className={hasUppercase ? 'valid' : 'invalid'}>
-           {t('passwordRequirements.uppercase')}
-        </li>
-        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-           {t('passwordRequirements.specialChar')}
-        </li>
-      </ul>
+                 {/*Password*/}
+                 {isTyping && (
+                  <ul className="password-requirements">
+                    <li className={isMinCharacters ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.minChars')}
+                    </li>
+                    <li className={hasUppercase ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.uppercase')}
+                    </li>
+                    <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.specialChar')}
+                    </li>
+                  </ul>
+                )}
               </div>
-
               <fieldset className="sign-culture-domain">
                 <legend>{t('region')}</legend>
                 <div className="sign-culture-options">
@@ -716,7 +731,9 @@ const Sign = () => {
                     placeholder={t('enterPassword')}
                     className="Login-input"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onFocus={() => setIsPasswordFocused(true)}   
+                    onBlur={() => setIsPasswordFocused(false)}
+                    onChange={handlePasswordChange}  // use handlePasswordChange
                     required
                   />
                   <span onClick={togglePasswordVisibility} className="password-icon">
@@ -724,17 +741,20 @@ const Sign = () => {
                   </span>
                 </div>
 
-                <ul className="password-requirements">
-        <li className={isMinCharacters ? 'valid' : 'invalid'}>
-           {t('passwordRequirements.minChars')}
-        </li>
-        <li className={hasUppercase ? 'valid' : 'invalid'}>
-           {t('passwordRequirements.uppercase')}
-        </li>
-        <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-           {t('passwordRequirements.specialChar')}
-        </li>
-      </ul>
+                 {/*Password */}
+                 {isTyping && (
+                  <ul className="password-requirements">
+                    <li className={isMinCharacters ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.minChars')}
+                    </li>
+                    <li className={hasUppercase ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.uppercase')}
+                    </li>
+                    <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.specialChar')}
+                    </li>
+                  </ul>
+                )}
               </div>
 
               <fieldset className="sign-culture-domain">

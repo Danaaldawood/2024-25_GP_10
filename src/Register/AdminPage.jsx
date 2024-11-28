@@ -199,11 +199,14 @@ export const AdminPage = () => {
     }
     try {
       // Remove the request from the table and Firestore
-      const updatedRequests = requests.filter(request => request.id !== id);
+      const updatedRequests = requests.map(request =>
+        request.id === id ? { ...request, status: 'Denied' } : request
+      );
       setRequests(updatedRequests);
-
+      
       const docRef = doc(db, 'Moderators', id);
-      await deleteDoc(docRef);  // Delete the document from Firestore
+      await updateDoc(docRef, { status: 'Denied' });  // Update the status in Firestore
+      
 
       // Send email notification
       sendEmail(email, 'Denial Notification', 'Your moderator request has been denied.');
@@ -237,7 +240,7 @@ export const AdminPage = () => {
   };
 
   return (
-    <div>
+    <div className="main-content">
       <Helmet>
         <title>Admin Page</title>
         <meta name="description" content="Admin control panel for managing moderator requests and model updates" />
@@ -410,11 +413,11 @@ export const AdminPage = () => {
         </div>
       )}
  
-
-      <footer className="footer-admin">
-      <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
-      
-    </footer>
+ 
+ <footer className="footer-admin">
+  <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
+</footer>
+ 
   
 
      </div>

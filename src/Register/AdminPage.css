@@ -6,7 +6,8 @@
   align-items: center;
   color: #fff;
   padding: 20px 30px;
- }
+  border-radius: 10px;
+}
 .delete-btn {
   background-color: #ff4d4d;
   color: white;
@@ -65,17 +66,20 @@
  
 
 
- .requests-table .approve-btn,
- .requests-table .deny-btn {
-   padding: 8px;
+.requests-table .approve-btn,
+.requests-table .deny-btn {
+   padding: 10px 0;   
    background-color: #10a37f;
    color: white;
    border: none;
-   border-radius: 20px;
+   border-radius: 15px;
    cursor: pointer;
    transition: background-color 0.3s ease;
-   box-sizing: border-box;
- }
+   font-size: 13px;
+   flex-grow: 1;  
+   text-align: center;   
+   min-width: 80px;  
+}
  
 
   
@@ -293,17 +297,32 @@
     transform: translateY(0);
   }
 }
-.footer-admin {
-  background: linear-gradient(700deg, #2d5174, #6084a9);
+ body, html {
+  height: 100%;   
+  margin: 0;
+}
+
+.main-content {
   display: flex;
-  justify-content: center;  
-  align-items: center;  
+  flex-direction: column;
+  min-height: 100vh;   
+}
+
+.content {
+  flex-grow: 1;   
+  padding-bottom: 60px; 
+}
+
+/* Footer */
+.footer-admin {
+  background:linear-gradient(700deg, #2d5174, #6084a9);
   color: #fff;
   padding: 20px 30px;
-   bottom: 0;  
-  left: 0;
-  right: 0;
+  text-align: center;
+  margin-top: auto;  
 }
+
+
 .footer-admin p {
   font-size: 1rem;
   margin: 0;

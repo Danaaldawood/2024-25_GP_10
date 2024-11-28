@@ -54,16 +54,24 @@ export const AddCultureValue = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    
+
     setItemData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    if (name === 'newvalue' && value.length > 0) {
-      setShowErrorPopup(false); 
-    }
   };
 
   const handleAddClick = async () => {
+    // التحقق من القيمة المدخلة وما إذا كانت تحتوي على أحرف غير إنجليزية
+    const nonEnglishPattern = /[^\x00-\x7F]+/;
+    if (nonEnglishPattern.test(itemData.newvalue)) {
+      setErrorMessage("Please enter the value in English only.");
+      setShowErrorPopup(true);
+      return;
+    }
+
     if (!itemData.newvalue || !itemData.reason) {
       setErrorMessage(!itemData.newvalue ? "Please enter a new value." : "Please select a reason.");
       setShowErrorPopup(true);
@@ -74,13 +82,12 @@ export const AddCultureValue = () => {
     const allValuesLower = itemData.allValues.map(value => value.toLowerCase());
 
     if (allValuesLower.includes(newValueLower)) {
-      setErrorMessage(`The value "${itemData.newvalue}" is already exist in the dataset.`);
+      setErrorMessage(`The value "${itemData.newvalue}" already exists in the dataset.`);
       setShowErrorPopup(true);
       return;
     }
 
     try {
-      // Updated path for the new data structure
       const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${itemData.allValues.length}`);
       const newAnnotation = {
         en_values: [itemData.newvalue],
@@ -122,6 +129,19 @@ export const AddCultureValue = () => {
           <meta name="description" content="This is Add page" />
         </Helmet>
 
+        {/* بوب أب عند إدخال نص غير إنجليزي */}
+        {showErrorPopup && (
+          <div className="error-popup">
+            <div className="error-title">Error</div>
+            <div className="error-message">{errorMessage}</div>
+            <div className="error-actions">
+              <button className="confirm-btn" onClick={() => setShowErrorPopup(false)}>
+                OK
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="addheader">
           <div className="add-title">Add Culture Value</div>
           <div className="underline"></div>
@@ -162,8 +182,7 @@ export const AddCultureValue = () => {
               name="newvalue"
               value={itemData.newvalue}
               onChange={handleInputChange}
-              placeholder={showErrorPopup ? "Please enter a new value" : "Enter a new value"}
-              className={showErrorPopup ? "newvalue-error-placeholder" : ""}
+              placeholder="Enter a new value"
             />
           </div>
 
@@ -174,11 +193,8 @@ export const AddCultureValue = () => {
               name="reason"
               value={itemData.reason}
               onChange={handleInputChange}
-              className={showErrorPopup ? "reason-error-placeholder" : ""}
             >
-              <option value="" disabled>
-                {showErrorPopup ? "Please select a reason" : "Select your reason"}
-              </option>
+              <option value="" disabled>Select your reason</option>
               <option value="Variation">Variation</option>
               <option value="subculture">Subculture</option>
             </select>
@@ -210,18 +226,6 @@ export const AddCultureValue = () => {
             <p className="success-message">Value added successfully.</p>
           </div>
         )}
-
-        {/* {showErrorPopup && (
-          <div className="error-popup">
-            <div className="error-title">Error</div>
-            <div className="error-message">{errorMessage}</div>
-            <div className="error-actions">
-              <button className="confirm-btn" onClick={() => setShowErrorPopup(false)}>
-                OK
-              </button>
-            </div>
-          </div>
-        )} */}
       </div>
       <Footer />
     </div>

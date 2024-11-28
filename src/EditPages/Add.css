@@ -81,6 +81,46 @@
 .add-input.error input::placeholder {
   color: red; 
 }
+.error-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8d7da;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #f5c6cb;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.error-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: #721c24;
+  margin-bottom: 20px;
+}
+
+.error-actions {
+  text-align: center;
+}
+
+.confirm-btn {
+  background-color: #d4edda;
+  color: #155724;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.confirm-btn:hover {
+  background-color: #c3e6cb;
+}
 
 /* Submit button container */
 .addsubmit-container {
