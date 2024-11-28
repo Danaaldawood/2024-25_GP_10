@@ -20,7 +20,7 @@ export const Footer = () => {
           <MdEmail className="footer-icon" />
         </a>
         <a
-          href="https://twitter.com/yourprofile"
+          href="https://x.com/CultureLens43"
           target="_blank"
           rel="noopener noreferrer"
         >
