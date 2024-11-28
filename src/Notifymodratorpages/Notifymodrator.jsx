@@ -1,6 +1,7 @@
+// Main component for handling moderation notifications in the application
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { ref, update } from 'firebase/database';
+import { ref, get, push, set } from 'firebase/database';
 import { realtimeDb, auth } from '../Register/firebase';
 import "./Notifymodrator.css";
 import { Header } from '../Header/Header';
@@ -14,6 +15,7 @@ export const Notifymodrator = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
@@ -71,13 +73,20 @@ export const Notifymodrator = () => {
     }
   };
 
+  const checkExistingNotification = (notifications) => {
+    return notifications.some(notification => 
+      notification.attribute === notificationData.attribute && 
+      notification.PreviousValue === notificationData.PreviousValue &&
+      notification.status === "pending"
+    );
+  };
+
   const handleSubmitNotification = async () => {
     if (!notificationData.description) {
       setShowError(true);
       return;
     }
 
-    // Check if suggestion exists in allValues
     if (notificationData.suggestion) {
       const suggestionLower = notificationData.suggestion.toLowerCase();
       const allValuesLower = location.state?.allValues.map(value => value.toLowerCase()) || [];
@@ -90,14 +99,33 @@ export const Notifymodrator = () => {
     }
 
     try {
-      const notificationRef = ref(realtimeDb, `notifications/${id}`);
-      await update(notificationRef, {
+      const notificationsRef = ref(realtimeDb, `notifications/${id}`);
+      const snapshot = await get(notificationsRef);
+      let existingNotifications = [];
+      
+      if (snapshot.exists()) {
+        existingNotifications = snapshot.val().notifications || [];
+        
+        if (checkExistingNotification(existingNotifications)) {
+          setErrorMessage("A notification for this attribute and value is already pending.");
+          setShowErrorPopup(true);
+          return;
+        }
+      }
+
+      const newNotification = {
         ...notificationData,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        notificationId: push(ref(realtimeDb)).key
+      };
+
+      const updatedNotifications = [...existingNotifications, newNotification];
+
+      await set(notificationsRef, {
+        notifications: updatedNotifications
       });
       
       setShowSuccess(true);
-      
       setTimeout(() => {
         setShowSuccess(false);
         navigate("/View");
