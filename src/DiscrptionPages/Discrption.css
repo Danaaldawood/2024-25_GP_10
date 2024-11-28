@@ -10,7 +10,7 @@ main {
   
 }
 
-button {
+.normall-button {
   background-color: #d3dbe4;
   /* Green background */
   border: none; /* No border */
@@ -27,7 +27,7 @@ button {
   transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-button:hover {
+.normall-button:hover {
   background-color: #afc6de; /* Darker green on hover */
 }
 

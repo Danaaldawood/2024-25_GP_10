@@ -138,6 +138,20 @@
 .newvalue-error-placeholder::placeholder {
   color: red;
 }
+
+
+.reason-error-placeholder {
+  color: red !important;
+}
+
+.reason-error-placeholder option[value=""] {
+  color: #dc172b !important;
+}
+
+.reason-error-placeholder option {
+  color: #333;
+}
+
 /* List styling for all values */
 .all-values-list {
   list-style-type: none;

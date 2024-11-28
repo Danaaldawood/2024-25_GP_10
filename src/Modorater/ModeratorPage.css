@@ -178,18 +178,37 @@
   font-size: 1.2rem;
   margin-top: 20px;
 }
-
-.action-btn.eye-btn {
+.action-btndelete-btn {
+  width: 35px;              /* Reduced the width to better fit the icon */
+  height: 35px;             /* Make height consistent with width */
+  color: white;             /* Keep the icon color white */
+  border: none;
+  border-radius: 50%;       /* Make it a circular button */
+  cursor: pointer;
+  font-size: 1.2rem;        /* Slightly smaller icon size */
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  transition: background-color 0.3s, transform 0.2s ease;
+  background-color: #dc172b;
+}
+.action-btndelete-btn:hover{
+background-color: #ff5264;
+}
+.eye-btn {
+  width: 35px;           
+  height: 35px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 2rem; 
-  color: #10a37f; 
-  transition: color 0.3s;
+  font-size: 1.5rem; 
+  color: #10a37f;        
+  transition: color 0.3s, transform 0.2s ease;
 }
 
-.action-btn.eye-btn:hover {
-  color: #74c3b0; 
+.eye-btn:hover {
+  color: #74c3b0;            
+  transform: scale(1.1);     
 }
 
 
@@ -217,7 +236,7 @@
 }
 
 .modal-message {
-  color: #003f5c;
+  color: #242222de;
   font-size: 18px;
   margin-bottom: 1.5rem;
 }
@@ -226,31 +245,61 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-}
 
+}
+/* Style for modal buttons */
 .modal-btn {
   padding: 0.5rem 1.5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
+
 }
 
 .confirm-btn-not {
-  background-color: #10a37f;
-  color: white;
+  background-color: #dc172b;
 }
 
 .confirm-btn-not:hover {
-  background-color:  #74c3b0;
+  background-color: #ff5264;
 }
+
+/* For the deny confirmation button */
+.deny-btn-not {
+  background-color: #737272;
+  color: white; 
+}
+
+.deny-btn-not:hover {
+  background-color: #929191;
+}
+
+/* For the replace confirmation button */
+.replace-btn {
+  background-color: #10a37f;
+  color: white; 
+}
+
+.replace-btn:hover {
+  background-color: #74c3b0;
+}
+
+/* For the delete confirmation button */
+.delete-btn-not {
+  background-color: #dc172b;
+  color: white; 
+}
+
+.delete-btn-not:hover {
+  background-color: #ff5264;
+}
+
 
 .cancel-btn-not {
-  background-color: #dc172b;
-  color: white;
-}
-
-.cancel-btn-not:hover {
-  background-color: #ff5264;
+  border: 1px solid #000;
+  color: '#000';
+ background-color: #f9f9f9;
+  cursor: 'pointer';
+  font-size: '18px';
 }

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AlertCircle } from 'lucide-react';
 import "./CompareResult.css";
-import { useTranslation } from "react-i18next"; // Add this import
-
+import { useTranslation } from "react-i18next";
 import { ComparisonMap } from "./ComparisonMap";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { Helmet } from 'react-helmet';
 
-
 function CompareResult() {
   const navigate = useNavigate();
-  const { t } = useTranslation(); // Add this hook
+  const { t } = useTranslation();
+  const [showInfo, setShowInfo] = useState(false);
 
   const [baseRegion, setBaseRegion] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
@@ -20,9 +20,8 @@ function CompareResult() {
   const [error, setError] = useState(null);
 
   const allRegions = ["Arab", "Western", "Chinese"];
-  const topics = ["Food", "Sport", "Family", "Holiday", "Work-life", "Education", "Greeting"];
+  const topics = ["Food", "Sport", "Family", "Holidays/Celebration/Leisure", "Worklife", "Education", "Greeting"];
 
-  // Get comparison regions based on selected base region
   const getComparisonRegions = () => {
     return allRegions.filter(region => region !== baseRegion);
   };
@@ -79,11 +78,13 @@ function CompareResult() {
       <Header />
 
       <h1 className="compare-result-title">Cross-Cultural Comparison</h1>
+      <p className="compare-result-description">
+        {/* Choose a base region and topic to compare cultural attributes and see the percentage of shared values across regions. */}
+      </p>
 
       <div className="compare-result-content">
         <div className="compare-result-container">
           <div className="compare-result-selectors">
-            {/* Base Region Selection */}
             <div className="compare-result-input">
               <select
                 className="compare-result-select"
@@ -99,7 +100,6 @@ function CompareResult() {
               </select>
             </div>
 
-            {/* Topic Selection */}
             <div className="compare-result-input">
               <select
                 className="compare-result-select"
@@ -117,7 +117,31 @@ function CompareResult() {
             </div>
           </div>
 
-          {/* Map Component */}
+          {/* New Similarity Header */}
+          <div className="similarity-header">
+            <h2 className="similarity-title">Similarity Index</h2>
+            <div className="info-container-inline">
+              <button 
+                className="info-button"
+                onClick={() => setShowInfo(!showInfo)}
+              >
+                <AlertCircle className="h-5 w-5" />
+              </button>
+              {showInfo && (
+                <div className="info-popup">
+                  <div className="info-content">
+                    <h3>About Similarity Index</h3>
+                    <p>This cross-culture index shows the similarity between cultural values using Jaccard similarity calculation</p>
+                    <div className="gradient-legend">
+                      <div className="gradient-bar"></div>
+                      <span>Higher values indicate stronger cultural similarities</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="compare-result-content-wrapper">
             <ComparisonMap
               baseRegion={baseRegion}
@@ -126,7 +150,6 @@ function CompareResult() {
             />
           </div>
 
-          {/* Loading and Error States */}
           {loading && (
             <div className="compare-result-loading">
               <div className="compare-result-spinner"></div>
@@ -140,7 +163,6 @@ function CompareResult() {
             </div>
           )}
 
-          {/* Similarity Scores */}
           {baseRegion && selectedTopic && !loading && !error && (
             <div className="compare-result-similarity-container">
               {getComparisonRegions().map((region) => (

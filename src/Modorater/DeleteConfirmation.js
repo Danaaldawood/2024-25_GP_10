@@ -57,8 +57,8 @@ const DeleteConfirmation = ({ onCancel }) => {
 
   const cancelButtonStyles = {
     backgroundColor: '#ffffff',
-    color: '#721c24',
-    border: '1px solid #f5c6cb',  
+    color: '#000',
+    border: '1px solid #000',
     borderRadius: '5px',
     padding: '10px 20px',
     cursor: 'pointer',
@@ -150,8 +150,8 @@ const DeleteConfirmation = ({ onCancel }) => {
         {errorMessage && <div style={errorStyles}>{errorMessage}</div>}
         {notification && <div style={notificationStyles}>{notification}</div>}
         <div style={buttonContainerStyles}>
-          <button style={confirmButtonStyles} onClick={handleConfirmDelete}>Confirm</button>
           <button style={cancelButtonStyles} onClick={onCancel}>Cancel</button>
+          <button style={confirmButtonStyles} onClick={handleConfirmDelete}>Confirm</button>
         </div>
       </div>
     </div>

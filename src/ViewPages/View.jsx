@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import { realtimeDb, db, auth } from "../Register/firebase";
@@ -10,7 +10,7 @@ import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AddIcon from "@mui/icons-material/Add";
- 
+
 import "./View.css";
 
 export function RealtimeData() {
@@ -18,20 +18,28 @@ export function RealtimeData() {
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [userRegion, setUserRegion] = useState("");
   const [filterTopic, setFilterTopic] = useState("");
   const [reasons, setReasons] = useState({});
+  const [hoveredAddRow, setHoveredAddRow] = useState(null);
+  const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const tableContainerRef = useRef(null);
 
+  const itemsPerPage = 10;
   const navigate = useNavigate();
 
   const handleClick = (row) => {
-    if (row.region_name === userRegion) {
+    if (
+      row.region_name === userRegion &&
+      row.annotations &&
+      row.annotations.length > 0
+    ) {
       const dropdownElement = document.querySelector(
         `select[data-row-id="${row.id}"]`
       );
       const selectedValue = dropdownElement ? dropdownElement.value : "";
-      
+
       navigate(`/Notifymodrator/${row.id}`, {
         state: {
           id: row.id,
@@ -39,8 +47,9 @@ export function RealtimeData() {
           attribute: row.en_question,
           region: row.region_name,
           selectedValue: selectedValue,
-          allValues: row.annotations?.map((annotation) => annotation.en_values[0]) || []
-        }
+          allValues:
+            row.annotations?.map((annotation) => annotation.en_values[0]) || [],
+        },
       });
     }
   };
@@ -66,24 +75,20 @@ export function RealtimeData() {
 
     fetchUserRegion();
 
-    // Modified to handle new data structure
-    const dbRef = ref(realtimeDb, "/");
     const unsubscribe = onValue(
-      dbRef,
+      ref(realtimeDb, "/"),
       (snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
           const dataArray = [];
-          
-          // Process each region
+
           Object.entries(data).forEach(([regionKey, regionData]) => {
             if (regionData.Details) {
-              // Process details within each region
               Object.entries(regionData.Details).forEach(([key, value]) => {
                 dataArray.push({
                   id: `${regionKey}-${key}`,
                   ...value,
-                  region_name: value.region_name || regionKey.replace('C', '')
+                  region_name: value.region_name || regionKey.replace("C", ""),
                 });
               });
             }
@@ -113,10 +118,19 @@ export function RealtimeData() {
     return () => unsubscribe();
   }, []);
 
-  const handleRegionChange = (e) => setFilterRegion(e.target.value);
+  const handleRegionChange = (e) => {
+    setFilterRegion(e.target.value);
+    setCurrentPage(1);
+  };
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
+    const searchValue = e.target.value;
+    setSearchTerm(searchValue);
+    setCurrentPage(1);
+
+    if (tableContainerRef.current) {
+      tableContainerRef.current.scrollTop = 0;
+    }
   };
 
   const handleTopicChange = (e) => {
@@ -127,12 +141,7 @@ export function RealtimeData() {
         ? "Holidays/Celebration/Leisure"
         : selectedTopic
     );
-  };
-
-  const handleRowsPerPageChange = (e) => {
-    let value = parseInt(e.target.value, 10);
-    if (value > 1500) value = 1500;
-    setRowsPerPage(value);
+    setCurrentPage(1);
   };
 
   const handleAddClick = (row) => {
@@ -168,45 +177,90 @@ export function RealtimeData() {
     }
   };
 
-  const filteredData = tableData.filter((row) => {
-    const matchesRegion =
-      !filterRegion ||
-      (row.region_name &&
-        row.region_name.toLowerCase().includes(filterRegion.toLowerCase()));
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    if (tableContainerRef.current) {
+      tableContainerRef.current.scrollTop = 0;
+    }
+  };
 
-    const matchesSearch =
-      (row.region_name &&
-        row.region_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (row.en_question &&
-        row.en_question.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (row.topic &&
-        row.topic.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      row.annotations?.some(
-        (annotation) =>
-          annotation.en_values &&
-          annotation.en_values[0] &&
-          annotation.en_values[0]
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-      );
+  const handleGroupChange = (direction) => {
+    const maxPagesVisible = 5;
+    if (direction === "next") {
+      const currentGroup = Math.ceil(currentPage / maxPagesVisible);
+      const nextGroupStart = currentGroup * maxPagesVisible + 1;
+      if (nextGroupStart <= totalPages) {
+        setCurrentPage(nextGroupStart);
+        if (tableContainerRef.current) {
+          tableContainerRef.current.scrollTop = 0;
+        }
+      }
+    } else {
+      const prevGroupStart =
+        (Math.ceil(currentPage / maxPagesVisible) - 1) * maxPagesVisible;
+      if (prevGroupStart > 0) {
+        setCurrentPage(prevGroupStart);
+        if (tableContainerRef.current) {
+          tableContainerRef.current.scrollTop = 0;
+        }
+      }
+    }
+  };
 
-    const matchesTopic =
-      !filterTopic ||
-      (row.topic &&
-        row.topic.toLowerCase().includes(filterTopic.toLowerCase()));
+  const filteredData = tableData
+    .filter((row) => {
+      const searchLower = searchTerm.toLowerCase().trim();
 
-    return matchesRegion && matchesSearch && matchesTopic;
-  });
+      const matchesSearch =
+        !searchTerm ||
+        row.region_name?.toLowerCase().includes(searchLower) ||
+        row.en_question?.toLowerCase().includes(searchLower) ||
+        row.topic?.toLowerCase().includes(searchLower) ||
+        row.annotations?.some((annotation) =>
+          annotation.en_values?.[0]?.toLowerCase().includes(searchLower)
+        );
 
-  const dataToShow = filteredData.slice(
-    0,
-    Math.min(filteredData.length, rowsPerPage)
-  );
+      const matchesRegion =
+        !filterRegion ||
+        row.region_name?.toLowerCase().includes(filterRegion.toLowerCase());
+
+      const matchesTopic =
+        !filterTopic ||
+        row.topic?.toLowerCase().includes(filterTopic.toLowerCase());
+
+      return matchesSearch && matchesRegion && matchesTopic;
+    })
+    .sort((a, b) => {
+      // Sort by user region first
+      if (a.region_name === userRegion && b.region_name !== userRegion) {
+        return -1;
+      }
+      if (a.region_name !== userRegion && b.region_name === userRegion) {
+        return 1;
+      }
+      return 0;
+    });
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const getPageRange = () => {
+    const pageRange = [];
+    const maxPagesVisible = 5;
+    const currentGroup = Math.ceil(currentPage / maxPagesVisible);
+    const start = (currentGroup - 1) * maxPagesVisible + 1;
+    const end = Math.min(start + maxPagesVisible - 1, totalPages);
+
+    for (let i = start; i <= end; i++) {
+      pageRange.push(i);
+    }
+    return pageRange;
+  };
+
   const displayedFilterTopic =
     filterTopic === "Holidays/Celebration/Leisure" ? "Holiday" : filterTopic;
-
-  const [hoveredAddRow, setHoveredAddRow] = useState(null);
-  const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -258,113 +312,156 @@ export function RealtimeData() {
               <option value="Family">Family</option>
               <option value="Greeting">Greeting</option>
             </select>
-            <label style={{ marginLeft: "15px" }}>Show</label>
-            <input
-              type="number"
-              value={rowsPerPage}
-              min="1"
-              max="1500"
-              onChange={handleRowsPerPageChange}
-              style={{ width: "60px", marginLeft: "5px", marginRight: "5px" }}
-            />
-            <label>entries</label>
           </div>
         </div>
 
-        <div className="table_container">
-          <table className="data-table">
-            <thead>
-              <tr className="tabel_titles">
-                <th></th>
-                <th>Region</th>
-                <th>Attribute</th>
-                <th>Values</th>
-                <th>Topic</th>
-                <th>Reason</th>
-                <th>Add</th>
-                <th>Notify</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dataToShow.map((row, index) => (
-                <tr key={row.id}>
-                  <td>{index + 1}</td>
-                  <td>{row.region_name}</td>
-                  <td>{row.en_question}</td>
-                  <td>
-                    <select
-                      className="value-select"
-                      data-row-id={row.id}
-                      onChange={(e) =>
-                        handleValueChange(row.id, e.target.value)
-                      }
-                    >
-                      {row.annotations?.map((annotation, i) => (
-                        <option key={i} value={annotation.en_values[0]}>
-                          {annotation.en_values[0]}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td
-                    className={`topic-column ${
-                      row.topic === "Holidays/Celebration/Leisure"
-                        ? "left-align"
-                        : "center-align"
-                    }`}
-                  >
-                    {row.topic}
-                  </td>
-                  <td>{reasons[row.id] || "variation"}</td>
-                  <td
-                    onMouseEnter={() => setHoveredAddRow(row.id)}
-                    onMouseLeave={() => setHoveredAddRow(null)}
-                    style={{ position: "relative" }}
-                  >
-                    <button
-                      onClick={() => handleAddClick(row)}
-                      className="add-button"
-                      disabled={row.region_name !== userRegion}
-                    >
-                      <AddIcon style={{ marginRight: "5px" }} /> Add
-                    </button>
-                    {row.region_name !== userRegion &&
-                      hoveredAddRow === row.id &&
-                      !hoveredNotifyRow && (
-                        <div className="custom-tooltip">
-                          You don't belong to this region
-                        </div>
-                      )}
-                  </td>
-                  <td
-                    onMouseEnter={() => setHoveredNotifyRow(row.id)}
-                    onMouseLeave={() => setHoveredNotifyRow(null)}
-                    style={{ position: "relative" }}
-                  >
-                    <button
-                      onClick={() => handleClick(row)}
-                      className="notify-button"
-                      disabled={row.region_name !== userRegion}
-                    >
-                      <div className="notification-container">
-                        <div className="notification-item">
-                          <NotificationsActiveIcon style={{ marginRight: "5px" }} />
-                          <span>Notify</span>
-                        </div>
-                      </div>
-                    </button>
-                    {row.region_name !== userRegion &&
-                      hoveredNotifyRow === row.id &&
-                      !hoveredAddRow && (
-                        <div className="custom-tooltip">
-                          You don't belong to this region
-                        </div>
-                      )}
-                  </td>
-                </tr>
+        <div className="scroll-container" ref={tableContainerRef}>
+          <div className="table_container">
+            <div className="table-wrapper">
+              <table className="data-table">
+                <thead>
+                  <tr className="tabel_titles">
+                    <th></th>
+                    <th>Region</th>
+                    <th>Attribute</th>
+                    <th>Values</th>
+                    <th>Topic</th>
+                    <th>Reason</th>
+                    <th>Add</th>
+                    <th>Notify</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentItems.map((row, index) => (
+                    <tr key={row.id}>
+                      <td>{indexOfFirstItem + index + 1}</td>
+                      <td>{row.region_name}</td>
+                      <td>{row.en_question}</td>
+                      <td>
+                        {row.annotations && row.annotations.length > 0 ? (
+                          row.annotations.length > 1 ? (
+                            <select
+                              className="value-select"
+                              data-row-id={row.id}
+                              onChange={(e) =>
+                                handleValueChange(row.id, e.target.value)
+                              }
+                            >
+                              {row.annotations.map((annotation, i) => (
+                                <option key={i} value={annotation.en_values[0]}>
+                                  {annotation.en_values[0]}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <span>{row.annotations[0].en_values[0]}</span>
+                          )
+                        ) : (
+                          <span></span>
+                        )}
+                      </td>
+                      <td
+                        className={`topic-column ${
+                          row.topic === "Holidays/Celebration/Leisure"
+                            ? "left-align"
+                            : "center-align"
+                        }`}
+                      >
+                        {row.topic}
+                      </td>
+                      <td>{reasons[row.id] || "variation"}</td>
+                      <td
+                        onMouseEnter={() => setHoveredAddRow(row.id)}
+                        onMouseLeave={() => setHoveredAddRow(null)}
+                        style={{ position: "relative" }}
+                      >
+                        <button
+                          onClick={() => handleAddClick(row)}
+                          className="add-button"
+                          disabled={row.region_name !== userRegion}
+                        >
+                          <AddIcon style={{ marginRight: "5px" }} /> Add
+                        </button>
+                        {row.region_name !== userRegion &&
+                          hoveredAddRow === row.id &&
+                          !hoveredNotifyRow && (
+                            <div className="custom-tooltip">
+                              You don't belong to this region
+                            </div>
+                          )}
+                      </td>
+                      <td
+                        onMouseEnter={() => setHoveredNotifyRow(row.id)}
+                        onMouseLeave={() => setHoveredNotifyRow(null)}
+                        style={{ position: "relative" }}
+                      >
+                        <button
+                          onClick={() => handleClick(row)}
+                          className="notify-button"
+                          disabled={
+                            row.region_name !== userRegion ||
+                            !row.annotations ||
+                            row.annotations.length === 0
+                          }
+                        >
+                          <div className="notification-item">
+                            <NotificationsActiveIcon
+                              style={{ marginRight: "5px" }}
+                            />
+                            <span>Notify</span>
+                          </div>
+                        </button>
+                        {row.region_name !== userRegion &&
+                          hoveredNotifyRow === row.id &&
+                          !hoveredAddRow && (
+                            <div className="custom-tooltip">
+                              You don't belong to this region
+                            </div>
+                          )}
+                        {row.region_name === userRegion &&
+                          (!row.annotations || row.annotations.length === 0) &&
+                          hoveredNotifyRow === row.id && (
+                            <div className="custom-tooltip">
+                              No values available
+                            </div>
+                          )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="pagination-container">
+              <button
+                onClick={() => handleGroupChange("prev")}
+                disabled={currentPage <= 5}
+                className="pagination-button"
+              >
+                Previous
+              </button>
+
+              {getPageRange().map((pageNum) => (
+                <button
+                  key={pageNum}
+                  onClick={() => handlePageChange(pageNum)}
+                  className={`pagination-button ${
+                    pageNum === currentPage ? "active" : ""
+                  }`}
+                >
+                  {pageNum}
+                </button>
               ))}
-            </tbody>
-          </table>
+
+              <button
+                onClick={() => handleGroupChange("next")}
+                disabled={Math.ceil(currentPage / 5) * 5 >= totalPages}
+                className="pagination-button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

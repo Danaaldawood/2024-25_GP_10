@@ -44,7 +44,7 @@ def compare():
                     similarities.append(similarity)
 
             # Average similarity for this topic
-            results[topic] = round(sum(similarities) / len(similarities) * 100) if similarities else 0
+            results[topic] = (sum(similarities) / len(similarities) * 100) if similarities else 0
 
         return jsonify({
             "similarity_scores": results

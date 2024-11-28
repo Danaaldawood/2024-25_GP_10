@@ -46,11 +46,11 @@ const SignOutConfirmation = ({ onConfirm, onCancel }) => {
   };
 
   const cancelButtonStyles = {
-    backgroundColor: '#fff',  
-    color: '#dc172b',  
-    border: '1px solid #f5c6cb',  
+    backgroundColor: '#ffffff',
+    color: '#000',
+    border: '1px solid #000',
     borderRadius: '5px',
-    padding: '8px 16px',
+    padding: '10px 20px',
     cursor: 'pointer',
     fontSize: '15px',
   };
@@ -64,8 +64,8 @@ const SignOutConfirmation = ({ onConfirm, onCancel }) => {
       <div style={modalBodyStyles}>
         <p>Are you sure you want to Log out?</p> 
         <div style={buttonContainerStyles}>
-          <button style={confirmButtonStyles} onClick={onConfirm}>Confirm</button>
           <button style={cancelButtonStyles} onClick={onCancel}>Cancel</button>
+          <button style={confirmButtonStyles} onClick={onConfirm}>Confirm</button>
         </div>
       </div>
     </div>

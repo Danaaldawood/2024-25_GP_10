@@ -7,7 +7,7 @@ const Notification = ({ type, message, onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose(); 
-    }, 2000); 
+    }, 3000); 
 
    
     return () => clearTimeout(timer);
@@ -18,12 +18,11 @@ const Notification = ({ type, message, onClose }) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#ffffff', // Set background to white
-    color: type === 'warning' || type === 'error' ? '#721c24' : '#155724', // Color based on type
+    backgroundColor: '#ffffff', 
+    color: type === 'warning' || type === 'error' ? '#721c24' : '#155724', 
     border: type === 'warning' || type === 'error' ? '2px solid #f5c6cb' : '2px solid #c3e6cb',
     borderRadius: '10px',
     padding: '20px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     zIndex: 9999,
     textAlign: 'center',
     width: '300px',

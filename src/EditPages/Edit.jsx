@@ -64,9 +64,9 @@ export const AddCultureValue = () => {
   };
 
   const handleAddClick = async () => {
-    if (!itemData.newvalue) {
+    if (!itemData.newvalue || !itemData.reason) {
+      setErrorMessage(!itemData.newvalue ? "Please enter a new value." : "Please select a reason.");
       setShowErrorPopup(true);
-      setErrorMessage("Please enter a new value.");
       return;
     }
 
@@ -177,9 +177,9 @@ export const AddCultureValue = () => {
               className={showErrorPopup ? "reason-error-placeholder" : ""}
             >
               <option value="" disabled>
-                {showErrorPopup ? "Please enter a reason" : "Select your reason"}
+                {showErrorPopup ? "Please select a reason" : "Select your reason"}
               </option>
-              <option value="variance">Variation</option>
+              <option value="Variation">Variation</option>
               <option value="subculture">Subculture</option>
             </select>
           </div>
@@ -211,7 +211,7 @@ export const AddCultureValue = () => {
           </div>
         )}
 
-        {showErrorPopup && (
+        {/* {showErrorPopup && (
           <div className="error-popup">
             <div className="error-title">Error</div>
             <div className="error-message">{errorMessage}</div>
@@ -221,7 +221,7 @@ export const AddCultureValue = () => {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
       <Footer />
     </div>

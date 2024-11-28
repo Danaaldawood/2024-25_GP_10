@@ -11,6 +11,26 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     Chinese: [156, 344, 446, 158, 702],
   };
 
+  const getRegionColor = (value) => {
+    if (value === undefined || value === null) return "#e0e0e0";
+    
+    if (value <= 15) {
+      // Red gradient for values 0-15
+      const redScale = d3
+        .scaleLinear()
+        .domain([0, 15])
+        .range(["#ffcdd2", "#ef5350"]);
+      return redScale(value);
+    } else {
+      // Green gradient for values 15-100
+      const greenScale = d3
+        .scaleLinear()
+        .domain([15, 100])
+        .range(["#e0f2e9", "#10a37f"]);
+      return greenScale(value);
+    }
+  };
+
   useEffect(() => {
     const drawMap = async () => {
       try {
@@ -45,11 +65,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
         const world = await response.json();
         const countries = feature(world, world.objects.countries);
 
-        const regionColor = d3
-          .scaleLinear()
-          .domain([0, 100])
-          .range(["#e0f2e9", "#10a37f"]);
-
+        // Create tooltip
         const tooltip = d3
           .select(mapRef.current)
           .append("div")
@@ -61,9 +77,10 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .style("padding", "8px")
           .style("font-size", "12px")
           .style("pointer-events", "none")
-          .style("color", "#10a37f")  // Added green color to tooltip text
+          .style("color", "#10a37f")
           .style("box-shadow", "0 4px 8px rgba(0, 0, 0, 0.1)");
 
+        // Draw countries
         svg
           .append("g")
           .selectAll("path")
@@ -77,7 +94,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             }
             for (const [region, score] of Object.entries(similarities)) {
               if (regionToIds[region]?.includes(countryId)) {
-                return regionColor(score);
+                return getRegionColor(score);
               }
             }
             return "#e0e0e0";
@@ -125,61 +142,85 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           const legendWidth = 200;
           const legendHeight = 15;
           const legendY = height - 70;
+          const redWidth = (legendWidth * 15) / 100; // 15% of total width
+          const greenWidth = legendWidth - redWidth;
+
+          // Create gradient definitions
+          const gradients = svg.append("defs");
+
+          // Red gradient (0-15%)
+          gradients
+            .append("linearGradient")
+            .attr("id", "legend-gradient-red")
+            .attr("x1", "0%")
+            .attr("x2", "100%")
+            .selectAll("stop")
+            .data([
+              { offset: "0%", color: "#ffcdd2" },
+              { offset: "100%", color: "#ef5350" }
+            ])
+            .enter()
+            .append("stop")
+            .attr("offset", d => d.offset)
+            .attr("stop-color", d => d.color);
+
+          // Green gradient (15-100%)
+          gradients
+            .append("linearGradient")
+            .attr("id", "legend-gradient-green")
+            .attr("x1", "0%")
+            .attr("x2", "100%")
+            .selectAll("stop")
+            .data([
+              { offset: "0%", color: "#e0f2e9" },
+              { offset: "100%", color: "#10a37f" }
+            ])
+            .enter()
+            .append("stop")
+            .attr("offset", d => d.offset)
+            .attr("stop-color", d => d.color);
 
           const legend = svg
             .append("g")
             .attr("transform", `translate(${(width - legendWidth) / 2}, ${legendY})`);
 
-          const gradient = svg
-            .append("defs")
-            .append("linearGradient")
-            .attr("id", "legend-gradient")
-            .attr("x1", "0%")
-            .attr("x2", "100%");
-
-          gradient
-            .append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "#e0f2e9");
-          gradient
-            .append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "#10a37f");
-
+          // Add red gradient bar (0-15%)
           legend
             .append("rect")
-            .attr("width", legendWidth)
+            .attr("width", redWidth)
             .attr("height", legendHeight)
-            .style("fill", "url(#legend-gradient)");
+            .style("fill", "url(#legend-gradient-red)");
 
-          const legendScale = d3.scaleLinear().domain([0, 100]).range([0, legendWidth]);
-          const legendAxis = d3.axisBottom(legendScale).ticks(5).tickFormat((d) => `${d}%`);
-          legend.append("g").attr("transform", `translate(0, ${legendHeight})`).call(legendAxis);
+          // Add green gradient bar (15-100%)
+          legend
+            .append("rect")
+            .attr("x", redWidth)
+            .attr("width", greenWidth)
+            .attr("height", legendHeight)
+            .style("fill", "url(#legend-gradient-green)");
+
+          // Add scale labels
+          const legendScale = d3.scaleLinear()
+            .domain([0, 100])
+            .range([0, legendWidth]);
+
+          const legendAxis = d3.axisBottom(legendScale)
+            .tickValues([0, 15, 50, 100])
+            .tickFormat(d => `${d}%`);
+
+          legend
+            .append("g")
+            .attr("transform", `translate(0, ${legendHeight})`)
+            .call(legendAxis);
 
           // Add legend title
-          const legendTitle = legend
+          legend
             .append("text")
             .attr("x", legendWidth / 2)
             .attr("y", legendHeight + 30)
             .attr("text-anchor", "middle")
             .style("font-size", "12px")
-            .style("cursor", "help")
             .text("Similarity Index");
-
-          // Add mouseover behavior for legend title with green text
-          legendTitle
-            .on("mouseover", (event) => {
-              tooltip
-                .style("visibility", "visible")
-                .html(
-                  "This cross-culture index shows the similarity<br>between the culture values and it uses Jaccard similarity for calculation"
-                )
-                .style("top", `${event.pageY + 10}px`)
-                .style("left", `${event.pageX + 10}px`);
-            })
-            .on("mouseout", () => {
-              tooltip.style("visibility", "hidden");
-            });
         }
       } catch (error) {
         console.error("Error drawing map:", error);
