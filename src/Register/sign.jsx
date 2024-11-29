@@ -403,7 +403,17 @@ const Sign = () => {
   const hasUppercase = /[A-Z]/.test(password);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
   const isPasswordValid = isMinCharacters && hasUppercase && hasSpecialChar;
-
+   
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 2000); 
+  
+       return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -427,12 +437,17 @@ const Sign = () => {
         console.error("User is not authenticated");
       }
     });
+     
 
     // Cleanup the listener when the component unmounts
     return () => unsubscribe();
   }, []);
   const handleRegister = async (e) => {
     e.preventDefault();
+     
+      
+      
+    
    
     if (!isPasswordValid) {
       let errorMessages = [];
@@ -443,10 +458,11 @@ const Sign = () => {
       return;
     }
 
-    // Email validate  
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Enhanced Email Validation
+    const allowedDomains = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "live.com", "icloud.com", "protonmail.com"];
+    const emailPattern = new RegExp(`^[^\\s@]+@(${allowedDomains.join('|').replace(/\./g, '\\.')})$`, 'i');
     if (!emailPattern.test(email)) {
-      setErrorMessage("Please enter a valid email address.");
+      setErrorMessage("Please enter a valid email address with an allowed domain.");
       return;
     }
 
@@ -533,19 +549,17 @@ const Sign = () => {
         </div>
       )}
 
-      {showSuccess && (
-        <div className="success-popup">
-          <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-          <p className="success-message">
-            {userType === 'User' 
-              ? t('accountCreated') 
-              : t('requestSubmitted')}
-          </p>
-          {userType !== 'User' && (
-            <button className="ok-btn" onClick={() => setShowSuccess(false)}>{t('ok')}</button>
-          )}
-        </div>
-      )}
+{showSuccess && (
+  <div className="success-popup">
+    <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+    <p className="success-message">
+      {userType === 'User' 
+        ? t('Your account has been created successfully') 
+        : t('Your request has been submitted successfully!')}
+    </p>
+  </div>
+)}
+
 
       <div className="sign-container">
         <div className="Left-section">
@@ -579,10 +593,10 @@ const Sign = () => {
           {userType === 'User' && (
             <>
               <label htmlFor="name" className="sign-label">{t('fullName')}</label>
-              <input 
-                type="text" 
-                id="name" 
-                placeholder={t('enterFullName')}
+              <input
+                type="text"
+                id="name"
+                placeholder={t('Enter Your Full Name')}
                 className="sign-input"
                 value={fname}
                 onChange={(e) => setFname(e.target.value)}
@@ -781,8 +795,8 @@ const Sign = () => {
             </>
           )}
           
-          <div className="sign-login">
-            <p>{t('alreadyHaveAccount')} <Link to="/Login" className="sign-link">{t('login')}</Link></p>
+          <div className="sign-login" style={{ marginTop: "1rem" }}>
+          <p>{t('alreadyHaveAccount')} <Link to="/Login" className="sign-link">{t('login')}</Link></p>
           </div>
         </form>
       </div>
@@ -791,6 +805,3 @@ const Sign = () => {
 };
 
 export default Sign;
-
-
-

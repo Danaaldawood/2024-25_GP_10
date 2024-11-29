@@ -112,7 +112,17 @@ p{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 0.75rem;
+  margin-top: 2;
+}
+ 
+.sign-input.error {
+  border: 2px solid red; 
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 .sign-culture-domain legend {
@@ -120,9 +130,6 @@ p{
   margin-right: 1rem;
   color: #000000;
 }
- 
-
- 
 
 /* Left Section */
 .Left-section {

@@ -51,7 +51,7 @@ const AdminLogin = () => {
       } else if (error.code === 'auth/user-not-found') {
         setErrorMessage('No account found with this email.');
       } else {
-        setErrorMessage('An error occurred. Please try again.');
+        setErrorMessage('An error occurred. Incorrect Email/Password.');
       }
       setIsLoading(false);
     }
