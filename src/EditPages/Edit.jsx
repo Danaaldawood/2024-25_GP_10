@@ -1,8 +1,12 @@
+
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+
+// Firebase
 import { ref, update, push } from 'firebase/database';
 import { realtimeDb, auth } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
+
 import "./Add.css";
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
@@ -14,20 +18,13 @@ export const AddCultureValue = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showErrorPopup, setShowErrorPopup] = useState(false); 
-  const [errorMessage, setErrorMessage] = useState(""); 
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [userId, setUserId] = useState("");
 
-  // Parse the composite ID to get region code and detail ID
   const [regionCode, detailId] = (id || "").split("-");
-
-  useEffect(() => {
-    if (!location.state) {
-      alert("No data available to add");
-      navigate("/view");
-    }
-  }, [location.state, navigate]);
 
   const [itemData, setItemData] = useState({
     topic: location.state?.topic || "",
@@ -36,35 +33,40 @@ export const AddCultureValue = () => {
     region: location.state?.region || localStorage.getItem('region') || "",
     allValues: location.state?.allValues || [],
     newvalue: "",
-    reason: ""
+    reason: "",
+    showPlaceholderError: false
   });
+
+  useEffect(() => {
+    if (!location.state) {
+      alert("No data available to add");
+      navigate("/view");
+    }
+  }, [location.state, navigate]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const lastFourUID = user.uid.slice(-4); 
+        const lastFourUID = user.uid.slice(-4);
         setUserId(`user_${lastFourUID}`);
       } else {
         console.error("User is not authenticated");
       }
     });
-
     return () => unsubscribe();
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    
-
     setItemData((prevState) => ({
       ...prevState,
       [name]: value,
+      showPlaceholderError: false
     }));
   };
 
   const handleAddClick = async () => {
-    // التحقق من القيمة المدخلة وما إذا كانت تحتوي على أحرف غير إنجليزية
+    // Validate input is English only
     const nonEnglishPattern = /[^\x00-\x7F]+/;
     if (nonEnglishPattern.test(itemData.newvalue)) {
       setErrorMessage("Please enter the value in English only.");
@@ -72,15 +74,18 @@ export const AddCultureValue = () => {
       return;
     }
 
+    // Validate required fields
     if (!itemData.newvalue || !itemData.reason) {
-      setErrorMessage(!itemData.newvalue ? "Please enter a new value." : "Please select a reason.");
-      setShowErrorPopup(true);
+      setItemData(prev => ({
+        ...prev,
+        showPlaceholderError: true
+      }));
       return;
     }
 
+    // Check for duplicate values
     const newValueLower = itemData.newvalue.toLowerCase();
     const allValuesLower = itemData.allValues.map(value => value.toLowerCase());
-
     if (allValuesLower.includes(newValueLower)) {
       setErrorMessage(`The value "${itemData.newvalue}" already exists in the dataset.`);
       setShowErrorPopup(true);
@@ -88,6 +93,7 @@ export const AddCultureValue = () => {
     }
 
     try {
+      // Update annotations in Firebase
       const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${itemData.allValues.length}`);
       const newAnnotation = {
         en_values: [itemData.newvalue],
@@ -95,9 +101,9 @@ export const AddCultureValue = () => {
         user_id: userId || "user_undefined",
         values: [itemData.newvalue]
       };
-
       await update(itemRef, newAnnotation);
 
+      // Add entry to ViewEdit collection
       const viewEditRef = ref(realtimeDb, `Viewedit/${itemData.region}`);
       const newEntry = {
         attribute: itemData.attribute,
@@ -109,8 +115,8 @@ export const AddCultureValue = () => {
       };
       await push(viewEditRef, newEntry);
 
+      // Show success message and redirect
       setShowSuccess(true);
-
       setTimeout(() => {
         setShowSuccess(false);
         navigate("/view");
@@ -124,12 +130,13 @@ export const AddCultureValue = () => {
     <div>
       <Header />
       <div className="addformcontainer">
+        {/* Meta tags */}
         <Helmet>
           <title>Add Page</title>
           <meta name="description" content="This is Add page" />
         </Helmet>
 
-        {/* بوب أب عند إدخال نص غير إنجليزي */}
+        {/* Error popup */}
         {showErrorPopup && (
           <div className="error-popup">
             <div className="error-title">Error</div>
@@ -142,12 +149,15 @@ export const AddCultureValue = () => {
           </div>
         )}
 
+        {/* Form header */}
         <div className="addheader">
           <div className="add-title">Add Culture Value</div>
           <div className="underline"></div>
         </div>
 
+        {/* Form inputs */}
         <div className="add-inputs">
+          {/* Read-only fields */}
           <div className="add-input attribute-container">
             <div className="attribute-display">{itemData.attribute}</div>
           </div>
@@ -163,6 +173,7 @@ export const AddCultureValue = () => {
             />
           </div>
 
+          {/* Values list */}
           <div className="add-input">
             <label className="label">All Values:</label>
             <ul className="all-values-list">
@@ -174,6 +185,7 @@ export const AddCultureValue = () => {
             </ul>
           </div>
 
+          {/* Editable fields */}
           <div className="add-input">
             <label className="label">New Value:</label>
             <input
@@ -182,7 +194,8 @@ export const AddCultureValue = () => {
               name="newvalue"
               value={itemData.newvalue}
               onChange={handleInputChange}
-              placeholder="Enter a new value"
+              placeholder={itemData.showPlaceholderError && !itemData.newvalue ? "please enter a new value" : "Enter a new value"}
+              className={itemData.showPlaceholderError && !itemData.newvalue ? "error-placeholder" : ""}
             />
           </div>
 
@@ -193,8 +206,11 @@ export const AddCultureValue = () => {
               name="reason"
               value={itemData.reason}
               onChange={handleInputChange}
+              className={itemData.showPlaceholderError && !itemData.reason ? "reason-error-placeholder" : ""}
             >
-              <option value="" disabled>Select your reason</option>
+              <option value="" disabled>
+                {itemData.showPlaceholderError && !itemData.reason ? "please select your reason" : "Select your reason"}
+              </option>
               <option value="Variation">Variation</option>
               <option value="subculture">Subculture</option>
             </select>
@@ -212,6 +228,7 @@ export const AddCultureValue = () => {
           </div>
         </div>
 
+        {/* Submit button */}
         <div className="addsubmit-container">
           <div className="add-submit">
             <button onClick={handleAddClick} disabled={!userId}>
@@ -220,6 +237,7 @@ export const AddCultureValue = () => {
           </div>
         </div>
 
+        {/* Success message */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />

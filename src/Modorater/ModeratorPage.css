@@ -284,6 +284,15 @@ background-color: #ff5264;
 .replace-btn:hover {
   background-color: #74c3b0;
 }
+.add-btn {
+  background-color: #10a37f;
+  color: white; 
+}
+
+.add-btn:hover {
+  background-color: #74c3b0;
+}
+
 
 /* For the delete confirmation button */
 .delete-btn-not {

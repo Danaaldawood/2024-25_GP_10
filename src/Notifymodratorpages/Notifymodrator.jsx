@@ -1,38 +1,26 @@
-// Main component for handling moderation notifications in the application
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { ref, get, push, set } from 'firebase/database';
 import { realtimeDb, auth } from '../Register/firebase';
-import "./Notifymodrator.css";
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
+import { onAuthStateChanged } from 'firebase/auth';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { onAuthStateChanged } from 'firebase/auth';
+
+import { Header } from '../Header/Header';
+import { Footer } from '../Footer/Footer';
+import "./Notifymodrator.css";
 
 export const Notifymodrator = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [userId, setUserId] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [userId, setUserId] = useState('');
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const lastFourUID = user.uid.slice(-4);
-        setUserId(`user_${lastFourUID}`);
-      } else {
-        console.error("User is not authenticated");
-      }
-    });
-    return () => unsubscribe();
-  }, []);
 
   const [notificationData, setNotificationData] = useState({
     topic: location.state?.topic || "",
@@ -45,6 +33,18 @@ export const Notifymodrator = () => {
     userId: "",
     region: location.state?.region || ""
   });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const lastFourUID = user.uid.slice(-4);
+        setUserId(`user_${lastFourUID}`);
+      } else {
+        console.error("User is not authenticated");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (!location.state) {
@@ -73,6 +73,7 @@ export const Notifymodrator = () => {
     }
   };
 
+  // Check for duplicate notifications
   const checkExistingNotification = (notifications) => {
     return notifications.some(notification => 
       notification.attribute === notificationData.attribute && 
@@ -81,12 +82,23 @@ export const Notifymodrator = () => {
     );
   };
 
+  // Submit notification to database
   const handleSubmitNotification = async () => {
+    // Validate description field
     if (!notificationData.description) {
       setShowError(true);
       return;
     }
 
+    // Validate suggestion language (English only)
+    const nonEnglishPattern = /[^\x00-\x7F]+/;
+    if (notificationData.suggestion && nonEnglishPattern.test(notificationData.suggestion)) {
+      setErrorMessage("Please enter the suggestion in English only.");
+      setShowErrorPopup(true);
+      return;
+    }
+
+    // Check for duplicate suggestions
     if (notificationData.suggestion) {
       const suggestionLower = notificationData.suggestion.toLowerCase();
       const allValuesLower = location.state?.allValues.map(value => value.toLowerCase()) || [];
@@ -99,10 +111,12 @@ export const Notifymodrator = () => {
     }
 
     try {
+      // Get reference to notifications in database
       const notificationsRef = ref(realtimeDb, `notifications/${id}`);
       const snapshot = await get(notificationsRef);
       let existingNotifications = [];
       
+      // Check for existing notifications
       if (snapshot.exists()) {
         existingNotifications = snapshot.val().notifications || [];
         
@@ -113,18 +127,19 @@ export const Notifymodrator = () => {
         }
       }
 
+      // Create new notification object
       const newNotification = {
         ...notificationData,
         timestamp: new Date().toISOString(),
         notificationId: push(ref(realtimeDb)).key
       };
 
-      const updatedNotifications = [...existingNotifications, newNotification];
-
+      // Update database with new notification
       await set(notificationsRef, {
-        notifications: updatedNotifications
+        notifications: [...existingNotifications, newNotification]
       });
       
+      // Show success message and redirect
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
@@ -139,11 +154,13 @@ export const Notifymodrator = () => {
     <div>
       <Header />
       <div className="notify-form-container">
+        {/* SEO metadata */}
         <Helmet>
           <title>Notify Moderator</title>
           <meta name="description" content="Notify moderator page" />
         </Helmet>
           
+        {/* Form header */}
         <div className="notify-header">
           <div className="notify-title">
             Notify Moderator
@@ -154,7 +171,9 @@ export const Notifymodrator = () => {
           </div>
         </div>
 
+        {/* Form inputs */}
         <div className="notify-inputs">
+          {/* Topic input */}
           <div className="notify-input">
             <label className="label">Topic:</label>
             <input
@@ -165,6 +184,7 @@ export const Notifymodrator = () => {
             />
           </div>
 
+          {/* Previous value selection */}
           <div className="notify-input">
             <label className="label">Previous Value:</label>
             <select
@@ -188,6 +208,7 @@ export const Notifymodrator = () => {
             </select>
           </div>
 
+          {/* Description textarea */}
           <div className="notify-input">
             <label className="label">Description:</label>
             <textarea
@@ -200,6 +221,7 @@ export const Notifymodrator = () => {
             />
           </div>
 
+          {/* Suggestion input */}
           <div className="notify-input">
             <label className="label">Suggestion for New Value (optional):</label>
             <input
@@ -212,12 +234,14 @@ export const Notifymodrator = () => {
           </div>
         </div>
 
+        {/* Submit button */}
         <div className="notify-submit-container">
           <button onClick={handleSubmitNotification} className="notify-submit-button">
             Notify
           </button>
         </div>
 
+        {/* Success and error popups */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />

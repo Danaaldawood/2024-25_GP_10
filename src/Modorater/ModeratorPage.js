@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ref, onValue, remove, update, get } from "firebase/database";
+import { ref, onValue, remove, update, get, push } from "firebase/database";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db, realtimeDb } from "../Register/firebase";
 import "./ModeratorPage.css";
@@ -25,6 +25,8 @@ const ConfirmationModal = ({
       ? "deny-btn-not"
       : actionType === "replace"
       ? "replace-btn"
+      : actionType === "add"
+      ? "add-btn"
       : "delete-btn-not";
 
   return (
@@ -44,6 +46,75 @@ const ConfirmationModal = ({
         </div>
       </div>
     </div>
+  );
+};
+
+const NotificationRow = ({
+  notification,
+  onDelete,
+  onDeny,
+  onReplace,
+  onAdd,
+  viewEditEntries,
+}) => {
+  // Check if value currently exists in viewEditEntries
+  const valueExists = viewEditEntries.some(
+    (entry) =>
+      entry.attribute === notification.attribute &&
+      entry.value === notification.PreviousValue
+  );
+
+  // Special case: Value was in ViewEdit but was deleted
+  const wasDeleted = !valueExists && notification.isValueDeleted;
+  
+  // Disable delete only when:
+  // 1. Value was previously in ViewEdit and was deleted AND
+  // 2. Notification has a suggestion
+  const disableDelete = wasDeleted && notification.suggestion;
+
+  return (
+    <tr>
+      <td>{notification.userId || "N/A"}</td>
+      <td>{notification.attribute || "N/A"}</td>
+      <td>{notification.topic || "N/A"}</td>
+      <td>{notification.PreviousValue || "N/A"}</td>
+      <td>{notification.suggestion || "N/A"}</td>
+      <td>{notification.description || "N/A"}</td>
+      <td className="action-buttons">
+        <button
+          onClick={() => onDelete(notification)}
+          className="action-btn delete-btn-not"
+          disabled={disableDelete}
+          style={{
+            opacity: disableDelete ? 0.5 : 1,
+            cursor: disableDelete ? "not-allowed" : "pointer",
+          }}
+          title={disableDelete ? "Value already deleted" : "Delete this value"}
+        >
+          Delete Value
+        </button>
+      </td>
+      <td className="action-buttons">
+        <button
+          onClick={() => onDeny(notification)}
+          className="action-btn deny-btn-not"
+          title="Deny request"
+        >
+          Deny Request
+        </button>
+      </td>
+      <td className="action-buttons">
+        {notification.suggestion && (
+          <button
+            onClick={() => wasDeleted ? onAdd(notification) : onReplace(notification)}
+            className={`action-btn ${wasDeleted ? "add-btn" : "replace-btn"}`}
+            title={wasDeleted ? "Add new value" : "Replace value"}
+          >
+            {wasDeleted ? "Add Value" : "Replace Value"}
+          </button>
+        )}
+      </td>
+    </tr>
   );
 };
 
@@ -124,168 +195,37 @@ const ModeratorPage = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleMenuToggle = () => setMenuOpen(!menuOpen);
-  const handleProfileClick = () => navigate("/profile");
-  const handleSignOut = () => setShowSignOutModal(true);
-  const handleConfirmSignOut = () => {
-    setShowSignOutModal(false);
-    navigate("/Login");
-  };
-  const handleCancelSignOut = () => setShowSignOutModal(false);
-
-  const handleDeleteValue = async (
-    notificationId,
-    attribute,
-    previousValue
-  ) => {
-    setConfirmModal({
-      isOpen: true,
-      message: "Are you sure you want to delete this value?",
-      actionType: "delete",
-      onConfirm: async () => {
-        try {
-          const notificationRef = ref(
-            realtimeDb,
-            `notifications/${notificationId}`
-          );
-          const notificationSnapshot = await get(notificationRef);
-          const notificationData = notificationSnapshot.val();
-
-          // Get the specific notification from the array
-          const specificNotification = notificationData.notifications.find(
-            (n) =>
-              n.PreviousValue === previousValue && n.attribute === attribute
-          );
-
-          if (!specificNotification) {
-            console.error("Notification not found");
-            return;
-          }
-
-          // 1. Delete from main database
-          const regionDatasetRef = ref(
-            realtimeDb,
-            `${specificNotification.region}C/Details`
-          );
-          const snapshot = await get(regionDatasetRef);
-
-          if (snapshot.exists()) {
-            const details = snapshot.val();
-            for (const [detailKey, detailValue] of Object.entries(details)) {
-              if (
-                detailValue.topic === specificNotification.topic &&
-                detailValue.en_question === attribute
-              ) {
-                const annotations = detailValue.annotations || [];
-                const filteredAnnotations = annotations.filter(
-                  (annotation) => annotation.en_values[0] !== previousValue
-                );
-
-                if (filteredAnnotations.length !== annotations.length) {
-                  const detailRef = ref(
-                    realtimeDb,
-                    `${specificNotification.region}C/Details/${detailKey}`
-                  );
-                  await update(detailRef, {
-                    ...detailValue,
-                    annotations: filteredAnnotations,
-                  });
-                }
-              }
-            }
-          }
-
-          // 2. Delete from ViewEdit table
-          const viewEditRef = ref(
-            realtimeDb,
-            `Viewedit/${specificNotification.region}`
-          );
-          const viewEditSnapshot = await get(viewEditRef);
-
-          if (viewEditSnapshot.exists()) {
-            const entries = viewEditSnapshot.val();
-            Object.entries(entries).forEach(async ([key, entry]) => {
-              if (
-                entry.value === previousValue &&
-                entry.attribute === attribute
-              ) {
-                await remove(
-                  ref(
-                    realtimeDb,
-                    `Viewedit/${specificNotification.region}/${key}`
-                  )
-                );
-                setViewEditEntries((prev) => prev.filter((e) => e.id !== key));
-              }
-            });
-          }
-
-          // 3. Update notifications array
-          const updatedNotifications = notificationData.notifications.filter(
-            (n) =>
-              !(n.PreviousValue === previousValue && n.attribute === attribute)
-          );
-
-          if (updatedNotifications.length === 0) {
-            await remove(notificationRef);
-          } else {
-            await update(notificationRef, {
-              notifications: updatedNotifications,
-            });
-          }
-
-          setNotifications((prev) =>
-            prev.filter(
-              (n) =>
-                !(
-                  n.PreviousValue === previousValue && n.attribute === attribute
-                )
-            )
-          );
-        } catch (error) {
-          console.error("Error deleting value:", error);
-        }
-        setConfirmModal({ isOpen: false, message: "", onConfirm: null });
-      },
-    });
-  };
-
   const handleDeleteViewEntry = async (entry) => {
-    const { region, topic, attribute, userId, value } = entry;
-
     setConfirmModal({
       isOpen: true,
-      message: "Are you sure you want to delete this Value ?",
+      message: "Are you sure you want to delete this Value?",
       actionType: "delete",
       onConfirm: async () => {
         try {
-          // 1. Delete from main database
-          const regionDatasetRef = ref(realtimeDb, `${region}C/Details`);
+          // Delete from region dataset
+          const regionDatasetRef = ref(realtimeDb, `${entry.region}C/Details`);
           const snapshot = await get(regionDatasetRef);
 
           if (snapshot.exists()) {
             const details = snapshot.val();
-            let updated = false;
-
             for (const [detailKey, detailValue] of Object.entries(details)) {
               if (
-                detailValue.topic === topic &&
-                detailValue.en_question === attribute
+                detailValue.topic === entry.topic &&
+                detailValue.en_question === entry.attribute
               ) {
                 const annotations = detailValue.annotations || [];
                 const filteredAnnotations = annotations.filter(
                   (annotation) =>
                     !(
-                      annotation.user_id === userId &&
-                      annotation.en_values.includes(value)
+                      annotation.user_id === entry.userId &&
+                      annotation.en_values.includes(entry.value)
                     )
                 );
 
                 if (filteredAnnotations.length !== annotations.length) {
-                  updated = true;
                   const detailRef = ref(
                     realtimeDb,
-                    `${region}C/Details/${detailKey}`
+                    `${entry.region}C/Details/${detailKey}`
                   );
                   await update(detailRef, {
                     ...detailValue,
@@ -296,11 +236,10 @@ const ModeratorPage = () => {
             }
           }
 
-          // 2. Delete from ViewEdit
-          const viewEditRef = ref(realtimeDb, `Viewedit/${region}/${entry.id}`);
-          await remove(viewEditRef);
+          // Delete from ViewEdit
+          await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
 
-          // 3. Delete corresponding notifications
+          // Update notifications
           const notificationsRef = ref(realtimeDb, "notifications");
           const notificationsSnapshot = await get(notificationsRef);
 
@@ -310,160 +249,122 @@ const ModeratorPage = () => {
             Object.entries(allNotifications).forEach(
               async ([notificationId, notificationGroup]) => {
                 if (notificationGroup.notifications) {
-                  const updatedNotifications =
-                    notificationGroup.notifications.filter(
-                      (notification) =>
-                        !(
-                          notification.region === region &&
-                          notification.attribute === attribute &&
-                          notification.PreviousValue === value
-                        )
-                    );
-
-                  if (
-                    updatedNotifications.length !==
-                    notificationGroup.notifications.length
-                  ) {
-                    if (updatedNotifications.length === 0) {
-                      await remove(
-                        ref(realtimeDb, `notifications/${notificationId}`)
-                      );
-                    } else {
-                      await update(
-                        ref(realtimeDb, `notifications/${notificationId}`),
-                        {
-                          notifications: updatedNotifications,
+                  const updatedNotifications = notificationGroup.notifications.map(
+                    (notification) => {
+                      if (
+                        notification.region === entry.region &&
+                        notification.attribute === entry.attribute &&
+                        notification.PreviousValue === entry.value
+                      ) {
+                        // If notification has suggestion, mark as deleted but keep it
+                        if (notification.suggestion) {
+                          return {
+                            ...notification,
+                            isValueDeleted: true,
+                          };
                         }
-                      );
+                        // If no suggestion, this notification will be filtered out
+                        return null;
+                      }
+                      return notification;
                     }
+                  ).filter(Boolean); // Remove null entries
+
+                  if (updatedNotifications.length === 0) {
+                    await remove(
+                      ref(realtimeDb, `notifications/${notificationId}`)
+                    );
+                  } else if (updatedNotifications.length !== notificationGroup.notifications.length) {
+                    await update(
+                      ref(realtimeDb, `notifications/${notificationId}`),
+                      {
+                        notifications: updatedNotifications,
+                      }
+                    );
                   }
                 }
               }
             );
           }
 
+          // Update local state
           setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
-          setNotifications((prev) =>
-            prev.filter(
-              (n) =>
-                !(
-                  n.region === region &&
-                  n.attribute === attribute &&
-                  n.PreviousValue === value
-                )
-            )
-          );
+          setNotifications((prev) => {
+            return prev.map((n) => {
+              if (
+                n.region === entry.region &&
+                n.attribute === entry.attribute &&
+                n.PreviousValue === entry.value
+              ) {
+                if (n.suggestion) {
+                  return {
+                    ...n,
+                    isValueDeleted: true,
+                  };
+                }
+                return null;
+              }
+              return n;
+            }).filter(Boolean);
+          });
         } catch (error) {
           console.error("Error deleting entry:", error);
         }
         setConfirmModal({ isOpen: false, message: "", onConfirm: null });
       },
-      onCancel: () =>
-        setConfirmModal({ isOpen: false, message: "", onConfirm: null }),
     });
   };
 
-  const handleDenyRequest = async (notificationId, notification) => {
-    setConfirmModal({
-      isOpen: true,
-      message: "Are you sure you want to deny this request?",
-      actionType: "deny",
-      onConfirm: async () => {
-        try {
-          const notificationRef = ref(realtimeDb, `notifications/${notificationId}`);
-          const snapshot = await get(notificationRef);
-          const notificationData = snapshot.val();
-  
-          if (notificationData?.notifications) {
-            // Filter based on unique combination of attributes instead of notificationId
-            const updatedNotifications = notificationData.notifications.filter(
-              (n) => !(
-                n.attribute === notification.attribute &&
-                n.PreviousValue === notification.PreviousValue &&
-                n.userId === notification.userId
-              )
-            );
-  
-            if (updatedNotifications.length === 0) {
-              await remove(notificationRef);
-            } else {
-              await update(notificationRef, {
-                notifications: updatedNotifications
-              });
-            }
-  
-            // Update local state using the same filtering logic
-            setNotifications(prev => 
-              prev.filter(n => !(
-                n.attribute === notification.attribute &&
-                n.PreviousValue === notification.PreviousValue &&
-                n.userId === notification.userId
-              ))
-            );
-          }
-        } catch (error) {
-          console.error("Error denying request:", error);
-        }
-        setConfirmModal({ isOpen: false, message: "", onConfirm: null });
-      }
-    });
-  };
-
-  const handleReplaceValue = async (notification) => {
-    setConfirmModal({
-      isOpen: true,
-      message: "Are you sure you want to replace this value?",
-      actionType: "replace",
-      onConfirm: async () => {
-        try {
-          const notificationRef = ref(
-            realtimeDb,
-            `notifications/${notification.id}`
-          );
-          const snapshot = await get(notificationRef);
-          const notificationData = snapshot.val();
-
-          if (notificationData && notificationData.notifications) {
-            // Delete from main database first
-            const regionDatasetRef = ref(
+  const handleDeleteValue = async (notification) => {
+    // Don't allow delete if value was previously deleted and has suggestion
+    if (!notification.isValueDeleted || !notification.suggestion) {
+      setConfirmModal({
+        isOpen: true,
+        message: "Are you sure you want to delete this value?",
+        actionType: "delete",
+        onConfirm: async () => {
+          try {
+            const notificationRef = ref(
               realtimeDb,
-              `${notification.region}C/Details`
+              `notifications/${notification.id}`
             );
-            const dataSnapshot = await get(regionDatasetRef);
+            const notificationSnapshot = await get(notificationRef);
+            const notificationData = notificationSnapshot.val();
 
-            if (dataSnapshot.exists()) {
-              const details = dataSnapshot.val();
-              for (const [detailKey, detailValue] of Object.entries(details)) {
-                if (
-                  detailValue.topic === notification.topic &&
-                  detailValue.en_question === notification.attribute
-                ) {
-                  const annotations = detailValue.annotations || [];
-                  const updatedAnnotations = annotations.map((annotation) => {
-                    if (
-                      annotation.en_values[0] === notification.PreviousValue
-                    ) {
-                      return {
-                        ...annotation,
-                        en_values: [notification.suggestion],
-                        reason: annotation.reason || "Updated value",
-                      };
+            if (notificationData?.notifications) {
+              const regionDatasetRef = ref(
+                realtimeDb,
+                `${notification.region}C/Details`
+              );
+              const snapshot = await get(regionDatasetRef);
+
+              if (snapshot.exists()) {
+                const details = snapshot.val();
+                for (const [detailKey, detailValue] of Object.entries(details)) {
+                  if (
+                    detailValue.topic === notification.topic &&
+                    detailValue.en_question === notification.attribute
+                  ) {
+                    const annotations = detailValue.annotations || [];
+                    const filteredAnnotations = annotations.filter(
+                      (annotation) =>
+                        annotation.en_values[0] !== notification.PreviousValue
+                    );
+
+                    if (filteredAnnotations.length !== annotations.length) {
+                      const detailRef = ref(
+                        realtimeDb,
+                        `${notification.region}C/Details/${detailKey}`
+                      );
+                      await update(detailRef, {
+                        ...detailValue,
+                        annotations: filteredAnnotations,
+                      });
                     }
-                    return annotation;
-                  });
-
-                  const detailRef = ref(
-                    realtimeDb,
-                    `${notification.region}C/Details/${detailKey}`
-                  );
-                  await update(detailRef, {
-                    ...detailValue,
-                    annotations: updatedAnnotations,
-                  });
+                  }
                 }
               }
 
-              // Update ViewEdit entries
               const viewEditRef = ref(
                 realtimeDb,
                 `Viewedit/${notification.region}`
@@ -477,26 +378,21 @@ const ModeratorPage = () => {
                     entry.value === notification.PreviousValue &&
                     entry.attribute === notification.attribute
                   ) {
-                    await update(
-                      ref(realtimeDb, `Viewedit/${notification.region}/${key}`),
-                      {
-                        ...entry,
-                        value: notification.suggestion,
-                      }
+                    await remove(
+                      ref(realtimeDb, `Viewedit/${notification.region}/${key}`)
                     );
                   }
                 });
               }
 
-              // Update notifications array
-              const updatedNotifications =
-                notificationData.notifications.filter(
-                  (n) =>
-                    !(
-                      n.PreviousValue === notification.PreviousValue &&
-                      n.attribute === notification.attribute
-                    )
-                );
+              const updatedNotifications = notificationData.notifications.filter(
+                (n) =>
+                  !(
+                    n.attribute === notification.attribute &&
+                    n.PreviousValue === notification.PreviousValue &&
+                    n.userId === notification.userId
+                  )
+              );
 
               if (updatedNotifications.length === 0) {
                 await remove(notificationRef);
@@ -510,11 +406,292 @@ const ModeratorPage = () => {
                 prev.filter(
                   (n) =>
                     !(
+                      n.attribute === notification.attribute &&
                       n.PreviousValue === notification.PreviousValue &&
-                      n.attribute === notification.attribute
+                      n.userId === notification.userId
                     )
                 )
               );
+            }
+          } catch (error) {
+            console.error("Error deleting value:", error);
+          }
+          setConfirmModal({ isOpen: false, message: "", onConfirm: null });
+        },
+      });
+    }
+  };
+
+  const handleDenyRequest = async (notification) => {
+    setConfirmModal({
+      isOpen: true,
+      message: "Are you sure you want to deny this request?",
+      actionType: "deny",
+      onConfirm: async () => {
+        try {
+          const notificationRef = ref(
+            realtimeDb,
+            `notifications/${notification.id}`
+          );
+          const snapshot = await get(notificationRef);
+          const notificationData = snapshot.val();
+  
+          if (notificationData?.notifications) {
+            const updatedNotifications = notificationData.notifications.filter(
+              (n) =>
+                !(
+                  n.attribute === notification.attribute &&
+                  n.PreviousValue === notification.PreviousValue &&
+                  n.userId === notification.userId
+                )
+            );
+  
+            if (updatedNotifications.length === 0) {
+              await remove(notificationRef);
+            } else {
+              await update(notificationRef, {
+                notifications: updatedNotifications,
+              });
+            }
+  
+            setNotifications((prev) =>
+              prev.filter(
+                (n) =>
+                  !(
+                    n.attribute === notification.attribute &&
+                    n.PreviousValue === notification.PreviousValue &&
+                    n.userId === notification.userId
+                  )
+              )
+            );
+          }
+        } catch (error) {
+          console.error("Error denying request:", error);
+        }
+        setConfirmModal({ isOpen: false, message: "", onConfirm: null });
+      },
+    });
+  };
+
+  const handleAddValue = async (notification) => {
+    setConfirmModal({
+      isOpen: true,
+      message: "Are you sure you want to add this new value?",
+      actionType: "add",
+      onConfirm: async () => {
+        try {
+          const regionDatasetRef = ref(
+            realtimeDb,
+            `${notification.region}C/Details`
+          );
+          const dataSnapshot = await get(regionDatasetRef);
+  
+          if (dataSnapshot.exists()) {
+            const details = dataSnapshot.val();
+            for (const [detailKey, detailValue] of Object.entries(details)) {
+              if (
+                detailValue.topic === notification.topic &&
+                detailValue.en_question === notification.attribute
+              ) {
+                const annotations = detailValue.annotations || [];
+                const existingAnnotation = annotations.find(
+                  (ann) => ann.user_id === notification.userId
+                );
+                const existingReason = existingAnnotation
+                  ? existingAnnotation.reason
+                  : "variation";
+  
+                const newAnnotation = {
+                  en_values: [notification.suggestion],
+                  user_id: notification.userId,
+                  reason: existingReason,
+                };
+  
+                const updatedAnnotations = [...annotations, newAnnotation];
+  
+                const detailRef = ref(
+                  realtimeDb,
+                  `${notification.region}C/Details/${detailKey}`
+                );
+                await update(detailRef, {
+                  ...detailValue,
+                  annotations: updatedAnnotations,
+                });
+  
+                const viewEditRef = ref(
+                  realtimeDb,
+                  `Viewedit/${notification.region}`
+                );
+                const newEntryRef = push(viewEditRef);
+                await update(newEntryRef, {
+                  attribute: notification.attribute,
+                  topic: notification.topic,
+                  value: notification.suggestion,
+                  userId: notification.userId,
+                  region: notification.region,
+                  reason: existingReason,
+                });
+  
+                const notificationRef = ref(
+                  realtimeDb,
+                  `notifications/${notification.id}`
+                );
+                const notificationSnapshot = await get(notificationRef);
+                const notificationData = notificationSnapshot.val();
+  
+                if (notificationData?.notifications) {
+                  const updatedNotifications = notificationData.notifications.filter(
+                    (n) =>
+                      !(
+                        n.attribute === notification.attribute &&
+                        n.PreviousValue === notification.PreviousValue &&
+                        n.userId === notification.userId
+                      )
+                  );
+  
+                  if (updatedNotifications.length === 0) {
+                    await remove(notificationRef);
+                  } else {
+                    await update(notificationRef, {
+                      notifications: updatedNotifications,
+                    });
+                  }
+                }
+  
+                setNotifications((prev) =>
+                  prev.filter(
+                    (n) =>
+                      !(
+                        n.attribute === notification.attribute &&
+                        n.PreviousValue === notification.PreviousValue &&
+                        n.userId === notification.userId
+                      )
+                  )
+                );
+              }
+            }
+          }
+        } catch (error) {
+          console.error("Error adding value:", error);
+        }
+        setConfirmModal({ isOpen: false, message: "", onConfirm: null });
+      },
+    });
+  };
+  const handleReplaceValue = async (notification) => {
+    setConfirmModal({
+      isOpen: true,
+      message: "Are you sure you want to replace this value?",
+      actionType: "replace",
+      onConfirm: async () => {
+        try {
+          const regionDatasetRef = ref(
+            realtimeDb,
+            `${notification.region}C/Details`
+          );
+          const dataSnapshot = await get(regionDatasetRef);
+  
+          if (dataSnapshot.exists()) {
+            const details = dataSnapshot.val();
+            for (const [detailKey, detailValue] of Object.entries(details)) {
+              if (
+                detailValue.topic === notification.topic &&
+                detailValue.en_question === notification.attribute
+              ) {
+                const annotations = detailValue.annotations || [];
+                
+                // Find the original annotation to get its reason
+                const originalAnnotation = annotations.find(
+                  (ann) => ann.en_values[0] === notification.PreviousValue
+                );
+                const originalReason = originalAnnotation
+                  ? originalAnnotation.reason
+                  : "variation";
+  
+                const updatedAnnotations = annotations.map((annotation) => {
+                  if (annotation.en_values[0] === notification.PreviousValue) {
+                    return {
+                      ...annotation,
+                      en_values: [notification.suggestion],
+                      reason: originalReason,
+                    };
+                  }
+                  return annotation;
+                });
+  
+                const detailRef = ref(
+                  realtimeDb,
+                  `${notification.region}C/Details/${detailKey}`
+                );
+                await update(detailRef, {
+                  ...detailValue,
+                  annotations: updatedAnnotations,
+                });
+  
+                // Update ViewEdit entries
+                const viewEditRef = ref(
+                  realtimeDb,
+                  `Viewedit/${notification.region}`
+                );
+                const viewEditSnapshot = await get(viewEditRef);
+  
+                if (viewEditSnapshot.exists()) {
+                  const entries = viewEditSnapshot.val();
+                  Object.entries(entries).forEach(async ([key, entry]) => {
+                    if (
+                      entry.value === notification.PreviousValue &&
+                      entry.attribute === notification.attribute
+                    ) {
+                      await update(
+                        ref(realtimeDb, `Viewedit/${notification.region}/${key}`),
+                        {
+                          ...entry,
+                          value: notification.suggestion,
+                          reason: originalReason,
+                        }
+                      );
+                    }
+                  });
+                }
+  
+                // Remove notification
+                const notificationRef = ref(
+                  realtimeDb,
+                  `notifications/${notification.id}`
+                );
+                const notificationSnapshot = await get(notificationRef);
+                const notificationData = notificationSnapshot.val();
+  
+                if (notificationData?.notifications) {
+                  const updatedNotifications = notificationData.notifications.filter(
+                    (n) =>
+                      !(
+                        n.attribute === notification.attribute &&
+                        n.PreviousValue === notification.PreviousValue &&
+                        n.userId === notification.userId
+                      )
+                  );
+  
+                  if (updatedNotifications.length === 0) {
+                    await remove(notificationRef);
+                  } else {
+                    await update(notificationRef, {
+                      notifications: updatedNotifications,
+                    });
+                  }
+                }
+  
+                setNotifications((prev) =>
+                  prev.filter(
+                    (n) =>
+                      !(
+                        n.attribute === notification.attribute &&
+                        n.PreviousValue === notification.PreviousValue &&
+                        n.userId === notification.userId
+                      )
+                  )
+                );
+              }
             }
           }
         } catch (error) {
@@ -525,15 +702,23 @@ const ModeratorPage = () => {
     });
   };
 
-  const handleToggleReviewed = (entryId) => {
-    setViewEditEntries((prev) =>
-      prev.map((entry) =>
-        entry.id === entryId
-          ? { ...entry, isReviewed: !entry.isReviewed }
-          : entry
-      )
-    );
+  const handleToggleReviewed = async (entry) => {
+    try {
+      await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
+      setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
+    } catch (error) {
+      console.error("Error removing entry:", error);
+    }
   };
+  
+  const handleMenuToggle = () => setMenuOpen(!menuOpen);
+  const handleProfileClick = () => navigate("/profile");
+  const handleSignOut = () => setShowSignOutModal(true);
+  const handleConfirmSignOut = () => {
+    setShowSignOutModal(false);
+    navigate("/Login");
+  };
+  const handleCancelSignOut = () => setShowSignOutModal(false);
 
   return (
     <div className="moderator-container">
@@ -567,15 +752,13 @@ const ModeratorPage = () => {
 
       <div className="toggle-buttons">
         <button
-          className={view === "view-edit" ? "active" : ""}
+          className={`toggle-btn ${view === "view-edit" ? "active" : ""}`}
           onClick={() => setView("view-edit")}
         >
           View Edit
         </button>
         <button
-          className={`notification-btn ${
-            view === "notifications" ? "active" : ""
-          }`}
+          className={`notification-btn ${view === "notifications" ? "active" : ""}`}
           onClick={() => setView("notifications")}
         >
           Notifications
@@ -614,26 +797,17 @@ const ModeratorPage = () => {
                     <td>
                       <button
                         className="action-btn eye-btn"
-                        onClick={() => {
-                          handleToggleReviewed(entry.id);
-                          if (!entry.isReviewed) {
-                            handleDeleteViewEntry(entry);
-                          }
-                        }}
-                        title={
-                          entry.isReviewed
-                            ? "Mark as not reviewed"
-                            : "Mark as reviewed"
-                        }
+                        onClick={() => handleToggleReviewed(entry)}
+                        title="Remove entry"
                       >
-                        {entry.isReviewed ? <FaEye /> : <FaEyeSlash />}
+                        <FaEyeSlash />
                       </button>
                     </td>
                     <td>
                       <button
-                        className="action-btndelete-btn"
+                        className="action-btn delete-btn"
                         onClick={() => handleDeleteViewEntry(entry)}
-                        title="Reject this Value"
+                        title="Delete this Value"
                       >
                         <FaTimes />
                       </button>
@@ -663,56 +837,20 @@ const ModeratorPage = () => {
                   <th>Description</th>
                   <th>Delete Value</th>
                   <th>Deny Request</th>
-                  <th>Replace Value</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {notifications.map((notification) => (
-                  <tr key={notification.notificationId || notification.id}>
-                    <td>{notification.userId || "N/A"}</td>
-                    <td>{notification.attribute || "N/A"}</td>
-                    <td>{notification.topic || "N/A"}</td>
-                    <td>{notification.PreviousValue || "N/A"}</td>
-                    <td>{notification.suggestion || "N/A"}</td>
-                    <td>{notification.description || "N/A"}</td>
-                    <td className="action-buttons">
-                      <button
-                        onClick={() =>
-                          handleDeleteValue(
-                            notification.id,
-                            notification.attribute,
-                            notification.PreviousValue
-                          )
-                        }
-                        className="action-btn delete-btn-not"
-                        title="Delete this value"
-                      >
-                        Delete Value
-                      </button>
-                    </td>
-                    <td className="action-buttons">
-                      <button
-                        onClick={() =>
-                          handleDenyRequest(notification.id, notification)
-                        }
-                        className="action-btn deny-btn-not"
-                        title="Deny request"
-                      >
-                        Deny Request
-                      </button>
-                    </td>
-                    <td className="action-buttons">
-                      {notification.suggestion && (
-                        <button
-                          onClick={() => handleReplaceValue(notification)}
-                          className="action-btn replace-btn"
-                          title="Replace value"
-                        >
-                          Replace Value
-                        </button>
-                      )}
-                    </td>
-                  </tr>
+                  <NotificationRow
+                    key={`${notification.id}-${notification.userId}-${notification.attribute}`}
+                    notification={notification}
+                    onDelete={handleDeleteValue}
+                    onDeny={handleDenyRequest}
+                    onReplace={handleReplaceValue}
+                    onAdd={handleAddValue}
+                    viewEditEntries={viewEditEntries}
+                  />
                 ))}
               </tbody>
             </table>
