@@ -38,6 +38,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+  padding-top: 0.5rem;
 }
 
 .nav-menu a {
@@ -89,5 +90,31 @@ body {
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
+  }
+}
+
+
+@media (min-width: 1440px) and (max-width: 2559px) {
+  .logo-title {
+    font-size: 1.3rem; /* Adjust title font size for medium screens */
+  }
+
+  .nav-menu a {
+    font-size: 1.2rem; /* Slightly larger links */
+  }
+}
+
+/* Responsive styles for ultra-wide screens (2560px and up) */
+@media (min-width: 2560px) {
+  .logo-title {
+    font-size: 2rem; /* Larger font size for ultra-wide screens */
+  }
+
+  .nav-menu a {
+    font-size: 1.5rem; /* Larger link size */
+  }
+
+  .logo-img {
+    width: 80px; /* Larger logo for ultra-wide screens */
   }
 }
