@@ -162,6 +162,7 @@
 
 
 
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LOGO from '../images/Logo.png';
@@ -194,9 +195,12 @@ const Login = () => {
   };
 
   const handleCreateAccount = async (e) => {
+
     e.preventDefault();
-    setIsLoading(true);
-    setErrorMessage(""); 
+    if (!email.trim() || !password.trim()) {
+      setErrorMessage(t('Please complete all required fields.')); 
+      return;
+    }
     
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -292,8 +296,7 @@ const Login = () => {
                 autoComplete="off" 
                 placeholder={t('loginPage.emailPlaceholder')}
                 className="Login-input"
-                required
-                onChange={(e) => setEmail(e.target.value)}   
+                 onChange={(e) => setEmail(e.target.value)}   
               />
             </div>
 
@@ -306,8 +309,7 @@ const Login = () => {
                 className="Login-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+               />
               <span onClick={togglePasswordVisibility} className="password-icon">
                 <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
               </span>
@@ -333,7 +335,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-

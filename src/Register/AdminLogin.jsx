@@ -29,7 +29,11 @@ const AdminLogin = () => {
     setIsLoading(true);
     setErrorMessage(""); 
     setNonAdminMessage("");   
-
+    if (!email.trim() || !password.trim()) {
+      setErrorMessage(('Please complete all required fields.')); 
+      return;
+    }
+    
     try {
        const adminCredential = await signInWithEmailAndPassword(auth, email, password);
       const admin = adminCredential.user;
@@ -106,7 +110,7 @@ const AdminLogin = () => {
             className="login-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+             
           />
 
           {/* Password */}
@@ -119,7 +123,7 @@ const AdminLogin = () => {
               className="login-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+               
             />
             <span onClick={togglePasswordVisibility} className="password-icon">
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
@@ -130,9 +134,10 @@ const AdminLogin = () => {
             <Link to="/adminforgetpass" className="Adminlogin-link">Forgot Password?</Link>
           </p>
 
-          <button type="submit" className="Adminlogin-btn" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
-          </button>
+          <button type="submit" className="Adminlogin-btn">
+  Login
+</button>
+
         </form>
       </div>
     </div>

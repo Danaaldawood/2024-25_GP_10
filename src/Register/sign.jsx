@@ -439,17 +439,24 @@ const Sign = () => {
     });
      
 
-    // Cleanup the listener when the component unmounts
-    return () => unsubscribe();
+     return () => unsubscribe();
   }, []);
   const handleRegister = async (e) => {
     e.preventDefault();
-     
-      
-      
+    setErrorMessage("");  // Reset previous error message
+    setPasswordErrorMessage("");
+
+     if (!password.trim()) {
+      setErrorMessage("Please complete all required fields.");
+      return;
+    }
     
-   
-    if (!isPasswordValid) {
+    if (!fname.trim() || !email.trim() || !password.trim()) {
+      setErrorMessage("Please complete all required fields.");
+      return;
+    }
+  
+     if (!isPasswordValid) {
       let errorMessages = [];
       if (!isMinCharacters) errorMessages.push("Password must be at least 8 characters.");
       if (!hasUppercase) errorMessages.push("Password must contain at least one uppercase letter.");
@@ -457,7 +464,24 @@ const Sign = () => {
       setPasswordErrorMessage(errorMessages.join(" "));
       return;
     }
-
+  
+    // تحقق من الحقول التي تخص نوع المستخدم
+    if (userType === 'User') {
+      if (!region || !country) {
+        setErrorMessage("Please complete all required fields.");
+        return;
+      }
+    } else if (userType === 'Moderator') {
+      if (!regionM || !reason.trim()) {
+        setErrorMessage("Please complete all required fields.");
+        return;
+      }
+  
+      if (regionM === 'Other') {
+        setErrorMessage("We currently only accept moderators from Arab, Western, or Chinese regions.");
+        return;
+      }
+    }
     // Enhanced Email Validation
     const allowedDomains = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "live.com", "icloud.com", "protonmail.com"];
     const emailPattern = new RegExp(`^[^\\s@]+@(${allowedDomains.join('|').replace(/\./g, '\\.')})$`, 'i');
@@ -466,11 +490,8 @@ const Sign = () => {
       return;
     }
 
-    // Check if moderator selected "Other" region
-    if (userType === 'Moderator' && regionM === 'Other') {
-      setErrorMessage("We currently only accept moderators from Arab, Western, or Chinese regions.");
-      return;
-    }
+     
+  
   
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -541,7 +562,7 @@ const Sign = () => {
 
       {errorMessage && (
         <div className="error-popup">
-          <h3 className="error-title">{t('warning')}!</h3>
+          <h3 className="error-title">{t('Warning')}!</h3>
           <p className="error-message">{errorMessage}</p>
           <div className="error-actions">
             <button className="confirm-btn" onClick={() => setErrorMessage("")}>{t('tryAgain')}</button>
@@ -600,7 +621,7 @@ const Sign = () => {
                 className="sign-input"
                 value={fname}
                 onChange={(e) => setFname(e.target.value)}
-                required
+               
               />
               <label htmlFor="email" className="sign-label">{t('email')}</label>
               <input 
@@ -610,7 +631,7 @@ const Sign = () => {
                 className="sign-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
+              
               />
               <label className="sign-label">{t('country')}</label>
               <Select 
@@ -646,7 +667,7 @@ const Sign = () => {
                 }}
                 
               />
-              <div>
+               <div>
                 <label className="Login-label" htmlFor="password">{t('password')}</label>
                 <div className="password-container">
                   <input
@@ -658,97 +679,7 @@ const Sign = () => {
                     onFocus={() => setIsPasswordFocused(true)}   
                     onBlur={() => setIsPasswordFocused(false)}
                     onChange={handlePasswordChange}  // use handlePasswordChange
-                    required
-                  />
-                  <span onClick={togglePasswordVisibility} className="password-icon">
-                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-                  </span>
-                </div>
-
-               
-                 {/*Password*/}
-                 {isTyping && (
-                  <ul className="password-requirements">
-                    <li className={isMinCharacters ? 'valid' : 'invalid'}>
-                      {t('passwordRequirements.minChars')}
-                    </li>
-                    <li className={hasUppercase ? 'valid' : 'invalid'}>
-                      {t('passwordRequirements.uppercase')}
-                    </li>
-                    <li className={hasSpecialChar ? 'valid' : 'invalid'}>
-                      {t('passwordRequirements.specialChar')}
-                    </li>
-                  </ul>
-                )}
-              </div>
-              <fieldset className="sign-culture-domain">
-                <legend>{t('region')}</legend>
-                <div className="sign-culture-options">
-                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)} required />
-                  <label htmlFor="Arab">{t('arab')}</label>
-                </div>
-                <div className="sign-culture-options">
-                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)} required />
-                  <label htmlFor="Western">{t('western')}</label>
-                </div>
-                <div className="sign-culture-options">
-                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)} required />
-                  <label htmlFor="Chinese">{t('chinese')}</label>
-                </div>
-                <div className="sign-culture-options">
-                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)} required />
-                  <label htmlFor="Other">{t('other')}</label>
-                </div>
-              </fieldset>
-
-              <button type="submit" className="sign-btn" disabled={!isPasswordValid}>{t('createAccount')}</button>
-            </>
-          )}
-
-          {userType === 'Moderator' && (
-            <>
-              <label htmlFor="name" className="sign-label">{t('fullName')}</label>
-              <input 
-                type="text" 
-                id="name" 
-                placeholder={t('enterFullName')}
-                className="sign-input"
-                value={fname}
-                onChange={(e) => setFname(e.target.value)}
-                required
-              />
-              <label htmlFor="email" className="sign-label">{t('email')}</label>
-              <input 
-                type="email" 
-                id="email" 
-                placeholder={t('enterEmail')}
-                className="sign-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <label htmlFor="reason" className="sign-label">{t('Reason')}</label>
-              <textarea 
-                id="reason" 
-                placeholder={t('ُEnter your reason')}
-                className="sign-input" 
-                value={reason} 
-                onChange={(e) => setReason(e.target.value)} 
-                required
-              />
-              <div>
-                <label className="Login-label" htmlFor="password">{t('password')}</label>
-                <div className="password-container">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    placeholder={t('enterPassword')}
-                    className="Login-input"
-                    value={password}
-                    onFocus={() => setIsPasswordFocused(true)}   
-                    onBlur={() => setIsPasswordFocused(false)}
-                    onChange={handlePasswordChange}  // use handlePasswordChange
-                    required
+                  
                   />
                   <span onClick={togglePasswordVisibility} className="password-icon">
                     <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
@@ -774,19 +705,109 @@ const Sign = () => {
               <fieldset className="sign-culture-domain">
                 <legend>{t('region')}</legend>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)} required />
+                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegion(e.target.value)}   />
                   <label htmlFor="Arab">{t('arab')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)} required />
+                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegion(e.target.value)}   />
                   <label htmlFor="Western">{t('western')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)} required />
+                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegion(e.target.value)}   />
                   <label htmlFor="Chinese">{t('chinese')}</label>
                 </div>
                 <div className="sign-culture-options">
-                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)} required />
+                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegion(e.target.value)}   />
+                  <label htmlFor="Other">{t('other')}</label>
+                </div>
+              </fieldset>
+
+              <button type="submit" className="sign-btn">{t('createAccount')}</button>
+            </>
+          )}
+
+          {userType === 'Moderator' && (
+            <>
+              <label htmlFor="name" className="sign-label">{t('fullName')}</label>
+              <input 
+                type="text" 
+                id="name" 
+                placeholder={t('enterFullName')}
+                className="sign-input"
+                value={fname}
+                onChange={(e) => setFname(e.target.value)}
+            
+              />
+              <label htmlFor="email" className="sign-label">{t('email')}</label>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder={t('enterEmail')}
+                className="sign-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                
+              />
+              <label htmlFor="reason" className="sign-label">{t('Reason')}</label>
+              <textarea 
+                id="reason" 
+                placeholder={t('ُEnter your reason')}
+                className="sign-input" 
+                value={reason} 
+                onChange={(e) => setReason(e.target.value)} 
+               
+              />
+              <div>
+                <label className="Login-label" htmlFor="password">{t('password')}</label>
+                <div className="password-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder={t('enterPassword')}
+                    className="Login-input"
+                    value={password}
+                    onFocus={() => setIsPasswordFocused(true)}   
+                    onBlur={() => setIsPasswordFocused(false)}
+                    onChange={handlePasswordChange}  // use handlePasswordChange
+                  
+                  />
+                  <span onClick={togglePasswordVisibility} className="password-icon">
+                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                  </span>
+                </div>
+
+                 {/*Password */}
+                 {isTyping && (
+                  <ul className="password-requirements">
+                    <li className={isMinCharacters ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.minChars')}
+                    </li>
+                    <li className={hasUppercase ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.uppercase')}
+                    </li>
+                    <li className={hasSpecialChar ? 'valid' : 'invalid'}>
+                      {t('passwordRequirements.specialChar')}
+                    </li>
+                  </ul>
+                )}
+              </div>
+
+              <fieldset className="sign-culture-domain">
+                <legend>{t('region')}</legend>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Arab" name="cultureDomain" value="Arab" onChange={(e) => setRegionM(e.target.value)}   />
+                  <label htmlFor="Arab">{t('arab')}</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Western" name="cultureDomain" value="Western" onChange={(e) => setRegionM(e.target.value)}   />
+                  <label htmlFor="Western">{t('western')}</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Chinese" name="cultureDomain" value="Chinese" onChange={(e) => setRegionM(e.target.value)}   />
+                  <label htmlFor="Chinese">{t('chinese')}</label>
+                </div>
+                <div className="sign-culture-options">
+                  <input type="radio" id="Other" name="cultureDomain" value="Other" onChange={(e) => setRegionM(e.target.value)}   />
                   <label htmlFor="Other">{t('other')}</label>
                 </div>
               </fieldset>
