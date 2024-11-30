@@ -599,7 +599,7 @@ const ModeratorPage = () => {
                 detailValue.en_question === notification.attribute
               ) {
                 const annotations = detailValue.annotations || [];
-                
+  
                 // Find the original annotation to get its reason
                 const originalAnnotation = annotations.find(
                   (ann) => ann.en_values[0] === notification.PreviousValue
@@ -628,7 +628,7 @@ const ModeratorPage = () => {
                   annotations: updatedAnnotations,
                 });
   
-                // Update ViewEdit entries
+                // Update or remove ViewEdit entries
                 const viewEditRef = ref(
                   realtimeDb,
                   `Viewedit/${notification.region}`
@@ -637,21 +637,16 @@ const ModeratorPage = () => {
   
                 if (viewEditSnapshot.exists()) {
                   const entries = viewEditSnapshot.val();
-                  Object.entries(entries).forEach(async ([key, entry]) => {
+                  for (const [key, entry] of Object.entries(entries)) {
                     if (
                       entry.value === notification.PreviousValue &&
                       entry.attribute === notification.attribute
                     ) {
-                      await update(
-                        ref(realtimeDb, `Viewedit/${notification.region}/${key}`),
-                        {
-                          ...entry,
-                          value: notification.suggestion,
-                          reason: originalReason,
-                        }
+                      await remove(
+                        ref(realtimeDb, `Viewedit/${notification.region}/${key}`)
                       );
                     }
-                  });
+                  }
                 }
   
                 // Remove notification
@@ -672,7 +667,7 @@ const ModeratorPage = () => {
                       )
                   );
   
-                  if (updatedNotifications.length === 0) {
+                  if (!updatedNotifications || updatedNotifications.length === 0) {
                     await remove(notificationRef);
                   } else {
                     await update(notificationRef, {
@@ -680,36 +675,79 @@ const ModeratorPage = () => {
                     });
                   }
                 }
-  
-                setNotifications((prev) =>
-                  prev.filter(
-                    (n) =>
-                      !(
-                        n.attribute === notification.attribute &&
-                        n.PreviousValue === notification.PreviousValue &&
-                        n.userId === notification.userId
-                      )
-                  )
-                );
               }
             }
           }
+  
+          setNotifications((prev) => {
+            if (!prev) return [];
+            return prev.filter(
+              (n) =>
+                !(
+                  n.attribute === notification.attribute &&
+                  n.PreviousValue === notification.PreviousValue &&
+                  n.userId === notification.userId
+                )
+            );
+          });
         } catch (error) {
           console.error("Error replacing value:", error);
+        } finally {
+          setConfirmModal({ isOpen: false, message: "", onConfirm: null });
         }
-        setConfirmModal({ isOpen: false, message: "", onConfirm: null });
       },
     });
   };
+  
 
   const handleToggleReviewed = async (entry) => {
     try {
-      await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
-      setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
+       await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
+  
+       const notificationsRef = ref(realtimeDb, "notifications");
+      const notificationsSnapshot = await get(notificationsRef);
+  
+      if (notificationsSnapshot.exists()) {
+        const allNotifications = notificationsSnapshot.val();
+  
+         Object.entries(allNotifications).forEach(async ([notificationId, notificationGroup]) => {
+          if (notificationGroup.notifications) {
+            const updatedNotifications = notificationGroup.notifications.filter(
+              (notification) =>
+                !(
+                  notification.region === entry.region &&
+                  notification.attribute === entry.attribute &&
+                  notification.PreviousValue === entry.value
+                )
+            );
+  
+            if (updatedNotifications.length === 0) {
+               await remove(ref(realtimeDb, `notifications/${notificationId}`));
+            } else {
+               await update(ref(realtimeDb, `notifications/${notificationId}`), {
+                notifications: updatedNotifications,
+              });
+            }
+          }
+        });
+      }
+  
+       setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
+      setNotifications((prev) =>
+        prev.filter(
+          (n) =>
+            !(
+              n.region === entry.region &&
+              n.attribute === entry.attribute &&
+              n.PreviousValue === entry.value
+            )
+        )
+      );
     } catch (error) {
-      console.error("Error removing entry:", error);
+      console.error("Error toggling reviewed entry:", error);
     }
   };
+  
   
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
   const handleProfileClick = () => navigate("/profile");
@@ -798,7 +836,7 @@ const ModeratorPage = () => {
                       <button
                         className="action-btn eye-btn"
                         onClick={() => handleToggleReviewed(entry)}
-                        title="Remove entry"
+                        title="Mark as review"
                       >
                         <FaEyeSlash />
                       </button>
@@ -830,14 +868,14 @@ const ModeratorPage = () => {
               <thead>
                 <tr>
                   <th>User ID</th>
-                  <th>Attribute</th>
+                  <th className="attribute-col">Attribute</th>
                   <th>Topic</th>
                   <th>Previous Value</th>
                   <th>Suggestion</th>
                   <th>Description</th>
                   <th>Delete Value</th>
                   <th>Deny Request</th>
-                  <th>Action</th>
+                  <th>Replace Value</th>
                 </tr>
               </thead>
               <tbody>

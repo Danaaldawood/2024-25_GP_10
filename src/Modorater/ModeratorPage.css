@@ -1,9 +1,15 @@
-.moderator-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
+
+:root {
+  --primary-color: #10a37f;
+  --secondary-color: #74c3b0;
+  --danger-color: #dc172b;
+  --font-color: #003f5c;
+  --light-gray: #f9f9f9;
+  --dark-gray: #737272;
+  --hover-danger-color: #ff5264;
 }
+
+
 
 .header-banner {
   width: 100%;
@@ -12,12 +18,13 @@
   padding: 20px 0;
   margin: 20px 0 10px;
   border-radius: 10px;
+  background-color: var(--light-gray);
 }
 
 .header-banner h1 {
-  color: #003f5c;
+  color: var(--font-color);
   margin: 0;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
 }
 
@@ -25,25 +32,27 @@
   display: flex;
   justify-content: center;
   margin: 10px 0;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .toggle-buttons button {
   padding: 10px 20px;
-  margin: 0 10px;
   border: none;
-  background-color: #74c3b0;
+  background-color: var(--secondary-color);
   color: white;
   cursor: pointer;
   font-size: 16px;
   border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .toggle-buttons button.active {
-  background-color: #10a37f;
+  background-color: var(--primary-color);
 }
 
 .toggle-buttons button:hover {
-  background-color: #10a37f;
+  background-color: var(--primary-color);
 }
 
 .pagename {
@@ -56,24 +65,26 @@
 .table-container {
   margin-top: 30px;
   text-align: center;
+  overflow-x: auto;
 }
 
 .styled-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 0 auto;
   max-width: 1200px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .styled-table th,
 .styled-table td {
-  border: none; 
   padding: 12px;
   text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .styled-table th {
@@ -82,8 +93,17 @@
   font-weight: bold;
 }
 
+.notifications-container .styled-table td {
+  max-width: 200px;
+  word-break: break-word;
+}
+
+.notifications-container .styled-table .attribute-col {
+  width: 20%; 
+  word-break: break-word;
+}
 .styled-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--light-gray);
 }
 
 .styled-table tr:hover {
@@ -105,6 +125,7 @@
   cursor: pointer;
   font-size: 16px;
   border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .notification-btn.active {
@@ -116,7 +137,7 @@
 }
 
 .notification-badge {
-  background-color: #dc172b;
+  background-color: var(--danger-color);
   color: white;
   border-radius: 50%;
   padding: 2px 6px;
@@ -133,84 +154,88 @@
   margin: 40px 0;
 }
 
- 
 .action-btn {
-  width: 80px;            
-  height: 40px;   
-   color: white;
-   gap:10px;
+  width: 80px;
+  height: 40px;
+  color: white;
+  margin: 5px;
   border: none;
-  border-radius: 5px;       
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 12px;         
+  font-size: 12px;
   display: flex;
   align-items: center;
-  justify-content: center;  
-  transition: background-color 0.3s;  
+  justify-content: center;
+  transition: background-color 0.3s;
 }
 
- .delete-btn-not {
-  background-color: #dc172b;
+.delete-btn-not {
+  background-color: var(--danger-color);
+  color: white;
 }
 
 .delete-btn-not:hover {
-  background-color: #ff5264;
+  background-color: var(--hover-danger-color);
 }
 
- .deny-btn-not {
-  background-color: #737272;
+.deny-btn-not {
+  background-color: var(--dark-gray);
+  color: white;
 }
 
 .deny-btn-not:hover {
   background-color: #929191;
 }
 
- .replace-btn {
-  background-color: #10a37f;
+.replace-btn {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .replace-btn:hover {
-  background-color: #74c3b0;
+  background-color: var(--secondary-color);
 }
+
 .no-records {
   text-align: center;
   color: #555;
   font-size: 1.2rem;
   margin-top: 20px;
 }
-.action-btndelete-btn {
-  width: 35px;              /* Reduced the width to better fit the icon */
-  height: 35px;             /* Make height consistent with width */
-  color: white;             /* Keep the icon color white */
+
+.action-btn.delete-btn {
+  width: 35px;
+  height: 35px;
+  background-color: var(--danger-color);
   border: none;
-  border-radius: 50%;       /* Make it a circular button */
-  cursor: pointer;
-  font-size: 1.2rem;        /* Slightly smaller icon size */
+  border-radius: 50%;
+  color: white;
   display: flex;
   align-items: center;
-  justify-content: center;  
-  transition: background-color 0.3s, transform 0.2s ease;
-  background-color: #dc172b;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-.action-btndelete-btn:hover{
-background-color: #ff5264;
+
+.action-btn.delete-btn:hover {
+  background-color: var(--hover-danger-color);
 }
+
 .eye-btn {
-  width: 35px;           
+  width: 35px;
   height: 35px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem; 
-  color: #10a37f;        
+  font-size: 1.5rem;
+  color: var(--primary-color);
   transition: color 0.3s, transform 0.2s ease;
 }
 
 .eye-btn:hover {
-  color: #74c3b0;            
-  transform: scale(1.1);     
+  color: var(--secondary-color);
+  transform: scale(1.1);
 }
-
 
 .fixed {
   position: fixed;
@@ -245,70 +270,126 @@ background-color: #ff5264;
   display: flex;
   justify-content: center;
   gap: 1rem;
-
 }
-/* Style for modal buttons */
+
 .modal-btn {
   padding: 0.5rem 1.5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-
 }
 
 .confirm-btn-not {
-  background-color: #dc172b;
+  background-color: var(--danger-color);
 }
 
 .confirm-btn-not:hover {
-  background-color: #ff5264;
+  background-color: var(--hover-danger-color);
 }
 
-/* For the deny confirmation button */
-.deny-btn-not {
-  background-color: #737272;
-  color: white; 
-}
-
-.deny-btn-not:hover {
-  background-color: #929191;
-}
-
-/* For the replace confirmation button */
-.replace-btn {
-  background-color: #10a37f;
-  color: white; 
-}
-
-.replace-btn:hover {
-  background-color: #74c3b0;
-}
 .add-btn {
-  background-color: #10a37f;
-  color: white; 
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .add-btn:hover {
-  background-color: #74c3b0;
+  background-color: var(--secondary-color);
 }
-
-
-/* For the delete confirmation button */
-.delete-btn-not {
-  background-color: #dc172b;
-  color: white; 
-}
-
-.delete-btn-not:hover {
-  background-color: #ff5264;
-}
-
 
 .cancel-btn-not {
   border: 1px solid #000;
-  color: '#000';
- background-color: #f9f9f9;
-  cursor: 'pointer';
-  font-size: '18px';
+  color: #000;
+  background-color: var(--light-gray);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  background-color: #003f5c;
+  color: white;
+  padding: 20px 0;
+  margin-top: 0;
+  position: absolute;
+  bottom: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 1400px) {
+  .header-banner h1 {
+    font-size: 1.6rem;
+  }
+  .styled-table {
+    font-size: 0.95rem;
+  }
+  .toggle-buttons button {
+    padding: 9px 18px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header-banner h1 {
+    font-size: 1.55rem;
+  }
+  .styled-table {
+    font-size: 0.92rem;
+  }
+  .toggle-buttons button {
+    padding: 9px 17px;
+    font-size: 14px;
+  }
+  .action-btn {
+    width: 75px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-banner h1 {
+    font-size: 1.5rem;
+  }
+  .toggle-buttons button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  .styled-table {
+    font-size: 0.9rem;
+  }
+  .action-btn {
+    width: 70px;
+    height: 35px;
+  }
+  .modal-content {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-banner h1 {
+    font-size: 1.25rem;
+  }
+  .toggle-buttons button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .styled-table th,
+  .styled-table td {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+  .notification-btn {
+    font-size: 14px;
+  }
+  .action-btn {
+    width: 60px;
+    height: 30px;
+  }
+  .notification-badge {
+    top: -5px;
+    right: -5px;
+    font-size: 10px;
+  }
 }
