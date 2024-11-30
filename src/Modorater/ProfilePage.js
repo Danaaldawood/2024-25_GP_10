@@ -3,7 +3,7 @@ import './ProfilePage.css';
 import Notification from './Notification';
 import DeleteConfirmation from './DeleteConfirmation';
 import defaultProfilePic from './userpro.jpg';
-import { FaArrowLeft, FaTrash } from 'react-icons/fa';  
+import { FaArrowLeft, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
@@ -15,7 +15,7 @@ const ProfilePage = () => {
   const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
   const [notification, setNotification] = useState(null);
-  const [showModal, setShowModal] = useState(false); // State to handle the modal visibility
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const ProfilePage = () => {
 
   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
-      setNotification({ type: 'warning', message: 'Full name cannot be empty. Please enter a valid name.' });
+      setNotification({ type: 'error', message: 'Full name cannot be empty. Please enter a valid name.' });
       return;
     }
 
@@ -65,7 +65,7 @@ const ProfilePage = () => {
 
         setNotification({ type: 'success', message: 'Profile saved successfully!' });
         setTimeout(() => {
-          setNotification(null); 
+          setNotification(null);
         }, 3000);
       } else {
         setNotification({ type: 'error', message: 'No user logged in.' });
@@ -77,7 +77,7 @@ const ProfilePage = () => {
   };
 
   const handleDeleteAccount = () => {
-    setShowModal(true); // Show the modal on clicking delete
+    setShowModal(true);
   };
 
   const handleConfirmDelete = async () => {
@@ -97,16 +97,16 @@ const ProfilePage = () => {
 
       setNotification({ type: 'success', message: 'Account deleted successfully.' });
 
-      navigate('/sign'); // Navigate to sign-up or login page after deletion
+      navigate('/sign');
     } catch (error) {
       console.error('Error deleting account:', error.message);
       setNotification({ type: 'error', message: `Failed to delete account: ${error.message}` });
     }
-    setShowModal(false); // Hide the modal after the action
+    setShowModal(false);
   };
 
   const closeNotification = () => {
-    setNotification(null); // Close the notification
+    setNotification(null);
   };
 
   return (
@@ -148,7 +148,7 @@ const ProfilePage = () => {
                 className="formProf-input"
                 placeholder="Email"
                 value={email}
-                readOnly 
+                readOnly
               />
             </div>
 
@@ -156,16 +156,16 @@ const ProfilePage = () => {
               Save Profile
             </button>
             <button className="delete-button" onClick={handleDeleteAccount}>
-  Delete Account <FaTrash className="trash-icon" />
-</button>
+              Delete Account <FaTrash className="trash-icon" />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Modal Confirmation for Account Deletion */}
-      {showModal && <DeleteConfirmation onConfirm={handleConfirmDelete} onCancel={() => setShowModal(false)} />}
+      {showModal && (
+        <DeleteConfirmation onConfirm={handleConfirmDelete} onCancel={() => setShowModal(false)} />
+      )}
 
-      {/* Notification system */}
       {notification && (
         <Notification
           type={notification.type}
