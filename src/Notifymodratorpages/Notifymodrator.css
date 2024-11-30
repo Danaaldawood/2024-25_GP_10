@@ -141,13 +141,202 @@
   color: #2ecc71;
 }
 
-@media (max-width: 600px) {
+/* Media Query for 1440p displays (2560x1440) */
+@media screen and (min-width: 2560px) {
   .notify-form-container {
-    width: 90%;
-    margin-top: 30px;
+    width: 700px;
+    padding: 50px;
+    margin: 80px auto;
   }
-  
+
   .notify-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+
+  .notiyfy-attribute-display {
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+
+  .notify-inputs {
+    gap: 30px;
+  }
+
+  .notify-input label {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .notify-input select,
+  .notify-input input[type="text"],
+  .notify-input input[type="email"],
+  .notify-input textarea {
+    padding: 16px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  .notify-input textarea {
+    min-height: 150px;
+  }
+
+  .notify-submit-button {
+    width: 250px;
+    padding: 16px;
     font-size: 24px;
+  }
+
+  .success-popup {
+    width: 400px;
+  }
+
+  .success-icon {
+    font-size: 56px;
+  }
+
+  .success-message {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 2560px) {
+  .notify-form-container {
+    width: 700px;
+    padding: 50px;
+    margin: 80px auto;
+  }
+
+  .notify-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+
+  .notiyfy-attribute-display {
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+
+  .notify-inputs {
+    gap: 30px;
+  }
+
+  .notify-input label {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .notify-input select,
+  .notify-input input[type="text"],
+  .notify-input input[type="email"],
+  .notify-input textarea {
+    padding: 16px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  .notify-input textarea {
+    min-height: 150px;
+  }
+
+  .notify-submit-button {
+    width: 250px;
+    padding: 16px;
+    font-size: 24px;
+  }
+
+  .success-popup {
+    width: 400px;
+  }
+
+  .success-icon {
+    font-size: 56px;
+  }
+
+  .success-message {
+    font-size: 20px;
+  }
+}
+
+/* Media Query for 4K displays (3840x2160) */
+@media screen and (min-width: 2168px) {
+  .notify-form-container {
+    width: 1200px;
+    padding: 80px;
+    margin: 160px auto;
+  }
+
+  .notify-title {
+    font-size: 52px;
+    margin-bottom: 50px;
+  }
+
+  .notiyfy-attribute-display {
+    font-size: 50px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+  }
+
+  .notify-inputs {
+    gap: 50px;
+  }
+
+  .notify-input label {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .notify-input select,
+  .notify-input input[type="text"],
+  .notify-input input[type="email"],
+  .notify-input textarea {
+    padding: 25px;
+    font-size: 32px;
+    border-radius: 12px;
+  }
+
+  .notify-input textarea {
+    min-height: 400px;
+  }
+
+  .notify-submit-button {
+    width: 400px;
+    padding: 25px;
+    font-size: 36px;
+    border-radius: 16px;
+  }
+
+  .success-popup {
+    width: 1000px;
+    padding: 60px;
+  }
+
+  .success-icon {
+    font-size: 120px;
+    margin-bottom: 30px;
+  }
+
+  .success-message {
+    font-size: 48px;
+  }
+
+  .error-popup {
+    width: 1000px;
+    padding: 60px;
+  }
+
+  .error-title {
+    font-size: 52px;
+    margin-bottom: 30px;
+  }
+
+  .error-message {
+    font-size: 44px;
+    margin-bottom: 40px;
+  }
+
+  .confirm-btn {
+    padding: 25px 50px;
+    font-size: 40px;
+    border-radius: 16px;
   }
 }
