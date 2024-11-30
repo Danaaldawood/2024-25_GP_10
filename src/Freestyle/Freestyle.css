@@ -1,8 +1,11 @@
+/* --- Free Style page Layout --- */
 .freestylepage {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
+/* --- Header Styles --- */
 .freestyle-page-header {
   box-sizing: border-box;
   border-radius: 0;
@@ -20,6 +23,7 @@
   border-bottom-right-radius: 15px;
   overflow: hidden;
 }
+
 .freestyle-back-btn {
   background: none;
   border: none;
@@ -30,14 +34,17 @@
   cursor: pointer;
   font-weight: bold;
 }
+
 .freestyle-back-btn:hover {
   color: #c0c0c0;
 }
+
 .freestyle-back-icon {
   margin-right: 8px;
   font-size: 22px;
 }
 
+/* --- Conversation Container --- */
 .conversation-container {
   max-width: 44rem;
   margin: 2rem auto;
@@ -46,10 +53,12 @@
   border-radius: 0.5rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
+
 .conversation-header {
   margin-bottom: 2rem;
   text-align: center;
 }
+
 .conversation-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -57,6 +66,7 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
 .freestyle-title-underline {
   margin-top: 0.5rem;
   width: 15rem;
@@ -66,38 +76,49 @@
   margin-right: auto;
   border-radius: 9999px;
 }
+
+/* --- Message List Styles --- */
 .freestyle-message-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 .message {
   display: flex;
 }
+
 .ai-message {
   justify-content: flex-start;
 }
+
 .user-message {
   justify-content: flex-end;
 }
+
 .freestyle-message-content {
   max-width: 70%;
   padding: 0.75rem;
   border-radius: 0.5rem;
 }
+
 .ai-message .freestyle-message-content {
   background-color: #e6f3ff;
   color: #1e3a8a;
 }
+
 .user-message .freestyle-message-content {
   background-color: #f3f4f6;
   color: #1f2937;
 }
+
+/* --- Input Area Styles --- */
 .freestyle-input-container {
   display: flex;
   margin-bottom: 1rem;
 }
+
 .freestyle-message-input {
   flex-grow: 1;
   padding: 0.5rem;
@@ -105,10 +126,12 @@
   border-radius: 0.375rem 0 0 0.375rem;
   font-size: 1rem;
 }
+
 .freestyle-message-input:focus {
   outline: none;
   border-color: #3b82f6;
 }
+
 .freestyle-send-button {
   padding: 0.5rem 1rem;
   background-color: #10a37f;
@@ -118,14 +141,18 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .freestyle-send-button:hover {
   background-color: #095c47;
 }
+
+/* --- Action Buttons --- */
 .freestyle-button-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .freestyle-edit-dataset-button,
 .freestyle-end-conversation-button {
   width: 100%;
@@ -136,20 +163,26 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .freestyle-edit-dataset-button {
   background-color: #095c47;
   color: white;
 }
+
 .freestyle-edit-dataset-button:hover {
-  background-color: #10a37f ;
+  background-color: #10a37f;
 }
+
 .freestyle-end-conversation-button {
   background-color: #ef4444;
   color: white;
 }
+
 .freestyle-end-conversation-button:hover {
   background-color: #dc2626;
 }
+
+/* --- Modal Styles --- */
 .freestyle-modal-overlay {
   position: fixed;
   top: 0;
@@ -162,6 +195,7 @@
   align-items: center;
   z-index: 1000;
 }
+
 .freestyle-modal-content {
   background-color: white;
   padding: 20px;
@@ -169,21 +203,18 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   width: 400px;
 }
-.freestyle-question-select.error {
-  border-color: red;
-  color: red;
-}
-.freestyle-question-select.error option {
-  color: red;
-}
+
 .freestyle-modal-title {
   margin-bottom: 1rem;
   text-align: center;
   color: #2a5d77;
 }
+
+/* --- Form Elements --- */
 .freestyle-select-container {
   position: relative;
 }
+
 .freestyle-question-select {
   width: 100%;
   background-color: #f3f4f6;
@@ -193,39 +224,13 @@
   border-radius: 0.375rem;
   font-size: 1rem;
 }
-.freestyle-modal-buttons {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
+
+.freestyle-question-select.error {
+  border-color: red;
+  color: red;
 }
-.freestyle-add-dataset-button {
-  background-color: #10a37f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-.freestyle-add-dataset-button:hover {
-  background-color: #095c47;
-}
-.freestyle-cancel-button {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-.freestyle-cancel-button:hover {
-  background-color: #dc2626;
-}
+/* --- Modal Buttons --- */
+.freestyle-add-dataset-button,
 .freestyle-confirm-button {
   background-color: #10a37f;
   color: white;
@@ -236,9 +241,145 @@
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
+
+.freestyle-add-dataset-button:hover,
 .freestyle-confirm-button:hover {
   background-color: #095c47;
 }
 
+.freestyle-cancel-button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
 
+.freestyle-cancel-button:hover {
+  background-color: #dc2626;
+}
 
+/* --- Selected Question Display --- */
+.freestyle-selected-question {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f3f4f6;
+  border-radius: 5px;
+  color: #1f2937;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* --- Responsive Styles --- */
+
+/* --- 4K Resolution Styles --- */
+@media screen and (min-width: 2560px) {
+  .freestyle-page-header {
+    padding: 40px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  .freestyle-back-btn {
+    font-size: 32px;
+  }
+
+  .freestyle-back-icon {
+    font-size: 36px;
+    margin-right: 16px;
+  }
+
+  .conversation-container {
+    max-width: 100rem;
+    margin: 4rem auto;
+    padding: 3rem;
+    border-radius: 1rem;
+  }
+
+  .conversation-title {
+    font-size: 3.5rem;
+  }
+
+  .freestyle-title-underline {
+    width: 30rem;
+    height: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .freestyle-message-content {
+    font-size: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .freestyle-message-list {
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .freestyle-input-container {
+    margin-bottom: 2rem;
+  }
+
+  .freestyle-message-input {
+    font-size: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem 0 0 0.75rem;
+  }
+
+  .freestyle-send-button {
+    font-size: 2rem;
+    padding: 1.5rem 3rem;
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  .freestyle-button-container {
+    gap: 2rem;
+  }
+
+  .freestyle-edit-dataset-button,
+  .freestyle-end-conversation-button {
+    padding: 1.5rem;
+    font-size: 2rem;
+    border-radius: 0.75rem;
+  }
+
+  .freestyle-modal-content {
+    width: 1000px;
+    padding: 50px;
+    border-radius: 1rem;
+  }
+
+  .freestyle-modal-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .freestyle-question-select {
+    font-size: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .freestyle-selected-question {
+    font-size: 1.8rem;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 0.75rem;
+  }
+
+  .freestyle-modal-buttons {
+    margin-top: 40px;
+  }
+
+  .freestyle-add-dataset-button,
+  .freestyle-confirm-button,
+  .freestyle-cancel-button {
+    font-size: 1.8rem;
+    padding: 15px 30px;
+    border-radius: 0.75rem;
+  }
+}

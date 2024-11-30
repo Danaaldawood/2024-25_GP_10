@@ -199,63 +199,6 @@
     font-size: 20px;
   }
 }
-@media screen and (min-width: 2560px) {
-  .notify-form-container {
-    width: 700px;
-    padding: 50px;
-    margin: 80px auto;
-  }
-
-  .notify-title {
-    font-size: 32px;
-    margin-bottom: 25px;
-  }
-
-  .notiyfy-attribute-display {
-    font-size: 26px;
-    margin-bottom: 15px;
-  }
-
-  .notify-inputs {
-    gap: 30px;
-  }
-
-  .notify-input label {
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-
-  .notify-input select,
-  .notify-input input[type="text"],
-  .notify-input input[type="email"],
-  .notify-input textarea {
-    padding: 16px;
-    font-size: 18px;
-    border-radius: 10px;
-  }
-
-  .notify-input textarea {
-    min-height: 150px;
-  }
-
-  .notify-submit-button {
-    width: 250px;
-    padding: 16px;
-    font-size: 24px;
-  }
-
-  .success-popup {
-    width: 400px;
-  }
-
-  .success-icon {
-    font-size: 56px;
-  }
-
-  .success-message {
-    font-size: 20px;
-  }
-}
 
 /* Media Query for 4K displays (3840x2160) */
 @media screen and (min-width: 2168px) {

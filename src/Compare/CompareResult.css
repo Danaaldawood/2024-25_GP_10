@@ -1,23 +1,12 @@
-/* Basic Reset */
+/* --- Compare Page Layout --- */
 .compare-result-page {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #072040;  
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #072040;
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.compare-result-header {
-  width: 100%;
-  background-color: #003f5c;
-  color: white;
-  padding: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 
 .compare-result-content {
@@ -37,7 +26,7 @@
 }
 
 .compare-result-title {
-  display: inline-block;  
+  display: inline-block;
   font-size: 28px;
   font-weight: bold;
   color: #24526e;
@@ -45,17 +34,10 @@
   letter-spacing: 1.5px;
   border-bottom: 3px solid #24526e;
   padding-bottom: 5px;
-  margin: 10px auto;    
+  margin: 10px auto;
 }
 
-.compare-result-description {
-  font-size: 16px;
-  color: #4b5563;
-  margin: 10px auto 20px;
-  max-width: 600px;
-  line-height: 1.5;
-}
-
+/* --- Selection --- */
 .compare-result-selectors {
   display: flex;
   flex-direction: row;
@@ -104,7 +86,7 @@
   font-size: 18px;
 }
 
-/* New Similarity Header Styles */
+/* --- Similarity Header and Info Section --- */
 .similarity-header {
   display: flex;
   align-items: center;
@@ -132,6 +114,7 @@
   align-items: center;
 }
 
+/* --- Content Wrapper --- */
 .compare-result-content-wrapper {
   margin-top: 1rem;
   background-color: white;
@@ -139,6 +122,7 @@
   border-radius: 8px;
 }
 
+/* --- Similarity Results Display --- */
 .compare-result-similarity-container {
   margin-top: 20px;
   display: flex;
@@ -169,15 +153,7 @@
   font-weight: bold;
 }
 
-.compare-result-similarity-explanation {
-  font-size: 14px;
-  color: #4b5563;
-  margin-top: 20px;
-  text-align: center;
-  font-style: italic;
-}
-
-/* Info Button and Popup Styles */
+/* --- Info Button and Popup Styles --- */
 .info-button {
   background: none;
   border: none;
@@ -211,17 +187,6 @@
   animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .info-content h3 {
   color: #24526e;
   font-size: 16px;
@@ -238,6 +203,7 @@
   line-height: 1.5;
 }
 
+/* --- Gradient Legend --- */
 .gradient-legend {
   display: flex;
   align-items: center;
@@ -252,20 +218,25 @@
 .gradient-bar {
   width: 60px;
   height: 8px;
-  background: linear-gradient(to right, 
-    /* Red gradient from 0-15% */
-    #ffcdd2 0%,
+  background: linear-gradient(
+    to right,
+    /* Red gradient from 0-15% */ #ffcdd2 0%,
     #ef5350 15%,
-    /* Green gradient from 15-100% */
-    #e0f2e9 15%,
+    /* Green gradient from 15-100% */ #e0f2e9 15%,
     #10a37f 100%
   );
   border-radius: 4px;
 }
 
+/* --- Loading and Error States --- */
 .compare-result-loading {
   text-align: center;
   padding: 1rem 0;
+}
+
+.compare-result-loading-text {
+  margin-top: 1rem;
+  color: #4b5563;
 }
 
 .compare-result-spinner {
@@ -278,23 +249,13 @@
   animation: compare-result-spin 1s linear infinite;
 }
 
-@keyframes compare-result-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.compare-result-loading-text {
-  margin-top: 1rem;
-  color: #4b5563;
-}
-
 .compare-result-error {
   color: #ef4444;
   text-align: center;
   padding: 1rem 0;
 }
 
+/* --- Button Styles --- */
 .compare-result-button-container {
   display: flex;
   justify-content: center;
@@ -319,7 +280,26 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Styles */
+/* --- Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes compare-result-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive Media Queries --- */
+/* Tablet View */
 @media (max-width: 768px) {
   .similarity-header {
     flex-direction: column;
@@ -339,74 +319,24 @@
   .compare-result-title {
     font-size: 24px;
   }
-  
+
   .compare-result-description {
     font-size: 14px;
     padding: 0 20px;
   }
-  
+
   .compare-result-selectors {
     flex-direction: column;
     gap: 20px;
     align-items: center;
   }
-  
+
   .compare-result-select {
     font-size: 20px;
   }
-  
+
   .compare-result-comparison-info {
     font-size: 18px;
     flex-wrap: wrap;
-  }
-  
-  .compare-result-similarity-explanation {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .similarity-header {
-    margin: 10px 0;
-  }
-
-  .similarity-title {
-    font-size: 18px;
-  }
-
-  .info-popup {
-    right: -50px;
-    width: 220px;
-  }
-
-  .compare-result-title {
-    font-size: 20px;
-  }
-  
-  .compare-result-header {
-    padding: 15px;
-  }
-  
-  .compare-result-select {
-    font-size: 18px;
-    min-width: 120px;
-  }
-
-  .compare-result-region-name {
-    padding: 3px 8px;
-  }
-
-  .compare-result-container {
-    padding: 15px;
-  }
-
-  .compare-result-recompare-btn {
-    width: 160px;
-    font-size: 18px;
-  }
-
-  .gradient-legend {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }

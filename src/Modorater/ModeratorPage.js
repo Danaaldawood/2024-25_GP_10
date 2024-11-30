@@ -1,3 +1,4 @@
+// --- Imports ---
 import React, { useState, useEffect } from "react";
 import { ref, onValue, remove, update, get, push } from "firebase/database";
 import { doc, getDoc } from "firebase/firestore";
@@ -11,6 +12,7 @@ import Logo from "../images/Logo.png";
 import { onAuthStateChanged } from "firebase/auth";
 import { FaEye, FaEyeSlash, FaTimes } from "react-icons/fa";
 
+// --- Confirmation Modal Component ---
 const ConfirmationModal = ({
   isOpen,
   message,
@@ -49,6 +51,7 @@ const ConfirmationModal = ({
   );
 };
 
+// --- Notification Row Component ---
 const NotificationRow = ({
   notification,
   onDelete,
@@ -57,19 +60,14 @@ const NotificationRow = ({
   onAdd,
   viewEditEntries,
 }) => {
-  // Check if value currently exists in viewEditEntries
   const valueExists = viewEditEntries.some(
     (entry) =>
       entry.attribute === notification.attribute &&
       entry.value === notification.PreviousValue
   );
 
-  // Special case: Value was in ViewEdit but was deleted
   const wasDeleted = !valueExists && notification.isValueDeleted;
   
-  // Disable delete only when:
-  // 1. Value was previously in ViewEdit and was deleted AND
-  // 2. Notification has a suggestion
   const disableDelete = wasDeleted && notification.suggestion;
 
   return (
@@ -118,7 +116,9 @@ const NotificationRow = ({
   );
 };
 
+// --- Main ModeratorPage Component ---
 const ModeratorPage = () => {
+  // --- State Management ---
   const [view, setView] = useState("view-edit");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
@@ -130,8 +130,10 @@ const ModeratorPage = () => {
     onConfirm: null,
     actionType: null,
   });
+
   const navigate = useNavigate();
 
+  // --- Data Fetching Effect ---
   useEffect(() => {
     const fetchModeratorData = async (user) => {
       try {
@@ -195,7 +197,8 @@ const ModeratorPage = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleDeleteViewEntry = async (entry) => {
+   // Handle deletion of ViewEdit entry
+   const handleDeleteViewEntry = async (entry) => {
     setConfirmModal({
       isOpen: true,
       message: "Are you sure you want to delete this Value?",
@@ -263,12 +266,12 @@ const ModeratorPage = () => {
                             isValueDeleted: true,
                           };
                         }
-                        // If no suggestion, this notification will be filtered out
+                        // If no suggestion, this notification will be removed
                         return null;
                       }
                       return notification;
                     }
-                  ).filter(Boolean); // Remove null entries
+                  ).filter(Boolean);
 
                   if (updatedNotifications.length === 0) {
                     await remove(
@@ -315,8 +318,8 @@ const ModeratorPage = () => {
     });
   };
 
+  // Handle deletion of notification value
   const handleDeleteValue = async (notification) => {
-    // Don't allow delete if value was previously deleted and has suggestion
     if (!notification.isValueDeleted || !notification.suggestion) {
       setConfirmModal({
         isOpen: true,
@@ -332,6 +335,7 @@ const ModeratorPage = () => {
             const notificationData = notificationSnapshot.val();
 
             if (notificationData?.notifications) {
+              // Delete from dataset
               const regionDatasetRef = ref(
                 realtimeDb,
                 `${notification.region}C/Details`
@@ -365,6 +369,7 @@ const ModeratorPage = () => {
                 }
               }
 
+              // Remove from ViewEdit
               const viewEditRef = ref(
                 realtimeDb,
                 `Viewedit/${notification.region}`
@@ -385,6 +390,7 @@ const ModeratorPage = () => {
                 });
               }
 
+              // Update notifications
               const updatedNotifications = notificationData.notifications.filter(
                 (n) =>
                   !(
@@ -421,8 +427,10 @@ const ModeratorPage = () => {
       });
     }
   };
+  
 
-  const handleDenyRequest = async (notification) => {
+   // --- Handle Request Actions ---
+   const handleDenyRequest = async (notification) => {
     setConfirmModal({
       isOpen: true,
       message: "Are you sure you want to deny this request?",
@@ -473,6 +481,7 @@ const ModeratorPage = () => {
     });
   };
 
+  // Handle adding new value
   const handleAddValue = async (notification) => {
     setConfirmModal({
       isOpen: true,
@@ -509,6 +518,7 @@ const ModeratorPage = () => {
   
                 const updatedAnnotations = [...annotations, newAnnotation];
   
+                // Update dataset
                 const detailRef = ref(
                   realtimeDb,
                   `${notification.region}C/Details/${detailKey}`
@@ -518,6 +528,7 @@ const ModeratorPage = () => {
                   annotations: updatedAnnotations,
                 });
   
+                // Add to ViewEdit
                 const viewEditRef = ref(
                   realtimeDb,
                   `Viewedit/${notification.region}`
@@ -531,14 +542,15 @@ const ModeratorPage = () => {
                   region: notification.region,
                   reason: existingReason,
                 });
-  
+
+                // Remove notification
                 const notificationRef = ref(
                   realtimeDb,
                   `notifications/${notification.id}`
                 );
                 const notificationSnapshot = await get(notificationRef);
                 const notificationData = notificationSnapshot.val();
-  
+
                 if (notificationData?.notifications) {
                   const updatedNotifications = notificationData.notifications.filter(
                     (n) =>
@@ -548,7 +560,7 @@ const ModeratorPage = () => {
                         n.userId === notification.userId
                       )
                   );
-  
+
                   if (updatedNotifications.length === 0) {
                     await remove(notificationRef);
                   } else {
@@ -557,7 +569,8 @@ const ModeratorPage = () => {
                     });
                   }
                 }
-  
+
+                // Update local state
                 setNotifications((prev) =>
                   prev.filter(
                     (n) =>
@@ -578,7 +591,9 @@ const ModeratorPage = () => {
       },
     });
   };
-  const handleReplaceValue = async (notification) => {
+  
+   // Handle replacing existing value
+   const handleReplaceValue = async (notification) => {
     setConfirmModal({
       isOpen: true,
       message: "Are you sure you want to replace this value?",
@@ -599,8 +614,6 @@ const ModeratorPage = () => {
                 detailValue.en_question === notification.attribute
               ) {
                 const annotations = detailValue.annotations || [];
-  
-                // Find the original annotation to get its reason
                 const originalAnnotation = annotations.find(
                   (ann) => ann.en_values[0] === notification.PreviousValue
                 );
@@ -608,6 +621,7 @@ const ModeratorPage = () => {
                   ? originalAnnotation.reason
                   : "variation";
   
+                // Update annotations with new value
                 const updatedAnnotations = annotations.map((annotation) => {
                   if (annotation.en_values[0] === notification.PreviousValue) {
                     return {
@@ -618,7 +632,8 @@ const ModeratorPage = () => {
                   }
                   return annotation;
                 });
-  
+
+                // Update in database
                 const detailRef = ref(
                   realtimeDb,
                   `${notification.region}C/Details/${detailKey}`
@@ -627,8 +642,8 @@ const ModeratorPage = () => {
                   ...detailValue,
                   annotations: updatedAnnotations,
                 });
-  
-                // Update or remove ViewEdit entries
+
+                // Update ViewEdit entries
                 const viewEditRef = ref(
                   realtimeDb,
                   `Viewedit/${notification.region}`
@@ -648,8 +663,8 @@ const ModeratorPage = () => {
                     }
                   }
                 }
-  
-                // Remove notification
+
+                // Update notifications
                 const notificationRef = ref(
                   realtimeDb,
                   `notifications/${notification.id}`
@@ -679,6 +694,7 @@ const ModeratorPage = () => {
             }
           }
   
+          // Update local state
           setNotifications((prev) => {
             if (!prev) return [];
             return prev.filter(
@@ -698,19 +714,19 @@ const ModeratorPage = () => {
       },
     });
   };
-  
 
+  // Handle toggling reviewed status
   const handleToggleReviewed = async (entry) => {
     try {
-       await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
+      await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
   
-       const notificationsRef = ref(realtimeDb, "notifications");
+      const notificationsRef = ref(realtimeDb, "notifications");
       const notificationsSnapshot = await get(notificationsRef);
   
       if (notificationsSnapshot.exists()) {
         const allNotifications = notificationsSnapshot.val();
   
-         Object.entries(allNotifications).forEach(async ([notificationId, notificationGroup]) => {
+        Object.entries(allNotifications).forEach(async ([notificationId, notificationGroup]) => {
           if (notificationGroup.notifications) {
             const updatedNotifications = notificationGroup.notifications.filter(
               (notification) =>
@@ -722,9 +738,9 @@ const ModeratorPage = () => {
             );
   
             if (updatedNotifications.length === 0) {
-               await remove(ref(realtimeDb, `notifications/${notificationId}`));
+              await remove(ref(realtimeDb, `notifications/${notificationId}`));
             } else {
-               await update(ref(realtimeDb, `notifications/${notificationId}`), {
+              await update(ref(realtimeDb, `notifications/${notificationId}`), {
                 notifications: updatedNotifications,
               });
             }
@@ -732,7 +748,8 @@ const ModeratorPage = () => {
         });
       }
   
-       setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
+      // Update local state
+      setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
       setNotifications((prev) =>
         prev.filter(
           (n) =>
@@ -747,8 +764,8 @@ const ModeratorPage = () => {
       console.error("Error toggling reviewed entry:", error);
     }
   };
-  
-  
+
+  // --- Navigation and Menu Handlers ---
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
   const handleProfileClick = () => navigate("/profile");
   const handleSignOut = () => setShowSignOutModal(true);
@@ -765,6 +782,7 @@ const ModeratorPage = () => {
         <meta name="description" content="Moderator page" />
       </Helmet>
 
+      {/* Header Section */}
       <header className="header">
         <div className="header-left">
           <img src={Logo} alt="CultureLens Logo" className="logo-img" />
@@ -788,6 +806,7 @@ const ModeratorPage = () => {
         <h1>Moderator Page</h1>
       </div>
 
+      {/* View Toggle Buttons */}
       <div className="toggle-buttons">
         <button
           className={`toggle-btn ${view === "view-edit" ? "active" : ""}`}
@@ -806,6 +825,7 @@ const ModeratorPage = () => {
         </button>
       </div>
 
+      {/* ViewEdit Table */}
       {view === "view-edit" && (
         <div className="table-container">
           <h2 className="pagename">View Edit Dataset</h2>
@@ -860,6 +880,7 @@ const ModeratorPage = () => {
         </div>
       )}
 
+      {/* Notifications Table */}
       {view === "notifications" && (
         <div className="notifications-container">
           <h2 className="pagename">Notifications</h2>
@@ -898,6 +919,7 @@ const ModeratorPage = () => {
         </div>
       )}
 
+      {/* Modals */}
       {showSignOutModal && (
         <SignOutConfirmation
           onConfirm={handleConfirmSignOut}
@@ -920,6 +942,7 @@ const ModeratorPage = () => {
         actionType={confirmModal.actionType}
       />
 
+      {/* Footer */}
       <Footer />
     </div>
   );

@@ -1,16 +1,22 @@
+// --- Imports ---
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
 
+// --- Main Component: ComparisonMap ---
+// Renders an interactive map showing cultural similarities between regions
 function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
   const mapRef = useRef(null);
 
+  // --- Constants & Configurations ---
+  // Map of regions to their corresponding country IDs in topojson format
   const regionToIds = {
     Western: [840, 124, 826, 250, 276, 380, 724, 620, 528, 56, 756, 40, 372, 752, 578, 208, 246],
     Arab: [12, 48, 818, 368, 400, 414, 422, 434, 504, 512, 275, 634, 682, 729, 760, 788, 784, 887],
     Chinese: [156, 344, 446, 158, 702],
   };
 
+  // Helper function to determine colors based on similarity values
   const getRegionColor = (value) => {
     if (value === undefined || value === null) return "#e0e0e0";
     
@@ -31,11 +37,14 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     }
   };
 
+  // --- Map Drawing Logic ---
   useEffect(() => {
     const drawMap = async () => {
       try {
+        // Clear existing map
         d3.select(mapRef.current).selectAll("*").remove();
 
+        // --- SVG Setup and Background ---
         const width = 960;
         const height = 500;
 
@@ -46,13 +55,13 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("width", "100%")
           .attr("height", "100%");
 
-        // Add background
         svg
           .append("rect")
           .attr("width", width)
           .attr("height", height)
           .attr("fill", "white");
 
+        // --- Map Projection Configuration ---
         const projection = d3
           .geoMercator()
           .scale(140)
@@ -61,11 +70,12 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
 
         const path = d3.geoPath().projection(projection);
 
+        // --- World Data Fetching ---
         const response = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
         const world = await response.json();
         const countries = feature(world, world.objects.countries);
 
-        // Create tooltip
+        // --- Tooltip Creation ---
         const tooltip = d3
           .select(mapRef.current)
           .append("div")
@@ -80,7 +90,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .style("color", "#10a37f")
           .style("box-shadow", "0 4px 8px rgba(0, 0, 0, 0.1)");
 
-        // Draw countries
+        // --- Country Drawing and Interactions ---
         svg
           .append("g")
           .selectAll("path")
@@ -101,6 +111,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           })
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
+          // Event Handlers for Tooltips
           .on("mouseover", (event, d) => {
             const countryId = parseInt(d.id);
             let region = null;
@@ -137,15 +148,15 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             tooltip.style("visibility", "hidden");
           });
 
-        // Only show legend if there are similarities to display
+        // --- Legend Creation ---
         if (Object.keys(similarities).length > 0) {
           const legendWidth = 200;
           const legendHeight = 15;
           const legendY = height - 70;
-          const redWidth = (legendWidth * 15) / 100; // 15% of total width
+          const redWidth = (legendWidth * 15) / 100;
           const greenWidth = legendWidth - redWidth;
 
-          // Create gradient definitions
+          // Gradient Definitions
           const gradients = svg.append("defs");
 
           // Red gradient (0-15%)
@@ -184,14 +195,13 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .append("g")
             .attr("transform", `translate(${(width - legendWidth) / 2}, ${legendY})`);
 
-          // Add red gradient bar (0-15%)
+          // Color Bars
           legend
             .append("rect")
             .attr("width", redWidth)
             .attr("height", legendHeight)
             .style("fill", "url(#legend-gradient-red)");
 
-          // Add green gradient bar (15-100%)
           legend
             .append("rect")
             .attr("x", redWidth)
@@ -199,7 +209,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .attr("height", legendHeight)
             .style("fill", "url(#legend-gradient-green)");
 
-          // Add scale labels
+          // Scale and Labels
           const legendScale = d3.scaleLinear()
             .domain([0, 100])
             .range([0, legendWidth]);
@@ -213,7 +223,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .attr("transform", `translate(0, ${legendHeight})`)
             .call(legendAxis);
 
-          // Add legend title
+          // Legend Title
           legend
             .append("text")
             .attr("x", legendWidth / 2)
@@ -230,6 +240,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     drawMap();
   }, [baseRegion, similarities, topic]);
 
+  // --- Component Return ---
   return (
     <div>
       <div ref={mapRef} style={{ width: "100%", height: "500px" }} />

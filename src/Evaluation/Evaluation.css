@@ -1,3 +1,4 @@
+/* --- Evaluation Page Layout --- */
 .Evaluationpage {
   display: flex;
   flex-direction: column;
@@ -14,12 +15,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
+
 .evalcontainer:hover {
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
 }
- .eval-title {
+
+.eval-title {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -27,7 +29,8 @@
   color: #333;
 }
 
- .evalinputs {
+/* --- Selection --- */
+.evalinputs {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -35,7 +38,7 @@
   width: 100%;
 }
 
- .evalinput {
+.evalinput {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -48,7 +51,7 @@
   color: #333;
 }
 
-.evaldimension, .llm, .evalmethod {
+.evalTopic, .llm, .evalmethod {
   width: 100%;
   padding: 12px;
   border-radius: 6px;
@@ -59,18 +62,16 @@
   transition: border 0.3s ease;
 }
 
-.evaldimension:focus, .llm:focus, .evalmethod:focus {
+.evalTopic:focus, .llm:focus, .evalmethod:focus {
   border-color: #10a37f;
-  box-shadow: #095c47;  
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
   outline: none;
-
 }
 
- .error {
+.error {
   border: 2px solid red;
   color: red;
 }
-
 
 .submit-container {
   display: flex;
@@ -78,21 +79,164 @@
   margin-top: 30px;
 }
 
+/* --- Button Styles --- */
 .evalsubmit button {
   width: 200px;
   padding: 12px;
-border: none;
-border-radius: 10px;
-background-color: #10a37f;
-color: white;
-font-size: 20px;
-font-weight: 600;
-cursor: pointer;
-transition: background-color 0.3s ease, transform 0.2s ease;
-
+  border: none;
+  border-radius: 10px;
+  background-color: #10a37f;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .evalsubmit button:hover {
   background-color: #095c47;
   transform: translateY(-2px);
+}
+
+/* --- Base Styles (Laptop) --- */
+.Evaluationpage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.evalcontainer {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 450px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.evalcontainer:hover {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.eval-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* --- Selection --- */
+.evalinputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+.evalinput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.evallabel {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.evalTopic, .llm, .evalmethod {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f3f3f3;
+  color: #333;
+  transition: border 0.3s ease;
+}
+
+.evalTopic:focus, .llm:focus, .evalmethod:focus {
+  border-color: #10a37f;
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
+  outline: none;
+}
+
+.error {
+  border: 2px solid red;
+  color: red;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* --- Button Styles --- */
+.evalsubmit button {
+  width: 200px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #10a37f;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.evalsubmit button:hover {
+  background-color: #095c47;
+  transform: translateY(-2px);
+}
+
+/* --- Responsive Styles --- */
+
+/* 4K Resolution (3840x2160) */
+@media screen and (min-width: 2560px) {
+  .evalcontainer {
+    width: 1200px;
+    padding: 100px;
+    margin: 180px auto;
+    border-radius: 20px;
+  }
+
+  .eval-title {
+    font-size: 60px;
+    margin-bottom: 60px;
+  }
+
+  .evalinputs {
+    gap: 50px;
+  }
+
+  .evallabel {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .evalTopic, .llm, .evalmethod {
+    padding: 30px;
+    font-size: 32px;
+    border-radius: 15px;
+  }
+
+  .submit-container {
+    margin-top: 60px;
+  }
+
+  .evalsubmit button {
+    width: 400px;
+    padding: 30px;
+    font-size: 36px;
+    border-radius: 20px;
+  }
 }

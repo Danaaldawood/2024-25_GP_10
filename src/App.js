@@ -6,7 +6,6 @@ import Sign from "./Register/sign";
 import Index from "./Fpage/Fpage";
 import HomePage from "./HomePage/HomePage";
 import Edit from "./EditPages/Edit";
-import ComparePage from "./Compare/CrossCultureComparison";
 import { Evaluation } from "./Evaluation/Evaluation";
 import View from "./ViewPages/View";
 import CompareResult from "./Compare/CompareResult";
@@ -95,10 +94,7 @@ function App() {
       path: "/edit/:id",
       element: <Edit />,
     },
-    {
-      path: "/compare",
-      element: <ComparePage />,
-    },
+    
     {
       path: "/compare-result",
       element: <CompareResult />, // Flask message will be handled here

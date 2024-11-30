@@ -2,26 +2,23 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { db, auth } from './firebase';
-import { collection, getDocs, updateDoc, doc, deleteDoc,query ,orderBy} from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc, query, orderBy } from "firebase/firestore";
 import emailjs from 'emailjs-com';
 import './AdminPage.css';
 import { Helmet } from 'react-helmet';
 import { Footer } from '../Footer/Footer';
 import LOGO from '../images/Logo.png';
-import SignOutConfirmation from '../Modorater/SignOutConfirmation'; 
+import SignOutConfirmation from '../Modorater/SignOutConfirmation';
 import { useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth'; 
- 
- 
+import { signOut } from 'firebase/auth';
 
 export const AdminPage = () => {
   const [view, setView] = useState('moderator-requests');
   const [requests, setRequests] = useState([]);
-  const [statusFilter, setStatusFilter] = useState('all'); 
+  const [statusFilter, setStatusFilter] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showSignOutModal, setShowSignOutModal] = useState(false); 
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
   const [modelName, setModelName] = useState('');
   const [modelVision, setModelVision] = useState('');
   const [fineTuneRegion, setFineTuneRegion] = useState('');
@@ -39,23 +36,26 @@ export const AdminPage = () => {
         
         const requestsData = querySnapshot.docs.map(doc => {
           const data = doc.data();
-  
-          const customId = `Moderator_${doc.id.slice(-4).toUpperCase()}`;
-
-          return { id: customId, ...data };
+          // Store both the display ID and the original Firestore ID
+          const displayId = `Moderator_${doc.id.slice(-4).toUpperCase()}`;
+          return { 
+            id: doc.id, // Original Firestore ID
+            displayId: displayId, // Custom display ID
+            ...data 
+          };
         });
         setRequests(requestsData);
       } catch (err) {
+        console.error('Error fetching data:', err);
         setError('Failed to fetch data');
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchModeratorRequests();
   }, []);
-  
-  
+
   const handleInputChange = (e, field) => {
     const { value } = e.target;
 
@@ -136,7 +136,7 @@ export const AdminPage = () => {
       setShowPopup({ type: null, message: '' });
     }, 3000);
   };
-  
+
   // Send email based on approval or denial
   const sendEmail = async (recipientEmail, subject, message) => {
     if (!recipientEmail || recipientEmail.trim() === "") {
@@ -144,22 +144,22 @@ export const AdminPage = () => {
       alert("Email address is missing or invalid.");
       return;
     }
-  
-    const templateId = subject === 'Approval Notification' 
-    ? 'template_p63o225'  //   template ID for approval
-    : 'template_iwkfwin';  //template ID for denial
 
-    const serviceId = 'service_x8k8qvv';  //  service ID
-    const publicKey = 'ItSVToYmWJ3KR2fkX';  //  public key
-  
+    const templateId = subject === 'Approval Notification'
+      ? 'template_p63o225'  // template ID for approval
+      : 'template_iwkfwin'; // template ID for denial
+
+    const serviceId = 'service_x8k8qvv';  // service ID
+    const publicKey = 'ItSVToYmWJ3KR2fkX';  // public key
+
     try {
       await emailjs.send(
         serviceId,
         templateId,
         {
-          to_email: recipientEmail,  // Use the template variable for the email address
-          subject: subject,         // The subject
-          message: message,         // The message
+          to_email: recipientEmail,
+          subject: subject,
+          message: message,
         },
         publicKey
       );
@@ -170,50 +170,51 @@ export const AdminPage = () => {
     }
   };
 
-  const handleApproveRequest = async (id, email) => {
-    if (!email || email.trim() === "") {
-      console.error("Cannot approve request, email is missing for ID:", id);
+  const handleApproveRequest = async (request) => {
+    if (!request.email || request.email.trim() === "") {
+      console.error("Cannot approve request, email is missing for ID:", request.displayId);
       alert("Email is missing for this request.");
       return;
     }
     try {
-      const updatedRequests = requests.map(request =>
-        request.id === id ? { ...request, status: 'Approved' } : request
+      const updatedRequests = requests.map(r =>
+        r.id === request.id ? { ...r, status: 'Approved' } : r
       );
       setRequests(updatedRequests);
 
-      const docRef = doc(db, 'Moderators', id);
+      // Use the original Firestore ID for the document reference
+      const docRef = doc(db, 'Moderators', request.id);
       await updateDoc(docRef, { status: 'Approved' });
 
       // Send email notification
-      sendEmail(email, 'Approval Notification', 'Your moderator request has been approved!');
+      sendEmail(request.email, 'Approval Notification', 'Your moderator request has been approved!');
     } catch (err) {
+      console.error('Error updating status:', err);
       setError('Failed to update status');
     }
   };
 
-  const handleDenyRequest = async (id, email) => {
-    if (!email || email.trim() === "") {
-      console.error("Cannot deny request, email is missing for ID:", id);
+  const handleDenyRequest = async (request) => {
+    if (!request.email || request.email.trim() === "") {
+      console.error("Cannot deny request, email is missing for ID:", request.displayId);
       alert("Email is missing for this request.");
       return;
     }
     try {
-      // Remove the request from the table and Firestore
-      const updatedRequests = requests.map(request =>
-        request.id === id ? { ...request, status: 'Denied' } : request
+      const updatedRequests = requests.map(r =>
+        r.id === request.id ? { ...r, status: 'Denied' } : r
       );
       setRequests(updatedRequests);
       
-      const docRef = doc(db, 'Moderators', id);
-      await updateDoc(docRef, { status: 'Denied' });  // Update the status in Firestore
-      
+      // Use the original Firestore ID for the document reference
+      const docRef = doc(db, 'Moderators', request.id);
+      await updateDoc(docRef, { status: 'Denied' });
 
       // Send email notification
-      sendEmail(email, 'Denial Notification', 'Your moderator request has been denied.');
+      sendEmail(request.email, 'Denial Notification', 'Your moderator request has been denied.');
     } catch (err) {
+      console.error('Error updating status:', err);
       setError('Failed to update status');
-      console.error(err);
     }
   };
 
@@ -228,16 +229,16 @@ export const AdminPage = () => {
   const confirmSignOut = () => {
     signOut(auth)
       .then(() => {
-        navigate('/'); 
+        navigate('/');
       })
       .catch((error) => {
         console.error('Error during sign-out:', error);
       });
-    setShowSignOutModal(false); 
+    setShowSignOutModal(false);
   };
 
   const cancelSignOut = () => {
-    setShowSignOutModal(false); 
+    setShowSignOutModal(false);
   };
 
   return (
@@ -252,11 +253,11 @@ export const AdminPage = () => {
           <img src={LOGO} alt="CultureLens Logo" className="logo-img" />
           <h1 className="logo-title">CultureLens</h1>
         </div>
-  
+
         <button className="Adminlogout-btn" onClick={handleSignOut}>
           Log out
         </button>
-  
+
         {showSignOutModal && (
           <SignOutConfirmation onConfirm={confirmSignOut} onCancel={cancelSignOut} />
         )}
@@ -267,10 +268,16 @@ export const AdminPage = () => {
       </div>
 
       <div className="admin-toggle-buttons">
-        <button className={view === 'moderator-requests' ? 'active' : ''} onClick={() => setView('moderator-requests')}>
+        <button 
+          className={view === 'moderator-requests' ? 'active' : ''} 
+          onClick={() => setView('moderator-requests')}
+        >
           Moderator Requests
         </button>
-        <button className={view === 'model-upload' ? 'active' : ''} onClick={() => setView('model-upload')}>
+        <button 
+          className={view === 'model-upload' ? 'active' : ''} 
+          onClick={() => setView('model-upload')}
+        >
           Upload
         </button>
       </div>
@@ -293,6 +300,7 @@ export const AdminPage = () => {
               <option value="Denied">Denied</option>
             </select>
           </div>
+          
           {filteredRequests.length === 0 ? (
             <div>No requests available.</div>
           ) : (
@@ -311,29 +319,36 @@ export const AdminPage = () => {
               </thead>
               <tbody>
                 {filteredRequests.map(request => (
-                  <tr key={request.id}> {/* استخدم الـ id المعدل هنا */}
-                  <td>{request.id}</td> {/* عرض الـ id المعدل */}
+                  <tr key={request.id}>
+                    <td>{request.displayId}</td>
                     <td>{request.fullName}</td>
                     <td>{request.email}</td>
                     <td>{request.regionM}</td>
                     <td>{request.reason}</td>
-                    <td>{request.RequestDate ? new Date(request.RequestDate).toLocaleString() : 'N/A'}</td> {/* Display Request Date */}
+                    <td>
+                      {request.RequestDate ? new Date(request.RequestDate).toLocaleString() : 'N/A'}
+                    </td>
                     <td className={`status status-${request.status ? request.status.toLowerCase() : ''}`}>
                       {request.status}
                     </td>
                     <td style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-  {request.status !== 'Approved' && (
-    <button className="approve-btn" onClick={() => handleApproveRequest(request.id, request.email)}>
-      Approve
-    </button>
-  )}
-  {request.status !== 'Denied' && (
-    <button className="deny-btn" onClick={() => handleDenyRequest(request.id, request.email)}>
-      Deny
-    </button>
-  )}
-</td>
-
+                      {request.status !== 'Approved' && (
+                        <button 
+                          className="approve-btn" 
+                          onClick={() => handleApproveRequest(request)}
+                        >
+                          Approve
+                        </button>
+                      )}
+                      {request.status !== 'Denied' && (
+                        <button 
+                          className="deny-btn" 
+                          onClick={() => handleDenyRequest(request)}
+                        >
+                          Deny
+                        </button>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -391,39 +406,44 @@ export const AdminPage = () => {
               />
             </div>
             <button type="submit" className="upload-btn">Upload</button>
-          </form>
-        </div>
-      )}
+            </form>
+          </div>
+        )}
 
-      {showPopup.type && (
-        <div className={showPopup.type === 'error' ? 'error-popup' : 'success-popup'}>
-          {showPopup.type === 'error' && (
-            <>
-              <div className="error-title">Error</div>
-              <div className="error-message">{showPopup.message}</div>
-              <div className="error-actions">
-                <button className="confirm-btn" onClick={() => setShowPopup({ type: null, message: '' })}>OK</button>
-              </div>
-            </>
-          )}
-          {showPopup.type === 'success' && (
-            <>
-              <FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green', fontSize: '24px' }} />
-              <div className="success-message">{showPopup.message}</div>
-            </>
-          )}
-        </div>
-      )}
- 
- 
- <footer className="footer-admin">
-  <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
-</footer>
- 
-  
+        {showPopup.type && (
+          <div className={showPopup.type === 'error' ? 'error-popup' : 'success-popup'}>
+            {showPopup.type === 'error' && (
+              <>
+                <div className="error-title">Error</div>
+                <div className="error-message">{showPopup.message}</div>
+                <div className="error-actions">
+                  <button 
+                    className="confirm-btn" 
+                    onClick={() => setShowPopup({ type: null, message: '' })}
+                  >
+                    OK
+                  </button>
+                </div>
+              </>
+            )}
+            {showPopup.type === 'success' && (
+              <>
+                <FontAwesomeIcon 
+                  icon={faCheckCircle} 
+                  style={{ color: 'green', fontSize: '24px' }} 
+                />
+                <div className="success-message">{showPopup.message}</div>
+              </>
+            )}
+          </div>
+        )}
 
-     </div>
-  );
-};
+        <footer className="footer-admin">
+          <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
+        </footer>
+
+      </div>
+    );
+  };
 
 export default AdminPage;

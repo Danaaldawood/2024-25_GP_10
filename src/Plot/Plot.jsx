@@ -1,20 +1,23 @@
+// --- Imports ---
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Plot.css";
 import plotImage from "../images/plot1.JPG";
 import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
-import { Helmet } from 'react-helmet';
-
+import { Helmet } from "react-helmet";
 
 export const Plot = () => {
+  // --- State Management ---
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [selectedDimension, setSelectedDimension] = useState("");
   const [dimensionPlaceholder, setDimensionPlaceholder] =
     useState("Select a topic");
   const [hasError, setHasError] = useState(false);
+
   const navigate = useNavigate();
 
+  // --- Dialog Handlers ---
   const openDialog = () => {
     setPopupOpen(true);
   };
@@ -23,6 +26,7 @@ export const Plot = () => {
     setPopupOpen(false);
   };
 
+  // --- Form Handlers ---
   const handleDimensionChange = (event) => {
     setSelectedDimension(event.target.value);
     setHasError(false);
@@ -34,18 +38,19 @@ export const Plot = () => {
       setHasError(true);
       return;
     }
-
     closeDialog();
     navigate("/Freestyle");
   };
 
   return (
     <div className="plotpage">
+      {/* Meta Tags */}
       <Helmet>
-      <title>Plot</title>
-      <meta name="description" content="Plot page" />
-    </Helmet>
-    {/* Header */}
+        <title>Plot</title>
+        <meta name="description" content="Plot page" />
+      </Helmet>
+
+      {/* Header */}
       <div className="plot-page-header">
         <button
           className="plot-back-btn"
@@ -55,18 +60,23 @@ export const Plot = () => {
         </button>
       </div>
 
-      {/* Plot content */}
+      {/* Main Content Section */}
       <div className="plotheader">
+        {/* Title and Description */}
         <h3>The overall evaluation</h3>
         <pre>Topic: Food | Baseline LLM | Evaluation method: CAR score </pre>
 
+        {/* Plot Image */}
         <img src={plotImage} alt="Evaluation Plot" />
+
+        {/* Action Button */}
         <div className="plotsubmit-container">
           <button className="plotsubmit" onClick={openDialog}>
             Free style chatting
           </button>
         </div>
 
+        {/* Topic Selection Dialog */}
         {isPopupOpen && (
           <div className="plotdialog-container">
             <dialog open className="plotpopup-dialog">
@@ -99,6 +109,7 @@ export const Plot = () => {
           </div>
         )}
       </div>
+
       {/* Footer */}
       <Footer />
     </div>
