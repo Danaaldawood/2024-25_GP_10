@@ -183,15 +183,48 @@
 /* Media Queries */
 @media (max-width: 768px) {
   .Login-container {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: column;  
+    width: 100%;  
+    padding: 1rem; 
   }
 
-  .left-section {
-    display: none;
+  .left-section {  
+    flex: none;  
+    background: linear-gradient(700deg, #004D60, #6084a9);
+    color: #fff;
+    display: flex !important;
+   
+     width: 100%;  
+    margin-bottom: 1rem;  
+    text-align: center;  
   }
 
   .Login-form {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .Login-title {
+    font-size: 18px;  
+  }
+
+  .Login-user-type-btn {
+    font-size: 16px;  
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .Login-btn {
+    font-size: 16px; 
+    padding: 1rem;
+  }
+
+  .Login-link, .forget-password {
+    font-size: 14px;  
+  }
+
+  .Login-input, .Login-select {
+    font-size: 14px; 
     padding: 1rem;
   }
 }

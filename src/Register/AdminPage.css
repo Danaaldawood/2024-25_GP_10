@@ -41,14 +41,28 @@
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(22, 69, 109, 0.1);
   border-radius: 8px;
 }
+ 
+.deny-btn {
+  background-color: #dc3545;  /* Red for deny */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ 
 
 .requests-table th, .requests-table td {
-  padding: 12px;
+  padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  width: 15%;  /* تحديد عرض الأعمدة */
+  word-wrap: break-word;  /* لف النصوص الطويلة */
+  overflow-wrap: break-word;
 }
 
 .requests-table th {
@@ -79,6 +93,8 @@
    flex-grow: 1;  
    text-align: center;   
    min-width: 80px;  
+   margin: 0 10px; 
+
 }
  
 
@@ -287,20 +303,8 @@
   cursor: pointer;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
- body, html {
-  height: 100%;   
-  margin: 0;
-}
+ 
+  
 
 .main-content {
   display: flex;
@@ -329,3 +333,264 @@
   text-align: center;
 }
 
+/* Responsive */
+@media (max-width: 786px) {
+   .requests-table {
+    width: 100%;
+    margin-top: 20px;
+    display: block;
+    table-layout: auto;  
+  }
+
+   .requests-table th, .requests-table td {
+    padding: 8px 10px;
+    font-size: 12px;   
+    text-align: left;
+    word-wrap: break-word;   
+  }
+
+  /* Header styling */
+  .requests-table th {
+    background-color: #6084a9;
+    color: white;
+    font-weight: bold;
+    min-width: 50px;  
+  }
+
+  /* Cells styling */
+  .requests-table td {
+    font-size: 12px;
+    min-width: 60px;   
+  }
+  /* Cells styling */
+  .requests-table td {
+    font-size: 13px;
+    min-width: 60px;  
+  }
+ 
+  .admin-toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .admin-toggle-buttons button {
+    width: 48%;  
+    padding: 12px;
+    font-size: 16px;
+    background-color: #8d9fb0;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  .admin-toggle-buttons button.active {
+    background-color: #6084a9;
+  }
+
+  .admin-toggle-buttons button:hover {
+    background-color: #456b90;
+  }
+
+   .model-upload-form {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+   .footer-admin {
+    padding: 15px;
+  }
+
+  .footer-admin p {
+    font-size: 0.9rem;
+  }
+}
+
+ @media (max-width: 1024px) {
+  /* Header */
+  .header-admin {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .header-admin .delete-btn,
+  .header-admin .Adminlogout-btn {
+    width: auto;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin-top: 0;
+  }
+
+  .header-admin .delete-btn {
+    background-color: #ff4d4d; /* Red */
+  }
+
+  .header-admin .delete-btn:hover {
+    background-color: #ff1a1a;
+  }
+
+  .header-admin .Adminlogout-btn {
+    background-color: #6084a9; 
+  }
+
+  .header-admin .Adminlogout-btn:hover {
+    background-color: #456b90;
+  }
+ 
+  .requests-table th {
+    background-color: #6084a9;
+    color: white;
+    font-weight: bold;
+  }
+
+  .requests-table td {
+    font-size: 14px;
+  }
+
+   .admin-toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .admin-toggle-buttons button {
+    width: 48%; 
+    padding: 12px;
+    font-size: 16px;
+    background-color: #8d9fb0;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .admin-toggle-buttons button.active {
+    background-color: #6084a9;
+  }
+
+  .admin-toggle-buttons button:hover {
+    background-color: #456b90;
+  }
+
+  /* Model Upload Form */
+  .model-upload-form {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9fbfc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .input-field:focus {
+    border-color: #6084a9;
+  }
+
+  /* Footer */
+  .footer-admin {
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  .footer-admin p {
+    font-size: 1rem;
+    margin: 0;
+  }
+  .requests-table th, .requests-table td {
+    padding: 10px 12px;
+    font-size: 12px;  
+  }
+
+  .requests-table .approve-btn,
+  .requests-table .deny-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}
+
+   
+
+
+
+
+
+
+
+
+
+
+/* For very small devices (phones) */
+@media (max-width: 480px) {
+  .header-admin {
+    padding: 10px 15px;
+  }
+
+  .requests-table th,
+  .requests-table td {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .requests-table .approve-btn,
+  .requests-table .deny-btn {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .admin-header-banner h1 {
+    font-size: 22px;
+  }
+
+  .footer-admin {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+
+.requests-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS devices */
+}

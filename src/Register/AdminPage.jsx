@@ -40,8 +40,9 @@ export const AdminPage = () => {
         const requestsData = querySnapshot.docs.map(doc => {
           const data = doc.data();
   
-         
-          return { id: doc.id, ...data };
+          const customId = `Moderator_${doc.id.slice(-4).toUpperCase()}`;
+
+          return { id: customId, ...data };
         });
         setRequests(requestsData);
       } catch (err) {
@@ -310,8 +311,8 @@ export const AdminPage = () => {
               </thead>
               <tbody>
                 {filteredRequests.map(request => (
-                  <tr key={request.id}>
-                    <td>{request.Moderator_Id}</td>
+                  <tr key={request.id}> {/* استخدم الـ id المعدل هنا */}
+                  <td>{request.id}</td> {/* عرض الـ id المعدل */}
                     <td>{request.fullName}</td>
                     <td>{request.email}</td>
                     <td>{request.regionM}</td>
@@ -320,18 +321,19 @@ export const AdminPage = () => {
                     <td className={`status status-${request.status ? request.status.toLowerCase() : ''}`}>
                       {request.status}
                     </td>
-                    <td>
-                      {request.status !== 'Approved' && (
-                        <button className="approve-btn" onClick={() => handleApproveRequest(request.id, request.email)}>
-                          Approve
-                        </button>
-                      )}
-                      {request.status !== 'Denied' && (
-                        <button className="deny-btn" onClick={() => handleDenyRequest(request.id, request.email)}>
-                          Deny
-                        </button>
-                      )}
-                    </td>
+                    <td style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  {request.status !== 'Approved' && (
+    <button className="approve-btn" onClick={() => handleApproveRequest(request.id, request.email)}>
+      Approve
+    </button>
+  )}
+  {request.status !== 'Denied' && (
+    <button className="deny-btn" onClick={() => handleDenyRequest(request.id, request.email)}>
+      Deny
+    </button>
+  )}
+</td>
+
                   </tr>
                 ))}
               </tbody>

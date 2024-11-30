@@ -239,19 +239,69 @@ margin-bottom: 10px;}
 
 }
  
-/* Media Queries */
+/* Responsive*/
 @media (max-width: 768px) {
-  .sign-container {
+   .sign-container {
     flex-direction: column;
     width: 100%;
+    padding: 0.5rem;
   }
 
   .Left-section {
-    display: none;
-  }
+    flex: 1;
+    background: linear-gradient(700deg, #004D60, #6084a9);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    display: block;    }
 
+  /* Adjust Sign Form */
   .sign-form {
     padding: 1rem;
+    width: 100%;
+  }
+
+  /* Buttons and Inputs */
+  sign-user-type-container {
+    display: flex;
+    justify-content: center;  
+    align-items: center; 
+    margin-bottom: 0.75rem;
+  }
+  
+  .sign-user-type-btn {
+    font-size: 16px;  
+    padding: 1rem;
+    margin-top: 1rem;
+    width: auto;  
+    text-align: center;  
+  }
+
+  .sign-input {
+    font-size: 14px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sign-btn {
+    font-size: 16px;  
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .password-requirements {
+    font-size: 14px;
+    padding: 0;
+    margin-top: 1rem;
+  }
+
+   .password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
