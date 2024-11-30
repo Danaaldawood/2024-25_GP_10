@@ -8,8 +8,11 @@
   --dark-gray: #737272;
   --hover-danger-color: #ff5264;
 }
-
-
+.moderator-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;}
 
 .header-banner {
   width: 100%;
@@ -113,7 +116,7 @@
 .notifications-container {
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 50px;
+  
 }
 
 .notification-btn {
@@ -305,16 +308,6 @@
   font-size: 18px;
 }
 
-footer {
-  width: 100%;
-  text-align: center;
-  background-color: #003f5c;
-  color: white;
-  padding: 20px 0;
-  margin-top: 0;
-  position: absolute;
-  bottom: 0;
-}
 
 /* Media Queries for Responsiveness */
 @media screen and (max-width: 1400px) {
