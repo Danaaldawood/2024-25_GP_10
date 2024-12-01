@@ -28,7 +28,7 @@ function CompareResult() {
     "Sport",
     "Family",
     "Holidays/Celebration/Leisure",
-    "Worklife",
+    "Work life",
     "Education",
     "Greeting",
   ];

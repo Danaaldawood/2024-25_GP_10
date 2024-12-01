@@ -27,7 +27,7 @@ export const Footer = () => {
           <RiTwitterXLine className="footer-icon" />
         </a>
         <a
-          href="https://instagram.com/yourprofile"
+          href="https://www.instagram.com/culturelens43/"
           target="_blank"
           rel="noopener noreferrer"
         >

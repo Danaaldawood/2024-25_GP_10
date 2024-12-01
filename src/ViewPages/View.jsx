@@ -180,13 +180,13 @@ export function RealtimeData() {
   // Handles changes in the selected value for a row
   const handleValueChange = (rowId, selectedValue) => {
     const row = tableData.find((row) => row.id === rowId);
-    if (row) {
-      const selectedAnnotation = row.annotations?.find(
-        (annotation) => annotation.en_values[0] === selectedValue
+    if (row && row.annotations) {
+      const selectedAnnotation = row.annotations.find(
+        (annotation) => annotation?.en_values?.[0] === selectedValue
       );
       setReasons((prev) => ({
         ...prev,
-        [rowId]: selectedAnnotation ? selectedAnnotation.reason : "variation",
+        [rowId]: selectedAnnotation?.reason || "variation",
       }));
     }
   };
