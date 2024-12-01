@@ -17,33 +17,25 @@ export function AdminForgetPass() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const checkEmailExists = async (email) => {
-    const normalizedEmail = email.toLowerCase();
+    const normalizedEmail = email.toLowerCase();  
     
-    const usersRef = collection(db, "Users");
-    const moderatorsRef = collection(db, "Moderators");
-
+    const adminsRef = collection(db, "Admin"); 
+    
     try {
-      const [usersSnapshot, moderatorsSnapshot] = await Promise.all([
-        getDocs(usersRef),
-        getDocs(moderatorsRef)
-      ]);
-
-      const userExists = usersSnapshot.docs.some(doc => {
-        const userEmail = doc.data().email;
-        return userEmail && userEmail.toLowerCase() === normalizedEmail;
+      const adminsSnapshot = await getDocs(adminsRef); 
+       const adminExists = adminsSnapshot.docs.some(doc => {
+        const adminEmail = doc.data().email;  
+        return adminEmail && adminEmail.toLowerCase() === normalizedEmail;
       });
-
-      const moderatorExists = moderatorsSnapshot.docs.some(doc => {
-        const moderatorEmail = doc.data().email;
-        return moderatorEmail && moderatorEmail.toLowerCase() === normalizedEmail;
-      });
-
-      return userExists || moderatorExists;
+      
+      return adminExists;  
     } catch (error) {
-      console.error("Error checking email existence:", error);
-      throw error;
+      console.error("Error checking email existence in Admin collection:", error);
+      throw error;  
     }
   };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
