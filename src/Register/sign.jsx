@@ -276,7 +276,7 @@ const Sign = () => {
       <div className="sign-container">
         <div className="Left-section">
           <div className="logo-welcome-container">
-            <img src="logo.png" alt="Logo" width="100" height="100" />
+<img src={LOGO} alt="Logo" width="100" height="100" />
             <h2>{t("welcome")}</h2>
           </div>
           <p className="Welcome-txt">{t("toCultureLens")}</p>
