@@ -1,15 +1,19 @@
+// --- Imports ---
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom'; 
 import { auth, db } from '../Register/firebase'; 
 import { doc, deleteDoc } from 'firebase/firestore';
 import { deleteUser, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 
+// --- DeleteConfirmation Component ---
 const DeleteConfirmation = ({ onCancel }) => {
-  const [password, setPassword] = useState(''); // For capturing user input
-  const [errorMessage, setErrorMessage] = useState(''); // For handling errors
-  const [notification, setNotification] = useState(null); // For success notifications
-  const navigate = useNavigate(); // Use navigate for redirection
+  // --- State Management ---
+  const [password, setPassword] = useState(''); 
+  const [errorMessage, setErrorMessage] = useState(''); 
+  const [notification, setNotification] = useState(null); 
+  const navigate = useNavigate(); 
 
+  // --- Style Definitions ---
   const modalStyles = {
     position: 'fixed',
     top: '50%',
@@ -86,7 +90,7 @@ const DeleteConfirmation = ({ onCancel }) => {
     marginBottom: '10px',
   };
 
-  // Custom error messages
+  // --- Helper Functions ---
   const getCustomErrorMessage = (errorCode) => {
     switch (errorCode) {
       case 'auth/wrong-password':
@@ -98,9 +102,9 @@ const DeleteConfirmation = ({ onCancel }) => {
     }
   };
 
-  // Confirm deletion
+  // --- Event Handlers ---
   const handleConfirmDelete = async () => {
-    setErrorMessage(''); // Clear previous error message
+    setErrorMessage(''); 
     try {
       const user = auth.currentUser;
       if (!user) {
@@ -123,7 +127,7 @@ const DeleteConfirmation = ({ onCancel }) => {
 
       // Redirect to the sign-in page after 2 seconds
       setTimeout(() => {
-        navigate('/sign'); // Redirecting to the sign-in page
+        navigate('/sign'); 
       }, 2000);
 
     } catch (error) {
@@ -134,10 +138,12 @@ const DeleteConfirmation = ({ onCancel }) => {
 
   return (
     <div style={modalStyles}>
+      {/* Warning Header */}
       <div style={modalHeaderStyles}>
         <h3>Warning!</h3>
       </div>
 
+      {/* Modal Content */}
       <div style={modalBodyStyles}>
         <p>Please enter your password to confirm account deletion:</p>
         <input

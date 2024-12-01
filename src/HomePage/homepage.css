@@ -1,6 +1,9 @@
+/* Homepage layout */
 .homepage {
   overflow-x: hidden;
 }
+
+/* Styles for the main content area */
 .content {
   display: flex;
   align-items: center;
@@ -9,6 +12,9 @@
   margin-top: 40px;
   position: relative;
 }
+
+/* Map image style */
+
 .map-photo {
   display: block;
   margin: 0 auto;
@@ -19,17 +25,21 @@
   height: auto;
 }
 
+/* Text styling for welcoming message */
 .welcome-text {
   font-size: 2.2rem;
   font-weight: bold;
   color: #003f5c;
 }
 
+/* Description text styling */
 .description-text {
   font-size: 1.2rem;
   color: #555;
   margin-top: 10px;
 }
+
+/* "Learn More" Button styling  */
 
 .learn-more-btn {
   margin: 0.5rem;
@@ -52,6 +62,7 @@
   box-shadow: 0 4px 8px rgba(63, 126,  166,  0.4);
 }
 
+/* Map logo styling */
 .map-logo {
   height: 300px;
   width: auto;
@@ -59,6 +70,7 @@
   margin-left: 20px;
 }
 
+/* Layout for domain cards container */
 .domains-container {
   display: flex;
   justify-content: center;
@@ -66,6 +78,9 @@
   margin: 40px 0;
   flex-wrap: wrap;
 }
+
+/* Styling for domain cards */
+
 .domain-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -76,23 +91,17 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 350px;
   height: 240px;
-  padding-right: 10px;  
+  padding-right: 10px;
   font-size: 1rem;
-  color: #5a5a5a; 
-  }
- 
-  
-   
-  
-  
- .domain-card:hover {
+  color: #5a5a5a;
+}
+
+.domain-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(14, 82, 142, 0.2);
 }
 
-  
-  
- 
+/* Domain card title styling */
 .domain-card h3 {
   color: #003f5c;
   font-size: 1.5rem;
@@ -102,11 +111,9 @@
 .domain-card h5 {
   font-size: 18px;
   color: #474646;
-  }
- 
+}
 
- 
-
+/* Layout for dashboard */
 
 .dashboard {
   display: flex;
@@ -115,64 +122,60 @@
   flex-wrap: wrap;
   margin: 100px 0;
   background-color: #fff;
-  
 }
 
- p{
+p {
   font-size: 16px;
   color: #474646;
   font-weight: bold;
- }
+}
+
+/* Charts Styling */
+
 .chart:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(14, 82, 142, 0.2);
 }
 
-
 .charts {
   display: flex;
-  justify-content: space-around;  
-  gap: 50px; /* هذا للتحكم في المسافة بين الرسومات */
-  flex-wrap: wrap;  
+  justify-content: space-around;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
 .chart {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 40px 20px; 
+  padding: 40px 20px;
   text-align: center;
   width: 400px;
-  height: 360px; 
+  height: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-   
-    
 }
 
- 
-
-.doughnut-container, .bar-container, .chart canvas {
+.doughnut-container,
+.bar-container,
+.chart canvas {
   width: 250px !important;
   height: 240px !important;
   display: flex;
   align-items: center;
   justify-content: center;
 }
- 
+
 .chart h3 {
-  font-size: 1.5rem; /* حجم أفضل للعنوان */
+  font-size: 1.5rem;
   color: #0c4c6a;
   text-align: center;
   margin-top: 20px;
 }
- 
 
- 
-
-
+/* Responsive layout  */
 
 @media (max-width: 768px) {
   .charts {
@@ -185,6 +188,8 @@
     padding: 20px;
   }
 }
+
+/* Animation for rotating map logo */
 @media (prefers-reduced-motion: no-preference) {
   .map-logo {
     animation: rotateLogo infinite 20s linear;
@@ -209,4 +214,3 @@
 .text-center {
   color: #003f5c;
 }
- 

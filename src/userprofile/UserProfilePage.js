@@ -1,42 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import './UserProfilePage.css';
-import Notification from '../Modorater/Notification';
-import DeleteConfirmation from '../Modorater/DeleteConfirmation';
-import defaultProfilePic from '../Modorater/userpro.jpg';
-import { FaArrowLeft, FaTrash } from 'react-icons/fa';  // Import FaTrash
-import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../Register/firebase'; 
-import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { deleteUser, onAuthStateChanged, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
-import { Footer } from '../Footer/Footer';
-import { Helmet } from 'react-helmet';
+import React, { useState, useEffect } from "react";
+import "./UserProfilePage.css";
+import Notification from "../Modorater/Notification";
+import DeleteConfirmation from "../Modorater/DeleteConfirmation";
+import defaultProfilePic from "../Modorater/userpro.jpg";
+import { FaArrowLeft, FaTrash } from "react-icons/fa"; // Import FaTrash
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../Register/firebase";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  deleteUser,
+  onAuthStateChanged,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from "firebase/auth";
+import { Footer } from "../Footer/Footer";
+import { Helmet } from "react-helmet";
 
 const UserProfilePage = () => {
-  const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
-  const [email, setEmail] = useState(localStorage.getItem('email') || '');
-  const [region, setRegion] = useState(localStorage.getItem('region') || '');
+  // --- State Management ---
+  const [profileName, setProfileName] = useState(
+    localStorage.getItem("profileName") || ""
+  );
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [region, setRegion] = useState(localStorage.getItem("region") || "");
   const [notification, setNotification] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  // --- Data Fetching ---
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const fetchUserData = async () => {
           try {
-            const userDoc = await getDoc(doc(db, 'Users', user.uid));
+            // Get user document from Firestore
+            const userDoc = await getDoc(doc(db, "Users", user.uid));
             if (userDoc.exists()) {
               const userData = userDoc.data();
-              setProfileName(userData.fullName || '');
-              setEmail(userData.email || '');
-              setRegion(userData.region || '');
-              localStorage.setItem('profileName', userData.fullName || '');
-              localStorage.setItem('email', userData.email || '');
-              localStorage.setItem('region', userData.region || '');
+              // Update state and local storage
+
+              setProfileName(userData.fullName || "");
+              setEmail(userData.email || "");
+              setRegion(userData.region || "");
+              localStorage.setItem("profileName", userData.fullName || "");
+              localStorage.setItem("email", userData.email || "");
+              localStorage.setItem("region", userData.region || "");
             }
           } catch (error) {
-            console.error('Error fetching user data:', error);
+            console.error("Error fetching user data:", error);
           }
         };
         fetchUserData();
@@ -45,16 +57,24 @@ const UserProfilePage = () => {
     return () => unsubscribe();
   }, []);
 
+  // --- Event Handlers ---
+  // Handle profile save
+
   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
-      setNotification({ type: 'error', message: 'Full name cannot be empty. Please enter a valid name.' });
+      setNotification({
+        type: "error",
+        message: "Full name cannot be empty. Please enter a valid name.",
+      });
       return;
     }
 
     try {
       const user = auth.currentUser;
       if (user) {
-        const userDocRef = doc(db, 'Users', user.uid);
+        // Update Firestore document
+
+        const userDocRef = doc(db, "Users", user.uid);
 
         await updateDoc(userDocRef, {
           fullName: profileName,
@@ -62,56 +82,72 @@ const UserProfilePage = () => {
           region: region,
         });
 
-        localStorage.setItem('profileName', profileName);
-        localStorage.setItem('email', email);
-        localStorage.setItem('region', region);
+        // Update local storage
 
-        setNotification({ type: 'success', message: 'Profile saved successfully!' });
+        localStorage.setItem("profileName", profileName);
+        localStorage.setItem("email", email);
+        localStorage.setItem("region", region);
 
+        // Show success notification
+
+        setNotification({
+          type: "success",
+          message: "Profile saved successfully!",
+        });
       } else {
-        setNotification({ type: 'error', message: 'No user logged in.' });
+        setNotification({ type: "error", message: "No user logged in." });
       }
     } catch (error) {
-      console.error('Error saving profile:', error);
-      setNotification({ type: 'error', message: 'Failed to save profile.' });
+      console.error("Error saving profile:", error);
+      setNotification({ type: "error", message: "Failed to save profile." });
     }
   };
+  // Handle account deletion
 
   const handleDeleteAccount = () => {
     setShowModal(true);
   };
+  // Confirm account deletion
 
   const handleConfirmDelete = async (password) => {
-    setErrorMessage('');
+    setErrorMessage("");
     try {
       const user = auth.currentUser;
       if (!user) {
-        setNotification({ type: 'error', message: 'No user is logged in.' });
+        setNotification({ type: "error", message: "No user is logged in." });
         return;
       }
+      // Delete user authentication and document
 
       const credential = EmailAuthProvider.credential(user.email, password);
 
       await reauthenticateWithCredential(user, credential);
 
-      const userDocRef = doc(db, 'Users', user.uid);
+      const userDocRef = doc(db, "Users", user.uid);
       await deleteDoc(userDocRef);
       await deleteUser(user);
 
-      localStorage.removeItem('profileName');
-      localStorage.removeItem('email');
-      localStorage.removeItem('region');
+      // Clear local storage
 
-      setNotification({ type: 'success', message: 'Account deleted successfully.' });
-      navigate('/sign');
+      localStorage.removeItem("profileName");
+      localStorage.removeItem("email");
+      localStorage.removeItem("region");
+
+      setNotification({
+        type: "success",
+        message: "Account deleted successfully.",
+      });
+      navigate("/sign");
     } catch (error) {
-      if (error.code === 'auth/wrong-password') {
-        setErrorMessage('Incorrect password. Please try again.');
+      if (error.code === "auth/wrong-password") {
+        setErrorMessage("Incorrect password. Please try again.");
       } else {
         setErrorMessage(`Error: ${error.message}`);
       }
     }
   };
+
+  // Close notification
 
   const closeNotification = () => {
     setNotification(null);
@@ -119,28 +155,37 @@ const UserProfilePage = () => {
 
   return (
     <div className="profile-page-container">
+      {/* Meta Tags */}
+
       <Helmet>
         <title>Profile Page</title>
         <meta name="description" content="This is Profile page" />
       </Helmet>
+      {/* Header Section */}
 
       <header className="profile-header">
-        <button className="back-btn" onClick={() => navigate('/HomePage')}>
+        <button className="back-btn" onClick={() => navigate("/HomePage")}>
           <FaArrowLeft className="back-icon" />
         </button>
         <h1>User Profile</h1>
       </header>
-
+      
+      {/* Main Content */}
       <div className="profile-content">
+
+        {/* Profile Details */}
         <div className="profile-details">
           <img src={defaultProfilePic} alt="Profile" className="profile-pic" />
           <h3>{profileName}</h3>
           <p>{region}</p>
         </div>
 
+        {/* Profile Form */}
         <div className="profile-form-container">
           <h2>User Information</h2>
           <div className="form-row">
+
+            {/* Name Input */}
             <label>Full Name</label>
             <input
               type="text"
@@ -150,6 +195,7 @@ const UserProfilePage = () => {
             />
           </div>
 
+          {/* Email Input */}
           <div className="form-row">
             <label>Email</label>
             <input
@@ -160,6 +206,7 @@ const UserProfilePage = () => {
             />
           </div>
 
+          {/* Region Input */}
           <div className="form-row">
             <label>Region</label>
             <input
@@ -170,17 +217,18 @@ const UserProfilePage = () => {
             />
           </div>
 
+          {/* Action Buttons */}
           <button className="save-button" onClick={handleSaveProfile}>
             Save Profile
           </button>
 
           <button className="delete-button" onClick={handleDeleteAccount}>
-  Delete Account <FaTrash className="trash-icon" />
-</button>
-
+            Delete Account <FaTrash className="trash-icon" />
+          </button>
         </div>
       </div>
 
+      {/* Modals and Notifications */}
       {showModal && (
         <DeleteConfirmation
           onConfirm={handleConfirmDelete}
@@ -196,7 +244,7 @@ const UserProfilePage = () => {
           onClose={closeNotification}
         />
       )}
-
+      {/* Footer */}
       <Footer />
     </div>
   );

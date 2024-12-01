@@ -1,242 +1,269 @@
-* {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
-/* Page */
-.Login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #ffffff;
-  padding: 1rem;
-}
-
-/* Form Container */
-.Login-container {
-  display: flex;
-  align-items: stretch;
-  width: 850px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.Login-form {
-  padding: 1.5rem;
-  flex: 1;
-  background-color: #f7f8f8;
-}
-
-.Login-title {
-  font-size: 20px;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* User Type Buttons */
-.Login-user-type-container {
-  display: flex;
-  margin-bottom: 1rem;
-}
-
-.Login-user-type-btn {
-  flex: 1;
-  padding: 0.5rem;
-  border: none;
-  cursor: pointer;
-  background-color: #cccaca;
-  color: #333;
-  font-weight: bold;
-  margin-right: 0.5rem;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.Login-user-type-btn.Login-active {
-  background-color: #004d60;
-  color: #fff;
-}
-
-.Login-label {
-  font-size: 14px;
-  color: #000000;
-  margin-bottom: 0rem;
-}
-
-.Login-input,
-.Login-select {
-  width: 100%;
-  height: 50px;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #ffffff;
-  transition: border-color 0.3s ease;
-  font-size: 13px;
-  box-sizing: border-box;
-  margin-bottom: 1rem;
-}
-
-.Login-input:focus,
-.Login-select:focus {
-  border-color: #004d60;
-  outline: none;
-}
-
-/* Left Section style*/
-.left-section {
-  flex: 1;
-  background: linear-gradient(700deg, #004d60, #6084a9);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  border-radius: 0 20px 20px 0;
-}
-
-.left-section h2 {
-  font-size: 36px;
-  margin-bottom: 1rem;
-}
-
-.left-section p {
-  font-size: 18px;
-  text-align: center;
-  line-height: 1.5;
-}
-
-.Welcome-txt {
-  font-size: 16px;
-  color: #ffffff;
-  font-weight: bold;
-  text-align: center;
-  margin: 1rem 0;
-  line-height: 1.5;
-}
-
-/* Button */
-.Login-btn {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #2d5174;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.Login-btn:hover {
-  background-color: #004d60;
-}
-
-.Login-login {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.Login-link,
-.forget-password {
-  color: #3f6da6;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: right;
-}
-
-.Login-link:hover {
-  text-decoration: underline;
-}
-
-/* Password Container */
-.password-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.password-icon {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  color: gray;
-  height: 20px;
-  width: 20px;
-}
-
-/* Password Requirements */
-.password-requirements {
-  list-style-type: disc;
-  color: rgb(82, 81, 81);
-  font-size: 11px;
-  padding-left: 15px;
-  margin: 0 0 1rem 0;
-}
-
-.password-requirements li {
-  margin-bottom: 4px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .Login-container {
-    flex-direction: column;
-    width: 100%;
+/* ====================================
+   1. GLOBAL STYLES
+   ==================================== */
+   * {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  
+  /* ====================================
+     2. PAGE LAYOUT
+     ==================================== */
+  .Login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
     padding: 1rem;
   }
-
-  .left-section {
-    flex: none;
-    background: linear-gradient(700deg, #004d60, #6084a9);
-    color: #fff;
-    display: flex !important;
-
-    width: 100%;
+  
+  /* ====================================
+     3. FORM CONTAINER AND STRUCTURE
+     ==================================== */
+  .Login-container {
+    display: flex;
+    align-items: stretch;
+    width: 850px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Login-form {
+    padding: 1.5rem;
+    flex: 1;
+    background-color: #f7f8f8;
+  }
+  
+  /* ====================================
+     4. FORM ELEMENTS
+     ==================================== */
+  /* Form Title */
+  .Login-title {
+    font-size: 20px;
     margin-bottom: 1rem;
     text-align: center;
   }
-
-  .Login-form {
-    padding: 1rem;
-    width: 100%;
-  }
-
-  .Login-title {
-    font-size: 18px;
-  }
-
-  .Login-user-type-btn {
-    font-size: 16px;
-    padding: 1rem;
-    margin-top: 1rem;
-  }
-
-  .Login-btn {
-    font-size: 16px;
-    padding: 1rem;
-  }
-
-  .Login-link,
-  .forget-password {
-    font-size: 14px;
-  }
-
+  
+  /* Input Fields */
   .Login-input,
   .Login-select {
+    width: 100%;
+    height: 50px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+    font-size: 13px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+  
+  .Login-input:focus,
+  .Login-select:focus {
+    border-color: #004d60;
+    outline: none;
+  }
+  
+  /* User Type Selection */
+  .Login-user-type-container {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .Login-user-type-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    background-color: #cccaca;
+    color: #333;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  
+  .Login-user-type-btn.Login-active {
+    background-color: #004d60;
+    color: #fff;
+  }
+  
+  /* Labels */
+  .Login-label {
     font-size: 14px;
-    padding: 1rem;
+    color: #000000;
+    margin-bottom: 0rem;
   }
-}
-
-@media (min-width: 1200px) {
-  .Login-container {
-    width: 800px;
+  
+  /* ====================================
+     5. LEFT SECTION STYLES
+     ==================================== */
+  .left-section {
+    flex: 1;
+    background: linear-gradient(700deg, #004d60, #6084a9);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 0 20px 20px 0;
   }
-}
+  
+  .left-section h2 {
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+  
+  .left-section p {
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  /* Welcome Text */
+  .Welcome-txt {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+    line-height: 1.5;
+  }
+  
+  /* ====================================
+     6. BUTTON STYLES
+     ==================================== */
+  /* Primary Button */
+  .Login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2d5174;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Login-btn:hover {
+    background-color: #004d60;
+  }
+  
+  /* Links and Secondary Actions */
+  .Login-login {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .Login-link,
+  .forget-password {
+    color: #3f6da6;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: right;
+  }
+  
+  .Login-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* ====================================
+     7. PASSWORD FIELD STYLES
+     ==================================== */
+  /* Password Container */
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Password Icon */
+  .password-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: gray;
+    height: 20px;
+    width: 20px;
+  }
+  
+  /* Password Requirements */
+  .password-requirements {
+    list-style-type: disc;
+    color: rgb(82, 81, 81);
+    font-size: 11px;
+    padding-left: 15px;
+    margin: 0 0 1rem 0;
+  }
+  
+  .password-requirements li {
+    margin-bottom: 4px;
+  }
+  
+  /* ====================================
+     8. RESPONSIVE DESIGN
+     ==================================== */
+  /* Tablet (max-width: 768px) */
+  @media (max-width: 768px) {
+    .Login-container {
+      flex-direction: column;
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .left-section {
+      flex: none;
+      background: linear-gradient(700deg, #004d60, #6084a9);
+      color: #fff;
+      display: flex !important;
+      width: 100%;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    .Login-form {
+      padding: 1rem;
+      width: 100%;
+    }
+  
+    .Login-title {
+      font-size: 18px;
+    }
+  
+    .Login-user-type-btn {
+      font-size: 16px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+  
+    .Login-btn {
+      font-size: 16px;
+      padding: 1rem;
+    }
+  
+    .Login-link,
+    .forget-password {
+      font-size: 14px;
+    }
+  
+    .Login-input,
+    .Login-select {
+      font-size: 14px;
+      padding: 1rem;
+    }
+  }
+  
+  /* Desktop (min-width: 1200px) */
+  @media (min-width: 1200px) {
+    .Login-container {
+      width: 800px;
+    }
+  }

@@ -1,3 +1,6 @@
+/* ==============================================
+   1. IMPORT 
+   ============================================== */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LOGO from "../images/Logo.png";
@@ -11,6 +14,9 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
+/* ==============================================
+   2. COMPONENT DEFINITION AND STATE
+   ============================================== */
 const Login = () => {
   const { t } = useTranslation("login");
   const [email, setEmail] = useState("");
@@ -19,51 +25,54 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
+  /* ==============================================
+     3. HELPER FUNCTIONS
+     ============================================== */
+  // Toggle password visibility
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Change the selected user type (either 'User' or 'Moderator')
-
+  // Handle user type selection (User/Moderator)
   const handleUserTypeChange = (type) => {
     setUserType(type);
   };
-  //handel a submission for login
+
+  /* ==============================================
+     4. FORM SUBMISSION HANDLER
+     ============================================== */
   const handleCreateAccount = async (e) => {
     e.preventDefault();
-    // Ensure both email and password are filled
 
+    // Input validation
     if (!email.trim() || !password.trim()) {
       setErrorMessage(t("Please complete all required fields."));
       return;
     }
 
     try {
-      // sign in with the provided email and password
-
+      // Firebase authentication
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = userCredential.user;
-      // Choose the appropriate collection based on user type User or Moderator
 
+      // User type verification and routing
       const collectionPath = userType === "User" ? "Users" : "Moderators";
       const userDoc = await getDoc(doc(db, collectionPath, user.uid));
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
 
+        // Handle moderator specific status checks
         if (userType === "Moderator") {
-          // Handle moderator specific status checks
-
           if (userData.status === "Pending") {
-            setErrorMessage(
-              t("Sorry, your request is pending until approval. ")
-            );
+            setErrorMessage(t("Sorry, your request is pending until approval. "));
             setIsLoading(false);
           } else if (userData.status === "Denied") {
             setErrorMessage(t("Sory your request is denied"));
@@ -84,18 +93,24 @@ const Login = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      // If an error occurs during sign-in, display an error message
+      // Error handling
       setErrorMessage(t("loginPage.errorIncorrectCredentials"));
       setIsLoading(false);
     }
   };
+
+  /* ==============================================
+     5. COMPONENT 
+     ============================================== */
   return (
     <>
+      {/* Meta tags (Helmet) */}
       <Helmet>
         <title>{t("loginPage.helmetTitle")}</title>
         <meta name="description" content={t("loginPage.helmetDescription")} />
       </Helmet>
 
+      {/* Error popup message */}
       {errorMessage && (
         <div className="error-popup">
           <h3 className="error-title">{t("loginPage.errorTitle")}</h3>
@@ -107,12 +122,13 @@ const Login = () => {
           </div>
         </div>
       )}
-      {/* Login page container */}
 
+      {/* Main container structure */}
       <div className="Login-page">
         <div className="Login-container">
-          {/* Left section with logo and welcome message */}
-
+          {/* ------------------------
+             5.1 Left Section
+             ------------------------ */}
           <div className="left-section">
             <div className="logo-welcome-container">
               <img src={LOGO} alt="Logo" width="100" height="100" />
@@ -121,13 +137,14 @@ const Login = () => {
             <p className="Welcome-txt">{t("loginPage.welcomeText")}</p>
           </div>
 
-          {/* Login form */}
-
+          {/* ------------------------
+             5.2 Login Form Section
+             ------------------------ */}
           <form className="Login-form" onSubmit={handleCreateAccount}>
+            {/* Form title */}
             <h2 className="Login-title">{t("loginPage.loginTitle")}</h2>
 
-            {/* User type selection  */}
-
+            {/* User type selection buttons */}
             <div className="Login-user-type-container">
               <button
                 type="button"
@@ -150,7 +167,6 @@ const Login = () => {
             </div>
 
             {/* Email input field */}
-
             <label htmlFor="email" className="Login-label">
               {t("loginPage.emailLabel")}
             </label>
@@ -164,8 +180,8 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            {/* Password input field with toggle visibility using icon  */}
 
+            {/* Password input field with toggle */}
             <label className="Login-label" htmlFor="password">
               {t("loginPage.passwordLabel")}
             </label>
@@ -178,28 +194,24 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span
-                onClick={togglePasswordVisibility}
-                className="password-icon"
-              >
+              <span onClick={togglePasswordVisibility} className="password-icon">
                 <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
               </span>
             </div>
-            {/* Forgot password link */}
 
+            {/* Forgot password link */}
             <p className="forget-password">
               <Link to="/forgot" className="Login-link">
                 {t("loginPage.forgetPassword")}
               </Link>
             </p>
 
+            {/* Submit button */}
             <button type="submit" className="Login-btn" disabled={isLoading}>
-              {isLoading
-                ? t("loginPage.loggingIn")
-                : t("loginPage.loginButton")}
+              {isLoading ? t("loginPage.loggingIn") : t("loginPage.loginButton")}
             </button>
-            {/* Link to create a new account */}
 
+            {/* Create account link */}
             <div className="Login-login">
               <p style={{ fontSize: "15px" }}>
                 {t("loginPage.noAccount")}{" "}
@@ -214,5 +226,6 @@ const Login = () => {
     </>
   );
 };
+
 
 export default Login;

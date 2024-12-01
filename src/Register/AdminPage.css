@@ -1,408 +1,237 @@
- 
-.header-admin {
-  background:linear-gradient(700deg, #2d5174, #6084a9);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  padding: 20px 30px;
-  border-radius: 10px;
-}
-.delete-btn {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.delete-btn:hover {
-  background-color: #ff1a1a;
-}
-
-.Adminlogout-btn {
-  background-color:#6084a9;
-   padding: 10px 20px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  border-radius: 5px;
-}
-
-.Adminlogout-btn:hover {
-  background-color: #456b90;
-}
-
- .requests-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgba(22, 69, 109, 0.1);
-  border-radius: 8px;
-}
- 
-.deny-btn {
-  background-color: #dc3545;  /* Red for deny */
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
- 
-
-.requests-table th, .requests-table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  width: 15%;  /* تحديد عرض الأعمدة */
-  word-wrap: break-word;  /* لف النصوص الطويلة */
-  overflow-wrap: break-word;
-}
-
-.requests-table th {
-  background-color: #6084a9;
-  color: white;
-  font-weight: bold;
-}
-
- 
-
-.requests-table td {
-  font-size: 14px;
-}
-
- 
-
-
-.requests-table .approve-btn,
-.requests-table .deny-btn {
-   padding: 10px 0;   
-   background-color: #10a37f;
-   color: white;
-   border: none;
-   border-radius: 15px;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
-   font-size: 13px;
-   flex-grow: 1;  
-   text-align: center;   
-   min-width: 80px;  
-   margin: 0 10px; 
-
-}
- 
-
+/* ====================================
+   1. ADMIN HEADER STYLES
+   ==================================== */
+   .header-admin {
+    background: linear-gradient(700deg, #2d5174, #6084a9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+  }
   
- 
-
- 
-
- .requests-table .approve-btn {
-  background-color: #29a329;
-}
-
-.requests-table .approve-btn:hover {
-  background-color: #218121;
-}
-
-.requests-table .deny-btn {
-  background-color: #d42f2f;
-}
-
-.requests-table .deny-btn:hover {
-  background-color: #b22929;
-}
-
-.requests-table .actions button {
-  width: 100%;  /* Ensure actions buttons also have full width */
-}
-
-.filter-container {
-  margin-bottom: 15px;
-  align-items: center;
-}
-
-.filter-container label {
-  margin-right: 8px;
-  font-weight: bold;
-}
-
-.filter-container select {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.admin-header-banner {
-  width: 100%;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 20px 0;
-  margin: 20px 0;
-  border-radius: 10px;
-}
-
-.admin-header-banner h1 {
-  margin: 0;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.admin-toggle-buttons {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
- }
-
-.admin-toggle-buttons button {
-  padding: 10px 20px;
-  margin: 0 10px;
-  border: none;
-  background-color: #8d9fb0;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-}
-
-.admin-toggle-buttons button.active {
-  background-color: #6084a9;
-}
-
-.admin-toggle-buttons button:hover {
-  background-color:  #456b90;
-}
-
-.requests-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-  justify-content: center;
-}
-
- .approve-btn {
-  background-color: #29a329;
-}
-
-.approve-btn:hover {
-  background-color: #218121;
-}
-
-.deny-btn {
-  background-color: #d42f2f;
-}
-
-.deny-btn:hover {
-  background-color: #b22929;
-}
-/* Form Styling */
-.model-upload-section {
-  text-align: center;
-  padding: 40px;
-}
-
-.model-upload-section h2 {
-  font-size: 22px;
-  color: #1e4862;
-}
-
-.model-upload-form {
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: left;
-  background-color: #f9fbfc;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.input-field:focus {
-  border-color: #6084a9;
-  outline: none;
-  box-shadow: 0 0 5px rgba(96, 132, 169, 0.5);
-}
-
-/* Error Input Styling */
-.input-field.error {
-  border: 2px solid #dc172b;
-  color: #dc172b;
-}
-
-.input-field.error::placeholder {
-  color: #dc172b;
-  opacity: 1; /* Make placeholder fully visible */
-}
-
-.upload-btn {
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #456b90;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.upload-btn:hover {
-  background-color: #254d75;
-}
-.popup-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #f44336; /* Red for error messages */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  animation: fade-in 0.3s ease-in-out;
-}
-
-.popup-container.success {
-  background-color: #4CAF50; /* Green for success */
-}
-
-.popup-message {
-  font-size: 16px;
-  margin-right: 10px;
-}
-
-.popup-close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
- 
+  /* ====================================
+     2. BUTTON STYLES
+     ==================================== */
+  .delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
   
-
-.main-content {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;   
-}
-
-.content {
-  flex-grow: 1;   
-  padding-bottom: 60px; 
-}
-
-/* Footer */
-.footer-admin {
-  background:linear-gradient(700deg, #2d5174, #6084a9);
-  color: #fff;
-  padding: 20px 30px;
-  text-align: center;
-  margin-top: auto;  
-}
-
-
-.footer-admin p {
-  font-size: 1rem;
-  margin: 0;
-  text-align: center;
-}
-
-/* Responsive */
-@media (max-width: 786px) {
-   .requests-table {
+  .delete-btn:hover {
+    background-color: #ff1a1a;
+  }
+  
+  .Adminlogout-btn {
+    background-color: #6084a9;
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .Adminlogout-btn:hover {
+    background-color: #456b90;
+  }
+  
+  .deny-btn {
+    background-color: #dc3545;  /* Red for deny */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .approve-btn {
+    background-color: #29a329;
+  }
+  
+  .approve-btn:hover {
+    background-color: #218121;
+  }
+  
+  /* ====================================
+     3. TABLE STYLES
+     ==================================== */
+  .requests-table {
     width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
-    display: block;
-    table-layout: auto;  
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(22, 69, 109, 0.1);
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS devices */
   }
-
-   .requests-table th, .requests-table td {
-    padding: 8px 10px;
-    font-size: 12px;   
+  
+  .requests-table th, 
+  .requests-table td {
+    padding: 12px 15px;
     text-align: left;
-    word-wrap: break-word;   
+    border-bottom: 1px solid #ddd;
+    width: 15%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
-
-  /* Header styling */
+  
   .requests-table th {
     background-color: #6084a9;
     color: white;
     font-weight: bold;
-    min-width: 50px;  
   }
-
-  /* Cells styling */
+  
   .requests-table td {
-    font-size: 12px;
-    min-width: 60px;   
+    font-size: 14px;
   }
-  /* Cells styling */
-  .requests-table td {
+  
+  .requests-table .approve-btn,
+  .requests-table .deny-btn {
+    padding: 10px 0;
+    background-color: #10a37f;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     font-size: 13px;
-    min-width: 60px;  
+    flex-grow: 1;
+    text-align: center;
+    min-width: 80px;
+    margin: 0 10px;
   }
- 
+  
+  .requests-table .approve-btn {
+    background-color: #29a329;
+  }
+  
+  .requests-table .approve-btn:hover {
+    background-color: #218121;
+  }
+  
+  .requests-table .deny-btn {
+    background-color: #d42f2f;
+  }
+  
+  .requests-table .deny-btn:hover {
+    background-color: #b22929;
+  }
+  
+  .requests-table .actions button {
+    width: 100%;
+  }
+  
+  /* ====================================
+     4. FILTER AND BANNER STYLES 
+     ==================================== */
+  .filter-container {
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  
+  .filter-container label {
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  
+  .filter-container select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .admin-header-banner {
+    width: 100%;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 20px 0;
+    margin: 20px 0;
+    border-radius: 10px;
+  }
+  
+  .admin-header-banner h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /* ====================================
+     5. TOGGLE BUTTONS AND SECTION STYLES
+     ==================================== */
   .admin-toggle-buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+    justify-content: center;
+    margin: 10px 0;
   }
-
+  
   .admin-toggle-buttons button {
-    width: 48%;  
-    padding: 12px;
-    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
     background-color: #8d9fb0;
     color: white;
-    border-radius: 4px;
-    border: none;
     cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
   }
-
-
+  
   .admin-toggle-buttons button.active {
     background-color: #6084a9;
   }
-
+  
   .admin-toggle-buttons button:hover {
     background-color: #456b90;
   }
-
-   .model-upload-form {
-    width: 100%;
-    max-width: 600px;
-    padding: 15px;
-    margin-top: 15px;
+  
+  .requests-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
   }
-
+  
+  /* ====================================
+     6. FORM AND UPLOAD SECTION STYLES
+     ==================================== */
+  .model-upload-section {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .model-upload-section h2 {
+    font-size: 22px;
+    color: #1e4862;
+  }
+  
+  .model-upload-form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: #f9fbfc;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
   .input-field {
     width: 100%;
     padding: 10px;
@@ -410,187 +239,332 @@
     border-radius: 4px;
     font-size: 14px;
   }
-
-   .footer-admin {
-    padding: 15px;
-  }
-
-  .footer-admin p {
-    font-size: 0.9rem;
-  }
-}
-
- @media (max-width: 1024px) {
-  /* Header */
-  .header-admin {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px;
-    text-align: left;
-  }
-
-  .header-admin .delete-btn,
-  .header-admin .Adminlogout-btn {
-    width: auto;
-    padding: 10px 15px;
-    font-size: 14px;
-    margin-top: 0;
-  }
-
-  .header-admin .delete-btn {
-    background-color: #ff4d4d; /* Red */
-  }
-
-  .header-admin .delete-btn:hover {
-    background-color: #ff1a1a;
-  }
-
-  .header-admin .Adminlogout-btn {
-    background-color: #6084a9; 
-  }
-
-  .header-admin .Adminlogout-btn:hover {
-    background-color: #456b90;
-  }
- 
-  .requests-table th {
-    background-color: #6084a9;
-    color: white;
-    font-weight: bold;
-  }
-
-  .requests-table td {
-    font-size: 14px;
-  }
-
-   .admin-toggle-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-  }
-
-  .admin-toggle-buttons button {
-    width: 48%; 
-    padding: 12px;
-    font-size: 16px;
-    background-color: #8d9fb0;
-    color: white;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .admin-toggle-buttons button.active {
-    background-color: #6084a9;
-  }
-
-  .admin-toggle-buttons button:hover {
-    background-color: #456b90;
-  }
-
-  /* Model Upload Form */
-  .model-upload-form {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9fbfc;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-
-  .input-field {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-
+  
   .input-field:focus {
     border-color: #6084a9;
+    outline: none;
+    box-shadow: 0 0 5px rgba(96, 132, 169, 0.5);
   }
-
-  /* Footer */
+  
+  .input-field.error {
+    border: 2px solid #dc172b;
+    color: #dc172b;
+  }
+  
+  .input-field.error::placeholder {
+    color: #dc172b;
+    opacity: 1;
+  }
+  
+  .upload-btn {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #456b90;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .upload-btn:hover {
+    background-color: #254d75;
+  }
+  
+  /* ====================================
+     7. POPUP NOTIFICATION STYLES
+     ==================================== */
+  .popup-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: fade-in 0.3s ease-in-out;
+  }
+  
+  .popup-container.success {
+    background-color: #4CAF50;
+  }
+  
+  .popup-message {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .popup-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* ====================================
+     8. LAYOUT AND CONTENT STYLES
+     ==================================== */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding-bottom: 60px;
+  }
+  
+  /* ====================================
+     9. FOOTER STYLES
+     ==================================== */
   .footer-admin {
-    padding: 15px 20px;
+    background: linear-gradient(700deg, #2d5174, #6084a9);
+    color: #fff;
+    padding: 20px 30px;
     text-align: center;
+    margin-top: auto;
   }
-
+  
   .footer-admin p {
     font-size: 1rem;
     margin: 0;
+    text-align: center;
   }
-  .requests-table th, .requests-table td {
-    padding: 10px 12px;
-    font-size: 12px;  
-  }
-
-  .requests-table .approve-btn,
-  .requests-table .deny-btn {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-}
-
-   
-
-
-
-
-
-
-
-
-
-
-/* For very small devices (phones) */
-@media (max-width: 480px) {
-  .header-admin {
-    padding: 10px 15px;
+  /* ====================================
+     10. RESPONSIVE STYLES
+     ==================================== */
+  
+  /* -------------------------------------
+     10.1 Tablet (max-width: 1024px)
+     ------------------------------------- */
+  @media (max-width: 1024px) {
+    .header-admin {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      text-align: left;
+    }
+  
+    .header-admin .delete-btn,
+    .header-admin .Adminlogout-btn {
+      width: auto;
+      padding: 10px 15px;
+      font-size: 14px;
+      margin-top: 0;
+    }
+  
+    .header-admin .delete-btn {
+      background-color: #ff4d4d;
+    }
+  
+    .header-admin .delete-btn:hover {
+      background-color: #ff1a1a;
+    }
+  
+    .header-admin .Adminlogout-btn {
+      background-color: #6084a9;
+    }
+  
+    .header-admin .Adminlogout-btn:hover {
+      background-color: #456b90;
+    }
+  
+    .requests-table th {
+      background-color: #6084a9;
+      color: white;
+      font-weight: bold;
+    }
+  
+    .requests-table td {
+      font-size: 14px;
+    }
+  
+    .admin-toggle-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+  
+    .admin-toggle-buttons button {
+      width: 48%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #8d9fb0;
+      color: white;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .admin-toggle-buttons button.active {
+      background-color: #6084a9;
+    }
+  
+    .admin-toggle-buttons button:hover {
+      background-color: #456b90;
+    }
+  
+    .model-upload-form {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9fbfc;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+  
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  
+    .input-field:focus {
+      border-color: #6084a9;
+    }
+  
+    .footer-admin {
+      padding: 15px 20px;
+      text-align: center;
+    }
+  
+    .footer-admin p {
+      font-size: 1rem;
+      margin: 0;
+    }
+  
+    .requests-table th,
+    .requests-table td {
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+  
+    .requests-table .approve-btn,
+    .requests-table .deny-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
   }
-
-  .requests-table th,
-  .requests-table td {
-    padding: 6px 10px;
-    font-size: 12px;
+  
+  /* -------------------------------------
+     10.2 Mobile (max-width: 786px)
+     ------------------------------------- */
+  @media (max-width: 786px) {
+    .requests-table {
+      width: 100%;
+      margin-top: 20px;
+      display: block;
+      table-layout: auto;
+    }
+  
+    .requests-table th,
+    .requests-table td {
+      padding: 8px 10px;
+      font-size: 12px;
+      text-align: left;
+      word-wrap: break-word;
+    }
+  
+    .requests-table th {
+      background-color: #6084a9;
+      color: white;
+      font-weight: bold;
+      min-width: 50px;
+    }
+  
+    .requests-table td {
+      font-size: 12px;
+      min-width: 60px;
+    }
+  
+    .admin-toggle-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+  
+    .admin-toggle-buttons button {
+      width: 48%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #8d9fb0;
+      color: white;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .admin-toggle-buttons button.active {
+      background-color: #6084a9;
+    }
+  
+    .admin-toggle-buttons button:hover {
+      background-color: #456b90;
+    }
+  
+    .model-upload-form {
+      width: 100%;
+      max-width: 600px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+  
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  
+    .footer-admin {
+      padding: 15px;
+    }
+  
+    .footer-admin p {
+      font-size: 0.9rem;
+    }
   }
-
-  .requests-table .approve-btn,
-  .requests-table .deny-btn {
-    font-size: 12px;
-    padding: 8px 15px;
+  
+  /* -------------------------------------
+     10.3 Small Mobile (max-width: 480px)
+     ------------------------------------- */
+  @media (max-width: 480px) {
+    .header-admin {
+      padding: 10px 15px;
+    }
+  
+    .requests-table th,
+    .requests-table td {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+  
+    .requests-table .approve-btn,
+    .requests-table .deny-btn {
+      font-size: 12px;
+      padding: 8px 15px;
+    }
+  
+    .admin-header-banner h1 {
+      font-size: 22px;
+    }
+  
+    .footer-admin {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+    }
   }
-
-  .admin-header-banner h1 {
-    font-size: 22px;
-  }
-
-  .footer-admin {
-    font-size: 0.9rem;
-    padding: 10px 20px;
-  }
-}
-
-.requests-table {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS devices */
-}

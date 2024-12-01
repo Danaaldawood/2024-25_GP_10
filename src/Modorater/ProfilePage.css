@@ -1,3 +1,4 @@
+/* --- Profile Page Layout --- */
 /* Main container for the profile page */
 .profile-page-container {
   display: flex;
@@ -7,7 +8,7 @@
   background-color: #ffffff;
 }
 
-/* Header with back arrow */
+/* --- Header Section --- */
 .profile-header {
   display: flex;
   align-items: center;
@@ -25,6 +26,7 @@
   font-size: 24px;
 }
 
+/* Back button styling */
 .back-btn {
   background: none;  
   border: none;  
@@ -47,7 +49,8 @@
   font-size: 22px;
 }
 
-/* Profile content section */
+/* --- Main Content --- */
+/* Container for profile information */
 .profile-content {
   display: flex;
   justify-content: center;
@@ -61,7 +64,7 @@
   padding: 0 10px;
 }
 
-/* Profile details (left side) */
+/* --- Profile Details Section --- */
 .profile-details {
   flex: 1 1;
   background: linear-gradient(700deg, #004D60, #6084a9);
@@ -74,6 +77,7 @@
   padding: 20px;
 }
 
+/* Profile image styling */
 .profile-pic {
   width: 120px;
   height: 120px;
@@ -85,19 +89,19 @@
 .profile-details h3 {
   margin: 0;
   font-size: 24px;
-  
 }
-.profile-form-container h2{
-  margin-top: 10px;
 
+/* Form section title */
+.profile-form-container h2 {
+  margin-top: 10px;
 }
 
 .profile-details p {
   margin: 5px 0 15px;
-  color:#fff;
+  color: #fff;
 }
 
-/* Profile form (right side) */
+/* --- Form Container --- */
 .profile-form-container {
   width: 60%;
   background-color: #f7f8f8;
@@ -111,6 +115,8 @@
   margin-bottom: 20px;
   color: #3F7EA6;
 }
+
+/* Form row layout */
 .form-row {
   margin-bottom: 20px;
   display: flex;
@@ -124,8 +130,8 @@
   color: #072040; 
 }
 
-
-
+/* --- Input Fields --- */
+/* Text input styling */
 .formProf-input {
   width: 100%;
   padding: 12px;
@@ -136,10 +142,13 @@
   background-color: #f4f6f9;
 }
 
+/* Readonly input state */
 .formProf-input[readonly] {
   border: 2px solid #a9a9a9; 
 }
 
+/* --- Action Buttons --- */
+/* Save button styling */
 .save-button {
   background-color: #2b5a77;
   width: auto;  
@@ -160,6 +169,7 @@
   background-color: #366994;
 }
 
+/* Delete button styling */
 .delete-button {
   width: auto;  
   padding: 12px 75px;  
@@ -180,6 +190,7 @@
   background-color: #ff3b3b;
 }
 
+/* Delete icon styling */
 .trash-icon {
   font-size: 18px;
   margin-left: 10px;  

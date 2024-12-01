@@ -1,3 +1,4 @@
+/* Site title Style */
 .site-title {
   font-size: 2.2rem;
   font-weight: bold;
@@ -5,6 +6,7 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+/*Section Styles */
 .info-section {
   display: flex;
   flex-direction: column;
@@ -38,13 +40,15 @@
   line-height: 1.6;
   margin-top: 0.5rem;
 }
-.ButtonAdmin-Login{
+
+/* Buttons Styles */
+.ButtonAdmin-Login {
   margin: 0.5rem;
   padding: 0.8rem;
   font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
-  background-color:  #10a37f;
+  background-color: #10a37f;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -53,6 +57,7 @@
   align-items: center;
   width: 150px;
 }
+
 .ButtonAdmin-Login:hover {
   background-color: #095c47;
   transform: translateY(-2px);
@@ -64,7 +69,7 @@
   font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
-  background-color:  #10a37f;
+  background-color: #10a37f;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -79,6 +84,7 @@
   transform: translateY(-2px);
 }
 
+/* Styles for the animated logo */
 .animated-logo {
   width: 180px;
   border-radius: 50%;
@@ -86,12 +92,14 @@
   animation: fadeAndScale 1.2s ease;
 }
 
+/* Animation preference media query */
 @media (prefers-reduced-motion: no-preference) {
   .animated-logo {
     animation: rotateAnimation infinite 20s linear;
   }
 }
 
+/* Keyframes for the rotate animation */
 @keyframes rotateAnimation {
   from {
     transform: rotate(0deg);
@@ -101,6 +109,7 @@
   }
 }
 
+/* Keyframes for the pop-up animation */
 @keyframes popUp {
   from {
     opacity: 0;
@@ -112,11 +121,11 @@
   }
 }
 
-    
+/* Media query for smaller screens */
 @media (max-width: 768px) {
-   .container {
+  .container {
     display: flex;
-    justify-content: flex-end;  
+    justify-content: flex-end;
     width: 100%;
   }
 
@@ -135,9 +144,9 @@
     width: 150px;
   }
 
-   .logo {
-    width: 50%;  
-    margin-left: auto; 
-    margin-right: auto;  
+  .logo {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

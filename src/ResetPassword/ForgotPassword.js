@@ -8,14 +8,15 @@ import LOGO from '../images/Logo.png';
 import '../Register/Pop-Message.css'
 import { Helmet } from 'react-helmet';
 
-
 export function ForgotPassword() {
+  // State variables
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // Function to check if email exists in Firestore
   const checkEmailExists = async (email) => {
     const normalizedEmail = email.toLowerCase();
     
@@ -45,6 +46,7 @@ export function ForgotPassword() {
     }
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -73,10 +75,13 @@ export function ForgotPassword() {
 
   return (
     <div className="forgot-password-page">
+      {/* Helmet for page title and meta description */}
       <Helmet>
-      <title>Forgot Password</title>
-      <meta name="description" content="Forgot Password page" />
-    </Helmet>
+        <title>Forgot Password</title>
+        <meta name="description" content="Forgot Password page" />
+      </Helmet>
+      
+      {/* Error popup */}
       {error && (
         <div className="error-popup">
           <h3 className="error-title">Warning!</h3>
@@ -87,6 +92,7 @@ export function ForgotPassword() {
         </div>
       )}
       
+      {/* Success popup */}
       {showSuccess && (
         <div className="success-popup">
           <h3 className="success-title">Success!</h3>
@@ -97,7 +103,9 @@ export function ForgotPassword() {
         </div>
       )}
 
+      {/* Forgot password container */}
       <div className="forgot-password-container">
+        {/* Left section */}
         <div className="forgot-password-left-section">
           <div className="forgot-password-logo-welcome-container">
             <img src={LOGO} alt="Logo" width="100" height="100" />
@@ -106,6 +114,7 @@ export function ForgotPassword() {
           <p className="forgot-password-welcome-txt">Enter your email to reset your password.</p>
         </div>
 
+        {/* Forgot password form */}
         <form className="forgot-password-form" onSubmit={handleSubmit}>
           <h2 className="forgot-password-title">Forgot Password</h2>
           <label htmlFor="email" className="forgot-password-label">Email Address:</label>

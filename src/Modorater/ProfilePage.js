@@ -1,135 +1,170 @@
-import React, { useState, useEffect } from 'react';
-import './ProfilePage.css';
-import Notification from './Notification';
-import DeleteConfirmation from './DeleteConfirmation';
-import defaultProfilePic from './userpro.jpg';
-import { FaArrowLeft, FaTrash } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../Register/firebase';
-import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { deleteUser } from 'firebase/auth';
-import { Footer } from '../Footer/Footer';
-import { Helmet } from 'react-helmet';
+// --- Imports ---
+import React, { useState, useEffect } from "react";
+import "./ProfilePage.css";
+import Notification from "./Notification";
+import DeleteConfirmation from "./DeleteConfirmation";
+import defaultProfilePic from "./userpro.jpg";
+import { FaArrowLeft, FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../Register/firebase";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
+import { Footer } from "../Footer/Footer";
+import { Helmet } from "react-helmet";
 
 const ProfilePage = () => {
-  const [profileName, setProfileName] = useState(localStorage.getItem('profileName') || '');
-  const [email, setEmail] = useState(localStorage.getItem('email') || '');
+  // --- State Management ---
+  const [profileName, setProfileName] = useState(
+    localStorage.getItem("profileName") || ""
+  );
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [notification, setNotification] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
+  // --- Data Fetching ---
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const user = auth.currentUser;
         if (user) {
-          const userDoc = await getDoc(doc(db, 'Moderators', user.uid));
+          // Get user document from Firestore
+          const userDoc = await getDoc(doc(db, "Moderators", user.uid));
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            setProfileName(userData.fullName || '');
-            setEmail(userData.email || '');
-            localStorage.setItem('profileName', userData.fullName || '');
-            localStorage.setItem('email', userData.email || '');
+            // Update state and local storage
+            setProfileName(userData.fullName || "");
+            setEmail(userData.email || "");
+            localStorage.setItem("profileName", userData.fullName || "");
+            localStorage.setItem("email", userData.email || "");
           } else {
-            console.log('No such document!');
+            console.log("No such document!");
           }
         } else {
-          console.error('No authenticated user.');
+          console.error("No authenticated user.");
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
 
     fetchUserData();
   }, []);
 
+  // --- Event Handlers ---
+  // Handle profile save
   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
-      setNotification({ type: 'error', message: 'Full name cannot be empty. Please enter a valid name.' });
+      setNotification({
+        type: "error",
+        message: "Full name cannot be empty. Please enter a valid name.",
+      });
       return;
     }
 
     try {
       const user = auth.currentUser;
       if (user) {
-        const userDocRef = doc(db, 'Moderators', user.uid);
-
+        // Update Firestore document
+        const userDocRef = doc(db, "Moderators", user.uid);
         await updateDoc(userDocRef, {
           fullName: profileName,
           email: email,
         });
 
-        localStorage.setItem('profileName', profileName);
-        localStorage.setItem('email', email);
+        // Update local storage
+        localStorage.setItem("profileName", profileName);
+        localStorage.setItem("email", email);
 
-        setNotification({ type: 'success', message: 'Profile saved successfully!' });
+        // Show success notification
+        setNotification({
+          type: "success",
+          message: "Profile saved successfully!",
+        });
         setTimeout(() => {
           setNotification(null);
         }, 3000);
       } else {
-        setNotification({ type: 'error', message: 'No user logged in.' });
+        setNotification({ type: "error", message: "No user logged in." });
       }
     } catch (error) {
-      console.error('Error saving profile:', error);
-      setNotification({ type: 'error', message: 'Failed to save profile.' });
+      console.error("Error saving profile:", error);
+      setNotification({ type: "error", message: "Failed to save profile." });
     }
   };
 
+  // Handle account deletion
   const handleDeleteAccount = () => {
     setShowModal(true);
   };
 
+  // Confirm account deletion
   const handleConfirmDelete = async () => {
     try {
       const user = auth.currentUser;
       if (!user) {
-        setNotification({ type: 'error', message: 'No user is logged in.' });
+        setNotification({ type: "error", message: "No user is logged in." });
         return;
       }
 
+      // Delete user authentication and document
       await deleteUser(user);
-      const userDocRef = doc(db, 'Moderators', user.uid);
+      const userDocRef = doc(db, "Moderators", user.uid);
       await deleteDoc(userDocRef);
 
-      localStorage.removeItem('profileName');
-      localStorage.removeItem('email');
+      // Clear local storage
+      localStorage.removeItem("profileName");
+      localStorage.removeItem("email");
 
-      setNotification({ type: 'success', message: 'Account deleted successfully.' });
-
-      navigate('/sign');
+      setNotification({
+        type: "success",
+        message: "Account deleted successfully.",
+      });
+      navigate("/sign");
     } catch (error) {
-      console.error('Error deleting account:', error.message);
-      setNotification({ type: 'error', message: `Failed to delete account: ${error.message}` });
+      console.error("Error deleting account:", error.message);
+      setNotification({
+        type: "error",
+        message: `Failed to delete account: ${error.message}`,
+      });
     }
     setShowModal(false);
   };
 
+  // Close notification
   const closeNotification = () => {
     setNotification(null);
   };
 
   return (
     <div className="profile-page-container">
+      {/* Meta Tags */}
       <Helmet>
-        <title>Profile Page</title>
+        <title>Profile</title>
         <meta name="description" content="This is Profile page" />
       </Helmet>
+
+      {/* Header Section */}
       <header className="profile-header">
-        <button className="back-btn" onClick={() => navigate('/moderator')}>
+        <button className="back-btn" onClick={() => navigate("/moderator")}>
           <FaArrowLeft className="back-icon" />
         </button>
         <h1>Moderator Profile</h1>
       </header>
 
+      {/* Main Content */}
       <div className="profile-content">
+        {/* Profile Details */}
         <div className="profile-details">
           <img src={defaultProfilePic} alt="Profile" className="profile-pic" />
           <h3>{profileName}</h3>
         </div>
+
+        {/* Profile Form */}
         <div className="profile-form-container">
           <h2 className="headname">Moderator Information</h2>
           <div className="profile-form">
+            {/* Name Input */}
             <div className="form-row">
               <label>Full Name</label>
               <input
@@ -141,6 +176,7 @@ const ProfilePage = () => {
               />
             </div>
 
+            {/* Email Input */}
             <div className="form-row">
               <label>Email</label>
               <input
@@ -152,6 +188,7 @@ const ProfilePage = () => {
               />
             </div>
 
+            {/* Action Buttons */}
             <button className="save-button" onClick={handleSaveProfile}>
               Save Profile
             </button>
@@ -162,8 +199,12 @@ const ProfilePage = () => {
         </div>
       </div>
 
+      {/* Modals and Notifications */}
       {showModal && (
-        <DeleteConfirmation onConfirm={handleConfirmDelete} onCancel={() => setShowModal(false)} />
+        <DeleteConfirmation
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setShowModal(false)}
+        />
       )}
 
       {notification && (
@@ -174,6 +215,7 @@ const ProfilePage = () => {
         />
       )}
 
+      {/* Footer */}
       <Footer />
     </div>
   );

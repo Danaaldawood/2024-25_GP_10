@@ -1,4 +1,4 @@
-
+/* --- CSS Variables --- */
 :root {
   --primary-color: #10a37f;
   --secondary-color: #74c3b0;
@@ -8,12 +8,16 @@
   --dark-gray: #737272;
   --hover-danger-color: #ff5264;
 }
+
+/* --- Main Container --- */
 .moderator-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif;}
+  font-family: Arial, sans-serif;
+}
 
+/* --- Header Banner --- */
 .header-banner {
   width: 100%;
   text-align: center;
@@ -21,7 +25,6 @@
   padding: 20px 0;
   margin: 20px 0 10px;
   border-radius: 10px;
-  background-color: var(--light-gray);
 }
 
 .header-banner h1 {
@@ -31,6 +34,7 @@
   font-weight: bold;
 }
 
+/* --- Toggle Buttons --- */
 .toggle-buttons {
   display: flex;
   justify-content: center;
@@ -58,6 +62,7 @@
   background-color: var(--primary-color);
 }
 
+/* --- Page Title --- */
 .pagename {
   text-align: center;
   font-weight: bold;
@@ -65,6 +70,7 @@
   margin: 20px 0;
 }
 
+/* --- Table Styles --- */
 .table-container {
   margin-top: 30px;
   text-align: center;
@@ -102,9 +108,10 @@
 }
 
 .notifications-container .styled-table .attribute-col {
-  width: 20%; 
+  width: 20%;
   word-break: break-word;
 }
+
 .styled-table tr:nth-child(even) {
   background-color: var(--light-gray);
 }
@@ -113,10 +120,10 @@
   background-color: #eaeaea;
 }
 
+/* --- Notifications Styles --- */
 .notifications-container {
   text-align: center;
   margin-top: 30px;
-  
 }
 
 .notification-btn {
@@ -157,6 +164,7 @@
   margin: 40px 0;
 }
 
+/* --- Action Buttons --- */
 .action-btn {
   width: 80px;
   height: 40px;
@@ -199,13 +207,6 @@
   background-color: var(--secondary-color);
 }
 
-.no-records {
-  text-align: center;
-  color: #555;
-  font-size: 1.2rem;
-  margin-top: 20px;
-}
-
 .action-btn.delete-btn {
   width: 35px;
   height: 35px;
@@ -240,6 +241,7 @@
   transform: scale(1.1);
 }
 
+/* --- Modal Styles --- */
 .fixed {
   position: fixed;
   top: 0;
@@ -283,13 +285,6 @@
   font-size: 16px;
 }
 
-.confirm-btn-not {
-  background-color: var(--danger-color);
-}
-
-.confirm-btn-not:hover {
-  background-color: var(--hover-danger-color);
-}
 
 .add-btn {
   background-color: var(--primary-color);
@@ -308,8 +303,15 @@
   font-size: 18px;
 }
 
+/* --- Empty State Messages --- */
+.no-records {
+  text-align: center;
+  color: #555;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
 
-/* Media Queries for Responsiveness */
+/* --- Media Queries for Responsiveness --- */
 @media screen and (max-width: 1400px) {
   .header-banner h1 {
     font-size: 1.6rem;
