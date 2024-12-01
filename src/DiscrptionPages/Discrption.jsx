@@ -161,11 +161,13 @@ const Discrption = () => {
   return (
     <div className="descrptionpage">
       <Header />
+      {/* tab name */}
       <Helmet>
         <title>{t('culturalValuesTitle')}</title>
         <meta name="description" content={t('metaDescription')} />
       </Helmet>
       <main>
+        {/* data culture dicrption and view button */}
         <section id="CoreDimintion">
           <div className="discrptionbox">
             <div>
@@ -183,10 +185,15 @@ const Discrption = () => {
           </div>
         </section>
 
+ {/* container that includes a cards topics */}
         <section id="cardsection">
+          {/* cards container title */}
           <h2 className="datasettopic">{t('datasetTopics')}</h2>
+          {/* conatiner of rows containers */}
           <div className="containerrows">
+            {/* row cnotainer that includes a card  */}
             <div className="row">
+              {/* card container */}
               <div className="col-md-6">
                 <Cardtopic
                   Icon={RestaurantIcon}

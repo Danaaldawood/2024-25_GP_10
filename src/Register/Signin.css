@@ -1,18 +1,18 @@
-input[type="password"]::-ms-reveal, 
-input[type="password"]::-ms-clear, 
-input[type="password"]::-webkit-clear-button, 
-input[type="password"]::-webkit-inner-spin-button, 
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button,
 input[type="password"]::-webkit-outer-spin-button,
 input[type="password"]::-webkit-textfield-decoration-container {
-    display: none;
+  display: none;
 }
-
 
 body {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-p{
- font-Size: '15px' ;
+p {
+  font-size: "15px";
 }
 
 /* Page */
@@ -49,7 +49,7 @@ p{
   text-align: center;
 }
 
-/* User Type Buttons */
+/*Styling User Type Buttons */
 .sign-user-type-container {
   display: flex;
   margin-bottom: 0.75rem;
@@ -69,7 +69,7 @@ p{
 }
 
 .sign-user-type-btn.sign-active {
-  background-color: #004D60;
+  background-color: #004d60;
   color: #fff;
 }
 
@@ -81,9 +81,9 @@ p{
 
 .sign-input {
   width: 100%;
-  height: 50px;  
+  height: 50px;
   padding: 0.75rem;
-  padding-right: 2.5rem;  
+  padding-right: 2.5rem;
   margin-bottom: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -92,18 +92,19 @@ p{
   font-size: 13px;
   box-sizing: border-box;
 }
- .sign-input:focus, .sign-select:focus {
-  border-color: #004D60;
+.sign-input:focus,
+.sign-select:focus {
+  border-color: #004d60;
   outline: none;
 }
 .sign-culture-options {
   display: flex;
   align-items: center;
-  margin-right: 1.5rem;  
+  margin-right: 1.5rem;
 }
 
 .sign-culture-options label {
-  margin-left: 0.5rem;  
+  margin-left: 0.5rem;
   font-size: 13px;
   color: #000000;
 }
@@ -114,9 +115,9 @@ p{
   flex-wrap: wrap;
   margin-top: 2;
 }
- 
+
 .sign-input.error {
-  border: 2px solid red; 
+  border: 2px solid red;
 }
 
 .error-message {
@@ -131,10 +132,10 @@ p{
   color: #000000;
 }
 
-/* Left Section */
+/* Left Section Style*/
 .Left-section {
   flex: 1;
-  background: linear-gradient(700deg, #004D60, #6084a9);
+  background: linear-gradient(700deg, #004d60, #6084a9);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -186,11 +187,11 @@ p{
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
-     font-size: '15px';
-     margin-top: 15px;
+  font-size: "15px";
+  margin-top: 15px;
 }
- .sign-btn:hover {
-  background-color: #004D60;
+.sign-btn:hover {
+  background-color: #004d60;
 }
 
 .sign-login {
@@ -213,8 +214,9 @@ p{
 .password-requirements {
   list-style-type: none;
   padding: 0;
-font-size: 12px;
-margin-bottom: 10px;}
+  font-size: 12px;
+  margin-bottom: 10px;
+}
 
 .password-requirements li {
   color: rgb(250, 35, 35);
@@ -232,16 +234,15 @@ margin-bottom: 10px;}
 
 .password-icon {
   position: absolute;
-  right: 10px; 
+  right: 10px;
   cursor: pointer;
   top: 25px;
   transform: translateY(-50%);
-
 }
- 
+
 /* Responsive*/
 @media (max-width: 768px) {
-   .sign-container {
+  .sign-container {
     flex-direction: column;
     width: 100%;
     padding: 0.5rem;
@@ -249,14 +250,15 @@ margin-bottom: 10px;}
 
   .Left-section {
     flex: 1;
-    background: linear-gradient(700deg, #004D60, #6084a9);
+    background: linear-gradient(700deg, #004d60, #6084a9);
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-    display: block;    }
+    display: block;
+  }
 
   /* Adjust Sign Form */
   .sign-form {
@@ -267,17 +269,17 @@ margin-bottom: 10px;}
   /* Buttons and Inputs */
   sign-user-type-container {
     display: flex;
-    justify-content: center;  
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     margin-bottom: 0.75rem;
   }
-  
+
   .sign-user-type-btn {
-    font-size: 16px;  
+    font-size: 16px;
     padding: 1rem;
     margin-top: 1rem;
-    width: auto;  
-    text-align: center;  
+    width: auto;
+    text-align: center;
   }
 
   .sign-input {
@@ -287,7 +289,7 @@ margin-bottom: 10px;}
   }
 
   .sign-btn {
-    font-size: 16px;  
+    font-size: 16px;
     padding: 1rem;
     margin-top: 1rem;
   }
@@ -298,7 +300,7 @@ margin-bottom: 10px;}
     margin-top: 1rem;
   }
 
-   .password-container {
+  .password-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

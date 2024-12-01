@@ -1,4 +1,5 @@
-.descrptionpage{
+
+.descrptionpage {
   overflow-x: hidden;
 }
 
@@ -7,42 +8,36 @@ main {
   max-width: 90rem;
   margin: auto;
   padding-bottom: 5%;
-  
 }
-
-.view-btn{
+/* view button style */
+.view-btn {
   background-color: #d3dbe4;
- 
-  border: none; 
-  color: #0d395a;
-  padding: 10px 25px; 
-  text-align: center; 
-  text-decoration: none;
-  display: inline-block; 
-  font-size: 16px; 
-  margin: 4px 5px; 
-  cursor: pointer; 
-  border-radius: 5px; 
-  transition: background-color 0.3s; 
-}
 
+  border: none;
+  color: #0d395a;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
 
 .view-btn:hover {
-  background-color:whitesmoke; 
+  background-color: whitesmoke;
 }
 
+/* style for container of discrption */
 #CoreDimintion {
-
-
   justify-content: center;
   padding: 5rem;
- 
+
   color: white;
 
-
   background: #406882;
-
-
 
   padding: 6rem;
   margin-bottom: 4rem;
@@ -50,24 +45,25 @@ main {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 1 8px 32px 0 rgba(0, 0, 0, 0.37);
-  border-radius:12px ;
+  border-radius: 12px;
   margin-top: 2rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-p.discrptiontext{
+/* pragraph discrption style */
+p.discrptiontext {
   color: white;
- 
+
   text-align: justify;
 }
+
+/* cards conatiner style */
 #cardsection {
   border: 2px solid #ddd;
   border-radius: 6px;
   padding: 20px;
   justify-content: center;
- 
-  /* background-color: #4c62682b; */
-  background-color: #4c62681d;
 
+  background-color: #4c62681d;
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -77,118 +73,87 @@ p.discrptiontext{
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
+/* style of topic title of cards container */
 #cardsection h2 {
   padding-left: 33vw;
   padding-bottom: 5vw;
-padding-top: 2rem;
-
-
+  padding-top: 2rem;
 
   font-weight: bold;
   color: #003f5c;
-font-size: 2rem; 
-text-align: center; 
-margin: 0 auto;
-padding: 0; 
-width: 100%; 
-display: block; 
-margin-bottom: 1rem;
-
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 
 
-.row {
-  width: 100%; 
-  display: flex; 
-  justify-content: space-around; 
-  margin: 15px 0; 
-}
-
+/* card container style */
 .col-md-6 {
-  display: flex; 
-  justify-content: center; 
-}
-
-#corner-ball {
-  position: relative; 
-  top: 3rem;
-  left: 22rem; 
-  
-  height: auto;
-  z-index: 10;
-  width: 5%;
-  height: 20%;
-
- 
-}
-
-#aboutlogo {
-  position: relative; 
-  top: 2.5rem;
-  right: 3rem; 
-
-  height: auto; 
-  z-index: 10;
-  width: 5%;
-  height: 20%;
+  display: flex;
+  justify-content: center;
 }
 
 
+
+
+/* style for  container of rows */
 .containerrows {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; 
+  justify-content: space-evenly;
   margin: 0 auto;
-  gap: 20px; 
+  gap: 20px;
 }
+/* style for  container of card in each row  */
 
 .row {
-  width: 100%; 
+  width: 100%;
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-evenly; 
-  margin-bottom: 20px; 
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
 }
+
+ /* responsive style */
 @media (max-width: 768px) {
   #cardsection h2 {
-    font-size: 1.5rem; 
-    padding: 0 1rem; 
+    font-size: 1.5rem;
+    padding: 0 1rem;
   }
 
   .discrptiontext {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
   }
 
   button.view-btn {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
   }
 
   .containerrows {
-    gap: 0.5rem; 
+    gap: 0.5rem;
   }
 }
 
-
+ /* size of laptop screen and L laptop  screen*/
 @media (min-width: 1200px) and (max-width: 2559px) {
   #cardsection h2 {
-    font-size: 2rem; 
-    text-align: center; 
+    font-size: 2rem;
+    text-align: center;
     margin: 0 auto;
   }
 }
 
-
+/* size for larger screen */
 @media (min-width: 2560px) {
   #cardsection h2 {
-    font-size: 2.5rem; 
-    text-align: center; 
-    margin: 0 auto; 
-    padding: 0; 
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
   }
 }
-
-
-
-
-

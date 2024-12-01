@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { ref, get, push, set } from 'firebase/database';
-import { realtimeDb, auth } from '../Register/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
-import { Helmet } from 'react-helmet';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { ref, get, push, set } from "firebase/database";
+import { realtimeDb, auth } from "../Register/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 import "./Notifymodrator.css";
 
 export const Notifymodrator = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const [userId, setUserId] = useState('');
+  // State variables
+  const [userId, setUserId] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // full form with retrive values from location state
+
   const [notificationData, setNotificationData] = useState({
     topic: location.state?.topic || "",
     description: "",
     suggestion: "",
-    PreviousValue: location.state?.selectedValue || "", 
+    PreviousValue: location.state?.selectedValue || "",
     status: "pending",
     timestamp: new Date().toISOString(),
     attribute: location.state?.attribute || "",
     userId: "",
-    region: location.state?.region || ""
+    region: location.state?.region || "",
   });
-
+  // monitor authentication state and set user ID
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -46,6 +48,7 @@ export const Notifymodrator = () => {
     return () => unsubscribe();
   }, []);
 
+  // Ensure if location state is available
   useEffect(() => {
     if (!location.state) {
       alert("No data available for notification");
@@ -55,9 +58,9 @@ export const Notifymodrator = () => {
 
   useEffect(() => {
     if (userId) {
-      setNotificationData(prev => ({
+      setNotificationData((prev) => ({
         ...prev,
-        userId: userId
+        userId: userId,
       }));
     }
   }, [userId]);
@@ -68,17 +71,18 @@ export const Notifymodrator = () => {
       ...prevState,
       [name]: value,
     }));
-    if (name === 'description' && value.length > 0) {
+    if (name === "description" && value.length > 0) {
       setShowError(false);
     }
   };
 
   // Check for duplicate notifications
   const checkExistingNotification = (notifications) => {
-    return notifications.some(notification => 
-      notification.attribute === notificationData.attribute && 
-      notification.PreviousValue === notificationData.PreviousValue &&
-      notification.status === "pending"
+    return notifications.some(
+      (notification) =>
+        notification.attribute === notificationData.attribute &&
+        notification.PreviousValue === notificationData.PreviousValue &&
+        notification.status === "pending"
     );
   };
 
@@ -92,7 +96,10 @@ export const Notifymodrator = () => {
 
     // Validate suggestion language (English only)
     const nonEnglishPattern = /[^\x00-\x7F]+/;
-    if (notificationData.suggestion && nonEnglishPattern.test(notificationData.suggestion)) {
+    if (
+      notificationData.suggestion &&
+      nonEnglishPattern.test(notificationData.suggestion)
+    ) {
       setErrorMessage("Please enter the suggestion in English only.");
       setShowErrorPopup(true);
       return;
@@ -101,10 +108,13 @@ export const Notifymodrator = () => {
     // Check for duplicate suggestions
     if (notificationData.suggestion) {
       const suggestionLower = notificationData.suggestion.toLowerCase();
-      const allValuesLower = location.state?.allValues.map(value => value.toLowerCase()) || [];
-      
+      const allValuesLower =
+        location.state?.allValues.map((value) => value.toLowerCase()) || [];
+
       if (allValuesLower.includes(suggestionLower)) {
-        setErrorMessage(`The value "${notificationData.suggestion}" already exists in the dataset.`);
+        setErrorMessage(
+          `The value "${notificationData.suggestion}" already exists in the dataset.`
+        );
         setShowErrorPopup(true);
         return;
       }
@@ -115,13 +125,15 @@ export const Notifymodrator = () => {
       const notificationsRef = ref(realtimeDb, `notifications/${id}`);
       const snapshot = await get(notificationsRef);
       let existingNotifications = [];
-      
+
       // Check for existing notifications
       if (snapshot.exists()) {
         existingNotifications = snapshot.val().notifications || [];
-        
+
         if (checkExistingNotification(existingNotifications)) {
-          setErrorMessage("A notification for this attribute and value is already pending.");
+          setErrorMessage(
+            "A notification for this attribute and value is already pending."
+          );
           setShowErrorPopup(true);
           return;
         }
@@ -131,14 +143,14 @@ export const Notifymodrator = () => {
       const newNotification = {
         ...notificationData,
         timestamp: new Date().toISOString(),
-        notificationId: push(ref(realtimeDb)).key
+        notificationId: push(ref(realtimeDb)).key,
       };
 
       // Update database with new notification
       await set(notificationsRef, {
-        notifications: [...existingNotifications, newNotification]
+        notifications: [...existingNotifications, newNotification],
       });
-      
+
       // Show success message and redirect
       setShowSuccess(true);
       setTimeout(() => {
@@ -154,17 +166,15 @@ export const Notifymodrator = () => {
     <div>
       <Header />
       <div className="notify-form-container">
-        {/* SEO metadata */}
+        {/* tab tag */}
         <Helmet>
           <title>Notify Moderator</title>
           <meta name="description" content="Notify moderator page" />
         </Helmet>
-          
+
         {/* Form header */}
         <div className="notify-header">
-          <div className="notify-title">
-            Notify Moderator
-          </div>
+          <div className="notify-title">Notify Moderator</div>
           <div className="underline"></div>
           <div className="notiyfy-attribute-display">
             {location.state?.attribute}
@@ -173,14 +183,14 @@ export const Notifymodrator = () => {
 
         {/* Form inputs */}
         <div className="notify-inputs">
-          {/* Topic input */}
+          {/* input of topic*/}
           <div className="notify-input">
             <label className="label">Topic:</label>
             <input
               type="text"
               name="topic"
               value={notificationData.topic}
-              readOnly 
+              readOnly
             />
           </div>
 
@@ -199,31 +209,39 @@ export const Notifymodrator = () => {
                 </option>
               )}
               {location.state?.allValues
-                ?.filter(value => value !== location.state.selectedValue)
+                ?.filter((value) => value !== location.state.selectedValue)
                 .map((value, index) => (
                   <option key={index} value={value}>
                     {value}
                   </option>
-              ))}
+                ))}
             </select>
           </div>
 
-          {/* Description textarea */}
+          {/* Description of notify  */}
           <div className="notify-input">
             <label className="label">Description:</label>
             <textarea
               name="description"
               value={notificationData.description}
               onChange={handleInputChange}
-              placeholder={showError ? "Please provide a description" : "Describe the issue in detail"}
-              className={showError && !notificationData.description ? "error-input" : ""}
+              placeholder={
+                showError
+                  ? "Please provide a description"
+                  : "Describe the issue in detail"
+              }
+              className={
+                showError && !notificationData.description ? "error-input" : ""
+              }
               rows={4}
             />
           </div>
 
           {/* Suggestion input */}
           <div className="notify-input">
-            <label className="label">Suggestion for New Value (optional):</label>
+            <label className="label">
+              Suggestion for New Value (optional):
+            </label>
             <input
               type="text"
               name="suggestion"
@@ -236,7 +254,10 @@ export const Notifymodrator = () => {
 
         {/* Submit button */}
         <div className="notify-submit-container">
-          <button onClick={handleSubmitNotification} className="notify-submit-button">
+          <button
+            onClick={handleSubmitNotification}
+            className="notify-submit-button"
+          >
             Notify
           </button>
         </div>
@@ -245,16 +266,20 @@ export const Notifymodrator = () => {
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-            <p className="success-message">Notification submitted successfully.</p>
+            <p className="success-message">
+              Notification submitted successfully.
+            </p>
           </div>
         )}
-
         {showErrorPopup && (
           <div className="error-popup">
             <div className="error-title">Error</div>
             <div className="error-message">{errorMessage}</div>
             <div className="error-actions">
-              <button className="confirm-btn" onClick={() => setShowErrorPopup(false)}>
+              <button
+                className="confirm-btn"
+                onClick={() => setShowErrorPopup(false)}
+              >
                 OK
               </button>
             </div>

@@ -25,9 +25,11 @@ export function RealtimeData() {
   const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const tableContainerRef = useRef(null);
-
+  // Number of items per page
   const itemsPerPage = 10;
   const navigate = useNavigate();
+
+  // Handles clicking a row's for "Notify" button
 
   const handleClick = (row) => {
     if (
@@ -40,6 +42,7 @@ export function RealtimeData() {
       );
       const selectedValue = dropdownElement ? dropdownElement.value : "";
 
+      // Navigate to the Notify page with row details as state
       navigate(`/Notifymodrator/${row.id}`, {
         state: {
           id: row.id,
@@ -54,6 +57,7 @@ export function RealtimeData() {
     }
   };
 
+  // Fetch user region and order  tabel based on user reigon
   useEffect(() => {
     console.log("Fetching user region...");
     const fetchUserRegion = async () => {
@@ -75,6 +79,7 @@ export function RealtimeData() {
 
     fetchUserRegion();
 
+    // Fetch data from Firebase Realtime Database
     const unsubscribe = onValue(
       ref(realtimeDb, "/"),
       (snapshot) => {
@@ -97,6 +102,8 @@ export function RealtimeData() {
           setTableData(dataArray);
           console.log("Fetched data:", dataArray);
 
+          // Initialize reasons for each row
+
           const initialReasons = dataArray.reduce((acc, row) => {
             const firstAnnotation = row.annotations?.[0];
             acc[row.id] = firstAnnotation
@@ -118,10 +125,14 @@ export function RealtimeData() {
     return () => unsubscribe();
   }, []);
 
+  //Handles region filter
+
   const handleRegionChange = (e) => {
     setFilterRegion(e.target.value);
     setCurrentPage(1);
   };
+
+  //Handles region search input
 
   const handleSearchChange = (e) => {
     const searchValue = e.target.value;
@@ -133,6 +144,7 @@ export function RealtimeData() {
     }
   };
 
+  // Handles topic filter
   const handleTopicChange = (e) => {
     const selectedTopic = e.target.value;
     setSearchTerm("");
@@ -143,7 +155,7 @@ export function RealtimeData() {
     );
     setCurrentPage(1);
   };
-
+  // Handles clicking the "Add" button for a row
   const handleAddClick = (row) => {
     if (row.region_name === userRegion) {
       const dropdownElement = document.querySelector(
@@ -151,6 +163,7 @@ export function RealtimeData() {
       );
       const selectedValue = dropdownElement ? dropdownElement.value : "";
 
+      // Navigate to the edit (add)page with row details as state
       navigate(`/edit/${row.id}`, {
         state: {
           attribute: row.en_question,
@@ -164,6 +177,7 @@ export function RealtimeData() {
     }
   };
 
+  // Handles changes in the selected value for a row
   const handleValueChange = (rowId, selectedValue) => {
     const row = tableData.find((row) => row.id === rowId);
     if (row) {
@@ -176,6 +190,7 @@ export function RealtimeData() {
       }));
     }
   };
+  // Handles page changes for pagination
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -183,6 +198,8 @@ export function RealtimeData() {
       tableContainerRef.current.scrollTop = 0;
     }
   };
+
+  // Handles group navigation for pagination
 
   const handleGroupChange = (direction) => {
     const maxPagesVisible = 5;
@@ -206,6 +223,9 @@ export function RealtimeData() {
       }
     }
   };
+
+  // --filter and search --
+  // Filters and sorts data based on search, region, and topic filters
 
   const filteredData = tableData
     .filter((row) => {
@@ -241,10 +261,13 @@ export function RealtimeData() {
       return 0;
     });
 
+  // Calculates total pages and items to display for pagination
+
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  // Generates the range of pages to display in pagination
 
   const getPageRange = () => {
     const pageRange = [];
@@ -258,6 +281,7 @@ export function RealtimeData() {
     }
     return pageRange;
   };
+  // Determines the displayed filter topic for holiday topic
 
   const displayedFilterTopic =
     filterTopic === "Holidays/Celebration/Leisure" ? "Holiday" : filterTopic;
@@ -269,12 +293,21 @@ export function RealtimeData() {
   return (
     <div className="viewpage">
       <Header />
+
+      {/* Main container */}
+
       <div className="container mt-5">
+        {/* Section for the table header */}
+
         <section className="tabel_header">
           <h2 className="table-title">Cultures Data</h2>
         </section>
 
+        {/* container  for search and filter inputs */}
+
         <div className="filter-Search-inputs-container">
+          {/* Search bar for filtering rows based oninput */}
+
           <div className="search-container">
             <span className="search-icon">
               <Search style={{ color: "#888", fontSize: "20px" }} />
@@ -287,7 +320,11 @@ export function RealtimeData() {
               onChange={handleSearchChange}
             />
           </div>
+          {/* Dropdown filters for region and topic */}
+
           <div className="filter-container">
+            {/* filter Reigon*/}
+
             <select
               className="filter-select"
               value={filterRegion}
@@ -298,6 +335,7 @@ export function RealtimeData() {
               <option value="Chinese">Chinese</option>
               <option value="Arab">Arab</option>
             </select>
+            {/* Topics filter*/}
             <select
               className="filter-select"
               value={displayedFilterTopic}
@@ -315,11 +353,15 @@ export function RealtimeData() {
           </div>
         </div>
 
+        {/* Table container with scroll functionality */}
+
         <div className="scroll-container" ref={tableContainerRef}>
           <div className="table_container">
             <div className="table-wrapper">
               <table className="data-table">
                 <thead>
+                  {/* Table headers */}
+
                   <tr className="tabel_titles">
                     <th></th>
                     <th>Region</th>
@@ -331,11 +373,16 @@ export function RealtimeData() {
                     <th>Notify</th>
                   </tr>
                 </thead>
+                {/* --full a tabel rows using  attribut ,reigon,topic, values, reason data-- */}
                 <tbody>
                   {currentItems.map((row, index) => (
                     <tr key={row.id}>
+                      {/* Row index */}
+
                       <td>{indexOfFirstItem + index + 1}</td>
+                      {/* reigon of attribut */}
                       <td>{row.region_name}</td>
+                      {/* attribute */}
                       <td>{row.en_question}</td>
                       <td>
                         {row.annotations && row.annotations.length > 0 ? (
@@ -367,9 +414,13 @@ export function RealtimeData() {
                             : "center-align"
                         }`}
                       >
+                        {/* topic of attribute  */}
                         {row.topic}
                       </td>
+                      {/* reason for values */}
                       <td>{reasons[row.id] || "variation"}</td>
+                      {/* Add button with region restriction */}
+
                       <td
                         onMouseEnter={() => setHoveredAddRow(row.id)}
                         onMouseLeave={() => setHoveredAddRow(null)}
@@ -378,6 +429,7 @@ export function RealtimeData() {
                         <button
                           onClick={() => handleAddClick(row)}
                           className="add-button"
+                          // enabel add button if attribute from user reigon
                           disabled={row.region_name !== userRegion}
                         >
                           <AddIcon style={{ marginRight: "5px" }} /> Add
@@ -390,6 +442,9 @@ export function RealtimeData() {
                             </div>
                           )}
                       </td>
+
+                      {/* Notify button with conditions */}
+
                       <td
                         onMouseEnter={() => setHoveredNotifyRow(row.id)}
                         onMouseLeave={() => setHoveredNotifyRow(null)}
@@ -411,6 +466,8 @@ export function RealtimeData() {
                             <span>Notify</span>
                           </div>
                         </button>
+                        {/* enabel notify button if attribute from user reigon  */}
+
                         {row.region_name !== userRegion &&
                           hoveredNotifyRow === row.id &&
                           !hoveredAddRow && (
@@ -431,6 +488,7 @@ export function RealtimeData() {
                 </tbody>
               </table>
             </div>
+            {/* Pagination */}
 
             <div className="pagination-container">
               <button

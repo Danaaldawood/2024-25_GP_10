@@ -1,5 +1,6 @@
 * {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 /* Page */
@@ -56,7 +57,7 @@
 }
 
 .Login-user-type-btn.Login-active {
-  background-color: #004D60;
+  background-color: #004d60;
   color: #fff;
 }
 
@@ -66,7 +67,8 @@
   margin-bottom: 0rem;
 }
 
-.Login-input, .Login-select {
+.Login-input,
+.Login-select {
   width: 100%;
   height: 50px;
   padding: 0.75rem;
@@ -79,15 +81,16 @@
   margin-bottom: 1rem;
 }
 
-.Login-input:focus, .Login-select:focus {
-  border-color: #004D60;
+.Login-input:focus,
+.Login-select:focus {
+  border-color: #004d60;
   outline: none;
 }
 
-/* Left Section */
+/* Left Section style*/
 .left-section {
   flex: 1;
-  background: linear-gradient(700deg, #004D60, #6084a9);
+  background: linear-gradient(700deg, #004d60, #6084a9);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -131,7 +134,7 @@
 }
 
 .Login-btn:hover {
-  background-color: #004D60;
+  background-color: #004d60;
 }
 
 .Login-login {
@@ -139,7 +142,8 @@
   text-align: center;
 }
 
-.Login-link, .forget-password {
+.Login-link,
+.forget-password {
   color: #3f6da6;
   text-decoration: none;
   font-weight: bold;
@@ -183,20 +187,20 @@
 /* Media Queries */
 @media (max-width: 768px) {
   .Login-container {
-    flex-direction: column;  
-    width: 100%;  
-    padding: 1rem; 
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
   }
 
-  .left-section {  
-    flex: none;  
-    background: linear-gradient(700deg, #004D60, #6084a9);
+  .left-section {
+    flex: none;
+    background: linear-gradient(700deg, #004d60, #6084a9);
     color: #fff;
     display: flex !important;
-   
-     width: 100%;  
-    margin-bottom: 1rem;  
-    text-align: center;  
+
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
   .Login-form {
@@ -205,26 +209,28 @@
   }
 
   .Login-title {
-    font-size: 18px;  
+    font-size: 18px;
   }
 
   .Login-user-type-btn {
-    font-size: 16px;  
+    font-size: 16px;
     padding: 1rem;
     margin-top: 1rem;
   }
 
   .Login-btn {
-    font-size: 16px; 
+    font-size: 16px;
     padding: 1rem;
   }
 
-  .Login-link, .forget-password {
-    font-size: 14px;  
+  .Login-link,
+  .forget-password {
+    font-size: 14px;
   }
 
-  .Login-input, .Login-select {
-    font-size: 14px; 
+  .Login-input,
+  .Login-select {
+    font-size: 14px;
     padding: 1rem;
   }
 }

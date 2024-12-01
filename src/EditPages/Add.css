@@ -1,3 +1,5 @@
+/* --Styles for the container of the add form--*/
+
 .addformcontainer {
   background-color: #ffffff;
   border-radius: 10px;
@@ -13,7 +15,7 @@
 .addformcontainer:hover {
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
 }
-
+/* Title styling for the form */
 .add-title {
   font-size: 24px;
   font-weight: 700;
@@ -21,7 +23,7 @@
   text-align: center;
   color: #333;
 }
-
+/* style of Attribute display text  */
 .attribute-display {
   font-size: 20px;
   font-weight: 600;
@@ -29,7 +31,7 @@
   text-align: center;
   color: #333;
 }
-
+/* ---inputs styles--- */
 .add-inputs {
   margin-top: 20px;
   display: flex;
@@ -115,7 +117,7 @@
   background-color: #095c47;
   transform: translateY(-2px);
 }
-
+/* --pop message style-- */
 .success-popup {
   background-color: #fff;
   color: #28a745;
@@ -180,7 +182,8 @@
 .error-message {
   margin-bottom: 20px;
   font-size: 17px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .error-actions {
@@ -201,8 +204,11 @@
 .confirm-btn:hover {
   background-color: #ff5c5c;
 }
+/* ---responsives--- */
 
 /* Media Query for 1440p displays (2560x1440) */
+/* for screen larger than 2560 */
+
 @media screen and (min-width: 2560px) {
   .addformcontainer {
     width: 600px;
@@ -265,6 +271,8 @@
 }
 
 /* Media Query for 4K displays (3840x2160) */
+/* for screen larger than 2160 */
+
 @media screen and (min-width: 2160px) {
   .addformcontainer {
     width: 1200px;

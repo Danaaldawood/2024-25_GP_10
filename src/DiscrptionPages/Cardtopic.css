@@ -1,4 +1,4 @@
-
+/* flip container style */
 .flip-card {
   background-color: transparent;
   width: 250px;
@@ -10,6 +10,8 @@
 }
 
 
+
+
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -19,10 +21,12 @@
   transform-style: preserve-3d;
 }
 
-/* Flip Effect */
+/* Flip card Effect */
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg); 
 }
+
+/* style for front and back sides */
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -38,7 +42,7 @@
   padding: 20px; 
 }
 
-
+/* fron style */
 .flip-card-front {
  
   background: #406882;
@@ -47,14 +51,14 @@
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-/* Front Face */
+/* Front side  topic title  */
 .flip-card-front h1 {
   font-size: 2rem !important;  /* Force the change */
   font-weight: bold;
 }
 
 
-/* Back Face */
+/* Back side style */
 .flip-card-back {
   background-color: #f8f9fa;
   color: #333;
@@ -69,6 +73,8 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
 }
 
+
+/* topic icon style */
 
 .flip-card-front .icon {
   font-size: 50px;

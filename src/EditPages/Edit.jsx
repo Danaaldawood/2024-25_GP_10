@@ -6,19 +6,24 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { ref, update, push } from 'firebase/database';
 import { realtimeDb, auth } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
-
+// Import styles and additional components
 import "./Add.css";
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { Navigation } from "lucide-react";
 
 export const AddCultureValue = () => {
+   // Extract route parameters and hooks
   const { id } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
+  // for Navigation
+  const navigate = useNavigate(); 
   
+
+   // Define state variables
   const [showSuccess, setShowSuccess] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -130,8 +135,8 @@ export const AddCultureValue = () => {
     <div>
       <Header />
       <div className="addformcontainer">
-        {/* Meta tags */}
         <Helmet>
+          {/* tab tag */}
           <title>Add Page</title>
           <meta name="description" content="This is Add page" />
         </Helmet>

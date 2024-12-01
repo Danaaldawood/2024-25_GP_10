@@ -1,3 +1,5 @@
+
+ /* --form container style-- */
 .notify-form-container {
   background-color: #ffffff;
   border-radius: 12px;
@@ -28,6 +30,7 @@
   color: #333;
 }
 
+/* attribute style */
 .notiyfy-attribute-display {
   font-size: 20px;
   font-weight: 600;
@@ -37,6 +40,7 @@
   margin-top: 2px;
 }
 
+/* inputs styling */
 .notify-inputs {
   margin-top: 20px;
   display: flex;
@@ -82,6 +86,7 @@
   cursor: not-allowed;
 }
 
+/*  --style of handling error input-- */
 .error-input {
   border-color: #e74c3c !important;
 }
@@ -90,6 +95,7 @@
   color: #e74c3c;
 }
 
+/* --submit notify styling --*/
 .notify-submit-container {
   display: flex;
   justify-content: center;
@@ -114,6 +120,8 @@
   background-color: #095c47;
   transform: translateY(-2px);
 }
+
+/* --messages styling-- */
 
 .success-popup {
   background-color: #fff;
@@ -141,7 +149,9 @@
   color: #2ecc71;
 }
 
-/* Media Query for 1440p displays (2560x1440) */
+/* ---responsives --*/
+
+/* style for secreen larger than 2560 */
 @media screen and (min-width: 2560px) {
   .notify-form-container {
     width: 700px;
@@ -200,7 +210,7 @@
   }
 }
 
-/* Media Query for 4K displays (3840x2160) */
+/* for screen size larger than  2168  */
 @media screen and (min-width: 2168px) {
   .notify-form-container {
     width: 1200px;
@@ -227,6 +237,7 @@
     font-size: 36px;
     margin-bottom: 20px;
   }
+
 
   .notify-input select,
   .notify-input input[type="text"],

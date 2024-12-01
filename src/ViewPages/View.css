@@ -1,3 +1,5 @@
+/* table alignment styles for cells */
+
 .data-table td.left-align {
   text-align: left !important;
 }
@@ -20,11 +22,14 @@
   z-index: 10;
 }
 
+/* layout for view page */
+
 .viewpage {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+/* --Styling for search and filter input containers --*/
 
 .filter-Search-inputs-container {
   display: flex;
@@ -70,8 +75,9 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
 }
+
+/* ----tabel styling ---*/
 
 .table_container {
   width: 100%;
@@ -90,11 +96,12 @@
   font-size: 14px;
   border-radius: 8px;
 }
+/* Table header and cell styling */
 
 .data-table th,
 .data-table td {
   border: none;
-  padding: 8px 12px; 
+  padding: 8px 12px;
   text-align: left;
   vertical-align: middle;
   word-wrap: break-word;
@@ -109,6 +116,8 @@
   top: 0;
   z-index: 2;
 }
+
+/* Row styles for alternating colors and hover effects */
 
 .data-table tr {
   border-bottom: 1px solid rgba(183, 183, 183, 0.3);
@@ -125,14 +134,15 @@
 }
 
 tbody tr:nth-child(even) {
-  background-color: #f7f7f7; 
+  background-color: #f7f7f7;
 }
 
 tbody tr:hover {
-  background-color: rgba(116, 112, 112, 0.1); 
-  transition: background-color 0.2s ease-in-out; 
+  background-color: rgba(116, 112, 112, 0.1);
+  transition: background-color 0.2s ease-in-out;
 }
 
+/* styling values Dropdown within table cells  */
 tbody td select {
   width: 80%;
   box-sizing: border-box;
@@ -148,27 +158,27 @@ tbody td select {
   align-items: center;
   justify-content: center;
   padding: 4px 10px;
-  background-color: #10a37f;  
+  background-color: #10a37f;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;  
+  transition: background-color 0.3s ease;
   font-size: 14px;
 }
 
 .add-button:hover {
-  background-color: #0e8a69;  
+  background-color: #0e8a69;
 }
 
 .add-button:disabled {
-  background-color: #ccc;  
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
 /* Notify button styles */
 .notify-button {
-  padding: 4px 10px; 
+  padding: 4px 10px;
   background-color: #d00c4d;
   color: white;
   border: none;
@@ -179,7 +189,7 @@ tbody td select {
 }
 
 .notify-button:hover {
-  background-color: #b10a42; 
+  background-color: #b10a42;
 }
 
 .notify-button:disabled {
@@ -189,7 +199,7 @@ tbody td select {
 
 .notification-item {
   display: flex;
-  align-items: center;  
+  align-items: center;
   font-size: 14px;
   color: #ffffff;
 }
