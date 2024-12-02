@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from firebase_admin import credentials, db, initialize_app
 
-app = Flask(__name__)
+app = Flask(name)
 CORS(app)
 
 # Initialize Firebase
@@ -44,7 +44,7 @@ def compare():
                     similarities.append(similarity)
 
             # Average similarity for this topic
-            results[topic] = round(sum(similarities) / len(similarities) * 100) if similarities else 0
+            results[topic] = (sum(similarities) / len(similarities) * 100) if similarities else 0
 
         return jsonify({
             "similarity_scores": results
@@ -53,5 +53,5 @@ def compare():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == "main":
-    app.run(debug=True, port=5000)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)
