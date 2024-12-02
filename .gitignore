@@ -23,3 +23,7 @@ venv/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Correct .gitignore entries
+serviceAccountKey.json
+**/serviceAccountKey.json
