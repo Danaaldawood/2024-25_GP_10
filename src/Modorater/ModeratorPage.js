@@ -896,7 +896,7 @@ const ModeratorPage = () => {
                   <th>Description</th>
                   <th>Delete Value</th>
                   <th>Deny Request</th>
-                  <th>Replace Value</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
