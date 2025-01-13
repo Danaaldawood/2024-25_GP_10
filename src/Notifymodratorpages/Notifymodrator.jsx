@@ -163,7 +163,7 @@ export const Notifymodrator = () => {
   };
 
   return (
-    <div>
+    <div className="notifypage">
       <Header />
       <div className="notify-form-container">
         {/* tab tag */}

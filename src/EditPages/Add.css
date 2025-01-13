@@ -1,6 +1,5 @@
 /* --Styles for the container of the add form--*/
-.div{
-  
+.addpage{
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
 .addformcontainer {
@@ -24,7 +23,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
-  color: #333;
+  color: #10A37F;
 }
 /* style of Attribute display text  */
 .attribute-display {
@@ -32,7 +31,7 @@
   font-weight: 600;
   margin-bottom: 10px;
   text-align: center;
-  color: #333;
+  color:#722F57 ;
 }
 /* ---inputs styles--- */
 .add-inputs {
@@ -53,7 +52,7 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #333;
+  color: #10A37F;
 }
 
 .add-input select,
