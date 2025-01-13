@@ -1,51 +1,57 @@
-import React, { useState } from "react";
+/* // NEW */
+
+// Fpage.jsx
+import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Helmet } from 'react-helmet';
 import LOGO from "../images/Logo.png";
 import photo from "../images/MAP-logo.png";
 import "./Fpage.css";
-import "../Header/Header.css";
-import { Helmet } from 'react-helmet';
 
 const Fpage = () => {
-  const { t } = useTranslation('fpage'); 
+  const { t } = useTranslation('fpage');
 
   return (
-    <div>
-      {/* Header */}
-      <header className="header">
-        <Helmet>
-          <title>{t("pageTitle")}</title>
-          <meta name="description" content={t("metaDescription")} />
-        </Helmet>
-        <div className="header-left">
-          <img src={LOGO} alt={t("headerTitle")} className="logo-img" />
-          <h1 className="logo-title">{t("CultureLens")}</h1>
+    <div className="Fpage-container">
+      <Helmet>
+        <title>{t("pageTitle")}</title>
+        <meta name="description" content={t("metaDescription")} />
+      </Helmet>
+
+      {/* Modern Header */}
+      <header className="Fpage-header">
+        <div className="header-content">
+          <div className="Fpagelogo">
+            <img src={LOGO} alt={t("headerTitle")} className="Fpage-logo" />
+            <h1 className="Fpage-title">{t("CultureLens")}</h1>
+          </div>
+          <Link to="/adminlogin" className="admin-link">
+            <button className="admin-button">Admin</button>
+          </Link>
         </div>
-        <Link to="/adminlogin">
-              <button className="ButtonAdmin-Login">Admin</button>
-            </Link>
       </header>
 
-      {/* About us section */}
-      <div className="info-section">
-        <div className="text-content">
-          <p className="section-title">{t("welcomeText")}</p>
-          <p className="section-description">
-            {t("sectionDescription")}
-          </p>
-          <nav className="nav-buttons">
-            <Link to="/Sign">
-              <button className="Button-Register">{t("getStartedButton")}</button>
-            </Link>
-            <Link to="/Login">
-              <button className="Button-Register">{t("loginButton")}</button>
-            </Link>
-             
-          </nav>
+      {/* Hero Section */}
+      <main className="Fpage-section">
+        <div className="Fpage-content">
+          <div className="Fpage-text">
+            <h2 className="Fpage-Welcome">{t("welcomeText")}</h2>
+            <p className="Fpage-description">{t("sectionDescription")}</p>
+            <div className="Fpage-buttons">
+              <Link to="/Sign">
+                <button className="Fpage-button primary">{t("getStartedButton")}</button>
+              </Link>
+              <Link to="/Login">
+                <button className="Fpage-button secondary">{t("loginButton")}</button>
+              </Link>
+            </div>
+          </div>
+          <div className="Fpage-image">
+            <img src={photo} alt={t("headerTitle")} className="Fpage-img" />
+          </div>
         </div>
-        <img src={photo} alt={t("headerTitle")} className="animated-logo" />
-      </div>
+      </main>
     </div>
   );
 };
