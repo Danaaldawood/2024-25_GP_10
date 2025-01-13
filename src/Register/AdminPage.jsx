@@ -18,7 +18,7 @@ import LOGO from "../images/Logo.png";
 import SignOutConfirmation from "../Modorater/SignOutConfirmation";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-
+ 
 export const AdminPage = () => {
   // State variables
   const [view, setView] = useState("moderator-requests");
@@ -291,8 +291,8 @@ export const AdminPage = () => {
       <header className="header-admin">
         <div className="header-left">
           <img src={LOGO} alt="CultureLens Logo" className="logo-img" />
-          <h1 className="logo-title">CultureLens</h1>
-        </div>
+          <h1 className="logoA-title" style={{ color: 'white' }}>CultureLens</h1>
+          </div>
 
         <button className="Adminlogout-btn" onClick={handleSignOut}>
           Log out
@@ -307,7 +307,7 @@ export const AdminPage = () => {
       </header>
 
       <div className="admin-header-banner">
-        <h1>Admin Dashboard</h1>
+        <h1>Admins Dashboard</h1>
       </div>
 
       {/* Toggle buttons for moderator requests and model upload */}
@@ -334,23 +334,27 @@ export const AdminPage = () => {
 
       {view === "moderator-requests" && !loading && !error && (
         <div className="requests-section">
-          <div className="filter-container">
-            <label htmlFor="status-filter">Filter by Status: </label>
-            <select
-              id="status-filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="all">All</option>
-              <option value="Pending">Pending</option>
-              <option value="Approved">Approved</option>
-              <option value="Denied">Denied</option>
-            </select>
-          </div>
+        <div className="filterAdmin-container">
+  <label htmlFor="status-filter">Filter by Status: </label>
+  <select
+    id="status-filter"
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+  >
+    <option value="all">All</option>
+    <option value="Pending">Pending</option>
+    <option value="Approved">Approved</option>
+    <option value="Denied">Denied</option>
+  </select>
+</div>
 
-          {filteredRequests.length === 0 ? (
-            <div>No requests available.</div>
-          ) : (
+{filteredRequests.length === 0 ? (
+  <div className="no-requests-message">No requests available.</div>
+) : (
+  // Content for displaying filtered requests
+ 
+
+ 
             <table className="requests-table">
               <thead>
                 <tr>
@@ -359,7 +363,8 @@ export const AdminPage = () => {
                   <th>Email</th>
                   <th>Region</th>
                   <th>Reason</th>
-                  <th>Request Date</th>
+                  <th>LinkedIn Link</th>
+                   <th>Request Date</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -373,10 +378,31 @@ export const AdminPage = () => {
                     <td>{request.regionM}</td>
                     <td>{request.reason}</td>
                     <td>
-                      {request.RequestDate
-                        ? new Date(request.RequestDate).toLocaleString()
-                        : "N/A"}
-                    </td>
+          {request.Linkedin ? (
+            <a
+              href={request.Linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="linkedin-link"
+            >
+              LinkedIn Link
+            </a>
+          ) : (
+            ""
+          )}
+        </td>      
+         <td>
+  {request.RequestDate
+    ? new Date(request.RequestDate).toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : "N/A"}
+</td>
+
                     <td
                       className={`status status-${
                         request.status ? request.status.toLowerCase() : ""
@@ -384,36 +410,34 @@ export const AdminPage = () => {
                     >
                       {request.status}
                     </td>
-                    <td
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      {request.status !== "Approved" && (
-                        <button
-                          className="approve-btn"
-                          onClick={() => handleApproveRequest(request)}
-                        >
-                          Approve
-                        </button>
-                      )}
-                      {request.status !== "Denied" && (
-                        <button
-                          className="deny-btn"
-                          onClick={() => handleDenyRequest(request)}
-                        >
-                          Deny
-                        </button>
-                      )}
-                    </td>
+                    <td>
+  <div className="actions">
+    {request.status !== "Approved" && (
+      <button
+        className="approve-btn"
+        onClick={() => handleApproveRequest(request)}
+      >
+        Approve
+      </button>
+    )}
+    {request.status !== "Denied" && (
+      <button
+        className="deny-btn"
+        onClick={() => handleDenyRequest(request)}
+      >
+        Deny
+      </button>
+    )}
+  </div>
+</td>
+
                   </tr>
                 ))}
               </tbody>
             </table>
           )}
         </div>
+
       )}
 
       {/* Model upload section */}
@@ -510,7 +534,7 @@ export const AdminPage = () => {
       {/* Footer */}
 
       <footer className="footer-admin">
-        <p style={{ color: "white" }}>
+        <p >
           ©2024 CultureLens. All rights reserved.
         </p>
       </footer>
