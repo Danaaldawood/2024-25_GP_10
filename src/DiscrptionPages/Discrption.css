@@ -1,6 +1,7 @@
 
 .descrptionpage {
   overflow-x: hidden;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
 
 main {
@@ -11,10 +12,10 @@ main {
 }
 /* view button style */
 .view-btn {
-  background-color: #d3dbe4;
+  background: linear-gradient(135deg, #853c69 0%, #722F57 100%);
 
   border: none;
-  color: #0d395a;
+  color: #e7ebef;
   padding: 10px 25px;
   text-align: center;
   text-decoration: none;
@@ -27,7 +28,7 @@ main {
 }
 
 .view-btn:hover {
-  background-color: whitesmoke;
+  background-color: #b36495;
 }
 
 /* style for container of discrption */
@@ -35,9 +36,9 @@ main {
   justify-content: center;
   padding: 5rem;
 
-  color: white;
+  color: rgb(219, 208, 208);
 
-  background: #406882;
+  background: #D3D3D3;
 
   padding: 6rem;
   margin-bottom: 4rem;
@@ -97,7 +98,6 @@ p.discrptiontext {
   display: flex;
   justify-content: center;
 }
-
 
 
 

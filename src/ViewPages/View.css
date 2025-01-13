@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
 /* --Styling for search and filter input containers --*/
 
@@ -108,7 +109,7 @@
 }
 
 .data-table th {
-  background-color: #003f5c99;
+  background:  #853c69;
   color: white;
   font-size: 16px;
   text-align: center;
@@ -127,7 +128,7 @@
 .table-title {
   font-size: 2.4rem;
   font-weight: bold;
-  color: #517589;
+  color: #10A37F;
   margin-left: 1px;
   padding-top: 20px;
   margin-bottom: 20px;
@@ -252,9 +253,9 @@ tbody td select {
 }
 
 .pagination-button.active {
-  background-color: #003f5c99;
+  background-color: #853c69;
   color: white;
-  background-color: #003f5c99;
+ 
 }
 
 .pagination-button:disabled {

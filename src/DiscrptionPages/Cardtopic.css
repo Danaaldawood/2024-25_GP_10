@@ -45,7 +45,7 @@
 /* fron style */
 .flip-card-front {
  
-  background: #406882;
+  background: linear-gradient(135deg, #853c69 0%, #722F57 100%);
   color: white;
   font-size: 0.7rem;
   font-weight: bold;
