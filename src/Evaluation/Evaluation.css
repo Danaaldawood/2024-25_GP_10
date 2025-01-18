@@ -26,7 +26,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
-  color: #333;
+  color: #10A37F;
 }
 
 /* --- Selection --- */
@@ -48,7 +48,7 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #333;
+  color: #10A37F;
 }
 
 .evalTopic, .llm, .evalmethod {
@@ -80,7 +80,7 @@
 }
 
 /* --- Button Styles --- */
-.evalsubmit button {
+.evalsubmit  {
   width: 200px;
   padding: 12px;
   border: none;
@@ -126,7 +126,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
-  color: #333;
+  color: #10A37F;
 }
 
 /* --- Selection --- */
@@ -148,7 +148,7 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #333;
+  color:#10A37F;
 }
 
 .evalTopic, .llm, .evalmethod {

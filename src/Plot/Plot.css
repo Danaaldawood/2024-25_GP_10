@@ -1,27 +1,35 @@
 /* --- Header Styles --- */
 .plot-page-header {
-  box-sizing: border-box;
-  border-radius: 0;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 20px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  top: 0;
-  background-color: #003f5c;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   color: white;
-  padding: 22px 22px;
+  padding: 5px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+}
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  font-size: 12px;
 }
 
 /* Back Button Styles */
 .plot-back-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: #722F57 ;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -39,13 +47,56 @@
 }
 
 /* --- Main Content Styles --- */
+
 .plotheader {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  margin: auto;
   width: 100%;
-  margin-top: 30px;
+  max-width: 960px; /* Adjust the max-width for proper centering */
+  text-align: center;
+}
+
+#map {
+  margin: 20px auto; /* Center the map within its container */
+}
+
+.coverage-scores {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  text-align: left;
+  gap: 10px;
+}
+
+.coverage-score-item {
+  display: flex;
+  align-items: center;
+  background: #e8f5e9;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #24526e;
+  gap: 8px;
+}
+
+.region-badge {
+  background: #c8e6c9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #24526e;
+}
+
+.plotsubmit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 /* Error State */
@@ -57,12 +108,12 @@
 .plotheader h3 {
   font-size: 28px;
   font-weight: bold;
-  color: #24526e;
+  color: #722F57 ;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border-bottom: 3px solid #24526e;
-  padding-bottom: 10px;
+  border-bottom: 3px solid #722F57 ;
+  padding-top: 10px;
   margin: 0;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -90,6 +141,7 @@
   align-items: center;
   width: 240px;
   height: 50px;
+  margin-bottom: 30px;
   color: #fff;
   background: #10a37f;
   border-radius: 15px;
@@ -112,7 +164,7 @@
   text-transform: capitalize;
   letter-spacing: 1px;
   margin: 0;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -183,6 +235,91 @@
 .plot-button2:hover {
   background-color: #095c47;
 }
+.coverage-scores {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align items */
+  margin-top: 20px;
+  gap: 15px; /* Space between score items */
+  text-align: center; /* Center the text */
+}
+
+.coverage-score-item {
+  background-color: #8e3f6f;
+  border-radius: 10px;
+  padding: 10px ; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  color: white; 
+  font-size: 18px; 
+  font-weight: bold;
+  text-transform: capitalize; 
+  text-align: center;
+}
+
+/* --- Coverage Score Header --- */
+.coverage-score-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #722F57 ;
+  
+}
+
+.info-icon {
+  font-size: 20px;
+  color: #722F57 ;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.info-icon:hover {
+  color: #8e3f6f ;
+}
+
+.tooltip-container {
+  position: absolute;
+  top: 170px; 
+  left: 68%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  z-index: 100;
+}
+
+.tooltip-content h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #24526e;
+}
+
+.tooltip-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.tooltip-content ul {
+  margin: 10px 0 0;
+  padding: 0 20px;
+  font-size: 14px;
+  list-style-type: disc;
+}
+
+.tooltip-content ul li {
+  margin: 5px 0;
+}
 
 /* --- 4K Resolution Styles (3840x2160) --- */
 @media screen and (min-width: 2560px) {
@@ -235,6 +372,7 @@
     height: 100px;
     font-size: 38px;
     border-radius: 30px;
+    
   }
 
   /* Dialog/Popup Scaling */
