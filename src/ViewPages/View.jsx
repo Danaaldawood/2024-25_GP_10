@@ -4,16 +4,20 @@ import { ref, onValue } from "firebase/database";
 import { realtimeDb, db, auth } from "../Register/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import Search from "@mui/icons-material/Search";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AddIcon from "@mui/icons-material/Add";
-
 import "./View.css";
 
 export function RealtimeData() {
+  // Translation hook with namespace
+  const { t, i18n } = useTranslation("viewPage");
+
+  // State management
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
@@ -24,13 +28,86 @@ export function RealtimeData() {
   const [hoveredAddRow, setHoveredAddRow] = useState(null);
   const [hoveredNotifyRow, setHoveredNotifyRow] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+
   const tableContainerRef = useRef(null);
-  // Number of items per page
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
-  // Handles clicking a row's for "Notify" button
+  const getDisplayReason = (row, reason) => {
+    // First check if there are any annotations/values
+    if (!row.annotations || row.annotations.length === 0) {
+      return ''; // Return empty string if no annotations
+    }
+  
+    const currentLang = i18n.language;
+    const annotation = row.annotations?.find(a => a.reason === reason);
+    
+    if (currentLang === 'ar' && row.region_name === 'Arab' && annotation?.reason_lan) {
+      return annotation.reason_lan;
+    } else if (currentLang === 'ch' && row.region_name === 'Chinese' && annotation?.reason_lan) {
+      return annotation.reason_lan;
+    }
+    return reason;
+  };
+  const getDisplayRegion = (row) => {
+    const currentLang = i18n.language;
+    if (currentLang === "ar" && row.region_name === "Arab" && row.region_lan) {
+      return row.region_lan;
+    } else if (
+      currentLang === "ch" &&
+      row.region_name === "Chinese" &&
+      row.region_lan
+    ) {
+      return row.region_lan;
+    }
+    return row.region_name;
+  };
 
+  const getDisplayTopic = (row) => {
+    const currentLang = i18n.language;
+    if (currentLang === "ar" && row.region_name === "Arab" && row.topic_lan) {
+      return row.topic_lan;
+    } else if (
+      currentLang === "ch" &&
+      row.region_name === "Chinese" &&
+      row.topic_lan
+    ) {
+      return row.topic_lan;
+    }
+    return row.topic;
+  };
+
+  // Get display value based on current language and region
+  const getDisplayValue = (row) => {
+    const currentLang = i18n.language;
+    if (currentLang === "ar" && row.region_name === "Arab" && row.question) {
+      return row.question;
+    } else if (
+      currentLang === "ch" &&
+      row.region_name === "Chinese" &&
+      row.question
+    ) {
+      return row.question;
+    }
+    return row.en_question;
+  };
+
+  // Get display value for annotation based on current language and region
+  const getDisplayValueForAnnotation = (annotation, regionName) => {
+    const currentLang = i18n.language;
+    if (currentLang === "ar" && regionName === "Arab" && annotation.values) {
+      return annotation.values[0];
+    } else if (
+      currentLang === "ch" &&
+      regionName === "Chinese" &&
+      annotation.values
+    ) {
+      return annotation.values[0];
+    }
+    return annotation.en_values[0];
+  };
+
+  // Handle notification click
   const handleClick = (row) => {
     if (
       row.region_name === userRegion &&
@@ -42,24 +119,24 @@ export function RealtimeData() {
       );
       const selectedValue = dropdownElement ? dropdownElement.value : "";
 
-      // Navigate to the Notify page with row details as state
       navigate(`/Notifymodrator/${row.id}`, {
         state: {
           id: row.id,
           topic: row.topic,
-          attribute: row.en_question,
+          attribute: getDisplayValue(row),
           region: row.region_name,
           selectedValue: selectedValue,
           allValues:
-            row.annotations?.map((annotation) => annotation.en_values[0]) || [],
+            row.annotations?.map((annotation) =>
+              getDisplayValueForAnnotation(annotation, row.region_name)
+            ) || [],
         },
       });
     }
   };
 
-  // Fetch user region and order  tabel based on user reigon
+  // Fetch user data and initialize realtime database listener
   useEffect(() => {
-    console.log("Fetching user region...");
     const fetchUserRegion = async () => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -68,7 +145,6 @@ export function RealtimeData() {
             if (userDoc.exists()) {
               const userData = userDoc.data();
               setUserRegion(userData.region || "");
-              console.log("User region set:", userData.region);
             }
           } catch (error) {
             console.error("Error fetching user region:", error);
@@ -79,7 +155,6 @@ export function RealtimeData() {
 
     fetchUserRegion();
 
-    // Fetch data from Firebase Realtime Database
     const unsubscribe = onValue(
       ref(realtimeDb, "/"),
       (snapshot) => {
@@ -100,51 +175,43 @@ export function RealtimeData() {
           });
 
           setTableData(dataArray);
-          console.log("Fetched data:", dataArray);
-
-          // Initialize reasons for each row
 
           const initialReasons = dataArray.reduce((acc, row) => {
-            const firstAnnotation = row.annotations?.[0];
-            acc[row.id] = firstAnnotation
-              ? firstAnnotation.reason
-              : "Variation";
+            // Only set a reason if there are annotations
+            if (row.annotations && row.annotations.length > 0) {
+              const firstAnnotation = row.annotations[0];
+              acc[row.id] = firstAnnotation.reason;
+            }
             return acc;
           }, {});
           setReasons(initialReasons);
         } else {
-          setError("No data available in Firebase.");
+          setError(t("no_data"));
         }
       },
       (error) => {
-        setError("Error fetching data: " + error.message);
+        setError(t("fetch_error") + error.message);
         console.error("Error fetching data:", error);
       }
     );
 
     return () => unsubscribe();
-  }, []);
+  }, [t]);
 
-  //Handles region filter
-
+  // Filter handlers
   const handleRegionChange = (e) => {
     setFilterRegion(e.target.value);
     setCurrentPage(1);
   };
 
-  //Handles region search input
-
   const handleSearchChange = (e) => {
-    const searchValue = e.target.value;
-    setSearchTerm(searchValue);
+    setSearchTerm(e.target.value);
     setCurrentPage(1);
-
     if (tableContainerRef.current) {
       tableContainerRef.current.scrollTop = 0;
     }
   };
 
-  // Handles topic filter
   const handleTopicChange = (e) => {
     const selectedTopic = e.target.value;
     setSearchTerm("");
@@ -155,7 +222,8 @@ export function RealtimeData() {
     );
     setCurrentPage(1);
   };
-  // Handles clicking the "Add" button for a row
+
+  // Handle add button click
   const handleAddClick = (row) => {
     if (row.region_name === userRegion) {
       const dropdownElement = document.querySelector(
@@ -163,26 +231,28 @@ export function RealtimeData() {
       );
       const selectedValue = dropdownElement ? dropdownElement.value : "";
 
-      // Navigate to the edit (add)page with row details as state
       navigate(`/edit/${row.id}`, {
         state: {
-          attribute: row.en_question,
+          attribute: getDisplayValue(row),
           topic: row.topic,
           region: row.region_name,
           allValues:
-            row.annotations?.map((annotation) => annotation.en_values[0]) || [],
+            row.annotations?.map((annotation) =>
+              getDisplayValueForAnnotation(annotation, row.region_name)
+            ) || [],
           selectedValue: selectedValue,
         },
       });
     }
   };
 
-  // Handles changes in the selected value for a row
+  // Value change handler
   const handleValueChange = (rowId, selectedValue) => {
     const row = tableData.find((row) => row.id === rowId);
     if (row && row.annotations) {
       const selectedAnnotation = row.annotations.find(
-        (annotation) => annotation?.en_values?.[0] === selectedValue
+        (annotation) =>
+          getDisplayValueForAnnotation(annotation, row.region_name) === selectedValue
       );
       setReasons((prev) => ({
         ...prev,
@@ -190,16 +260,14 @@ export function RealtimeData() {
       }));
     }
   };
-  // Handles page changes for pagination
 
+  // Pagination handlers
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     if (tableContainerRef.current) {
       tableContainerRef.current.scrollTop = 0;
     }
   };
-
-  // Handles group navigation for pagination
 
   const handleGroupChange = (direction) => {
     const maxPagesVisible = 5;
@@ -224,9 +292,7 @@ export function RealtimeData() {
     }
   };
 
-  // --filter and search --
-  // Filters and sorts data based on search, region, and topic filters
-
+  // Filter and search data
   const filteredData = tableData
     .filter((row) => {
       const searchLower = searchTerm.toLowerCase().trim();
@@ -234,10 +300,12 @@ export function RealtimeData() {
       const matchesSearch =
         !searchTerm ||
         row.region_name?.toLowerCase().includes(searchLower) ||
-        row.en_question?.toLowerCase().includes(searchLower) ||
+        getDisplayValue(row)?.toLowerCase().includes(searchLower) ||
         row.topic?.toLowerCase().includes(searchLower) ||
         row.annotations?.some((annotation) =>
-          annotation.en_values?.[0]?.toLowerCase().includes(searchLower)
+          getDisplayValueForAnnotation(annotation, row.region_name)
+            ?.toLowerCase()
+            .includes(searchLower)
         );
 
       const matchesRegion =
@@ -251,23 +319,18 @@ export function RealtimeData() {
       return matchesSearch && matchesRegion && matchesTopic;
     })
     .sort((a, b) => {
-      // Sort by user region first
-      if (a.region_name === userRegion && b.region_name !== userRegion) {
+      if (a.region_name === userRegion && b.region_name !== userRegion)
         return -1;
-      }
-      if (a.region_name !== userRegion && b.region_name === userRegion) {
+      if (a.region_name !== userRegion && b.region_name === userRegion)
         return 1;
-      }
       return 0;
     });
 
-  // Calculates total pages and items to display for pagination
-
+  // Pagination calculations
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-  // Generates the range of pages to display in pagination
 
   const getPageRange = () => {
     const pageRange = [];
@@ -281,33 +344,23 @@ export function RealtimeData() {
     }
     return pageRange;
   };
-  // Determines the displayed filter topic for holiday topic
 
   const displayedFilterTopic =
     filterTopic === "Holidays/Celebration/Leisure" ? "Holiday" : filterTopic;
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>{error}</div>;
   }
 
   return (
-    <div className="viewpage">
+    <div className={`viewpage ${i18n.language === "ar" ? "rtl" : "ltr"}`}>
       <Header />
-
-      {/* Main container */}
-
       <div className="container mt-5">
-        {/* Section for the table header */}
-
         <section className="tabel_header">
-          <h2 className="table-title">Cultures Data</h2>
+          <h2 className="table-title">{t("viewPage.cultures_data")}</h2>
         </section>
 
-        {/* container  for search and filter inputs */}
-
         <div className="filter-Search-inputs-container">
-          {/* Search bar for filtering rows based oninput */}
-
           <div className="search-container">
             <span className="search-icon">
               <Search style={{ color: "#888", fontSize: "20px" }} />
@@ -315,210 +368,193 @@ export function RealtimeData() {
             <input
               type="text"
               className="search-input"
-              placeholder="Search..."
+              placeholder={t("viewPage.search_placeholder")}
               value={searchTerm}
               onChange={handleSearchChange}
             />
           </div>
-          {/* Dropdown filters for region and topic */}
 
           <div className="filter-container">
-            {/* filter Reigon*/}
-
             <select
               className="filter-select"
               value={filterRegion}
               onChange={handleRegionChange}
             >
-              <option value="">All Regions</option>
-              <option value="Western">Western</option>
-              <option value="Chinese">Chinese</option>
-              <option value="Arab">Arab</option>
+              <option value="">{t("viewPage.all_regions")}</option>
+              <option value="Western">{t("viewPage.western")}</option>
+              <option value="Chinese">{t("viewPage.chinese")}</option>
+              <option value="Arab">{t("viewPage.arab")}</option>
             </select>
-            {/* Topics filter*/}
+
             <select
               className="filter-select"
               value={displayedFilterTopic}
               onChange={handleTopicChange}
             >
-              <option value="">All Topics</option>
-              <option value="Food">Food</option>
-              <option value="Education">Education</option>
-              <option value="Work life">Work life</option>
-              <option value="Sport">Sport</option>
-              <option value="Holiday">Holiday</option>
-              <option value="Family">Family</option>
-              <option value="Greeting">Greeting</option>
+              <option value="">{t("viewPage.all_topics")}</option>
+              <option value="Food">{t("viewPage.food")}</option>
+              <option value="Education">{t("viewPage.education")}</option>
+              <option value="Work life">{t("viewPage.work_life")}</option>
+              <option value="Sport">{t("viewPage.sport")}</option>
+              <option value="Holiday">{t("viewPage.holiday")}</option>
+              <option value="Family">{t("viewPage.family")}</option>
+              <option value="Greeting">{t("viewPage.greeting")}</option>
             </select>
           </div>
         </div>
 
-        {/* Table container with scroll functionality */}
-
         <div className="scroll-container" ref={tableContainerRef}>
           <div className="table_container">
-            <div className="table-wrapper">
-              <table className="data-table">
-                <thead>
-                  {/* Table headers */}
-
-                  <tr className="tabel_titles">
-                    <th></th>
-                    <th>Region</th>
-                    <th>Attribute</th>
-                    <th>Values</th>
-                    <th>Topic</th>
-                    <th>Reason</th>
-                    <th>Add</th>
-                    <th>Notify</th>
-                  </tr>
-                </thead>
-                {/* --full a tabel rows using  attribut ,reigon,topic, values, reason data-- */}
-                <tbody>
-                  {currentItems.map((row, index) => (
-                    <tr key={row.id}>
-                      {/* Row index */}
-
-                      <td>{indexOfFirstItem + index + 1}</td>
-                      {/* reigon of attribut */}
-                      <td>{row.region_name}</td>
-                      {/* attribute */}
-                      <td>{row.en_question}</td>
-                      <td>
-                        {row.annotations && row.annotations.length > 0 ? (
-                          row.annotations.length > 1 ? (
-                            <select
-                              className="value-select"
-                              data-row-id={row.id}
-                              onChange={(e) =>
-                                handleValueChange(row.id, e.target.value)
-                              }
-                            >
-                              {row.annotations.map((annotation, i) => (
-                                <option key={i} value={annotation.en_values[0]}>
-                                  {annotation.en_values[0]}
-                                </option>
-                              ))}
-                            </select>
-                          ) : (
-                            <span>{row.annotations[0].en_values[0]}</span>
-                          )
+            <table className="data-table">
+              <thead>
+                <tr className="tabel_titles">
+                  <th></th>
+                  <th>{t("viewPage.region")}</th>
+                  <th>{t("viewPage.attribute")}</th>
+                  <th>{t("viewPage.values")}</th>
+                  <th>{t("viewPage.topic")}</th>
+                  <th>{t("viewPage.reason")}</th>
+                  <th>{t("viewPage.add")}</th>
+                  <th>{t("viewPage.notify")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.map((row, index) => (
+                  <tr key={row.id}>
+                    <td>{indexOfFirstItem + index + 1}</td>
+                    <td>{getDisplayRegion(row)}</td>
+                    <td>{getDisplayValue(row)}</td>
+                    <td>
+                      {row.annotations && row.annotations.length > 0 ? (
+                        row.annotations.length > 1 ? (
+                          <select
+                            className="value-select"
+                            data-row-id={row.id}
+                            onChange={(e) =>
+                              handleValueChange(row.id, e.target.value)
+                            }
+                          >
+                            {row.annotations.map((annotation, i) => (
+                              <option
+                                key={i}
+                                value={getDisplayValueForAnnotation(
+                                  annotation,
+                                  row.region_name
+                                )}
+                              >
+                                {getDisplayValueForAnnotation(
+                                  annotation,
+                                  row.region_name
+                                )}
+                              </option>
+                            ))}
+                          </select>
                         ) : (
-                          <span></span>
-                        )}
-                      </td>
-                      <td
-                        className={`topic-column ${
-                          row.topic === "Holidays/Celebration/Leisure"
-                            ? "left-align"
-                            : "center-align"
-                        }`}
+                          <span>
+                            {getDisplayValueForAnnotation(
+                              row.annotations[0],
+                              row.region_name
+                            )}
+                          </span>
+                        )
+                      ) : (
+                        <span></span>
+                      )}
+                    </td>
+                    <td>{getDisplayTopic(row)}</td>
+                    <td>{getDisplayReason(row, reasons[row.id] || 'variation' || "")}</td>
+                    <td
+                      onMouseEnter={() => setHoveredAddRow(row.id)}
+                      onMouseLeave={() => setHoveredAddRow(null)}
+                      style={{ position: "relative" }}
+                    >
+                      <button
+                        onClick={() => handleAddClick(row)}
+                        className="add-button"
+                        disabled={row.region_name !== userRegion}
                       >
-                        {/* topic of attribute  */}
-                        {row.topic}
-                      </td>
-                      {/* reason for values */}
-                      <td>{reasons[row.id] || "variation"}</td>
-                      {/* Add button with region restriction */}
-
-                      <td
-                        onMouseEnter={() => setHoveredAddRow(row.id)}
-                        onMouseLeave={() => setHoveredAddRow(null)}
-                        style={{ position: "relative" }}
-                      >
-                        <button
-                          onClick={() => handleAddClick(row)}
-                          className="add-button"
-                          // enabel add button if attribute from user reigon
-                          disabled={row.region_name !== userRegion}
-                        >
-                          <AddIcon style={{ marginRight: "5px" }} /> Add
-                        </button>
-                        {row.region_name !== userRegion &&
-                          hoveredAddRow === row.id &&
-                          !hoveredNotifyRow && (
-                            <div className="custom-tooltip">
-                              You don't belong to this region
-                            </div>
-                          )}
-                      </td>
-
-                      {/* Notify button with conditions */}
-
-                      <td
-                        onMouseEnter={() => setHoveredNotifyRow(row.id)}
-                        onMouseLeave={() => setHoveredNotifyRow(null)}
-                        style={{ position: "relative" }}
-                      >
-                        <button
-                          onClick={() => handleClick(row)}
-                          className="notify-button"
-                          disabled={
-                            row.region_name !== userRegion ||
-                            !row.annotations ||
-                            row.annotations.length === 0
-                          }
-                        >
-                          <div className="notification-item">
-                            <NotificationsActiveIcon
-                              style={{ marginRight: "5px" }}
-                            />
-                            <span>Notify</span>
+                        <AddIcon style={{ marginRight: "5px" }} />{" "}
+                        {t("viewPage.add")}
+                      </button>
+                      {row.region_name !== userRegion &&
+                        hoveredAddRow === row.id &&
+                        !hoveredNotifyRow && (
+                          <div className="custom-tooltip">
+                            {t("viewPage.not_your_region")}
                           </div>
-                        </button>
-                        {/* enabel notify button if attribute from user reigon  */}
+                        )}
+                    </td>
+                    <td
+                      onMouseEnter={() => setHoveredNotifyRow(row.id)}
+                      onMouseLeave={() => setHoveredNotifyRow(null)}
+                      style={{ position: "relative" }}
+                    >
+                      <button
+                        onClick={() => handleClick(row)}
+                        className="notify-button"
+                        disabled={
+                          row.region_name !== userRegion ||
+                          !row.annotations ||
+                          row.annotations.length === 0
+                        }
+                      >
+                        <div className="notification-item">
+                          <NotificationsActiveIcon
+                            style={{ marginRight: "5px" }}
+                          />
+                          <span>{t("viewPage.notify")}</span>
+                        </div>
+                      </button>
+                      {row.region_name !== userRegion &&
+                        hoveredNotifyRow === row.id &&
+                        !hoveredAddRow && (
+                          <div className="custom-tooltip">
+                            {t("viewPage.not_your_region")}
+                          </div>
+                        )}
+                      {row.region_name === userRegion &&
+                        (!row.annotations || row.annotations.length === 0) &&
+                        hoveredNotifyRow === row.id && (
+                          <div className="custom-tooltip">
+                            {t("viewPage.no_values_available")}
+                          </div>
+                        )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-                        {row.region_name !== userRegion &&
-                          hoveredNotifyRow === row.id &&
-                          !hoveredAddRow && (
-                            <div className="custom-tooltip">
-                              You don't belong to this region
-                            </div>
-                          )}
-                        {row.region_name === userRegion &&
-                          (!row.annotations || row.annotations.length === 0) &&
-                          hoveredNotifyRow === row.id && (
-                            <div className="custom-tooltip">
-                              No values available
-                            </div>
-                          )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            {/* Pagination */}
+          {/* Pagination Section */}
+          <div className="pagination-container">
+            <button
+              onClick={() => handleGroupChange("prev")}
+              disabled={currentPage <= 5}
+              className="pagination-button"
+            >
+              {t("viewPage.previous")}
+            </button>
 
-            <div className="pagination-container">
+            {getPageRange().map((pageNum) => (
               <button
-                onClick={() => handleGroupChange("prev")}
-                disabled={currentPage <= 5}
-                className="pagination-button"
+                key={pageNum}
+                onClick={() => handlePageChange(pageNum)}
+                className={`pagination-button ${
+                  pageNum === currentPage ? "active" : ""
+                }`}
               >
-                Previous
+                {pageNum}
               </button>
+            ))}
 
-              {getPageRange().map((pageNum) => (
-                <button
-                  key={pageNum}
-                  onClick={() => handlePageChange(pageNum)}
-                  className={`pagination-button ${
-                    pageNum === currentPage ? "active" : ""
-                  }`}
-                >
-                  {pageNum}
-                </button>
-              ))}
-
-              <button
-                onClick={() => handleGroupChange("next")}
-                disabled={Math.ceil(currentPage / 5) * 5 >= totalPages}
-                className="pagination-button"
-              >
-                Next
-              </button>
-            </div>
+            <button
+              onClick={() => handleGroupChange("next")}
+              disabled={Math.ceil(currentPage / 5) * 5 >= totalPages}
+              className="pagination-button"
+            >
+              {t("viewPage.next")}
+            </button>
           </div>
         </div>
       </div>
