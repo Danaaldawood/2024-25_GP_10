@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-
+import { useTranslation } from "react-i18next";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import "./Notifymodrator.css";
@@ -21,11 +21,12 @@ export const Notifymodrator = () => {
   const [showError, setShowError] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+ 
   // full form with retrive values from location state
+  const { t ,i18n} = useTranslation("notifyPage");   
 
   const [notificationData, setNotificationData] = useState({
-    topic: location.state?.topic || "",
+    topic: t(`notifyPage.Topic_Names.${location.state?.topic}`) || "",  
     description: "",
     suggestion: "",
     PreviousValue: location.state?.selectedValue || "",
@@ -35,6 +36,7 @@ export const Notifymodrator = () => {
     userId: "",
     region: location.state?.region || "",
   });
+  
   // monitor authentication state and set user ID
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -51,7 +53,7 @@ export const Notifymodrator = () => {
   // Ensure if location state is available
   useEffect(() => {
     if (!location.state) {
-      alert("No data available for notification");
+      alert(t("notifyPage.noDataAlert"));
       navigate("/View");
     }
   }, [location.state, navigate]);
@@ -100,7 +102,7 @@ export const Notifymodrator = () => {
       notificationData.suggestion &&
       nonEnglishPattern.test(notificationData.suggestion)
     ) {
-      setErrorMessage("Please enter the suggestion in English only.");
+      setErrorMessage(t("notifyPage.suggestionError"));
       setShowErrorPopup(true);
       return;
     }
@@ -131,9 +133,8 @@ export const Notifymodrator = () => {
         existingNotifications = snapshot.val().notifications || [];
 
         if (checkExistingNotification(existingNotifications)) {
-          setErrorMessage(
-            "A notification for this attribute and value is already pending."
-          );
+          setErrorMessage(t("notifyPage.pendingNotificationError"));
+
           setShowErrorPopup(true);
           return;
         }
@@ -168,35 +169,33 @@ export const Notifymodrator = () => {
       <div className="notify-form-container">
         {/* tab tag */}
         <Helmet>
-          <title>Notify Moderator</title>
+        <title>Notify Moderator</title>           
           <meta name="description" content="Notify moderator page" />
         </Helmet>
 
         {/* Form header */}
         <div className="notify-header">
-          <div className="notify-title">Notify Moderator</div>
-          <div className="underline"></div>
+        <div className="notify-title">{t("notifyPage.notify-title")}</div>
+        <div className="underline"></div>
           <div className="notiyfy-attribute-display">
             {location.state?.attribute}
           </div>
         </div>
-
         {/* Form inputs */}
         <div className="notify-inputs">
           {/* input of topic*/}
           <div className="notify-input">
-            <label className="label">Topic:</label>
-            <input
+          <label className="label">{t("notifyPage.label")}</label>
+          <input
               type="text"
               name="topic"
               value={notificationData.topic}
               readOnly
             />
           </div>
-
           {/* Previous value selection */}
           <div className="notify-input">
-            <label className="label">Previous Value:</label>
+            <label className="label2">{t("notifyPage.label2")}</label>
             <select
               name="PreviousValue"
               value={notificationData.PreviousValue}
@@ -220,35 +219,34 @@ export const Notifymodrator = () => {
 
           {/* Description of notify  */}
           <div className="notify-input">
-            <label className="label">Description:</label>
+            <label className="label3">{t("notifyPage.label3")}</label>
             <textarea
               name="description"
               value={notificationData.description}
               onChange={handleInputChange}
               placeholder={
                 showError
-                  ? "Please provide a description"
-                  : "Describe the issue in detail"
+                  ? t("notifyPage.errorPlaceholder")
+                  : t("notifyPage.detailPlaceholder")
               }
               className={
                 showError && !notificationData.description ? "error-input" : ""
               }
               rows={4}
             />
-          </div>
+            </div>
 
           {/* Suggestion input */}
           <div className="notify-input">
-            <label className="label">
-              Suggestion for New Value (optional):
-            </label>
+          <label className="label4">{t("notifyPage.label4")}</label>
+
             <input
               type="text"
               name="suggestion"
               value={notificationData.suggestion}
               onChange={handleInputChange}
-              placeholder="Suggest a new value"
-            />
+              placeholder={t("notifyPage.placeholder1")}
+              />
           </div>
         </div>
 
@@ -258,33 +256,34 @@ export const Notifymodrator = () => {
             onClick={handleSubmitNotification}
             className="notify-submit-button"
           >
-            Notify
-          </button>
+  {t("notifyPage.submitButton")}
+  </button>
         </div>
 
         {/* Success and error popups */}
         {showSuccess && (
-          <div className="success-popup">
-            <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-            <p className="success-message">
-              Notification submitted successfully.
-            </p>
-          </div>
-        )}
-        {showErrorPopup && (
-          <div className="error-popup">
-            <div className="error-title">Error</div>
-            <div className="error-message">{errorMessage}</div>
-            <div className="error-actions">
-              <button
-                className="confirm-btn"
-                onClick={() => setShowErrorPopup(false)}
-              >
-                OK
-              </button>
-            </div>
-          </div>
-        )}
+  <div className="success-popup">
+    <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+    <p className="success-message">
+      {t("notifyPage.successMessage")}
+    </p>
+  </div>
+)}
+
+{showErrorPopup && (
+  <div className="error-popup">
+    <div className="error-title">{t("notifyPage.errorTitle")}</div>
+    <div className="error-message">{errorMessage}</div>
+    <div className="error-actions">
+      <button
+        className="confirm-btn"
+        onClick={() => setShowErrorPopup(false)}
+      >
+        {t("notifyPage.errorOkButton")}
+      </button>
+    </div>
+  </div>
+)}
       </div>
       <Footer />
     </div>

@@ -6,6 +6,7 @@ import defaultProfilePic from "../Modorater/userpro.jpg";
 import { FaArrowLeft, FaTrash } from "react-icons/fa"; // Import FaTrash
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../Register/firebase";
+import { useTranslation } from "react-i18next";
 import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import {
   deleteUser,
@@ -17,6 +18,7 @@ import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 
 const UserProfilePage = () => {
+  const { t ,i18n} = useTranslation("modProfile");   
   // --- State Management ---
   const [profileName, setProfileName] = useState(
     localStorage.getItem("profileName") || ""
@@ -167,7 +169,7 @@ const UserProfilePage = () => {
         <button className="back-btn" onClick={() => navigate("/HomePage")}>
           <FaArrowLeft className="back-icon" />
         </button>
-        <h1>User Profile</h1>
+        <h1>{t("userProfile.h1")}</h1>
       </header>
       
       {/* Main Content */}
@@ -182,12 +184,12 @@ const UserProfilePage = () => {
 
         {/* Profile Form */}
         <div className="profile-form-container">
-          <h2>User Information</h2>
+          <h2>{t("userProfile.h2")}</h2>
           <div className="form-row">
 
             {/* Name Input */}
-            <label>Full Name</label>
-            <input
+            <label>{t("userProfile.nameLabel")}</label>
+              <input
               type="text"
               className="formProf-input"
               value={profileName}
@@ -197,8 +199,8 @@ const UserProfilePage = () => {
 
           {/* Email Input */}
           <div className="form-row">
-            <label>Email</label>
-            <input
+          <label>{t("userProfile.emailLabel")}</label>
+             <input
               type="email"
               className="formProf-input"
               value={email}
@@ -208,8 +210,8 @@ const UserProfilePage = () => {
 
           {/* Region Input */}
           <div className="form-row">
-            <label>Region</label>
-            <input
+          <label>{t("userProfile.regionLabel")}</label>
+          <input
               type="text"
               className="formProf-input"
               value={region}
@@ -219,11 +221,10 @@ const UserProfilePage = () => {
 
           {/* Action Buttons */}
           <button className="save-button" onClick={handleSaveProfile}>
-            Save Profile
-          </button>
+          {t("userProfile.saveButton")}          </button>
 
           <button className="delete-button" onClick={handleDeleteAccount}>
-            Delete Account <FaTrash className="trash-icon" />
+          {t("userProfile.deleteButton")} <FaTrash className="trash-icon" />
           </button>
         </div>
       </div>

@@ -11,8 +11,9 @@ import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
-
+import { useTranslation } from "react-i18next";
 const ProfilePage = () => {
+  const { t ,i18n} = useTranslation("modProfile");   
   // --- State Management ---
   const [profileName, setProfileName] = useState(
     localStorage.getItem("profileName") || ""
@@ -149,7 +150,7 @@ const ProfilePage = () => {
         <button className="back-btn" onClick={() => navigate("/moderator")}>
           <FaArrowLeft className="back-icon" />
         </button>
-        <h1>Moderator Profile</h1>
+        <h1>{t("modProfile.h1")}</h1>
       </header>
 
       {/* Main Content */}
@@ -162,11 +163,11 @@ const ProfilePage = () => {
 
         {/* Profile Form */}
         <div className="profile-form-container">
-          <h2 className="headname">Moderator Information</h2>
+          <h2 className="headname">{t("modProfile.h2")}</h2>
           <div className="profile-form">
             {/* Name Input */}
             <div className="form-row">
-              <label>Full Name</label>
+            <label>{t("modProfile.nameLabel")}</label>
               <input
                 type="text"
                 className="formProf-input"
@@ -178,8 +179,8 @@ const ProfilePage = () => {
 
             {/* Email Input */}
             <div className="form-row">
-              <label>Email</label>
-              <input
+            <label>{t("modProfile.emailLabel")}</label>
+            <input
                 type="email"
                 className="formProf-input"
                 placeholder="Email"
@@ -190,12 +191,12 @@ const ProfilePage = () => {
 
             {/* Action Buttons */}
             <button className="save-button" onClick={handleSaveProfile}>
-              Save Profile
-            </button>
-            <button className="delete-button" onClick={handleDeleteAccount}>
-              Delete Account <FaTrash className="trash-icon" />
-            </button>
-          </div>
+          {t("modProfile.saveButton")}          </button>
+
+          <button className="delete-button" onClick={handleDeleteAccount}>
+          {t("modProfile.deleteButton")} <FaTrash className="trash-icon" />
+          </button>
+        </div>
         </div>
       </div>
 

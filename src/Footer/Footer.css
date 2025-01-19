@@ -1,21 +1,20 @@
 .footer {
-  background-color: #722F57;
-  color: white;
+  background: rgba(255, 255, 255, 0.95);
+  color:  #095c47;
   padding: 5px;
   text-align: center;
   font-size: 14px;
   margin-top: auto;
   width: 100%;
   margin-top: auto;
-  color: rgb(0, 0, 0);
-}
+ }
 .footer-icons {
   margin-bottom: 10px;
 }
 
 .footer-icon {
   margin: 0 15px;
-  color: #fff;
+  color:  #095c47;
   font-size: 1.5rem;
   transition: color 0.3s;
   margin-top: 15px;
@@ -28,4 +27,6 @@
 .footer p {
   font-size: 1rem;
   margin: 0;
+  color:  #095c47;
+
 }

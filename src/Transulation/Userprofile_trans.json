@@ -1,0 +1,36 @@
+{
+    "en": {
+      "userProfile": {
+        "h1": "User Profile",
+        "h2": "User Information",
+        "nameLabel": "Full Name",
+        "emailLabel": "Email",
+        "regionLabel": "Region",
+        "saveButton": "Save Profile",
+        "deleteButton": "Delete Account"
+      }
+    },
+    "ar": {
+      "userProfile": {
+        "h1": "الملف الشخصي",
+        "h2": "معلومات المستخدم",
+        "nameLabel": "الاسم كامل",
+        "emailLabel": "البريد الإلكتروني",
+        "regionLabel": "المنطقة",
+        "saveButton": "  حفظ الملف الشخصي",
+        "deleteButton": "حذف الحساب"
+      }
+    },
+    "ch": {
+      "userProfile": {
+        "h1": "用户资料",
+        "h2": "用户信息",
+        "nameLabel": "姓名",
+        "emailLabel": "电子邮件",
+        "regionLabel": "地区",
+        "saveButton": "保存资料",
+        "deleteButton": "删除账户"
+      }
+    }
+  }
+  

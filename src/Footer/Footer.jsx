@@ -10,7 +10,7 @@ import { MdEmail } from "react-icons/md";
 export const Footer = () => {
   return (
     <footer className="footer">
-      <p style={{ color: "white" }}>©2024 CultureLens. All rights reserved.</p>
+      <p >©2024 CultureLens All rights reserved</p>
       <div className="footer-icons">
         <a
           href="mailto:Culturelens@outlook.com"
