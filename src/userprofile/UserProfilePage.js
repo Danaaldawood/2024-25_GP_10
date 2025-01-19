@@ -18,7 +18,7 @@ import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 
 const UserProfilePage = () => {
-  const { t ,i18n} = useTranslation("modProfile");   
+  const { t ,i18n} = useTranslation("userProfile");   
   // --- State Management ---
   const [profileName, setProfileName] = useState(
     localStorage.getItem("profileName") || ""
