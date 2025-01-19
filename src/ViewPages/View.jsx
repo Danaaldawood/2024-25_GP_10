@@ -226,20 +226,32 @@ export function RealtimeData() {
   // Handle add button click
   const handleAddClick = (row) => {
     if (row.region_name === userRegion) {
-      const dropdownElement = document.querySelector(
-        `select[data-row-id="${row.id}"]`
-      );
+      const dropdownElement = document.querySelector(`select[data-row-id="${row.id}"]`);
       const selectedValue = dropdownElement ? dropdownElement.value : "";
-
+  
+      // Convert annotations to the correct format
+      const allValues = row.annotations?.map(annotation => {
+        return {
+          en_values: annotation.en_values || [],
+          values: annotation.values || [],
+          reason: annotation.reason
+        };
+      }) || [];
+  
+      // Log the values being passed to verify structure
+      console.log('Values being passed:', allValues);
+  
       navigate(`/edit/${row.id}`, {
         state: {
           attribute: getDisplayValue(row),
+          question: row.question, // Arabic translation
+          ch_question: row.ch_question, // Chinese translation
+          en_question: row.en_question,
           topic: row.topic,
+          topic_lan: row.topic_lan,
           region: row.region_name,
-          allValues:
-            row.annotations?.map((annotation) =>
-              getDisplayValueForAnnotation(annotation, row.region_name)
-            ) || [],
+          region_lan: row.region_lan,
+          allValues: allValues,
           selectedValue: selectedValue,
         },
       });

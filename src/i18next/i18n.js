@@ -68,7 +68,7 @@ import signuptrans from '../Transulation/Signup_trans.json';
 import discrptiontran from '../Transulation/DiscrptionPage_trans.json';
 import viewtrans from '../Transulation/Viewpage_trans.json';
 import notifytrans from '../Transulation/Notfiypage_trans.json';
-// import addtrans from '../Transulation/Add_trans.json';
+import addtrans from '../Transulation/Add_trans.json';
 import userprofiletrans from'../Transulation/Userprofile_trans.json';
 import modoraterprofiletrans from '../Transulation/Modprofile_trans.json';
 import comparetrans from '../Transulation/Compare_trans.json';
@@ -95,7 +95,7 @@ i18n.use(initReactI18next).init({
       notifyPage:notifytrans.en,
       userProfile:userprofiletrans.en,
       modProfile:modoraterprofiletrans.en,
-      // addpage:addtrans.en,
+      addpage:addtrans.en,
 
     },
     ar: {
@@ -111,7 +111,7 @@ i18n.use(initReactI18next).init({
       notifyPage:notifytrans.ar,
       userProfile:userprofiletrans.ar,
       modProfile:modoraterprofiletrans.ar,
-      // addpage:addtrans.ar,
+      addpage:addtrans.ar,
     },
     ch: {
       headerpage: headertrans.ch,
@@ -126,7 +126,7 @@ i18n.use(initReactI18next).init({
       notifyPage:notifytrans.ch,
       userProfile:userprofiletrans.ch,
       modProfile:modoraterprofiletrans.ch,
-      // addpage:addtrans.ch,
+      addpage:addtrans.ch,
     },
   },
   react: {
