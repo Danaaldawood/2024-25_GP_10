@@ -1,0 +1,95 @@
+/* Modal.css */
+
+/* General Page Styling */
+.terms-page {
+  max-width: 800px;
+  margin: 50px auto; /* Center the content */
+  padding: 20px;
+  border: 1px solid #ddd; /* Light border for structure */
+  border-radius: 10px;
+  background-color: #f9f9f9; /* Soft background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  font-family: Arial, sans-serif; /* Clean font */
+  color: #333; /* Standard text color */
+}
+
+/* Header Styling */
+.terms-page h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5f1515; /* Dark blue-gray for header */
+}
+
+/* List Styling */
+.terms-page ul {
+  list-style-type: disc;
+  padding-left: 40px; /* Indent the list */
+  line-height: 1.8; /* Increase spacing for readability */
+}
+
+.terms-page ul li {
+  margin-bottom: 10px; /* Space between list items */
+  font-size: 1rem; /* Standard text size */
+}
+
+/* Hover effect for list items */
+.terms-page ul li:hover {
+  color: #5f1515; /* Highlight text in blue on hover */
+  cursor: default;
+}
+.agree-button {
+  padding: 12px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+}
+
+.agree-button:hover {
+  background-color: #218838;
+  transform: scale(1.05); /* Slightly enlarges the button on hover */
+}
+
+.agree-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlight on focus */
+}
+.headerPage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+   
+}
+
+.HEADER{
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.LOGO-title {
+  font-size: 1.8rem;
+  color:#10A37F;}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .terms-page {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .terms-page h1 {
+    font-size: 1.5rem;
+  }
+}

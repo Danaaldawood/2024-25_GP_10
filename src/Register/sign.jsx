@@ -46,6 +46,7 @@ const Sign = () => {
   const hasUppercase = /[A-Z]/.test(password);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
   const isPasswordValid = isMinCharacters && hasUppercase && hasSpecialChar;
+  const [Linkedin, setLinkedin] = useState("");
 
   // Success popup timeout handler
 
@@ -451,7 +452,15 @@ const Sign = () => {
                   <label htmlFor="Other">{t("other")}</label>
                 </div>
               </fieldset>
-
+              <div class="registration-info">
+  <p>
+    By registering, I acknowledge that I have read
+    <a href="/TermsConditionUser" target="_blank" rel="noopener noreferrer" class="modal-link">
+      Terms of conditions
+    </a>
+    and agree.
+  </p>
+</div>
               <button type="submit" className="sign-btn">
                 {t("createAccount")}
               </button>
@@ -488,7 +497,19 @@ const Sign = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-
+{/*Linkedin input */}
+<label htmlFor="Linkedin" className="sign-label">
+  {t("Linkedin")}
+</label>
+<input
+  type="url"
+  id="Linkedin"
+  name="Linkedin"
+  placeholder={t("Enter your LinkedIn URL")}
+  className="sign-input"
+  value={Linkedin}
+  onChange={(e) => setLinkedin(e.target.value)}
+/>
               {/* reason input */}
 
               <label htmlFor="reason" className="sign-label">
@@ -585,6 +606,15 @@ const Sign = () => {
                   <label htmlFor="Other">{t("other")}</label>
                 </div>
               </fieldset>
+              <div class="registration-info">
+  <p>
+    By registering, I acknowledge that I have read
+    <a href="/Modal" target="_blank" rel="noopener noreferrer" class="modal-link">
+      Terms of conditions
+    </a>
+    and agree.
+  </p>
+</div>
 
               <button type="submit" className="sign-btn">
                 {t("Send Request")}

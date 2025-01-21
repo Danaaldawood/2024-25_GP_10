@@ -239,6 +239,41 @@ p {
   top: 25px;
   transform: translateY(-50%);
 }
+/* Style for the div container */
+ 
+
+/* Style for the paragraph */
+.registration-info p {
+   font-size: 16px;
+   font-weight: normal;
+  color: #000000;
+  line-height: 1,2;
+  margin: 0;
+  margin-top: 10px;
+}
+.registration-info p {
+  font-size: 14px;
+}
+
+.terms-spacing {
+  margin-left: 8px; /* Adjust the spacing as needed */
+}
+
+
+/* Style for the link */
+.registration-info .modal-link {
+  color: #007BFF; /* Blue for the link */
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: underline;
+
+ }
+
+/* Hover effect for the link */
+.registration-info .modal-link:hover {
+  color: #0056b3; 
+  text-decoration: underline;
+}
 
 /* Responsive*/
 @media (max-width: 768px) {

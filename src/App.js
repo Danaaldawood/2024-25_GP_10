@@ -21,7 +21,8 @@ import { ResetPassword } from "./ResetPassword/ResetPassword";
 import { Notifymodrator } from "./Notifymodratorpages/Notifymodrator";
 import Switcher from "./Switcher";
 import TranslationButton from "./TranslationButton";
-
+import Modal from "./Register/Modal";
+import TermsConditionUser from"./Register/TermsConditionUser";
 import "./i18next/i18n";
 import AdminPage from "./Register/AdminPage";
 import AdminLogin from "./Register/AdminLogin";
@@ -131,6 +132,15 @@ function App() {
       path: "/Notifymodrator/:id",
       element: <Notifymodrator />,
     },
+    { path: "/modal", 
+      element: <Modal /> },
+
+      {
+        path: "/TermsConditionUser",
+        element: <TermsConditionUser />
+      }
+      
+
   ]);
 
   return (
