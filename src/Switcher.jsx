@@ -76,7 +76,7 @@ function Switcher() {
     option: (isActive) => ({
       padding: '10px 16px',
       cursor: 'pointer',
-      color: isActive ? '#1976d2' : '#333',
+      color: isActive ? '#10A37F' : '#333',
       backgroundColor: isActive ? '#f0f7ff' : 'white',
       textAlign: i18n.dir() === 'rtl' ? 'right' : 'left'
     })
