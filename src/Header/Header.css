@@ -8,6 +8,7 @@ body {
   overflow-y: auto;
 }
 
+/* Base header styles */
 .header {
   display: flex;
   justify-content: space-between;
@@ -25,61 +26,95 @@ body {
   z-index: 1000;
 }
 
+/* Logo section */
 .header-left {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .logo-img {
   width: 50px;
   height: auto;
-  margin-right: 10px;
 }
 
 .logo-title {
   font-size: 1.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #10a37f 0%, #095c47 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10a37f 0%, #095c47 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   padding-top: 0.5rem;
 }
 
+/* Navigation menu */
+.nav-menu {
+  display: flex;
+  gap: 15px;
+}
+
 .nav-menu a {
-  color:  #095c47;
-  margin: 0 15px;
+  color: #095c47;
   text-decoration: none;
+  padding: 5px 10px;
+  transition: all 0.2s ease;
 }
 
 .nav-menu a:hover {
-  border-bottom: 2px solid white;
+  background-color: rgba(9, 92, 71, 0.1);
+  border-radius: 4px;
 }
 
+/* Right section with notifications and menu */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Menu button */
 .menu-btn {
   background: none;
   border: none;
   color: #650015;
   font-size: 24px;
   cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px; 
 }
 
+/* Dropdown menu */
 .menu-dropdown {
-  border-radius: 2px;
   position: absolute;
   top: 60px;
-  right: 20px;
+  inset-inline-end: 20px; /* RTL-friendly positioning */
   background-color: white;
-  color: black;
   border: 1px solid #ddd;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  min-width: 180px;
   z-index: 1000;
+  animation: slideDown 0.2s ease;
 }
 
 .menu-dropdown p {
   margin: 0;
-  padding: 10px;
+  padding: 12px 16px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-dropdown p:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.menu-dropdown p:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .menu-dropdown p:hover {
@@ -87,38 +122,92 @@ body {
 }
 
 .sign-out {
-  color: red;
-  font-weight: bold;
+  color: #dc3545;
 }
 
+/* RTL specific styles */
+[dir="rtl"] .header {
+  direction: rtl;
+}
+
+[dir="rtl"] .nav-menu {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header-right {
+  flex-direction: row-reverse;
+}
+
+/* Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .header-right {
+    order: 2;
+  }
+
+  .menu-dropdown {
+    inset-inline-end: 10px;
   }
 }
 
-
+/* Large screen optimizations */
 @media (min-width: 1440px) and (max-width: 2559px) {
   .logo-title {
-    font-size: 1.3rem; /* Adjust title font size for medium screens */
+    font-size: 1.3rem;
   }
 
   .nav-menu a {
-    font-size: 1.2rem; /* Slightly larger links */
+    font-size: 1.2rem;
   }
 }
 
-/* Responsive styles for ultra-wide screens (2560px and up) */
 @media (min-width: 2560px) {
   .logo-title {
-    font-size: 2rem; /* Larger font size for ultra-wide screens */
+    font-size: 2rem;
   }
 
   .nav-menu a {
-    font-size: 1.5rem; /* Larger link size */
+    font-size: 1.5rem;
   }
 
   .logo-img {
-    width: 80px; /* Larger logo for ultra-wide screens */
+    width: 80px;
+  }
+}
+
+/* High contrast and reduced motion support */
+@media (prefers-contrast: high) {
+  .nav-menu a {
+    text-decoration: underline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-dropdown {
+    animation: none;
   }
 }

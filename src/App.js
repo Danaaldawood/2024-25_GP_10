@@ -145,7 +145,7 @@ function App() {
 
   return (
     <div className="App">
-      <Switcher />
+      {/* <Switcher /> */}
 
       <RouterProvider router={route}></RouterProvider>
 

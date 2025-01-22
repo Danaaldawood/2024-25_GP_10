@@ -1,60 +1,134 @@
 {
-    "en": {
-      "pageTitle": "Compare Page",
-      "description": "This is the Cross Culture Comparison",
-      "header": "Cross-Cultural Comparison",
-      "regions": "Regions:",
-      "arab": "Arab",
-      "western": "Western",
-      "chinese": "Chinese",
-      "topics": "Topics:",
-      "selectTopic": "Select a topic",
-      "food": "Food",
-      "sport": "Sport",
-      "family": "Family",
-      "holiday": "Holiday",
-      "workLife": "Work-life",
-      "education": "Education",
-      "greeting": "Greeting",
-      "compareButton": "Compare"
-    },
-    "ar": {
-      "pageTitle": "صفحة المقارنة",
-      "description": "هذه مقارنة بين الثقافات",
-      "header": "المقارنة بين الثقافات",
-      "regions": "المناطق:",
-      "arab": "عربي",
-      "western": "غربي",
-      "chinese": "صيني",
-      "topics": "الموضوعات:",
-      "selectTopic": "اختر موضوعاً",
-      "food": "الطعام",
-      "sport": "الرياضة",
-      "family": "العائلة",
-      "holiday": "الإجازة",
-      "workLife": "التوازن بين العمل والحياة",
-      "education": "التعليم",
-      "greeting": "التحية",
-      "compareButton": "قارن"
-    },
-    "ch": {
-      "pageTitle": "比较页面",
-      "description": "这是跨文化比较",
-      "header": "跨文化比较",
-      "regions": "地区：",
-      "arab": "阿拉伯",
-      "western": "西方",
-      "chinese": "中国",
-      "topics": "话题：",
-      "selectTopic": "选择一个话题",
-      "food": "食物",
-      "sport": "运动",
-      "family": "家庭",
-      "holiday": "假期",
-      "workLife": "工作与生活",
-      "education": "教育",
-      "greeting": "问候",
-      "compareButton": "比较"
+  "en": {
+    "comparepage": {
+      "title": "Cross-Cultural Comparison",
+      "meta": {
+        "title": "Compare Result",
+        "description": "Cross-Cultural Comparison Result"
+      },
+      "selectors": {
+        "baseRegion": "Select Base Region",
+        "topic": "Select Topic"
+      },
+      "topics": {
+        "food": "Food",
+        "sport": "Sport",
+        "family": "Family",
+        "holidays": "Holidays/Celebration/Leisure",
+        "workLife": "Work life",
+        "education": "Education",
+        "greeting": "Greeting"
+      },
+      "regions": {
+        "region":"Region",
+        "arab": "Arab",
+        "western": "Western",
+        "chinese": "Chinese"
+      },
+      "similarity": {
+        "title": "Similarity Index",
+        "sim":"Similarity",
+        "info": {
+          "title": "About Similarity Index",
+          "description": "This cross-culture index shows the similarity between cultural values using Jaccard similarity calculation",
+          "legend": "Higher values indicate stronger cultural similarities"
+        }
+      },
+      "loading": "Loading...",
+      "comparison": {
+        "and": "and"
+      },
+      "buttons": {
+        "done": "Done"
+      }
+    }
+  },
+  "ar": {
+    "comparepage": {
+      "title": "مقارنة بين الثقافات",
+      "meta": {
+        "title": "نتيجة المقارنة",
+        "description": "نتيجة المقارنة بين الثقافات"
+      },
+      "selectors": {
+        "baseRegion": "اختر المنطقة الأساسية",
+        "topic": "اختر الموضوع"
+      },
+      "topics": {
+        "food": "الطعام",
+        "sport": "الرياضة",
+        "family": "العائلة",
+        "holidays": "العطلات/الاحتفالات/الترفيه",
+        "workLife": "حياة العمل",
+        "education": "التعليم",
+        "greeting": "التحية"
+      },
+      "regions": {
+        "region":"المنطقة",
+        "arab": "العرب",
+        "western": "الغرب",
+        "chinese": "الصين"
+      },
+      "similarity": {
+        "title": "مؤشر التشابه",
+        "sim":"التشابه",
+        "info": {
+          "title": "حول مؤشر التشابه",
+          "description": "يوضح مؤشر الثقافات المتعددة هذا التشابه بين القيم الثقافية باستخدام حساب جاكارد للتشابه",
+          "legend": "القيم الأعلى تشير إلى تشابهات ثقافية أقوى"
+        }
+      },
+      "loading": "جاري التحميل...",
+      "comparison": {
+        "and": "و"
+      },
+      "buttons": {
+        "done": "تم"
+      }
+    }
+  },
+  "ch": {
+    "comparepage": {
+      "title": "跨文化比较",
+      "meta": {
+        "title": "比较结果",
+        "description": "跨文化比较结果"
+      },
+      "selectors": {
+        "baseRegion": "选择基准地区",
+        "topic": "选择主题"
+      },
+      "topics": {
+        "food": "饮食",
+        "sport": "运动",
+        "family": "家庭",
+        "holidays": "节假日/庆祝/休闲",
+        "workLife": "工作生活",
+        "education": "教育",
+        "greeting": "问候"
+      },
+      "regions": {
+        "region":"地区",
+        "arab": "阿拉伯",
+        "western": "西方",
+        "chinese": "中国"
+      },
+      "similarity": {
+        "title": "相似度指数",
+        "sim":"相似性",
+        "info": {
+          "title": "关于相似度指数",
+          "description": "该跨文化指数使用杰卡德相似度计算显示文化价值观之间的相似度",
+          "legend": "较高的值表示更强的文化相似性"
+        }
+      },
+      "loading": "加载中...",
+      "comparison": {
+        "and": "和"
+      },
+      "buttons": {
+        "done": "完成"
+      }
     }
   }
-  
+}

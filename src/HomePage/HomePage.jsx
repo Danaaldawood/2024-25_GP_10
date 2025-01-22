@@ -271,7 +271,7 @@ const HomePage = () => {
 
           {/* Regional Comparison Chart */}
           <div className="chart large-chart">
-            <h3>{t("Regional Topic Comparison")}</h3>
+            <h3>{t("regionComparisonChartTitle")}</h3>
             {regionTopicComparisonData && (
               <Bar data={regionTopicComparisonData} options={barOptions} />
             )}

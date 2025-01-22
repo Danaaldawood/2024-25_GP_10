@@ -2,33 +2,30 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
+import { useTranslation } from "react-i18next";
 
 // --- Main Component: ComparisonMap ---
-// Renders an interactive map showing cultural similarities between regions
 function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
   const mapRef = useRef(null);
+  const { t } = useTranslation('comparepage');
 
   // --- Constants & Configurations ---
-  // Map of regions to their corresponding country IDs in topojson format
   const regionToIds = {
     Western: [840, 124, 826, 250, 276, 380, 724, 620, 528, 56, 756, 40, 372, 752, 578, 208, 246],
     Arab: [12, 48, 818, 368, 400, 414, 422, 434, 504, 512, 275, 634, 682, 729, 760, 788, 784, 887],
     Chinese: [156, 344, 446, 158, 702],
   };
 
-  // Helper function to determine colors based on similarity values
   const getRegionColor = (value) => {
     if (value === undefined || value === null) return "#e0e0e0";
     
     if (value <= 15) {
-      // Red gradient for values 0-15
       const redScale = d3
         .scaleLinear()
         .domain([0, 15])
         .range(["#ffcdd2", "#ef5350"]);
       return redScale(value);
     } else {
-      // Green gradient for values 15-100
       const greenScale = d3
         .scaleLinear()
         .domain([15, 100])
@@ -37,14 +34,11 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     }
   };
 
-  // --- Map Drawing Logic ---
   useEffect(() => {
     const drawMap = async () => {
       try {
-        // Clear existing map
         d3.select(mapRef.current).selectAll("*").remove();
 
-        // --- SVG Setup and Background ---
         const width = 960;
         const height = 500;
 
@@ -61,7 +55,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("height", height)
           .attr("fill", "white");
 
-        // --- Map Projection Configuration ---
         const projection = d3
           .geoMercator()
           .scale(140)
@@ -70,12 +63,10 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
 
         const path = d3.geoPath().projection(projection);
 
-        // --- World Data Fetching ---
         const response = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
         const world = await response.json();
         const countries = feature(world, world.objects.countries);
 
-        // --- Tooltip Creation ---
         const tooltip = d3
           .select(mapRef.current)
           .append("div")
@@ -90,7 +81,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .style("color", "#10a37f")
           .style("box-shadow", "0 4px 8px rgba(0, 0, 0, 0.1)");
 
-        // --- Country Drawing and Interactions ---
         svg
           .append("g")
           .selectAll("path")
@@ -111,7 +101,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           })
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
-          // Event Handlers for Tooltips
           .on("mouseover", (event, d) => {
             const countryId = parseInt(d.id);
             let region = null;
@@ -130,12 +119,13 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             }
 
             if (region) {
+              const translatedRegion = t(`comparepage.regions.${region.toLowerCase()}`);
               tooltip
                 .style("visibility", "visible")
                 .html(
                   similarity !== null
-                    ? `<strong>Region:</strong> ${region}<br><strong>Similarity:</strong> ${similarity.toFixed(2)}%`
-                    : `<strong>Region:</strong> ${region}`
+                    ? `<strong>${t('comparepage.regions.region')}:</strong> ${translatedRegion}<br><strong>${t('comparepage.similarity.sim')}:</strong> ${similarity.toFixed(2)}%`
+                    : `<strong>${t('comparepage.regions.region')}:</strong> ${translatedRegion}`
                 );
             }
           })
@@ -148,7 +138,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             tooltip.style("visibility", "hidden");
           });
 
-        // --- Legend Creation ---
         if (Object.keys(similarities).length > 0) {
           const legendWidth = 200;
           const legendHeight = 15;
@@ -156,10 +145,8 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           const redWidth = (legendWidth * 15) / 100;
           const greenWidth = legendWidth - redWidth;
 
-          // Gradient Definitions
           const gradients = svg.append("defs");
 
-          // Red gradient (0-15%)
           gradients
             .append("linearGradient")
             .attr("id", "legend-gradient-red")
@@ -175,7 +162,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .attr("offset", d => d.offset)
             .attr("stop-color", d => d.color);
 
-          // Green gradient (15-100%)
           gradients
             .append("linearGradient")
             .attr("id", "legend-gradient-green")
@@ -195,7 +181,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .append("g")
             .attr("transform", `translate(${(width - legendWidth) / 2}, ${legendY})`);
 
-          // Color Bars
           legend
             .append("rect")
             .attr("width", redWidth)
@@ -209,7 +194,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .attr("height", legendHeight)
             .style("fill", "url(#legend-gradient-green)");
 
-          // Scale and Labels
           const legendScale = d3.scaleLinear()
             .domain([0, 100])
             .range([0, legendWidth]);
@@ -223,14 +207,13 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .attr("transform", `translate(0, ${legendHeight})`)
             .call(legendAxis);
 
-          // Legend Title
           legend
             .append("text")
             .attr("x", legendWidth / 2)
             .attr("y", legendHeight + 30)
             .attr("text-anchor", "middle")
             .style("font-size", "12px")
-            .text("Similarity Index");
+            .text(t('comparepage.similarity.title'));
         }
       } catch (error) {
         console.error("Error drawing map:", error);
@@ -238,9 +221,8 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     };
 
     drawMap();
-  }, [baseRegion, similarities, topic]);
+  }, [baseRegion, similarities, topic, t]);
 
-  // --- Component Return ---
   return (
     <div>
       <div ref={mapRef} style={{ width: "100%", height: "500px" }} />

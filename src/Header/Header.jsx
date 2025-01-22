@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import logo from '../images/Logo.png';
 import { signOut } from 'firebase/auth';
 import { auth } from '../Register/firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SignOutConfirmation from '../Modorater/SignOutConfirmation';
 import NotificationBell from './NotificationBell';
+import logo from '../images/Logo.png';
+import Switcher from "../Switcher";
+
 import './Header.css';
-import Switcher from '../Switcher';
 
 export const Header = () => {
-  const { t } = useTranslation('headerpage');
+  const { t, i18n } = useTranslation('headerpage');
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
+  const menuRef = useRef(null);
   const navigate = useNavigate();
+  const isRTL = i18n.dir() === 'rtl';
+
+  // Handle click outside to close menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
 
   const handleProfileClick = () => {
+    setMenuOpen(false);
     navigate('/userprofile');
   };
 
   const handleSignOut = () => {
+    setMenuOpen(false);
     setShowSignOutModal(true);
   };
 
@@ -42,36 +61,56 @@ export const Header = () => {
     setShowSignOutModal(false);
   };
 
+  // Navigation links
+  const navLinks = [
+    { path: '/home', label: t('home') },
+    { path: '/culturevalues', label: t('culturalValues') },
+    { path: '/compare-result', label: t('Compare') },
+    { path: '/evaluation', label: t('evaluation') }
+  ];
+
   return (
-    <header className="header">
+    <header className="header" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="header-left">
         <img src={logo} alt="Logo" className="logo-img" />
         <h1 className="logo-title">CultureLens</h1>
       </div>
 
       <nav className="nav-menu">
-        <a href="/home">{t('home')}</a>
-        <a href="/culturevalues">{t('culturalValues')}</a>
-        <a href="/compare-result">{t('Compare')}</a>
-        <a href="/evaluation">{t('evaluation')}</a>
+        {navLinks.map((link) => (
+          <a href={link.path} key={link.path}>
+            {link.label}
+          </a>
+        ))}
       </nav>
 
-      <div className="header-right">
+      <div className="header-right" ref={menuRef}>
         <NotificationBell />
-        <button className="menu-btn" onClick={handleMenuToggle}>
-          <span className="menu-icon">&#9776;</span>
+        <Switcher />
+        <button 
+          className="menu-btn" 
+          onClick={handleMenuToggle}
+          aria-expanded={menuOpen}
+          aria-label={t('toggleMenu')}
+        >
+          <FontAwesomeIcon icon={faBars} />
         </button>
+
+        {menuOpen && (
+          <div className="menu-dropdown">
+            <p onClick={handleProfileClick}>{t('profile')}</p>
+            <p onClick={handleSignOut} className="sign-out">
+              {t('signOut')}
+            </p>
+          </div>
+        )}
       </div>
 
-      {menuOpen && (
-        <div className="menu-dropdown">
-          <p onClick={handleProfileClick}>{t('profile')}</p>
-          <p onClick={handleSignOut} className="sign-out">{t('signOut')}</p>
-        </div>
-      )}
-
       {showSignOutModal && (
-        <SignOutConfirmation onConfirm={confirmSignOut} onCancel={cancelSignOut} />
+        <SignOutConfirmation 
+          onConfirm={confirmSignOut} 
+          onCancel={cancelSignOut} 
+        />
       )}
     </header>
   );

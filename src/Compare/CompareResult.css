@@ -340,3 +340,53 @@
     flex-wrap: wrap;
   }
 }
+
+[dir="rtl"] .info-popup {
+  right: auto;
+  left: -150px;
+  text-align: right;
+}
+
+[dir="rtl"] .info-content h3 {
+  text-align: right;
+}
+
+[dir="rtl"] .info-content p {
+  text-align: right;
+}
+
+[dir="rtl"] .gradient-legend {
+  flex-direction: row-reverse;
+}
+
+/* Adjust the info button position for RTL */
+[dir="rtl"] .info-container-inline {
+  flex-direction: row-reverse;
+}
+
+/* Adjust select arrows for RTL */
+[dir="rtl"] .compare-result-select {
+  background-position: left 5px center;
+  padding: 2px 5px 2px 30px;
+}
+
+/* RTL support for comparison info */
+[dir="rtl"] .compare-result-comparison-info {
+  flex-direction: row-reverse;
+}
+
+/* RTL support for selectors */
+[dir="rtl"] .compare-result-selectors {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .info-popup {
+    left: -100px;
+    right: auto;
+  }
+  
+  [dir="rtl"] .compare-result-selectors {
+    flex-direction: column;
+  }
+}

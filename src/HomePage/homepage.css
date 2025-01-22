@@ -122,7 +122,7 @@
   gap: 50px;
   flex-wrap: wrap;
   margin: 100px 0;
-  background-color: #fff;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
 
 p {
@@ -143,6 +143,8 @@ p {
   justify-content: space-around;
   gap: 50px;
   flex-wrap: wrap;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+
 }
 
 .chart {

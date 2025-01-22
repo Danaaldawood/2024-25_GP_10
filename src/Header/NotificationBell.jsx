@@ -1,15 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ref, onValue, update, remove, get } from 'firebase/database';
 import { auth, realtimeDb } from '../Register/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next'; // Add i18n support
 import './NotificationBell.css';
 
 const NotificationBell = () => {
   const [notifications, setNotifications] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [userId, setUserId] = useState(null);
+  const dropdownRef = useRef(null);
+  const { i18n } = useTranslation();
+  const isRTL = i18n.dir() === 'rtl';
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -29,7 +44,6 @@ const NotificationBell = () => {
     const unsubscribe = onValue(notificationsRef, (snapshot) => {
       if (snapshot.exists()) {
         const notificationsData = snapshot.val();
-        // Convert object to array if needed
         const notificationsArray = Array.isArray(notificationsData) 
           ? notificationsData 
           : Object.values(notificationsData);
@@ -51,7 +65,6 @@ const NotificationBell = () => {
 
       if (snapshot.exists()) {
         const existingNotifications = snapshot.val();
-        // Convert to array if it's an object
         const notificationsArray = Array.isArray(existingNotifications) 
           ? existingNotifications 
           : Object.values(existingNotifications);
@@ -60,14 +73,12 @@ const NotificationBell = () => {
           notification.id === notificationId ? { ...notification, read: true } : notification
         );
 
-        // Convert array to object with numeric keys
         const notificationsObject = updatedNotifications.reduce((obj, notification, index) => {
           obj[index] = notification;
           return obj;
         }, {});
 
         await update(userNotificationsRef, notificationsObject);
-        setNotifications(updatedNotifications);
       }
     } catch (error) {
       console.error("Error marking notification as read:", error);
@@ -83,7 +94,6 @@ const NotificationBell = () => {
 
       if (snapshot.exists()) {
         const existingNotifications = snapshot.val();
-        // Convert to array if it's an object
         const notificationsArray = Array.isArray(existingNotifications) 
           ? existingNotifications 
           : Object.values(existingNotifications);
@@ -93,18 +103,15 @@ const NotificationBell = () => {
         );
 
         if (updatedNotifications.length === 0) {
-          // If no notifications left, remove the entire node
           await remove(userNotificationsRef);
           setNotifications([]);
         } else {
-          // Convert array to object with numeric keys
           const notificationsObject = updatedNotifications.reduce((obj, notification, index) => {
             obj[index] = notification;
             return obj;
           }, {});
 
           await update(userNotificationsRef, notificationsObject);
-          setNotifications(updatedNotifications);
         }
       }
     } catch (error) {
@@ -117,7 +124,7 @@ const NotificationBell = () => {
   };
 
   return (
-    <div className="notification-bell-container">
+    <div className="notification-bell-container" ref={dropdownRef}>
       <div className="bell-icon" onClick={toggleDropdown}>
         <FontAwesomeIcon icon={faBell} />
         {notifications.length > 0 && (
@@ -126,7 +133,7 @@ const NotificationBell = () => {
       </div>
       
       {showDropdown && (
-        <div className="notification-dropdown">
+        <div className="notification-dropdown" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
           {notifications.length > 0 ? (
             <div className="notifications-list">
               {notifications.map((notification) => (
@@ -139,7 +146,9 @@ const NotificationBell = () => {
                       {`${notification.action} for ${notification.attribute}`}
                     </p>
                     <span className="notification-time">
-                      {new Date(notification.timestamp).toLocaleDateString()}
+                      {new Date(notification.timestamp).toLocaleDateString(
+                        isRTL ? 'ar-SA' : 'en-US'
+                      )}
                     </span>
                   </div>
                   <div className="notification-actions">

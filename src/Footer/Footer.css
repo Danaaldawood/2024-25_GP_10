@@ -1,32 +1,69 @@
 .footer {
   background: rgba(255, 255, 255, 0.95);
-  color:  #095c47;
-  padding: 5px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  color: #095c47;
+  padding: 8px 20px;
   text-align: center;
   font-size: 14px;
   margin-top: auto;
   width: 100%;
-  margin-top: auto;
- }
+  position: relative;
+  z-index: 1000;
+ 
+}
+
 .footer-icons {
-  margin-bottom: 10px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .footer-icon {
-  margin: 0 15px;
-  color:  #095c47;
-  font-size: 1.5rem;
-  transition: color 0.3s;
-  margin-top: 15px;
+  color: #095c47;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  margin-top: 5px;
 }
 
 .footer-icon:hover {
   color: #052336;
+  transform: translateY(-2px);
 }
 
 .footer p {
-  font-size: 1rem;
-  margin: 0;
-  color:  #095c47;
+  font-size: 0.9rem;
+  margin: 3px 0;
+  color: #095c47;
+}
 
+/* Responsive styles */
+@media (min-width: 1440px) and (max-width: 2559px) {
+  .footer {
+    padding: 10px 20px;
+  }
+  
+  .footer p {
+    font-size: 1rem;
+  }
+  
+  .footer-icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .footer {
+    padding: 12px 25px;
+  }
+  
+  .footer p {
+    font-size: 1.2rem;
+  }
+  
+  .footer-icon {
+    font-size: 1.5rem;
+  }
 }

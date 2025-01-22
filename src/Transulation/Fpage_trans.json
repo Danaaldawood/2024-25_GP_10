@@ -6,7 +6,8 @@
       "welcomeText": "Welcome to CultureLens!",
       "sectionDescription": "Begin your journey in understanding global cultures and discover how language models interact with diverse values and standards. Ready to explore cultures in new ways? Get started now!",
       "getStartedButton": "Get Started",
-      "loginButton": "Log in"
+      "loginButton": "Log in",
+      "admin":"Admin"
     },
     "ar": {
       "pageTitle": "CultureLens",
@@ -15,7 +16,8 @@
       "welcomeText": " مرحبًا بكم في  CultureLens",
       "sectionDescription": "ابدأ رحلتك في فهم الثقافات العالمية واكتشف كيفية تفاعل نماذج اللغة مع القيم والمعايير المتنوعة. هل أنت مستعد لاستكشاف الثقافات بطرق جديدة؟ ابدأ الآن!",
       "getStartedButton": "ابدأ",
-      "loginButton": "تسجيل الدخول"
+      "loginButton": "تسجيل الدخول",
+      "admin":"مدير"
     },
     "ch": {
       "pageTitle": "文化镜",
@@ -24,7 +26,8 @@
       "welcomeText": "欢迎来到文化镜!",
       "sectionDescription": "开始您的全球文化理解之旅，发现语言模型如何与多样化的价值观和标准互动。准备以新方式探索文化吗？立即开始!",
       "getStartedButton": "开始",
-      "loginButton": "登录"
+      "loginButton": "登录",
+      "admin":"管理员"
     }
   }
   

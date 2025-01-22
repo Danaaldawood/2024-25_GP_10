@@ -3,14 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
+import { useTranslation } from 'react-i18next';
+
 import { RiTwitterXLine } from "react-icons/ri";
 import { IoLogoInstagram } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 
 export const Footer = () => {
+  const { t, i18n } = useTranslation('headerpage');
+  
   return (
     <footer className="footer">
-      <p >©2024 CultureLens All rights reserved</p>
+            <p>{t('copyright')}</p>
+
       <div className="footer-icons">
         <a
           href="mailto:Culturelens@outlook.com"

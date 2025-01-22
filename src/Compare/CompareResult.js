@@ -1,4 +1,3 @@
-// --- Imports ---
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertCircle } from "lucide-react";
@@ -11,7 +10,7 @@ import { Helmet } from "react-helmet";
 
 function CompareResult() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('comparepage');
 
   // --- State Management ---
   const [showInfo, setShowInfo] = useState(false);
@@ -23,14 +22,16 @@ function CompareResult() {
 
   // --- Constants ---
   const allRegions = ["Arab", "Western", "Chinese"];
+  
+  // Define topics with their API values and translation keys
   const topics = [
-    "Food",
-    "Sport",
-    "Family",
-    "Holidays/Celebration/Leisure",
-    "Work life",
-    "Education",
-    "Greeting",
+    { api: "Food", translation: "food" },
+    { api: "Sport", translation: "sport" },
+    { api: "Family", translation: "family" },
+    { api: "Holidays/Celebration/Leisure", translation: "holidays" },
+    { api: "Work life", translation: "workLife" },
+    { api: "Education", translation: "education" },
+    { api: "Greeting", translation: "greeting" }
   ];
 
   const getComparisonRegions = () => {
@@ -47,7 +48,6 @@ function CompareResult() {
 
       const comparisonRegions = getComparisonRegions();
       try {
-        // Fetch similarity data for each comparison region
         const promises = comparisonRegions.map(async (compareRegion) => {
           const response = await fetch("http://127.0.0.1:5000/api/compare", {
             method: "POST",
@@ -65,7 +65,6 @@ function CompareResult() {
           return { region: compareRegion, data };
         });
 
-        // Process and update similarity scores
         const results = await Promise.all(promises);
         const newSimilarities = {};
         results.forEach(({ region, data }) => {
@@ -87,15 +86,15 @@ function CompareResult() {
     <div className="compare-result-page">
       {/* Meta Tags */}
       <Helmet>
-        <title>{t("compare-result")}</title>
-        <meta name="description" content={t("compare-result")} />
+        <title>{t('comparepage.meta.title')}</title>
+        <meta name="description" content={t('comparepage.meta.description')} />
       </Helmet>
 
-      {/*Header */}
+      {/* Header */}
       <Header />
 
       {/* Main Title */}
-      <h1 className="compare-result-title">Cross-Cultural Comparison</h1>
+      <h1 className="compare-result-title">{t('comparepage.title')}</h1>
 
       <div className="compare-result-content">
         <div className="compare-result-container">
@@ -107,10 +106,10 @@ function CompareResult() {
                 value={baseRegion}
                 onChange={(e) => setBaseRegion(e.target.value)}
               >
-                <option value="">Select Base Region</option>
+                <option value="">{t('comparepage.selectors.baseRegion')}</option>
                 {allRegions.map((region) => (
                   <option key={region} value={region}>
-                    {region}
+                    {t(`comparepage.regions.${region.toLowerCase()}`)}
                   </option>
                 ))}
               </select>
@@ -123,10 +122,10 @@ function CompareResult() {
                 onChange={(e) => setSelectedTopic(e.target.value)}
                 disabled={!baseRegion}
               >
-                <option value="">Select Topic</option>
+                <option value="">{t('comparepage.selectors.topic')}</option>
                 {topics.map((topic) => (
-                  <option key={topic} value={topic}>
-                    {topic}
+                  <option key={topic.api} value={topic.api}>
+                    {t(`comparepage.topics.${topic.translation}`)}
                   </option>
                 ))}
               </select>
@@ -135,7 +134,7 @@ function CompareResult() {
 
           {/* Similarity Information Header */}
           <div className="similarity-header">
-            <h2 className="similarity-title">Similarity Index</h2>
+            <h2 className="similarity-title">{t('comparepage.similarity.title')}</h2>
             <div className="info-container-inline">
               <button
                 className="info-button"
@@ -147,16 +146,11 @@ function CompareResult() {
               {showInfo && (
                 <div className="info-popup">
                   <div className="info-content">
-                    <h3>About Similarity Index</h3>
-                    <p>
-                      This cross-culture index shows the similarity between
-                      cultural values using Jaccard similarity calculation
-                    </p>
+                    <h3>{t('comparepage.similarity.info.title')}</h3>
+                    <p>{t('comparepage.similarity.info.description')}</p>
                     <div className="gradient-legend">
                       <div className="gradient-bar"></div>
-                      <span>
-                        Higher values indicate stronger cultural similarities
-                      </span>
+                      <span>{t('comparepage.similarity.info.legend')}</span>
                     </div>
                   </div>
                 </div>
@@ -177,7 +171,7 @@ function CompareResult() {
           {loading && (
             <div className="compare-result-loading">
               <div className="compare-result-spinner"></div>
-              <p className="compare-result-loading-text">Loading...</p>
+              <p className="compare-result-loading-text">{t('comparepage.loading')}</p>
             </div>
           )}
 
@@ -194,10 +188,12 @@ function CompareResult() {
               {getComparisonRegions().map((region) => (
                 <div key={region} className="compare-result-comparison-info">
                   <span className="compare-result-region-name">
-                    {baseRegion}
+                    {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
                   </span>
-                  <span>and</span>
-                  <span className="compare-result-region-name">{region}</span>
+                  <span>{t('comparepage.comparison.and')}</span>
+                  <span className="compare-result-region-name">
+                    {t(`comparepage.regions.${region.toLowerCase()}`)}
+                  </span>
                   <span className="compare-result-similarity-score">
                     : {(similarities[region] || 0).toFixed(2)}%
                   </span>
@@ -214,11 +210,11 @@ function CompareResult() {
           className="compare-result-recompare-btn"
           onClick={() => navigate("/HomePage")}
         >
-          Done
+          {t('comparepage.buttons.done')}
         </button>
       </div>
 
-      {/*Footer */}
+      {/* Footer */}
       <Footer />
     </div>
   );

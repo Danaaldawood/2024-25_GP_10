@@ -26,11 +26,15 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  text-decoration: none; /* Removes the underline */
+
 }
 
 .Fpage-logo {
   height: 40px;
   width: auto;
+  text-decoration: none; /* Removes the underline */
+
 }
 
 .Fpage-title {
@@ -40,6 +44,21 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-top: 0.5rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Language switcher margin */
+.language-switcher {
+  margin-right: 20px;
+}
+
+[dir="rtl"] .language-switcher {
+  margin-right: 0;
+  margin-left: 20px;
 }
 
 .admin-button {
@@ -111,8 +130,8 @@
 
 .Fpage-button.primary {
   background: linear-gradient(135deg, #A44580 0%, #722F57 100%);
-    color: white;
-  box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
+  color: white;
+  box-shadow: 0 4px 12px rgba(164, 69, 128, 0.2);
 }
 
 .Fpage-button.secondary {
@@ -139,6 +158,30 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* RTL Support */
+[dir="rtl"] .header-content {
+  direction: rtl;
+}
+
+[dir="rtl"] .header-right {
+  flex-direction: row-reverse;
+}
+
+
+[dir="rtl"] .Fpage-content {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .Fpage-text {
+  text-align: right;
+}
+
+[dir="rtl"] .Fpage-buttons {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* Animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -148,36 +191,102 @@
   }
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
+  .Fpage-header {
+    padding: 0.6rem 1rem;
+  }
+
+  .language-switcher {
+    margin-right: 15px;
+  }
+
+  [dir="rtl"] .language-switcher {
+    margin-right: 0;
+    margin-left: 15px;
+  }
+
+  .admin-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
   .Fpage-content {
     flex-direction: column;
     text-align: center;
     gap: 2rem;
   }
+
+  [dir="rtl"] .Fpage-content {
+    flex-direction: column;
+  }
+
+  [dir="rtl"] .Fpage-text {
+    text-align: center;
+  }
+
   .Fpage-Welcome {
     font-size: 2.5rem;
   }
+
   .Fpage-buttons {
     justify-content: center;
   }
+
+  [dir="rtl"] .Fpage-buttons {
+    justify-content: center;
+  }
+
   .Fpage-img {
     width: 200px;
+  }
+
+  .Fpage-title {
+    font-size: 1.2rem;
+  }
+  
+  .Fpage-logo {
+    height: 30px;
   }
 }
 
 @media (max-width: 480px) {
+  .Fpage-header {
+    padding: 0.5rem;
+  }
+
+  .language-switcher {
+    margin-right: 12px;
+  }
+
+  [dir="rtl"] .language-switcher {
+    margin-right: 0;
+    margin-left: 12px;
+  }
+
   .Fpage-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
-  .admin-button {
-    padding: 0.6rem 1rem;
-  }
+
   .Fpage-Welcome {
     font-size: 2rem;
   }
+
   .Fpage-description {
     font-size: 1rem;
   }
+
   .Fpage-button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
