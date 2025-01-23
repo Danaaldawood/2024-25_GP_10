@@ -22,6 +22,7 @@ import { Notifymodrator } from "./Notifymodratorpages/Notifymodrator";
 import Switcher from "./Switcher";
 import TranslationButton from "./TranslationButton";
 import Modal from "./Register/Modal";
+import ReportPage from"./Modorater/ReportPage";
 import TermsConditionUser from"./Register/TermsConditionUser";
 import "./i18next/i18n";
 import AdminPage from "./Register/AdminPage";
@@ -138,9 +139,12 @@ function App() {
       {
         path: "/TermsConditionUser",
         element: <TermsConditionUser />
-      }
+      },
+      {
+        path: "/reportpage", 
+        element: <ReportPage />,
+      },
       
-
   ]);
 
   return (

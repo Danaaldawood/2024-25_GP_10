@@ -10,8 +10,7 @@ import { Helmet } from "react-helmet";
 import Logo from "../images/Logo.png";
 import { onAuthStateChanged } from "firebase/auth";
 import { FaEye, FaEyeSlash, FaTimes } from "react-icons/fa";
-
-// --- Confirmation Modal Component ---
+ // --- Confirmation Modal Component ---
 const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel, actionType }) => {
   if (!isOpen) return null;
 
@@ -250,7 +249,7 @@ const ModeratorPage = () => {
           }
 
           // Delete from ViewEdit
-          await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`));
+          await remove(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`)); 
 
           // Create notification for user
           await createUserNotification(
@@ -838,6 +837,9 @@ const ModeratorPage = () => {
         <div className="header-left">
           <img src={Logo} alt="CultureLens Logo" className="logo-img" />
           <h1 className="logo-title">CultureLens</h1>
+          <button onClick={() => window.location.href = '/ReportPage'}>
+    Complaints
+  </button>
         </div>
 
         <button className="menu-btn" onClick={handleMenuToggle}>
@@ -874,6 +876,8 @@ const ModeratorPage = () => {
             <span className="notification-badge">{notifications.length}</span>
           )}
         </button>
+
+        
       </div>
 
       {/* ViewEdit Table */}
