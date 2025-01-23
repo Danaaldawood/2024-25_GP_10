@@ -23,7 +23,7 @@ import Switcher from "./Switcher";
 import TranslationButton from "./TranslationButton";
 import Modal from "./Register/Modal";
 import ReportPage from"./Modorater/ReportPage";
-import TermsConditionUser from"./Register/TermsConditionUser";
+import TermsConditionUser from"./Register/TermsModal";
 import "./i18next/i18n";
 import AdminPage from "./Register/AdminPage";
 import AdminLogin from "./Register/AdminLogin";

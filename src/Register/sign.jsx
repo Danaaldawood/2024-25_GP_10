@@ -20,11 +20,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import TermsModal from "./TermsModal";
 
 const Sign = () => {
-  // States for managing form inputs and validation
-
   const { t } = useTranslation("signup");
+  const navigate = useNavigate();
+
+  // Form states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
@@ -33,85 +35,65 @@ const Sign = () => {
   const [reason, setReason] = useState("");
   const [country, setCountry] = useState("");
   const [userType, setUserType] = useState("User");
+  const [Linkedin, setLinkedin] = useState("");
+
+  // UI states
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const [isRequestSent, setIsRequestSent] = useState(false);
-  const [userId, setUserId] = useState(""); // For storing last 4 digits of user ID
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
+  // Terms modal states
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
+  // Password validation states
   const isMinCharacters = password.length >= 8;
   const hasUppercase = /[A-Z]/.test(password);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
   const isPasswordValid = isMinCharacters && hasUppercase && hasSpecialChar;
-  const [Linkedin, setLinkedin] = useState("");
 
-  // Success popup timeout handler
-
+  // Success message timeout handler
   useEffect(() => {
     if (showSuccess) {
       const timer = setTimeout(() => {
         setShowSuccess(false);
       }, 2000);
-
       return () => clearTimeout(timer);
     }
   }, [showSuccess]);
-
-  // Toggles password visibility
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Handles password input change with validation
-
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
-
-    if (newPassword.length > 0) {
-      setIsTyping(true);
-    } else {
-      setIsTyping(false);
-    }
+    setIsTyping(newPassword.length > 0);
   };
 
-  // Fetches authenticated user information and sets user ID
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Get the last four characters of the user ID
-        const lastFourUID = user.uid.slice(-4);
-        setUserId(`user_${lastFourUID}`);
-      } else {
-        console.error("User is not authenticated");
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
   const handleRegister = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // Reset previous error message
+
+    // Validate terms acceptance
+    if (!termsAccepted) {
+      setErrorMessage("Please accept the terms and conditions to continue.");
+      return;
+    }
+
+    setErrorMessage("");
     setPasswordErrorMessage("");
-    // Validation checks for empty fields
 
-    if (!password.trim()) {
+    // Basic validation
+    if (!password.trim() || !fname.trim() || !email.trim()) {
       setErrorMessage("Please complete all required fields.");
       return;
     }
 
-    if (!fname.trim() || !email.trim() || !password.trim()) {
-      setErrorMessage("Please complete all required fields.");
-      return;
-    }
-
-    // Password strength validation
-
+    // Password validation
     if (!isPasswordValid) {
       let errorMessages = [];
       if (!isMinCharacters)
@@ -128,19 +110,17 @@ const Sign = () => {
       return;
     }
 
-    // Validation based on user type
-
+    // User type specific validation
     if (userType === "User") {
       if (!region || !country) {
         setErrorMessage("Please complete all required fields.");
         return;
       }
     } else if (userType === "Moderator") {
-      if (!regionM || !reason.trim()) {
+      if (!regionM || !reason.trim() || !Linkedin.trim()) {
         setErrorMessage("Please complete all required fields.");
         return;
       }
-      //  check moderator reigon
       if (regionM === "Other") {
         setErrorMessage(
           "We currently only accept moderators from Arab, Western, or Chinese regions."
@@ -148,8 +128,8 @@ const Sign = () => {
         return;
       }
     }
-    // Enhanced Email Validation
-    // allowed domains
+
+    // Email validation
     const allowedDomains = [
       "gmail.com",
       "hotmail.com",
@@ -171,8 +151,6 @@ const Sign = () => {
     }
 
     try {
-      // Create user with Firebase
-
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
 
@@ -193,13 +171,14 @@ const Sign = () => {
                 fullName: fname,
                 regionM,
                 reason,
+                Linkedin,
                 status: "Pending",
-                RequestDate: new Date().toISOString(), // Capture current date and time
+                RequestDate: new Date().toISOString(),
               };
 
         await setDoc(doc(db, collectionPath, user.uid), userData);
-
         setShowSuccess(true);
+
         setTimeout(() => {
           if (userType === "User") {
             navigate("/Home");
@@ -215,19 +194,13 @@ const Sign = () => {
     }
   };
 
-  // Handles change in user type
-
   const handleUserTypeChange = (type) => {
     setUserType(type);
   };
 
-  //  Handles country selection
-
   const handleCountryChange = (selectedOption) => {
     setCountry(selectedOption);
   };
-
-  //  country options for select input
 
   const countryOptions = countryList()
     .getData()
@@ -247,10 +220,11 @@ const Sign = () => {
   return (
     <div className="sign-page">
       <Helmet>
-        <title>{t("createAccount")} - My Website</title>
-        <meta name="description" content="Create an account on My website" />
+        <title>{t("createAccount")} - CultureLens</title>
+        <meta name="description" content="Create an account on CultureLens" />
       </Helmet>
 
+      {/* Error Message Popup */}
       {errorMessage && (
         <div className="error-popup">
           <h3 className="error-title">{t("Warning")}!</h3>
@@ -263,6 +237,7 @@ const Sign = () => {
         </div>
       )}
 
+      {/* Success Message Popup */}
       {showSuccess && (
         <div className="success-popup">
           <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
@@ -275,18 +250,20 @@ const Sign = () => {
       )}
 
       <div className="sign-container">
+        {/* Left Section */}
         <div className="Left-section">
           <div className="logo-welcome-container">
-<img src={LOGO} alt="Logo" width="100" height="100" />
+            <img src={LOGO} alt="Logo" width="100" height="100" />
             <h2>{t("welcome")}</h2>
           </div>
           <p className="Welcome-txt">{t("toCultureLens")}</p>
         </div>
 
+        {/* Registration Form */}
         <form className="sign-form" onSubmit={handleRegister}>
           <h2 className="sign-title">{t("createAccount")}</h2>
-          {/* User Type Selection */}
 
+          {/* User Type Selection */}
           <div className="sign-user-type-container">
             <button
               type="button"
@@ -307,10 +284,10 @@ const Sign = () => {
               {t("moderatorType")}
             </button>
           </div>
-          {/* User form */}
+
+          {/* User Form */}
           {userType === "User" && (
             <>
-              {/* name input*/}
               <label htmlFor="name" className="sign-label">
                 {t("fullName")}
               </label>
@@ -322,7 +299,7 @@ const Sign = () => {
                 value={fname}
                 onChange={(e) => setFname(e.target.value)}
               />
-              {/* email input */}
+
               <label htmlFor="email" className="sign-label">
                 {t("email")}
               </label>
@@ -335,12 +312,11 @@ const Sign = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
 
-              {/* country select input */}
               <label className="sign-label">{t("country")}</label>
               <Select
                 options={countryOptions}
                 value={country}
-                onChange={setCountry}
+                onChange={handleCountryChange}
                 placeholder={t("selectCountry")}
                 styles={{
                   control: (styles, { isFocused }) => ({
@@ -369,8 +345,8 @@ const Sign = () => {
                   }),
                 }}
               />
+
               <div>
-                {/* passowrd input */}
                 <label className="Login-label" htmlFor="password">
                   {t("password")}
                 </label>
@@ -383,7 +359,7 @@ const Sign = () => {
                     value={password}
                     onFocus={() => setIsPasswordFocused(true)}
                     onBlur={() => setIsPasswordFocused(false)}
-                    onChange={handlePasswordChange} // use handlePasswordChange
+                    onChange={handlePasswordChange}
                   />
                   <span
                     onClick={togglePasswordVisibility}
@@ -393,7 +369,6 @@ const Sign = () => {
                   </span>
                 </div>
 
-                {/*Password */}
                 {isTyping && (
                   <ul className="password-requirements">
                     <li className={isMinCharacters ? "valid" : "invalid"}>
@@ -408,7 +383,7 @@ const Sign = () => {
                   </ul>
                 )}
               </div>
-              {/* reigon  */}
+
               <fieldset className="sign-culture-domain">
                 <legend>{t("region")}</legend>
                 <div className="sign-culture-options">
@@ -452,26 +427,12 @@ const Sign = () => {
                   <label htmlFor="Other">{t("other")}</label>
                 </div>
               </fieldset>
-              <div class="registration-info">
-  <p>
-    By registering, I acknowledge that I have read
-    <a href="/TermsConditionUser" target="_blank" rel="noopener noreferrer" class="modal-link">
-      Terms of conditions
-    </a>
-    and agree.
-  </p>
-</div>
-              <button type="submit" className="sign-btn">
-                {t("createAccount")}
-              </button>
             </>
           )}
 
-          {/* moderator form */}
-
+          {/* Moderator Form */}
           {userType === "Moderator" && (
             <>
-              {/* name input */}
               <label htmlFor="name" className="sign-label">
                 {t("fullName")}
               </label>
@@ -484,8 +445,6 @@ const Sign = () => {
                 onChange={(e) => setFname(e.target.value)}
               />
 
-              {/* email input */}
-
               <label htmlFor="email" className="sign-label">
                 {t("email")}
               </label>
@@ -497,34 +456,31 @@ const Sign = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-{/*Linkedin input */}
-<label htmlFor="Linkedin" className="sign-label">
-  {t("Linkedin")}
-</label>
-<input
-  type="url"
-  id="Linkedin"
-  name="Linkedin"
-  placeholder={t("Enter your LinkedIn URL")}
-  className="sign-input"
-  value={Linkedin}
-  onChange={(e) => setLinkedin(e.target.value)}
-/>
-              {/* reason input */}
+
+              <label htmlFor="Linkedin" className="sign-label">
+                {t("Linkedin")}
+              </label>
+              <input
+                type="url"
+                id="Linkedin"
+                placeholder={t("Enter your LinkedIn URL")}
+                className="sign-input"
+                value={Linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+              />
 
               <label htmlFor="reason" className="sign-label">
                 {t("Reason")}
               </label>
               <textarea
                 id="reason"
-                placeholder={t("ُEnter your reason")}
+                placeholder={t("Enter your reason")}
                 className="sign-input"
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
               />
-              <div>
-                {/* password input */}
 
+              <div>
                 <label className="Login-label" htmlFor="password">
                   {t("password")}
                 </label>
@@ -537,7 +493,7 @@ const Sign = () => {
                     value={password}
                     onFocus={() => setIsPasswordFocused(true)}
                     onBlur={() => setIsPasswordFocused(false)}
-                    onChange={handlePasswordChange} // use handlePasswordChange
+                    onChange={handlePasswordChange}
                   />
                   <span
                     onClick={togglePasswordVisibility}
@@ -547,7 +503,6 @@ const Sign = () => {
                   </span>
                 </div>
 
-                {/*Password */}
                 {isTyping && (
                   <ul className="password-requirements">
                     <li className={isMinCharacters ? "valid" : "invalid"}>
@@ -562,66 +517,81 @@ const Sign = () => {
                   </ul>
                 )}
               </div>
-              {/* reigon */}
+
               <fieldset className="sign-culture-domain">
                 <legend>{t("region")}</legend>
                 <div className="sign-culture-options">
                   <input
                     type="radio"
-                    id="Arab"
-                    name="cultureDomain"
+                    id="ArabM"
+                    name="cultureDomainM"
                     value="Arab"
                     onChange={(e) => setRegionM(e.target.value)}
                   />
-                  <label htmlFor="Arab">{t("arab")}</label>
+                  <label htmlFor="ArabM">{t("arab")}</label>
                 </div>
                 <div className="sign-culture-options">
                   <input
                     type="radio"
-                    id="Western"
-                    name="cultureDomain"
+                    id="WesternM"
+                    name="cultureDomainM"
                     value="Western"
                     onChange={(e) => setRegionM(e.target.value)}
                   />
-                  <label htmlFor="Western">{t("western")}</label>
+                  <label htmlFor="WesternM">{t("western")}</label>
                 </div>
                 <div className="sign-culture-options">
                   <input
                     type="radio"
-                    id="Chinese"
-                    name="cultureDomain"
+                    id="ChineseM"
+                    name="cultureDomainM"
                     value="Chinese"
                     onChange={(e) => setRegionM(e.target.value)}
                   />
-                  <label htmlFor="Chinese">{t("chinese")}</label>
+                  <label htmlFor="ChineseM">{t("chinese")}</label>
                 </div>
                 <div className="sign-culture-options">
                   <input
                     type="radio"
-                    id="Other"
-                    name="cultureDomain"
+                    id="OtherM"
+                    name="cultureDomainM"
                     value="Other"
                     onChange={(e) => setRegionM(e.target.value)}
                   />
-                  <label htmlFor="Other">{t("other")}</label>
+                  <label htmlFor="OtherM">{t("other")}</label>
                 </div>
               </fieldset>
-              <div class="registration-info">
-  <p>
-    By registering, I acknowledge that I have read
-    <a href="/Modal" target="_blank" rel="noopener noreferrer" class="modal-link">
-      Terms of conditions
-    </a>
-    and agree.
-  </p>
-</div>
-
-              <button type="submit" className="sign-btn">
-                {t("Send Request")}
-              </button>
             </>
           )}
 
+          {/* Terms and Conditions Checkbox */}
+          <div className="terms-checkbox">
+            <label className="checkbox-container">
+              <input
+                type="checkbox"
+                checked={termsAccepted}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
+              />
+              <span className="term-line">I have read and accept the </span>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowTermsModal(true);
+                }}
+                className="terms-link"
+              >
+                Terms and Condition
+              </a>
+            </label>
+          </div>
+
+          {/* Submit Button */}
+          <button type="submit" className="sign-btn">
+            {userType === "User" ? t("createAccount") : t("Send Request")}
+          </button>
+
+          {/* Login Link */}
           <div className="sign-login" style={{ marginTop: "1rem" }}>
             <p>
               {t("alreadyHaveAccount")}{" "}
@@ -632,6 +602,13 @@ const Sign = () => {
           </div>
         </form>
       </div>
+
+      {/* Terms Modal */}
+      <TermsModal
+        isOpen={showTermsModal}
+        onClose={() => setShowTermsModal(false)}
+        userType={userType}
+      />
     </div>
   );
 };

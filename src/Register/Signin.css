@@ -347,3 +347,17 @@ p {
     width: 800px;
   }
 }
+
+.terms-link{
+  color:#10a37f;
+  font-size: 14px;
+
+}
+
+.terms-checkbox{
+  padding-top: 15px;
+}
+
+.term-line{
+  font-size: 14px;
+}
