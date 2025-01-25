@@ -76,7 +76,7 @@ export const Plot = () => {
 
         const colorScale = d3.scaleLinear()
           .domain([0, 100])
-          .range(["#10a37f", "#722f57"]); 
+          .range(["#f9d1a8", "#f28d27"]); 
 
         const tooltip = d3
           .select("body")
@@ -124,9 +124,10 @@ export const Plot = () => {
         const legendHeight = 10;
         const gradient = svg.append("defs").append("linearGradient").attr("id", "gradient");
 
-        gradient.append("stop").attr("offset", "0%").attr("stop-color", "#10a37f"); // Light green
-        gradient.append("stop").attr("offset", "100%").attr("stop-color", "#722f57"); // Burgundy
-
+        // gradient.append("stop").attr("offset", "0%").attr("stop-color", "#10a37f"); // Light green
+        // gradient.append("stop").attr("offset", "100%").attr("stop-color", "#722f57"); // Burgundy
+gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // lite orange
+        gradient.append("stop").attr("offset", "100%").attr("stop-color","#f28d27"); // orange
         svg
           .append("rect")
           .attr("x", (width - legendWidth) / 2)
