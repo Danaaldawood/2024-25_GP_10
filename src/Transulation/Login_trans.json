@@ -20,7 +20,11 @@
         "noAccount": "Don't have an account?",
         "createAccountLink": "Create account",
         "accessDenied": "Access denied. Please check your account type.",
-        "errorIncorrectCredentials": "An error occurred. Incorrect Email/Password."
+        "errorIncorrectCredentials": "An error occurred. Incorrect Email/Password.",
+  "complete-Fields": "Please complete all required fields.",
+"requestpending":"Sorry, your request is pending until approval.",
+"Sory your request is denied":"Sory your request is denied",
+"ReqestBlocked":"Your account has been blocked. Please contact support."
       }
     },
     "ch": {
@@ -44,7 +48,11 @@
         "noAccount": "还没有账户？",
         "createAccountLink": "创建账户",
         "accessDenied": "访问被拒绝。请检查您的账户类型。",
-        "errorIncorrectCredentials": "发生错误。电子邮件/密码不正确。"
+        "errorIncorrectCredentials": "发生错误。电子邮件/密码不正确。",
+        "complete-Fields": "请完成所有必填字段。",
+        "requestpending": "抱歉，您的请求正在等待批准。",
+    "Sory your request is denied": "抱歉，您的请求被拒绝。",
+    "ReqestBlocked": "您的账户已被封锁。请联系支持。"
       }
     },
     "ar": {
@@ -68,7 +76,11 @@
         "noAccount": "ليس لديك حساب؟",
         "createAccountLink": "إنشاء حساب",
         "accessDenied": "تم رفض الوصول. يرجى التحقق من نوع حسابك.",
-        "errorIncorrectCredentials": "حدث خطأ, البريد الإلكتروني/كلمة المرور غير صحيحة."
+        "errorIncorrectCredentials": "حدث خطأ, البريد الإلكتروني/كلمة المرور غير صحيحة.",
+        "complete-Fields": "يرجى إكمال جميع الحقول المطلوبة.",
+        "requestpending": "آسف، طلبك قيد الانتظار حتى الموافقة.",
+    "Sory your request is denied": "آسف، تم رفض طلبك.",
+    "ReqestBlocked": "تم حظر حسابك. الرجاء الاتصال بالدعم."
       }
     }
   }

@@ -70,11 +70,11 @@ import viewtrans from '../Transulation/Viewpage_trans.json';
 import notifytrans from '../Transulation/Notfiypage_trans.json';
 import addtrans from '../Transulation/Add_trans.json';
 import userprofiletrans from'../Transulation/Userprofile_trans.json';
-import modoraterprofiletrans from '../Transulation/Modprofile_trans.json';
-import comparetrans from '../Transulation/Compare_trans.json';
+ import comparetrans from '../Transulation/Compare_trans.json';
 import evalutiontrans from'../Transulation/Evalution_trans.json';
-
-
+ import ResetPasswordTrans from '../Transulation/RestPass_tran.json';
+ import ForgetPassTrans from'../Transulation/ForgetPass_tran.json';
+ import TermsModaltrans from'../Transulation/TermsModal_trans.json';
 i18n.use(initReactI18next).init({
   lng: localStorage.getItem('i18nextLng') || 'en', // Load from localStorage if available, else default to 'en'
   fallbackLng: 'ar', // fallback language
@@ -94,10 +94,11 @@ i18n.use(initReactI18next).init({
       evalutionpage:evalutiontrans.en,
       notifyPage:notifytrans.en,
       userProfile:userprofiletrans.en,
-      modProfile:modoraterprofiletrans.en,
-      addpage:addtrans.en,
-
-    },
+       addpage:addtrans.en,
+       RestPass:ResetPasswordTrans.en,
+       ForgetPass:ForgetPassTrans.en,
+       TermsModal:TermsModaltrans.en,
+     },
     ar: {
       headerpage: headertrans.ar,
       homepage: hometrans.ar,
@@ -110,9 +111,11 @@ i18n.use(initReactI18next).init({
       evalutionpage:evalutiontrans.ar,
       notifyPage:notifytrans.ar,
       userProfile:userprofiletrans.ar,
-      modProfile:modoraterprofiletrans.ar,
-      addpage:addtrans.ar,
-    },
+       addpage:addtrans.ar,
+       RestPass:ResetPasswordTrans.ar,
+       ForgetPass:ForgetPassTrans.ar,
+       TermsModal:TermsModaltrans.ar,
+     },
     ch: {
       headerpage: headertrans.ch,
       homepage: hometrans.ch,
@@ -125,9 +128,11 @@ i18n.use(initReactI18next).init({
       evalutionpage:evalutiontrans.ch,
       notifyPage:notifytrans.ch,
       userProfile:userprofiletrans.ch,
-      modProfile:modoraterprofiletrans.ch,
-      addpage:addtrans.ch,
-    },
+       addpage:addtrans.ch,
+       RestPass:ResetPasswordTrans.ch,
+       ForgetPass:ForgetPassTrans.ch,
+       TermsModal:TermsModaltrans.ch,
+     },
   },
   react: {
     useSuspense: false, // Optional: only if you have issues with Suspense

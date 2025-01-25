@@ -11,9 +11,14 @@ import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
-import { useTranslation } from "react-i18next";
+import '../Footer/Footer.css';
+import { RiTwitterXLine } from "react-icons/ri";
+import { IoLogoInstagram } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const ProfilePage = () => {
-  const { t ,i18n} = useTranslation("modProfile");   
   // --- State Management ---
   const [profileName, setProfileName] = useState(
     localStorage.getItem("profileName") || ""
@@ -150,7 +155,7 @@ const ProfilePage = () => {
         <button className="back-btn" onClick={() => navigate("/moderator")}>
           <FaArrowLeft className="back-icon" />
         </button>
-        <h1>{t("modProfile.h1")}</h1>
+        <h1>Moderator Profile</h1>
       </header>
 
       {/* Main Content */}
@@ -163,11 +168,11 @@ const ProfilePage = () => {
 
         {/* Profile Form */}
         <div className="profile-form-container">
-          <h2 className="headname">{t("modProfile.h2")}</h2>
+          <h2 className="headname">Moderator Information</h2>
           <div className="profile-form">
             {/* Name Input */}
             <div className="form-row">
-            <label>{t("modProfile.nameLabel")}</label>
+              <label>Full Name</label>
               <input
                 type="text"
                 className="formProf-input"
@@ -179,8 +184,8 @@ const ProfilePage = () => {
 
             {/* Email Input */}
             <div className="form-row">
-            <label>{t("modProfile.emailLabel")}</label>
-            <input
+              <label>Email</label>
+              <input
                 type="email"
                 className="formProf-input"
                 placeholder="Email"
@@ -191,12 +196,12 @@ const ProfilePage = () => {
 
             {/* Action Buttons */}
             <button className="save-button" onClick={handleSaveProfile}>
-          {t("modProfile.saveButton")}          </button>
-
-          <button className="delete-button" onClick={handleDeleteAccount}>
-          {t("modProfile.deleteButton")} <FaTrash className="trash-icon" />
-          </button>
-        </div>
+              Save Profile
+            </button>
+            <button className="delete-button" onClick={handleDeleteAccount}>
+              Delete Account <FaTrash className="trash-icon" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -217,8 +222,33 @@ const ProfilePage = () => {
       )}
 
       {/* Footer */}
-      <Footer />
-    </div>
+  <footer className="footer">
+            <p>©2024 CultureLens All rights reserved</p>
+
+      <div className="footer-icons">
+        <a
+          href="mailto:Culturelens@outlook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MdEmail className="footer-icon" />
+        </a>
+        <a
+          href="https://x.com/CultureLens43"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <RiTwitterXLine className="footer-icon" />
+        </a>
+        <a
+          href="https://www.instagram.com/culturelens43/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <IoLogoInstagram className="footer-icon" />
+        </a>
+      </div>
+    </footer>    </div>
   );
 };
 

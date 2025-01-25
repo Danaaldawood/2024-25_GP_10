@@ -100,8 +100,8 @@
    
        // Terms validation
        if (!termsAccepted) {
-         setErrorMessage("Please accept the terms and conditions to continue.");
-         return;
+        setErrorMessage(t("Please accept the terms and conditions to continue."));
+        return;
        }
    
        // Basic fields validation
@@ -113,23 +113,30 @@
        // Password validation
        if (!isPasswordValid) {
          let errorMessages = [];
-         if (!isMinCharacters) errorMessages.push("Password must be at least 8 characters.");
-         if (!hasUppercase) errorMessages.push("Password must contain at least one uppercase letter.");
-         if (!hasSpecialChar) errorMessages.push("Password must contain at least one special character.");
+         if (!isMinCharacters) errorMessages.push(t("Password must be at least 8 characters."));
+         if (!hasUppercase) errorMessages.push(t("Password must contain at least one uppercase letter."));
+         if (!hasSpecialChar) errorMessages.push(t("Password must contain at least one special character."));       
          setPasswordErrorMessage(errorMessages.join(" "));
          return;
        }
    
        // User type specific validation
        if (userType === "User" && (!region || !country)) {
-         setErrorMessage("Please complete all required fields.");
+         setErrorMessage(t("Please complete all required fields."));
          return;
        }
-       if (userType === "Moderator" && (!regionM || !reason.trim() || !Linkedin.trim())) {
-         setErrorMessage("Please complete all required fields.");
-         return;
-       }
-   
+       if (userType === "Moderator") {
+        if (!regionM || !reason.trim() || !Linkedin.trim()) {
+          setErrorMessage(t("Please complete all required fields."));
+          return;
+        }
+      
+        if (regionM === "Other") {
+          setErrorMessage(t( "We currently only accept moderators from Arab, Western, or Chinese regions."));
+          return;
+        }
+      }
+      
        try {
          // Check if email is blocked in Users collection
          const usersRef = collection(db, "Users");
@@ -139,7 +146,7 @@
          if (!userSnapshot.empty) {
            const userData = userSnapshot.docs[0].data();
            if (userData.status === "blocked") {
-             setErrorMessage("This email is associated with a blocked account. Please contact support.");
+             setErrorMessage  (t("EmailBlocked"));
              return;
            }
          }
@@ -152,7 +159,7 @@
          if (!modSnapshot.empty) {
            const modData = modSnapshot.docs[0].data();
            if (modData.status === "blocked") {
-             setErrorMessage("This email is associated with a blocked account. Please contact support.");
+             setErrorMessage (t("EmailBlocked"));
              return;
            }
          }
@@ -172,7 +179,7 @@
            "i"
          );
          if (!emailPattern.test(email)) {
-           setErrorMessage("Please enter a valid email address with an allowed domain.");
+           setErrorMessage("allowedEmail");
            return;
          }
    
@@ -213,9 +220,9 @@
          }
        } catch (error) {
          if (error.code === "auth/email-already-in-use") {
-           setErrorMessage("This email address is already registered.");
-         } else {
-           setErrorMessage("Something went wrong. Please try again.");
+          setErrorMessage(t("emailAlreadyInUse"));
+        } else {
+           setErrorMessage(t("genericError"));
          }
        }
      };
@@ -268,8 +275,8 @@
              <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
              <p className="success-message">
                {userType === "User"
-                 ? t("Your account has been created successfully")
-                 : t("Your request has been submitted successfully!")}
+                 ? t("Your account created")
+                 : t("Your request submitted")}
              </p>
            </div>
          )}
@@ -321,7 +328,7 @@
                  <input
                    type="text"
                    id="name"
-                   placeholder={t("Enter Your Full Name")}
+                   placeholder={t("EnterYourFullName")}
                    className="sign-input"
                    value={fname}
                    onChange={(e) => setFname(e.target.value)}
@@ -471,7 +478,7 @@
                    <input
                      type="text"
                      id="name"
-                     placeholder={t("enterFullName")}
+                     placeholder={t("EnterYourFullName")}
                      className="sign-input"
                      value={fname}
                      onChange={(e) => setFname(e.target.value)}
@@ -506,7 +513,7 @@
                    </label>
                    <textarea
                      id="reason"
-                     placeholder={t("Enter your reason")}
+                     placeholder={t("Enterareason")}
                      className="sign-input"
                      value={reason}
                      onChange={(e) => setReason(e.target.value)}
@@ -605,17 +612,18 @@
                      checked={termsAccepted}
                      onChange={(e) => setTermsAccepted(e.target.checked)}
                    />
-                   <span className="term-line">I have read and accept the </span>
-                   <a
-                     href="#"
-                     onClick={(e) => {
-                       e.preventDefault();
-                       setShowTermsModal(true);
-                     }}
-                     className="terms-link"
-                   >
-                     Terms and Condition
-                   </a>
+                  <span className="term-line">{t("I have read and accept the")} </span>
+<a
+  href="#"
+  onClick={(e) => {
+    e.preventDefault();
+    setShowTermsModal(true);
+  }}
+  className="terms-link"
+>
+  {t("Terms and Conditions")}
+</a>
+
                  </label>
                </div>
      

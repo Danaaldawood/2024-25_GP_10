@@ -1,8 +1,11 @@
 // --- Imports ---
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 // Displays a modal to confirm user sign out
 const SignOutConfirmation = ({ onConfirm, onCancel }) => {
+    const { t, i18n } = useTranslation('headerpage');
+  
   // --- Style Definitions ---
   // Modal container styles
   const modalStyles = {
@@ -69,24 +72,24 @@ const SignOutConfirmation = ({ onConfirm, onCancel }) => {
     <div style={modalStyles}>
       {/* Warning Header */}
       <div style={modalHeaderStyles}>
-        <h3>Warning!</h3>
+        <h3>{t("tWarning")}!</h3>
       </div>
 
       {/* Modal Content */}
       <div style={modalBodyStyles}>
-        <p>Are you sure you want to Log out?</p>
+        <p>{t("Are you sure you want to Log out?")}</p>
         {/* Action Buttons */}
         <div style={buttonContainerStyles}>
           <button style={cancelButtonStyles} onClick={onCancel}>
-            Cancel
+           {t("Cancel")}
           </button>
           <button style={confirmButtonStyles} onClick={onConfirm}>
-            Confirm
+            {t("Confirm")}
           </button>
         </div>
       </div>
     </div>
   );
 };
-
+ 
 export default SignOutConfirmation;

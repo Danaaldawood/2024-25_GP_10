@@ -53,7 +53,7 @@
    
        // Input validation
        if (!email.trim() || !password.trim()) {
-         setErrorMessage(t("Please complete all required fields."));
+         setErrorMessage(t("loginPage.complete-Fields"));
          setIsLoading(false);
          return;
        }
@@ -72,7 +72,7 @@
    
            // Check if user is blocked
            if (userData.status === "blocked") {
-             setErrorMessage("Your account has been blocked. Please contact support.");
+              setErrorMessage (t("loginPage.ReqestBlocked"));
              setIsLoading(false);
              return;
            }
@@ -80,7 +80,7 @@
            // Handle moderator specific status checks
            if (userType === "Moderator") {
              if (userData.status === "Pending") {
-               setErrorMessage(t("Sorry, your request is pending until approval."));
+               setErrorMessage(t("loginPage.requestpending"));
                setIsLoading(false);
              } else if (userData.status === "Denied") {
                setErrorMessage(t("Sorry, your request is denied"));

@@ -160,7 +160,7 @@ const UserProfilePage = () => {
       {/* Meta Tags */}
 
       <Helmet>
-        <title>Profile Page</title>
+        <title>{t("userProfile.Profile Page")}</title>
         <meta name="description" content="This is Profile page" />
       </Helmet>
       {/* Header Section */}

@@ -5,6 +5,7 @@ import "./ResetPassword.css";
 import LOGO from "../images/Logo.png";
 import "../Register/Pop-Message.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 import {
   faEye,
   faEyeSlash,
@@ -13,6 +14,8 @@ import {
 import { Helmet } from "react-helmet";
 
 export const ResetPassword = () => {
+  const { t ,i18n} = useTranslation("RestPass");   
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -94,47 +97,42 @@ export const ResetPassword = () => {
       </Helmet>
       {/* Display error messages */}
 
-      {error && (
+       {/* Error popup */}
+       {error && (
         <div className="error-popup">
-          <h3 className="error-title">Warning!</h3>
+          <h3 className="error-title">{t("warning")}</h3>
           <p className="error-message">{error}</p>
           <div className="error-actions">
             <button className="confirm-btn" onClick={() => setError("")}>
-              Try again
+              {t("tryAgain")}
             </button>
           </div>
         </div>
       )}
-      {/* Display success message */}
 
+      {/* Success popup */}
       {showSuccess && (
         <div className="success-popup">
           <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-          <p className="success-message">Password updated successfully!</p>
-          <div className="success-actions"></div>
+          <p className="success-message">{t("passwordUpdated")}</p>
         </div>
       )}
-      {/* Password reset form */}
 
+      {/* Password reset form */}
       <div className="reset-password-container">
         <div className="reset-password-left-section">
-          {/* Logo and introductory text */}
-
           <div className="reset-password-logo-welcome-container">
             <img src={LOGO} alt="Logo" width="100" height="100" />
-            <h2>Reset Password</h2>
+            <h2>{t("resetPassword")}</h2>
           </div>
-          <p className="reset-password-welcome-txt">
-            Enter your new password to regain access to your account.
-          </p>
+          <p className="reset-password-welcome-txt">{t("enterNewPassword")}</p>
         </div>
 
         <form className="reset-password-form" onSubmit={handleSubmit}>
-          <h2 className="reset-password-title">Change Password</h2>
-          {/* New password input */}
+          <h2 className="reset-password-title">{t("changePassword")}</h2>
 
           <label className="reset-password-label" htmlFor="newPassword">
-            New Password:
+            {t("newPassword")}
           </label>
           <div className="reset-password-input-container">
             <input
@@ -143,33 +141,22 @@ export const ResetPassword = () => {
               className="reset-password-input"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="Enter new password"
+              placeholder={t("newPassword")}
               required
             />
-            <span
-              onClick={togglePasswordVisibility}
-              className="reset-password-icon"
-            >
+            <span onClick={togglePasswordVisibility} className="reset-password-icon">
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
             </span>
           </div>
-          {/* Password requirements */}
 
           <ul className="password-requirements">
-            <li className={isMinCharacters ? "valid" : "invalid"}>
-              ✔ Password should be at least 8 characters.
-            </li>
-            <li className={hasUppercase ? "valid" : "invalid"}>
-              ✔ Contain at least one uppercase letter.
-            </li>
-            <li className={hasSpecialChar ? "valid" : "invalid"}>
-              ✔ Contain at least one special character.
-            </li>
+            <li className={isPasswordValid ? "valid" : "invalid"}>{t("minCharacters")}</li>
+            <li className={hasUppercase ? "valid" : "invalid"}>{t("uppercaseLetter")}</li>
+            <li className={hasSpecialChar ? "valid" : "invalid"}>{t("specialCharacter")}</li>
           </ul>
-          {/* Confirm password input */}
 
           <label className="reset-password-label" htmlFor="confirmPassword">
-            Confirm Password:
+            {t("confirmPassword")}
           </label>
           <div className="reset-password-input-container">
             <input
@@ -178,25 +165,17 @@ export const ResetPassword = () => {
               className="reset-password-input"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm new password"
+              placeholder={t("confirmPassword")}
               required
             />
-            <span
-              onClick={toggleConfirmPasswordVisibility}
-              className="reset-password-icon"
-            >
-              <FontAwesomeIcon
-                icon={showConfirmPassword ? faEye : faEyeSlash}
-              />
+            <span onClick={toggleConfirmPasswordVisibility} className="reset-password-icon">
+              <FontAwesomeIcon icon={showConfirmPassword ? faEye : faEyeSlash} />
             </span>
           </div>
-          {/* Match validation */}
 
           {confirmPassword && (
             <ul className="password-requirements">
-              <li className={doPasswordsMatch ? "valid" : "invalid"}>
-                ✔ Passwords match
-              </li>
+              <li className={doPasswordsMatch ? "valid" : "invalid"}>{t("passwordMatch")}</li>
             </ul>
           )}
 
@@ -205,7 +184,7 @@ export const ResetPassword = () => {
             className="reset-password-btn"
             disabled={loading || !isPasswordValid || !doPasswordsMatch}
           >
-            {loading ? "Updating..." : "Update Password"}
+            {loading ? t("updating") : t("updatePassword")}
           </button>
         </form>
       </div>

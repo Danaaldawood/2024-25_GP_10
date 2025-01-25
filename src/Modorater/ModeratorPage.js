@@ -4,13 +4,18 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db, realtimeDb } from "../Register/firebase";
 import "./ModeratorPage.css";
 import { useNavigate } from "react-router-dom";
-import { Footer } from "../Footer/Footer";
-import SignOutConfirmation from "./SignOutConfirmation";
+ import SignOutConfirmation from "./SignOutConfirmation";
 import { Helmet } from "react-helmet";
 import Logo from "../images/Logo.png";
 import { onAuthStateChanged } from "firebase/auth";
 import { FaEyeSlash, FaTimes } from "react-icons/fa";
-
+import '../Footer/Footer.css';
+import { RiTwitterXLine } from "react-icons/ri";
+import { IoLogoInstagram } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel, actionType }) => {
   if (!isOpen) return null;
 
@@ -412,10 +417,11 @@ const ModeratorPage = () => {
         <div className="header-left">
           <img src={Logo} alt="Logo" className="logo-img" />
           <h1 className="logo-title">CultureLens</h1>
-          <button onClick={() => (window.location.href = '/ReportPage')}>
-            Complaints
-          </button>
+          
         </div>
+        <a className="complaints-link" onClick={() => (window.location.href = '/ReportPage')}>
+  Complaints Page
+</a>
 
         <button className="menu-btn" onClick={handleMenuToggle}>
           <span className="menu-icon">&#9776;</span>
@@ -426,8 +432,11 @@ const ModeratorPage = () => {
             <p onClick={handleSignOut} className="sign-out">
               Log out
             </p>
+            
           </div>
+          
         )}
+        
       </header>
 
       <div className="header-banner">
@@ -551,8 +560,33 @@ const ModeratorPage = () => {
         actionType={confirmModal.actionType}
       />
 
-      <Footer />
-    </div>
+<footer className="footer">
+            <p>©2024 CultureLens All rights reserved</p>
+
+      <div className="footer-icons">
+        <a
+          href="mailto:Culturelens@outlook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MdEmail className="footer-icon" />
+        </a>
+        <a
+          href="https://x.com/CultureLens43"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <RiTwitterXLine className="footer-icon" />
+        </a>
+        <a
+          href="https://www.instagram.com/culturelens43/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <IoLogoInstagram className="footer-icon" />
+        </a>
+      </div>
+    </footer>    </div>
   );
 };
 
