@@ -7,8 +7,11 @@ import './ForgotPassword.css';
 import LOGO from '../images/Logo.png';
 import '../Register/Pop-Message.css'
 import { Helmet } from 'react-helmet';
+import { useTranslation } from "react-i18next";
 
 export function ForgotPassword() {
+  const { t ,i18n} = useTranslation("ForgetPass");   
+
   // State variables
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -41,7 +44,7 @@ export function ForgotPassword() {
 
       return userExists || moderatorExists;
     } catch (error) {
-      console.error("Error checking email existence:", error);
+      console.error(t("Errorcheckingemail:"), error);
       throw error;
     }
   };
@@ -56,7 +59,7 @@ export function ForgotPassword() {
       const emailExists = await checkEmailExists(email);
 
       if (!emailExists) {
-        setError("There is no account registered with this email address.");
+        setError(t("Thereisnoaccountregistered"));
         setLoading(false);
         return;
       }
@@ -81,60 +84,64 @@ export function ForgotPassword() {
         <meta name="description" content="Forgot Password page" />
       </Helmet>
       
-      {/* Error popup */}
-      {error && (
-        <div className="error-popup">
-          <h3 className="error-title">Warning!</h3>
-          <p className="error-message">{error}</p>
-          <div className="error-actions">
-            <button className="confirm-btn" onClick={() => setError("")}>Try again</button>
-          </div>
-        </div>
-      )}
-      
-      {/* Success popup */}
-      {showSuccess && (
-        <div className="success-popup">
-          <h3 className="success-title">Success!</h3>
-          <p className="success-message">Password reset email sent! Please check your inbox.</p>
-          <div className="success-actions">
-           
-          </div>
-        </div>
-      )}
+       {/* Error popup */}
+{error && (
+  <div className="error-popup">
+    <h3 className="error-title">{t("errorTitle")}</h3>
+    <p className="error-message">{error}</p>
+    <div className="error-actions">
+      <button className="confirm-btn" onClick={() => setError("")}>{t("tryAgain")}</button>
+    </div>
+  </div>
+)}
 
-      {/* Forgot password container */}
-      <div className="forgot-password-container">
-        {/* Left section */}
-        <div className="forgot-password-left-section">
-          <div className="forgot-password-logo-welcome-container">
-            <img src={LOGO} alt="Logo" width="100" height="100" />
-            <h2>Verify your email</h2>
-          </div>
-          <p className="forgot-password-welcome-txt">Enter your email to reset your password.</p>
-        </div>
+{/* Success popup */}
+{showSuccess && (
+  <div className="success-popup">
+    <h3 className="success-title">{t("successTitle")}</h3>
+    <p className="success-message">{t("successMessage")}</p>
+    <div className="success-actions">
+     
+    </div>
+  </div>
+)}
 
-        {/* Forgot password form */}
-        <form className="forgot-password-form" onSubmit={handleSubmit}>
-          <h2 className="forgot-password-title">Forgot Password</h2>
-          <label htmlFor="email" className="forgot-password-label">Email Address:</label>
-          <input
-            type="email"
-            id="email"
-            className="forgot-password-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-          />
-          <button type="submit" className="forgot-password-btn" disabled={loading}>
-            {loading ? "Sending..." : "Send"}
-          </button>
-          <div className='forgot-login'>
-            <p style={{ fontSize: '15px' }}>Remember your password? <Link to="/login" className="forgot-link">Login</Link></p>
-          </div>
-        </form>
-      </div>
+{/* Forgot password container */}
+<div className="forgot-password-container">
+  {/* Left section */}
+  <div className="forgot-password-left-section">
+    <div className="forgot-password-logo-welcome-container">
+      <img src={LOGO} alt="Logo" width="100" height="100" />
+      <h2>{t("verifyEmail")}</h2>
+    </div>
+    <p className="forgot-password-welcome-txt">{t("enterEmailMessage")}</p>
+  </div>
+
+  {/* Forgot password form */}
+  <form className="forgot-password-form" onSubmit={handleSubmit}>
+    <h2 className="forgot-password-title">{t("forgotPassword")}</h2>
+    <label htmlFor="email" className="forgot-password-label">{t("emailAddress")}</label>
+    <input
+      type="email"
+      id="email"
+      className="forgot-password-input"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder={t("enterEmailPlaceholder")}
+      required
+    />
+    <button type="submit" className="forgot-password-btn" disabled={loading}>
+      {loading ? t("sendingBtn") : t("sendBtn")}
+    </button>
+
+    <div className="forgot-login">
+      <p style={{ fontSize: "15px" }}>
+        {t("rememberPassword")}?{" "}
+        <Link to="/login" className="forgot-link">{t("loginLink")}</Link>
+      </p>
+    </div>
+  </form>
+</div>
     </div>
   );
 }

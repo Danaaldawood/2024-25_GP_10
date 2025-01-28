@@ -12,6 +12,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
 export const AddCultureValue = () => {
+  // Initialize translation hook
   const { t, i18n } = useTranslation("addpage");
   const { id } = useParams();
   const location = useLocation();
@@ -21,10 +22,15 @@ export const AddCultureValue = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState({
+    fullId: "",
+    shortId: ""
+  });
 
+  // Split the ID parameter into region code and detail ID
   const [regionCode, detailId] = (id || "").split("-");
 
+  // Initialize form data state
   const [itemData, setItemData] = useState({
     topic: location.state?.topic || "",
     topic_lan: location.state?.topic_lan || "",
@@ -35,45 +41,29 @@ export const AddCultureValue = () => {
     region: location.state?.region || localStorage.getItem('region') || "",
     region_lan: location.state?.region_lan || "",
     allValues: location.state?.allValues || [],
-    newvalue: "", // English value
-    nativevalue: "", // Arabic/Chinese value
+    newvalue: "",
+    nativevalue: "",
     reason: "",
     showPlaceholderError: false,
     showNativePlaceholderError: false
   });
 
-  // Display helper functions
-  // Get display value for attribute based on current language and region
+  // Helper function to get the correct display attribute based on region and language
   const getDisplayAttribute = () => {
-    // For Western region, always show English
-    if (itemData.region === "Western") {
-      return itemData.en_question;
-    }
+    if (itemData.region === "Western") return itemData.en_question;
     
-    // For Arabic region
     if (itemData.region === "Arab") {
-      // Show Arabic question when language is Arabic
-      if (i18n.language === "ar" && itemData.question) {
-        return itemData.question;
-      }
-      // Fallback to English for other languages
-      return itemData.en_question;
+      return i18n.language === "ar" && itemData.question ? itemData.question : itemData.en_question;
     }
     
-    // For Chinese region
     if (itemData.region === "Chinese") {
-      // Show Chinese question when language is Chinese
-      if (i18n.language === "ch" && itemData.question) {
-        return itemData.question;
-      }
-      // Fallback to English for other languages
-      return itemData.en_question;
+      return i18n.language === "ch" && itemData.question ? itemData.question : itemData.en_question;
     }
 
-    // Default fallback to English question
     return itemData.en_question;
   };
 
+  // Helper function to get the correct display region based on language
   const getDisplayRegion = () => {
     const currentLang = i18n.language;
     if (currentLang === "ar" && itemData.region === "Arab" && itemData.region_lan) {
@@ -84,6 +74,7 @@ export const AddCultureValue = () => {
     return itemData.region;
   };
 
+  // Helper function to get the correct display topic based on language
   const getDisplayTopic = () => {
     const currentLang = i18n.language;
     if (currentLang === "ar" && itemData.region === "Arab" && itemData.topic_lan) {
@@ -94,7 +85,7 @@ export const AddCultureValue = () => {
     return itemData.topic;
   };
 
-  // Check for data availability
+  // Check for valid location state on component mount
   useEffect(() => {
     if (!location.state) {
       alert(t("addPage.alerts.noData"));
@@ -102,12 +93,14 @@ export const AddCultureValue = () => {
     }
   }, [location.state, navigate, t]);
 
-  // User authentication check
+  // Set up authentication listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const lastFourUID = user.uid.slice(-4);
-        setUserId(`user_${lastFourUID}`);
+        setUserId({
+          fullId: user.uid,
+          shortId: `user_${user.uid.slice(-4)}`
+        });
       } else {
         console.error("User is not authenticated");
       }
@@ -115,22 +108,41 @@ export const AddCultureValue = () => {
     return () => unsubscribe();
   }, []);
 
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setItemData((prevState) => ({
+    setItemData(prevState => ({
       ...prevState,
       [name]: value,
       showPlaceholderError: false
     }));
   };
 
+  // Handle form submission
   const handleAddClick = async () => {
-    // Validate English input
+    // Check for non-English characters in English input
     const nonEnglishPattern = /[^\x00-\x7F]+/;
     if (nonEnglishPattern.test(itemData.newvalue)) {
       setErrorMessage(t("addPage.errorPopup.englishOnly"));
       setShowErrorPopup(true);
       return;
+    }
+    
+    // Validate Arabic/Chinese input based on region
+    if (itemData.region === "Arab") {
+      const arabicPattern = /[\u0600-\u06FF]/;
+      if (!arabicPattern.test(itemData.nativevalue)) {
+        setErrorMessage("Please enter the value in Arabic only for the Arabic field.");
+        setShowErrorPopup(true);
+        return;
+      }
+    } else if (itemData.region === "Chinese") {
+      const chinesePattern = /[\u4e00-\u9fff]/;
+      if (!chinesePattern.test(itemData.nativevalue)) {
+        setErrorMessage("    Please enter the value in Chinese only for the Chinese field.");
+        setShowErrorPopup(true);
+        return;
+      }
     }
 
     // Validate required fields
@@ -144,7 +156,7 @@ export const AddCultureValue = () => {
       return;
     }
 
-    // Check for duplicates in English values
+    // Check for duplicate values
     const newValueLower = itemData.newvalue.toLowerCase();
     const allValuesLower = itemData.allValues.map(value => {
       if (typeof value === 'object' && value !== null) {
@@ -160,21 +172,25 @@ export const AddCultureValue = () => {
     }
 
     try {
-      // Get translated reason based on region
-      let reasonTranslation = "";
-      if (itemData.region === "Arab") {
-        reasonTranslation = t(`addPage.form.reasonOptions.${itemData.reason.toLowerCase()}`);
-      } else if (itemData.region === "Chinese") {
-        reasonTranslation = t(`addPage.form.reasonOptions.${itemData.reason.toLowerCase()}`);
+      // Get translated reason
+      let reasonTranslation = null;
+      if (itemData.region === "Arab" || itemData.region === "Chinese") {
+        if (itemData.reason === "Variation") {
+          reasonTranslation = itemData.region === "Arab" ? "تنوع" : "变化";
+        } else if (itemData.reason === "subculture") {
+          reasonTranslation = itemData.region === "Arab" ? "ثقافة فرعية" : "亚文化";
+        }
       }
 
-      // Update annotations
+      // Update annotations in database
       const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${itemData.allValues.length}`);
       const newAnnotation = {
         en_values: [itemData.newvalue],
         reason: itemData.reason,
-        reason_lan: reasonTranslation || null,
-        user_id: userId || "user_undefined",
+        reason_lan: reasonTranslation,
+        user_id: userId.shortId || "user_undefined",
+        userId: userId.fullId || "undefined",
+        modAction: "noaction",
         values: [
           (itemData.region === "Arab" || itemData.region === "Chinese") 
             ? itemData.nativevalue 
@@ -183,12 +199,13 @@ export const AddCultureValue = () => {
       };
       await update(itemRef, newAnnotation);
 
-      // Add to ViewEdit collection
+      // Create view edit entry
       const viewEditRef = ref(realtimeDb, `Viewedit/${itemData.region}`);
       const newEntry = {
         en_question: itemData.en_question || itemData.attribute,
         question: itemData.question || null,
-        userId: userId,
+        userId: userId.shortId,
+        fullUserId: userId.fullId,
         region: itemData.region,
         region_lan: itemData.region_lan || null,
         topic: itemData.topic,
@@ -196,17 +213,18 @@ export const AddCultureValue = () => {
         value: itemData.newvalue,
         native_value: needsNativeValue ? itemData.nativevalue : null,
         reason: itemData.reason,
-        reason_lan: reasonTranslation || null
+        reason_lan: reasonTranslation,
+        modAction: "noaction"
       };
 
-      // Remove any undefined or null properties
+      // Remove undefined/null values
       Object.keys(newEntry).forEach(key => 
         (newEntry[key] === undefined || newEntry[key] === null) && delete newEntry[key]
       );
 
       await push(viewEditRef, newEntry);
 
-      // Show success and redirect
+      // Show success message and navigate
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
@@ -214,7 +232,6 @@ export const AddCultureValue = () => {
       }, 1000);
     } catch (error) {
       console.error("Error updating data:", error);
-      // Show error message to user
       setErrorMessage(t("addPage.errorPopup.updateFailed"));
       setShowErrorPopup(true);
     }
@@ -229,6 +246,7 @@ export const AddCultureValue = () => {
           <meta name="description" content={t("addPage.helmetDescription")} />
         </Helmet>
 
+        {/* Error Popup */}
         {showErrorPopup && (
           <div className="error-popup">
             <div className="error-title">{t("addPage.errorPopup.title")}</div>
@@ -244,16 +262,20 @@ export const AddCultureValue = () => {
           </div>
         )}
 
+        {/* Page Header */}
         <div className="addheader">
           <div className="add-title">{t("addPage.header.title")}</div>
           <div className="underline"></div>
         </div>
 
+        {/* Form Inputs */}
         <div className="add-inputs">
+          {/* Attribute Display */}
           <div className="add-input attribute-container">
             <div className="attribute-display">{getDisplayAttribute()}</div>
           </div>
 
+          {/* Topic Input */}
           <div className="add-input">
             <label className="label">{t("addPage.form.labels.topic")}</label>
             <input
@@ -265,6 +287,7 @@ export const AddCultureValue = () => {
             />
           </div>
 
+          {/* All Values List */}
           <div className="add-input">
             <label className="label">{t("addPage.form.labels.allValues")}</label>
             <ul className="all-values-list">
@@ -274,17 +297,10 @@ export const AddCultureValue = () => {
                 if (item && typeof item === 'object') {
                   if ((i18n.language === "ar" && itemData.region === "Arab") ||
                       (i18n.language === "ch" && itemData.region === "Chinese")) {
-                    // For Arabic/Chinese regions, use the values array
-                    displayValues = item.values || [];
+                    displayValues = [item.values?.[0] || ''];
                   } else {
-                    // For other languages/regions, use en_values array
-                    displayValues = item.en_values || [];
+                    displayValues = [item.en_values?.[0] || ''];
                   }
-                }
-
-                // Convert displayValues to array if it's not already
-                if (!Array.isArray(displayValues)) {
-                  displayValues = [displayValues];
                 }
 
                 return displayValues.map((value, valueIndex) => (
@@ -298,6 +314,7 @@ export const AddCultureValue = () => {
             </ul>
           </div>
 
+          {/* New Value Input (English) */}
           <div className="add-input">
             <label className="label">
               {t("addPage.form.labels.newValue")} ({t("addPage.form.labels.english")})
@@ -315,6 +332,7 @@ export const AddCultureValue = () => {
             />
           </div>
 
+          {/* Native Value Input (Arabic/Chinese) */}
           {(itemData.region === "Arab" || itemData.region === "Chinese") && (
             <div className="add-input">
               <label className="label">
@@ -337,6 +355,7 @@ export const AddCultureValue = () => {
             </div>
           )}
 
+          {/* Reason Select */}
           <div className="add-input">
             <label className="label">{t("addPage.form.labels.reason")}</label>
             <select
@@ -356,6 +375,7 @@ export const AddCultureValue = () => {
             </select>
           </div>
 
+          {/* Region Input */}
           <div className="add-input">
             <label className="label">{t("addPage.form.labels.region")}</label>
             <input
@@ -368,14 +388,16 @@ export const AddCultureValue = () => {
           </div>
         </div>
 
+        {/* Submit Button */}
         <div className="addsubmit-container">
           <div className="add-submit">
-            <button onClick={handleAddClick} disabled={!userId}>
-              {userId ? t("addPage.buttons.add") : t("addPage.buttons.loading")}
+            <button onClick={handleAddClick} disabled={!userId.shortId}>
+              {userId.shortId ? t("addPage.buttons.add") : t("addPage.buttons.loading")}
             </button>
           </div>
         </div>
 
+        {/* Success Popup */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />

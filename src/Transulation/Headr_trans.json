@@ -3,19 +3,33 @@
     "copyright": "©2024 CultureLens All rights reserved",
     "home": "Home",
     "culturalValues": "Cultural Values",
-    "Compare": "Compare", 
+    "Compare": "Compare",
     "evaluation": "Evaluation",
     "profile": "Profile",
-    "signOut": "Log out"
+    "signOut": "Log out",
+    "Markasread": "Mark as read",
+    "Delete": "Delete",
+    "No notifications": "No notifications",
+    "Warning": "Warning!",
+    "Are you sure you want to Log out?": "Are you sure you want to Log out?",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm"
   },
   "ar": {
     "copyright": "CultureLens ©2024 جميع الحقوق محفوظة",
     "home": "الصفحة الرئيسية",
     "culturalValues": "القيم الثقافية",
     "Compare": "مقارنة",
-    "evaluation": "التقييم", 
+    "evaluation": "التقييم",
     "profile": "الملف الشخصي",
-    "signOut": "تسجيل الخروج"
+    "signOut": "تسجيل الخروج",
+    "Markasread": "تحديد كقراءة",
+    "Delete": "حذف",
+    "No notifications": "لا توجد اشعارات",
+    "Warning!": "تحذير!",
+    "Are you sure you want to Log out?": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "Cancel": "إلغاء",
+    "Confirm": "تأكيد"
   },
   "ch": {
     "copyright": "©2024 CultureLens 版权所有",
@@ -24,6 +38,13 @@
     "Compare": "比较",
     "evaluation": "评估",
     "profile": "个人资料",
-    "signOut": "登出"
+    "signOut": "登出",
+    "Markasread": "标记为已读",
+    "Delete": "删除",
+    "No notifications": "没有通知",
+    "Warning!": "警告！",
+    "Are you sure you want to Log out?": "您确定要退出吗？",
+    "Cancel": "取消",
+    "Confirm": "确认"
   }
 }

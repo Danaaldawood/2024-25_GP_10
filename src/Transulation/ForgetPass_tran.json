@@ -1,0 +1,61 @@
+{
+    "en": {
+      "errorTitle": "Warning!",
+      "errorMessage": "Something went wrong. Please try again.",
+      "tryAgain": "Try again",
+      "successTitle": "Success!",
+      "successMessage": "Password reset email sent! Please check your inbox.",
+      "verifyEmail": "Verify your email",
+      "enterEmailMessage": "Enter your email to reset your password.",
+      "forgotPassword": "Forgot Password",
+      "emailAddress": "Email Address:",
+      "enterEmailPlaceholder": "Enter your email",
+      "sendBtn": "Send",
+      "sendingBtn": "Sending...",
+      "rememberPassword": "Remember your password?",
+      "loginLink": "Login",
+      "Errorcheckingemail ":"Error checking email existence",
+      "Thereisnoaccountregistered":"There is no account registered with this email address."
+    },
+    "ar": {
+      "errorTitle": "تحذير!",
+      "errorMessage": "حدث خطأ ما. الرجاء المحاولة مرة أخرى.",
+      "tryAgain": "حاول مرة أخرى",
+      "successTitle": "نجاح!",
+      "successMessage": "تم إرسال بريد استعادة كلمة المرور! يرجى التحقق من صندوق الوارد.",
+      "verifyEmail": "تحقق من بريدك الإلكتروني",
+      "enterEmailMessage": "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور.",
+      "forgotPassword": "هل نسيت كلمة المرور؟",
+      "emailAddress": "عنوان البريد الإلكتروني:",
+      "enterEmailPlaceholder": "أدخل بريدك الإلكتروني",
+      "sendBtn": "إرسال",
+      "sendingBtn": "جاري الإرسال...",
+      "rememberPassword": "تتذكر كلمة المرور؟",
+      "loginLink": "تسجيل الدخول",
+      "Errorcheckingemail": "حدث خطأ أثناء التحقق من وجود البريد الإلكتروني",
+  "Thereisnoaccountregistered": "لا يوجد حساب مسجل بهذا البريد الإلكتروني."
+    },
+    "ch": {
+      "errorTitle": "警告！",
+      "errorMessage": "出了点问题，请再试一次。",
+      "tryAgain": "重试",
+      "successTitle": "成功！",
+      "successMessage": "密码重置邮件已发送！请检查您的收件箱。",
+      "verifyEmail": "验证您的电子邮件",
+      "enterEmailMessage": "输入您的电子邮件以重置密码。",
+      "forgotPassword": "忘记密码",
+      "emailAddress": "电子邮件地址：",
+      "enterEmailPlaceholder": "请输入您的电子邮件",
+      "sendBtn": "发送",
+      "sendingBtn": "正在发送...",
+      "rememberPassword": "记得您的密码？",
+      "loginLink": "登录",
+      
+        "Errorcheckingemail": "检查电子邮件存在时出错",
+        "Thereisnoaccountregistered": "没有使用此电子邮件地址注册的帐户。"
+      
+      
+
+    }
+  }
+  

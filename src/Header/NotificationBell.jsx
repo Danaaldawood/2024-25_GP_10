@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next'; // Add i18n support
 import './NotificationBell.css';
-
-const NotificationBell = () => {
+ const NotificationBell = () => {
+  
   const [notifications, setNotifications] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [userId, setUserId] = useState(null);
   const dropdownRef = useRef(null);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('headerpage');
   const isRTL = i18n.dir() === 'rtl';
 
   useEffect(() => {
@@ -157,21 +157,21 @@ const NotificationBell = () => {
                         onClick={() => handleMarkAsRead(notification.id)}
                         className="mark-read-btn"
                       >
-                        Mark as read
+                        {t("Markasread")}
                       </button>
                     )}
                     <button 
                       onClick={() => handleDelete(notification.id)}
                       className="delete-btn"
                     >
-                      Delete
+                      {t("Delete")}
                     </button>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="no-notifications">No notifications</div>
+            <div className="no-notifications">{t("No notifications")}</div>
           )}
         </div>
       )}

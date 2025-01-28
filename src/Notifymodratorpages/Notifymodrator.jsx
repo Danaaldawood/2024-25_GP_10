@@ -28,21 +28,23 @@ export const Notifymodrator = () => {
   const [notificationData, setNotificationData] = useState({
     topic: t(`notifyPage.Topic_Names.${location.state?.topic}`) || "",  
     description: "",
-    suggestion: "",
     PreviousValue: location.state?.selectedValue || "",
     status: "pending",
     timestamp: new Date().toISOString(),
     attribute: location.state?.attribute || "",
-    userId: "",
+    userId: { fullId: "", shortId: "" },
     region: location.state?.region || "",
+    modAction: "noaction"
   });
   
   // monitor authentication state and set user ID
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const lastFourUID = user.uid.slice(-4);
-        setUserId(`user_${lastFourUID}`);
+        setUserId({
+          fullId: user.uid,
+          shortId: `user_${user.uid.slice(-4)}`
+        });
       } else {
         console.error("User is not authenticated");
       }
@@ -96,32 +98,6 @@ export const Notifymodrator = () => {
       return;
     }
 
-    // Validate suggestion language (English only)
-    const nonEnglishPattern = /[^\x00-\x7F]+/;
-    if (
-      notificationData.suggestion &&
-      nonEnglishPattern.test(notificationData.suggestion)
-    ) {
-      setErrorMessage(t("notifyPage.suggestionError"));
-      setShowErrorPopup(true);
-      return;
-    }
-
-    // Check for duplicate suggestions
-    if (notificationData.suggestion) {
-      const suggestionLower = notificationData.suggestion.toLowerCase();
-      const allValuesLower =
-        location.state?.allValues.map((value) => value.toLowerCase()) || [];
-
-      if (allValuesLower.includes(suggestionLower)) {
-        setErrorMessage(
-          `The value "${notificationData.suggestion}" already exists in the dataset.`
-        );
-        setShowErrorPopup(true);
-        return;
-      }
-    }
-
     try {
       // Get reference to notifications in database
       const notificationsRef = ref(realtimeDb, `notifications/${id}`);
@@ -134,7 +110,6 @@ export const Notifymodrator = () => {
 
         if (checkExistingNotification(existingNotifications)) {
           setErrorMessage(t("notifyPage.pendingNotificationError"));
-
           setShowErrorPopup(true);
           return;
         }
@@ -169,14 +144,14 @@ export const Notifymodrator = () => {
       <div className="notify-form-container">
         {/* tab tag */}
         <Helmet>
-        <title>Notify Moderator</title>           
+          <title>Notify Moderator</title>           
           <meta name="description" content="Notify moderator page" />
         </Helmet>
 
         {/* Form header */}
         <div className="notify-header">
-        <div className="notify-title">{t("notifyPage.notify-title")}</div>
-        <div className="underline"></div>
+          <div className="notify-title">{t("notifyPage.notify-title")}</div>
+          <div className="underline"></div>
           <div className="notiyfy-attribute-display">
             {location.state?.attribute}
           </div>
@@ -185,8 +160,8 @@ export const Notifymodrator = () => {
         <div className="notify-inputs">
           {/* input of topic*/}
           <div className="notify-input">
-          <label className="label">{t("notifyPage.label")}</label>
-          <input
+            <label className="label">{t("notifyPage.label")}</label>
+            <input
               type="text"
               name="topic"
               value={notificationData.topic}
@@ -234,19 +209,6 @@ export const Notifymodrator = () => {
               }
               rows={4}
             />
-            </div>
-
-          {/* Suggestion input */}
-          <div className="notify-input">
-          <label className="label4">{t("notifyPage.label4")}</label>
-
-            <input
-              type="text"
-              name="suggestion"
-              value={notificationData.suggestion}
-              onChange={handleInputChange}
-              placeholder={t("notifyPage.placeholder1")}
-              />
           </div>
         </div>
 
@@ -256,34 +218,34 @@ export const Notifymodrator = () => {
             onClick={handleSubmitNotification}
             className="notify-submit-button"
           >
-  {t("notifyPage.submitButton")}
-  </button>
+            {t("notifyPage.submitButton")}
+          </button>
         </div>
 
         {/* Success and error popups */}
         {showSuccess && (
-  <div className="success-popup">
-    <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-    <p className="success-message">
-      {t("notifyPage.successMessage")}
-    </p>
-  </div>
-)}
+          <div className="success-popup">
+            <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+            <p className="success-message">
+              {t("notifyPage.successMessage")}
+            </p>
+          </div>
+        )}
 
-{showErrorPopup && (
-  <div className="error-popup">
-    <div className="error-title">{t("notifyPage.errorTitle")}</div>
-    <div className="error-message">{errorMessage}</div>
-    <div className="error-actions">
-      <button
-        className="confirm-btn"
-        onClick={() => setShowErrorPopup(false)}
-      >
-        {t("notifyPage.errorOkButton")}
-      </button>
-    </div>
-  </div>
-)}
+        {showErrorPopup && (
+          <div className="error-popup">
+            <div className="error-title">{t("notifyPage.errorTitle")}</div>
+            <div className="error-message">{errorMessage}</div>
+            <div className="error-actions">
+              <button
+                className="confirm-btn"
+                onClick={() => setShowErrorPopup(false)}
+              >
+                {t("notifyPage.errorOkButton")}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

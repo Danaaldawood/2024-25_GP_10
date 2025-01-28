@@ -1,0 +1,48 @@
+{
+    "en": {
+      "TermsModal": {
+        "TU1": "You cannot register as a moderator if you are already registered as a user.",
+        "TU2": "Your data will be accessible to administrators for monitoring and compliance purposes.",
+        "TU3": "All activities you perform on the site will be monitored to ensure compliance with the platform's procedures.",
+        "TU4":"You are being monitored by the moderator. If you take any ineffective action, your account will be blocked.",
+        "TM1": "You cannot register as a user if you are a moderator.",
+        "TM2": "If accepted as a moderator, you will manage requests only within your designated region.",
+        "TM3": "You must remain active in handling user requests; inactivity may lead to actions from administrators.",
+        "TM4": "Your data and activities will be accessible to administrators for monitoring purposes.",
+        "TM5": "You must have a good understanding of the English language to respond to edits effectively.",
+        "TM6":"You are responsible for monitoring user actions. If a user is behaving inappropriately or spamming, take action, such as blocking them.",
+        "TermsandCondition": "Terms and Condition"
+      }
+    },
+    "ar": {
+      "TermsModal": {
+        "TU1": "لا يمكنك التسجيل كمشرف إذا كنت مسجلًا بالفعل كمستخدم.",
+        "TU2": "ستكون بياناتك متاحة للمسؤولين لأغراض المراقبة والامتثال.",
+        "TU3": "سيتم مراقبة جميع الأنشطة التي تقوم بها على الموقع لضمان الامتثال لإجراءات المنصة.",
+        "TU4":"أنت مراقب من جانب المشرف. إذا اتخذت أي إجراء غير فعال، سيتم حظر حسابك",
+        "TM1": "لا يمكنك التسجيل كمستخدم إذا كنت مشرفًا.",
+        "TM2": "إذا تم قبولك كمشرف، ستدير الطلبات فقط ضمن منطقتك المحددة.",
+        "TM3": "يجب أن تبقى نشطًا في معالجة طلبات المستخدمين؛ قد يؤدي عدم النشاط إلى اتخاذ إجراءات من قبل المسؤولين.",
+        "TM4": "ستكون بياناتك وأنشطتك متاحة للمسؤولين لأغراض المراقبة.",
+        "TM5": "يجب أن تكون لديك فهم جيد للغة الإنجليزية للرد على التعديلات بفعالية.",
+        "TM6":"أنت مسؤول عن مراقبة تصرفات المستخدم. إذا كان المستخدم يتصرف بشكل غير لائق أو يرسل محتوى مزعج، اتخذ إجراء مثل حظره.",
+        "TermsandCondition": "الشروط والأحكام"
+      }
+    },
+    "ch": {
+      "TermsModal": {
+        "TU1": "如果您已经注册为用户，则无法注册为主持人。",
+        "TU2": "管理员可以访问您的数据以进行监控和合规目的。",
+        "TU3": "您在网站上执行的所有活动都将被监控以确保遵守平台的程序。",
+        "TU4":"您正在被主持人监控。如果采取任何无效的行动，您的账户将被封禁",
+        "TM1": "如果您是主持人，则无法注册为用户。",
+        "TM2": "如果被接受为主持人，您将仅管理您指定区域内的请求。",
+        "TM3": "您必须保持活跃状态以处理用户请求；不活跃可能会导致管理员采取措施。",
+        "TM4": "您的数据和活动将被管理员访问以进行监控。",
+        "TM5": "您必须对英语有良好的理解，以有效地回应编辑。",
+        "TM6":"你负责监控用户行为。如果用户行为不当或进行垃圾信息发送，采取措施，比如封锁他们。",
+        "TermsandCondition": "条款和条件"
+      }
+    }
+  }
+  
