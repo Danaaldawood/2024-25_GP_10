@@ -7,6 +7,7 @@ import "./Plot.css";
 import { FaArrowLeft, FaInfoCircle } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
+import { Bar, Doughnut } from 'react-chartjs-2';
 
 export const Plot = () => {
   const { state } = useLocation();
@@ -19,6 +20,9 @@ export const Plot = () => {
   const [hasError, setHasError] = useState(false);
   const [showNoModelMessage, setShowNoModelMessage] = useState(false);
   const [isTooltipVisible, setTooltipVisible] = useState(false);
+  //for
+  const [optlLLM, setEvalLLMopt] = useState('');
+  const allModels = ['Lama', 'Cohere']; 
 
   const navigate = useNavigate();
   const regionToIds = {
@@ -124,8 +128,7 @@ export const Plot = () => {
         const legendHeight = 10;
         const gradient = svg.append("defs").append("linearGradient").attr("id", "gradient");
 
-        // gradient.append("stop").attr("offset", "0%").attr("stop-color", "#10a37f"); // Light green
-        // gradient.append("stop").attr("offset", "100%").attr("stop-color", "#722f57"); // Burgundy
+       
 gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // lite orange
         gradient.append("stop").attr("offset", "100%").attr("stop-color","#f28d27"); // orange
         svg
@@ -182,6 +185,79 @@ gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // li
     navigate("/Freestyle");
   };
 
+
+  
+
+  
+
+    // --- Bar Chart Data ---
+    const barData = {
+      labels: ['Arab', 'Chinese', 'Western'],
+      datasets: [
+        {
+          label: `Coverage Score for ${selectedTopic}`,
+          data: [
+            results?.Arab?.coverage_score,
+            results?.Chinese?.coverage_score,
+            results?.Western?.coverage_score,
+          ],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+  
+    const barOptions = {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+        },
+      },
+    };
+  
+    // --- Doughnut Chart Data ---
+    const createDoughnutData = (score, label) => ({
+      labels: [label, 'Remaining'],
+      datasets: [
+        {
+          data: [score, 100 - score],
+          backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(229, 229, 229, 0.6)'],
+          borderColor: ['rgba(75, 192, 192, 1)', 'rgba(200, 200, 200, 1)'],
+          borderWidth: 1,
+        },
+      ],
+    });
+  
+    const doughnutOptions = {
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+        },
+      },
+      cutout: '60%',
+    };
+  
+    
+
+  
   return (
     <div className="plotpage">
       <Helmet>
@@ -198,11 +274,13 @@ gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // li
           <FaArrowLeft className="plot-back-icon" />
         </button>
       </div>
-
+ 
       {/* Main Content Section */}
       <div className="plotheader">
         <h3>The overall evaluation</h3>
         <pre>Topic: {selectedTopic} | Model: {evalLLM}</pre>
+   
+
         {/* Coverage Score Header */}
         <div className="coverage-score-header">
           <div className="header-container">
@@ -215,6 +293,11 @@ gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // li
               />
             </h2>
           </div>
+
+
+      
+
+
           {isTooltipVisible && (
             <div className="tooltip-container">
               <div className="tooltip-content">
@@ -245,7 +328,7 @@ gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // li
         )}
 
         {/* Coverage Scores */}
-        <div className="coverage-scores">
+        {/* <div className="coverage-scores">
   <div className="coverage-score-item">
     Arab Coverage Score for {selectedTopic}: {results?.Arab?.coverage_score?.toFixed(2)}%
   </div>
@@ -255,7 +338,75 @@ gradient.append("stop").attr("offset", "0%").attr("stop-color","#f9d1a8"); // li
   <div className="coverage-score-item">
     Western Coverage Score for {selectedTopic}: {results?.Western?.coverage_score?.toFixed(2)}%
   </div>
-</div>
+</div> */}
+
+
+   {/* Chart Representation
+   <div style={{ width: '600px', margin: 'auto' }}>
+        <h2>Coverage Score Chart for {selectedTopic}</h2>
+        <Bar data={data} options={options} />
+      </div> */}
+
+     
+
+
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>
+        Dashboard for Coverage Score 
+      </h1>
+
+    
+      {/* --- Doughnut Charts for Each Region --- */}
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '40px', gap: '30px' }}>
+        {/* Arab Region */}
+        <div style={{ width: '250px', textAlign: 'center' ,marginTop:'33px'}}>
+          <h3>Arab Region</h3>
+          <Doughnut
+            data={createDoughnutData(
+              results?.Arab?.coverage_score,
+              'Arab Coverage'
+            )}
+            options={doughnutOptions}
+          />
+        </div>
+
+        {/* Chinese Region */}
+        <div style={{ width: '250px', textAlign: 'center' }}>
+          <h3>Chinese Region</h3>
+          <Doughnut
+            data={createDoughnutData(
+              results?.Chinese?.coverage_score,
+              'Chinese Coverage'
+            )}
+            options={doughnutOptions}
+          />
+        </div>
+
+        {/* Western Region */}
+        <div style={{ width: '250px', textAlign: 'center' }}>
+          <h3>Western Region</h3>
+          <Doughnut
+            data={createDoughnutData(
+              results?.Western?.coverage_score,
+              'Western Coverage'
+            )}
+            options={doughnutOptions}
+          />
+        </div>
+
+      </div>
+        {/* --- Bar Chart --- */}
+        <div style={{ width: '600px', margin: '20px auto' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>
+          Coverage Score Comparison
+        </h2>
+        <Bar data={barData} options={barOptions} />
+      </div>
+
+    </div>
+
+     
+
 
         {/* Freestyle Chatting Button */}
         <div className="plotsubmit-container">
