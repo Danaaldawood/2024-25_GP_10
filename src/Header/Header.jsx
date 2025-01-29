@@ -72,7 +72,7 @@ export const Header = () => {
   return (
     <header className="header" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="header-left">
-        <img src={logo} alt="Logo" className="logo-img" />
+        <img src={logo} alt="Logo" className="logo-img-header" />
         <h1 className="logo-title">CultureLens</h1>
       </div>
 

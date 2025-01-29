@@ -90,7 +90,7 @@
 
 /* Unread/Read States */
 .notification-item-header.unread {
-  background-color: #f0f7ff;
+  background-color: #10a37f17;
 }
 
 .notification-item-header.unread:hover {
@@ -135,7 +135,7 @@
 
 /* Action Buttons */
 .mark-read-btn,
-.delete-btn {
+.delete-btn-bell {
   padding: 4px 12px;
   border: none;
   border-radius: 4px;
@@ -146,20 +146,20 @@
 }
 
 .mark-read-btn {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  background-color: #10a37f21;
+  color: #10a37f;
 }
 
 .mark-read-btn:hover {
   background-color: #bbdefb;
 }
 
-.delete-btn {
+.delete-btn-bell {
   background-color: #ffebee;
   color: #d32f2f;
 }
 
-.delete-btn:hover {
+.delete-btn-bell:hover {
   background-color: #ffcdd2;
 }
 
@@ -204,7 +204,7 @@
   }
   
   .mark-read-btn,
-  .delete-btn {
+  .delete-btn-bell {
     flex: 1;
     text-align: center;
   }
@@ -217,7 +217,7 @@
   }
   
   .mark-read-btn,
-  .delete-btn {
+  .delete-btn-bell {
     border: 1px solid currentColor;
   }
 }
@@ -230,7 +230,7 @@
   
   .bell-icon,
   .mark-read-btn,
-  .delete-btn {
+  .delete-btn-bell {
     transition: none;
   }
 }

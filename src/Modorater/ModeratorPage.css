@@ -165,19 +165,30 @@
 }
 
 /* --- Action Buttons --- */
-.action-btn {
-  width: 80px;
-  height: 40px;
-  color: white;
-  margin: 5px;
+.action-buttons {
+  padding: 8px;
+  text-align: center;
+}
+
+/* Updated notification action buttons */
+.action-buttons .action-btn,
+.delete-btn-not,
+.deny-btn-not {
+  min-width: 120px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 10px 20px !important;
+  margin: 4px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
   cursor: pointer;
-  font-size: 12px;
-  display: flex;
+  transition: all 0.3s ease;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s;
 }
 
 .delete-btn-not {
@@ -187,6 +198,7 @@
 
 .delete-btn-not:hover {
   background-color: var(--hover-danger-color);
+  transform: translateY(-1px);
 }
 
 .deny-btn-not {
@@ -196,49 +208,57 @@
 
 .deny-btn-not:hover {
   background-color: #929191;
+  transform: translateY(-1px);
 }
 
-.replace-btn {
-  background-color: var(--primary-color);
-  color: white;
+/* View Edit table action buttons */
+.action-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
-.replace-btn:hover {
-  background-color: var(--secondary-color);
+.action-btn.eye-btn {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.action-btn.eye-btn:hover {
+  color: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+.action-btn.eye-btn svg {
+  width: 28px;
+  height: 28px;
 }
 
 .action-btn.delete-btn {
   width: 35px;
   height: 35px;
-  background-color: var(--danger-color);
-  border: none;
+  padding: 0;
+  margin: 0;
   border-radius: 50%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  background-color: var(--danger-color);
 }
 
 .action-btn.delete-btn:hover {
   background-color: var(--hover-danger-color);
 }
 
-.eye-btn {
-  width: 35px;
-  height: 35px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  transition: color 0.3s, transform 0.2s ease;
-}
-
-.eye-btn:hover {
-  color: var(--secondary-color);
-  transform: scale(1.1);
+.action-btn.delete-btn svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* --- Modal Styles --- */
@@ -285,7 +305,6 @@
   font-size: 16px;
 }
 
-
 .add-btn {
   background-color: var(--primary-color);
   color: white;
@@ -310,25 +329,21 @@
   font-size: 1.2rem;
   margin-top: 20px;
 }
+
 .complaints-link {
   margin-left: auto;  
   text-decoration: none;  
   color: #095c47;
-  text-decoration: none;
-  padding: 5px 10px;
-  transition: all 0.2s ease;  
-  font-weight: bold;  
   padding: 10px 15px;  
   cursor: pointer;  
-  transition: color 0.3s ease;  
+  transition: all 0.2s ease;  
+  font-weight: bold;  
 }
 
 .complaints-link:hover {
   background-color: rgba(9, 92, 71, 0.1);
   border-radius: 4px;
 }
-
- 
 
 /* --- Media Queries for Responsiveness --- */
 @media screen and (max-width: 1400px) {
@@ -355,9 +370,10 @@
     padding: 9px 17px;
     font-size: 14px;
   }
-  .action-btn {
-    width: 75px;
-    height: 35px;
+  .delete-btn-not,
+  .deny-btn-not {
+    padding: 8px 16px !important;
+    font-size: 13px;
   }
 }
 
@@ -372,9 +388,11 @@
   .styled-table {
     font-size: 0.9rem;
   }
-  .action-btn {
-    width: 70px;
-    height: 35px;
+  .delete-btn-not,
+  .deny-btn-not {
+    padding: 6px 12px !important;
+    min-width: 100px !important;
+    font-size: 12px;
   }
   .modal-content {
     width: 95%;
@@ -397,13 +415,40 @@
   .notification-btn {
     font-size: 14px;
   }
-  .action-btn {
-    width: 60px;
-    height: 30px;
+  .delete-btn-not,
+  .deny-btn-not {
+    padding: 5px 10px !important;
+    min-width: 90px !important;
+    font-size: 11px;
   }
   .notification-badge {
     top: -5px;
     right: -5px;
     font-size: 10px;
   }
+}
+.delete-btn-not-modal{
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.cancel-btn-not-modal{
+  
+}
+
+.delete-btn{
+  color: white;
+}
+
+.cancel-btn-not-modal{
+border: 1px solid #000;
+    color: #000;
+    background-color: var(--light-gray);
+    cursor: pointer;
+    font-size: 18px;}
+
+.deny-btn-not-modal{
+  background-color: var(--dark-gray);
+  color: white;
+
 }

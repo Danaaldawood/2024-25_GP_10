@@ -109,27 +109,32 @@ export function RealtimeData() {
 
   // Handle notification click
   const handleClick = (row) => {
-    if (
-      row.region_name === userRegion &&
-      row.annotations &&
-      row.annotations.length > 0
-    ) {
-      const dropdownElement = document.querySelector(
-        `select[data-row-id="${row.id}"]`
-      );
+    if (row.region_name === userRegion && row.annotations && row.annotations.length > 0) {
+      const dropdownElement = document.querySelector(`select[data-row-id="${row.id}"]`);
       const selectedValue = dropdownElement ? dropdownElement.value : "";
-
+  
+      // Create an array of all values with their translations
+      const allTranslatedValues = row.annotations?.map(annotation => ({
+        en_values: annotation.en_values || [],
+        values: annotation.values || [], // Arabic/Chinese translations
+        reason: annotation.reason,
+        reason_lan: annotation.reason_lan // Translated reason if available
+      }));
+  
       navigate(`/Notifymodrator/${row.id}`, {
         state: {
           id: row.id,
           topic: row.topic,
-          attribute: getDisplayValue(row),
+          topic_lan: row.topic_lan, // Add translated topic
+          attribute: {
+            en: row.en_question,
+            ar: row.question, // Arabic translation
+            ch: row.ch_question // Chinese translation
+          },
           region: row.region_name,
+          region_lan: row.region_lan, // Add translated region name
           selectedValue: selectedValue,
-          allValues:
-            row.annotations?.map((annotation) =>
-              getDisplayValueForAnnotation(annotation, row.region_name)
-            ) || [],
+          allValues: allTranslatedValues,
         },
       });
     }

@@ -15,29 +15,84 @@ export const Notifymodrator = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation("notifyPage");   
+
   // State variables
   const [userId, setUserId] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
- 
-  // full form with retrive values from location state
-  const { t ,i18n} = useTranslation("notifyPage");   
+
+  // Function to get the correct display attribute based on language
+  const getDisplayAttribute = () => {
+    const currentLang = i18n.language;
+    const attributeData = location.state?.attribute;
+    
+    if (currentLang === "ar" && attributeData?.ar) {
+      return attributeData.ar;
+    } else if (currentLang === "ch" && attributeData?.ch) {
+      return attributeData.ch;
+    }
+    return attributeData?.en || "";
+  };
+
+  // Function to get the correct display value based on language
+  const getDisplayValue = (value) => {
+    const currentLang = i18n.language;
+    if (currentLang === "ar" && location.state?.region === "Arab") {
+      return value.values?.[0] || value.en_values?.[0] || "";
+    } else if (currentLang === "ch" && location.state?.region === "Chinese") {
+      return value.values?.[0] || value.en_values?.[0] || "";
+    }
+    return value.en_values?.[0] || "";
+  };
+
+  // Initialize first selected value
+  const getInitialValue = () => {
+    const firstValue = location.state?.allValues?.[0];
+    if (firstValue) {
+      let valuePairs = {
+        en: firstValue.en_values?.[0] || ""
+      };
+
+      if (location.state?.region === "Arab") {
+        valuePairs.ar = firstValue.values?.[0] || "";
+      } else if (location.state?.region === "Chinese") {
+        valuePairs.ch = firstValue.values?.[0] || "";
+      }
+
+      return valuePairs;
+    }
+    return { en: "" };
+  };
 
   const [notificationData, setNotificationData] = useState({
-    topic: t(`notifyPage.Topic_Names.${location.state?.topic}`) || "",  
+    topic: t(`notifyPage.Topic_Names.${location.state?.topic}`) || "",
+    topic_lan: location.state?.topic_lan || "",
     description: "",
-    PreviousValue: location.state?.selectedValue || "",
+    PreviousValue: getInitialValue(),
     status: "pending",
     timestamp: new Date().toISOString(),
-    attribute: location.state?.attribute || "",
+    attribute: {
+      en: location.state?.attribute?.en || "",
+      ar: location.state?.attribute?.ar || "",
+      ch: location.state?.attribute?.ch || ""
+    },
     userId: { fullId: "", shortId: "" },
     region: location.state?.region || "",
+    region_lan: location.state?.region_lan || "",
     modAction: "noaction"
   });
-  
-  // monitor authentication state and set user ID
+
+  // Update topic translation when language changes
+  useEffect(() => {
+    setNotificationData(prev => ({
+      ...prev,
+      topic: t(`notifyPage.Topic_Names.${location.state?.topic}`) || ""
+    }));
+  }, [i18n.language, t, location.state?.topic]);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -52,17 +107,16 @@ export const Notifymodrator = () => {
     return () => unsubscribe();
   }, []);
 
-  // Ensure if location state is available
   useEffect(() => {
     if (!location.state) {
       alert(t("notifyPage.noDataAlert"));
       navigate("/View");
     }
-  }, [location.state, navigate]);
+  }, [location.state, navigate, t]);
 
   useEffect(() => {
     if (userId) {
-      setNotificationData((prev) => ({
+      setNotificationData(prev => ({
         ...prev,
         userId: userId,
       }));
@@ -71,40 +125,99 @@ export const Notifymodrator = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNotificationData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    
+    if (name === "PreviousValue") {
+      // Find the selected value object from allValues
+      const selectedValueObj = location.state?.allValues?.find(val => 
+        getDisplayValue(val) === value
+      );
+
+      if (selectedValueObj) {
+        // Initialize with English value
+        let valuePairs = {
+          en: selectedValueObj.en_values[0]
+        };
+
+        // Add appropriate translation based on region
+        if (location.state?.region === "Arab") {
+          valuePairs = {
+            en: selectedValueObj.en_values[0],
+            ar: selectedValueObj.values[0]
+          };
+        } else if (location.state?.region === "Chinese") {
+          valuePairs = {
+            en: selectedValueObj.en_values[0],
+            ch: selectedValueObj.values[0]
+          };
+        }
+
+        setNotificationData(prevState => ({
+          ...prevState,
+          PreviousValue: valuePairs
+        }));
+      }
+    } else {
+      setNotificationData(prevState => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+    
     if (name === "description" && value.length > 0) {
       setShowError(false);
     }
   };
 
-  // Check for duplicate notifications
   const checkExistingNotification = (notifications) => {
-    return notifications.some(
-      (notification) =>
-        notification.attribute === notificationData.attribute &&
-        notification.PreviousValue === notificationData.PreviousValue &&
-        notification.status === "pending"
-    );
+    if (!notifications || !Array.isArray(notifications)) {
+      return false;
+    }
+  
+    // Let's filter out any notifications where modAction is not "noaction"
+    const pendingNotifications = notifications.filter(notification => {
+      // Check if exact same attribute
+      const sameAttribute = notification.attribute.en === notificationData.attribute.en;
+      // Check if same previous value
+      const samePreviousValue = notification.PreviousValue.en === notificationData.PreviousValue.en;
+      // Check if no action taken yet
+      const isPending = notification.modAction === "noaction";
+      
+      return sameAttribute && samePreviousValue && isPending;
+    });
+  
+    // If we find any pending notifications, return true to prevent submission
+    return pendingNotifications.length > 0;
   };
 
-  // Submit notification to database
+  const prepareNotificationData = () => {
+    let prepared = {
+      ...notificationData,
+      attribute: { en: notificationData.attribute.en },
+      PreviousValue: { en: notificationData.PreviousValue.en }
+    };
+
+    if (location.state?.region === "Arab") {
+      prepared.attribute.ar = notificationData.attribute.ar;
+      prepared.PreviousValue.ar = notificationData.PreviousValue.ar;
+    } else if (location.state?.region === "Chinese") {
+      prepared.attribute.ch = notificationData.attribute.ch;
+      prepared.PreviousValue.ch = notificationData.PreviousValue.ch;
+    }
+
+    return prepared;
+  };
+
   const handleSubmitNotification = async () => {
-    // Validate description field
     if (!notificationData.description) {
       setShowError(true);
       return;
     }
 
     try {
-      // Get reference to notifications in database
       const notificationsRef = ref(realtimeDb, `notifications/${id}`);
       const snapshot = await get(notificationsRef);
       let existingNotifications = [];
 
-      // Check for existing notifications
       if (snapshot.exists()) {
         existingNotifications = snapshot.val().notifications || [];
 
@@ -115,19 +228,16 @@ export const Notifymodrator = () => {
         }
       }
 
-      // Create new notification object
-      const newNotification = {
-        ...notificationData,
+      const preparedNotification = {
+        ...prepareNotificationData(),
         timestamp: new Date().toISOString(),
         notificationId: push(ref(realtimeDb)).key,
       };
 
-      // Update database with new notification
       await set(notificationsRef, {
-        notifications: [...existingNotifications, newNotification],
+        notifications: [...existingNotifications, preparedNotification],
       });
 
-      // Show success message and redirect
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
@@ -142,23 +252,20 @@ export const Notifymodrator = () => {
     <div className="notifypage">
       <Header />
       <div className="notify-form-container">
-        {/* tab tag */}
         <Helmet>
           <title>Notify Moderator</title>           
           <meta name="description" content="Notify moderator page" />
         </Helmet>
 
-        {/* Form header */}
         <div className="notify-header">
           <div className="notify-title">{t("notifyPage.notify-title")}</div>
           <div className="underline"></div>
           <div className="notiyfy-attribute-display">
-            {location.state?.attribute}
+            {getDisplayAttribute()}
           </div>
         </div>
-        {/* Form inputs */}
+
         <div className="notify-inputs">
-          {/* input of topic*/}
           <div className="notify-input">
             <label className="label">{t("notifyPage.label")}</label>
             <input
@@ -168,67 +275,48 @@ export const Notifymodrator = () => {
               readOnly
             />
           </div>
-          {/* Previous value selection */}
+
           <div className="notify-input">
             <label className="label2">{t("notifyPage.label2")}</label>
             <select
               name="PreviousValue"
-              value={notificationData.PreviousValue}
+              value={getDisplayValue(location.state?.allValues?.find(v => 
+                v.en_values?.[0] === notificationData.PreviousValue.en
+              ) || {})}
               onChange={handleInputChange}
               className="notify-select"
             >
-              {location.state?.selectedValue && (
-                <option value={location.state.selectedValue}>
-                  {location.state.selectedValue}
+              {location.state?.allValues?.map((value, index) => (
+                <option key={index} value={getDisplayValue(value)}>
+                  {getDisplayValue(value)}
                 </option>
-              )}
-              {location.state?.allValues
-                ?.filter((value) => value !== location.state.selectedValue)
-                .map((value, index) => (
-                  <option key={index} value={value}>
-                    {value}
-                  </option>
-                ))}
+              ))}
             </select>
           </div>
 
-          {/* Description of notify  */}
           <div className="notify-input">
             <label className="label3">{t("notifyPage.label3")}</label>
             <textarea
               name="description"
               value={notificationData.description}
               onChange={handleInputChange}
-              placeholder={
-                showError
-                  ? t("notifyPage.errorPlaceholder")
-                  : t("notifyPage.detailPlaceholder")
-              }
-              className={
-                showError && !notificationData.description ? "error-input" : ""
-              }
+              placeholder={showError ? t("notifyPage.errorPlaceholder") : t("notifyPage.detailPlaceholder")}
+              className={showError && !notificationData.description ? "error-input" : ""}
               rows={4}
             />
           </div>
         </div>
 
-        {/* Submit button */}
         <div className="notify-submit-container">
-          <button
-            onClick={handleSubmitNotification}
-            className="notify-submit-button"
-          >
+          <button onClick={handleSubmitNotification} className="notify-submit-button">
             {t("notifyPage.submitButton")}
           </button>
         </div>
 
-        {/* Success and error popups */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-            <p className="success-message">
-              {t("notifyPage.successMessage")}
-            </p>
+            <p className="success-message">{t("notifyPage.successMessage")}</p>
           </div>
         )}
 
@@ -237,10 +325,7 @@ export const Notifymodrator = () => {
             <div className="error-title">{t("notifyPage.errorTitle")}</div>
             <div className="error-message">{errorMessage}</div>
             <div className="error-actions">
-              <button
-                className="confirm-btn"
-                onClick={() => setShowErrorPopup(false)}
-              >
+              <button className="confirm-btn" onClick={() => setShowErrorPopup(false)}>
                 {t("notifyPage.errorOkButton")}
               </button>
             </div>
