@@ -106,7 +106,7 @@
    
        // Basic fields validation
        if (!password.trim() || !fname.trim() || !email.trim()) {
-         setErrorMessage("Please complete all required fields.");
+         setErrorMessage (t("Please complete all required fields."));
          return;
        }
    

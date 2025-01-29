@@ -2,9 +2,10 @@
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-
+import { useTranslation } from "react-i18next";
 // Displays success or error notifications with auto-close functionality
 const Notification = ({ type, message, onClose }) => {
+    const { t ,i18n} = useTranslation("userProfile");   
   // --- Auto-close Effect ---
   useEffect(() => {
     if (type === "success") {
@@ -96,7 +97,7 @@ const Notification = ({ type, message, onClose }) => {
       )}
 
       {/* Warning Title for Errors */}
-      {type === "error" && <p style={styles.warningTitle}>Warning!</p>}
+      {type === "error" && <p style={styles.warningTitle}>{t("userProfile.Warning")}</p>}
 
       {/* Notification Message */}
       <p style={type === "error" ? styles.errorMessage : styles.success}>
@@ -116,7 +117,7 @@ const Notification = ({ type, message, onClose }) => {
           }
           onClick={onClose}
         >
-          Try again
+          {t("userProfile.Tryagain")}
         </button>
       )}
     </div>

@@ -8,7 +8,23 @@
         "regionLabel": "Region",
         "saveButton": "Save Profile",
         "deleteButton": "Delete Account",
-        "Profile Page":"Profile Page"
+        "Profile Page":"Profile Page",
+        "Warning":"Warning",
+        "Tryagain":"Try again",
+    "Please enter your password to confirm account deletion:": "Please enter your password to confirm account deletion:",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "The password you entered is incorrect. Please try again.": "The password you entered is incorrect. Please try again.",
+     "An error occurred. Please try again later.": "An error occurred. Please try again later.",
+     "Enter your password": "Enter your password",
+    "Full name cannot be empty. Please enter a valid name.": "Full name cannot be empty. Please enter a valid name.",
+    "Profile saved successfully!": "Profile saved successfully!",
+    "No user logged in.": "No user logged in.",
+    "Failed to save profile.": "Failed to save profile.",
+    "No user is logged in.": "No user is logged in.",
+    "Account deleted successfully.": "Account deleted successfully.",
+    "Incorrect password. Please try again.": "Incorrect password. Please try again."
+
       }
     },
     "ar": {
@@ -20,7 +36,21 @@
         "regionLabel": "المنطقة",
         "saveButton": "  حفظ الملف الشخصي",
         "deleteButton": "حذف الحساب",
-        "Profile Page": "صفحة الملف الشخصي"
+        "Profile Page": "صفحة الملف الشخصي",
+        "Warning":"تحذير!",
+        "Tryagain":"حاول مرة أخرى", "Please enter your password to confirm account deletion:": "يرجى إدخال كلمة المرور الخاصة بك لتأكيد حذف الحساب:",
+        "Cancel": "إلغاء",
+        "Confirm": "تأكيد",
+        "The password you entered is incorrect. Please try again.": "كلمة المرور التي أدخلتها غير صحيحة. يرجى المحاولة مرة أخرى.",
+        "No user is logged in.": "لا يوجد مستخدم مسجل الدخول.",
+        "An error occurred. Please try again later.": "حدث خطأ. يرجى المحاولة مرة أخرى لاحقًا.",
+         "Enter your password": "أدخل كلمة المرور الخاصة بك",
+        "Full name cannot be empty. Please enter a valid name.": "لا يمكن أن يكون الاسم الكامل فارغًا. الرجاء إدخال اسم صالح.",
+    "Profile saved successfully!": "تم حفظ الملف الشخصي بنجاح!",
+    "No user logged in.": "لم يتم تسجيل الدخول لأي مستخدم.",
+    "Failed to save profile.": "فشل حفظ الملف الشخصي.",
+     "Account deleted successfully.": "تم حذف الحساب بنجاح.",
+    "Incorrect password. Please try again.": "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
       }
     },
     "ch": {
@@ -32,7 +62,23 @@
         "regionLabel": "地区",
         "saveButton": "保存资料",
         "deleteButton": "删除账户",
-        "Profile Page": "个人资料页面"
+        "Profile Page": "个人资料页面",
+        "Warning":"!警告",
+        "Tryagain":"再试一次",
+        "Please enter your password to confirm account deletion:": "请输入您的密码以确认删除帐户：",
+    "Cancel": "取消",
+    "Confirm": "确认",
+    "The password you entered is incorrect. Please try again.": "您输入的密码不正确。请再试一次。",
+    "No user is logged in.": "没有用户登录。",
+    "An error occurred. Please try again later.": "发生错误。请稍后再试。",
+     "Enter your password": "请输入您的密码",
+    "Full name cannot be empty. Please enter a valid name.": "全名不能为空，请输入有效的姓名。",
+    "Profile saved successfully!": "个人资料保存成功！",
+    "No user logged in.": "没有用户登录。",
+    "Failed to save profile.": "保存个人资料失败。",
+     "Account deleted successfully.": "帐户已成功删除。",
+    "Incorrect password. Please try again.": "密码错误，请再试一次。"
+
       }
     }
   }

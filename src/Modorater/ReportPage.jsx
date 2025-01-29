@@ -165,6 +165,37 @@ const ReportPage = () => {
     } catch (error) {
       console.error("Error blocking user:", error);
     }
+    //Remove User Block From Table
+    const handleBlock = async (userId) => {
+      try {
+         const updates = {
+          status: 'blocked',
+          blockedAt: new Date().toISOString()
+        };
+    
+         await update(ref(realtimeDb, `Users/${userId}`), updates);
+        await setDoc(doc(db, "Users", userId), updates, { merge: true });
+    
+         setUsers(prev => prev.filter(user => user.userId !== userId));  // حذف المستخدم المحظور من المصفوفة
+    
+         const notificationData = {
+          id: push(ref(realtimeDb)).key,
+          attribute: 'Account Status',
+          action: 'Your account has been blocked',
+          timestamp: new Date().toISOString(),
+          read: false
+        };
+    
+        const userNotificationsRef = ref(realtimeDb, `userNotifications/${userId}`);
+        const snapshot = await get(userNotificationsRef);
+        const existingNotifications = snapshot.exists() ? snapshot.val() : [];
+        await set(userNotificationsRef, [...existingNotifications, notificationData]);
+    
+      } catch (error) {
+        console.error("Error blocking user:", error);
+      }
+    };
+     
   };
 
   return (
@@ -173,15 +204,11 @@ const ReportPage = () => {
         <title>Report Page</title>
         <meta name="description" content="" />
       </Helmet>
-       
-
       <button className="Back-btn" onClick={() => navigate("/moderator")}>
         <FaArrowLeft className="Report-back-icon" />
       </button>
-
       <div className="report-container">
         <h1>User Reports - {moderatorRegion} Region</h1>
-
         <table className="report-table">
           <thead>
             <tr>
@@ -193,71 +220,70 @@ const ReportPage = () => {
             </tr>
           </thead>
           <tbody>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <tr key={user.userId} className={user.status === 'blocked' ? 'blocked-user' : ''}>
-                  <td>{user.shortId}</td>
-                  <td>
-                    <ul className="value-list">
-                      {user.addedValues.slice(0, showMoreAddedValues[user.userId] ? user.addedValues.length : maxItemsToShow).map((value, index) => (
-                        <li key={index}>
-                          <strong>{value.attribute}</strong>
-                          <br />
-                          Value: {value.value}
-                          <br />
-                        </li>
-                      ))}
-                    </ul>
-                    {user.addedValues.length > maxItemsToShow && (
-                      <button onClick={() => toggleShowMoreAddedValues(user.userId)}>
-                        {showMoreAddedValues[user.userId] ? "Show Less" : "Show More"}
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    <ul className="notificationReportPage-list">
-                      {user.notifications.slice(0, showMoreNotifications[user.userId] ? user.notifications.length : maxItemsToShow).map((notification, index) => (
-                        <li key={index}>
-                          <strong>{notification.attribute}</strong>
-                          <br />
-                          Previous: {notification.previousValue}
-                          <br />
-                          Description: {notification.description}
-                        </li>
-                      ))}
-                    </ul>
-                    {user.notifications.length > maxItemsToShow && (
-                      <button 
-                      className="ReportPageButton"
-                      onClick={() => toggleShowMoreNotifications(user.userId)}
-                    >
-                      {showMoreNotifications[user.userId] ? "Show Less" : "Show More"}
-                    </button>
-                    
-                    )}
-                  </td>
-                  <td>
-                    <span className={`status-badge ${user.status}`}>
-                      {user.status}
-                    </span>
-                  </td>
-                  <td>
-                    {user.status !== 'blocked' && (
-                      <button className="block-button" onClick={() => handleBlock(user.userId)}>
-                        Block User
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="no-data">
-                  No users to display
-                </td>
-              </tr>
+  {users.length > 0 ? (
+    users.map((user) => (
+      user.status !== 'blocked' && (  
+        <tr key={user.userId}>
+          <td>{user.shortId}</td>
+          <td>
+            <ul className="value-list">
+              {user.addedValues.slice(0, showMoreAddedValues[user.userId] ? user.addedValues.length : maxItemsToShow).map((value, index) => (
+                <li key={index}>
+                  <strong>{value.attribute}</strong>
+                  <br />
+                  Value: {value.value}
+                  <br />
+                </li>
+              ))}
+            </ul>
+            {user.addedValues.length > maxItemsToShow && (
+              <button onClick={() => toggleShowMoreAddedValues(user.userId)}>
+                {showMoreAddedValues[user.userId] ? "Show Less" : "Show More"}
+              </button>
             )}
-          </tbody>
+          </td>
+          <td>
+            <ul className="notificationReportPage-list">
+              {user.notifications.slice(0, showMoreNotifications[user.userId] ? user.notifications.length : maxItemsToShow).map((notification, index) => (
+                <li key={index}>
+                  <strong>{notification.attribute}</strong>
+                  <br />
+                  Previous: {notification.previousValue}
+                  <br />
+                  Description: {notification.description}
+                </li>
+              ))}
+            </ul>
+            {user.notifications.length > maxItemsToShow && (
+              <button className="ReportPageButton" onClick={() => toggleShowMoreNotifications(user.userId)}>
+                {showMoreNotifications[user.userId] ? "Show Less" : "Show More"}
+              </button>
+            )}
+          </td>
+          <td>
+            <span className={`status-badge ${user.status}`}>
+              {user.status}
+            </span>
+          </td>
+          <td>
+            {user.status !== 'blocked' && (
+              <button className="block-button" onClick={() => handleBlock(user.userId)}>
+                Block User
+              </button>
+            )}
+          </td>
+        </tr>
+      )
+    ))
+  ) : (
+    <tr>
+      <td colSpan="5" className="no-data">
+        No users to display
+      </td>
+    </tr>
+  )}
+</tbody>
+
         </table>
          
        </div>

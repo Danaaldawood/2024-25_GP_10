@@ -66,7 +66,7 @@ const UserProfilePage = () => {
     if (!profileName.trim()) {
       setNotification({
         type: "error",
-        message: "Full name cannot be empty. Please enter a valid name.",
+        message:  (t("userProfile.Full name cannot be empty. Please enter a valid name.")),
       });
       return;
     }
@@ -94,14 +94,16 @@ const UserProfilePage = () => {
 
         setNotification({
           type: "success",
-          message: "Profile saved successfully!",
+          message:  (t('userProfile.Profile saved successfully!')),
         });
       } else {
-        setNotification({ type: "error", message: "No user logged in." });
+        setNotification({ type: "error", message:  (t("userProfile.No user logged in."))
+
+        });
       }
     } catch (error) {
       console.error("Error saving profile:", error);
-      setNotification({ type: "error", message: "Failed to save profile." });
+      setNotification({ type: "error", message: (t("userProfile.Failed to save profile." ))});
     }
   };
   // Handle account deletion
@@ -116,7 +118,7 @@ const UserProfilePage = () => {
     try {
       const user = auth.currentUser;
       if (!user) {
-        setNotification({ type: "error", message: "No user is logged in." });
+        setNotification({ type: "error", message: (t("userProfile.No user is logged in.")) });
         return;
       }
       // Delete user authentication and document
@@ -137,12 +139,12 @@ const UserProfilePage = () => {
 
       setNotification({
         type: "success",
-        message: "Account deleted successfully.",
+        message: (t("userProfile.Account deleted successfully.")),
       });
       navigate("/sign");
     } catch (error) {
       if (error.code === "auth/wrong-password") {
-        setErrorMessage("Incorrect password. Please try again.");
+        setErrorMessage (t("userProfile.Incorrect password. Please try again."));
       } else {
         setErrorMessage(`Error: ${error.message}`);
       }

@@ -15,7 +15,7 @@ import { realtimeDb } from "../Register/firebase";
 
 const HomePage = () => {
   //  State ---
-  const { t } = useTranslation("homepage");
+  const { t, i18n } = useTranslation("homepage");
   const [showMore, setShowMore] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState("");
   const [topicChartData, setTopicChartData] = useState(null);
@@ -42,8 +42,12 @@ const HomePage = () => {
       },
     },
     cutout: "60%",
+    animation: {
+      duration: 1000,
+      easing: "easeInOutQuart",
+    },
   };
-
+  
   const barOptions = {
     scales: {
       y: {
@@ -57,16 +61,15 @@ const HomePage = () => {
     },
     maintainAspectRatio: false,
   };
-
+  
   // --- Data Fetching Functions ---
-  // Fetch Topic Chart Data
   const fetchTopicData = async () => {
     const dbRef = ref(realtimeDb);
     const snapshot = await get(dbRef);
     if (snapshot.exists()) {
       const data = snapshot.val();
       const topicCounts = {};
-
+  
       ["ArabC", "ChineseC", "WesternC"].forEach((region) => {
         const details = data[region]?.Details || {};
         Object.values(details).forEach((item) => {
@@ -74,14 +77,14 @@ const HomePage = () => {
           topicCounts[topic] = (topicCounts[topic] || 0) + 1;
         });
       });
-
+  
       return topicCounts;
     } else {
       console.error("No data available");
       return {};
     }
   };
-
+  
   // Fetch Region Comparison Data
   const fetchRegionTopicComparisonData = async () => {
     const dbRef = ref(realtimeDb);
@@ -93,7 +96,7 @@ const HomePage = () => {
         Chinese: {},
         Western: {},
       };
-
+  
       ["ArabC", "ChineseC", "WesternC"].forEach((regionKey, index) => {
         const regionName = ["Arab", "Chinese", "Western"][index];
         const details = data[regionKey]?.Details || {};
@@ -103,14 +106,14 @@ const HomePage = () => {
             (regionTopicCounts[regionName][topic] || 0) + 1;
         });
       });
-
+  
       return regionTopicCounts;
     } else {
       console.error("No data available");
       return {};
     }
   };
-
+  
   // Fetch Total Attributes Data
   const fetchTotalAttributesData = async () => {
     const dbRef = ref(realtimeDb);
@@ -127,28 +130,33 @@ const HomePage = () => {
       return { Arab: 0, Chinese: 0, Western: 0 };
     }
   };
-
+  
   // --- Data Loading Effect ---
   useEffect(() => {
     const loadData = async () => {
       const topicData = await fetchTopicData();
       const regionTopicData = await fetchRegionTopicComparisonData();
       const totalData = await fetchTotalAttributesData();
-
-      // Process topics for display
+  
       const topics = Array.from(
         new Set(
           Object.values(regionTopicData).flatMap((region) =>
             Object.keys(region)
           )
         )
-      ).map((topic) =>
-        topic === "Holidays/Celebration/Leisure" ? "Holidays" : topic
       );
-
-      // Setup region comparison data
+  
+      const normalizeTopicKey = (topic) =>
+        topic === "Holidays/Celebration/Leisure" ? "Holidays" : topic;
+  
+      const translatedTopics = topics.map((topic) =>
+        t(`homepage.topics.${normalizeTopicKey(topic)}`)
+      );
+  
+      console.log("Translated Topics: ", translatedTopics);
+  
       const topicDatasets = Object.keys(regionTopicData).map((region) => ({
-        label: region,
+        label: t(`homepage.regions.${region}`),
         data: topics.map((topic) => {
           const originalTopic =
             topic === "Holidays" ? "Holidays/Celebration/Leisure" : topic;
@@ -156,51 +164,53 @@ const HomePage = () => {
         }),
         backgroundColor:
           region === "Arab"
-            ? "#003f5c"
+            ? "#722F57"
             : region === "Chinese"
-            ? "#2f4b7c"
-            : "#43618b",
-      }));
-
-      // Update chart states
+            ? "#722F57"
+            : "#722F57", 
+                }));
+  
       setRegionTopicComparisonData({
-        labels: topics,
+        labels: translatedTopics,
         datasets: topicDatasets,
       });
-
+  
+      // Doughnut Chart
       setTopicChartData({
         labels: Object.keys(topicData).map((topic) =>
-          topic === "Holidays/Celebration/Leisure" ? "Holidays" : topic
+          t(`homepage.topics.${topic === "Holidays/Celebration/Leisure" ? "Holidays" : topic}`)
         ),
         datasets: [
           {
             data: Object.values(topicData),
             backgroundColor: [
-              "#003f5c",
-              "#2f4b7c",
-              "#43618b",
-              "#5a7091",
-              "#6f87a1",
-              "#8baac4",
-              "#9cc3de",
+              "#722F57", // Updated color
+              "#722F57",
+              "#722F57",
+              "#722F57",
+              "#722F57",
+              "#722F57",
+              "#722F57",
             ],
           },
         ],
       });
-
+  
+      // Total Attributes Chart
       setTotalAttributeData({
-        labels: ["Arab", "Chinese", "Western"],
+        labels: ["Arab", "Chinese", "Western"].map(region => t(`homepage.regions.${region}`)),
         datasets: [
           {
             data: Object.values(totalData),
-            backgroundColor: ["#003f5c", "#2f4b7c", "#43618b"],
+            backgroundColor: ["#722F57", "#722F57", "#722F57"],  
           },
         ],
       });
     };
-
+  
     loadData();
-  }, []);
+  }, [i18n.language]);
+   
 
   return (
     <div className="homepage">
@@ -288,8 +298,7 @@ const HomePage = () => {
       </div>
 
       {/* Map Image */}
-      <img src={MAPPhoto} alt="Map" className="map-photo" />
-
+ 
       {/* Footer */}
       <Footer />
     </div>

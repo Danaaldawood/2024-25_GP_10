@@ -72,7 +72,7 @@ const SignOutConfirmation = ({ onConfirm, onCancel }) => {
     <div style={modalStyles}>
       {/* Warning Header */}
       <div style={modalHeaderStyles}>
-        <h3>{t("Warning")}!</h3>
+        <h3>{t("Warning")}</h3>
       </div>
 
       {/* Modal Content */}

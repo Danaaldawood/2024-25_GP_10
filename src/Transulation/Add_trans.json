@@ -8,7 +8,9 @@
           "okButton": "OK",
           "englishOnly": "Please enter the value in English only for the English field.",
           "duplicateValue": "The value \"{value}\" already exists in the dataset.",
-          "requiredFields": "Please fill in all required fields"
+          "requiredFields": "Please fill in all required fields",
+          "ArabicOnly":"Please enter the value in Arabic only for the Arabic field.",
+          "ChineseOnlye":"Please enter the value in Chinese only for the Chinese field."
         },
         "header": {
           "title": "Add Culture Value"
@@ -60,7 +62,10 @@
           "okButton": "موافق",
           "englishOnly": "الرجاء إدخال القيمة باللغة الإنجليزية فقط في حقل اللغة الإنجليزية",
           "duplicateValue": "القيمة \"{value}\" موجودة بالفعل في قاعدة البيانات",
-          "requiredFields": "يرجى ملء جميع الحقول المطلوبة"
+          "requiredFields": "يرجى ملء جميع الحقول المطلوبة",
+            "ArabicOnly": "يرجى إدخال القيمة باللغة العربية فقط للحقل العربي.",
+            "ChineseOnlye": "يرجى إدخال القيمة باللغة الصينية فقط للحقل الصيني."
+           
         },
         "header": {
           "title": "إضافة قيمة ثقافية"
@@ -112,7 +117,9 @@
           "okButton": "确定",
           "englishOnly": "英语字段请仅输入英语",
           "duplicateValue": "数据集中已存在值 \"{value}\"",
-          "requiredFields": "请填写所有必填字段"
+          "requiredFields": "请填写所有必填字段",
+          "ArabicOnly": "请仅在阿拉伯字段中输入阿拉伯语的值。",
+  "ChineseOnlye": "请仅在中文字段中输入中文的值。"
         },
         "header": {
           "title": "添加文化价值"

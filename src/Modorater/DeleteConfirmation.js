@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../Register/firebase'; 
 import { doc, deleteDoc } from 'firebase/firestore';
 import { deleteUser, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
+import { useTranslation } from "react-i18next";
 
 // --- DeleteConfirmation Component ---
 const DeleteConfirmation = ({ onCancel }) => {
@@ -12,6 +13,7 @@ const DeleteConfirmation = ({ onCancel }) => {
   const [errorMessage, setErrorMessage] = useState(''); 
   const [notification, setNotification] = useState(null); 
   const navigate = useNavigate(); 
+    const { t ,i18n} = useTranslation("userProfile");   
 
   // --- Style Definitions ---
   const modalStyles = {
@@ -94,11 +96,11 @@ const DeleteConfirmation = ({ onCancel }) => {
   const getCustomErrorMessage = (errorCode) => {
     switch (errorCode) {
       case 'auth/wrong-password':
-        return 'The password you entered is incorrect. Please try again.';
-      case 'auth/invalid-credential':
-        return 'The password you entered is incorrect. Please try again.';
+        return (t('userProfile.The password you entered is incorrect. Please try again.'));
+        case 'auth/invalid-credential':
+          return (t( 'userProfile.The password you entered is incorrect. Please try again.'));
       default:
-        return 'An error occurred. Please try again later.';
+        return (t('userProfile.An error occurred. Please try again later.'));
     }
   };
 
@@ -108,7 +110,7 @@ const DeleteConfirmation = ({ onCancel }) => {
     try {
       const user = auth.currentUser;
       if (!user) {
-        setErrorMessage('No user is logged in.');
+        setErrorMessage(t('userProfile.No user is logged in.'));
         return;
       }
 
@@ -123,7 +125,7 @@ const DeleteConfirmation = ({ onCancel }) => {
       // Delete the user from Firebase Auth
       await deleteUser(user);
 
-      setNotification('Account deleted successfully.');
+      setNotification (t('userProfile.Account deleted successfully.'));
 
       // Redirect to the sign-in page after 2 seconds
       setTimeout(() => {
@@ -140,15 +142,15 @@ const DeleteConfirmation = ({ onCancel }) => {
     <div style={modalStyles}>
       {/* Warning Header */}
       <div style={modalHeaderStyles}>
-        <h3>Warning!</h3>
+        <h3>{t("userProfile.Warning")}</h3>
       </div>
 
       {/* Modal Content */}
       <div style={modalBodyStyles}>
-        <p>Please enter your password to confirm account deletion:</p>
+        <p>{t("userProfile.Please enter your password to confirm account deletion:")}</p>
         <input
           type="password"
-          placeholder="Enter your password"
+          placeholder={t("userProfile.Enter your password")}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={inputStyles}
@@ -156,8 +158,8 @@ const DeleteConfirmation = ({ onCancel }) => {
         {errorMessage && <div style={errorStyles}>{errorMessage}</div>}
         {notification && <div style={notificationStyles}>{notification}</div>}
         <div style={buttonContainerStyles}>
-          <button style={cancelButtonStyles} onClick={onCancel}>Cancel</button>
-          <button style={confirmButtonStyles} onClick={handleConfirmDelete}>Confirm</button>
+          <button style={cancelButtonStyles} onClick={onCancel}>{t("userProfile.Cancel")}</button>
+          <button style={confirmButtonStyles} onClick={handleConfirmDelete}>{t("userProfile.Confirm")}</button>
         </div>
       </div>
     </div>

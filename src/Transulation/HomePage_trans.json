@@ -16,7 +16,23 @@
     "chineseRegionDescription": "The culture prevails across a large geographical region in East Asia with sinosphere in whole and is extremely diverse, with customs and traditions varying greatly between counties, provinces, cities, and towns.",
     "topicChartTitle": "Topic",
     "regionComparisonChartTitle": "Regional Topic Comparison",
-    "totalAttributeChartTitle": "Total Attribute"
+    "totalAttributeChartTitle": "Total Attribute",
+    "homepage": {
+  "topics": {
+    "Food": "Food",
+    "Education": "Education",
+    "Work life": "Work Life",
+    "Sport": "Sport",
+    "Holidays": "Holiday",
+    "Family": "Family",
+    "Greeting": "Greeting"
+  },
+  "regions": {
+    "Western": "Western",
+        "Chinese": "Chinese",
+        "Arab": "Arab"
+  }
+}
   },
   "ar": {
     "title": "الصفحة الرئيسية",
@@ -35,7 +51,24 @@
     "chineseRegionDescription": "تسود الثقافة عبر منطقة جغرافية واسعة في شرق آسيا مع منطقة التأثير الصيني وهي متنوعة للغاية، حيث تتفاوت العادات والتقاليد بشكل كبير بين المقاطعات والمدن.",
     "topicChartTitle": "الموضوع",
     "regionComparisonChartTitle": "مقارنة المواضيع الثقافية",
-    "totalAttributeChartTitle": "إجمالي السمة"
+"totalAttributeChartTitle": "إجمالي السمة",
+"homepage": {
+  "topics": {
+        "Food": "طعام",
+        "Education": "تعليم",
+        "Work life": "حياة العمل",
+        "Sport": "رياضة",
+        "Holidays": "عطلة",
+        "Family": "عائلة",
+        "Greeting": "تحية"
+  },
+  "regions": {
+    "Arab": "عربي",
+    "Chinese": "صيني",
+    "Western": "غربي"
+  }
+}
+    
   },
   "ch": {
     "title": "首页",
@@ -54,6 +87,23 @@
     "chineseRegionDescription": "该文化在东亚的广阔地理区域盛行，整体上具有高度的多样性，习俗和传统在各省、城市和乡镇之间差异很大。",
     "topicChartTitle": "主题",
     "regionComparisonChartTitle": "区域主题对比",
-    "totalAttributeChartTitle": "总属性"
+    "totalAttributeChartTitle": "总属性",
+    "homepage": {
+  "topics": {
+    "Food": "食物",
+        "Education": "教育",
+        "Work life": "工作生活",
+        "Sport": "运动",
+        "Holidays": "假期",
+        "Family": "家庭",
+        "Greeting": "问候"
+  },
+  "regions": {
+   "Western": "西方",
+        "Chinese": "中国",
+        "Arab": "阿拉伯"
   }
+}
+  }
+
 }

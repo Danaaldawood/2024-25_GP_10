@@ -132,14 +132,14 @@ export const AddCultureValue = () => {
     if (itemData.region === "Arab") {
       const arabicPattern = /[\u0600-\u06FF]/;
       if (!arabicPattern.test(itemData.nativevalue)) {
-        setErrorMessage("Please enter the value in Arabic only for the Arabic field.");
+        setErrorMessage(t("addPage.ArabicOnly"));
         setShowErrorPopup(true);
         return;
       }
     } else if (itemData.region === "Chinese") {
       const chinesePattern = /[\u4e00-\u9fff]/;
       if (!chinesePattern.test(itemData.nativevalue)) {
-        setErrorMessage("    Please enter the value in Chinese only for the Chinese field.");
+        setErrorMessage(t("addPage.ChineseOnlye"));
         setShowErrorPopup(true);
         return;
       }
