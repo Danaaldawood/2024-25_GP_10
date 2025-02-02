@@ -14,10 +14,12 @@
   transition: transform 0.3s ease;  
 }
  .report-container {
+  min-height: calc(100vh - 120px); /* Subtract footer height + some padding */
   padding: 30px;
   max-width: 1200px;
   margin: 30px auto;
-   border-radius: 10px;
+  border-radius: 10px;
+  position: relative;
  }
 
  .report-table {
@@ -131,7 +133,7 @@
 
   
 
- h1 {
+ .reportpage-title {
   font-size: 24px;
   margin-bottom: 30px;
   color: #141d2f;

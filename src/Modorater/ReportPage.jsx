@@ -33,15 +33,15 @@ const ReportPage = () => {
         try {
           const moderatorRef = doc(db, "Moderators", user.uid);
           const moderatorSnap = await getDoc(moderatorRef);
-
+  
           if (moderatorSnap.exists()) {
             const { regionM } = moderatorSnap.data();
             setModeratorRegion(regionM);
-
+  
             const viewEditRef = ref(realtimeDb, `Viewedit/${regionM}`);
             onValue(viewEditRef, async (viewEditSnapshot) => {
               const userMap = new Map();
-
+  
               if (viewEditSnapshot.exists()) {
                 const viewEditData = viewEditSnapshot.val();
                 Object.entries(viewEditData).forEach(([key, entry]) => {
@@ -55,18 +55,20 @@ const ReportPage = () => {
                       status: 'active'
                     });
                   }
+  
                   userMap.get(userId).addedValues.push({
-                    value: entry.value,
+                    value:  entry.value,
                     topic: entry.topic,
                     attribute: entry.en_question || entry.attribute,
                     modAction: entry.modAction || 'noaction'
                   });
                 });
               }
-
+  
+              // Get notifications with new structure
               const notificationsRef = ref(realtimeDb, 'notifications');
               const notifSnapshot = await get(notificationsRef);
-
+  
               if (notifSnapshot.exists()) {
                 const notifData = notifSnapshot.val();
                 Object.entries(notifData).forEach(([groupId, group]) => {
@@ -83,10 +85,13 @@ const ReportPage = () => {
                             status: 'active'
                           });
                         }
+  
+                        const previousValue = notification.PreviousValue?.en;
+  
                         userMap.get(userId).notifications.push({
-                          attribute: notification.attribute,
+                          attribute: notification.attribute?.en || notification.attribute,
                           description: notification.description,
-                          previousValue: notification.PreviousValue,
+                          previousValue: previousValue,
                           modAction: notification.modAction || 'noaction'
                         });
                       }
@@ -94,10 +99,11 @@ const ReportPage = () => {
                   }
                 });
               }
-
+  
+              // Get user status (unchanged)
               const usersRef = ref(realtimeDb, 'Users');
               const usersSnapshot = await get(usersRef);
-
+  
               if (usersSnapshot.exists()) {
                 const usersData = usersSnapshot.val();
                 userMap.forEach((userData, userId) => {
@@ -106,7 +112,7 @@ const ReportPage = () => {
                   }
                 });
               }
-
+  
               setUsers(Array.from(userMap.values()));
             });
           }
@@ -115,7 +121,7 @@ const ReportPage = () => {
         }
       }
     });
-
+  
     return () => unsubscribe();
   }, []);
 
@@ -199,7 +205,7 @@ const ReportPage = () => {
   };
 
   return (
-    <div>
+    <div className="reportpage-container">
       <Helmet>
         <title>Report Page</title>
         <meta name="description" content="" />
@@ -208,7 +214,7 @@ const ReportPage = () => {
         <FaArrowLeft className="Report-back-icon" />
       </button>
       <div className="report-container">
-        <h1>User Reports - {moderatorRegion} Region</h1>
+        <h1 className="reportpage-title">User Reports - {moderatorRegion} Region</h1>
         <table className="report-table">
           <thead>
             <tr>
@@ -315,6 +321,7 @@ const ReportPage = () => {
       </div>
     </footer>
     </div>
+    
   );
 };
 

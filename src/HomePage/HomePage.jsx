@@ -166,8 +166,8 @@ const HomePage = () => {
           region === "Arab"
             ? "#722F57"
             : region === "Chinese"
-            ? "#722F57"
-            : "#722F57", 
+            ? "#8B4671"
+            : "#A45D89", 
                 }));
   
       setRegionTopicComparisonData({
@@ -184,13 +184,13 @@ const HomePage = () => {
           {
             data: Object.values(topicData),
             backgroundColor: [
-              "#722F57", // Updated color
               "#722F57",
+              "#8B4671",
+              "#A45D89",
               "#722F57",
-              "#722F57",
-              "#722F57",
-              "#722F57",
-              "#722F57",
+              "#8B4671",
+              "#A45D89",
+              "#722F57"
             ],
           },
         ],
@@ -202,7 +202,7 @@ const HomePage = () => {
         datasets: [
           {
             data: Object.values(totalData),
-            backgroundColor: ["#722F57", "#722F57", "#722F57"],  
+            backgroundColor: ["#722F57", "#8B4671", "#A45D89"],  
           },
         ],
       });
