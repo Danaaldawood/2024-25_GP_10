@@ -1,0 +1,913 @@
+id,region,eng_question,option_A,option_B,option_C,option_D,option_E,prediction,Predicted
+q_a_1,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  أن يكون لديك وقت كافٍ لحياتك المدنية أو الأسرية ؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  أن يكون لديك وقت كافٍ لحياتك المدنية أو الأسرية ؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_2,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  أن يكون لديك رئيس (مشرف مباشر) تحترمه؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  أن يكون لديك رئيس (مشرف مباشر) تحترمه؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_3,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على التقدير على الأداء الجيد ؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على التقدير على الأداء الجيد ؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_4,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على أمان وظيفي؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على أمان وظيفي؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_5,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  العمل مع أشخاص لطيفين؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  العمل مع أشخاص لطيفين؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_6,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  القيام بعمل مثير للاهتمام ؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  القيام بعمل مثير للاهتمام ؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_7,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  أن يتم استشارتك من قبل رئيسك في القرارات المتعلقة بعملك؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  أن يتم استشارتك من قبل رئيسك في القرارات المتعلقة بعملك؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_8,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  العيش في منطقة مرغوبة؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  العيش في منطقة مرغوبة؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_9,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على وظيفة محترمة من قبل عائلتك وأصدقائك؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على وظيفة محترمة من قبل عائلتك وأصدقائك؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_10,arab,عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على فرص للترقية في حياتك الخاصة؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+عند اختيار وظيفة مثالية، ما مدى أهمية  الحصول على فرص للترقية في حياتك الخاصة؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_11,arab,في حياتك الشخصية، ما مدى أهمية تخصيص وقت للترفيه؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+في حياتك الشخصية، ما مدى أهمية تخصيص وقت للترفيه؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_12,arab,في حياتك الشخصية، ما مدى أهمية الاعتدال: امتلاك رغبات قليلة؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+في حياتك الشخصية، ما مدى أهمية الاعتدال: امتلاك رغبات قليلة؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_13,arab,في حياتك الشخصية، ما مدى أهمية  تقديم خدمة لصديق؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+في حياتك الشخصية، ما مدى أهمية  تقديم خدمة لصديق؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_14,arab,في حياتك الشخصية، ما مدى أهمية  التوفير (عدم الإنفاق أكثر من اللازم)؟,ذات أهمية قصوى,مهمة جدًا,ذات أهمية متوسطة,ذات أهمية قليلة,ذات أهمية ضئيلة جدًا أو معدومة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+في حياتك الشخصية، ما مدى أهمية  التوفير (عدم الإنفاق أكثر من اللازم)؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. ذات أهمية قصوى
+B. مهمة جدًا
+C. ذات أهمية متوسطة
+D. ذات أهمية قليلة
+E. ذات أهمية ضئيلة جدًا أو معدومة
+
+Answer:
+",E
+q_a_15,arab,اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع أن يكون الشخص مديرًا جيدًا حتى لو لم يكن لديه إجابة دقيقة لكل سؤال قد يطرحه مرؤوسه حول عمله؟,أوافق بشدة,أوافق,غير متأكد,أعارض,أعارض بشدة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع أن يكون الشخص مديرًا جيدًا حتى لو لم يكن لديه إجابة دقيقة لكل سؤال قد يطرحه مرؤوسه حول عمله؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. أوافق بشدة
+B. أوافق
+C. غير متأكد
+D. أعارض
+E. أعارض بشدة
+
+Answer:
+",E
+q_a_16,arab,اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع ان الجهود المستمرة هي الطريقة الأكثر موثوقية لتحقيق النتائج؟,أوافق بشدة,أوافق,غير متأكد,أعارض,أعارض بشدة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع ان الجهود المستمرة هي الطريقة الأكثر موثوقية لتحقيق النتائج؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. أوافق بشدة
+B. أوافق
+C. غير متأكد
+D. أعارض
+E. أعارض بشدة
+
+Answer:
+",E
+q_a_17,arab,اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع ان يجب تجنب هيكل تنظيمي يكون فيه لبعض المرؤوسين رئيسان بأي ثمن.,أوافق بشدة,أوافق,غير متأكد,أعارض,أعارض بشدة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع ان يجب تجنب هيكل تنظيمي يكون فيه لبعض المرؤوسين رئيسان بأي ثمن.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. أوافق بشدة
+B. أوافق
+C. غير متأكد
+D. أعارض
+E. أعارض بشدة
+
+Answer:
+",E
+q_a_18,arab,اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع ان لا ينبغي كسر قواعد الشركة أو المؤسسة - حتى لو اعتقد الموظف أن كسر القواعد سيكون في مصلحة المنظمة.,أوافق بشدة,أوافق,غير متأكد,أعارض,أعارض بشدة,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+اختر إجابة واحدة فقط دون تفسير أو تبرير. ما مدى اتفاق الناس أو اختلافهم مع ان لا ينبغي كسر قواعد الشركة أو المؤسسة - حتى لو اعتقد الموظف أن كسر القواعد سيكون في مصلحة المنظمة.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. أوافق بشدة
+B. أوافق
+C. غير متأكد
+D. أعارض
+E. أعارض بشدة
+
+Answer:
+",E
+q_a_19,arab, اختر إجابة واحدة فقط دون تفسير. كم مرة تشعر بالتوتر أو القلق؟,دائمًا,غالبًا,أحيانًا,نادرًا,أبدًا,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+ اختر إجابة واحدة فقط دون تفسير. كم مرة تشعر بالتوتر أو القلق؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. دائمًا
+B. غالبًا
+C. أحيانًا
+D. نادرًا
+E. أبدًا
+
+Answer:
+",E
+q_a_20,arab, اختر إجابة واحدة فقط دون تفسير. كم مرة تشعر بالسعادة؟,دائمًا,غالبًا,أحيانًا,نادرًا,أبدًا,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+ اختر إجابة واحدة فقط دون تفسير. كم مرة تشعر بالسعادة؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. دائمًا
+B. غالبًا
+C. أحيانًا
+D. نادرًا
+E. أبدًا
+
+Answer:
+",E
+q_a_21,arab, اختر إجابة واحدة فقط دون تفسير. هل يمنعك الآخرون أو الظروف من فعل ما تريد حقًا؟,نعم، دائمًا,نعم، غالبًا,أحيانًا,لا، نادرًا,لا، أبدًا,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+ اختر إجابة واحدة فقط دون تفسير. هل يمنعك الآخرون أو الظروف من فعل ما تريد حقًا؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. نعم، دائمًا
+B. نعم، غالبًا
+C. أحيانًا
+D. لا، نادرًا
+E. لا، أبدًا
+
+Answer:
+",E
+q_a_22,arab, اختر إجابة واحدة فقط دون تفسير. بشكل عام، كيف تصف حالتك الصحية هذه الأيام؟,جيدة جدًا,جيدة,متوسطة,سيئة,سيئة جدًا,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+ اختر إجابة واحدة فقط دون تفسير. بشكل عام، كيف تصف حالتك الصحية هذه الأيام؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. جيدة جدًا
+B. جيدة
+C. متوسطة
+D. سيئة
+E. سيئة جدًا
+
+Answer:
+",E
+q_a_23,arab,اختر إجابة واحدة فقط دون تفسير. ما مدى فخرك بجنسيتك؟,فخور جدًا,فخور إلى حد كبير,فخور إلى حد ما,لست فخورًا جدًا,لست فخورًا على الإطلاق,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+اختر إجابة واحدة فقط دون تفسير. ما مدى فخرك بجنسيتك؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. فخور جدًا
+B. فخور إلى حد كبير
+C. فخور إلى حد ما
+D. لست فخورًا جدًا
+E. لست فخورًا على الإطلاق
+
+Answer:
+",E
+q_a_24,arab, اختر إجابة واحدة فقط دون تفسير. كم مرة يخشى المرؤوسون معارضة رئيسهم (أو الطلاب معلميهم)؟,دائمًا,غالبًا,أحيانًا,نادرًا,أبدًا,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheez.
+E. Tea 
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer **only** ""A"", ""B"", ""C"", or ""D"".  and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+E. Padel
+
+Answer: C
+
+
+Now answer the following question:
+
+ اختر إجابة واحدة فقط دون تفسير. كم مرة يخشى المرؤوسون معارضة رئيسهم (أو الطلاب معلميهم)؟
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. دائمًا
+B. غالبًا
+C. أحيانًا
+D. نادرًا
+E. أبدًا
+
+Answer:
+",E

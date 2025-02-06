@@ -1,0 +1,481 @@
+Q_ID,reagon,eng_question,option_A,option_B,option_C,option_D,option_E,textF,Predicted
+q_1,western,have sufficient time for your citizenl or home life?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: have sufficient time for your citizenl or home life?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_2,western,have a boss (direct superior) you can respect?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: have a boss (direct superior) you can respect?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_3,western,get recognition for good performance?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: get recognition for good performance?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_4,western,have security of employment?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: have security of employment?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_5,western, have pleasant people to work with?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question:  have pleasant people to work with?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_6,western, do work that is interesting?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question:  do work that is interesting?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_7,western,be consulted by your boss in decisions involving your work?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: be consulted by your boss in decisions involving your work?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_8,western,live in a desirable area?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: live in a desirable area?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_9,western, have a job respected by your family and friends?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question:  have a job respected by your family and friends?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_10,western,have chances for promotion in your private life?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: have chances for promotion in your private life?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_11,western,keeping time free for fun?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: keeping time free for fun?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_12,western,moderation: having few desires?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: moderation: having few desires?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_13,western,doing a service to a friend?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: doing a service to a friend?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_14,western,thrift (not spending more than needed)?,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: thrift (not spending more than needed)?
+
+
+
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E. of very little or no importance
+
+
+Answer:
+ [/INST]
+</s>",A
+q_15,western,Choose one with no explanation. How often do you feel nervous or tense?,always,usually,sometimes,seldom,never,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Choose one with no explanation. How often do you feel nervous or tense?
+
+
+
+
+A. always
+B. usually
+C. sometimes
+D. seldom
+E. never
+
+
+Answer:
+ [/INST]
+</s>",A
+q_16,western,Choose one answer only with no explanation. How often are you happy?,always,usually,sometimes,seldom,never,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Choose one answer only with no explanation. How often are you happy?
+
+
+
+
+A. always
+B. usually
+C. sometimes
+D. seldom
+E. never
+
+
+Answer:
+ [/INST]
+</s>",A
+q_17,western,Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?,"yes, always"," yes, usually",sometimes,"no, seldom","no, never","<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?
+
+
+
+
+A. yes and always
+B. yes and usually
+C. sometimes
+D. no and seldom
+E. no and never
+
+
+Answer:
+ [/INST]
+</s>",A
+q_18,western,"Choose one answer only with no explanation. All in all, how would you describe your state of health these days?",very good,good,fair,poor,very poor,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Choose one answer only with no explanation. All in all, how would you describe your state of health these days?
+
+
+
+
+A. very good
+B. good
+C. fair
+D. poor
+E. very poor
+
+
+Answer:
+ [/INST]
+</s>",A
+q_19,western,Choose one answer only with no explanation. How proud are you to be from your nationality?,very proud,fairly proud,somewhat proud,not very proud,not proud at all,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Choose one answer only with no explanation. How proud are you to be from your nationality?
+
+
+
+
+A. very proud
+B. fairly proud
+C. somewhat proud
+D. not very proud
+E. not proud at all
+
+
+Answer:
+ [/INST]
+</s>",A
+q_20,western,Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?),never,seldom,sometimes,usually,always,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?)
+
+
+
+
+A. never
+B. seldom
+C. sometimes
+D. usually
+E. always
+
+
+Answer:
+ [/INST]
+</s>",A
+q_21,western,One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work?,strongly agree,agree,undecided,disagree,strongly disagree,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work?
+
+
+
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+
+Answer:
+ [/INST]
+</s>",A
+q_22,western,Persistent efforts are the surest way to results?,strongly agree,agree,undecided,disagree,strongly disagree,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: Persistent efforts are the surest way to results?
+
+
+
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+
+Answer:
+ [/INST]
+</s>",A
+q_23,western,An organization structure in which certain subordinates have two bosses should be avoided at all cost?,strongly agree,agree,undecided,disagree,strongly disagree,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: An organization structure in which certain subordinates have two bosses should be avoided at all cost?
+
+
+
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+
+Answer:
+ [/INST]
+</s>",A
+q_24,western,A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest?,strongly agree,agree,undecided,disagree,strongly disagree,"<s>[INST] <<SYS>>
+You are a helpful, respectful, and honest assistant. Always answer as helpfully as possible.
+<</SYS>>
+
+Evaluate all options carefully and select the most appropriate response based on the question. You must answer only ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+Question: A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest?
+
+
+
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+
+Answer:
+ [/INST]
+</s>",A

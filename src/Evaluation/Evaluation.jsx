@@ -6,25 +6,15 @@ import { Header } from "../Header/Header";
 import { Helmet } from "react-helmet";
 
 export const Evaluation = () => {
-  const [evalTopic, setEvalTopic] = useState(""); // Selected topic
   const [evalLLM, setEvalLLM] = useState(""); // Selected model
-
-  const [topicPlaceholder, setTopicPlaceholder] = useState("Select a topic");
+  const [evalType, setEvalType] = useState(""); // Evaluation type selection for Baseline
   const [llmPlaceholder, setLLMPlaceholder] = useState("Select a model");
   const [hasError, setHasError] = useState(false);
-
   const navigate = useNavigate();
 
   const handleEvaluateClick = (e) => {
     e.preventDefault();
     let error = false;
-
-    if (!evalTopic) {
-      setTopicPlaceholder("Please select a topic");
-      error = true;
-    } else {
-      setTopicPlaceholder("Select a topic");
-    }
 
     if (!evalLLM) {
       setLLMPlaceholder("Please select a model");
@@ -34,10 +24,9 @@ export const Evaluation = () => {
     }
 
     setHasError(error);
-
     if (error) return;
 
-    navigate("/plot", { state: { evalTopic, evalLLM } });
+    navigate("/plot", { state: { evalLLM, evalType } });
   };
 
   return (
@@ -52,28 +41,6 @@ export const Evaluation = () => {
         <h3 className="eval-title">Evaluation</h3>
         <div className="evalinputs">
           <div className="evalinput">
-            <label className="evallabel">Topic:</label>
-            <select
-              name="evalTopic"
-              id="evalTopic"
-              className={`evalTopic ${hasError && !evalTopic ? "error" : ""}`}
-              value={evalTopic}
-              onChange={(e) => setEvalTopic(e.target.value)}
-            >
-              <option value="" disabled>
-                {topicPlaceholder}
-              </option>
-              <option value="All Topics">All Topics</option>
-              <option value="food">Food</option>
-              <option value="sport">Sport</option>
-              <option value="family">Family</option>
-              <option value="education">Education</option>
-              <option value="Holidays/Celebration/Leisure">Holidays/Celebration/Leisure </option>
-              <option value="work life">Work life</option>
-              <option value="greeting">Greeting</option>
-            </select>
-          </div>
-          <div className="evalinput">
             <label className="evallabel">Language Model:</label>
             <select
               name="evalLLM"
@@ -85,13 +52,31 @@ export const Evaluation = () => {
               <option value="" disabled>
                 {llmPlaceholder}
               </option>
-              <option value="Version 1">Version 1</option>
+              <option value="Baseline">Baseline</option>
               <option value="Fine-Tuned">Fine-Tuned</option>
             </select>
           </div>
+          {evalLLM === "Baseline" && (
+            <div className="evalinput">
+              <label className="evallabel">Evaluation Type:</label>
+              <select
+                name="evalType"
+                id="evalType"
+                className="llm"
+                value={evalType}
+                onChange={(e) => setEvalType(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select evaluation type
+                </option>
+                <option value="Version-1 with Choosing">Version-1 with Choosing</option>
+                <option value="Hofstede Questions">Hofstede Questions</option>
+              </select>
+            </div>
+          )}
         </div>
         <div className="submit-container">
-          <button className= 'evalsubmit'onClick={handleEvaluateClick}>Evaluate</button>
+          <button className='evalsubmit' onClick={handleEvaluateClick}>Evaluate</button>
         </div>
       </div>
       <Footer />

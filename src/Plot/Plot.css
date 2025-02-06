@@ -1,3 +1,126 @@
+/* Selection Container */
+.selection-container {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Adjust spacing */
+  margin-bottom: 10px;
+}
+
+/* Dropdown Row (Keeps Choosing & Topics in One Line) */
+.selection-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.underlined{
+  font-size: 24px;
+  font-weight: bold;
+  color: #722F57;
+  margin-top: 30px;
+}
+/* "Version-1 with Choosing" Styling (Underlined) */
+.version-choosing {
+  font-size: 24px;
+  font-weight: bold;
+  color: #722F57;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #722F57;
+  padding: 2px 30px 2px 5px;
+  cursor: pointer;
+  text-align: center;
+  min-width: 150px;
+}
+
+/* "All Topics" Dropdown (Underlined) */
+.plot-select {
+  font-size: 24px;
+  color: #722F57;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #722F57;
+  padding: 2px 30px 2px 5px;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  outline: none;
+  text-align: center;
+  min-width: 150px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2324526e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  margin-top: 25px;
+  background-position: right 5px center;
+  background-size: 16px;
+}
+
+/* "Version-1" + Info Icon (Now Below Other Selections) */
+.version-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+  margin-top: 5px; /* Adds spacing below the top selection */
+}
+
+/* "Version-1" Styling */
+.version-main {
+  font-size: 24px;
+  font-weight: bold;
+  color: #722F57;
+  background: transparent;
+  border: none;
+  padding: 2px 30px 2px 5px;
+  cursor: pointer;
+  text-align: center;
+  min-width: 150px;
+}
+
+/* Info Icon */
+.version-info i {
+  font-size: 18px;
+  color: #722F57;
+  cursor: pointer;
+}
+
+.version-info i:hover {
+  color: #8e3f6f;
+}
+
+/* Toggle Button Container */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjusted for spacing */
+}
+
+.toggle-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid #2c3e50;
+  background: none;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.toggle-button.active {
+  background: #2c3e50;
+  color: white;
+}
+
+.toggle-button:first-child {
+  border-radius: 25px 0 0 25px;
+}
+
+.toggle-button:last-child {
+  border-radius: 0 25px 25px 0;
+}
+
+
 /* --- Header Styles --- */
 .plot-page-header {
   display: flex;
@@ -266,9 +389,15 @@
 }
 
 .header-title {
-  font-size: 24px;
+  display: inline-block;
+  font-size: 28px;
   font-weight: bold;
   color: #722F57 ;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid #722F57 ;
+  padding-bottom: 5px;
+  margin: 10px auto;
   
 }
 
