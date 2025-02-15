@@ -1,385 +1,170 @@
-/* --- Free Style page Layout --- */
+/* Enhanced Dual Model Chat CSS */
 .freestylepage {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-/* --- Header Styles --- */
-.freestyle-page-header {
-  box-sizing: border-box;
-  border-radius: 0;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  top: 0;
-  background-color: #003f5c;
-  color: white;
-  padding: 22px 22px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  overflow: hidden;
-}
-
-.freestyle-back-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.freestyle-back-btn:hover {
-  color: #c0c0c0;
-}
-
-.freestyle-back-icon {
-  margin-right: 8px;
-  font-size: 22px;
-}
-
-/* --- Conversation Container --- */
-.conversation-container {
-  max-width: 44rem;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-}
-
-.conversation-header {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.conversation-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1a202c;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
-.freestyle-title-underline {
-  margin-top: 0.5rem;
-  width: 15rem;
-  height: 0.25rem;
-  background-color: #10a37f;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 9999px;
-}
-
-/* --- Message List Styles --- */
-.freestyle-message-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.message {
-  display: flex;
-}
-
-.ai-message {
-  justify-content: flex-start;
-}
-
-.user-message {
-  justify-content: flex-end;
-}
-
-.freestyle-message-content {
-  max-width: 70%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-}
-
-.ai-message .freestyle-message-content {
-  background-color: #e6f3ff;
-  color: #1e3a8a;
-}
-
-.user-message .freestyle-message-content {
-  background-color: #f3f4f6;
-  color: #1f2937;
-}
-
-/* --- Input Area Styles --- */
-.freestyle-input-container {
-  display: flex;
-  margin-bottom: 1rem;
-}
-
-.freestyle-message-input {
-  flex-grow: 1;
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem 0 0 0.375rem;
-  font-size: 1rem;
-}
-
-.freestyle-message-input:focus {
-  outline: none;
-  border-color: #3b82f6;
-}
-
-.freestyle-send-button {
-  padding: 0.5rem 1rem;
-  background-color: #10a37f;
-  color: white;
-  border: none;
-  border-radius: 0 0.375rem 0.375rem 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.freestyle-send-button:hover {
-  background-color: #095c47;
-}
-
-/* --- Action Buttons --- */
-.freestyle-button-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.freestyle-edit-dataset-button,
-.freestyle-end-conversation-button {
-  width: 100%;
-  padding: 0.75rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.freestyle-edit-dataset-button {
-  background-color: #095c47;
-  color: white;
-}
-
-.freestyle-edit-dataset-button:hover {
-  background-color: #10a37f;
-}
-
-.freestyle-end-conversation-button {
-  background-color: #ef4444;
-  color: white;
-}
-
-.freestyle-end-conversation-button:hover {
-  background-color: #dc2626;
-}
-
-/* --- Modal Styles --- */
-.freestyle-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+   align-items: center;
   justify-content: center;
+}
+.freestyle-page-header {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  z-index: 1000;
-}
-
-.freestyle-modal-content {
-  background-color: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  width: 400px;
+  width: 100%;
+ }
+.freestyle-back-btn{
+  background-color:#A44580 ;
 }
-
-.freestyle-modal-title {
-  margin-bottom: 1rem;
-  text-align: center;
-  color: #2a5d77;
-}
-
-/* --- Form Elements --- */
-.freestyle-select-container {
+ 
+.send-limit-bar {
+  width: 100%;
+  max-width: 1200px;
+  height: 25px;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 20px 0;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
   position: relative;
 }
 
-.freestyle-question-select {
+.send-limit-bar .progress {
+  height: 100%;
+  background: #095c47;
+  transition: width 0.5s ease-in-out;
+  width: 0%;
+}
+
+.send-limit-bar p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:  #000000;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+}
+
+ 
+.dual-chat-container {
+  display: flex;
+  gap: 20px;
   width: 100%;
-  background-color: #f3f4f6;
-  border: 1px solid #d1d5db;
-  color: #1f2937;
-  padding: 0.75rem 1rem;
-  border-radius: 0.375rem;
-  font-size: 1rem;
+  max-width: 1200px;
+}
+.conversation-title{
+  color: #722F57;
+  font-size: blod;
+  font-size: 20px;
 }
 
-.freestyle-question-select.error {
-  border-color: red;
-  color: red;
-}
-/* --- Modal Buttons --- */
-.freestyle-add-dataset-button,
-.freestyle-confirm-button {
-  background-color: #10a37f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+.chat-model {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 50%;
+  min-height: 70vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  padding: 20px;
 }
 
-.freestyle-add-dataset-button:hover,
-.freestyle-confirm-button:hover {
-  background-color: #095c47;
+.freestyle-message-list {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }
 
-.freestyle-cancel-button {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+.message {
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 15px;
 }
 
-.freestyle-cancel-button:hover {
-  background-color: #dc2626;
-}
-
-/* --- Selected Question Display --- */
-.freestyle-selected-question {
-  margin: 15px 0;
-  padding: 10px;
-  background-color: #f3f4f6;
-  border-radius: 5px;
-  color: #1f2937;
+.message.user-message {
+  background-color:#095c47;
+  color: #ffffff;
+  align-self: flex-end;
   font-size: 14px;
-  line-height: 1.5;
 }
 
-/* --- Responsive Styles --- */
-
-/* --- 4K Resolution Styles --- */
-@media screen and (min-width: 2560px) {
-  .freestyle-page-header {
-    padding: 40px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-  }
-
-  .freestyle-back-btn {
-    font-size: 32px;
-  }
-
-  .freestyle-back-icon {
-    font-size: 36px;
-    margin-right: 16px;
-  }
-
-  .conversation-container {
-    max-width: 100rem;
-    margin: 4rem auto;
-    padding: 3rem;
-    border-radius: 1rem;
-  }
-
-  .conversation-title {
-    font-size: 3.5rem;
-  }
-
-  .freestyle-title-underline {
-    width: 30rem;
-    height: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .freestyle-message-content {
-    font-size: 2rem;
-    padding: 1.5rem;
-    border-radius: 1rem;
-  }
-
-  .freestyle-message-list {
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .freestyle-input-container {
-    margin-bottom: 2rem;
-  }
-
-  .freestyle-message-input {
-    font-size: 2rem;
-    padding: 1.5rem;
-    border-radius: 0.75rem 0 0 0.75rem;
-  }
-
-  .freestyle-send-button {
-    font-size: 2rem;
-    padding: 1.5rem 3rem;
-    border-radius: 0 0.75rem 0.75rem 0;
-  }
-
-  .freestyle-button-container {
-    gap: 2rem;
-  }
-
-  .freestyle-edit-dataset-button,
-  .freestyle-end-conversation-button {
-    padding: 1.5rem;
-    font-size: 2rem;
-    border-radius: 0.75rem;
-  }
-
-  .freestyle-modal-content {
-    width: 1000px;
-    padding: 50px;
-    border-radius: 1rem;
-  }
-
-  .freestyle-modal-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .freestyle-question-select {
-    font-size: 2rem;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-  }
-
-  .freestyle-selected-question {
-    font-size: 1.8rem;
-    padding: 20px;
-    margin: 30px 0;
-    border-radius: 0.75rem;
-  }
-
-  .freestyle-modal-buttons {
-    margin-top: 40px;
-  }
-
-  .freestyle-add-dataset-button,
-  .freestyle-confirm-button,
-  .freestyle-cancel-button {
-    font-size: 1.8rem;
-    padding: 15px 30px;
-    border-radius: 0.75rem;
-  }
+.message.ai-message {
+  background-color:#509987;
+  color: #ffffff;
+  align-self: flex-start;
+  font-size: 14px;
 }
+
+.freestyle-input-container {
+  display: flex;
+  padding: 15px;
+  border-top: 2px solid #e0e0e0;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.freestyle-input-container input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid#722F57;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+  font-size: 14px;
+}
+
+.freestyle-input-container button {
+  padding: 12px 24px;
+  border: none;
+  background-color:  #722F57;
+  color: white;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+
+.feedback-container, .Add-to-dataset {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;  
+  width: 100%; 
+  white-space: nowrap;  
+}
+
+.feedback-container button, .Add-to-dataset button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color:  #A44580;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex: 0 1 auto;  
+}
+
+.feedback-container button:hover, .Add-to-dataset button:hover {
+  background-color: #8b3469;
+}
+.feedback-container button:disabled, .Add-to-dataset button:disabled {
+  background-color: #ba6097;
+  cursor: not-allowed;
+}
+
+ 
+
+ 

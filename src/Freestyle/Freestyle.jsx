@@ -1,206 +1,125 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Freestyle.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from 'react-helmet';
+import "./Freestyle.css";
 
 export const ConversationLayout = () => {
   const navigate = useNavigate();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [selectedQuestion, setSelectedQuestion] = useState("");
   const [inputMessage, setInputMessage] = useState("");
-  const [messages, setMessages] = useState([
-    { type: "ai", content: "Hello, how can I assist you today?" },
-    { type: "user", content: "What is the most popular fruit in the Arab region?" },
-    { type: "ai", content: "Kiwi" },
-    { type: "user", content: "Apple is the most popular fruit in the Arab" },
+   
+
+  const handleSuggestionClick = (suggestion) => {
+    setInputMessage(suggestion);
+  };  const [messagesA, setMessagesA] = useState([//will be deleted, i think
+    { type: "ai", content: "Hello, this is Model A. How can I assist you?" },
   ]);
+  const [messagesB, setMessagesB] = useState([
+    { type: "ai", content: "Hello, this is Model B. How can I assist you?" },
+  ]);
+  const sendLimit = 7;
+  const [sendCount, setSendCount] = useState(0);
+  const [canGiveFeedback, setCanGiveFeedback] = useState(false); // Added state definition
 
-  const [dimensionPlaceholder, setDimensionPlaceholder] = useState("Select a question");
-  const [hasError, setHasError] = useState(false);
+  const progressWidth = `${(sendCount / sendLimit) * 100}%`;
 
-  const handleEditClick = () => {
-    setIsModalOpen(true);
-  };
+  const handleSendMessage = () => {// will be deleted
+    if (inputMessage.trim() !== "" && sendCount < sendLimit) {
+      setMessagesA([...messagesA, { type: "user", content: inputMessage }]);
+      setMessagesB([...messagesB, { type: "user", content: inputMessage }]);
+      setInputMessage("");
+      setSendCount(sendCount + 1);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setHasError(false);
-    setDimensionPlaceholder("Select a question");
-  };
-
-  const handleQuestionSelect = (e) => {
-    if (!selectedQuestion) {
-      setSelectedQuestion(e.target.value);
-      setHasError(false);
-      setDimensionPlaceholder("Select a question");
+      setTimeout(() => setMessagesA((prev) => [...prev, { type: "ai", content: "Model A received your message." }]), 1000);
+      setTimeout(() => setMessagesB((prev) => [...prev, { type: "ai", content: "Model B received your message." }]), 1000);
+      setCanGiveFeedback(true);
     }
   };
 
-  // Function to update the input message on each keystroke
-  const handleInputChange = (e) => {
-    setInputMessage(e.target.value);
-  };
-
-  // Function to add user's message to conversation and trigger an AI response
-  const handleSendMessage = () => {
-    if (inputMessage.trim() !== "") {
-      setMessages([...messages, { type: "user", content: inputMessage }]);
-      setInputMessage(""); 
-
-      // AI response simulated with a delay
-      setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { type: "ai", content: "I received your message. How can I help you further?" },
-        ]);
-      }, 1000);
+  const handleFeedback = (model) => {
+    if (canGiveFeedback) {
+      alert(`${model} 🌟Thank you for voting !`);//will be deleted, i think
+      setCanGiveFeedback(false);
     }
-  };
-
-  // Allows sending a message with the Enter key
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSendMessage();
-    }
-  };
-
-  const handleAddToDataset = () => {
-    if (!selectedQuestion) {
-      setDimensionPlaceholder("Please select a question");
-      setHasError(true);
-      return;
-    }
-    setIsModalOpen(false); 
-    setIsConfirmationModalOpen(true); 
-  };
-
-  const handleConfirmAddToDataset = () => {
-    console.log(`Question added to dataset: ${selectedQuestion}`);
-    setIsConfirmationModalOpen(false);
-  };
-
-  const handleEndConversation = () => {
-    navigate("/home");
-  };
-
-  const getQuestionText = (value) => {
-    const questions = {
-      q1: "What is a common snack for preschool kids in the Arab region?",
-      q2: "What is the most popular fruit in the Arab region?",
-      q3: "What is the traditional meal during holidays in the Arab region?",
-      q4: "What are the traditional breakfast foods in the Arab region?",
-      q5: "What is the most popular dish served at weddings in the Arab region?",
-      q6: "What is the typical food served during Ramadan in the Arab region?",
-      q7: "What are the staple foods in the daily diet of people in the Arab region?",
-    };
-    return questions[value] || "";
   };
 
   return (
     <div className="freestylepage">
-       <Helmet>
-         <title>Free style chatting</title>
-         <meta name="description" content="Free style chatting page" />
-       </Helmet>
+      <Helmet>
+        <title>Free style chatting</title>
+        <meta name="description" content="Free style chatting page" />
+      </Helmet>
 
-       {/* Header */}
       <div className="freestyle-page-header">
         <button className="freestyle-back-btn" onClick={() => navigate("/plot")}>
           <FaArrowLeft className="freestyle-back-icon" />
+
         </button>
+        <div className="feedback-container mt-4">
+
+        <button 
+  className="AddToDataset" 
+  style={{ marginLeft: 'auto', display: 'block' }}
+  disabled={!canGiveFeedback} 
+  onClick={() => handleFeedback('AddDataset')}
+>
+  Add To Dataset
+</button>
+</div>
+      </div>
+       
+      <h2 className="freestyle-title"> Free Style Chatting 🤖</h2>
+
+      <div className="send-limit-bar">
+        <div className="progress" style={{ width: progressWidth }}></div>
+        <p>{`${sendCount} / ${sendLimit} Sends`}</p>
       </div>
 
-      {/* Main conversation container */}
-      <div className="conversation-container">
-        {/* Header for conversation */}
-        <div className="conversation-header">
-          <h2 className="conversation-title">Baseline Model</h2>
-          <div className="freestyle-title-underline"></div>
-        </div>
-
-        {/* Message list displaying each message */}
-        <div className="freestyle-message-list">
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.type}-message`}>
-              <div className="freestyle-message-content">{message.content}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Input field and send button for user messages */}
-        <div className="freestyle-input-container">
-          <input
-            type="text"
-            className="freestyle-message-input"
-            placeholder="Type your message here..."
-            value={inputMessage}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
-          />
-          <button className="freestyle-send-button" onClick={handleSendMessage}>
-            Send
-          </button>
-        </div>
-
-        {/* Buttons for editing dataset and ending the conversation */}
-        <div className="freestyle-button-container">
-          <button className="freestyle-edit-dataset-button" onClick={handleEditClick}>
-            Edit Dataset
-          </button>
-          <button className="freestyle-end-conversation-button" onClick={handleEndConversation}>
-            End Conversation
-          </button>
-        </div>
-
-        {/* Modal for question selection*/}
-        {isModalOpen && (
-          <div className="freestyle-modal-overlay">
-            <div className="freestyle-modal-content">
-              <h3 className="freestyle-modal-title">What question do you want to add to the dataset?</h3>
-              <div className="freestyle-select-container">
-                <select
-                  value={selectedQuestion || ""}
-                  onChange={handleQuestionSelect}
-                  className={`freestyle-question-select ${hasError ? "error" : ""}`}
-                >
-                  <option value="" disabled>{dimensionPlaceholder}</option>
-                  <option value="q1">Q1: What is a common snack for preschool kids in the Arab region?</option>
-                  <option value="q2">Q2: What is the most popular fruit in the Arab region?</option>
-                  <option value="q3">Q3: What is the traditional meal during holidays in the Arab region?</option>
-                  <option value="q4">Q4: What are the traditional breakfast foods in the Arab region?</option>
-                  <option value="q5">Q5: What is the most popular dish served at weddings in the Arab region?</option>
-                  <option value="q6">Q6: What is the typical food served during Ramadan in the Arab region?</option>
-                  <option value="q7">Q7: What are the staple foods in the daily diet of people in the Arab region?</option>
-                </select>
+      <div className="dual-chat-container">
+        <div className="chat-model">
+          <h2 className="conversation-title">Model A</h2>
+          <div className="freestyle-message-list">
+            {messagesA.map((message, index) => (
+              <div key={index} className={`message ${message.type}-message`}>
+                <div className="freestyle-message-content">{message.content}</div>
               </div>
-              <div className="freestyle-modal-buttons">
-                <button className="freestyle-add-dataset-button" onClick={handleAddToDataset}>Add to Dataset</button>
-                <button className="freestyle-cancel-button" onClick={handleCloseModal}>Cancel</button>
-              </div>
-            </div>
+            ))}
           </div>
-        )}
+        </div>
 
-        {/* Confirmation modal to adding question to dataset */}
-        {isConfirmationModalOpen && (
-          <div className="freestyle-modal-overlay">
-            <div className="freestyle-modal-content">
-              <h3 className="freestyle-modal-title">Confirm Adding to Dataset</h3>
-              <p>Are you sure you want to add the following question to the dataset?</p>
-              <p className="freestyle-selected-question">{getQuestionText(selectedQuestion)} and the value is Apple</p>
-              <div className="freestyle-modal-buttons">
-                <button className="freestyle-confirm-button" onClick={handleConfirmAddToDataset}>Confirm</button>
-                <button className="freestyle-cancel-button" onClick={() => setIsConfirmationModalOpen(false)}>Cancel</button>
+        <div className="chat-model">
+          <h2 className="conversation-title">Model B</h2>
+          <div className="freestyle-message-list">
+            {messagesB.map((message, index) => (
+              <div key={index} className={`message ${message.type}-message`}>
+                <div className="freestyle-message-content">{message.content}</div>
               </div>
-            </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
-      {/* Footer */}
+
+      <div className="feedback-container mt-4">
+        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>  👍 Model A is better </button>
+        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👍 Model B is better </button>
+        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👎Both Bad </button>
+       </div>
+
+      <div className="freestyle-input-container">
+        <input
+          type="text"
+          className="freestyle-message-input"
+          placeholder="Enter your message..."
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}//will be deleted, i think
+          disabled={sendCount >= sendLimit}
+        />
+        <button className="freestyle-send-button" onClick={handleSendMessage} disabled={sendCount >= sendLimit}>Send</button>
+      </div>
+
       <Footer />
     </div>
   );
