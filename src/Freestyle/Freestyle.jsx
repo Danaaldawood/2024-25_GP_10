@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
@@ -7,40 +9,81 @@ import "./Freestyle.css";
 
 export const ConversationLayout = () => {
   const navigate = useNavigate();
-
   const [inputMessage, setInputMessage] = useState("");
-   
-
-  const handleSuggestionClick = (suggestion) => {
-    setInputMessage(suggestion);
-  };  const [messagesA, setMessagesA] = useState([//will be deleted, i think
-    { type: "ai", content: "Hello, this is Model A. How can I assist you?" },
+  const [suggestions, setSuggestions] = useState([]);
+  const [messagesA, setMessagesA] = useState([
+    { type: "ai", content: "Hello, this is A. How can I assist you?" },
   ]);
   const [messagesB, setMessagesB] = useState([
     { type: "ai", content: "Hello, this is Model B. How can I assist you?" },
   ]);
   const sendLimit = 7;
   const [sendCount, setSendCount] = useState(0);
-  const [canGiveFeedback, setCanGiveFeedback] = useState(false); // Added state definition
+  const [canGiveFeedback, setCanGiveFeedback] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const progressWidth = `${(sendCount / sendLimit) * 100}%`;
 
-  const handleSendMessage = () => {// will be deleted
-    if (inputMessage.trim() !== "" && sendCount < sendLimit) {
-      setMessagesA([...messagesA, { type: "user", content: inputMessage }]);
-      setMessagesB([...messagesB, { type: "user", content: inputMessage }]);
-      setInputMessage("");
-      setSendCount(sendCount + 1);
+  // Fetch suggestions when component mounts
+  useEffect(() => {
+    fetch('http://localhost:5000/api/suggestions')
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          setSuggestions(data.suggestions);
+        }
+      })
+      .catch(error => console.error('Error fetching suggestions:', error));
+  }, []);
 
-      setTimeout(() => setMessagesA((prev) => [...prev, { type: "ai", content: "Model A received your message." }]), 1000);
-      setTimeout(() => setMessagesB((prev) => [...prev, { type: "ai", content: "Model B received your message." }]), 1000);
-      setCanGiveFeedback(true);
+  const handleSendMessage = async () => {
+    if (inputMessage.trim() !== "" && sendCount < sendLimit) {
+      // Add user message to both chats
+      const userMessage = { type: "user", content: inputMessage };
+      setMessagesA(prev => [...prev, userMessage]);
+      setMessagesB(prev => [...prev, userMessage]);
+      
+      setIsLoading(true);
+      setInputMessage("");
+      setSendCount(prev => prev + 1);
+
+      try {
+        // Send message to Cohere backend (Model A)
+        const response = await fetch('http://localhost:5000/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: inputMessage }),
+        });
+
+        const data = await response.json();
+        
+        if (data.status === 'success') {
+          // Add AI response to Model A chat
+          setMessagesA(prev => [...prev, { type: "ai", content: data.response }]);
+        } else {
+          setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, I couldn't process your request." }]);
+        }
+
+        // Simulate Model B response (you can replace this with another model later)
+        setTimeout(() => {
+          setMessagesB(prev => [...prev, { type: "ai", content: "Model B received your message." }]);
+        }, 1000);
+
+        setCanGiveFeedback(true);
+      } catch (error) {
+        console.error('Error sending message:', error);
+        setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, there was an error processing your request." }]);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
   const handleFeedback = (model) => {
     if (canGiveFeedback) {
-      alert(`${model} 🌟Thank you for voting !`);//will be deleted, i think
+      alert(`${model} 🌟Thank you for voting !`);
       setCanGiveFeedback(false);
     }
   };
@@ -55,22 +98,20 @@ export const ConversationLayout = () => {
       <div className="freestyle-page-header">
         <button className="freestyle-back-btn" onClick={() => navigate("/plot")}>
           <FaArrowLeft className="freestyle-back-icon" />
-
         </button>
         <div className="feedback-container mt-4">
-
-        <button 
-  className="AddToDataset" 
-  style={{ marginLeft: 'auto', display: 'block' }}
-  disabled={!canGiveFeedback} 
-  onClick={() => handleFeedback('AddDataset')}
->
-  Add To Dataset
-</button>
-</div>
+          <button 
+            className="AddToDataset" 
+            style={{ marginLeft: 'auto', display: 'block' }}
+            disabled={!canGiveFeedback} 
+            onClick={() => handleFeedback('AddDataset')}
+          >
+            Add To Dataset
+          </button>
+        </div>
       </div>
        
-      <h2 className="freestyle-title"> Free Style Chatting 🤖</h2>
+      <h2 className="freestyle-title">Free Style Chatting 🤖</h2>
 
       <div className="send-limit-bar">
         <div className="progress" style={{ width: progressWidth }}></div>
@@ -86,6 +127,7 @@ export const ConversationLayout = () => {
                 <div className="freestyle-message-content">{message.content}</div>
               </div>
             ))}
+            {isLoading && <div className="message ai-message">Typing...</div>}
           </div>
         </div>
 
@@ -102,10 +144,10 @@ export const ConversationLayout = () => {
       </div>
 
       <div className="feedback-container mt-4">
-        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>  👍 Model A is better </button>
-        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👍 Model B is better </button>
-        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👎Both Bad </button>
-       </div>
+        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>👍 Model A is better</button>
+        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👍 Model B is better</button>
+        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Both')}>👎 Both Bad</button>
+      </div>
 
       <div className="freestyle-input-container">
         <input
@@ -114,10 +156,16 @@ export const ConversationLayout = () => {
           placeholder="Enter your message..."
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}//will be deleted, i think
-          disabled={sendCount >= sendLimit}
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          disabled={sendCount >= sendLimit || isLoading}
         />
-        <button className="freestyle-send-button" onClick={handleSendMessage} disabled={sendCount >= sendLimit}>Send</button>
+        <button 
+          className="freestyle-send-button" 
+          onClick={handleSendMessage} 
+          disabled={sendCount >= sendLimit || isLoading}
+        >
+          {isLoading ? 'Sending...' : 'Send'}
+        </button>
       </div>
 
       <Footer />
