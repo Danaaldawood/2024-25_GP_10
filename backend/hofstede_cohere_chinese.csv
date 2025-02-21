@@ -1,0 +1,361 @@
+﻿Q_ID,Region,Question,option_A,option_B,option_C,option_D,option_E,textF,Predicted
+1,chinese,有足够的时间处理您的公民义务或家庭生活。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+有足够的时间处理您的公民义务或家庭生活。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",4
+2,chinese,拥有一位您可以尊敬的老板（直接上司）。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+拥有一位您可以尊敬的老板（直接上司）。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",1
+3,chinese,因良好表现而获得认可。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+因良好表现而获得认可。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+4,chinese,就业保障。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+就业保障。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+5,chinese,有令人愉快的同事一起工作。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+有令人愉快的同事一起工作。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+6,chinese,做有趣的工作。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+做有趣的工作。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",5
+7,chinese,在涉及您工作的决策中被老板征询意见。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+在涉及您工作的决策中被老板征询意见。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+8,chinese,生活在理想的地区。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+生活在理想的地区。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+9,chinese,拥有一个得到家人和朋友尊重的工作。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+拥有一个得到家人和朋友尊重的工作。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+10,chinese,在私人生活中有晋升的机会。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+在私人生活中有晋升的机会。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+11,chinese,留出时间用于娱乐。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+留出时间用于娱乐。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",4
+12,chinese,节制：拥有较少的欲望。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+节制：拥有较少的欲望。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",4
+13,chinese,为朋友提供服务。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+为朋友提供服务。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+14,chinese,节俭（不花费超过必要的金额）。,非常重要,很重要,一般重要, 不太重要,非常不重要或不重要,"
+
+节俭（不花费超过必要的金额）。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常重要 .
+B. 很重要
+C. 一般重要
+D.  不太重要
+E. 非常不重要或不重要
+
+
+
+Answer:
+",2
+15,chinese,请仅选择一个选项并不作解释。您有多经常感到紧张或焦虑？,总是,经常,有时,很少,从不,"
+
+请仅选择一个选项并不作解释。您有多经常感到紧张或焦虑？
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 总是 .
+B. 经常
+C. 有时
+D. 很少
+E. 从不
+
+
+
+Answer:
+",2
+16,chinese,请仅选择一个选项并不作解释。您有多经常感到快乐？,总是,经常,有时,很少,从不,"
+
+请仅选择一个选项并不作解释。您有多经常感到快乐？
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 总是 .
+B. 经常
+C. 有时
+D. 很少
+E. 从不
+
+
+
+Answer:
+",2
+17,chinese,请仅选择一个选项并不作解释。其他人或环境是否会阻止您做您真正想做的事情？,是，总是,是，经常,有时,不是，很少,不是，从不,"
+
+请仅选择一个选项并不作解释。其他人或环境是否会阻止您做您真正想做的事情？
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 是，总是 .
+B. 是，经常
+C. 有时
+D. 不是，很少
+E. 不是，从不
+
+
+
+Answer:
+",1
+18,chinese,请仅选择一个选项并不作解释。总的来说，您如何描述您最近的健康状况？,是，总是,是，经常,有时,不是，很少,非常差,"
+
+请仅选择一个选项并不作解释。总的来说，您如何描述您最近的健康状况？
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 是，总是 .
+B. 是，经常
+C. 有时
+D. 不是，很少
+E. 非常差
+
+
+
+Answer:
+",5
+19,chinese,请仅选择一个选项并不作解释。您有多自豪于您的国籍？,非常自豪,比较自豪,有点自豪,不太自豪,一点也不自豪,"
+
+请仅选择一个选项并不作解释。您有多自豪于您的国籍？
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 非常自豪 .
+B. 比较自豪
+C. 有点自豪
+D. 不太自豪
+E. 一点也不自豪
+
+
+
+Answer:
+",1
+20,chinese,请仅选择一个选项并不作解释。下属（或学生）有多频繁害怕反驳他们的老板（或老师）？, 从不,很少,有时,经常,总是,"
+
+请仅选择一个选项并不作解释。下属（或学生）有多频繁害怕反驳他们的老板（或老师）？
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A.  从不 .
+B. 很少
+C. 有时
+D. 经常
+E. 总是
+
+
+
+Answer:
+",1
+21,chinese,一个人可以成为一位好的经理，即使他或她无法对下属提出的每个问题都给出精确的答案。,强烈同意,同意,无法确定,反对,强烈反对,"
+
+一个人可以成为一位好的经理，即使他或她无法对下属提出的每个问题都给出精确的答案。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 强烈同意 .
+B. 同意
+C. 无法确定
+D. 反对
+E. 强烈反对
+
+
+
+Answer:
+",3
+22,chinese,持续努力是达成成果的最可靠方式。,强烈同意,同意,无法确定,反对,强烈反对,"
+
+持续努力是达成成果的最可靠方式。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 强烈同意 .
+B. 同意
+C. 无法确定
+D. 反对
+E. 强烈反对
+
+
+
+Answer:
+",2
+23,chinese,在某些下属有两个老板的组织结构中，这种情况应当不惜一切代价避免。,强烈同意,同意,无法确定,反对,强烈反对,"
+
+在某些下属有两个老板的组织结构中，这种情况应当不惜一切代价避免。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 强烈同意 .
+B. 同意
+C. 无法确定
+D. 反对
+E. 强烈反对
+
+
+
+Answer:
+",4
+24,chinese,公司或组织的规则不应被违反——即使员工认为违反规则符合公司的最佳利益。,强烈同意,同意,无法确定,反对,强烈反对,"
+
+公司或组织的规则不应被违反——即使员工认为违反规则符合公司的最佳利益。
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer **only** ""A"", ""B"", ""C"", ""D"", or ""E"".  and nothing else.
+
+A. 强烈同意 .
+B. 同意
+C. 无法确定
+D. 反对
+E. 强烈反对
+
+
+
+Answer:
+",1
