@@ -70,6 +70,7 @@ export const Evaluation = () => {
                   Select evaluation type
                 </option>
                 <option value="LLAMA2 Baseline">LLAMA2 Baseline</option>
+                <option value="Cohere Baseline">Cohere Baseline</option>
                 <option value="Hofstede Questions-LLAMA2 Model">Hofstede Questions-LLAMA2 Model</option>
                 <option value="Hofstede Questions-Cohere Model">Hofstede Questions-Cohere Model</option>
               </select>

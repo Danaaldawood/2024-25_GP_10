@@ -1,0 +1,1681 @@
+cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,textF,Predicted
+Al-en-34,Wes_13,Western,What do people do to celebrate New Year's Day in your country?,What do people do to celebrate New Year's Day in the UK?,Holidays/Celebration/Leisure,['have a roast dinner family meal'],"[""pay a new year's visit"", 'new year greetings']",nothing,A,"
+
+What do people do to celebrate New Year's Day in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. have a roast dinner family meal .
+B. ""pay a new years visit"" and new year greetings
+C. nothing
+
+
+
+
+Answer:
+",A
+Al-en-34,Wes_13,Western,What do people do to celebrate New Year's Day in your country?,What do people do to celebrate New Year's Day in the UK?,Holidays/Celebration/Leisure,nothing,"['watch fireworks', 'fireworks']",['have the reunion dinner'],B,"
+
+What do people do to celebrate New Year's Day in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. watch fireworks and fireworks
+C. have the reunion dinner
+
+
+
+
+Answer:
+",B
+Al-en-43,Wes_20,Western,What is a popular indoor activity for families in your country?,What is a popular indoor activity for families in the UK?,Holidays/Celebration/Leisure,['fight the landlord'],['boardgames'],nothing,B,"
+
+What is a popular indoor activity for families in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fight the landlord .
+B. boardgames
+C. nothing
+
+
+
+
+Answer:
+",B
+Al-en-43,Wes_20,Western,What is a popular indoor activity for families in your country?,What is a popular indoor activity for families in the UK?,Holidays/Celebration/Leisure,['fight the landlord'],"['xbox', 'xbox or ps']",nothing,B,"
+
+What is a popular indoor activity for families in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fight the landlord .
+B. xbox and xbox or ps
+C. nothing
+
+
+
+
+Answer:
+",B
+An-ar-36,Wes_27,Western,What is the most popular sport team in your country?,What is the most popular sport team in the UK?,Sport,"['mc algiers', 'mc alger', ""mouloudia club d'alger"", ""d'alger"", 'mca', 'mouloudia']","['manchester united', 'manchester utd', 'manchester united']",['real madrid'],B,"
+
+What is the most popular sport team in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mc algiers and mc alger and ""mouloudia club dalger"" and ""dalger"" and mca and mouloudia .
+B. manchester united and manchester utd and manchester united
+C. real madrid
+
+
+
+
+Answer:
+",C
+An-ar-36,Wes_27,Western,What is the most popular sport team in your country?,What is the most popular sport team in the UK?,Sport,"['mc algiers', 'mc alger', ""mouloudia club d'alger"", ""d'alger"", 'mca', 'mouloudia']",['real madrid'],['liverpool'],C,"
+
+What is the most popular sport team in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mc algiers and mc alger and ""mouloudia club dalger"" and ""dalger"" and mca and mouloudia .
+B. real madrid
+C. liverpool
+
+
+
+
+Answer:
+",A
+Ca-sp-09,Wes_32,Western,What do people from your country usually eat for dessert?,What do people from the UK usually eat for dessert?,Food,nothing,['hot pudding'],['osmanthus cake'],B,"
+
+What do people from your country usually eat for dessert?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. hot pudding
+C. osmanthus cake
+
+
+
+
+Answer:
+",C
+Ca-sp-09,Wes_32,Western,What do people from your country usually eat for dessert?,What do people from the UK usually eat for dessert?,Food,['yoghurt'],['osmanthus cake'],nothing,A,"
+
+What do people from your country usually eat for dessert?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. yoghurt .
+B. osmanthus cake
+C. nothing
+
+
+
+
+Answer:
+",B
+Gu-ch-05,Wes_43,Western,What sports do seniors like the most in your country?,What sports do seniors like the most in the UK?,Sport,"['bowls', 'crown green bowls']","['football', 'soccer']",nothing,A,"
+
+What sports do seniors like the most in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bowls and crown green bowls .
+B. football and soccer
+C. nothing
+
+
+
+
+Answer:
+",B
+Gu-ch-05,Wes_43,Western,What sports do seniors like the most in your country?,What sports do seniors like the most in the UK?,Sport,['bowling'],"['square dance', 'square dancing']",nothing,A,"
+
+What sports do seniors like the most in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bowling .
+B. square dance and square dancing
+C. nothing
+
+
+
+
+Answer:
+",A
+Gu-ch-09,Wes_47,Western,What sports do women like to play the most in your country?,What sports do women like to play the most in the UK?,Sport,['dance'],['running'],"['football', 'soccer']",C,"
+
+What sports do women like to play the most in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. dance .
+B. running
+C. football and soccer
+
+
+
+
+Answer:
+",C
+Gu-ch-09,Wes_47,Western,What sports do women like to play the most in your country?,What sports do women like to play the most in the UK?,Sport,['tennis'],['badminton'],nothing,A,"
+
+What sports do women like to play the most in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. tennis .
+B. badminton
+C. nothing
+
+
+
+
+Answer:
+",A
+Ji-ko-25,Wes_69,Western,What are the family-related holidays in your country?,What are the family-related holidays in the UK?,Family,['easter'],nothing,"['spring festival', 'chinese new year', 'lunar new year']",A,"
+
+What are the family-related holidays in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. easter .
+B. nothing
+C. spring festival and chinese new year and lunar new year
+
+
+
+
+Answer:
+",A
+Ji-ko-25,Wes_69,Western,What are the family-related holidays in your country?,What are the family-related holidays in the UK?,Family,['mid-autumn festival'],nothing,['christmas'],C,"
+
+What are the family-related holidays in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mid-autumn festival .
+B. nothing
+C. christmas
+
+
+
+
+Answer:
+",C
+Ji-ko-45,Wes_86,Western,What do people look forward to the most at university festivals in your country?,What do people look forward to the most at university festivals in the UK?,Education,['music'],['party'],nothing,A,"
+
+What do people look forward to the most at university festivals in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. music .
+B. party
+C. nothing
+
+
+
+
+Answer:
+",A
+Ji-ko-45,Wes_86,Western,What do people look forward to the most at university festivals in your country?,What do people look forward to the most at university festivals in the UK?,Education,['pub crawl'],nothing,['national day'],A,"
+
+What do people look forward to the most at university festivals in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. pub crawl .
+B. nothing
+C. national day
+
+
+
+
+Answer:
+",B
+Jo-sp-19,Wes_93,Western,What region in your country has been traditionally associated with agriculture?,What region in the UK has been traditionally associated with agriculture?,Work life,['yorkshire'],['henan'],['mitidja'],A,"
+
+What region in your country has been traditionally associated with agriculture?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. yorkshire .
+B. henan
+C. mitidja
+
+
+
+
+Answer:
+",A
+Jo-sp-19,Wes_93,Western,What region in your country has been traditionally associated with agriculture?,What region in the UK has been traditionally associated with agriculture?,Work life,"['northeast', 'northeast plain']",['oxfordshire'],['mitidja'],B,"
+
+What region in your country has been traditionally associated with agriculture?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. northeast and northeast plain .
+B. oxfordshire
+C. mitidja
+
+
+
+
+Answer:
+",A
+Jod-ch-04,Wes_102,Western,What soft drink do people in your country like to have?,What soft drink do people in the UK like to have?,Food,['squash'],['oriental leaf'],['selecto'],A,"
+
+What soft drink do people in your country like to have?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. squash .
+B. oriental leaf
+C. selecto
+
+
+
+
+Answer:
+",C
+Jod-ch-04,Wes_102,Western,What soft drink do people in your country like to have?,What soft drink do people in the UK like to have?,Food,"['hammoud boualem', 'hamoud boualem']",['lemonade'],['oriental leaf'],B,"
+
+What soft drink do people in your country like to have?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hammoud boualem and hamoud boualem .
+B. lemonade
+C. oriental leaf
+
+
+
+
+Answer:
+",B
+Jod-ch-54,Wes_120,Western,"How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)","How long (in days) is the marriage leave in the UK? (Provide Arabic numerals (e.g., 12) only.)",Work life,nothing,['4'],['14'],C,"
+
+How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. 4
+C. 14
+
+
+
+
+Answer:
+",B
+Jod-ch-54,Wes_120,Western,"How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)","How long (in days) is the marriage leave in the UK? (Provide Arabic numerals (e.g., 12) only.)",Work life,['0'],['3'],['4'],A,"
+
+How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. 0 .
+B. 3
+C. 4
+
+
+
+
+Answer:
+",B
+Jod-ch-58,Wes_123,Western,Which profession is the most respected in your country?,Which profession is the most respected in the UK?,Work life,"['fireman', 'firefighter']",['firefighter'],['police'],C,"
+
+Which profession is the most respected in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fireman and firefighter .
+B. firefighter
+C. police
+
+
+
+
+Answer:
+",C
+Jod-ch-58,Wes_123,Western,Which profession is the most respected in your country?,Which profession is the most respected in the UK?,Work life,['firefighter'],"['doctor', 'doctors']",nothing,B,"
+
+Which profession is the most respected in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. firefighter .
+B. doctor and doctors
+C. nothing
+
+
+
+
+Answer:
+",B
+Ki-pe-32,Wes_130,Western,What food do the hosts usually prepare for the guests in your country?,What food do the hosts usually prepare for the guests in the UK?,Food,['buffet'],['rice'],['traditional dishes'],A,"
+
+What food do the hosts usually prepare for the guests in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. buffet .
+B. rice
+C. traditional dishes
+
+
+
+
+Answer:
+",C
+Ki-pe-32,Wes_130,Western,What food do the hosts usually prepare for the guests in your country?,What food do the hosts usually prepare for the guests in the UK?,Food,['cake'],['rice'],['traditional dishes'],A,"
+
+What food do the hosts usually prepare for the guests in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. cake .
+B. rice
+C. traditional dishes
+
+
+
+
+Answer:
+",C
+Ki-pe-36,Wes_132,Western,"Except the food original from your country, which country's food is more popular in your country?","Except the food original from the UK, which country's food is more popular in the UK?",Food,['france'],"['turkey', 'tÃ¼rkiye']",['indian'],C,"
+
+Except the food original from your country, which country's food is more popular in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. france .
+B. turkey and tÃ¼rkiye
+C. indian
+
+
+
+
+Answer:
+",C
+Ki-pe-36,Wes_132,Western,"Except the food original from your country, which country's food is more popular in your country?","Except the food original from the UK, which country's food is more popular in the UK?",Food,"['turkey', 'tÃ¼rkiye']",['france'],['chinese'],C,"
+
+Except the food original from your country, which country's food is more popular in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. turkey and tÃ¼rkiye .
+B. france
+C. chinese
+
+
+
+
+Answer:
+",C
+Ki-pe-40,Wes_134,Western,Which food from your country is considered disgusting by the rest of the world?,Which food from the UK is considered disgusting by the rest of the world?,Food,['black pudding'],nothing,"['tripe', 'intestines']",A,"
+
+Which food from your country is considered disgusting by the rest of the world?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. black pudding .
+B. nothing
+C. tripe and intestines
+
+
+
+
+Answer:
+",C
+Ki-pe-40,Wes_134,Western,Which food from your country is considered disgusting by the rest of the world?,Which food from the UK is considered disgusting by the rest of the world?,Food,"[""boiled sheep's head"", 'bozlov', 'bouzalof', 'bouzlouf']",['dog meat'],['stargazer pie'],C,"
+
+Which food from your country is considered disgusting by the rest of the world?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ""boiled sheeps head"" and bozlov and bouzalof and bouzlouf .
+B. dog meat
+C. stargazer pie
+
+
+
+
+Answer:
+",C
+Kik-in-10,Wes_145,Western,What is the most popular tourist attraction for foreign visitors in your country?,What is the most popular tourist attraction for foreign visitors in the UK?,Holidays/Celebration/Leisure,['covent garden'],"['terracotta warriors', 'mausoleum of the first qin emperor']",['hoggar mountains'],A,"
+
+What is the most popular tourist attraction for foreign visitors in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. covent garden .
+B. terracotta warriors and mausoleum of the first qin emperor
+C. hoggar mountains
+
+
+
+
+Answer:
+",B
+Kik-in-10,Wes_145,Western,What is the most popular tourist attraction for foreign visitors in your country?,What is the most popular tourist attraction for foreign visitors in the UK?,Holidays/Celebration/Leisure,['buckingham palace'],"[""martyrs' memorial"", 'maqam echahid', ""martyr's memorial"", 'memorial of the martyr', 'sanctuary of the martyr', ""maqam e'chahid""]","['terracotta warriors', 'mausoleum of the first qin emperor']",A,"
+
+What is the most popular tourist attraction for foreign visitors in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. buckingham palace .
+B. ""martyrs memorial"" and maqam echahid and ""martyrs memorial"" and memorial of the martyr and sanctuary of the martyr and ""maqam echahid""
+C. terracotta warriors and mausoleum of the first qin emperor
+
+
+
+
+Answer:
+",C
+Kik-in-35,Wes_153,Western,What sports were popular among people from your country during the COVID-19 pandemic?,What sports were popular among people from the UK during the COVID-19 pandemic?,Sport,nothing,['cycling'],nothing,B,"
+
+What sports were popular among people from your country during the COVID-19 pandemic?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. cycling
+C. nothing
+
+
+
+
+Answer:
+",B
+Kik-in-35,Wes_153,Western,What sports were popular among people from your country during the COVID-19 pandemic?,What sports were popular among people from the UK during the COVID-19 pandemic?,Sport,['tennis'],['aerobics'],"['running in open spaces', 'run']",A,"
+
+What sports were popular among people from your country during the COVID-19 pandemic?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. tennis .
+B. aerobics
+C. running in open spaces and run
+
+
+
+
+Answer:
+",C
+Na-ko-04,Wes_162,Western,What is the preferred hangover cure food for people from your country?,What is the preferred hangover cure food for people from the UK?,Food,nothing,['alkerseltzer'],['honey water'],B,"
+
+What is the preferred hangover cure food for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. alkerseltzer
+C. honey water
+
+
+
+
+Answer:
+",C
+Na-ko-04,Wes_162,Western,What is the preferred hangover cure food for people from your country?,What is the preferred hangover cure food for people from the UK?,Food,['mcdonalds muffin'],nothing,['tea'],A,"
+
+What is the preferred hangover cure food for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mcdonalds muffin .
+B. nothing
+C. tea
+
+
+
+
+Answer:
+",C
+Na-ko-09,Wes_166,Western,What side dish is the most commonly served on a dining table in your country?,What side dish is the most commonly served on a dining table in the UK?,Food,"['hmiss', 'pepper salad']",['stir-fried meat'],['sprouts'],C,"
+
+What side dish is the most commonly served on a dining table in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hmiss and pepper salad .
+B. stir-fried meat
+C. sprouts
+
+
+
+
+Answer:
+",C
+Na-ko-09,Wes_166,Western,What side dish is the most commonly served on a dining table in your country?,What side dish is the most commonly served on a dining table in the UK?,Food,"['hmiss', 'pepper salad']",['stir-fried meat'],"['potatoes', 'potatos']",C,"
+
+What side dish is the most commonly served on a dining table in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hmiss and pepper salad .
+B. stir-fried meat
+C. potatoes and potatos
+
+
+
+
+Answer:
+",C
+Na-ko-17,Wes_170,Western,What sports do male students enjoy during lunch time at school in your country?,What sports do male students enjoy during lunch time at school in the UK?,Sport,nothing,['basketball'],nothing,B,"
+
+What sports do male students enjoy during lunch time at school in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. basketball
+C. nothing
+
+
+
+
+Answer:
+",B
+Na-ko-17,Wes_170,Western,What sports do male students enjoy during lunch time at school in your country?,What sports do male students enjoy during lunch time at school in the UK?,Sport,nothing,"['football', 'soccer']",nothing,B,"
+
+What sports do male students enjoy during lunch time at school in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. football and soccer
+C. nothing
+
+
+
+
+Answer:
+",B
+Na-ko-37,Wes_183,Western,What is the most popular domestic vacation spot for people from your country?,What is the most popular domestic vacation spot for people from the UK?,Holidays/Celebration/Leisure,"['bejaia', 'bÃ©jaÃ¯a', 'bougie', 'bugia']",['great wall'],['cornwall'],C,"
+
+What is the most popular domestic vacation spot for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bejaia and bÃ©jaÃ¯a and bougie and bugia .
+B. great wall
+C. cornwall
+
+
+
+
+Answer:
+",C
+Na-ko-37,Wes_183,Western,What is the most popular domestic vacation spot for people from your country?,What is the most popular domestic vacation spot for people from the UK?,Holidays/Celebration/Leisure,"['bejaia', 'bÃ©jaÃ¯a', 'bougie', 'bugia']",['butlins'],['great wall'],B,"
+
+What is the most popular domestic vacation spot for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bejaia and bÃ©jaÃ¯a and bougie and bugia .
+B. butlins
+C. great wall
+
+
+
+
+Answer:
+",C
+Ne-ar-06,Wes_193,Western,What do people from your country eat in Ramadan?,What do people from the UK eat in Ramadan?,Holidays/Celebration/Leisure,['noodles'],['nuts'],['soup'],B,"
+
+What do people from your country eat in Ramadan?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. noodles .
+B. nuts
+C. soup
+
+
+
+
+Answer:
+",C
+Ne-ar-06,Wes_193,Western,What do people from your country eat in Ramadan?,What do people from the UK eat in Ramadan?,Holidays/Celebration/Leisure,['beef and mutton'],['sweets'],['soup'],B,"
+
+What do people from your country eat in Ramadan?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. beef and mutton .
+B. sweets
+C. soup
+
+
+
+
+Answer:
+",C
+Ne-ar-11,Wes_196,Western,Where do people from your country go to celebrate New Year's Day?,Where do people from the UK go to celebrate New Year's Day?,Holidays/Celebration/Leisure,"[""parents' home""]",nothing,"[""relatives' houses"", 'relatives houses', ""a relative's house"", 'family houses', 'friends or family houses', ""family's house"", ""relative's house""]",C,"
+
+Where do people from your country go to celebrate New Year's Day?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ""parents home"" .
+B. nothing
+C. ""relatives houses"" and relatives houses and ""a relatives house"" and family houses and friends or family houses and ""familys house"" and ""relatives house""
+
+
+
+
+Answer:
+",C
+Ne-ar-11,Wes_196,Western,Where do people from your country go to celebrate New Year's Day?,Where do people from the UK go to celebrate New Year's Day?,Holidays/Celebration/Leisure,"[""a friend's house"", ""friends' houses"", 'friends or family houses']","[""parents' home""]",nothing,A,"
+
+Where do people from your country go to celebrate New Year's Day?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ""a friends house"" and ""friends houses"" and friends or family houses .
+B. ""parents home""
+C. nothing
+
+
+
+
+Answer:
+",A
+Ne-ar-31,Wes_205,Western,What is the most famous dish in your country?,What is the most famous dish in the UK?,Food,"['peking duck', 'peking roast duck']",['bangers and mash'],['couscous'],B,"
+
+What is the most famous dish in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. peking duck and peking roast duck .
+B. bangers and mash
+C. couscous
+
+
+
+
+Answer:
+",C
+Ne-ar-31,Wes_205,Western,What is the most famous dish in your country?,What is the most famous dish in the UK?,Food,['hot pot'],nothing,"['fish and chips', 'fish & chips']",C,"
+
+What is the most famous dish in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hot pot .
+B. nothing
+C. fish and chips and fish & chips
+
+
+
+
+Answer:
+",A
+Ne-ar-36,Wes_209,Western,What is a typical festive meal in your country?,What is a typical festive meal in the UK?,Food,"['rishta', 'lentils and pasta soup', 'libyan-style pasta', 'reshta', 'rechta']","['turkey and the trimmings', 'turkey and the trimmings at christmas', 'christmas dinner']",['hot pot'],B,"
+
+What is a typical festive meal in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. rishta and lentils and pasta soup and libyan-style pasta and reshta and rechta .
+B. turkey and the trimmings and turkey and the trimmings at christmas and christmas dinner
+C. hot pot
+
+
+
+
+Answer:
+",B
+Ne-ar-36,Wes_209,Western,What is a typical festive meal in your country?,What is a typical festive meal in the UK?,Food,"['fish', 'may there be surpluses every year (homophone for fish)']",nothing,['turkey'],C,"
+
+What is a typical festive meal in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fish and may there be surpluses every year (homophone for fish) .
+B. nothing
+C. turkey
+
+
+
+
+Answer:
+",C
+Ne-ar-39,Wes_212,Western,What is the cheapest fast food in your country?,What is the cheapest fast food in the UK?,Food,"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",['noodles'],"['square pizza', 'pizza carrÃ©', 'pizza carre', 'pizza slices']",A,"
+
+What is the cheapest fast food in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mcdonalds and ""mcdonalds"" and macdonalds and ""mcdonalds"" .
+B. noodles
+C. square pizza and pizza carrÃ© and pizza carre and pizza slices
+
+
+
+
+Answer:
+",A
+Ne-ar-39,Wes_212,Western,What is the cheapest fast food in your country?,What is the cheapest fast food in the UK?,Food,"['square pizza', 'pizza carrÃ©', 'pizza carre', 'pizza slices']",['greggs'],['noodles'],B,"
+
+What is the cheapest fast food in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. square pizza and pizza carrÃ© and pizza carre and pizza slices .
+B. greggs
+C. noodles
+
+
+
+
+Answer:
+",C
+New-am-74,Wes_228,Western,What is the most popular talk show in your country?,What is the most popular talk show in the UK?,Family,['loose women'],['morning guest'],['the jinxing show'],A,"
+
+What is the most popular talk show in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. loose women .
+B. morning guest
+C. the jinxing show
+
+
+
+
+Answer:
+",B
+New-am-74,Wes_228,Western,What is the most popular talk show in your country?,What is the most popular talk show in the UK?,Family,['make progress every day'],['beyond the walls'],"['the graham norton show', 'graham norton show', 'graham norton']",C,"
+
+What is the most popular talk show in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. make progress every day .
+B. beyond the walls
+C. the graham norton show and graham norton show and graham norton
+
+
+
+
+Answer:
+",C
+New-as-07,Wes_235,Western,What is the most popular dish cooked with fish in your country?,What is the most popular dish cooked with fish in the UK?,Food,['sibia with tomatoes'],nothing,['braised fish'],B,"
+
+What is the most popular dish cooked with fish in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. sibia with tomatoes .
+B. nothing
+C. braised fish
+
+
+
+
+Answer:
+",C
+New-as-07,Wes_235,Western,What is the most popular dish cooked with fish in your country?,What is the most popular dish cooked with fish in the UK?,Food,"['fish soup', 'soupe de poisson']",['sour cabbage fish'],nothing,C,"
+
+What is the most popular dish cooked with fish in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fish soup and soupe de poisson .
+B. sour cabbage fish
+C. nothing
+
+
+
+
+Answer:
+",A
+New-as-76,Wes_243,Western,What traditional games do families play during traditional holidays in your country?,What traditional games do families play during traditional holidays in the UK?,Holidays/Celebration/Leisure,['monopoly'],nothing,['shuttlecock kicking'],A,"
+
+What traditional games do families play during traditional holidays in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. monopoly .
+B. nothing
+C. shuttlecock kicking
+
+
+
+
+Answer:
+",C
+New-as-76,Wes_243,Western,What traditional games do families play during traditional holidays in your country?,What traditional games do families play during traditional holidays in the UK?,Holidays/Celebration/Leisure,nothing,"['mahjong', 'play mahjong']",['charades'],C,"
+
+What traditional games do families play during traditional holidays in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. mahjong and play mahjong
+C. charades
+
+
+
+
+Answer:
+",C
+New-ch-16,Wes_268,Western,What is the most famous sports-related movie in your country?,What is the most famous sports-related movie in the UK?,Sport,nothing,['women basketball team member no. 5'],['chariots of fire'],C,"
+
+What is the most famous sports-related movie in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. women basketball team member no. 5
+C. chariots of fire
+
+
+
+
+Answer:
+",C
+New-ch-16,Wes_268,Western,What is the most famous sports-related movie in your country?,What is the most famous sports-related movie in the UK?,Sport,['ferrari'],['slam dunk'],nothing,A,"
+
+What is the most famous sports-related movie in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ferrari .
+B. slam dunk
+C. nothing
+
+
+
+
+Answer:
+",B
+New-ch-38,Wes_278,Western,Which cities or regions are known for their import and export activities in your country?,Which cities or regions are known for their import and export activities in the UK?,Work life,['kent'],['shenzhen'],['algiers'],A,"
+
+Which cities or regions are known for their import and export activities in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. kent .
+B. shenzhen
+C. algiers
+
+
+
+
+Answer:
+",B
+New-ch-38,Wes_278,Western,Which cities or regions are known for their import and export activities in your country?,Which cities or regions are known for their import and export activities in the UK?,Work life,['london'],['qingdao'],"['arzew', 'arzeu']",A,"
+
+Which cities or regions are known for their import and export activities in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. london .
+B. qingdao
+C. arzew and arzeu
+
+
+
+
+Answer:
+",B
+New-ch-44,Wes_280,Western,"How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).","How long is the typical probation period for new employees before signing a formal contract in the UK? (e.g., 1 month).",Work life,"['two years', '2 years']",nothing,"['6 weeks', '4-6 weeks', '6', 'six weeks']",C,"
+
+How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. two years and 2 years .
+B. nothing
+C. 6 weeks and 4-6 weeks and 6 and six weeks
+
+
+
+
+Answer:
+",C
+New-ch-44,Wes_280,Western,"How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).","How long is the typical probation period for new employees before signing a formal contract in the UK? (e.g., 1 month).",Work life,nothing,"['12 months', 'twelve months']","['2 weeks', 'two weeks']",C,"
+
+How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. 12 months and twelve months
+C. 2 weeks and two weeks
+
+
+
+
+Answer:
+",B
+New-ch-45,Wes_281,Western,Which industries do young people typically choose to start businesses in your country?,Which industries do young people typically choose to start businesses in the UK?,Work life,"['clothes', 'clothing', 'garment']",['media'],['technology'],B,"
+
+Which industries do young people typically choose to start businesses in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. clothes and clothing and garment .
+B. media
+C. technology
+
+
+
+
+Answer:
+",C
+New-ch-45,Wes_281,Western,Which industries do young people typically choose to start businesses in your country?,Which industries do young people typically choose to start businesses in the UK?,Work life,"['clothes', 'clothing', 'garment']","['social media', 'social media or fashion']",['technology'],B,"
+
+Which industries do young people typically choose to start businesses in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. clothes and clothing and garment .
+B. social media and social media or fashion
+C. technology
+
+
+
+
+Answer:
+",C
+New-ch-74,Wes_291,Western,What types of accommodation do university students in your country typically live in?,What types of accommodation do university students in the UK typically live in?,Education,nothing,"['halls', 'in halls of residence']",['6-person dormitory'],B,"
+
+What types of accommodation do university students in your country typically live in?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. halls and in halls of residence
+C. 6-person dormitory
+
+
+
+
+Answer:
+",C
+New-ch-74,Wes_291,Western,What types of accommodation do university students in your country typically live in?,What types of accommodation do university students in the UK typically live in?,Education,['6-person dormitory'],['university residence'],['flats'],C,"
+
+What types of accommodation do university students in your country typically live in?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. 6-person dormitory .
+B. university residence
+C. flats
+
+
+
+
+Answer:
+",B
+New-en-08,Wes_306,Western,What is the most popular chocolate brand in your country?,What is the most popular chocolate brand in the UK?,Food,['nestle'],['gold sand chocolate'],['maruja'],A,"
+
+What is the most popular chocolate brand in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nestle .
+B. gold sand chocolate
+C. maruja
+
+
+
+
+Answer:
+",A
+New-en-08,Wes_306,Western,What is the most popular chocolate brand in your country?,What is the most popular chocolate brand in the UK?,Food,['good times'],['ambassadeur'],"['cadburys', 'cadbury', ""cadbury's""]",C,"
+
+What is the most popular chocolate brand in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. good times .
+B. ambassadeur
+C. cadburys and cadbury and ""cadburys""
+
+
+
+
+Answer:
+",C
+New-en-68,Wes_323,Western,What repercussions are there for bad behavior in schools in your country?,What repercussions are there for bad behavior in schools in the UK?,Education,['disciplinary council'],"['drop out', 'expulsion from school']","['exclusion', 'being expelled from school', 'expulsion', 'being expelled from school']",C,"
+
+What repercussions are there for bad behavior in schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. disciplinary council .
+B. drop out and expulsion from school
+C. exclusion and being expelled from school and expulsion and being expelled from school
+
+
+
+
+Answer:
+",B
+New-en-68,Wes_323,Western,What repercussions are there for bad behavior in schools in your country?,What repercussions are there for bad behavior in schools in the UK?,Education,"['parking in the corner', 'stand in the corner']",['boarding school education'],['school inform parents'],C,"
+
+What repercussions are there for bad behavior in schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. parking in the corner and stand in the corner .
+B. boarding school education
+C. school inform parents
+
+
+
+
+Answer:
+",C
+New-en-69,Wes_324,Western,Which writers are commonly studied in literature class in your country?,Which writers are commonly studied in literature class in the UK?,Education,['mohammed dib'],"['steinbeck', 'john steinbeck']",['lao she'],B,"
+
+Which writers are commonly studied in literature class in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mohammed dib .
+B. steinbeck and john steinbeck
+C. lao she
+
+
+
+
+Answer:
+",B
+New-en-69,Wes_324,Western,Which writers are commonly studied in literature class in your country?,Which writers are commonly studied in literature class in the UK?,Education,"['shakespeare', 'shakespear', 'william shakespeare', 'william shakespeare']",nothing,['mouloud mammeri'],A,"
+
+Which writers are commonly studied in literature class in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. shakespeare and shakespear and william shakespeare and william shakespeare .
+B. nothing
+C. mouloud mammeri
+
+
+
+
+Answer:
+",A
+New-en-87,Wes_330,Western,What is the most famous historic landmark in your country?,What is the most famous historic landmark in the UK?,Holidays/Celebration/Leisure,"['timgad', 'timqad']",['buckingham palace'],['forbidden city'],B,"
+
+What is the most famous historic landmark in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. timgad and timqad .
+B. buckingham palace
+C. forbidden city
+
+
+
+
+Answer:
+",C
+New-en-87,Wes_330,Western,What is the most famous historic landmark in your country?,What is the most famous historic landmark in the UK?,Holidays/Celebration/Leisure,nothing,['big ben'],"['casbah', 'kasbah']",B,"
+
+What is the most famous historic landmark in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. big ben
+C. casbah and kasbah
+
+
+
+
+Answer:
+",C
+New-gr-15,Wes_336,Western,What is the most popular traditional dessert in your country?,What is the most popular traditional dessert in the UK?,Food,['cake and custard'],['baklava'],['osmanthus cake'],A,"
+
+What is the most popular traditional dessert in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. cake and custard .
+B. baklava
+C. osmanthus cake
+
+
+
+
+Answer:
+",B
+New-gr-15,Wes_336,Western,What is the most popular traditional dessert in your country?,What is the most popular traditional dessert in the UK?,Food,"['makroud', 'makrout']",['jelly'],['osmanthus cake'],B,"
+
+What is the most popular traditional dessert in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. makroud and makrout .
+B. jelly
+C. osmanthus cake
+
+
+
+
+Answer:
+",C
+New-gr-76,Wes_342,Western,What is the most common food served during Easter in your country?,What is the most common food served during Easter in the UK?,Holidays/Celebration/Leisure,nothing,['ham'],['apple'],B,"
+
+What is the most common food served during Easter in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. ham
+C. apple
+
+
+
+
+Answer:
+",B
+New-gr-76,Wes_342,Western,What is the most common food served during Easter in your country?,What is the most common food served during Easter in the UK?,Holidays/Celebration/Leisure,nothing,['roast lamb'],nothing,B,"
+
+What is the most common food served during Easter in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. roast lamb
+C. nothing
+
+
+
+
+Answer:
+",B
+New-gr-89,Wes_345,Western,What drink is usually offered at weddings in your country?,What drink is usually offered at weddings in the UK?,Holidays/Celebration/Leisure,"['chinese spirits', 'white liquor', 'bai']",['tea'],['champagne'],C,"
+
+What drink is usually offered at weddings in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. chinese spirits and white liquor and bai .
+B. tea
+C. champagne
+
+
+
+
+Answer:
+",C
+New-gr-89,Wes_345,Western,What drink is usually offered at weddings in your country?,What drink is usually offered at weddings in the UK?,Holidays/Celebration/Leisure,['juice'],['alcohol'],['cava'],C,"
+
+What drink is usually offered at weddings in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. juice .
+B. alcohol
+C. cava
+
+
+
+
+Answer:
+",B
+New-ha-07,Wes_346,Western,What food originated from your country and can be found all over the world?,What food originated from the UK and can be found all over the world?,Food,['noodles'],nothing,"['fish and chips', 'fish & chips']",C,"
+
+What food originated from your country and can be found all over the world?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. noodles .
+B. nothing
+C. fish and chips and fish & chips
+
+
+
+
+Answer:
+",A
+New-ha-07,Wes_346,Western,What food originated from your country and can be found all over the world?,What food originated from the UK and can be found all over the world?,Food,nothing,['potatoes'],['noodles'],B,"
+
+What food originated from your country and can be found all over the world?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. potatoes
+C. noodles
+
+
+
+
+Answer:
+",C
+New-ha-08,Wes_347,Western,What food is typically disliked by children but enjoyed by the elderly in your country?,What food is typically disliked by children but enjoyed by the elderly in the UK?,Food,['eight-treasure porridge'],['vegetable'],['vegetables'],C,"
+
+What food is typically disliked by children but enjoyed by the elderly in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. eight-treasure porridge .
+B. vegetable
+C. vegetables
+
+
+
+
+Answer:
+",C
+New-ha-08,Wes_347,Western,What food is typically disliked by children but enjoyed by the elderly in your country?,What food is typically disliked by children but enjoyed by the elderly in the UK?,Food,['tbikha'],['olives'],['carrot'],B,"
+
+What food is typically disliked by children but enjoyed by the elderly in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. tbikha .
+B. olives
+C. carrot
+
+
+
+
+Answer:
+",C
+New-in-33,Wes_354,Western,What region in your country is usually associated with mining?,What region in the UK is usually associated with mining?,Work life,"['annaba', 'bon', 'bona', 'bÃ´ne']",['yorkshire'],['panzhihua'],B,"
+
+What region in your country is usually associated with mining?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. annaba and bon and bona and bÃ´ne .
+B. yorkshire
+C. panzhihua
+
+
+
+
+Answer:
+",C
+New-in-33,Wes_354,Western,What region in your country is usually associated with mining?,What region in the UK is usually associated with mining?,Work life,['panzhihua'],"['el hajar', 'el hadjar']",['north'],C,"
+
+What region in your country is usually associated with mining?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. panzhihua .
+B. el hajar and el hadjar
+C. north
+
+
+
+
+Answer:
+",C
+New-ko-05,Wes_364,Western,Which toys are most popular among girls in your country?,Which toys are most popular among girls in the UK?,Family,"['doll', 'playing with dolls']",nothing,['doll'],B,"
+
+Which toys are most popular among girls in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. doll and playing with dolls .
+B. nothing
+C. doll
+
+
+
+
+Answer:
+",C
+New-ko-05,Wes_364,Western,Which toys are most popular among girls in your country?,Which toys are most popular among girls in the UK?,Family,['dolls'],"['jumping', 'jump']",['doll'],A,"
+
+Which toys are most popular among girls in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. dolls .
+B. jumping and jump
+C. doll
+
+
+
+
+Answer:
+",A
+New-ko-06,Wes_365,Western,What is the most popular folk tale in your country that is typically told to children?,What is the most popular folk tale in the UK that is typically told to children?,Family,['journey to the west'],['tooth fairy'],"[""juha's stories"", 'juha stories', 'juha']",B,"
+
+What is the most popular folk tale in your country that is typically told to children?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. journey to the west .
+B. tooth fairy
+C. ""juhas stories"" and juha stories and juha
+
+
+
+
+Answer:
+",B
+New-ko-06,Wes_365,Western,What is the most popular folk tale in your country that is typically told to children?,What is the most popular folk tale in the UK that is typically told to children?,Family,['the cowherd and the weaver girl'],"['hansel and gretel', 'hansel and gretal']",['qays and layla'],B,"
+
+What is the most popular folk tale in your country that is typically told to children?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. the cowherd and the weaver girl .
+B. hansel and gretel and hansel and gretal
+C. qays and layla
+
+
+
+
+Answer:
+",B
+New-ko-07,Wes_366,Western,What is the customary symbol of condolence used at funerals in your country?,What is the customary symbol of condolence used at funerals in the UK?,Holidays/Celebration/Leisure,"['wearing black', 'black clothing']",['flower wreath'],nothing,A,"
+
+What is the customary symbol of condolence used at funerals in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. wearing black and black clothing .
+B. flower wreath
+C. nothing
+
+
+
+
+Answer:
+",B
+New-ko-07,Wes_366,Western,What is the customary symbol of condolence used at funerals in your country?,What is the customary symbol of condolence used at funerals in the UK?,Holidays/Celebration/Leisure,nothing,"['supplication', 'prayer', 'pray']",['flowers'],C,"
+
+What is the customary symbol of condolence used at funerals in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. supplication and prayer and pray
+C. flowers
+
+
+
+
+Answer:
+",C
+New-pe-06,Wes_371,Western,What is the most popular stew in your country?,What is the most popular stew in the UK?,Food,['braised spare ribs'],['vegetable'],['chtitha'],B,"
+
+What is the most popular stew in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. braised spare ribs .
+B. vegetable
+C. chtitha
+
+
+
+
+Answer:
+",A
+New-pe-06,Wes_371,Western,What is the most popular stew in your country?,What is the most popular stew in the UK?,Food,['steak and ale'],"['sweet tagine', 'lham hlou', 'lham lahlou', 'tajine lahlou']",['braised spare ribs'],A,"
+
+What is the most popular stew in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. steak and ale .
+B. sweet tagine and lham hlou and lham lahlou and tajine lahlou
+C. braised spare ribs
+
+
+
+
+Answer:
+",C
+New-pe-11,Wes_372,Western,What is the most common spice/herb used in dishes from your country?,What is the most common spice/herb used in dishes from the UK?,Food,"['pepper', 'salt and pepper']",['thyme'],['thirteen spices'],A,"
+
+What is the most common spice/herb used in dishes from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. pepper and salt and pepper .
+B. thyme
+C. thirteen spices
+
+
+
+
+Answer:
+",B
+New-pe-11,Wes_372,Western,What is the most common spice/herb used in dishes from your country?,What is the most common spice/herb used in dishes from the UK?,Food,['black pepper'],['thirteen spices'],['parsley'],C,"
+
+What is the most common spice/herb used in dishes from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. black pepper .
+B. thirteen spices
+C. parsley
+
+
+
+
+Answer:
+",C
+New-pe-76,Wes_384,Western,What is a popular activity to do in parks in your country?,What is a popular activity to do in parks in the UK?,Holidays/Celebration/Leisure,['walk'],['play badminton'],['running'],A,"
+
+What is a popular activity to do in parks in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. walk .
+B. play badminton
+C. running
+
+
+
+
+Answer:
+",A
+New-pe-76,Wes_384,Western,What is a popular activity to do in parks in your country?,What is a popular activity to do in parks in the UK?,Holidays/Celebration/Leisure,['eating'],['tai chi'],['bbq'],C,"
+
+What is a popular activity to do in parks in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. eating .
+B. tai chi
+C. bbq
+
+
+
+
+Answer:
+",C
+New-pe-85,Wes_387,Western,Where is the most popular tourist destination abroad for people from your country?,Where is the most popular tourist destination abroad for people from the UK?,Holidays/Celebration/Leisure,"['balearics', 'balearic islands']","['turkey', 'tÃ¼rkiye']",['united states'],A,"
+
+Where is the most popular tourist destination abroad for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. balearics and balearic islands .
+B. turkey and tÃ¼rkiye
+C. united states
+
+
+
+
+Answer:
+",C
+New-pe-85,Wes_387,Western,Where is the most popular tourist destination abroad for people from your country?,Where is the most popular tourist destination abroad for people from the UK?,Holidays/Celebration/Leisure,['united states'],['france'],nothing,B,"
+
+Where is the most popular tourist destination abroad for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. united states .
+B. france
+C. nothing
+
+
+
+
+Answer:
+",B
+New-spme-05,Wes_391,Western,What are the most popular sweets in your country?,What are the most popular sweets in the UK?,Food,['fruit pastiles'],"['halwet ettabaa', 'halwet taba', 'halwet tabe', 'halwet eltaba']",['egg yolk pastry'],A,"
+
+What are the most popular sweets in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fruit pastiles .
+B. halwet ettabaa and halwet taba and halwet tabe and halwet eltaba
+C. egg yolk pastry
+
+
+
+
+Answer:
+",C
+New-spme-05,Wes_391,Western,What are the most popular sweets in your country?,What are the most popular sweets in the UK?,Food,['mars bar'],['egg yolk pastry'],['baklava'],A,"
+
+What are the most popular sweets in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. mars bar .
+B. egg yolk pastry
+C. baklava
+
+
+
+
+Answer:
+",C
+New-su-01,Wes_400,Western,What snacks are usually sold in front of schools in your country?,What snacks are usually sold in front of schools in the UK?,Food,['sweets'],['roasted sausage'],['pizza'],A,"
+
+What snacks are usually sold in front of schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. sweets .
+B. roasted sausage
+C. pizza
+
+
+
+
+Answer:
+",A
+New-su-01,Wes_400,Western,What snacks are usually sold in front of schools in your country?,What snacks are usually sold in front of schools in the UK?,Food,['pizza'],['fizzy pop'],['roasted sausage'],B,"
+
+What snacks are usually sold in front of schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. pizza .
+B. fizzy pop
+C. roasted sausage
+
+
+
+
+Answer:
+",B
+New-su-83,Wes_423,Western,What food is usually served at weddings in your country?,What food is usually served at weddings in the UK?,Holidays/Celebration/Leisure,['fish'],['garlic'],['wedding breakfast'],C,"
+
+What food is usually served at weddings in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fish .
+B. garlic
+C. wedding breakfast
+
+
+
+
+Answer:
+",C
+New-su-83,Wes_423,Western,What food is usually served at weddings in your country?,What food is usually served at weddings in the UK?,Holidays/Celebration/Leisure,['buffet'],['couscous'],['red dates'],A,"
+
+What food is usually served at weddings in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. buffet .
+B. couscous
+C. red dates
+
+
+
+
+Answer:
+",A
+Sa-en-32,Wes_452,Western,What is the most popular family TV show in your country?,What is the most popular family TV show in the UK?,Family,['news simulcast'],['emmerdale'],"['el fhama', 'el fehama']",B,"
+
+What is the most popular family TV show in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. news simulcast .
+B. emmerdale
+C. el fhama and el fehama
+
+
+
+
+Answer:
+",B
+Sa-en-32,Wes_452,Western,What is the most popular family TV show in your country?,What is the most popular family TV show in the UK?,Family,['happy camp'],"['el fhama', 'el fehama']","['ant & dec', ""ant & dec's saturday night takeaway""]",C,"
+
+What is the most popular family TV show in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. happy camp .
+B. el fhama and el fehama
+C. ant & dec and ""ant & decs saturday night takeaway""
+
+
+
+
+Answer:
+",C
+Ta-pe-37,Wes_468,Western,What is the common symbol of New Year's Eve that is usually found in your country?,What is the common symbol of New Year's Eve that is usually found in the UK?,Holidays/Celebration/Leisure,['champagne'],nothing,['paper-cut for window decoration'],A,"
+
+What is the common symbol of New Year's Eve that is usually found in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. champagne .
+B. nothing
+C. paper-cut for window decoration
+
+
+
+
+Answer:
+",C
+Ta-pe-37,Wes_468,Western,What is the common symbol of New Year's Eve that is usually found in your country?,What is the common symbol of New Year's Eve that is usually found in the UK?,Holidays/Celebration/Leisure,['big ben'],nothing,"['spring festival couplets', 'chinese couplets', 'new year scrolls']",A,"
+
+What is the common symbol of New Year's Eve that is usually found in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. big ben .
+B. nothing
+C. spring festival couplets and chinese couplets and new year scrolls
+
+
+
+
+Answer:
+",A
+Th-en-11,Wes_475,Western,Who is the most popular sportperson in your country?,Who is the most popular sportperson in the UK?,Sport,"['toufik makhloufi', 'taoufik makhloufi']",['erling haaland'],"['ming yao', 'yao ming']",B,"
+
+Who is the most popular sportperson in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. toufik makhloufi and taoufik makhloufi .
+B. erling haaland
+C. ming yao and yao ming
+
+
+
+
+Answer:
+",A
+Th-en-11,Wes_475,Western,Who is the most popular sportperson in your country?,Who is the most popular sportperson in the UK?,Sport,"['yiming su', 'su yiming']",['islam slimani'],"['gary lineker', 'gary linekar']",C,"
+
+Who is the most popular sportperson in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. yiming su and su yiming .
+B. islam slimani
+C. gary lineker and gary linekar
+
+
+
+
+Answer:
+",C
+Th-en-19,Wes_478,Western,What is a city or region in your country known for manufacturing industry?,What is a city or region in the UK known for manufacturing industry?,Work life,['blida'],['sheffield'],['shenzhen'],B,"
+
+What is a city or region in your country known for manufacturing industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. blida .
+B. sheffield
+C. shenzhen
+
+
+
+
+Answer:
+",C
+Th-en-19,Wes_478,Western,What is a city or region in your country known for manufacturing industry?,What is a city or region in the UK known for manufacturing industry?,Work life,['blida'],['shenzhen'],['lancashire'],C,"
+
+What is a city or region in your country known for manufacturing industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. blida .
+B. shenzhen
+C. lancashire
+
+
+
+
+Answer:
+",B
+Th-en-21,Wes_479,Western,What is regarded as the most important perk typically offered to employees in your country?,What is regarded as the most important perk typically offered to employees in the UK?,Work life,['salary'],['pension'],['five insurances and one fund'],B,"
+
+What is regarded as the most important perk typically offered to employees in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. salary .
+B. pension
+C. five insurances and one fund
+
+
+
+
+Answer:
+",B
+Th-en-21,Wes_479,Western,What is regarded as the most important perk typically offered to employees in your country?,What is regarded as the most important perk typically offered to employees in the UK?,Work life,['free lunches'],['marriage and maternity leave'],"['allowance', 'productivity bonus', 'bonus']",A,"
+
+What is regarded as the most important perk typically offered to employees in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. free lunches .
+B. marriage and maternity leave
+C. allowance and productivity bonus and bonus
+
+
+
+
+Answer:
+",C
+Th-en-58,Wes_496,Western,What is the most advanced math subject learned before university in your country?,What is the most advanced math subject learned before university in the UK?,Education,nothing,['differential equations'],['linear algebra'],A,"
+
+What is the most advanced math subject learned before university in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. differential equations
+C. linear algebra
+
+
+
+
+Answer:
+",B
+Th-en-58,Wes_496,Western,What is the most advanced math subject learned before university in your country?,What is the most advanced math subject learned before university in the UK?,Education,"['further mathematics', 'further maths']","['integration and differentiation', 'calculus']",['linear algebra'],A,"
+
+What is the most advanced math subject learned before university in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. further mathematics and further maths .
+B. integration and differentiation and calculus
+C. linear algebra
+
+
+
+
+Answer:
+",B

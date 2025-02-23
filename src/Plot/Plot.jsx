@@ -7,7 +7,7 @@ import { FaArrowLeft, FaInfoCircle } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 import { Bar } from 'react-chartjs-2';
-import 'chart.js/auto'; // Required for Chart.js v3+
+import 'chart.js/auto';
 
 export const Plot = () => {
   const { state } = useLocation();
@@ -20,7 +20,7 @@ export const Plot = () => {
 
   const evalLLM = state?.evalLLM || "";
   const evalType = state?.evalType || "";
-  const [selectedTopic, setSelectedTopic] = useState("All Topics"); // Default for LLAMA2 Baseline
+  const [selectedTopic, setSelectedTopic] = useState("All Topics");
   const [results, setResults] = useState(null);
   const [showMap, setShowMap] = useState(true);
 
@@ -85,7 +85,7 @@ export const Plot = () => {
 
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then((geoData) => {
       const countries = feature(geoData, geoData.objects.countries);
-      const maxCoverage = 100; // Max coverage is 100%
+      const maxCoverage = 100;
       const colorScale = d3.scaleLinear().domain([0, maxCoverage]).range(["#f9d1a8", "#f28d27"]);
 
       svg.append("g")
@@ -99,12 +99,12 @@ export const Plot = () => {
           if (!region) return "#d3d3d3";
           if (evalType === "Hofstede Questions-Cohere Model") {
             const stdDev = results?.[region]?.standard_deviation || 0;
-            return colorScale(stdDev * 100 / maxCoverage); // Scale std_dev to match 0-100 for color
-          } else if (evalType === "LLAMA2 Baseline") {
+            return colorScale(stdDev * 100 / maxCoverage);
+          } else if (evalType === "LLAMA2 Baseline" || evalType === "Cohere Baseline") {
             const coverage = results?.[region]?.coverage_score || 0;
             return colorScale(coverage);
           } else if (evalType === "Hofstede Questions-LLAMA2 Model") {
-            return "#d3d3d3"; // Gray for Hofstede Questions-LLAMA2 (0.00%)
+            return "#d3d3d3";
           }
           return "#d3d3d3";
         })
@@ -149,7 +149,7 @@ export const Plot = () => {
 
         <div className="selection-container">
           <h2 className="underlined">{evalType}</h2>
-          {evalType === "LLAMA2 Baseline" ? (
+          {(evalType === "LLAMA2 Baseline" || evalType === "Cohere Baseline") ? (
             <select className="plot-select" value={selectedTopic} onChange={(e) => setSelectedTopic(e.target.value)}>
               {topics.map((topic) => (
                 <option key={topic} value={topic}>{topic}</option>
@@ -164,6 +164,7 @@ export const Plot = () => {
           <h2 className="version-main">
             {evalType === "Hofstede Questions-Cohere Model" ? "Hofstede Questions-Cohere Model" 
              : evalType === "Hofstede Questions-LLAMA2 Model" ? "Hofstede Questions" 
+             : evalType === "Cohere Baseline" ? "Cohere Baseline"
              : "LLAMA2 Baseline"}
             <FaInfoCircle className="info-icon" onClick={() => setTooltipVisible(!isTooltipVisible)} />
           </h2>
@@ -173,6 +174,8 @@ export const Plot = () => {
                 ? "We use Cohere to answer 24 Hofstede Work Life questions for each region."
                 : evalType === "Hofstede Questions-LLAMA2 Model"
                 ? "This evaluation utilizes the Llama-2-7B model to answer 24 Hofstede Work Life questions in Arabic, English, and Chinese."
+                : evalType === "Cohere Baseline"
+                ? "This evaluation uses the Cohere model to answer multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions."
                 : "This evaluation uses the Llama-2-7B model, with a coverage score measuring how accurately it answers multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions."}
             </div>
           )}
@@ -209,6 +212,8 @@ export const Plot = () => {
               ? "This evaluation uses Cohere to answer 24 Hofstede Work Life questions across three regions (Arab, Chinese, Western). The standard deviation reflects the variability in responses within each region."
               : evalType === "Hofstede Questions-LLAMA2 Model"
               ? "Llama-2-7B needs fine-tuning. It does not work well with multiple-choice questions. All three regions predominantly answered 'A' when given options A, B, C, D, E."
+              : evalType === "Cohere Baseline"
+              ? `Cohere evaluated answers for the "${selectedTopic}" topic. Coverage Scores: Arab - ${results?.Arab?.coverage_score.toFixed(2) || "0.00"}%, Western - ${results?.Western?.coverage_score.toFixed(2) || "0.00"}%, Chinese - ${results?.Chinese?.coverage_score.toFixed(2) || "0.00"}%.`
               : `Llama-2-7B evaluated answers for the "${selectedTopic}" topic. Coverage Scores: Arab - ${results?.Arab?.coverage_score.toFixed(2) || "0.00"}%, Western - ${results?.Western?.coverage_score.toFixed(2) || "0.00"}%, Chinese - ${results?.Chinese?.coverage_score.toFixed(2) || "0.00"}%.`}
           </p>
         </div>
