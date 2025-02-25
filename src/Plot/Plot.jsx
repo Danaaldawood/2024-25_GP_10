@@ -85,9 +85,13 @@ export const Plot = () => {
 
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then((geoData) => {
       const countries = feature(geoData, geoData.objects.countries);
-      const maxCoverage = 100;
-      const colorScale = d3.scaleLinear().domain([0, maxCoverage]).range(["#f9d1a8", "#f28d27"]);
 
+      // Define the color scale for 0 to 2 (standard deviation range)
+      const colorScale = d3.scaleLinear()
+        .domain([0, 2]) // Range from 0 to 2 for standard deviation
+        .range(["#f9d1a8", "#f28d27"]); // Light orange to dark orange
+
+      // Render the map
       svg.append("g")
         .selectAll("path")
         .data(countries.features)
@@ -99,17 +103,18 @@ export const Plot = () => {
           if (!region) return "#d3d3d3";
           if (evalType === "Hofstede Questions-Cohere Model") {
             const stdDev = results?.[region]?.standard_deviation || 0;
-            return colorScale(stdDev * 100 / maxCoverage);
+            return colorScale(stdDev); // Use the standard deviation directly (0 to 2 range)
           } else if (evalType === "LLAMA2 Baseline" || evalType === "Cohere Baseline") {
             const coverage = results?.[region]?.coverage_score || 0;
-            return colorScale(coverage);
+            return colorScale(coverage / 100 * 2); // Scale coverage (0-100) to 0-2 for consistency
           } else if (evalType === "Hofstede Questions-LLAMA2 Model") {
-            return "#d3d3d3";
+            return "#d3d3d3"; // Uniform gray for LLAMA2 model (coverage score is 0)
           }
           return "#d3d3d3";
         })
         .attr("stroke", "#fff");
 
+      // Add region labels
       const regionPositions = {
         Arab: projection([35, 25]),
         Chinese: projection([100, 35]),
@@ -126,9 +131,72 @@ export const Plot = () => {
           .text(
             evalType === "Hofstede Questions-Cohere Model"
               ? `${results?.[region]?.standard_deviation.toFixed(2) || "0.00"}`
+              : evalType === "Hofstede Questions-LLAMA2 Model"
+              ? "0.00" // Since LLAMA2 has no variation (all gray)
               : `${results?.[region]?.coverage_score.toFixed(2) || "0.00"}%`
           );
       });
+
+      // Add color gradient bar (legend) only for Hofstede Questions-Cohere Model and Hofstede Questions-LLAMA2 Model
+      if (evalType === "Hofstede Questions-Cohere Model" || evalType === "Hofstede Questions-LLAMA2 Model") {
+        const legendWidth = 200;
+        const legendHeight = 20;
+        const legendX = width - legendWidth - 20; // Position on the right
+        const legendY = height - 50; // Position below the map
+
+        // Define the gradient for the legend
+        const defs = svg.append("defs");
+        const linearGradient = defs.append("linearGradient")
+          .attr("id", "legend-gradient")
+          .attr("x1", "0%")
+          .attr("x2", "100%")
+          .attr("y1", "0%")
+          .attr("y2", "0%");
+
+        linearGradient.append("stop")
+          .attr("offset", "0%")
+          .attr("style", `stop-color:${colorScale(0)}`);
+
+        linearGradient.append("stop")
+          .attr("offset", "100%")
+          .attr("style", `stop-color:${colorScale(2)}`);
+
+        // Draw the legend bar
+        svg.append("rect")
+          .attr("x", legendX)
+          .attr("y", legendY)
+          .attr("width", legendWidth)
+          .attr("height", legendHeight)
+          .style("fill", "url(#legend-gradient)")
+          .style("stroke", "#000")
+          .style("stroke-width", 1);
+
+        // Add labels for the legend (0 to 2)
+        svg.append("text")
+          .attr("x", legendX)
+          .attr("y", legendY + legendHeight + 15)
+          .attr("text-anchor", "start")
+          .style("fill", "#722F57")
+          .style("font-size", "12px")
+          .text("0.00");
+
+        svg.append("text")
+          .attr("x", legendX + legendWidth)
+          .attr("y", legendY + legendHeight + 15)
+          .attr("text-anchor", "end")
+          .style("fill", "#722F57")
+          .style("font-size", "12px")
+          .text("2.00");
+
+        // Add label for the legend
+        svg.append("text")
+          .attr("x", legendX + legendWidth / 2)
+          .attr("y", legendY - 5)
+          .attr("text-anchor", "middle")
+          .style("fill", "#722F57")
+          .style("font-size", "14px")
+          .text("Standard Deviation");
+      }
     });
   };
 
@@ -171,12 +239,12 @@ export const Plot = () => {
           {isTooltipVisible && (
             <div className="tooltip-box">
               {evalType === "Hofstede Questions-Cohere Model"
-                ? "We use Cohere to answer 24 Hofstede Work Life questions for each region."
+                ? "This evaluation uses the Cohere model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life."
                 : evalType === "Hofstede Questions-LLAMA2 Model"
-                ? "This evaluation utilizes the Llama-2-7B model to answer 24 Hofstede Work Life questions in Arabic, English, and Chinese."
+                ? "This evaluation uses the Llama-2-7B model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life."
                 : evalType === "Cohere Baseline"
                 ? "This evaluation uses the Cohere model to answer multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions."
-                : "This evaluation uses the Llama-2-7B model, with a coverage score measuring how accurately it answers multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions."}
+                : "This evaluation uses the Llama-2-7B model to answer multiple-choice questions based on selected topics and datasets in multiple languages, including Arabic, English, and Chinese. The evaluation includes 100 samples per region, and accuracy is determined by the coverage score, which measures how accurately the model answers questions within each region: Arab, Western, and Chinese."}
             </div>
           )}
         </div>
