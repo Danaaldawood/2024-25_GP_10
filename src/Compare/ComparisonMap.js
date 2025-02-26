@@ -19,19 +19,16 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
   const getRegionColor = (value) => {
     if (value === undefined || value === null) return "#e0e0e0";
     
-    if (value <= 15) {
-      const redScale = d3
-        .scaleLinear()
-        .domain([0, 15])
-        .range(["#ffcdd2", "#ef5350"]);
-      return redScale(value);
-    } else {
-      const greenScale = d3
-        .scaleLinear()
-        .domain([15, 100])
-        .range(["#e0f2e9", "#10a37f"]);
-      return greenScale(value);
+    // Use gray for 0% similarity, and orange gradient for 1-100%
+    if (value === 0) {
+      return "#C0C0C0"; // Gray for 0% similarity
     }
+
+    const orangeScale = d3
+      .scaleLinear()
+      .domain([1, 100]) // Start from 1% to 100% for the orange gradient
+      .range(["#f9d1a8", "#f28d27"]); // Light orange to dark orange
+    return orangeScale(value);
   };
 
   useEffect(() => {
@@ -89,15 +86,17 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("d", path)
           .attr("fill", (d) => {
             const countryId = parseInt(d.id);
-            if (!baseRegion || regionToIds[baseRegion]?.includes(countryId)) {
-              return "#C0C0C0";
+            // Ensure the base region is always gray (#C0C0C0) if baseRegion is defined
+            if (baseRegion && regionToIds[baseRegion]?.includes(countryId)) {
+              return "#C0C0C0"; // Gray for the base region
             }
+            // Color comparison regions based on similarity scores, excluding the base region
             for (const [region, score] of Object.entries(similarities)) {
-              if (regionToIds[region]?.includes(countryId)) {
+              if (region !== baseRegion && regionToIds[region]?.includes(countryId)) {
                 return getRegionColor(score);
               }
             }
-            return "#e0e0e0";
+            return "#e0e0e0"; // Default color for unassigned regions
           })
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
@@ -142,35 +141,20 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           const legendWidth = 200;
           const legendHeight = 15;
           const legendY = height - 70;
-          const redWidth = (legendWidth * 15) / 100;
-          const greenWidth = legendWidth - redWidth;
 
           const gradients = svg.append("defs");
 
+          // Define gradients for the legend: gray for 0%, then orange for 1-100%
           gradients
             .append("linearGradient")
-            .attr("id", "legend-gradient-red")
+            .attr("id", "legend-gradient-orange")
             .attr("x1", "0%")
             .attr("x2", "100%")
             .selectAll("stop")
             .data([
-              { offset: "0%", color: "#ffcdd2" },
-              { offset: "100%", color: "#ef5350" }
-            ])
-            .enter()
-            .append("stop")
-            .attr("offset", d => d.offset)
-            .attr("stop-color", d => d.color);
-
-          gradients
-            .append("linearGradient")
-            .attr("id", "legend-gradient-green")
-            .attr("x1", "0%")
-            .attr("x2", "100%")
-            .selectAll("stop")
-            .data([
-              { offset: "0%", color: "#e0f2e9" },
-              { offset: "100%", color: "#10a37f" }
+              { offset: "0%", color: "#f9d1a8" }, // Gray for 0%
+              { offset: "10%", color: "#f5bd85" }, // Transition to light orange
+              { offset: "100%", color: "#f28d27" } // Dark orange for 100%
             ])
             .enter()
             .append("stop")
@@ -183,16 +167,9 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
 
           legend
             .append("rect")
-            .attr("width", redWidth)
+            .attr("width", legendWidth)
             .attr("height", legendHeight)
-            .style("fill", "url(#legend-gradient-red)");
-
-          legend
-            .append("rect")
-            .attr("x", redWidth)
-            .attr("width", greenWidth)
-            .attr("height", legendHeight)
-            .style("fill", "url(#legend-gradient-green)");
+            .style("fill", "url(#legend-gradient-orange)");
 
           const legendScale = d3.scaleLinear()
             .domain([0, 100])

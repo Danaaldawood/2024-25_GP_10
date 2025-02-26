@@ -2,7 +2,7 @@
 .compare-result-page {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: #072040;
+  color: #722F57 ;
   text-align: center;
   min-height: 100vh;
   display: flex;
@@ -29,10 +29,10 @@
   display: inline-block;
   font-size: 28px;
   font-weight: bold;
-  color: #24526e;
+  color: #722F57 ;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border-bottom: 3px solid #24526e;
+  border-bottom: 3px solid #722F57 ;
   padding-bottom: 5px;
   margin: 10px auto;
 }
@@ -54,11 +54,11 @@
 
 .compare-result-select {
   font-size: 24px;
-  color: #24526e;
+  color: #722F57 ;
   font-weight: bold;
   background: transparent;
   border: none;
-  border-bottom: 2px solid #24526e;
+  border-bottom: 2px solid #722F57 ;
   padding: 2px 30px 2px 5px;
   cursor: pointer;
   appearance: none;
@@ -82,7 +82,7 @@
 
 .compare-result-select option {
   background: white;
-  color: #24526e;
+  color: #722F57 ;
   font-size: 18px;
 }
 
@@ -101,7 +101,7 @@
 
 .similarity-title {
   font-size: 24px;
-  color: #24526e;
+  color: #722F57 ;
   font-weight: bold;
   margin: 0;
   padding: 0;
@@ -133,7 +133,7 @@
 
 .compare-result-comparison-info {
   font-size: 22px;
-  color: #24526e;
+  color: #722F57 ;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,7 +141,7 @@
 }
 
 .compare-result-region-name {
-  color: #10a37f;
+  color: #722F57 ;
   font-weight: bold;
   padding: 4px 12px;
   border-radius: 4px;
@@ -149,7 +149,7 @@
 }
 
 .compare-result-similarity-score {
-  color: #24526e;
+  color: #722F57 ;
   font-weight: bold;
 }
 
@@ -158,7 +158,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #24526e;
+  color: #722F57 ;
   padding: 8px;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -188,7 +188,7 @@
 }
 
 .info-content h3 {
-  color: #24526e;
+  color: #722F57 ;
   font-size: 16px;
   margin-bottom: 8px;
   text-align: left;
@@ -220,10 +220,10 @@
   height: 8px;
   background: linear-gradient(
     to right,
-    /* Red gradient from 0-15% */ #ffcdd2 0%,
-    #ef5350 15%,
-    /* Green gradient from 15-100% */ #e0f2e9 15%,
-    #10a37f 100%
+    /* Red gradient from 0-15% */ #f9d1a8 0%,
+    #f9d1a8 15%,
+    /* Green gradient from 15-100% */ #f9d1a8 15%,
+    #f28d27  100%
   );
   border-radius: 4px;
 }
