@@ -571,3 +571,39 @@
     font-size: 44px;
   }
 }
+
+
+
+[dir="rtl"] .plot-select {
+  background-position: left 5px center;
+  padding: 2px 5px 2px 30px;
+}
+
+[dir="rtl"] .toggle-button:first-child {
+  border-radius: 0 25px 25px 0;
+}
+
+[dir="rtl"] .toggle-button:last-child {
+  border-radius: 25px 0 0 25px;
+}
+
+[dir="rtl"] .info-icon {
+  margin-right: 5px;
+  margin-left: 0;
+}
+
+[dir="rtl"] .tooltip-box {
+  text-align: right;
+}
+
+[dir="rtl"] #map svg text {
+  direction: ltr; /* Keep numbers LTR even in RTL mode */
+}
+
+[dir="rtl"] .explanation p {
+  text-align: right;
+}
+
+[dir="rtl"] .plot-back-btn .plot-back-icon {
+  transform: rotate(180deg); /* Flip the arrow icon to point right instead of left */
+}

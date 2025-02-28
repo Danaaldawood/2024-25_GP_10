@@ -2,7 +2,7 @@
 .compare-result-page {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: #722F57 ;
+  color: #722F57;
   text-align: center;
   min-height: 100vh;
   display: flex;
@@ -29,10 +29,10 @@
   display: inline-block;
   font-size: 28px;
   font-weight: bold;
-  color: #722F57 ;
+  color: #722F57;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border-bottom: 3px solid #722F57 ;
+  border-bottom: 3px solid #722F57;
   padding-bottom: 5px;
   margin: 10px auto;
 }
@@ -54,11 +54,11 @@
 
 .compare-result-select {
   font-size: 24px;
-  color: #722F57 ;
+  color: #722F57;
   font-weight: bold;
   background: transparent;
   border: none;
-  border-bottom: 2px solid #722F57 ;
+  border-bottom: 2px solid #722F57;
   padding: 2px 30px 2px 5px;
   cursor: pointer;
   appearance: none;
@@ -82,7 +82,7 @@
 
 .compare-result-select option {
   background: white;
-  color: #722F57 ;
+  color: #722F57;
   font-size: 18px;
 }
 
@@ -101,7 +101,7 @@
 
 .similarity-title {
   font-size: 24px;
-  color: #722F57 ;
+  color: #722F57;
   font-weight: bold;
   margin: 0;
   padding: 0;
@@ -133,7 +133,7 @@
 
 .compare-result-comparison-info {
   font-size: 22px;
-  color: #722F57 ;
+  color: #722F57;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,7 +141,7 @@
 }
 
 .compare-result-region-name {
-  color: #722F57 ;
+  color: #722F57;
   font-weight: bold;
   padding: 4px 12px;
   border-radius: 4px;
@@ -149,7 +149,7 @@
 }
 
 .compare-result-similarity-score {
-  color: #722F57 ;
+  color: #722F57;
   font-weight: bold;
 }
 
@@ -158,7 +158,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #722F57 ;
+  color: #722F57;
   padding: 8px;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -188,7 +188,7 @@
 }
 
 .info-content h3 {
-  color: #722F57 ;
+  color: #722F57;
   font-size: 16px;
   margin-bottom: 8px;
   text-align: left;
@@ -223,7 +223,7 @@
     /* Red gradient from 0-15% */ #f9d1a8 0%,
     #f9d1a8 15%,
     /* Green gradient from 15-100% */ #f9d1a8 15%,
-    #f28d27  100%
+    #f28d27 100%
   );
   border-radius: 4px;
 }
@@ -298,6 +298,51 @@
   }
 }
 
+/* --- RTL Support --- */
+/* Adjust info popup position for RTL */
+[dir="rtl"] .info-popup {
+  right: auto;
+  left: -150px;
+  text-align: right;
+}
+
+/* Adjust text alignment for RTL */
+[dir="rtl"] .info-content h3,
+[dir="rtl"] .info-content p {
+  text-align: right;
+}
+
+/* Reverse the gradient legend for RTL */
+[dir="rtl"] .gradient-legend {
+  flex-direction: row-reverse;
+}
+
+/* Adjust the info button position for RTL */
+[dir="rtl"] .info-container-inline {
+  flex-direction: row-reverse;
+}
+
+/* Adjust select arrows for RTL */
+[dir="rtl"] .compare-result-select {
+  background-position: left 5px center;
+  padding: 2px 5px 2px 30px;
+}
+
+/* Properly align the comparison info for RTL */
+[dir="rtl"] .compare-result-comparison-info {
+  flex-direction: row-reverse;
+}
+
+/* Adjust the selectors for RTL */
+[dir="rtl"] .compare-result-selectors {
+  flex-direction: row-reverse;
+}
+
+/* Ensure percentage values display correctly in RTL */
+[dir="rtl"] .compare-result-similarity-score {
+  unicode-bidi: isolate; /* Ensure correct display of the score with the colon */
+}
+
 /* --- Responsive Media Queries --- */
 /* Tablet View */
 @media (max-width: 768px) {
@@ -316,19 +361,23 @@
     right: -100px;
   }
 
-  .compare-result-title {
-    font-size: 24px;
+  [dir="rtl"] .info-popup {
+    left: -100px;
+    right: auto;
   }
 
-  .compare-result-description {
-    font-size: 14px;
-    padding: 0 20px;
+  .compare-result-title {
+    font-size: 24px;
   }
 
   .compare-result-selectors {
     flex-direction: column;
     gap: 20px;
     align-items: center;
+  }
+
+  [dir="rtl"] .compare-result-selectors {
+    flex-direction: column;
   }
 
   .compare-result-select {
@@ -338,55 +387,5 @@
   .compare-result-comparison-info {
     font-size: 18px;
     flex-wrap: wrap;
-  }
-}
-
-[dir="rtl"] .info-popup {
-  right: auto;
-  left: -150px;
-  text-align: right;
-}
-
-[dir="rtl"] .info-content h3 {
-  text-align: right;
-}
-
-[dir="rtl"] .info-content p {
-  text-align: right;
-}
-
-[dir="rtl"] .gradient-legend {
-  flex-direction: row-reverse;
-}
-
-/* Adjust the info button position for RTL */
-[dir="rtl"] .info-container-inline {
-  flex-direction: row-reverse;
-}
-
-/* Adjust select arrows for RTL */
-[dir="rtl"] .compare-result-select {
-  background-position: left 5px center;
-  padding: 2px 5px 2px 30px;
-}
-
-/* RTL support for comparison info */
-[dir="rtl"] .compare-result-comparison-info {
-  flex-direction: row-reverse;
-}
-
-/* RTL support for selectors */
-[dir="rtl"] .compare-result-selectors {
-  flex-direction: row-reverse;
-}
-
-@media (max-width: 768px) {
-  [dir="rtl"] .info-popup {
-    left: -100px;
-    right: auto;
-  }
-  
-  [dir="rtl"] .compare-result-selectors {
-    flex-direction: column;
   }
 }

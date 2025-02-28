@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 
 function CompareResult() {
   const navigate = useNavigate();
-  const { t } = useTranslation('comparepage');
+  const { t, i18n } = useTranslation('comparepage');
 
   // --- State Management ---
   const [showInfo, setShowInfo] = useState(false);
@@ -83,7 +83,7 @@ function CompareResult() {
   }, [baseRegion, selectedTopic]);
 
   return (
-    <div className="compare-result-page">
+    <div className="compare-result-page" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Meta Tags */}
       <Helmet>
         <title>{t('comparepage.meta.title')}</title>
@@ -182,25 +182,43 @@ function CompareResult() {
             </div>
           )}
 
-          {/* Similarity Results Display */}
+          {/* Similarity Results Display with RTL Support */}
           {baseRegion && selectedTopic && !loading && !error && (
-            <div className="compare-result-similarity-container">
-              {getComparisonRegions().map((region) => (
-                <div key={region} className="compare-result-comparison-info">
-                  <span className="compare-result-region-name">
-                    {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
-                  </span>
-                  <span>{t('comparepage.comparison.and')}</span>
-                  <span className="compare-result-region-name">
-                    {t(`comparepage.regions.${region.toLowerCase()}`)}
-                  </span>
-                  <span className="compare-result-similarity-score">
-                    : {(similarities[region] || 0).toFixed(2)}%
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
+  <div className="compare-result-similarity-container">
+    {getComparisonRegions().map((region) => (
+      <div key={region} className="compare-result-comparison-info">
+        {/* In RTL mode, put similarity score at the beginning (left side) */}
+        {i18n.language === 'ar' ? (
+          <>
+            <span className="compare-result-similarity-score rtl-score">
+              {`: ${(similarities[region] || 0).toFixed(2)}%`}
+            </span>
+            <span className="compare-result-region-name">
+              {t(`comparepage.regions.${region.toLowerCase()}`)}
+            </span>
+            <span>{t('comparepage.comparison.and')}</span>
+            <span className="compare-result-region-name">
+              {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="compare-result-region-name">
+              {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
+            </span>
+            <span>{t('comparepage.comparison.and')}</span>
+            <span className="compare-result-region-name">
+              {t(`comparepage.regions.${region.toLowerCase()}`)}
+            </span>
+            <span className="compare-result-similarity-score">
+              {`: ${(similarities[region] || 0).toFixed(2)}%`}
+            </span>
+          </>
+        )}
+      </div>
+    ))}
+  </div>
+)}
         </div>
       </div>
 

@@ -1,0 +1,140 @@
+{
+  "en": {
+    "pageTitle": "Plot",
+    "headerTitle": "THE OVERALL EVALUATION",
+    "workLife": "Work Life",
+    "map": "Map",
+    "chart": "Chart",
+    "freeStyleChatting": "Free style chatting",
+    "selectTopic": "Select Topic",
+    "next": "Next",
+    "selectATopicPlaceholder": "Select a topic",
+    "pleaseSelectATopic": "Please select a topic",
+    "allTopics": "All Topics",
+    "food": "Food",
+    "sport": "Sport",
+    "family": "Family",
+    "education": "Education",
+    "holidays": "Holidays",
+    "worklife": "Work life",
+    "greeting": "Greeting",
+    "standardDeviation": "Standard Deviation",
+    "coverageScore": "Coverage Score",
+    "tooltips": {
+      "hofstedeCohere": "This evaluation uses the Cohere model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.",
+      "hofstedeLlama": "This evaluation uses the Llama-2-7B model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.",
+      "cohereBaseline": "This evaluation uses the Cohere model to answer multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions.",
+      "llamaBaseline": "This evaluation uses the Llama-2-7B model to answer multiple-choice questions based on selected topics and datasets in multiple languages, including Arabic, English, and Chinese. The evaluation includes 100 samples per region, and accuracy is determined by the coverage score, which measures how accurately the model answers questions within each region: Arab, Western, and Chinese."
+    },
+    "explanations": {
+      "hofstedeCohere": "This evaluation uses Cohere to answer 24 Hofstede Work Life questions across three regions (Arab, Chinese, Western). The standard deviation reflects the variability in responses within each region.",
+      "hofstedeLlama": "Llama-2-7B needs fine-tuning. It does not work well with multiple-choice questions. All three regions predominantly answered 'A' when given options A, B, C, D, E.",
+      "cohereBaseline": "Cohere evaluated answers for the \"{topic}\" topic. Coverage Scores: Arab - {arabScore}%, Western - {westernScore}%, Chinese - {chineseScore}%.",
+      "llamaBaseline": "Llama-2-7B evaluated answers for the \"{topic}\" topic. Coverage Scores: Arab - {arabScore}%, Western - {westernScore}%, Chinese - {chineseScore}%."
+    },
+    "regions": {
+      "arab": "Arab",
+      "western": "Western",
+      "chinese": "Chinese"
+    },
+    "modelNames": {
+      "cohereBaseline": "Cohere Baseline",
+      "llamaBaseline": "LLAMA2 Baseline",
+      "hofstedeCohere": "Hofstede Questions-Cohere Model",
+      "hofstedeLlama": "Hofstede Questions-LLAMA2 Model",
+      "hofstedeQuestions": "Hofstede Questions"
+    }
+  },
+  "ar": {
+    "pageTitle": "المخطط",
+    "headerTitle": "التقييم الشامل",
+    "workLife": "حياة العمل",
+    "map": "خريطة",
+    "chart": "رسم بياني",
+    "freeStyleChatting": "دردشة حرة",
+    "selectTopic": "اختر موضوعاً",
+    "next": "التالي",
+    "selectATopicPlaceholder": "اختر موضوعاً",
+    "pleaseSelectATopic": "الرجاء اختيار موضوع",
+    "allTopics": "كل المواضيع",
+    "food": "الطعام",
+    "sport": "الرياضة",
+    "family": "العائلة",
+    "education": "التعليم",
+    "holidays": "العطلات",
+    "worklife": "حياة العمل",
+    "greeting": "التحية",
+    "standardDeviation": "الانحراف المعياري",
+    "coverageScore": "نسبة التغطية",
+    "tooltips": {
+      "hofstedeCohere": "يستخدم هذا التقييم نموذج Cohere للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
+      "hofstedeLlama": "يستخدم هذا التقييم نموذج Llama-2-7B للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
+      "cohereBaseline": "يستخدم هذا التقييم نموذج Cohere للإجابة على أسئلة متعددة الخيارات بناءً على مواضيع ومجموعات بيانات مختارة. يشمل التقييم 100 عينة لكل منطقة، ويتم تحديد الدقة من خلال نسبة التنبؤات الصحيحة إلى إجمالي الأسئلة.",
+      "llamaBaseline": "يستخدم هذا التقييم نموذج Llama-2-7B للإجابة على أسئلة متعددة الخيارات بناءً على مواضيع ومجموعات بيانات مختارة بلغات متعددة، بما في ذلك العربية والإنجليزية والصينية. يشمل التقييم 100 عينة لكل منطقة، ويتم تحديد الدقة من خلال نسبة التغطية، التي تقيس مدى دقة إجابة النموذج على الأسئلة داخل كل منطقة: العربية والغربية والصينية."
+    },
+    "explanations": {
+      "hofstedeCohere": "يستخدم هذا التقييم Cohere للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
+      "hofstedeLlama": "يحتاج Llama-2-7B إلى ضبط دقيق. لا يعمل بشكل جيد مع الأسئلة متعددة الخيارات. أجابت المناطق الثلاث بشكل أساسي بـ 'A' عند إعطاء خيارات A و B و C و D و E.",
+      "cohereBaseline": "قيّم Cohere الإجابات على موضوع \"{topic}\". نسب التغطية: العربية - {arabScore}%، الغربية - {westernScore}%، الصينية - {chineseScore}%.",
+      "llamaBaseline": "قيّم Llama-2-7B الإجابات على موضوع \"{topic}\". نسب التغطية: العربية - {arabScore}%، الغربية - {westernScore}%، الصينية - {chineseScore}%."
+    },
+    "regions": {
+      "arab": "العربية",
+      "western": "الغربية",
+      "chinese": "الصينية"
+    },
+    "modelNames": {
+      "cohereBaseline": "النموذج الأساسي Cohere",
+      "llamaBaseline": "النموذج الأساسي LLAMA2",
+      "hofstedeCohere": "أسئلة هوفستيد-نموذج Cohere",
+      "hofstedeLlama": "أسئلة هوفستيد-نموذج LLAMA2",
+      "hofstedeQuestions": "أسئلة هوفستيد"
+    }
+  },
+  "ch": {
+    "pageTitle": "图表",
+    "headerTitle": "整体评估",
+    "workLife": "工作生活",
+    "map": "地图",
+    "chart": "图表",
+    "freeStyleChatting": "自由风格聊天",
+    "selectTopic": "选择主题",
+    "next": "下一步",
+    "selectATopicPlaceholder": "选择一个主题",
+    "pleaseSelectATopic": "请选择一个主题",
+    "allTopics": "所有主题",
+    "food": "食物",
+    "sport": "运动",
+    "family": "家庭",
+    "education": "教育",
+    "holidays": "假期",
+    "worklife": "工作生活",
+    "greeting": "问候",
+    "standardDeviation": "标准偏差",
+    "coverageScore": "覆盖率分数",
+    "tooltips": {
+      "hofstedeCohere": "此评估使用Cohere模型用阿拉伯语、英语和中文回答每个地区（阿拉伯、西方和中国）的24个霍夫斯泰德工作生活问题。计算标准偏差来衡量这些问题和地区之间回答的变异性，反映了对工作生活的文化观点的多样性。",
+      "hofstedeLlama": "此评估使用Llama-2-7B模型用阿拉伯语、英语和中文回答每个地区（阿拉伯、西方和中国）的24个霍夫斯泰德工作生活问题。计算标准偏差来衡量这些问题和地区之间回答的变异性，反映了对工作生活的文化观点的多样性。",
+      "cohereBaseline": "此评估使用Cohere模型回答基于选定主题和数据集的多项选择题。评估包括每个地区100个样本，准确性由正确预测与总问题的比率决定。",
+      "llamaBaseline": "此评估使用Llama-2-7B模型用多种语言（包括阿拉伯语、英语和中文）回答基于选定主题和数据集的多项选择题。评估包括每个地区100个样本，准确性由覆盖率分数决定，该分数衡量模型在每个地区（阿拉伯、西方和中国）内回答问题的准确性。"
+    },
+    "explanations": {
+      "hofstedeCohere": "此评估使用Cohere回答三个地区（阿拉伯、中国、西方）的24个霍夫斯泰德工作生活问题。标准偏差反映了每个地区内回答的变异性。",
+      "hofstedeLlama": "Llama-2-7B需要微调。它在多项选择题上表现不佳。在给出A、B、C、D、E选项时，三个地区主要回答'A'。",
+      "cohereBaseline": "Cohere评估了\"{topic}\"主题的答案。覆盖率分数：阿拉伯 - {arabScore}%，西方 - {westernScore}%，中国 - {chineseScore}%。",
+      "llamaBaseline": "Llama-2-7B评估了\"{topic}\"主题的答案。覆盖率分数：阿拉伯 - {arabScore}%，西方 - {westernScore}%，中国 - {chineseScore}%。"
+    },
+    "regions": {
+      "arab": "阿拉伯",
+      "western": "西方",
+      "chinese": "中国"
+    },
+    "modelNames": {
+      "cohereBaseline": "Cohere基线模型",
+      "llamaBaseline": "LLAMA2基线模型",
+      "hofstedeCohere": "霍夫斯泰德问题-Cohere模型",
+      "hofstedeLlama": "霍夫斯泰德问题-LLAMA2模型",
+      "hofstedeQuestions": "霍夫斯泰德问题"
+    }
+  }
+}
