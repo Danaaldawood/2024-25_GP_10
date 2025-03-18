@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -12,15 +10,17 @@ export const ConversationLayout = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [messagesA, setMessagesA] = useState([
-    { type: "ai", content: "Hello, this is A. How can I assist you?" },
+    { type: "ai", content: "Hello, this is Mistral-7B-Instruct. How can I assist you?" },
   ]);
   const [messagesB, setMessagesB] = useState([
-    { type: "ai", content: "Hello, this is Model B. How can I assist you?" },
+    { type: "ai", content: "Hello, this is Llama-2 (7B). How can I assist you?" },
   ]);
   const sendLimit = 7;
   const [sendCount, setSendCount] = useState(0);
   const [canGiveFeedback, setCanGiveFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingA, setIsLoadingA] = useState(false);
+  const [isLoadingB, setIsLoadingB] = useState(false);
 
   const progressWidth = `${(sendCount / sendLimit) * 100}%`;
 
@@ -44,39 +44,67 @@ export const ConversationLayout = () => {
       setMessagesB(prev => [...prev, userMessage]);
       
       setIsLoading(true);
+      setIsLoadingA(true);
+      setIsLoadingB(true);
       setInputMessage("");
       setSendCount(prev => prev + 1);
 
       try {
-        // Send message to Cohere backend (Model A)
-        const response = await fetch('http://localhost:5000/api/chat', {
+        // Send message to Mistral model (Model A)
+        const responseA = fetch('http://localhost:5000/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ message: inputMessage }),
-        });
+          body: JSON.stringify({ message: inputMessage, model_type: 'A' }),
+        }).then(res => res.json())
+          .then(data => {
+            if (data.status === 'success') {
+              // Add AI response to Model A chat
+              setMessagesA(prev => [...prev, { type: "ai", content: data.response }]);
+            } else {
+              setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, I couldn't process your request." }]);
+            }
+            setIsLoadingA(false);
+          })
+          .catch(error => {
+            console.error('Error with Model A:', error);
+            setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, there was an error processing your request." }]);
+            setIsLoadingA(false);
+          });
 
-        const data = await response.json();
-        
-        if (data.status === 'success') {
-          // Add AI response to Model A chat
-          setMessagesA(prev => [...prev, { type: "ai", content: data.response }]);
-        } else {
-          setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, I couldn't process your request." }]);
-        }
+        // Send message to Llama model (Model B)
+        const responseB = fetch('http://localhost:5000/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: inputMessage, model_type: 'B' }),
+        }).then(res => res.json())
+          .then(data => {
+            if (data.status === 'success') {
+              // Add AI response to Model B chat
+              setMessagesB(prev => [...prev, { type: "ai", content: data.response }]);
+            } else {
+              setMessagesB(prev => [...prev, { type: "ai", content: "Sorry, I couldn't process your request." }]);
+            }
+            setIsLoadingB(false);
+          })
+          .catch(error => {
+            console.error('Error with Model B:', error);
+            setMessagesB(prev => [...prev, { type: "ai", content: "Sorry, there was an error processing your request." }]);
+            setIsLoadingB(false);
+          });
 
-        // Simulate Model B response (you can replace this with another model later)
-        setTimeout(() => {
-          setMessagesB(prev => [...prev, { type: "ai", content: "Model B received your message." }]);
-        }, 1000);
-
+        // Wait for both requests to complete
+        await Promise.all([responseA, responseB]);
         setCanGiveFeedback(true);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error sending message:', error);
-        setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, there was an error processing your request." }]);
-      } finally {
         setIsLoading(false);
+        setIsLoadingA(false);
+        setIsLoadingB(false);
       }
     }
   };
@@ -120,25 +148,26 @@ export const ConversationLayout = () => {
 
       <div className="dual-chat-container">
         <div className="chat-model">
-          <h2 className="conversation-title">Model A</h2>
+          <h2 className="conversation-title">Model A (Mistral-7B)</h2>
           <div className="freestyle-message-list">
             {messagesA.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
                 <div className="freestyle-message-content">{message.content}</div>
               </div>
             ))}
-            {isLoading && <div className="message ai-message">Typing...</div>}
+            {isLoadingA && <div className="message ai-message">Typing...</div>}
           </div>
         </div>
 
         <div className="chat-model">
-          <h2 className="conversation-title">Model B</h2>
+          <h2 className="conversation-title">Model B (Llama-2-7B)</h2>
           <div className="freestyle-message-list">
             {messagesB.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
                 <div className="freestyle-message-content">{message.content}</div>
               </div>
             ))}
+            {isLoadingB && <div className="message ai-message">Typing...</div>}
           </div>
         </div>
       </div>
