@@ -30,7 +30,7 @@
     "cohereBaseline": "النموذج الأساسي Cohere",
     "hofstedeLlama": "أسئلة هوفستيد-نموذج LLAMA2",
     "hofstedeCohere": "أسئلة هوفستيد-نموذج Cohere",
-    "cohereFineTuned": "النموذج المدرب Choher",
+    "cohereFineTuned": "النموذج المدرب Cohere",
     "evaluateButton": "تقييم"
   },
   "ch": {
