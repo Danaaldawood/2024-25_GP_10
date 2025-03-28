@@ -56,7 +56,6 @@
 
 
 
-
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import headertrans from '../Transulation/Headr_trans.json';
@@ -77,8 +76,8 @@ import ForgetPassTrans from '../Transulation/ForgetPass_tran.json';
 import TermsModaltrans from '../Transulation/TermsModal_trans.json';
 
 i18n.use(initReactI18next).init({
-  lng: localStorage.getItem('i18nextLng') || 'en', // Load from localStorage if available, else default to 'en'
-  fallbackLng: 'ar', // fallback language
+  lng: localStorage.getItem('i18nextLng') || 'en',
+  fallbackLng: 'ar',
   ns: [
     'headerpage',
     'evalutionpage', 
@@ -94,8 +93,7 @@ i18n.use(initReactI18next).init({
     'EdiPage',
     'notifyPage'
   ],
-  defaultNS: 'viewPage', // default namespace if not specified 
-
+  defaultNS: 'viewPage',
   resources: {
     en: {
       headerpage: headertrans.en,
@@ -152,12 +150,14 @@ i18n.use(initReactI18next).init({
       TermsModal: TermsModaltrans.ch,
     },
   },
+  interpolation: {
+    escapeValue: false, // React already escapes values
+  },
   react: {
-    useSuspense: false, // Optional: only if you have issues with Suspense
+    useSuspense: false,
   },
 });
 
-// Watch for language change and save it to localStorage
 i18n.on('languageChanged', (lng) => {
   localStorage.setItem('i18nextLng', lng);
 });

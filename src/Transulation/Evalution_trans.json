@@ -13,6 +13,7 @@
     "cohereBaseline": "Cohere Baseline",
     "hofstedeLlama": "Hofstede Questions-LLAMA2 Model",
     "hofstedeCohere": "Hofstede Questions-Cohere Model",
+    "cohereFineTuned": "Cohere Fine-tuned Model",
     "evaluateButton": "Evaluate"
   },
   "ar": {
@@ -29,6 +30,7 @@
     "cohereBaseline": "النموذج الأساسي Cohere",
     "hofstedeLlama": "أسئلة هوفستيد-نموذج LLAMA2",
     "hofstedeCohere": "أسئلة هوفستيد-نموذج Cohere",
+    "cohereFineTuned": "النموذج المدرب Choher",
     "evaluateButton": "تقييم"
   },
   "ch": {
@@ -45,6 +47,7 @@
     "cohereBaseline": "Cohere基线模型",
     "hofstedeLlama": "霍夫斯泰德问题-LLAMA2模型",
     "hofstedeCohere": "霍夫斯泰德问题-Cohere模型",
+    "cohereFineTuned": "Cohere微调模型",
     "evaluateButton": "评估"
   }
 }

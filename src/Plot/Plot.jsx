@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as d3 from "d3";
@@ -10,28 +8,44 @@ import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
+import { useTranslation } from 'react-i18next';
 
 export const Plot = () => {
+  const { t, i18n } = useTranslation('plotpage');
   const { state } = useLocation();
   const navigate = useNavigate();
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [selectedDimension, setSelectedDimension] = useState("");
-  const [dimensionPlaceholder, setDimensionPlaceholder] = useState("Select a topic");
+  const [dimensionPlaceholder, setDimensionPlaceholder] = useState(t('selectATopicPlaceholder'));
   const [hasError, setHasError] = useState(false);
   const [isTooltipVisible, setTooltipVisible] = useState(false);
 
   const evalLLM = state?.evalLLM || "";
   const evalType = state?.evalType || "";
-  const [selectedTopic, setSelectedTopic] = useState("All Topics");
+  const [selectedTopicKey, setSelectedTopicKey] = useState('allTopics');
   const [results, setResults] = useState(null);
   const [showMap, setShowMap] = useState(true);
 
-  const topics = ["All Topics", "Food", "Sport", "Family", "Holidays/Celebration/Leisure", "Work Life", "Greeting"];
+  const topicKeys = ['allTopics', 'food', 'sport', 'family', 'holidays', 'worklife', 'greeting'];
+  const topicKeyToApiValue = {
+    'allTopics': 'All Topics',
+    'food': 'Food',
+    'sport': 'Sport',
+    'family': 'Family',
+    'holidays': 'Holidays/Celebration/Leisure',
+    'worklife': 'Work life',
+    'greeting': 'Greeting'
+  };
+
   const regionToIds = {
     Western: [840, 124, 826, 250, 276, 380, 724, 620, 528, 56, 756, 40, 372, 752, 578, 208, 246],
     Arab: [12, 48, 818, 368, 400, 414, 422, 434, 504, 512, 275, 634, 682, 729, 760, 788, 784, 887],
     Chinese: [156, 344, 446, 158, 702],
   };
+
+  useEffect(() => {
+    setDimensionPlaceholder(t('selectATopicPlaceholder'));
+  }, [i18n.language, t]);
 
   const handleDimensionChange = (event) => {
     setSelectedDimension(event.target.value);
@@ -40,7 +54,7 @@ export const Plot = () => {
 
   const handleNext = () => {
     if (!selectedDimension) {
-      setDimensionPlaceholder("Please select a topic");
+      setDimensionPlaceholder(t('pleaseSelectATopic'));
       setHasError(true);
       return;
     }
@@ -53,14 +67,15 @@ export const Plot = () => {
       d3.select("#map").selectAll("*").remove();
       renderMap();
     }
-  }, [showMap, results]);
+  }, [showMap, results, i18n.language]);
 
   const fetchResults = async () => {
     try {
+      const apiTopicValue = topicKeyToApiValue[selectedTopicKey];
       const response = await fetch("http://127.0.0.1:5000/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: selectedTopic, model: evalLLM, evalType: evalType }),
+        body: JSON.stringify({ topic: apiTopicValue, model: evalLLM, evalType: evalType }),
       });
       const data = await response.json();
       setResults(data);
@@ -73,7 +88,7 @@ export const Plot = () => {
     if (evalLLM !== "Select a model") {
       fetchResults();
     }
-  }, [selectedTopic, evalLLM, evalType]);
+  }, [selectedTopicKey, evalLLM, evalType]);
 
   const renderMap = () => {
     const width = 960;
@@ -84,16 +99,13 @@ export const Plot = () => {
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then((geoData) => {
       const countries = feature(geoData, geoData.objects.countries);
 
-      // Define the color scale before using it
       const colorScale = d3.scaleLinear()
         .domain([0, 2])
         .range(["#f9d1a8", "#f28d27"]);
-      
 
-      // Add bar legend for coverage and standard deviation
       const legendWidth = 200;
       const legendHeight = 20;
-      const legendX = width / 2 - legendWidth / 2; 
+      const legendX = width / 2 - legendWidth / 2;
       const legendY = height - 50;
 
       const defs = svg.append("defs");
@@ -140,9 +152,7 @@ export const Plot = () => {
         .attr("text-anchor", "middle")
         .style("fill", "#722F57")
         .style("font-size", "14px")
-        .text(evalType.includes("Hofstede") ? "Standard Deviation" : "Coverage Score");
-
-      
+        .text(evalType.includes("Hofstede") ? t('standardDeviation') : t('coverageScore'));
 
       svg.append("g")
         .selectAll("path")
@@ -192,52 +202,105 @@ export const Plot = () => {
 
   const getModelExplanation = () => {
     if (evalType === "Cohere Fine-tuned Model") {
-      return "We fine-tuned a Mistral-7B model on a culturally aligned dataset covering multiple topics and languages (Arabic, English, and Chinese). The model was trained using region-specific multiple-choice questions to ensure accurate representation of sociocultural values. This approach improves coverage accuracy across Arab, Western, and Chinese regions, especially for topics like Food, Work Life, Family, and more.";
+      return t('tooltips.cohereFineTuned');
     } else if (evalType === "Cohere Baseline") {
-      return "This evaluation uses the Cohere model to answer multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions.";
+      return t('tooltips.cohereBaseline');
     } else if (evalType === "LLAMA2 Baseline") {
-      return "This evaluation uses the Llama-2-7B model to answer multiple-choice questions based on selected topics and datasets in multiple languages, including Arabic, English, and Chinese. The evaluation includes 100 samples per region, and accuracy is determined by the coverage score, which measures how accurately the model answers questions within each region: Arab, Western, and Chinese.";
+      return t('tooltips.llamaBaseline');
     } else if (evalType === "Hofstede Questions-Cohere Model") {
-      return "This evaluation uses the Cohere model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.";
+      return t('tooltips.hofstedeCohere');
     } else if (evalType === "Hofstede Questions-LLAMA2 Model") {
-      return "This evaluation uses the Llama-2-7B model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.";
+      return t('tooltips.hofstedeLlama');
     }
     return null;
   };
 
   const getCoverageText = () => {
-    if (!results) return "";
+    if (!results) {
+      console.log("No results available");
+      return t('explanations.noResults', { defaultValue: "No results available." });
+    }
+
+    console.log("Current language:", i18n.language);
+
+    if (evalType === "Hofstede Questions-Cohere Model") {
+      const text = t('explanations.hofstedeCohere');
+      console.log("Hofstede Cohere text:", text);
+      return text;
+    } else if (evalType === "Hofstede Questions-LLAMA2 Model") {
+      const text = t('explanations.hofstedeLlama');
+      console.log("Hofstede LLAMA2 text:", text);
+      return text;
+    }
+
     const arab = results?.Arab?.coverage_score?.toFixed(2) || "0.00";
     const western = results?.Western?.coverage_score?.toFixed(2) || "0.00";
     const chinese = results?.Chinese?.coverage_score?.toFixed(2) || "0.00";
-    return `${evalType} evaluated answers for the \"${selectedTopic}\" topic. Coverage Scores: Arab - ${arab}%, Western - ${western}%, Chinese - ${chinese}%.`;
+
+    const translatedEvalType = t(`modelNames.${evalType.toLowerCase().replace(/ /g, '')}`, { defaultValue: evalType });
+    const translatedTopic = t(selectedTopicKey, { defaultValue: selectedTopicKey });
+
+    console.log("translatedEvalType:", translatedEvalType);
+    console.log("translatedTopic:", translatedTopic);
+    console.log("arab:", arab, "western:", western, "chinese:", chinese);
+
+    const coverageText = t('explanations.coverageText', {
+      evalType: translatedEvalType,
+      topic: translatedTopic,
+      arab: arab,
+      western: western,
+      chinese: chinese,
+      defaultValue: '{evalType} evaluated answers for the "{topic}" topic. Coverage Scores: Arab - {arab}%, Western - {western}%, Chinese - {chinese}%.'
+    });
+
+    console.log("Coverage text (from t):", coverageText);
+
+    if (coverageText.includes('{evalType}') || coverageText.includes('{topic}')) {
+      console.warn("Translation interpolation failed, constructing string manually");
+      const evaluatedAnswers = t('explanations.evaluatedAnswers', { defaultValue: 'evaluated answers for the' });
+      const topicLabel = t('explanations.topicLabel', { defaultValue: 'topic' });
+      const coverageScores = t('explanations.coverageScores', { defaultValue: 'Coverage Scores' });
+      const arabLabel = t('regions.arab', { defaultValue: 'Arab' });
+      const westernLabel = t('regions.western', { defaultValue: 'Western' });
+      const chineseLabel = t('regions.chinese', { defaultValue: 'Chinese' });
+
+      return `${translatedEvalType} ${evaluatedAnswers} "${translatedTopic}" ${topicLabel}. ${coverageScores}: ${arabLabel} - ${arab}%, ${westernLabel} - ${western}%, ${chineseLabel} - ${chinese}%.`;
+    }
+
+    return coverageText;
   };
 
   return (
-    <div className="plotpage">
-      <Helmet><title>Plot</title></Helmet>
+    <div className="plotpage" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+      <Helmet><title>{t('pageTitle')}</title></Helmet>
       <div className="plot-page-header">
-        <button className="plot-back-btn" onClick={() => navigate("/evaluation")}> <FaArrowLeft className="plot-back-icon" /> </button>
+        <button className="plot-back-btn" onClick={() => navigate("/evaluation")}> 
+          <FaArrowLeft className="plot-back-icon" /> 
+        </button>
       </div>
 
       <div className="plotheader">
-        <h1 className="header-title">THE OVERALL EVALUATION</h1>
+        <h1 className="header-title">{t('headerTitle')}</h1>
         <div className="selection-container">
-          <h2 className="underlined">{evalType}</h2>
+          <h2 className="underlined">{t(`modelNames.${evalType.toLowerCase().replace(/ /g, '')}`, { defaultValue: evalType })}</h2>
           {(evalType.includes("Baseline") || evalType === "Cohere Fine-tuned Model") ? (
-            <select className="plot-select" value={selectedTopic} onChange={(e) => setSelectedTopic(e.target.value)}>
-              {topics.map((topic) => (
-                <option key={topic} value={topic}>{topic}</option>
+            <select 
+              className="plot-select" 
+              value={selectedTopicKey} 
+              onChange={(e) => setSelectedTopicKey(e.target.value)}
+            >
+              {topicKeys.map((key) => (
+                <option key={key} value={key}>{t(key)}</option>
               ))}
             </select>
           ) : (
-            <h2 className="underlined">Work Life</h2>
+            <h2 className="underlined">{t('workLife')}</h2>
           )}
         </div>
 
         <div className="version-container">
           <h2 className="version-main">
-            {evalType}
+            {t(`modelNames.${evalType.toLowerCase().replace(/ /g, '')}`, { defaultValue: evalType })}
             <FaInfoCircle className="info-icon" onClick={() => setTooltipVisible(!isTooltipVisible)} />
           </h2>
           {isTooltipVisible && (
@@ -246,16 +309,20 @@ export const Plot = () => {
         </div>
 
         <div className="toggle-container">
-          <button className={`toggle-button ${showMap ? "active" : ""}`} onClick={() => setShowMap(true)}>Map</button>
-          <button className={`toggle-button ${!showMap ? "active" : ""}`} onClick={() => setShowMap(false)}>Chart</button>
+          <button className={`toggle-button ${showMap ? "active" : ""}`} onClick={() => setShowMap(true)}>
+            {t('map')}
+          </button>
+          <button className={`toggle-button ${!showMap ? "active" : ""}`} onClick={() => setShowMap(false)}>
+            {t('chart')}
+          </button>
         </div>
 
         {showMap ? <div id="map"></div> : (
           <Bar
             data={{
-              labels: ["Arab", "Chinese", "Western"],
+              labels: [t('regions.arab'), t('regions.chinese'), t('regions.western')],
               datasets: [{
-                label: evalType.includes("Hofstede") ? "Standard Deviation" : "Coverage Score",
+                label: evalType.includes("Hofstede") ? t('standardDeviation') : t('coverageScore'),
                 data: evalType.includes("Hofstede")
                   ? [results?.Arab?.standard_deviation || 0, results?.Chinese?.standard_deviation || 0, results?.Western?.standard_deviation || 0]
                   : [results?.Arab?.coverage_score || 0, results?.Chinese?.coverage_score || 0, results?.Western?.coverage_score || 0],
@@ -270,14 +337,16 @@ export const Plot = () => {
         </div>
 
         <div className="plotsubmit-container">
-          <button className="plotsubmit" onClick={() => setPopupOpen(true)}>Free style chatting</button>
+          <button className="plotsubmit" onClick={() => setPopupOpen(true)}>
+            {t('freeStyleChatting')}
+          </button>
         </div>
 
         {isPopupOpen && (
           <div className="plotdialog-container">
             <dialog open className="plotpopup-dialog">
               <div className="plotpopup-content">
-                <h2>Select Topic</h2>
+                <h2>{t('selectTopic')}</h2>
                 <select
                   name="plotDim"
                   id="plotDim"
@@ -286,17 +355,17 @@ export const Plot = () => {
                   onChange={handleDimensionChange}
                 >
                   <option value="" disabled>{dimensionPlaceholder}</option>
-                  <option value="All Topics">All Topics</option>
-                  <option value="Food">Food</option>
-                  <option value="Sport">Sport</option>
-                  <option value="Family">Family</option>
-                  <option value="Education">Education</option>
-                  <option value="Holidays">Holidays</option>
-                  <option value="Work life">Work life</option>
-                  <option value="Greeting">Greeting</option>
+                  <option value="All Topics">{t('allTopics')}</option>
+                  <option value="Food">{t('food')}</option>
+                  <option value="Sport">{t('sport')}</option>
+                  <option value="Family">{t('family')}</option>
+                  <option value="Education">{t('education')}</option>
+                  <option value="Holidays">{t('holidays')}</option>
+                  <option value="Work life">{t('worklife')}</option>
+                  <option value="Greeting">{t('greeting')}</option>
                 </select>
                 <div>
-                  <button className="plot-button2" onClick={handleNext}>Next</button>
+                  <button className="plot-button2" onClick={handleNext}>{t('next')}</button>
                 </div>
               </div>
             </dialog>
