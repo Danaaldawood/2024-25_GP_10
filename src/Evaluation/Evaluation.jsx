@@ -82,7 +82,24 @@ export const Evaluation = () => {
                 <option value="Hofstede Questions-Cohere Model">{t('hofstedeCohere')}</option>
               </select>
             </div>
+          )}{evalLLM === "Fine-Tuned" && (
+            <div className="evalinput">
+              <label className="evallabel">{t('evaluationType')}</label>
+              <select
+                name="evalType"
+                id="evalType"
+                className="llm"
+                value={evalType}
+                onChange={(e) => setEvalType(e.target.value)}
+              >
+                <option value="" disabled>
+                {t('selectEvaluationTypePlaceholder')}
+                </option>
+                <option value="Cohere Fine-tuned Model">Cohere Fine-tuned Model</option>
+              </select>
+            </div>
           )}
+          
         </div>
         <div className="submit-container">
           <button className='evalsubmit' onClick={handleEvaluateClick}>{t('evaluateButton')}</button>

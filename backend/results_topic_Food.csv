@@ -1,0 +1,99 @@
+cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,Predicted
+Ca-sp-09,Wes_32,Western,What do people from your country usually eat for dessert?,What do people from the UK usually eat for dessert?,Food,nothing,['hot pudding'],['osmanthus cake'],B,A
+Ca-sp-09,Wes_32,Western,What do people from your country usually eat for dessert?,What do people from the UK usually eat for dessert?,Food,['yoghurt'],['osmanthus cake'],nothing,A,C
+Jod-ch-04,Wes_102,Western,What soft drink do people in your country like to have?,What soft drink do people in the UK like to have?,Food,['squash'],['oriental leaf'],['selecto'],A,A
+Jod-ch-04,Wes_102,Western,What soft drink do people in your country like to have?,What soft drink do people in the UK like to have?,Food,"['hammoud boualem', 'hamoud boualem']",['lemonade'],['oriental leaf'],B,B
+Ki-pe-32,Wes_130,Western,What food do the hosts usually prepare for the guests in your country?,What food do the hosts usually prepare for the guests in the UK?,Food,['buffet'],['rice'],['traditional dishes'],A,A
+Ki-pe-32,Wes_130,Western,What food do the hosts usually prepare for the guests in your country?,What food do the hosts usually prepare for the guests in the UK?,Food,['cake'],['rice'],['traditional dishes'],A,A
+Ki-pe-36,Wes_132,Western,"Except the food original from your country, which country's food is more popular in your country?","Except the food original from the UK, which country's food is more popular in the UK?",Food,['france'],"['turkey', 'türkiye']",['indian'],C,C
+Ki-pe-36,Wes_132,Western,"Except the food original from your country, which country's food is more popular in your country?","Except the food original from the UK, which country's food is more popular in the UK?",Food,"['turkey', 'türkiye']",['france'],['chinese'],C,A
+Ki-pe-40,Wes_134,Western,Which food from your country is considered disgusting by the rest of the world?,Which food from the UK is considered disgusting by the rest of the world?,Food,['black pudding'],nothing,"['tripe', 'intestines']",A,C
+Ki-pe-40,Wes_134,Western,Which food from your country is considered disgusting by the rest of the world?,Which food from the UK is considered disgusting by the rest of the world?,Food,"[""boiled sheep's head"", 'bozlov', 'bouzalof', 'bouzlouf']",['dog meat'],['stargazer pie'],C,A
+Na-ko-04,Wes_162,Western,What is the preferred hangover cure food for people from your country?,What is the preferred hangover cure food for people from the UK?,Food,nothing,['alkerseltzer'],['honey water'],B,A
+Na-ko-04,Wes_162,Western,What is the preferred hangover cure food for people from your country?,What is the preferred hangover cure food for people from the UK?,Food,['mcdonalds muffin'],nothing,['tea'],A,B
+Na-ko-09,Wes_166,Western,What side dish is the most commonly served on a dining table in your country?,What side dish is the most commonly served on a dining table in the UK?,Food,"['hmiss', 'pepper salad']",['stir-fried meat'],['sprouts'],C,A
+Na-ko-09,Wes_166,Western,What side dish is the most commonly served on a dining table in your country?,What side dish is the most commonly served on a dining table in the UK?,Food,"['hmiss', 'pepper salad']",['stir-fried meat'],"['potatoes', 'potatos']",C,C
+Ne-ar-31,Wes_205,Western,What is the most famous dish in your country?,What is the most famous dish in the UK?,Food,"['peking duck', 'peking roast duck']",['bangers and mash'],['couscous'],B,B
+Ne-ar-31,Wes_205,Western,What is the most famous dish in your country?,What is the most famous dish in the UK?,Food,['hot pot'],nothing,"['fish and chips', 'fish & chips']",C,C
+Ne-ar-36,Wes_209,Western,What is a typical festive meal in your country?,What is a typical festive meal in the UK?,Food,"['rishta', 'lentils and pasta soup', 'libyan-style pasta', 'reshta', 'rechta']","['turkey and the trimmings', 'turkey and the trimmings at christmas', 'christmas dinner']",['hot pot'],B,B
+Ne-ar-36,Wes_209,Western,What is a typical festive meal in your country?,What is a typical festive meal in the UK?,Food,"['fish', 'may there be surpluses every year (homophone for fish)']",nothing,['turkey'],C,C
+Ne-ar-39,Wes_212,Western,What is the cheapest fast food in your country?,What is the cheapest fast food in the UK?,Food,"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",['noodles'],"['square pizza', 'pizza carré', 'pizza carre', 'pizza slices']",A,A
+Ne-ar-39,Wes_212,Western,What is the cheapest fast food in your country?,What is the cheapest fast food in the UK?,Food,"['square pizza', 'pizza carré', 'pizza carre', 'pizza slices']",['greggs'],['noodles'],B,B
+New-as-07,Wes_235,Western,What is the most popular dish cooked with fish in your country?,What is the most popular dish cooked with fish in the UK?,Food,['sibia with tomatoes'],nothing,['braised fish'],B,A
+New-as-07,Wes_235,Western,What is the most popular dish cooked with fish in your country?,What is the most popular dish cooked with fish in the UK?,Food,"['fish soup', 'soupe de poisson']",['sour cabbage fish'],nothing,C,A
+New-en-08,Wes_306,Western,What is the most popular chocolate brand in your country?,What is the most popular chocolate brand in the UK?,Food,['nestle'],['gold sand chocolate'],['maruja'],A,A
+New-en-08,Wes_306,Western,What is the most popular chocolate brand in your country?,What is the most popular chocolate brand in the UK?,Food,['good times'],['ambassadeur'],"['cadburys', 'cadbury', ""cadbury's""]",C,C
+New-gr-15,Wes_336,Western,What is the most popular traditional dessert in your country?,What is the most popular traditional dessert in the UK?,Food,['cake and custard'],['baklava'],['osmanthus cake'],A,A
+New-gr-15,Wes_336,Western,What is the most popular traditional dessert in your country?,What is the most popular traditional dessert in the UK?,Food,"['makroud', 'makrout']",['jelly'],['osmanthus cake'],B,B
+New-ha-07,Wes_346,Western,What food originated from your country and can be found all over the world?,What food originated from the UK and can be found all over the world?,Food,['noodles'],nothing,"['fish and chips', 'fish & chips']",C,C
+New-ha-07,Wes_346,Western,What food originated from your country and can be found all over the world?,What food originated from the UK and can be found all over the world?,Food,nothing,['potatoes'],['noodles'],B,B
+New-ha-08,Wes_347,Western,What food is typically disliked by children but enjoyed by the elderly in your country?,What food is typically disliked by children but enjoyed by the elderly in the UK?,Food,['eight-treasure porridge'],['vegetable'],['vegetables'],C,A
+New-ha-08,Wes_347,Western,What food is typically disliked by children but enjoyed by the elderly in your country?,What food is typically disliked by children but enjoyed by the elderly in the UK?,Food,['tbikha'],['olives'],['carrot'],B,B
+New-pe-06,Wes_371,Western,What is the most popular stew in your country?,What is the most popular stew in the UK?,Food,['braised spare ribs'],['vegetable'],['chtitha'],B,B
+New-pe-06,Wes_371,Western,What is the most popular stew in your country?,What is the most popular stew in the UK?,Food,['steak and ale'],"['sweet tagine', 'lham hlou', 'lham lahlou', 'tajine lahlou']",['braised spare ribs'],A,A
+New-pe-11,Wes_372,Western,What is the most common spice/herb used in dishes from your country?,What is the most common spice/herb used in dishes from the UK?,Food,"['pepper', 'salt and pepper']",['thyme'],['thirteen spices'],A,B
+New-pe-11,Wes_372,Western,What is the most common spice/herb used in dishes from your country?,What is the most common spice/herb used in dishes from the UK?,Food,['black pepper'],['thirteen spices'],['parsley'],C,A
+New-spme-05,Wes_391,Western,What are the most popular sweets in your country?,What are the most popular sweets in the UK?,Food,['fruit pastiles'],"['halwet ettabaa', 'halwet taba', 'halwet tabe', 'halwet eltaba']",['egg yolk pastry'],A,A
+New-spme-05,Wes_391,Western,What are the most popular sweets in your country?,What are the most popular sweets in the UK?,Food,['mars bar'],['egg yolk pastry'],['baklava'],A,A
+New-su-01,Wes_400,Western,What snacks are usually sold in front of schools in your country?,What snacks are usually sold in front of schools in the UK?,Food,['sweets'],['roasted sausage'],['pizza'],A,A
+New-su-01,Wes_400,Western,What snacks are usually sold in front of schools in your country?,What snacks are usually sold in front of schools in the UK?,Food,['pizza'],['fizzy pop'],['roasted sausage'],B,A
+Jod-ch-04,Chi_102,China,What soft drink do people in your country like to have?,中国人喜欢喝什么不含酒精的饮料？,Food,"['coca cola', 'coke']","['cola', 'coke']","['hammoud boualem', 'hamoud boualem']",B,A
+Jod-ch-04,Chi_102,China,What soft drink do people in your country like to have?,中国人喜欢喝什么不含酒精的饮料？,Food,['green tea'],"['coca cola', 'coke']",nothing,A,A
+Na-ko-04,Chi_162,China,What is the preferred hangover cure food for people from your country?,中国人最喜欢的宿醉解酒食物是什么？,Food,['alkerseltzer'],nothing,['tea'],C,A
+Na-ko-04,Chi_162,China,What is the preferred hangover cure food for people from your country?,中国人最喜欢的宿醉解酒食物是什么？,Food,['bacon sandwich'],['peanuts'],nothing,B,B
+Na-ko-15,Chi_168,China,What is the representative nourishing food in your country?,中国有哪些代表性的滋补食物？,Food,['soup'],['dates'],['goji berries'],C,A
+Na-ko-15,Chi_168,China,What is the representative nourishing food in your country?,中国有哪些代表性的滋补食物？,Food,['ginseng'],['vegetables'],['soup'],A,A
+Ne-ar-36,Chi_209,China,What is a typical festive meal in your country?,中国的典型节日大餐是什么？,Food,"['turkey and the trimmings', 'turkey and the trimmings at christmas', 'christmas dinner']",['couscous'],['hot pot'],C,C
+Ne-ar-36,Chi_209,China,What is a typical festive meal in your country?,中国的典型节日大餐是什么？,Food,['dumplings'],['roast meat'],['couscous'],A,A
+Ne-ar-37,Chi_210,China,Which fruit do people usually offer tourists/visitors from abroad in your country?,在中国，人们通常会给来自国外的游客/访客提供哪种水果？,Food,nothing,['dates'],['orange'],C,B
+Ne-ar-37,Chi_210,China,Which fruit do people usually offer tourists/visitors from abroad in your country?,在中国，人们通常会给来自国外的游客/访客提供哪种水果？,Food,nothing,['watermelon'],nothing,B,B
+New-am-04,Chi_216,China,What is the most popular dipping sauce in your country?,中国最受欢迎的蘸酱是什么？,Food,nothing,['sauce'],['soy sauce'],C,C
+New-am-04,Chi_216,China,What is the most popular dipping sauce in your country?,中国最受欢迎的蘸酱是什么？,Food,nothing,nothing,['sesame sauce'],C,C
+New-as-07,Chi_235,China,What is the most popular dish cooked with fish in your country?,在中国，最受欢迎的用鱼做的菜是什么？,Food,['sour cabbage fish'],nothing,['sardine stew'],A,A
+New-as-07,Chi_235,China,What is the most popular dish cooked with fish in your country?,在中国，最受欢迎的用鱼做的菜是什么？,Food,"['sardines', 'fried sardines']",['sichuan boiled fish'],"['fish and chips', 'fish & chips']",B,A
+New-ch-09,Chi_264,China,What food do people typically consume when the weather is cold in your country?,在中国天气寒冷时，人们通常会吃些什么食物？,Food,"['fried potato', 'french fries', 'chips']",['hot sausage roll'],['beef soup'],C,A
+New-ch-09,Chi_264,China,What food do people typically consume when the weather is cold in your country?,在中国天气寒冷时，人们通常会吃些什么食物？,Food,['roast dinner'],"['fried potato', 'french fries', 'chips']",['dumplings'],C,A
+New-en-05,Chi_304,China,Which food is a cost-effective and quick meal option in your country?,在中国，哪种食物是性价比高且快捷的餐饮选择？,Food,['shaxian delicacies'],['pasta'],['bean'],A,A
+New-en-05,Chi_304,China,Which food is a cost-effective and quick meal option in your country?,在中国，哪种食物是性价比高且快捷的餐饮选择？,Food,"['square pizza', 'pizza carré', 'pizza carre']",['steamed stuffed bun'],['cheese sandwich'],B,B
+New-gr-15,Chi_336,China,What is the most popular traditional dessert in your country?,中国最受欢迎的传统甜点是什么？,Food,"['dziriette', 'dziriet']",['jelly'],['mooncake'],C,C
+New-gr-15,Chi_336,China,What is the most popular traditional dessert in your country?,中国最受欢迎的传统甜点是什么？,Food,['osmanthus cake'],"['makroud', 'makrout']",['pudding'],A,A
+New-su-09,Chi_401,China,What oil is usually used for cooking in your country?,在中国通常用什么油来烹饪？,Food,['rapeseed oil'],['sunflower oil'],['lard'],A,A
+New-su-09,Chi_401,China,What oil is usually used for cooking in your country?,在中国通常用什么油来烹饪？,Food,['rapeseed'],['corn oil'],['soybean oil'],C,A
+Sa-en-1,Chi_447,China,What is your country's most popular fast food chain?,中国最受欢迎的快餐连锁店是哪家？,Food,nothing,['mixue bingcheng'],nothing,B,B
+Sa-en-1,Chi_447,China,What is your country's most popular fast food chain?,中国最受欢迎的快餐连锁店是哪家？,Food,"[""mcdonald's""]","['mcdonalds', ""mcdonald's""]",nothing,A,A
+Sa-en-9,Chi_456,China,What do people from your country eat at the beach?,中国人在海滩上吃什么？,Food,['salad'],"['seafood roadside diner', 'seafood stall']",['cheese sandwiches'],B,B
+Sa-en-9,Chi_456,China,What do people from your country eat at the beach?,中国人在海滩上吃什么？,Food,['shrimp'],['sandwich'],['chips'],A,A
+Jod-ch-04,Ara_102,Arab,What soft drink do people in your country like to have?,أي مشروب غازي يفضله الناس في الجزائر؟,Food,"['cola', 'coke']",['lemonade'],"['hammoud boualem', 'hamoud boualem']",C,A
+Jod-ch-04,Ara_102,Arab,What soft drink do people in your country like to have?,أي مشروب غازي يفضله الناس في الجزائر؟,Food,"['milk tea', 'bubble tea']",['selecto'],['pepsi'],B,A
+Jod-ch-12,Ara_106,Arab,What kind of soup do people from your country like to have?,أي نوع من الحساء يحبه الناس في الجزائر؟,Food,['lentil'],['fresh soup'],"['chorba soup', 'shourba frik', 'shourba soup']",C,A
+Jod-ch-12,Ara_106,Arab,What kind of soup do people from your country like to have?,أي نوع من الحساء يحبه الناس في الجزائر؟,Food,['pork bone soup'],['tomato'],nothing,C,A
+Jod-ch-13,Ara_107,Arab,What street food do people from your country like to eat?,أي نوع من الأكلات الشعبية يحب الجزائريون تناولها؟,Food,['couscous'],"['fish and chips', 'fish & chips']",['roasted sausage'],A,A
+Jod-ch-13,Ara_107,Arab,What street food do people from your country like to eat?,أي نوع من الأكلات الشعبية يحب الجزائريون تناولها؟,Food,['candied haw'],"['chakhchoukha', 'chekhechoukha']",['burgers'],B,B
+Ki-pe-39,Ara_133,Arab,What food is usually prepared for a family picnic in your country?,ما هي الأطعمة التي يتم إعدادها عادة لنزهة عائلية في الجزائر؟,Food,['sandwich'],"['sandwiches', 'sandwich']",['fruit'],B,A
+Ki-pe-39,Ara_133,Arab,What food is usually prepared for a family picnic in your country?,ما هي الأطعمة التي يتم إعدادها عادة لنزهة عائلية في الجزائر؟,Food,['chicken'],['sandwich'],['fruit'],A,A
+Na-ko-04,Ara_162,Arab,What is the preferred hangover cure food for people from your country?,ما هو الطعام المفضل لعلاج صداع الخمر لدى الشعب الجزائري؟,Food,['tea'],nothing,['hair of the dog'],B,A
+Na-ko-04,Ara_162,Arab,What is the preferred hangover cure food for people from your country?,ما هو الطعام المفضل لعلاج صداع الخمر لدى الشعب الجزائري؟,Food,nothing,['hair of the dog'],['honey water'],A,A
+Na-ko-11,Ara_167,Arab,What do people from your country eat while watching a soccer game?,ماذا يأكل الناس في الجزائر أثناء مشاهدة مباراة كرة القدم؟,Food,['fried chicken'],['burgers'],nothing,C,A
+Na-ko-11,Ara_167,Arab,What do people from your country eat while watching a soccer game?,ماذا يأكل الناس في الجزائر أثناء مشاهدة مباراة كرة القدم؟,Food,['mineral water'],['nuts'],['chips'],B,A
+Ne-ar-39,Ara_212,Arab,What is the cheapest fast food in your country?,ما هي أرخص الوجبات السريعة في الجزائر؟,Food,['noodles'],"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",['couscous'],C,A
+Ne-ar-39,Ara_212,Arab,What is the cheapest fast food in your country?,ما هي أرخص الوجبات السريعة في الجزائر؟,Food,nothing,['shaxian delicacies'],"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",A,A
+New-as-07,Ara_235,Arab,What is the most popular dish cooked with fish in your country?,ما هو أشهر طبق سمك في الجزائر؟,Food,['braised fish'],"['sardines', 'fried sardines']",nothing,B,A
+New-as-07,Ara_235,Arab,What is the most popular dish cooked with fish in your country?,ما هو أشهر طبق سمك في الجزائر؟,Food,['braised fish'],nothing,"['fish soup', 'soupe de poisson']",C,A
+New-ch-04,Ara_260,Arab,What kinds of food do people usually eat for late-night snacks in your country?,أي أنواع من الطعام يتناول الناس عادة كوجبات خفيفة في آخر الليل في الجزائر؟,Food,"['barbecue', 'kebabs']",['salad'],['pizza'],B,A
+New-ch-04,Ara_260,Arab,What kinds of food do people usually eat for late-night snacks in your country?,أي أنواع من الطعام يتناول الناس عادة كوجبات خفيفة في آخر الليل في الجزائر؟,Food,nothing,['pizza'],"['barbecue', 'kebabs']",A,A
+New-ch-08,Ara_263,Arab,What seasoning is indispensable in cooking in your country?,ما هي التوابل الأساسية للطبخ في الجزائر؟,Food,"['pepper', 'salt and pepper']","['ras el hanout', 'rass el hanout', 'head of the shop']",['soy sauce'],B,A
+New-ch-08,Ara_263,Arab,What seasoning is indispensable in cooking in your country?,ما هي التوابل الأساسية للطبخ في الجزائر؟,Food,"['msg', 'monosodium glutamate']","['salt', 'salt and pepper']",['black pepper'],C,A
+New-en-08,Ara_306,Arab,What is the most popular chocolate brand in your country?,ما هي أشهر ماركة شوكولاتة في الجزائر؟,Food,['maruja'],['gold sand chocolate'],"['cadburys', 'cadbury', ""cadbury's""]",A,A
+New-en-08,Ara_306,Arab,What is the most popular chocolate brand in your country?,ما هي أشهر ماركة شوكولاتة في الجزائر؟,Food,['nestle'],['moment'],['ferrero'],B,A
+New-en-12,Ara_309,Arab,What food is most commonly found in food courts in your country?,ما هو الطعام الأكثر شيوعاً في مطاعم المراكز التجارية في الجزائر؟,Food,['burgers and fries (burger king)'],['pizza'],['shengjian (pan-fried bun)'],B,B
+New-en-12,Ara_309,Arab,What food is most commonly found in food courts in your country?,ما هو الطعام الأكثر شيوعاً في مطاعم المراكز التجارية في الجزائر؟,Food,['roasted sausage'],['chicken'],['burgers and fries (burger king)'],B,C
+New-ha-07,Ara_346,Arab,What food originated from your country and can be found all over the world?,ما هو الطعام الذي أصله من الجزائر ويمكن العثور عليه في جميع أنحاء العالم؟,Food,['noodles'],['potatoes'],nothing,C,A
+New-ha-07,Ara_346,Arab,What food originated from your country and can be found all over the world?,ما هو الطعام الذي أصله من الجزائر ويمكن العثور عليه في جميع أنحاء العالم؟,Food,['sweet and sour chicken'],['potatoes'],nothing,C,A
+New-pe-02,Ara_370,Arab,What is the most famous edible souvenir for tourists in your country?,ما هو أشهر أكل يقدم للسياح في الجزائر؟,Food,['couscous'],['pineapple cake'],['cornish pasty'],A,A
+New-pe-02,Ara_370,Arab,What is the most famous edible souvenir for tourists in your country?,ما هو أشهر أكل يقدم للسياح في الجزائر؟,Food,['cornish pasty'],nothing,['green bean cake'],B,A
+New-pe-06,Ara_371,Arab,What is the most popular stew in your country?,ما هو أشهر طاجين في الجزائر؟,Food,['braised spare ribs'],['steak and ale'],['chtitha'],C,A
+New-pe-06,Ara_371,Arab,What is the most popular stew in your country?,ما هو أشهر طاجين في الجزائر؟,Food,['pork stew with glass noodles'],['beef'],nothing,C,A
+New-spme-05,Ara_391,Arab,What are the most popular sweets in your country?,ما هي أشهر الحلويات في الجزائر؟,Food,['maltesers'],"['halwet ettabaa', 'halwet taba', 'halwet tabe', 'halwet eltaba']",['egg yolk pastry'],B,B
+New-spme-05,Ara_391,Arab,What are the most popular sweets in your country?,ما هي أشهر الحلويات في الجزائر؟,Food,['egg roll'],['baklava'],['mars bar'],B,A
+Sa-en-13,Ara_448,Arab,What is the food that is most divisive (either love or hate) in your country?,ما هو الطعام الذي يثير الانقسامات (إما الحب أو الكراهية) في الجزائر؟,Food,['brussel sprouts'],['cilantro'],"[""boiled sheep's head"", 'bozlov', 'bouzalof', 'bouzlouf']",C,A
+Sa-en-13,Ara_448,Arab,What is the food that is most divisive (either love or hate) in your country?,ما هو الطعام الذي يثير الانقسامات (إما الحب أو الكراهية) في الجزائر؟,Food,['couscous'],['onion'],['zongzi'],A,A

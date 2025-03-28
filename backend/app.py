@@ -16,7 +16,7 @@ llama_datasets = {
     "Chinese": pd.read_csv("./test_bank_chinese_chat_llama2.csv", encoding="utf-8"),
 }
 
-# Datasets for Hofstede Questions-LLAMA2 Model (Coverage Scores, set to 0)
+# Datasets for Hofstede Questions-LLAMA2 Model (Standard Deviation)
 llama_hofstede_datasets = {
     "Arab": pd.read_csv("./test_bank_arabic_chat_llama2.csv", encoding="utf-8"),
     "Western": pd.read_csv("./test_bank_western_chat_llama2.csv", encoding="utf-8"),
@@ -36,7 +36,16 @@ cohere_baseline_datasets = {
     "Western": pd.read_csv("./test_bank_western_chat_aya101.csv", encoding="utf-8"), 
     "Chinese": pd.read_csv("./test_bank_chines_chat_aya101.csv", encoding="utf-8"),
 }
-
+# Datasets for Cohere Fine-Tuned (Coverage Scores)
+cohere_finetuned_datasets = {
+    "All Topics": pd.read_csv("./results_topic_AllTopics.csv"),
+    "Work life": pd.read_csv("./results_topic_Work_life.csv"),
+    "Sport": pd.read_csv("./results_topic_Sport.csv"),
+    "Holidays/Celebration/Leisure": pd.read_csv("./results_topic_Holidays_Celebration_Leisure.csv"),
+    "Food": pd.read_csv("./results_topic_Food.csv"),
+    "Family": pd.read_csv("./results_topic_Family.csv"),
+    "Education": pd.read_csv("./results_topic_Education.csv"),
+}
 # --- Initialize Firebase ---
 initialize_app(credentials.Certificate("serviceAccountKey.json"), {
     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
@@ -107,9 +116,41 @@ def calculate_for_all_regions_cohere_baseline(topic=None):
     for region, data in cohere_baseline_datasets.items():
         results[region] = calculate_coverage(data, topic)
     return results
+def calculate_for_all_regions_cohere_finetuned(topic):
+    """
+    Calculate coverage scores for all regions for the Cohere Fine-tuned model.
+    """
+    results = {}
+    topic_df = cohere_finetuned_datasets.get(topic, pd.DataFrame())
+
+    if topic_df.empty:
+        return {r: {"coverage_score": 0, "total_questions": 0, "correct_answers": 0} for r in ["Arab", "Chinese", "Western"]}
+
+    # Normalize region names (e.g., 'China' -> 'Chinese')
+    topic_df["region"] = topic_df["region"].replace({"China": "Chinese"})
+
+    for region in ["Arab", "Chinese", "Western"]:
+        region_df = topic_df[topic_df["region"] == region]
+        if not region_df.empty:
+            correct = (region_df["correct"] == region_df["Predicted"]).sum()
+            total = len(region_df)
+            score = (correct / total) * 100 if total > 0 else 0
+        else:
+            correct, total, score = 0, 0, 0
+
+        results[region] = {
+            "coverage_score": score,
+            "total_questions": total,
+            "correct_answers": correct,
+        }
+
+    return results
+def to_serializable(val):
+    if isinstance(val, (np.integer, np.floating)):
+        return val.item()
+    return val
 
 # --- Flask Endpoints ---
-
 @app.route('/evaluate', methods=['POST'])
 def evaluate():
     """
@@ -118,15 +159,28 @@ def evaluate():
     """
     try:
         request_data = request.json
-        topic = request_data.get("topic", "All Topics")  # Default to All Topics for LLAMA2 Baseline
+        topic = request_data.get("topic", "All Topics")
         model = request_data.get("model", "")
         eval_type = request_data.get("evalType", "")
 
         print(f"Received topic: {topic}, model: {model}, evalType: {eval_type}")
 
+        # Fine-Tuned Model Handling
         if model == "Fine-Tuned":
-            return jsonify({"message": "Fine-Tuned model not implemented yet"}), 200
+            if eval_type == "Cohere Fine-tuned Model":
+                results = calculate_for_all_regions_cohere_finetuned(topic)
 
+                # ✅ Convert all NumPy values to Python native types
+                serializable_results = {
+                    region: {k: to_serializable(v) for k, v in region_data.items()}
+                    for region, region_data in results.items()
+                }
+                return jsonify(serializable_results)
+
+            else:
+                return jsonify({"error": "Invalid evaluation type for Fine-Tuned"}), 400
+
+        # Baseline Model Handling
         elif model == "Baseline":
             if eval_type == "Hofstede Questions-Cohere Model":
                 # Calculate standard deviation for Hofstede Questions-Cohere Model
@@ -143,14 +197,20 @@ def evaluate():
             else:
                 return jsonify({"error": "Invalid evaluation type for Baseline"}), 400
 
-            return jsonify(results)
-        
+          
+            serializable_results = {
+                region: {k: to_serializable(v) for k, v in region_data.items()}
+                for region, region_data in results.items()
+            }
+            return jsonify(serializable_results)
+
         else:
             return jsonify({"error": "Invalid model selection"}), 400
 
     except Exception as e:
         print(f"Error during evaluation: {e}")
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/api/compare', methods=['POST'])
 def compare():
