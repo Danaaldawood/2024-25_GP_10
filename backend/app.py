@@ -18,9 +18,9 @@ llama_datasets = {
 
 # Datasets for Hofstede Questions-LLAMA2 Model (Standard Deviation)
 llama_hofstede_datasets = {
-    "Arab": pd.read_csv("./test_bank_arabic_chat_llama2.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./test_bank_western_chat_llama2.csv", encoding="utf-8"),
-    "Chinese": pd.read_csv("./test_bank_chinese_chat_llama2.csv", encoding="utf-8"),
+    "Arab": pd.read_csv("./hofsted_arab_baselineL.csv", encoding="utf-8"),
+    "Western": pd.read_csv("./hofsted_west_baslineL.csv", encoding="utf-8"),
+    "Chinese": pd.read_csv("./hofsted_chin_baselineL.csv", encoding="utf-8"),
 }
 
 # Datasets for Hofstede Questions-Cohere Model (Standard Deviation)
@@ -36,6 +36,7 @@ cohere_baseline_datasets = {
     "Western": pd.read_csv("./test_bank_western_chat_aya101.csv", encoding="utf-8"), 
     "Chinese": pd.read_csv("./test_bank_chines_chat_aya101.csv", encoding="utf-8"),
 }
+
 # Datasets for Cohere Fine-Tuned (Coverage Scores)
 cohere_finetuned_datasets = {
     "All Topics": pd.read_csv("./results_topic_AllTopics.csv"),
@@ -46,6 +47,7 @@ cohere_finetuned_datasets = {
     "Family": pd.read_csv("./results_topic_Family.csv"),
     "Education": pd.read_csv("./results_topic_Education.csv"),
 }
+
 # --- Initialize Firebase ---
 initialize_app(credentials.Certificate("serviceAccountKey.json"), {
     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
@@ -78,18 +80,28 @@ def calculate_for_all_regions_llama(topic=None):
         results[region] = calculate_coverage(data, topic)
     return results
 
-# --- Coverage Calculation for Hofstede Questions-LLAMA2 Model (Return 0) ---
-def calculate_for_all_regions_hofstede(topic=None):
+# --- Standard Deviation Calculation (For Hofstede Questions-LLAMA2 Model) ---
+def calculate_standard_deviation_llama(topic=None):
     """
-    Calculate 0 coverage scores for all regions for Hofstede Questions-LLAMA2 Model.
+    Calculate standard deviation within each region across all Hofstede questions for LLAMA2 Model.
+    Expects column: 'Predicted'.
     """
     results = {}
     for region, data in llama_hofstede_datasets.items():
-        results[region] = {
-            "coverage_score": 0.00,
-            "total_questions": len(data),
-            "correct_answers": 0,
-        }
+        # Ensure 'Predicted' column exists and contains numeric data
+        if 'Predicted' not in data.columns or not pd.api.types.is_numeric_dtype(data['Predicted']):
+            results[region] = {
+                "standard_deviation": 0.0,
+                "total_questions": len(data),
+                "responses": data.get('Predicted', []).tolist()  # Fallback to empty list if no 'Predicted'
+            }
+        else:
+            std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+            results[region] = {
+                "standard_deviation": std_dev,
+                "total_questions": len(data),
+                "responses": data['Predicted'].tolist()
+            }
     return results
 
 # --- Standard Deviation Calculation (For Hofstede Questions-Cohere Model) ---
@@ -116,6 +128,7 @@ def calculate_for_all_regions_cohere_baseline(topic=None):
     for region, data in cohere_baseline_datasets.items():
         results[region] = calculate_coverage(data, topic)
     return results
+
 def calculate_for_all_regions_cohere_finetuned(topic):
     """
     Calculate coverage scores for all regions for the Cohere Fine-tuned model.
@@ -145,6 +158,7 @@ def calculate_for_all_regions_cohere_finetuned(topic):
         }
 
     return results
+
 def to_serializable(val):
     if isinstance(val, (np.integer, np.floating)):
         return val.item()
@@ -169,14 +183,11 @@ def evaluate():
         if model == "Fine-Tuned":
             if eval_type == "Cohere Fine-tuned Model":
                 results = calculate_for_all_regions_cohere_finetuned(topic)
-
-                # ✅ Convert all NumPy values to Python native types
                 serializable_results = {
                     region: {k: to_serializable(v) for k, v in region_data.items()}
                     for region, region_data in results.items()
                 }
                 return jsonify(serializable_results)
-
             else:
                 return jsonify({"error": "Invalid evaluation type for Fine-Tuned"}), 400
 
@@ -189,15 +200,13 @@ def evaluate():
                 # Calculate coverage scores for LLAMA2 Baseline
                 results = calculate_for_all_regions_llama(topic)
             elif eval_type == "Hofstede Questions-LLAMA2 Model":
-                # Return 0 coverage scores for Hofstede Questions-LLAMA2 Model
-                results = calculate_for_all_regions_hofstede(topic)
+                results = calculate_standard_deviation_llama(topic)  # Now calculates std dev
             elif eval_type == "Cohere Baseline":
                 # Calculate coverage scores for Cohere Baseline
                 results = calculate_for_all_regions_cohere_baseline(topic)
             else:
                 return jsonify({"error": "Invalid evaluation type for Baseline"}), 400
 
-          
             serializable_results = {
                 region: {k: to_serializable(v) for k, v in region_data.items()}
                 for region, region_data in results.items()
@@ -210,7 +219,6 @@ def evaluate():
     except Exception as e:
         print(f"Error during evaluation: {e}")
         return jsonify({"error": str(e)}), 500
-
 
 @app.route('/api/compare', methods=['POST'])
 def compare():

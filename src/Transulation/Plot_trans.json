@@ -25,11 +25,12 @@
       "hofstedeLlama": "This evaluation uses the Llama-2-7B model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.",
       "cohereBaseline": "This evaluation uses the Cohere model to answer multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions.",
       "llamaBaseline": "This evaluation uses the Llama-2-7B model to answer multiple-choice questions based on selected topics and datasets in multiple languages, including Arabic, English, and Chinese. The evaluation includes 100 samples per region, and accuracy is determined by the coverage score, which measures how accurately the model answers questions within each region: Arab, Western, and Chinese.",
-      "cohereFineTuned": "This fine-tuned a Mistral-7B model on a culturally aligned dataset covering multiple topics and languages (Arabic, English, and Chinese). The model was trained using region-specific multiple-choice questions to ensure accurate representation of sociocultural values. This approach improves coverage accuracy across Arab, Western, and Chinese regions, especially for topics like Food, Work Life, Family, and more."
+      "cohereFineTuned": "This fine-tuned a Mistral-7B model on a culturally aligned dataset covering multiple topics and languages (Arabic, English, and Chinese). The model was trained using region-specific multiple-choice questions to ensure accurate representation of sociocultural values. This approach improves coverage accuracy across Arab, Western, and Chinese regions, especially for topics."
     },
     "explanations": {
       "hofstedeCohere": "This evaluation uses Cohere to answer 24 Hofstede Work Life questions across three regions (Arab, Chinese, Western). The standard deviation reflects the variability in responses within each region.",
-      "hofstedeLlama": "Llama-2-7B needs fine-tuning. It does not work well with multiple-choice questions. All three regions predominantly answered 'A' when given options A, B, C, D, E.",
+     "hofstedeLlama": "This evaluation uses LLAMA2 to answer 24 Hofstede Work Life questions across three regions (Arab, Chinese, Western). The standard deviation reflects the variability in responses within each region.",
+    "hofstedeText": "{evalType} evaluated 24 Hofstede Work Life questions. Standard Deviations: Arab - {arab}, Chinese - {chinese}, Western - {western}.",
       "cohereBaseline": "Cohere evaluated answers for the \"{topic}\" topic. Coverage Scores: Arab - {arabScore}%, Western - {westernScore}%, Chinese - {chineseScore}%.",
       "llamaBaseline": "Llama-2-7B evaluated answers for the \"{topic}\" topic. Coverage Scores: Arab - {arabScore}%, Western - {westernScore}%, Chinese - {chineseScore}%.",
       "cohereFineTuned": "This fine-tuned model evaluated answers for the \"{topic}\" topic. Coverage Scores: Arab - {arabScore}%, Western - {westernScore}%, Chinese - {chineseScore}%.",
@@ -79,11 +80,12 @@
       "hofstedeLlama": "يستخدم هذا التقييم نموذج Llama-2-7B للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
       "cohereBaseline": "يستخدم هذا التقييم نموذج Cohere للإجابة على أسئلة متعددة الخيارات بناءً على مواضيع ومجموعات بيانات مختارة. يشمل التقييم 100 عينة لكل منطقة، ويتم تحديد الدقة من خلال نسبة التنبؤات الصحيحة إلى إجمالي الأسئلة.",
       "llamaBaseline": "يستخدم هذا التقييم نموذج Llama-2-7B للإجابة على أسئلة متعددة الخيارات بناءً على مواضيع ومجموعات بيانات مختارة بلغات متعددة، بما في ذلك العربية والإنجليزية والصينية. يشمل التقييم 100 عينة لكل منطقة، ويتم تحديد الدقة من خلال نسبة التغطية، التي تقيس مدى دقة إجابة النموذج على الأسئلة داخل كل منطقة: العربية والغربية والصينية.",
-      "cohereFineTuned":"تم تهيئة هذا النموذج المدرب على نموذج Mistral-7B باستخدام مجموعة بيانات متوافقة ثقافيًا تغطي مواضيع ولغات متعددة (العربية والإنجليزية والصينية). تم تدريب النموذج باستخدام أسئلة متعددة الخيارات خاصة بالمنطقة لضمان تمثيل دقيق للقيم الاجتماعية والثقافية. يحسن هذا النهج دقة التغطية عبر المناطق العربية والغربية والصينية، خاصة لمواضيع مثل الطعام وحياة العمل والعائلة وغيرها."
+     "cohereFineTuned":"تم تهيئة هذا النموذج المدرب على نموذج Mistral-7B باستخدام مجموعة بيانات متوافقة ثقافيًا تغطي مواضيع ولغات متعددة (العربية والإنجليزية والصينية). تم تدريب النموذج باستخدام أسئلة متعددة الخيارات خاصة بالمنطقة لضمان تمثيل دقيق للقيم الاجتماعية والثقافية. يحسن هذا النهج دقة التغطية عبر المناطق العربية والغربية والصينية، خاصة لمواضيع ."
     },
     "explanations": {
       "hofstedeCohere": "يستخدم هذا التقييم Cohere للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
-      "hofstedeLlama": "يحتاج Llama-2-7B إلى ضبط دقيق. لا يعمل بشكل جيد مع الأسئلة متعددة الخيارات. أجابت المناطق الثلاث بشكل أساسي بـ 'A' عند إعطاء خيارات A و B و C و D و E.",
+      "hofstedeLlama": "يستخدم هذا التقييم LLAMA2 للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
+      "hofstedeText": "قيّم {evalType} 24 سؤالًا من أسئلة هوفستيد حول حياة العمل. الانحرافات المعيارية: العربية - {arab}، الصينية - {chinese}، الغربية - {western}.",
       "cohereBaseline": "قيّم Cohere الإجابات على موضوع \"{topic}\". نسب التغطية: العربية - {arabScore}%، الغربية - {westernScore}%، الصينية - {chineseScore}%.",
       "llamaBaseline": "قيّم Llama-2-7B الإجابات على موضوع \"{topic}\". نسب التغطية: العربية - {arabScore}%، الغربية - {westernScore}%، الصينية - {chineseScore}%.",
       "cohereFineTuned": "قيّم هذا النموذج المدرب الإجابات على موضوع \"{topic}\". نسب التغطية: العربية - {arabScore}%، الغربية - {westernScore}%، الصينية - {chineseScore}%.",
@@ -133,11 +135,12 @@
       "hofstedeLlama": "此评估使用Llama-2-7B模型用阿拉伯语、英语和中文回答每个地区（阿拉伯、西方和中国）的24个霍夫斯泰德工作生活问题。计算标准偏差来衡量这些问题和地区之间回答的变异性，反映了对工作生活的文化观点的多样性。",
       "cohereBaseline": "此评估使用Cohere模型回答基于选定主题和数据集的多项选择题。评估包括每个地区100个样本，准确性由正确预测与总问题的比率决定。",
       "llamaBaseline": "此评估使用Llama-2-7B模型用多种语言（包括阿拉伯语、英语和中文）回答基于选定主题和数据集的多项选择题。评估包括每个地区100个样本，准确性由覆盖率分数决定，该分数衡量模型在每个地区（阿拉伯、西方和中国）内回答问题的准确性。",
-      "cohereFineTuned": "此模型在Mistral-7B模型上进行了微调，使用了涵盖多种主题和语言（阿拉伯语、英语和中文）的文化对齐数据集。模型使用特定于地区的多项选择题进行训练，以确保准确反映社会文化价值观。这种方法提高了阿拉伯、西方和中国地区的覆盖准确性，特别是对于食物、工作生活、家庭等主题。"
+      "cohereFineTuned": "此模型在Mistral-7B模型上进行了微调，使用了涵盖多种主题和语言（阿拉伯语、英语和中文）的文化对齐数据集。模型使用特定于地区的多项选择题进行训练，以确保准确反映社会文化价值观。这种方法提高了阿拉伯、西方和中国地区的覆盖准确性，特别是对于食物."
     },
     "explanations": {
       "hofstedeCohere": "此评估使用Cohere回答三个地区（阿拉伯、中国、西方）的24个霍夫斯泰德工作生活问题。标准偏差反映了每个地区内回答的变异性。",
-      "hofstedeLlama": "Llama-2-7B需要微调。它在多项选择题上表现不佳。在给出A、B、C、D、E选项时，三个地区主要回答'A'。",
+     "hofstedeLlama": "此评估使用LLAMA2回答三个地区（阿拉伯、中国、西方）的24个霍夫斯泰德工作生活问题。标准偏差反映了每个地区内回答的变异性。",
+    "hofstedeText": "{evalType}评估了24个霍夫斯泰德工作生活问题。标准偏差：阿拉伯 - {arab}，中国 - {chinese}，西方 - {western}。",
       "cohereBaseline": "Cohere评估了\"{topic}\"主题的答案。覆盖率分数：阿拉伯 - {arabScore}%，西方 - {westernScore}%，中国 - {chineseScore}%。",
       "llamaBaseline": "Llama-2-7B评估了\"{topic}\"主题的答案。覆盖率分数：阿拉伯 - {arabScore}%，西方 - {westernScore}%，中国 - {chineseScore}%。",
       "cohereFineTuned": "此微调模型评估了\"{topic}\"主题的答案。覆盖率分数：阿拉伯 - {arabScore}%，西方 - {westernScore}%，中国 - {chineseScore}%。",
