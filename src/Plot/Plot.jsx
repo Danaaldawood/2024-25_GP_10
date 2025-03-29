@@ -163,14 +163,13 @@ export const Plot = () => {
         .attr("fill", (d) => {
           const region = Object.keys(regionToIds).find((key) => regionToIds[key].includes(parseInt(d.id)));
           if (!region) return "#d3d3d3";
-          if (evalType === "Hofstede Questions-Cohere Model" || evalType === "Hofstede Questions-LLAMA2 Model") {
+          if (evalType.includes("Hofstede")) {
             const stdDev = results?.[region]?.standard_deviation || 0;
             return colorScale(stdDev);
-          } else if (evalType === "LLAMA2 Baseline" || evalType === "Cohere Baseline" || evalType === "Cohere Fine-tuned Model") {
+          } else {
             const coverage = results?.[region]?.coverage_score || 0;
             return colorScale(coverage / 100 * 2);
           }
-          return "#d3d3d3";
         })
         .attr("stroke", "#fff");
 
@@ -188,7 +187,7 @@ export const Plot = () => {
           .style("fill", "#722F57")
           .style("font-weight", "bold")
           .text(
-            evalType === "Hofstede Questions-Cohere Model" || evalType === "Hofstede Questions-LLAMA2 Model"
+            evalType.includes("Hofstede")
               ? `${results?.[region]?.standard_deviation?.toFixed(2) || "0.00"}`
               : `${results?.[region]?.coverage_score?.toFixed(2) || "0.00"}%`
           );
@@ -207,6 +206,8 @@ export const Plot = () => {
       return t("tooltips.hofstedeCohere");
     } else if (evalType === "Hofstede Questions-LLAMA2 Model") {
       return t("tooltips.hofstedeLlama");
+    } else if (evalType === "Hofstede Questions-Cohere Fine-tuned Model") {
+      return t("tooltips.hofstedeCohereFineTuned");
     }
     return null;
   };
@@ -214,13 +215,13 @@ export const Plot = () => {
   const getCoverageText = () => {
     if (!results) {
       console.log("No results available");
-      return t("explanations.noResults", { defaultValue: "No results available." });
+      return t("explanations.noResults");
     }
 
     console.log("Current language:", i18n.language);
     console.log("Results:", results);
 
-    if (evalType === "Hofstede Questions-Cohere Model" || evalType === "Hofstede Questions-LLAMA2 Model") {
+    if (evalType.includes("Hofstede")) {
       const arabStd = results?.Arab?.standard_deviation?.toFixed(2) || "0.00";
       const chineseStd = results?.Chinese?.standard_deviation?.toFixed(2) || "0.00";
       const westernStd = results?.Western?.standard_deviation?.toFixed(2) || "0.00";

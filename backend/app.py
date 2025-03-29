@@ -48,6 +48,13 @@ cohere_finetuned_datasets = {
     "Education": pd.read_csv("./results_topic_Education.csv"),
 }
 
+# Datasets for Hofstede Questions-Cohere Fine-tuned Model (Standard Deviation)
+cohere_hofstede_finetuned_datasets = {
+    "Arab": pd.read_csv("./Hofsted_arab_MistralF.csv", encoding="utf-8"),
+    "Chinese": pd.read_csv("./Hofsted_chin_MistralF.csv", encoding="utf-8"),
+    "Western": pd.read_csv("./Hofsted_west_MistralF.csv", encoding="utf-8"),
+}
+
 # --- Initialize Firebase ---
 initialize_app(credentials.Certificate("serviceAccountKey.json"), {
     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
@@ -105,9 +112,9 @@ def calculate_standard_deviation_llama(topic=None):
     return results
 
 # --- Standard Deviation Calculation (For Hofstede Questions-Cohere Model) ---
-def calculate_standard_deviation():
+def calculate_standard_deviation_cohere():
     """
-    Calculate standard deviation within each region across all Hofstede questions.
+    Calculate standard deviation within each region across all Hofstede questions for Cohere Model.
     Expects column: 'Predicted'.
     """
     results = {}
@@ -118,6 +125,29 @@ def calculate_standard_deviation():
             "total_questions": len(data),
             "responses": data['Predicted'].tolist()
         }
+    return results
+
+# --- Standard Deviation Calculation (For Hofstede Questions-Cohere Fine-tuned Model) ---
+def calculate_standard_deviation_cohere_finetuned():
+    """
+    Calculate standard deviation within each region across all Hofstede questions for Cohere Fine-tuned Model.
+    Expects column: 'Predicted'.
+    """
+    results = {}
+    for region, data in cohere_hofstede_finetuned_datasets.items():
+        if 'Predicted' not in data.columns or not pd.api.types.is_numeric_dtype(data['Predicted']):
+            results[region] = {
+                "standard_deviation": 0.0,
+                "total_questions": len(data),
+                "responses": data.get('Predicted', []).tolist()
+            }
+        else:
+            std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+            results[region] = {
+                "standard_deviation": std_dev,
+                "total_questions": len(data),
+                "responses": data['Predicted'].tolist()
+            }
     return results
 
 def calculate_for_all_regions_cohere_baseline(topic=None):
@@ -183,26 +213,25 @@ def evaluate():
         if model == "Fine-Tuned":
             if eval_type == "Cohere Fine-tuned Model":
                 results = calculate_for_all_regions_cohere_finetuned(topic)
-                serializable_results = {
-                    region: {k: to_serializable(v) for k, v in region_data.items()}
-                    for region, region_data in results.items()
-                }
-                return jsonify(serializable_results)
+            elif eval_type == "Hofstede Questions-Cohere Fine-tuned Model":
+                results = calculate_standard_deviation_cohere_finetuned()
             else:
                 return jsonify({"error": "Invalid evaluation type for Fine-Tuned"}), 400
+            serializable_results = {
+                region: {k: to_serializable(v) for k, v in region_data.items()}
+                for region, region_data in results.items()
+            }
+            return jsonify(serializable_results)
 
         # Baseline Model Handling
         elif model == "Baseline":
             if eval_type == "Hofstede Questions-Cohere Model":
-                # Calculate standard deviation for Hofstede Questions-Cohere Model
-                results = calculate_standard_deviation()
+                results = calculate_standard_deviation_cohere()
             elif eval_type == "LLAMA2 Baseline":
-                # Calculate coverage scores for LLAMA2 Baseline
                 results = calculate_for_all_regions_llama(topic)
             elif eval_type == "Hofstede Questions-LLAMA2 Model":
-                results = calculate_standard_deviation_llama(topic)  # Now calculates std dev
+                results = calculate_standard_deviation_llama(topic)
             elif eval_type == "Cohere Baseline":
-                # Calculate coverage scores for Cohere Baseline
                 results = calculate_for_all_regions_cohere_baseline(topic)
             else:
                 return jsonify({"error": "Invalid evaluation type for Baseline"}), 400
