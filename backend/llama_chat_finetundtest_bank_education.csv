@@ -1,0 +1,289 @@
+cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,textF,Predicted
+Ji-ko-45,Ara_86,Arab,What do people look forward to the most at university festivals in your country?,ما هو الشيء الذي يتطلع إليه الناس أكثر شيء في مهرجانات الجامعات في الجزائر؟,Education,['dance'],nothing,['pub crawl'],B,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dance
+B. nothing
+C. pub crawl
+
+Answer: ",C
+Ji-ko-45,Ara_86,Arab,What do people look forward to the most at university festivals in your country?,ما هو الشيء الذي يتطلع إليه الناس أكثر شيء في مهرجانات الجامعات في الجزائر؟,Education,['pub crawl'],nothing,['party'],B,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pub crawl
+B. nothing
+C. party
+
+Answer: ",C
+New-en-69,Ara_324,Arab,Which writers are commonly studied in literature class in your country?,من هم الكتّاب الذين تدرس أعمالهم في حصص الأدب في الجزائر؟,Education,['mouloud mammeri'],"['dickens', 'charles dickens']",['lu xun'],A,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mouloud mammeri
+B. dickens and charles dickens
+C. lu xun
+
+Answer: ",C
+New-en-69,Ara_324,Arab,Which writers are commonly studied in literature class in your country?,من هم الكتّاب الذين تدرس أعمالهم في حصص الأدب في الجزائر؟,Education,"['steinbeck', 'john steinbeck']",['mouloud feraoun'],['lao she'],B,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. steinbeck and john steinbeck
+B. mouloud feraoun
+C. lao she
+
+Answer: ",C
+New-in-63,Ara_357,Arab,What university in your country is popular because of its school of medicine? (Provide the official name.), ما هي الجامعة الجزائرية المشهورة بتخصص الطب ؟ (استعمل الاسم الرسمي.),Education,"['oxford', 'university of oxford', 'oxford university']",nothing,['peking university'],B,"
+What university in your country is popular because of its school of medicine? (Provide the official name.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. oxford and university of oxford and oxford university
+B. nothing
+C. peking university
+
+Answer: ",C
+New-in-63,Ara_357,Arab,What university in your country is popular because of its school of medicine? (Provide the official name.), ما هي الجامعة الجزائرية المشهورة بتخصص الطب ؟ (استعمل الاسم الرسمي.),Education,"['ziania medical school', 'algiers faculty of medicine', 'algiers faculty of medicine - ziania', 'zianides', 'faculty of medicine']",['peking university health science center'],['cambridge'],A,"
+What university in your country is popular because of its school of medicine? (Provide the official name.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ziania medical school and algiers faculty of medicine and algiers faculty of medicine - ziania and zianides and faculty of medicine
+B. peking university health science center
+C. cambridge
+
+Answer: ",A
+Ji-ko-31,Chi_74,China,Where do middle and high school students in your country usually study for exams?,中国的中学和高中学生通常在哪里为考试学习？,Education,['classroom'],nothing,['study room'],A,"
+Where do middle and high school students in your country usually study for exams?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. classroom
+B. nothing
+C. study room
+
+Answer: ",C
+Ji-ko-31,Chi_74,China,Where do middle and high school students in your country usually study for exams?,中国的中学和高中学生通常在哪里为考试学习？,Education,"['school', 'in school', 'at school']",['support schools'],['can study anywhere'],C,"
+Where do middle and high school students in your country usually study for exams?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. school and in school and at school
+B. support schools
+C. can study anywhere
+
+Answer: ",C
+Ji-ko-35,Chi_77,China,What is the most common form of private education in your country?,在中国，最常见的私立教育形式是什么？,Education,['support lessons'],"['foreign language school', 'internation school']",nothing,B,"
+What is the most common form of private education in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. support lessons
+B. foreign language school and internation school
+C. nothing
+
+Answer: ",C
+Ji-ko-35,Chi_77,China,What is the most common form of private education in your country?,在中国，最常见的私立教育形式是什么？,Education,['support lessons'],"['boarding schools', 'boarding school']",['international exchange'],C,"
+What is the most common form of private education in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. support lessons
+B. boarding schools and boarding school
+C. international exchange
+
+Answer: ",A
+New-ch-73,Chi_290,China,What type of clubs are most popular among university students in your country?,在中国的大学生中，哪种类型的社团最受欢迎？,Education,['golf'],nothing,['street dance club'],C,"
+What type of clubs are most popular among university students in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. golf
+B. nothing
+C. street dance club
+
+Answer: ",C
+New-ch-73,Chi_290,China,What type of clubs are most popular among university students in your country?,在中国的大学生中，哪种类型的社团最受欢迎？,Education,['guitar'],"['scientific clubs', 'science']",['nightclubs'],A,"
+What type of clubs are most popular among university students in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. guitar
+B. scientific clubs and science
+C. nightclubs
+
+Answer: ",C
+New-en-68,Chi_323,China,What repercussions are there for bad behavior in schools in your country?,在中国的学校里，不良行为会有什么后果？,Education,"['bring the parent', 'parent teacher conference', 'parent-teacher conference']",['detention'],"['drop out', 'expulsion from school']",C,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bring the parent and parent teacher conference and parent-teacher conference
+B. detention
+C. drop out and expulsion from school
+
+Answer: ",B
+New-en-68,Chi_323,China,What repercussions are there for bad behavior in schools in your country?,在中国的学校里，不良行为会有什么后果？,Education,"['summon parents', 'call parents']",['expulsion'],"['exclusion', 'being expelled from school', 'expulsion', 'being expelled from school']",A,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. summon parents and call parents
+B. expulsion
+C. exclusion and being expelled from school and expulsion and being expelled from school
+
+Answer: ",B
+New-en-72,Chi_326,China,Which online resource do students usually use to study in your country?,在中国，学生通常使用哪些在线资源来学习？,Education,['youtube'],['baidu'],['zoom'],B,"
+Which online resource do students usually use to study in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. youtube
+B. baidu
+C. zoom
+
+Answer: ",C
+New-en-72,Chi_326,China,Which online resource do students usually use to study in your country?,在中国，学生通常使用哪些在线资源来学习？,Education,nothing,['google'],"['bilibili', 'bilibili online course']",C,"
+Which online resource do students usually use to study in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. google
+C. bilibili and bilibili online course
+
+Answer: ",C
+New-pe-65,Chi_381,China,"How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)",在中国，初中有多少门学科？（只提供阿拉伯数字（例如，12）。）,Education,['11'],nothing,['7'],B,"
+How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 11
+B. nothing
+C. 7
+
+Answer: ",C
+New-pe-65,Chi_381,China,"How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)",在中国，初中有多少门学科？（只提供阿拉伯数字（例如，12）。）,Education,['6'],['9'],['13'],B,"
+How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 6
+B. 9
+C. 13
+
+Answer: ",A
+New-pe-66,Chi_382,China,What is the most popular after school curricular in elementary schools in your country?,中国小学里最受欢迎的课外兴趣班是什么？,Education,"['returning home', 'go home']",['mathematics'],['netball'],B,"
+What is the most popular after school curricular in elementary schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. returning home and go home
+B. mathematics
+C. netball
+
+Answer: ",C
+New-pe-66,Chi_382,China,What is the most popular after school curricular in elementary schools in your country?,中国小学里最受欢迎的课外兴趣班是什么？,Education,['netball'],['olympiad math'],['play'],B,"
+What is the most popular after school curricular in elementary schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. netball
+B. olympiad math
+C. play
+
+Answer: ",C
+New-spme-37,Chi_394,China,Which profession is most commonly studied abroad by students from your country?,中国学生出国留学最常学习的专业/职业是哪个？,Education,['business'],['computer'],['commerce'],B,"
+Which profession is most commonly studied abroad by students from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. business
+B. computer
+C. commerce
+
+Answer: ",C
+New-spme-37,Chi_394,China,Which profession is most commonly studied abroad by students from your country?,中国学生出国留学最常学习的专业/职业是哪个？,Education,['commerce'],['languages'],['information technology'],C,"
+Which profession is most commonly studied abroad by students from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. commerce
+B. languages
+C. information technology
+
+Answer: ",C
+Ji-ko-45,Wes_86,Western,What do people look forward to the most at university festivals in your country?,What do people look forward to the most at university festivals in the UK?,Education,['music'],['party'],nothing,A,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. music
+B. party
+C. nothing
+
+Answer: ",A
+Ji-ko-45,Wes_86,Western,What do people look forward to the most at university festivals in your country?,What do people look forward to the most at university festivals in the UK?,Education,['pub crawl'],nothing,['national day'],A,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pub crawl
+B. nothing
+C. national day
+
+Answer: ",C
+New-ch-74,Wes_291,Western,What types of accommodation do university students in your country typically live in?,What types of accommodation do university students in the UK typically live in?,Education,nothing,"['halls', 'in halls of residence']",['6-person dormitory'],B,"
+What types of accommodation do university students in your country typically live in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. halls and in halls of residence
+C. 6-person dormitory
+
+Answer: ",B
+New-ch-74,Wes_291,Western,What types of accommodation do university students in your country typically live in?,What types of accommodation do university students in the UK typically live in?,Education,['6-person dormitory'],['university residence'],['flats'],C,"
+What types of accommodation do university students in your country typically live in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 6-person dormitory
+B. university residence
+C. flats
+
+Answer: ",A
+New-en-68,Wes_323,Western,What repercussions are there for bad behavior in schools in your country?,What repercussions are there for bad behavior in schools in the UK?,Education,['disciplinary council'],"['drop out', 'expulsion from school']","['exclusion', 'being expelled from school', 'expulsion', 'being expelled from school']",C,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. disciplinary council
+B. drop out and expulsion from school
+C. exclusion and being expelled from school and expulsion and being expelled from school
+
+Answer: ",A
+New-en-68,Wes_323,Western,What repercussions are there for bad behavior in schools in your country?,What repercussions are there for bad behavior in schools in the UK?,Education,"['parking in the corner', 'stand in the corner']",['boarding school education'],['school inform parents'],C,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. parking in the corner and stand in the corner
+B. boarding school education
+C. school inform parents
+
+Answer: ",C
+New-en-69,Wes_324,Western,Which writers are commonly studied in literature class in your country?,Which writers are commonly studied in literature class in the UK?,Education,['mohammed dib'],"['steinbeck', 'john steinbeck']",['lao she'],B,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mohammed dib
+B. steinbeck and john steinbeck
+C. lao she
+
+Answer: ",C
+New-en-69,Wes_324,Western,Which writers are commonly studied in literature class in your country?,Which writers are commonly studied in literature class in the UK?,Education,"['shakespeare', 'shakespear', 'william shakespeare', 'william shakespeare']",nothing,['mouloud mammeri'],A,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. shakespeare and shakespear and william shakespeare and william shakespeare
+B. nothing
+C. mouloud mammeri
+
+Answer: ",C
+Th-en-58,Wes_496,Western,What is the most advanced math subject learned before university in your country?,What is the most advanced math subject learned before university in the UK?,Education,nothing,['differential equations'],['linear algebra'],A,"
+What is the most advanced math subject learned before university in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. differential equations
+C. linear algebra
+
+Answer: ",C
+Th-en-58,Wes_496,Western,What is the most advanced math subject learned before university in your country?,What is the most advanced math subject learned before university in the UK?,Education,"['further mathematics', 'further maths']","['integration and differentiation', 'calculus']",['linear algebra'],A,"
+What is the most advanced math subject learned before university in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. further mathematics and further maths
+B. integration and differentiation and calculus
+C. linear algebra
+
+Answer: ",A

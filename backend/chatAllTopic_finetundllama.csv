@@ -1,0 +1,3205 @@
+cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,textF,Predicted
+Al-en-34,Wes_13,Western,What do people do to celebrate New Year's Day in your country?,What do people do to celebrate New Year's Day in the UK?,Holidays/Celebration/Leisure,['have a roast dinner family meal'],"[""pay a new year's visit"", 'new year greetings']",nothing,A,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. have a roast dinner family meal
+B. ""pay a new years visit"" and new year greetings
+C. nothing
+
+Answer: ",C
+Al-en-34,Wes_13,Western,What do people do to celebrate New Year's Day in your country?,What do people do to celebrate New Year's Day in the UK?,Holidays/Celebration/Leisure,nothing,"['watch fireworks', 'fireworks']",['have the reunion dinner'],B,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. watch fireworks and fireworks
+C. have the reunion dinner
+
+Answer: ",C
+Al-en-43,Wes_20,Western,What is a popular indoor activity for families in your country?,What is a popular indoor activity for families in the UK?,Holidays/Celebration/Leisure,['fight the landlord'],['boardgames'],nothing,B,"
+What is a popular indoor activity for families in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fight the landlord
+B. boardgames
+C. nothing
+
+Answer: ",B
+Al-en-43,Wes_20,Western,What is a popular indoor activity for families in your country?,What is a popular indoor activity for families in the UK?,Holidays/Celebration/Leisure,['fight the landlord'],"['xbox', 'xbox or ps']",nothing,B,"
+What is a popular indoor activity for families in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fight the landlord
+B. xbox and xbox or ps
+C. nothing
+
+Answer: ",C
+An-ar-36,Wes_27,Western,What is the most popular sport team in your country?,What is the most popular sport team in the UK?,Sport,"['mc algiers', 'mc alger', ""mouloudia club d'alger"", ""d'alger"", 'mca', 'mouloudia']","['manchester united', 'manchester utd', 'manchester united']",['real madrid'],B,"
+What is the most popular sport team in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mc algiers and mc alger and ""mouloudia club dalger"" and ""dalger"" and mca and mouloudia
+B. manchester united and manchester utd and manchester united
+C. real madrid
+
+Answer: ",A
+An-ar-36,Wes_27,Western,What is the most popular sport team in your country?,What is the most popular sport team in the UK?,Sport,"['mc algiers', 'mc alger', ""mouloudia club d'alger"", ""d'alger"", 'mca', 'mouloudia']",['real madrid'],['liverpool'],C,"
+What is the most popular sport team in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mc algiers and mc alger and ""mouloudia club dalger"" and ""dalger"" and mca and mouloudia
+B. real madrid
+C. liverpool
+
+Answer: ",A
+Ca-sp-09,Wes_32,Western,What do people from your country usually eat for dessert?,What do people from the UK usually eat for dessert?,Food,nothing,['hot pudding'],['osmanthus cake'],B,"
+What do people from your country usually eat for dessert?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. hot pudding
+C. osmanthus cake
+
+Answer: ",C
+Ca-sp-09,Wes_32,Western,What do people from your country usually eat for dessert?,What do people from the UK usually eat for dessert?,Food,['yoghurt'],['osmanthus cake'],nothing,A,"
+What do people from your country usually eat for dessert?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. yoghurt
+B. osmanthus cake
+C. nothing
+
+Answer: ",A
+Gu-ch-05,Wes_43,Western,What sports do seniors like the most in your country?,What sports do seniors like the most in the UK?,Sport,"['bowls', 'crown green bowls']","['football', 'soccer']",nothing,A,"
+What sports do seniors like the most in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bowls and crown green bowls
+B. football and soccer
+C. nothing
+
+Answer: ",A
+Gu-ch-05,Wes_43,Western,What sports do seniors like the most in your country?,What sports do seniors like the most in the UK?,Sport,['bowling'],"['square dance', 'square dancing']",nothing,A,"
+What sports do seniors like the most in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bowling
+B. square dance and square dancing
+C. nothing
+
+Answer: ",A
+Gu-ch-09,Wes_47,Western,What sports do women like to play the most in your country?,What sports do women like to play the most in the UK?,Sport,['dance'],['running'],"['football', 'soccer']",C,"
+What sports do women like to play the most in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dance
+B. running
+C. football and soccer
+
+Answer: ",C
+Gu-ch-09,Wes_47,Western,What sports do women like to play the most in your country?,What sports do women like to play the most in the UK?,Sport,['tennis'],['badminton'],nothing,A,"
+What sports do women like to play the most in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tennis
+B. badminton
+C. nothing
+
+Answer: ",A
+Ji-ko-25,Wes_69,Western,What are the family-related holidays in your country?,What are the family-related holidays in the UK?,Family,['easter'],nothing,"['spring festival', 'chinese new year', 'lunar new year']",A,"
+What are the family-related holidays in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. easter
+B. nothing
+C. spring festival and chinese new year and lunar new year
+
+Answer: ",C
+Ji-ko-25,Wes_69,Western,What are the family-related holidays in your country?,What are the family-related holidays in the UK?,Family,['mid-autumn festival'],nothing,['christmas'],C,"
+What are the family-related holidays in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mid-autumn festival
+B. nothing
+C. christmas
+
+Answer: ",C
+Ji-ko-45,Wes_86,Western,What do people look forward to the most at university festivals in your country?,What do people look forward to the most at university festivals in the UK?,Education,['music'],['party'],nothing,A,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. music
+B. party
+C. nothing
+
+Answer: ",A
+Ji-ko-45,Wes_86,Western,What do people look forward to the most at university festivals in your country?,What do people look forward to the most at university festivals in the UK?,Education,['pub crawl'],nothing,['national day'],A,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pub crawl
+B. nothing
+C. national day
+
+Answer: ",C
+Jo-sp-19,Wes_93,Western,What region in your country has been traditionally associated with agriculture?,What region in the UK has been traditionally associated with agriculture?,Work life,['yorkshire'],['henan'],['mitidja'],A,"
+What region in your country has been traditionally associated with agriculture?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. yorkshire
+B. henan
+C. mitidja
+
+Answer: ",C
+Jo-sp-19,Wes_93,Western,What region in your country has been traditionally associated with agriculture?,What region in the UK has been traditionally associated with agriculture?,Work life,"['northeast', 'northeast plain']",['oxfordshire'],['mitidja'],B,"
+What region in your country has been traditionally associated with agriculture?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. northeast and northeast plain
+B. oxfordshire
+C. mitidja
+
+Answer: ",C
+Jod-ch-04,Wes_102,Western,What soft drink do people in your country like to have?,What soft drink do people in the UK like to have?,Food,['squash'],['oriental leaf'],['selecto'],A,"
+What soft drink do people in your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. squash
+B. oriental leaf
+C. selecto
+
+Answer: ",A
+Jod-ch-04,Wes_102,Western,What soft drink do people in your country like to have?,What soft drink do people in the UK like to have?,Food,"['hammoud boualem', 'hamoud boualem']",['lemonade'],['oriental leaf'],B,"
+What soft drink do people in your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hammoud boualem and hamoud boualem
+B. lemonade
+C. oriental leaf
+
+Answer: ",A
+Jod-ch-54,Wes_120,Western,"How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)","How long (in days) is the marriage leave in the UK? (Provide Arabic numerals (e.g., 12) only.)",Work life,nothing,['4'],['14'],C,"
+How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. 4
+C. 14
+
+Answer: ",B
+Jod-ch-54,Wes_120,Western,"How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)","How long (in days) is the marriage leave in the UK? (Provide Arabic numerals (e.g., 12) only.)",Work life,['0'],['3'],['4'],A,"
+How long (in days) is the marriage leave in your country? (Provide Arabic numerals (e.g., 12) only.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 0
+B. 3
+C. 4
+
+Answer: ",B
+Jod-ch-58,Wes_123,Western,Which profession is the most respected in your country?,Which profession is the most respected in the UK?,Work life,"['fireman', 'firefighter']",['firefighter'],['police'],C,"
+Which profession is the most respected in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fireman and firefighter
+B. firefighter
+C. police
+
+Answer: ",C
+Jod-ch-58,Wes_123,Western,Which profession is the most respected in your country?,Which profession is the most respected in the UK?,Work life,['firefighter'],"['doctor', 'doctors']",nothing,B,"
+Which profession is the most respected in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. firefighter
+B. doctor and doctors
+C. nothing
+
+Answer: ",C
+Ki-pe-32,Wes_130,Western,What food do the hosts usually prepare for the guests in your country?,What food do the hosts usually prepare for the guests in the UK?,Food,['buffet'],['rice'],['traditional dishes'],A,"
+What food do the hosts usually prepare for the guests in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. buffet
+B. rice
+C. traditional dishes
+
+Answer: ",C
+Ki-pe-32,Wes_130,Western,What food do the hosts usually prepare for the guests in your country?,What food do the hosts usually prepare for the guests in the UK?,Food,['cake'],['rice'],['traditional dishes'],A,"
+What food do the hosts usually prepare for the guests in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cake
+B. rice
+C. traditional dishes
+
+Answer: ",C
+Ki-pe-36,Wes_132,Western,"Except the food original from your country, which country's food is more popular in your country?","Except the food original from the UK, which country's food is more popular in the UK?",Food,['france'],"['turkey', 'türkiye']",['indian'],C,"
+Except the food original from your country, which country's food is more popular in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. france
+B. turkey and türkiye
+C. indian
+
+Answer: ",C
+Ki-pe-36,Wes_132,Western,"Except the food original from your country, which country's food is more popular in your country?","Except the food original from the UK, which country's food is more popular in the UK?",Food,"['turkey', 'türkiye']",['france'],['chinese'],C,"
+Except the food original from your country, which country's food is more popular in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. turkey and türkiye
+B. france
+C. chinese
+
+Answer: ",C
+Ki-pe-40,Wes_134,Western,Which food from your country is considered disgusting by the rest of the world?,Which food from the UK is considered disgusting by the rest of the world?,Food,['black pudding'],nothing,"['tripe', 'intestines']",A,"
+Which food from your country is considered disgusting by the rest of the world?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. black pudding
+B. nothing
+C. tripe and intestines
+
+Answer: ",C
+Ki-pe-40,Wes_134,Western,Which food from your country is considered disgusting by the rest of the world?,Which food from the UK is considered disgusting by the rest of the world?,Food,"[""boiled sheep's head"", 'bozlov', 'bouzalof', 'bouzlouf']",['dog meat'],['stargazer pie'],C,"
+Which food from your country is considered disgusting by the rest of the world?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""boiled sheeps head"" and bozlov and bouzalof and bouzlouf
+B. dog meat
+C. stargazer pie
+
+Answer: ",C
+Kik-in-10,Wes_145,Western,What is the most popular tourist attraction for foreign visitors in your country?,What is the most popular tourist attraction for foreign visitors in the UK?,Holidays/Celebration/Leisure,['covent garden'],"['terracotta warriors', 'mausoleum of the first qin emperor']",['hoggar mountains'],A,"
+What is the most popular tourist attraction for foreign visitors in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. covent garden
+B. terracotta warriors and mausoleum of the first qin emperor
+C. hoggar mountains
+
+Answer: ",C
+Kik-in-10,Wes_145,Western,What is the most popular tourist attraction for foreign visitors in your country?,What is the most popular tourist attraction for foreign visitors in the UK?,Holidays/Celebration/Leisure,['buckingham palace'],"[""martyrs' memorial"", 'maqam echahid', ""martyr's memorial"", 'memorial of the martyr', 'sanctuary of the martyr', ""maqam e'chahid""]","['terracotta warriors', 'mausoleum of the first qin emperor']",A,"
+What is the most popular tourist attraction for foreign visitors in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. buckingham palace
+B. ""martyrs memorial"" and maqam echahid and ""martyrs memorial"" and memorial of the martyr and sanctuary of the martyr and ""maqam echahid""
+C. terracotta warriors and mausoleum of the first qin emperor
+
+Answer: ",C
+Kik-in-35,Wes_153,Western,What sports were popular among people from your country during the COVID-19 pandemic?,What sports were popular among people from the UK during the COVID-19 pandemic?,Sport,nothing,['cycling'],nothing,B,"
+What sports were popular among people from your country during the COVID-19 pandemic?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. cycling
+C. nothing
+
+Answer: ",C
+Kik-in-35,Wes_153,Western,What sports were popular among people from your country during the COVID-19 pandemic?,What sports were popular among people from the UK during the COVID-19 pandemic?,Sport,['tennis'],['aerobics'],"['running in open spaces', 'run']",A,"
+What sports were popular among people from your country during the COVID-19 pandemic?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tennis
+B. aerobics
+C. running in open spaces and run
+
+Answer: ",A
+Na-ko-04,Wes_162,Western,What is the preferred hangover cure food for people from your country?,What is the preferred hangover cure food for people from the UK?,Food,nothing,['alkerseltzer'],['honey water'],B,"
+What is the preferred hangover cure food for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. alkerseltzer
+C. honey water
+
+Answer: ",C
+Na-ko-04,Wes_162,Western,What is the preferred hangover cure food for people from your country?,What is the preferred hangover cure food for people from the UK?,Food,['mcdonalds muffin'],nothing,['tea'],A,"
+What is the preferred hangover cure food for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mcdonalds muffin
+B. nothing
+C. tea
+
+Answer: ",C
+Na-ko-09,Wes_166,Western,What side dish is the most commonly served on a dining table in your country?,What side dish is the most commonly served on a dining table in the UK?,Food,"['hmiss', 'pepper salad']",['stir-fried meat'],['sprouts'],C,"
+What side dish is the most commonly served on a dining table in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hmiss and pepper salad
+B. stir-fried meat
+C. sprouts
+
+Answer: ",C
+Na-ko-09,Wes_166,Western,What side dish is the most commonly served on a dining table in your country?,What side dish is the most commonly served on a dining table in the UK?,Food,"['hmiss', 'pepper salad']",['stir-fried meat'],"['potatoes', 'potatos']",C,"
+What side dish is the most commonly served on a dining table in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hmiss and pepper salad
+B. stir-fried meat
+C. potatoes and potatos
+
+Answer: ",C
+Na-ko-17,Wes_170,Western,What sports do male students enjoy during lunch time at school in your country?,What sports do male students enjoy during lunch time at school in the UK?,Sport,nothing,['basketball'],nothing,B,"
+What sports do male students enjoy during lunch time at school in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. basketball
+C. nothing
+
+Answer: ",B
+Na-ko-17,Wes_170,Western,What sports do male students enjoy during lunch time at school in your country?,What sports do male students enjoy during lunch time at school in the UK?,Sport,nothing,"['football', 'soccer']",nothing,B,"
+What sports do male students enjoy during lunch time at school in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. football and soccer
+C. nothing
+
+Answer: ",B
+Na-ko-37,Wes_183,Western,What is the most popular domestic vacation spot for people from your country?,What is the most popular domestic vacation spot for people from the UK?,Holidays/Celebration/Leisure,"['bejaia', 'béjaïa', 'bougie', 'bugia']",['great wall'],['cornwall'],C,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bejaia and béjaïa and bougie and bugia
+B. great wall
+C. cornwall
+
+Answer: ",C
+Na-ko-37,Wes_183,Western,What is the most popular domestic vacation spot for people from your country?,What is the most popular domestic vacation spot for people from the UK?,Holidays/Celebration/Leisure,"['bejaia', 'béjaïa', 'bougie', 'bugia']",['butlins'],['great wall'],B,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bejaia and béjaïa and bougie and bugia
+B. butlins
+C. great wall
+
+Answer: ",A
+Ne-ar-06,Wes_193,Western,What do people from your country eat in Ramadan?,What do people from the UK eat in Ramadan?,Holidays/Celebration/Leisure,['noodles'],['nuts'],['soup'],B,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. noodles
+B. nuts
+C. soup
+
+Answer: ",C
+Ne-ar-06,Wes_193,Western,What do people from your country eat in Ramadan?,What do people from the UK eat in Ramadan?,Holidays/Celebration/Leisure,['beef and mutton'],['sweets'],['soup'],B,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. beef and mutton
+B. sweets
+C. soup
+
+Answer: ",C
+Ne-ar-11,Wes_196,Western,Where do people from your country go to celebrate New Year's Day?,Where do people from the UK go to celebrate New Year's Day?,Holidays/Celebration/Leisure,"[""parents' home""]",nothing,"[""relatives' houses"", 'relatives houses', ""a relative's house"", 'family houses', 'friends or family houses', ""family's house"", ""relative's house""]",C,"
+Where do people from your country go to celebrate New Year's Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""parents home""
+B. nothing
+C. ""relatives houses"" and relatives houses and ""a relatives house"" and family houses and friends or family houses and ""familys house"" and ""relatives house""
+
+Answer: ",C
+Ne-ar-11,Wes_196,Western,Where do people from your country go to celebrate New Year's Day?,Where do people from the UK go to celebrate New Year's Day?,Holidays/Celebration/Leisure,"[""a friend's house"", ""friends' houses"", 'friends or family houses']","[""parents' home""]",nothing,A,"
+Where do people from your country go to celebrate New Year's Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""a friends house"" and ""friends houses"" and friends or family houses
+B. ""parents home""
+C. nothing
+
+Answer: ",A
+Ne-ar-31,Wes_205,Western,What is the most famous dish in your country?,What is the most famous dish in the UK?,Food,"['peking duck', 'peking roast duck']",['bangers and mash'],['couscous'],B,"
+What is the most famous dish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. peking duck and peking roast duck
+B. bangers and mash
+C. couscous
+
+Answer: ",C
+Ne-ar-31,Wes_205,Western,What is the most famous dish in your country?,What is the most famous dish in the UK?,Food,['hot pot'],nothing,"['fish and chips', 'fish & chips']",C,"
+What is the most famous dish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hot pot
+B. nothing
+C. fish and chips and fish & chips
+
+Answer: ",C
+Ne-ar-36,Wes_209,Western,What is a typical festive meal in your country?,What is a typical festive meal in the UK?,Food,"['rishta', 'lentils and pasta soup', 'libyan-style pasta', 'reshta', 'rechta']","['turkey and the trimmings', 'turkey and the trimmings at christmas', 'christmas dinner']",['hot pot'],B,"
+What is a typical festive meal in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. rishta and lentils and pasta soup and libyan-style pasta and reshta and rechta
+B. turkey and the trimmings and turkey and the trimmings at christmas and christmas dinner
+C. hot pot
+
+Answer: ",B
+Ne-ar-36,Wes_209,Western,What is a typical festive meal in your country?,What is a typical festive meal in the UK?,Food,"['fish', 'may there be surpluses every year (homophone for fish)']",nothing,['turkey'],C,"
+What is a typical festive meal in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fish and may there be surpluses every year (homophone for fish)
+B. nothing
+C. turkey
+
+Answer: ",C
+Ne-ar-39,Wes_212,Western,What is the cheapest fast food in your country?,What is the cheapest fast food in the UK?,Food,"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",['noodles'],"['square pizza', 'pizza carré', 'pizza carre', 'pizza slices']",A,"
+What is the cheapest fast food in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mcdonalds and ""mcdonalds"" and macdonalds and ""mcdonalds""
+B. noodles
+C. square pizza and pizza carré and pizza carre and pizza slices
+
+Answer: ",B
+Ne-ar-39,Wes_212,Western,What is the cheapest fast food in your country?,What is the cheapest fast food in the UK?,Food,"['square pizza', 'pizza carré', 'pizza carre', 'pizza slices']",['greggs'],['noodles'],B,"
+What is the cheapest fast food in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. square pizza and pizza carré and pizza carre and pizza slices
+B. greggs
+C. noodles
+
+Answer: ",B
+New-am-74,Wes_228,Western,What is the most popular talk show in your country?,What is the most popular talk show in the UK?,Family,['loose women'],['morning guest'],['the jinxing show'],A,"
+What is the most popular talk show in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. loose women
+B. morning guest
+C. the jinxing show
+
+Answer: ",A
+New-am-74,Wes_228,Western,What is the most popular talk show in your country?,What is the most popular talk show in the UK?,Family,['make progress every day'],['beyond the walls'],"['the graham norton show', 'graham norton show', 'graham norton']",C,"
+What is the most popular talk show in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. make progress every day
+B. beyond the walls
+C. the graham norton show and graham norton show and graham norton
+
+Answer: ",C
+New-as-07,Wes_235,Western,What is the most popular dish cooked with fish in your country?,What is the most popular dish cooked with fish in the UK?,Food,['sibia with tomatoes'],nothing,['braised fish'],B,"
+What is the most popular dish cooked with fish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sibia with tomatoes
+B. nothing
+C. braised fish
+
+Answer: ",C
+New-as-07,Wes_235,Western,What is the most popular dish cooked with fish in your country?,What is the most popular dish cooked with fish in the UK?,Food,"['fish soup', 'soupe de poisson']",['sour cabbage fish'],nothing,C,"
+What is the most popular dish cooked with fish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fish soup and soupe de poisson
+B. sour cabbage fish
+C. nothing
+
+Answer: ",C
+New-as-76,Wes_243,Western,What traditional games do families play during traditional holidays in your country?,What traditional games do families play during traditional holidays in the UK?,Holidays/Celebration/Leisure,['monopoly'],nothing,['shuttlecock kicking'],A,"
+What traditional games do families play during traditional holidays in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. monopoly
+B. nothing
+C. shuttlecock kicking
+
+Answer: ",C
+New-as-76,Wes_243,Western,What traditional games do families play during traditional holidays in your country?,What traditional games do families play during traditional holidays in the UK?,Holidays/Celebration/Leisure,nothing,"['mahjong', 'play mahjong']",['charades'],C,"
+What traditional games do families play during traditional holidays in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. mahjong and play mahjong
+C. charades
+
+Answer: ",C
+New-ch-16,Wes_268,Western,What is the most famous sports-related movie in your country?,What is the most famous sports-related movie in the UK?,Sport,nothing,['women basketball team member no. 5'],['chariots of fire'],C,"
+What is the most famous sports-related movie in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. women basketball team member no. 5
+C. chariots of fire
+
+Answer: ",C
+New-ch-16,Wes_268,Western,What is the most famous sports-related movie in your country?,What is the most famous sports-related movie in the UK?,Sport,['ferrari'],['slam dunk'],nothing,A,"
+What is the most famous sports-related movie in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ferrari
+B. slam dunk
+C. nothing
+
+Answer: ",C
+New-ch-38,Wes_278,Western,Which cities or regions are known for their import and export activities in your country?,Which cities or regions are known for their import and export activities in the UK?,Work life,['kent'],['shenzhen'],['algiers'],A,"
+Which cities or regions are known for their import and export activities in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. kent
+B. shenzhen
+C. algiers
+
+Answer: ",A
+New-ch-38,Wes_278,Western,Which cities or regions are known for their import and export activities in your country?,Which cities or regions are known for their import and export activities in the UK?,Work life,['london'],['qingdao'],"['arzew', 'arzeu']",A,"
+Which cities or regions are known for their import and export activities in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. london
+B. qingdao
+C. arzew and arzeu
+
+Answer: ",A
+New-ch-44,Wes_280,Western,"How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).","How long is the typical probation period for new employees before signing a formal contract in the UK? (e.g., 1 month).",Work life,"['two years', '2 years']",nothing,"['6 weeks', '4-6 weeks', '6', 'six weeks']",C,"
+How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. two years and 2 years
+B. nothing
+C. 6 weeks and 4-6 weeks and 6 and six weeks
+
+Answer: ",B
+New-ch-44,Wes_280,Western,"How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).","How long is the typical probation period for new employees before signing a formal contract in the UK? (e.g., 1 month).",Work life,nothing,"['12 months', 'twelve months']","['2 weeks', 'two weeks']",C,"
+How long is the typical probation period for new employees before signing a formal contract in your country? (e.g., 1 month).
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. 12 months and twelve months
+C. 2 weeks and two weeks
+
+Answer: ",B
+New-ch-45,Wes_281,Western,Which industries do young people typically choose to start businesses in your country?,Which industries do young people typically choose to start businesses in the UK?,Work life,"['clothes', 'clothing', 'garment']",['media'],['technology'],B,"
+Which industries do young people typically choose to start businesses in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. clothes and clothing and garment
+B. media
+C. technology
+
+Answer: ",C
+New-ch-45,Wes_281,Western,Which industries do young people typically choose to start businesses in your country?,Which industries do young people typically choose to start businesses in the UK?,Work life,"['clothes', 'clothing', 'garment']","['social media', 'social media or fashion']",['technology'],B,"
+Which industries do young people typically choose to start businesses in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. clothes and clothing and garment
+B. social media and social media or fashion
+C. technology
+
+Answer: ",C
+New-ch-74,Wes_291,Western,What types of accommodation do university students in your country typically live in?,What types of accommodation do university students in the UK typically live in?,Education,nothing,"['halls', 'in halls of residence']",['6-person dormitory'],B,"
+What types of accommodation do university students in your country typically live in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. halls and in halls of residence
+C. 6-person dormitory
+
+Answer: ",B
+New-ch-74,Wes_291,Western,What types of accommodation do university students in your country typically live in?,What types of accommodation do university students in the UK typically live in?,Education,['6-person dormitory'],['university residence'],['flats'],C,"
+What types of accommodation do university students in your country typically live in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 6-person dormitory
+B. university residence
+C. flats
+
+Answer: ",A
+New-en-08,Wes_306,Western,What is the most popular chocolate brand in your country?,What is the most popular chocolate brand in the UK?,Food,['nestle'],['gold sand chocolate'],['maruja'],A,"
+What is the most popular chocolate brand in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nestle
+B. gold sand chocolate
+C. maruja
+
+Answer: ",C
+New-en-08,Wes_306,Western,What is the most popular chocolate brand in your country?,What is the most popular chocolate brand in the UK?,Food,['good times'],['ambassadeur'],"['cadburys', 'cadbury', ""cadbury's""]",C,"
+What is the most popular chocolate brand in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. good times
+B. ambassadeur
+C. cadburys and cadbury and ""cadburys""
+
+Answer: ",C
+New-en-68,Wes_323,Western,What repercussions are there for bad behavior in schools in your country?,What repercussions are there for bad behavior in schools in the UK?,Education,['disciplinary council'],"['drop out', 'expulsion from school']","['exclusion', 'being expelled from school', 'expulsion', 'being expelled from school']",C,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. disciplinary council
+B. drop out and expulsion from school
+C. exclusion and being expelled from school and expulsion and being expelled from school
+
+Answer: ",A
+New-en-68,Wes_323,Western,What repercussions are there for bad behavior in schools in your country?,What repercussions are there for bad behavior in schools in the UK?,Education,"['parking in the corner', 'stand in the corner']",['boarding school education'],['school inform parents'],C,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. parking in the corner and stand in the corner
+B. boarding school education
+C. school inform parents
+
+Answer: ",C
+New-en-69,Wes_324,Western,Which writers are commonly studied in literature class in your country?,Which writers are commonly studied in literature class in the UK?,Education,['mohammed dib'],"['steinbeck', 'john steinbeck']",['lao she'],B,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mohammed dib
+B. steinbeck and john steinbeck
+C. lao she
+
+Answer: ",C
+New-en-69,Wes_324,Western,Which writers are commonly studied in literature class in your country?,Which writers are commonly studied in literature class in the UK?,Education,"['shakespeare', 'shakespear', 'william shakespeare', 'william shakespeare']",nothing,['mouloud mammeri'],A,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. shakespeare and shakespear and william shakespeare and william shakespeare
+B. nothing
+C. mouloud mammeri
+
+Answer: ",C
+New-en-87,Wes_330,Western,What is the most famous historic landmark in your country?,What is the most famous historic landmark in the UK?,Holidays/Celebration/Leisure,"['timgad', 'timqad']",['buckingham palace'],['forbidden city'],B,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. timgad and timqad
+B. buckingham palace
+C. forbidden city
+
+Answer: ",C
+New-en-87,Wes_330,Western,What is the most famous historic landmark in your country?,What is the most famous historic landmark in the UK?,Holidays/Celebration/Leisure,nothing,['big ben'],"['casbah', 'kasbah']",B,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. big ben
+C. casbah and kasbah
+
+Answer: ",B
+New-gr-15,Wes_336,Western,What is the most popular traditional dessert in your country?,What is the most popular traditional dessert in the UK?,Food,['cake and custard'],['baklava'],['osmanthus cake'],A,"
+What is the most popular traditional dessert in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cake and custard
+B. baklava
+C. osmanthus cake
+
+Answer: ",C
+New-gr-15,Wes_336,Western,What is the most popular traditional dessert in your country?,What is the most popular traditional dessert in the UK?,Food,"['makroud', 'makrout']",['jelly'],['osmanthus cake'],B,"
+What is the most popular traditional dessert in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. makroud and makrout
+B. jelly
+C. osmanthus cake
+
+Answer: ",C
+New-gr-76,Wes_342,Western,What is the most common food served during Easter in your country?,What is the most common food served during Easter in the UK?,Holidays/Celebration/Leisure,nothing,['ham'],['apple'],B,"
+What is the most common food served during Easter in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. ham
+C. apple
+
+Answer: ",B
+New-gr-76,Wes_342,Western,What is the most common food served during Easter in your country?,What is the most common food served during Easter in the UK?,Holidays/Celebration/Leisure,nothing,['roast lamb'],nothing,B,"
+What is the most common food served during Easter in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. roast lamb
+C. nothing
+
+Answer: ",B
+New-gr-89,Wes_345,Western,What drink is usually offered at weddings in your country?,What drink is usually offered at weddings in the UK?,Holidays/Celebration/Leisure,"['chinese spirits', 'white liquor', 'bai']",['tea'],['champagne'],C,"
+What drink is usually offered at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. chinese spirits and white liquor and bai
+B. tea
+C. champagne
+
+Answer: ",A
+New-gr-89,Wes_345,Western,What drink is usually offered at weddings in your country?,What drink is usually offered at weddings in the UK?,Holidays/Celebration/Leisure,['juice'],['alcohol'],['cava'],C,"
+What drink is usually offered at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. juice
+B. alcohol
+C. cava
+
+Answer: ",C
+New-ha-07,Wes_346,Western,What food originated from your country and can be found all over the world?,What food originated from the UK and can be found all over the world?,Food,['noodles'],nothing,"['fish and chips', 'fish & chips']",C,"
+What food originated from your country and can be found all over the world?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. noodles
+B. nothing
+C. fish and chips and fish & chips
+
+Answer: ",C
+New-ha-07,Wes_346,Western,What food originated from your country and can be found all over the world?,What food originated from the UK and can be found all over the world?,Food,nothing,['potatoes'],['noodles'],B,"
+What food originated from your country and can be found all over the world?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. potatoes
+C. noodles
+
+Answer: ",C
+New-ha-08,Wes_347,Western,What food is typically disliked by children but enjoyed by the elderly in your country?,What food is typically disliked by children but enjoyed by the elderly in the UK?,Food,['eight-treasure porridge'],['vegetable'],['vegetables'],C,"
+What food is typically disliked by children but enjoyed by the elderly in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. eight-treasure porridge
+B. vegetable
+C. vegetables
+
+Answer: ",C
+New-ha-08,Wes_347,Western,What food is typically disliked by children but enjoyed by the elderly in your country?,What food is typically disliked by children but enjoyed by the elderly in the UK?,Food,['tbikha'],['olives'],['carrot'],B,"
+What food is typically disliked by children but enjoyed by the elderly in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tbikha
+B. olives
+C. carrot
+
+Answer: ",C
+New-in-33,Wes_354,Western,What region in your country is usually associated with mining?,What region in the UK is usually associated with mining?,Work life,"['annaba', 'bon', 'bona', 'bône']",['yorkshire'],['panzhihua'],B,"
+What region in your country is usually associated with mining?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. annaba and bon and bona and bône
+B. yorkshire
+C. panzhihua
+
+Answer: ",C
+New-in-33,Wes_354,Western,What region in your country is usually associated with mining?,What region in the UK is usually associated with mining?,Work life,['panzhihua'],"['el hajar', 'el hadjar']",['north'],C,"
+What region in your country is usually associated with mining?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. panzhihua
+B. el hajar and el hadjar
+C. north
+
+Answer: ",A
+New-ko-05,Wes_364,Western,Which toys are most popular among girls in your country?,Which toys are most popular among girls in the UK?,Family,"['doll', 'playing with dolls']",nothing,['doll'],B,"
+Which toys are most popular among girls in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. doll and playing with dolls
+B. nothing
+C. doll
+
+Answer: ",C
+New-ko-05,Wes_364,Western,Which toys are most popular among girls in your country?,Which toys are most popular among girls in the UK?,Family,['dolls'],"['jumping', 'jump']",['doll'],A,"
+Which toys are most popular among girls in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dolls
+B. jumping and jump
+C. doll
+
+Answer: ",A
+New-ko-06,Wes_365,Western,What is the most popular folk tale in your country that is typically told to children?,What is the most popular folk tale in the UK that is typically told to children?,Family,['journey to the west'],['tooth fairy'],"[""juha's stories"", 'juha stories', 'juha']",B,"
+What is the most popular folk tale in your country that is typically told to children?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. journey to the west
+B. tooth fairy
+C. ""juhas stories"" and juha stories and juha
+
+Answer: ",C
+New-ko-06,Wes_365,Western,What is the most popular folk tale in your country that is typically told to children?,What is the most popular folk tale in the UK that is typically told to children?,Family,['the cowherd and the weaver girl'],"['hansel and gretel', 'hansel and gretal']",['qays and layla'],B,"
+What is the most popular folk tale in your country that is typically told to children?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. the cowherd and the weaver girl
+B. hansel and gretel and hansel and gretal
+C. qays and layla
+
+Answer: ",C
+New-ko-07,Wes_366,Western,What is the customary symbol of condolence used at funerals in your country?,What is the customary symbol of condolence used at funerals in the UK?,Holidays/Celebration/Leisure,"['wearing black', 'black clothing']",['flower wreath'],nothing,A,"
+What is the customary symbol of condolence used at funerals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. wearing black and black clothing
+B. flower wreath
+C. nothing
+
+Answer: ",B
+New-ko-07,Wes_366,Western,What is the customary symbol of condolence used at funerals in your country?,What is the customary symbol of condolence used at funerals in the UK?,Holidays/Celebration/Leisure,nothing,"['supplication', 'prayer', 'pray']",['flowers'],C,"
+What is the customary symbol of condolence used at funerals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. supplication and prayer and pray
+C. flowers
+
+Answer: ",C
+New-pe-06,Wes_371,Western,What is the most popular stew in your country?,What is the most popular stew in the UK?,Food,['braised spare ribs'],['vegetable'],['chtitha'],B,"
+What is the most popular stew in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. braised spare ribs
+B. vegetable
+C. chtitha
+
+Answer: ",C
+New-pe-06,Wes_371,Western,What is the most popular stew in your country?,What is the most popular stew in the UK?,Food,['steak and ale'],"['sweet tagine', 'lham hlou', 'lham lahlou', 'tajine lahlou']",['braised spare ribs'],A,"
+What is the most popular stew in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. steak and ale
+B. sweet tagine and lham hlou and lham lahlou and tajine lahlou
+C. braised spare ribs
+
+Answer: ",C
+New-pe-11,Wes_372,Western,What is the most common spice/herb used in dishes from your country?,What is the most common spice/herb used in dishes from the UK?,Food,"['pepper', 'salt and pepper']",['thyme'],['thirteen spices'],A,"
+What is the most common spice/herb used in dishes from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pepper and salt and pepper
+B. thyme
+C. thirteen spices
+
+Answer: ",B
+New-pe-11,Wes_372,Western,What is the most common spice/herb used in dishes from your country?,What is the most common spice/herb used in dishes from the UK?,Food,['black pepper'],['thirteen spices'],['parsley'],C,"
+What is the most common spice/herb used in dishes from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. black pepper
+B. thirteen spices
+C. parsley
+
+Answer: ",A
+New-pe-76,Wes_384,Western,What is a popular activity to do in parks in your country?,What is a popular activity to do in parks in the UK?,Holidays/Celebration/Leisure,['walk'],['play badminton'],['running'],A,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. walk
+B. play badminton
+C. running
+
+Answer: ",A
+New-pe-76,Wes_384,Western,What is a popular activity to do in parks in your country?,What is a popular activity to do in parks in the UK?,Holidays/Celebration/Leisure,['eating'],['tai chi'],['bbq'],C,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. eating
+B. tai chi
+C. bbq
+
+Answer: ",A
+New-pe-85,Wes_387,Western,Where is the most popular tourist destination abroad for people from your country?,Where is the most popular tourist destination abroad for people from the UK?,Holidays/Celebration/Leisure,"['balearics', 'balearic islands']","['turkey', 'türkiye']",['united states'],A,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. balearics and balearic islands
+B. turkey and türkiye
+C. united states
+
+Answer: ",C
+New-pe-85,Wes_387,Western,Where is the most popular tourist destination abroad for people from your country?,Where is the most popular tourist destination abroad for people from the UK?,Holidays/Celebration/Leisure,['united states'],['france'],nothing,B,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. united states
+B. france
+C. nothing
+
+Answer: ",C
+New-spme-05,Wes_391,Western,What are the most popular sweets in your country?,What are the most popular sweets in the UK?,Food,['fruit pastiles'],"['halwet ettabaa', 'halwet taba', 'halwet tabe', 'halwet eltaba']",['egg yolk pastry'],A,"
+What are the most popular sweets in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fruit pastiles
+B. halwet ettabaa and halwet taba and halwet tabe and halwet eltaba
+C. egg yolk pastry
+
+Answer: ",B
+New-spme-05,Wes_391,Western,What are the most popular sweets in your country?,What are the most popular sweets in the UK?,Food,['mars bar'],['egg yolk pastry'],['baklava'],A,"
+What are the most popular sweets in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mars bar
+B. egg yolk pastry
+C. baklava
+
+Answer: ",C
+New-su-01,Wes_400,Western,What snacks are usually sold in front of schools in your country?,What snacks are usually sold in front of schools in the UK?,Food,['sweets'],['roasted sausage'],['pizza'],A,"
+What snacks are usually sold in front of schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sweets
+B. roasted sausage
+C. pizza
+
+Answer: ",A
+New-su-01,Wes_400,Western,What snacks are usually sold in front of schools in your country?,What snacks are usually sold in front of schools in the UK?,Food,['pizza'],['fizzy pop'],['roasted sausage'],B,"
+What snacks are usually sold in front of schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pizza
+B. fizzy pop
+C. roasted sausage
+
+Answer: ",C
+New-su-83,Wes_423,Western,What food is usually served at weddings in your country?,What food is usually served at weddings in the UK?,Holidays/Celebration/Leisure,['fish'],['garlic'],['wedding breakfast'],C,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fish
+B. garlic
+C. wedding breakfast
+
+Answer: ",C
+New-su-83,Wes_423,Western,What food is usually served at weddings in your country?,What food is usually served at weddings in the UK?,Holidays/Celebration/Leisure,['buffet'],['couscous'],['red dates'],A,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. buffet
+B. couscous
+C. red dates
+
+Answer: ",A
+Sa-en-32,Wes_452,Western,What is the most popular family TV show in your country?,What is the most popular family TV show in the UK?,Family,['news simulcast'],['emmerdale'],"['el fhama', 'el fehama']",B,"
+What is the most popular family TV show in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. news simulcast
+B. emmerdale
+C. el fhama and el fehama
+
+Answer: ",C
+Sa-en-32,Wes_452,Western,What is the most popular family TV show in your country?,What is the most popular family TV show in the UK?,Family,['happy camp'],"['el fhama', 'el fehama']","['ant & dec', ""ant & dec's saturday night takeaway""]",C,"
+What is the most popular family TV show in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. happy camp
+B. el fhama and el fehama
+C. ant & dec and ""ant & decs saturday night takeaway""
+
+Answer: ",C
+Ta-pe-37,Wes_468,Western,What is the common symbol of New Year's Eve that is usually found in your country?,What is the common symbol of New Year's Eve that is usually found in the UK?,Holidays/Celebration/Leisure,['champagne'],nothing,['paper-cut for window decoration'],A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. champagne
+B. nothing
+C. paper-cut for window decoration
+
+Answer: ",C
+Ta-pe-37,Wes_468,Western,What is the common symbol of New Year's Eve that is usually found in your country?,What is the common symbol of New Year's Eve that is usually found in the UK?,Holidays/Celebration/Leisure,['big ben'],nothing,"['spring festival couplets', 'chinese couplets', 'new year scrolls']",A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. big ben
+B. nothing
+C. spring festival couplets and chinese couplets and new year scrolls
+
+Answer: ",C
+Th-en-11,Wes_475,Western,Who is the most popular sportperson in your country?,Who is the most popular sportperson in the UK?,Sport,"['toufik makhloufi', 'taoufik makhloufi']",['erling haaland'],"['ming yao', 'yao ming']",B,"
+Who is the most popular sportperson in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. toufik makhloufi and taoufik makhloufi
+B. erling haaland
+C. ming yao and yao ming
+
+Answer: ",C
+Th-en-11,Wes_475,Western,Who is the most popular sportperson in your country?,Who is the most popular sportperson in the UK?,Sport,"['yiming su', 'su yiming']",['islam slimani'],"['gary lineker', 'gary linekar']",C,"
+Who is the most popular sportperson in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. yiming su and su yiming
+B. islam slimani
+C. gary lineker and gary linekar
+
+Answer: ",C
+Th-en-19,Wes_478,Western,What is a city or region in your country known for manufacturing industry?,What is a city or region in the UK known for manufacturing industry?,Work life,['blida'],['sheffield'],['shenzhen'],B,"
+What is a city or region in your country known for manufacturing industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. blida
+B. sheffield
+C. shenzhen
+
+Answer: ",C
+Th-en-19,Wes_478,Western,What is a city or region in your country known for manufacturing industry?,What is a city or region in the UK known for manufacturing industry?,Work life,['blida'],['shenzhen'],['lancashire'],C,"
+What is a city or region in your country known for manufacturing industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. blida
+B. shenzhen
+C. lancashire
+
+Answer: ",C
+Th-en-21,Wes_479,Western,What is regarded as the most important perk typically offered to employees in your country?,What is regarded as the most important perk typically offered to employees in the UK?,Work life,['salary'],['pension'],['five insurances and one fund'],B,"
+What is regarded as the most important perk typically offered to employees in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. salary
+B. pension
+C. five insurances and one fund
+
+Answer: ",C
+Th-en-21,Wes_479,Western,What is regarded as the most important perk typically offered to employees in your country?,What is regarded as the most important perk typically offered to employees in the UK?,Work life,['free lunches'],['marriage and maternity leave'],"['allowance', 'productivity bonus', 'bonus']",A,"
+What is regarded as the most important perk typically offered to employees in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. free lunches
+B. marriage and maternity leave
+C. allowance and productivity bonus and bonus
+
+Answer: ",A
+Th-en-58,Wes_496,Western,What is the most advanced math subject learned before university in your country?,What is the most advanced math subject learned before university in the UK?,Education,nothing,['differential equations'],['linear algebra'],A,"
+What is the most advanced math subject learned before university in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. differential equations
+C. linear algebra
+
+Answer: ",C
+Th-en-58,Wes_496,Western,What is the most advanced math subject learned before university in your country?,What is the most advanced math subject learned before university in the UK?,Education,"['further mathematics', 'further maths']","['integration and differentiation', 'calculus']",['linear algebra'],A,"
+What is the most advanced math subject learned before university in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. further mathematics and further maths
+B. integration and differentiation and calculus
+C. linear algebra
+
+Answer: ",A
+Al-en-34,Chi_13,China,What do people do to celebrate New Year's Day in your country?,中国人在新年当天通常会做些什么来庆祝呢？,Holidays/Celebration/Leisure,"['watch fireworks', 'fireworks']",nothing,['have the reunion dinner'],C,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. watch fireworks and fireworks
+B. nothing
+C. have the reunion dinner
+
+Answer: ",C
+Al-en-34,Chi_13,China,What do people do to celebrate New Year's Day in your country?,中国人在新年当天通常会做些什么来庆祝呢？,Holidays/Celebration/Leisure,"['eating sweets', 'eat sweets']","['go to the pub', 'home or pubs']",['dumplings'],C,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. eating sweets and eat sweets
+B. go to the pub and home or pubs
+C. dumplings
+
+Answer: ",C
+Al-en-40,Chi_19,China,What is a popular outdoor place for families to have fun with little kids in your country?,在中国，有哪些受欢迎的户外场所适合家庭带着小孩子去玩乐？,Holidays/Celebration/Leisure,"['local parks', 'park']","['botanical garden hamma', 'public garden', 'garden']","['outdoor playground', 'amusement park']",C,"
+What is a popular outdoor place for families to have fun with little kids in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. local parks and park
+B. botanical garden hamma and public garden and garden
+C. outdoor playground and amusement park
+
+Answer: ",A
+Al-en-40,Chi_19,China,What is a popular outdoor place for families to have fun with little kids in your country?,在中国，有哪些受欢迎的户外场所适合家庭带着小孩子去玩乐？,Holidays/Celebration/Leisure,['adventure parks'],['sea'],nothing,C,"
+What is a popular outdoor place for families to have fun with little kids in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. adventure parks
+B. sea
+C. nothing
+
+Answer: ",A
+Ca-sp-41,Chi_39,China,Where do the dependent elderly usually live in your country?,在中国，需要依赖他人照顾的老年人通常住在哪里？,Family,nothing,"['rural hometown', 'rural area', 'countrysize']",['sheltered accomodation'],B,"
+Where do the dependent elderly usually live in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. rural hometown and rural area and countrysize
+C. sheltered accomodation
+
+Answer: ",C
+Ca-sp-41,Chi_39,China,Where do the dependent elderly usually live in your country?,在中国，需要依赖他人照顾的老年人通常住在哪里？,Family,"[""children's home"", 'please take care of the nursing staff']",nothing,"['retirement homes', 'care homes']",A,"
+Where do the dependent elderly usually live in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""childrens home"" and please take care of the nursing staff
+B. nothing
+C. retirement homes and care homes
+
+Answer: ",C
+Gu-ch-07,Chi_45,China,Who is the most famous basketball player in your country?,中国最著名的篮球运动员是谁？,Sport,nothing,nothing,"['wang zhizhi', 'zhizhi wang']",C,"
+Who is the most famous basketball player in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. nothing
+C. wang zhizhi and zhizhi wang
+
+Answer: ",C
+Gu-ch-07,Chi_45,China,Who is the most famous basketball player in your country?,中国最著名的篮球运动员是谁？,Sport,nothing,"['yao ming', 'ming yao']",nothing,B,"
+Who is the most famous basketball player in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. yao ming and ming yao
+C. nothing
+
+Answer: ",C
+Gu-ch-09,Chi_47,China,What sports do women like to play the most in your country?,在中国，女性最喜欢参与哪些运动？,Sport,['hockey'],['running'],['gymnastics'],B,"
+What sports do women like to play the most in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hockey
+B. running
+C. gymnastics
+
+Answer: ",C
+Gu-ch-09,Chi_47,China,What sports do women like to play the most in your country?,在中国，女性最喜欢参与哪些运动？,Sport,['netball'],['gymnastics'],['badminton'],C,"
+What sports do women like to play the most in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. netball
+B. gymnastics
+C. badminton
+
+Answer: ",A
+Ji-ko-09,Chi_62,China,What do people typically eat during company get-together in your country?,在中国的公司聚会上，人们通常吃些什么？,Work life,['meat'],['cakes'],['hot dishes'],C,"
+What do people typically eat during company get-together in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. meat
+B. cakes
+C. hot dishes
+
+Answer: ",C
+Ji-ko-09,Chi_62,China,What do people typically eat during company get-together in your country?,在中国的公司聚会上，人们通常吃些什么？,Work life,['meat'],['barbecue'],"['buffet', 'buffet food']",B,"
+What do people typically eat during company get-together in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. meat
+B. barbecue
+C. buffet and buffet food
+
+Answer: ",C
+Ji-ko-14,Chi_63,China,What is the representative export item of your country?,中国的代表性出口商品是什么？,Work life,['cars'],['textile'],nothing,B,"
+What is the representative export item of your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cars
+B. textile
+C. nothing
+
+Answer: ",A
+Ji-ko-14,Chi_63,China,What is the representative export item of your country?,中国的代表性出口商品是什么？,Work life,nothing,['rice'],nothing,B,"
+What is the representative export item of your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. rice
+C. nothing
+
+Answer: ",C
+Ji-ko-31,Chi_74,China,Where do middle and high school students in your country usually study for exams?,中国的中学和高中学生通常在哪里为考试学习？,Education,['classroom'],nothing,['study room'],A,"
+Where do middle and high school students in your country usually study for exams?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. classroom
+B. nothing
+C. study room
+
+Answer: ",C
+Ji-ko-31,Chi_74,China,Where do middle and high school students in your country usually study for exams?,中国的中学和高中学生通常在哪里为考试学习？,Education,"['school', 'in school', 'at school']",['support schools'],['can study anywhere'],C,"
+Where do middle and high school students in your country usually study for exams?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. school and in school and at school
+B. support schools
+C. can study anywhere
+
+Answer: ",C
+Ji-ko-35,Chi_77,China,What is the most common form of private education in your country?,在中国，最常见的私立教育形式是什么？,Education,['support lessons'],"['foreign language school', 'internation school']",nothing,B,"
+What is the most common form of private education in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. support lessons
+B. foreign language school and internation school
+C. nothing
+
+Answer: ",C
+Ji-ko-35,Chi_77,China,What is the most common form of private education in your country?,在中国，最常见的私立教育形式是什么？,Education,['support lessons'],"['boarding schools', 'boarding school']",['international exchange'],C,"
+What is the most common form of private education in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. support lessons
+B. boarding schools and boarding school
+C. international exchange
+
+Answer: ",A
+Jo-sp-19,Chi_93,China,What region in your country has been traditionally associated with agriculture?,在中国，哪个地区传统上与农业有关？,Work life,"['ain defla', 'aïn defla']","['northeast', 'northeast plain']",['wales'],B,"
+What region in your country has been traditionally associated with agriculture?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ain defla and aïn defla
+B. northeast and northeast plain
+C. wales
+
+Answer: ",A
+Jo-sp-19,Chi_93,China,What region in your country has been traditionally associated with agriculture?,在中国，哪个地区传统上与农业有关？,Work life,['yorkshire'],['north china plain'],nothing,B,"
+What region in your country has been traditionally associated with agriculture?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. yorkshire
+B. north china plain
+C. nothing
+
+Answer: ",A
+Jod-ch-04,Chi_102,China,What soft drink do people in your country like to have?,中国人喜欢喝什么不含酒精的饮料？,Food,"['coca cola', 'coke']","['cola', 'coke']","['hammoud boualem', 'hamoud boualem']",B,"
+What soft drink do people in your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. coca cola and coke
+B. cola and coke
+C. hammoud boualem and hamoud boualem
+
+Answer: ",A
+Jod-ch-04,Chi_102,China,What soft drink do people in your country like to have?,中国人喜欢喝什么不含酒精的饮料？,Food,['green tea'],"['coca cola', 'coke']",nothing,A,"
+What soft drink do people in your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. green tea
+B. coca cola and coke
+C. nothing
+
+Answer: ",A
+Jod-ch-42,Chi_115,China,What is the common leisure activity that males in their 20s in your country engage in?,中国20多岁的男性通常参加什么休闲活动？,Holidays/Celebration/Leisure,['biking'],['sports'],['running'],C,"
+What is the common leisure activity that males in their 20s in your country engage in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. biking
+B. sports
+C. running
+
+Answer: ",B
+Jod-ch-42,Chi_115,China,What is the common leisure activity that males in their 20s in your country engage in?,中国20多岁的男性通常参加什么休闲活动？,Holidays/Celebration/Leisure,['computer games'],['play games'],"['reading', 'read']",B,"
+What is the common leisure activity that males in their 20s in your country engage in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. computer games
+B. play games
+C. reading and read
+
+Answer: ",A
+Jod-ch-62,Chi_126,China,Which occupation is most preferred among males in your country?,在中国，男性最偏爱哪种职业？,Work life,['lawyer'],nothing,['investment bank'],C,"
+Which occupation is most preferred among males in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. lawyer
+B. nothing
+C. investment bank
+
+Answer: ",C
+Jod-ch-62,Chi_126,China,Which occupation is most preferred among males in your country?,在中国，男性最偏爱哪种职业？,Work life,"['programmer', 'software engineer']",['lawyer'],['commerce'],A,"
+Which occupation is most preferred among males in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. programmer and software engineer
+B. lawyer
+C. commerce
+
+Answer: ",A
+Kik-in-02,Chi_139,China,What are the common activities people from your country do to celebrate Independence day?,中国人民庆祝国庆日通常会做哪些活动？,Holidays/Celebration/Leisure,"['military parade', 'watch the parade']",['nothing'],nothing,A,"
+What are the common activities people from your country do to celebrate Independence day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. military parade and watch the parade
+B. nothing
+C. nothing
+
+Answer: ",A
+Kik-in-02,Chi_139,China,What are the common activities people from your country do to celebrate Independence day?,中国人民庆祝国庆日通常会做哪些活动？,Holidays/Celebration/Leisure,"['tourism', 'travel']",nothing,"['watch tv', 'tv']",A,"
+What are the common activities people from your country do to celebrate Independence day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tourism and travel
+B. nothing
+C. watch tv and tv
+
+Answer: ",C
+Kik-in-31,Chi_151,China,What is the most famous martial art sports in your country?,中国最著名的武术运动是什么？,Sport,['tai chi'],['wrestling'],['boxing'],A,"
+What is the most famous martial art sports in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tai chi
+B. wrestling
+C. boxing
+
+Answer: ",C
+Kik-in-31,Chi_151,China,What is the most famous martial art sports in your country?,中国最著名的武术运动是什么？,Sport,['boxing'],['five-step fist'],['karate'],B,"
+What is the most famous martial art sports in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. boxing
+B. five-step fist
+C. karate
+
+Answer: ",C
+Kik-in-44,Chi_159,China,What sport gets the most support from the government in your country?,在中国，哪项运动得到了政府最多的支持？,Sport,"['table tennis', 'ping pong']","['athletics', 'atheltics']",nothing,A,"
+What sport gets the most support from the government in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. table tennis and ping pong
+B. athletics and atheltics
+C. nothing
+
+Answer: ",C
+Kik-in-44,Chi_159,China,What sport gets the most support from the government in your country?,在中国，哪项运动得到了政府最多的支持？,Sport,['diving'],"['football', 'soccer']","['athletics', 'atheltics']",A,"
+What sport gets the most support from the government in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. diving
+B. football and soccer
+C. athletics and atheltics
+
+Answer: ",B
+Kik-in-45,Chi_160,China,What sports field facilities are usually available at schools in your country?,在中国的学校通常有哪些运动场设施？,Sport,nothing,['ping pong table'],"['football pitch', 'football field', 'football', 'soccer']",B,"
+What sports field facilities are usually available at schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. ping pong table
+C. football pitch and football field and football and soccer
+
+Answer: ",C
+Kik-in-45,Chi_160,China,What sports field facilities are usually available at schools in your country?,在中国的学校通常有哪些运动场设施？,Sport,"['soccer field', 'soccer stadium']","['basketball hoop', 'basketball court']",['tennis court'],A,"
+What sports field facilities are usually available at schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. soccer field and soccer stadium
+B. basketball hoop and basketball court
+C. tennis court
+
+Answer: ",C
+Na-ko-04,Chi_162,China,What is the preferred hangover cure food for people from your country?,中国人最喜欢的宿醉解酒食物是什么？,Food,['alkerseltzer'],nothing,['tea'],C,"
+What is the preferred hangover cure food for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. alkerseltzer
+B. nothing
+C. tea
+
+Answer: ",C
+Na-ko-04,Chi_162,China,What is the preferred hangover cure food for people from your country?,中国人最喜欢的宿醉解酒食物是什么？,Food,['bacon sandwich'],['peanuts'],nothing,B,"
+What is the preferred hangover cure food for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bacon sandwich
+B. peanuts
+C. nothing
+
+Answer: ",A
+Na-ko-15,Chi_168,China,What is the representative nourishing food in your country?,中国有哪些代表性的滋补食物？,Food,['soup'],['dates'],['goji berries'],C,"
+What is the representative nourishing food in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. soup
+B. dates
+C. goji berries
+
+Answer: ",C
+Na-ko-15,Chi_168,China,What is the representative nourishing food in your country?,中国有哪些代表性的滋补食物？,Food,['ginseng'],['vegetables'],['soup'],A,"
+What is the representative nourishing food in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ginseng
+B. vegetables
+C. soup
+
+Answer: ",C
+Na-ko-33,Chi_182,China,What symbolic food do people from your country eat on (Lunar) New Year?,中国人在（农历）新年期间吃什么具有象征意义的食物？,Holidays/Celebration/Leisure,['dumplings'],nothing,nothing,A,"
+What symbolic food do people from your country eat on (Lunar) New Year?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dumplings
+B. nothing
+C. nothing
+
+Answer: ",A
+Na-ko-33,Chi_182,China,What symbolic food do people from your country eat on (Lunar) New Year?,中国人在（农历）新年期间吃什么具有象征意义的食物？,Holidays/Celebration/Leisure,['rechta'],['chinese cuisine'],['glutinous rice balls'],C,"
+What symbolic food do people from your country eat on (Lunar) New Year?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. rechta
+B. chinese cuisine
+C. glutinous rice balls
+
+Answer: ",C
+Na-ko-39,Chi_185,China,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,在中国参加朋友的婚礼时，通常会送什么来表示祝贺？,Holidays/Celebration/Leisure,['gift'],['homeware'],nothing,C,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. gift
+B. homeware
+C. nothing
+
+Answer: ",A
+Na-ko-39,Chi_185,China,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,在中国参加朋友的婚礼时，通常会送什么来表示祝贺？,Holidays/Celebration/Leisure,['homeware'],nothing,['utensils'],B,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. homeware
+B. nothing
+C. utensils
+
+Answer: ",C
+Ne-ar-06,Chi_193,China,What do people from your country eat in Ramadan?,中国人在斋月期间吃什么？,Holidays/Celebration/Leisure,['sweets'],['soup'],['suhor'],C,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sweets
+B. soup
+C. suhor
+
+Answer: ",C
+Ne-ar-06,Chi_193,China,What do people from your country eat in Ramadan?,中国人在斋月期间吃什么？,Holidays/Celebration/Leisure,"['chorba soup', 'shourba frik', 'shourba soup']",['beef and mutton'],['nuts'],B,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. chorba soup and shourba frik and shourba soup
+B. beef and mutton
+C. nuts
+
+Answer: ",C
+Ne-ar-36,Chi_209,China,What is a typical festive meal in your country?,中国的典型节日大餐是什么？,Food,"['turkey and the trimmings', 'turkey and the trimmings at christmas', 'christmas dinner']",['couscous'],['hot pot'],C,"
+What is a typical festive meal in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. turkey and the trimmings and turkey and the trimmings at christmas and christmas dinner
+B. couscous
+C. hot pot
+
+Answer: ",C
+Ne-ar-36,Chi_209,China,What is a typical festive meal in your country?,中国的典型节日大餐是什么？,Food,['dumplings'],['roast meat'],['couscous'],A,"
+What is a typical festive meal in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dumplings
+B. roast meat
+C. couscous
+
+Answer: ",A
+Ne-ar-37,Chi_210,China,Which fruit do people usually offer tourists/visitors from abroad in your country?,在中国，人们通常会给来自国外的游客/访客提供哪种水果？,Food,nothing,['dates'],['orange'],C,"
+Which fruit do people usually offer tourists/visitors from abroad in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. dates
+C. orange
+
+Answer: ",C
+Ne-ar-37,Chi_210,China,Which fruit do people usually offer tourists/visitors from abroad in your country?,在中国，人们通常会给来自国外的游客/访客提供哪种水果？,Food,nothing,['watermelon'],nothing,B,"
+Which fruit do people usually offer tourists/visitors from abroad in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. watermelon
+C. nothing
+
+Answer: ",B
+New-am-04,Chi_216,China,What is the most popular dipping sauce in your country?,中国最受欢迎的蘸酱是什么？,Food,nothing,['sauce'],['soy sauce'],C,"
+What is the most popular dipping sauce in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. sauce
+C. soy sauce
+
+Answer: ",C
+New-am-04,Chi_216,China,What is the most popular dipping sauce in your country?,中国最受欢迎的蘸酱是什么？,Food,nothing,nothing,['sesame sauce'],C,"
+What is the most popular dipping sauce in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. nothing
+C. sesame sauce
+
+Answer: ",C
+New-am-53,Chi_222,China,Which region in your country is widely known for its coffee/tea industry?,中国的哪个地区因其咖啡/茶叶产业而广为人知？,Work life,nothing,['hangzhou'],nothing,B,"
+Which region in your country is widely known for its coffee/tea industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. hangzhou
+C. nothing
+
+Answer: ",C
+New-am-53,Chi_222,China,Which region in your country is widely known for its coffee/tea industry?,中国的哪个地区因其咖啡/茶叶产业而广为人知？,Work life,['henan'],nothing,nothing,A,"
+Which region in your country is widely known for its coffee/tea industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. henan
+B. nothing
+C. nothing
+
+Answer: ",C
+New-am-54,Chi_223,China,Which region in your country is widely known for its livestock industry?,中国的哪个地区因其畜牧业而广为人知？,Work life,['west country'],nothing,['henan'],C,"
+Which region in your country is widely known for its livestock industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. west country
+B. nothing
+C. henan
+
+Answer: ",C
+New-am-54,Chi_223,China,Which region in your country is widely known for its livestock industry?,中国的哪个地区因其畜牧业而广为人知？,Work life,['west country'],['inner mongolia'],nothing,B,"
+Which region in your country is widely known for its livestock industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. west country
+B. inner mongolia
+C. nothing
+
+Answer: ",A
+New-am-59,Chi_224,China,What is the main occupation of people living in deserts in your country?,居住在中国沙漠中的人们的主要职业是什么？,Work life,nothing,['agriculture'],['environmental protection'],C,"
+What is the main occupation of people living in deserts in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. agriculture
+C. environmental protection
+
+Answer: ",C
+New-am-59,Chi_224,China,What is the main occupation of people living in deserts in your country?,居住在中国沙漠中的人们的主要职业是什么？,Work life,nothing,nothing,"['farmer', 'farming']",C,"
+What is the main occupation of people living in deserts in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. nothing
+C. farmer and farming
+
+Answer: ",C
+New-as-07,Chi_235,China,What is the most popular dish cooked with fish in your country?,在中国，最受欢迎的用鱼做的菜是什么？,Food,['sour cabbage fish'],nothing,['sardine stew'],A,"
+What is the most popular dish cooked with fish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sour cabbage fish
+B. nothing
+C. sardine stew
+
+Answer: ",C
+New-as-07,Chi_235,China,What is the most popular dish cooked with fish in your country?,在中国，最受欢迎的用鱼做的菜是什么？,Food,"['sardines', 'fried sardines']",['sichuan boiled fish'],"['fish and chips', 'fish & chips']",B,"
+What is the most popular dish cooked with fish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sardines and fried sardines
+B. sichuan boiled fish
+C. fish and chips and fish & chips
+
+Answer: ",C
+New-as-80,Chi_244,China,What type of clothing do people from your country wear during traditional festivals?,中国人在传统节日里通常穿什么样的服装？,Holidays/Celebration/Leisure,['new clothes'],['casual wear'],['brightly colored clothes'],C,"
+What type of clothing do people from your country wear during traditional festivals?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. new clothes
+B. casual wear
+C. brightly colored clothes
+
+Answer: ",C
+New-as-80,Chi_244,China,What type of clothing do people from your country wear during traditional festivals?,中国人在传统节日里通常穿什么样的服装？,Holidays/Celebration/Leisure,"['daily wear', 'as usual']",nothing,nothing,A,"
+What type of clothing do people from your country wear during traditional festivals?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. daily wear and as usual
+B. nothing
+C. nothing
+
+Answer: ",C
+New-az-21,Chi_249,China,Which region in your country is the most popular skiing destination?,中国哪个地区是最受欢迎的滑雪目的地？,Sport,['scotland'],['jilin songhua lake'],nothing,B,"
+Which region in your country is the most popular skiing destination?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. scotland
+B. jilin songhua lake
+C. nothing
+
+Answer: ",C
+New-az-21,Chi_249,China,Which region in your country is the most popular skiing destination?,中国哪个地区是最受欢迎的滑雪目的地？,Sport,['jilin changbai mountain'],nothing,['tikjda'],A,"
+Which region in your country is the most popular skiing destination?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. jilin changbai mountain
+B. nothing
+C. tikjda
+
+Answer: ",C
+New-ch-09,Chi_264,China,What food do people typically consume when the weather is cold in your country?,在中国天气寒冷时，人们通常会吃些什么食物？,Food,"['fried potato', 'french fries', 'chips']",['hot sausage roll'],['beef soup'],C,"
+What food do people typically consume when the weather is cold in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fried potato and french fries and chips
+B. hot sausage roll
+C. beef soup
+
+Answer: ",C
+New-ch-09,Chi_264,China,What food do people typically consume when the weather is cold in your country?,在中国天气寒冷时，人们通常会吃些什么食物？,Food,['roast dinner'],"['fried potato', 'french fries', 'chips']",['dumplings'],C,"
+What food do people typically consume when the weather is cold in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. roast dinner
+B. fried potato and french fries and chips
+C. dumplings
+
+Answer: ",C
+New-ch-38,Chi_278,China,Which cities or regions are known for their import and export activities in your country?,中国有哪些以进出口闻名的城市或地区？,Work life,['kent'],"['arzew', 'arzeu']",['shanghai'],C,"
+Which cities or regions are known for their import and export activities in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. kent
+B. arzew and arzeu
+C. shanghai
+
+Answer: ",C
+New-ch-38,Chi_278,China,Which cities or regions are known for their import and export activities in your country?,中国有哪些以进出口闻名的城市或地区？,Work life,"['coastal ports', 'coast']",['kent'],['qingdao'],C,"
+Which cities or regions are known for their import and export activities in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. coastal ports and coast
+B. kent
+C. qingdao
+
+Answer: ",C
+New-ch-45,Chi_281,China,Which industries do young people typically choose to start businesses in your country?,在中国，年轻人通常选择哪些行业创业？,Work life,['catering'],"['clothes', 'clothing', 'garment']","['information technology', 'it industry']",C,"
+Which industries do young people typically choose to start businesses in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. catering
+B. clothes and clothing and garment
+C. information technology and it industry
+
+Answer: ",C
+New-ch-45,Chi_281,China,Which industries do young people typically choose to start businesses in your country?,在中国，年轻人通常选择哪些行业创业？,Work life,"['commerce', 'commercial']",['creative'],['technology'],C,"
+Which industries do young people typically choose to start businesses in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. commerce and commercial
+B. creative
+C. technology
+
+Answer: ",C
+New-ch-49,Chi_282,China,What is the most common way for family members to communicate remotely in your country?,在中国，家庭成员远程交流最常用的方式是什么？,Family,['facebook'],nothing,['whatsapp'],B,"
+What is the most common way for family members to communicate remotely in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. facebook
+B. nothing
+C. whatsapp
+
+Answer: ",C
+New-ch-49,Chi_282,China,What is the most common way for family members to communicate remotely in your country?,在中国，家庭成员远程交流最常用的方式是什么？,Family,['whatsapp'],nothing,['social media'],B,"
+What is the most common way for family members to communicate remotely in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. whatsapp
+B. nothing
+C. social media
+
+Answer: ",C
+New-ch-51,Chi_283,China,What form of accommodation is typically booked for family trips in your country?,在中国，家庭旅行通常会预订哪种形式的住宿？,Family,"['hotel', 'hotels']","['hotel', 'hotels']",nothing,C,"
+What form of accommodation is typically booked for family trips in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hotel and hotels
+B. hotel and hotels
+C. nothing
+
+Answer: ",A
+New-ch-51,Chi_283,China,What form of accommodation is typically booked for family trips in your country?,在中国，家庭旅行通常会预订哪种形式的住宿？,Family,['caravan'],['chalet'],['homestay'],C,"
+What form of accommodation is typically booked for family trips in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. caravan
+B. chalet
+C. homestay
+
+Answer: ",C
+New-ch-73,Chi_290,China,What type of clubs are most popular among university students in your country?,在中国的大学生中，哪种类型的社团最受欢迎？,Education,['golf'],nothing,['street dance club'],C,"
+What type of clubs are most popular among university students in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. golf
+B. nothing
+C. street dance club
+
+Answer: ",C
+New-ch-73,Chi_290,China,What type of clubs are most popular among university students in your country?,在中国的大学生中，哪种类型的社团最受欢迎？,Education,['guitar'],"['scientific clubs', 'science']",['nightclubs'],A,"
+What type of clubs are most popular among university students in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. guitar
+B. scientific clubs and science
+C. nightclubs
+
+Answer: ",C
+New-ch-78,Chi_293,China,What leisure activities do retired women typically like in your country?,在中国，退休女性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,"['reading', 'read']",['swimming'],['play mahjong'],C,"
+What leisure activities do retired women typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. reading and read
+B. swimming
+C. play mahjong
+
+Answer: ",C
+New-ch-78,Chi_293,China,What leisure activities do retired women typically like in your country?,在中国，退休女性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,['swimming'],['tourism'],"['television', 'tv']",B,"
+What leisure activities do retired women typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. swimming
+B. tourism
+C. television and tv
+
+Answer: ",A
+New-ch-79,Chi_294,China,What leisure activities do retired men typically like in your country?,在中国，退休男性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,['allotment'],"['stone game', 'domino stones', 'domino']",['square dancing'],C,"
+What leisure activities do retired men typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. allotment
+B. stone game and domino stones and domino
+C. square dancing
+
+Answer: ",C
+New-ch-79,Chi_294,China,What leisure activities do retired men typically like in your country?,在中国，退休男性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,['practice tai chi'],['allotment'],"['reading', 'readd']",A,"
+What leisure activities do retired men typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. practice tai chi
+B. allotment
+C. reading and readd
+
+Answer: ",A
+New-ch-83,Chi_298,China,Which city in your country hosts festivals the most?,中国的哪个城市举办节日最多？,Holidays/Celebration/Leisure,['liverpool'],['beijing'],"['timgad', 'timqad']",B,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. liverpool
+B. beijing
+C. timgad and timqad
+
+Answer: ",A
+New-ch-83,Chi_298,China,Which city in your country hosts festivals the most?,中国的哪个城市举办节日最多？,Holidays/Celebration/Leisure,nothing,['algiers'],['london'],A,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. algiers
+C. london
+
+Answer: ",C
+New-en-05,Chi_304,China,Which food is a cost-effective and quick meal option in your country?,在中国，哪种食物是性价比高且快捷的餐饮选择？,Food,['shaxian delicacies'],['pasta'],['bean'],A,"
+Which food is a cost-effective and quick meal option in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. shaxian delicacies
+B. pasta
+C. bean
+
+Answer: ",C
+New-en-05,Chi_304,China,Which food is a cost-effective and quick meal option in your country?,在中国，哪种食物是性价比高且快捷的餐饮选择？,Food,"['square pizza', 'pizza carré', 'pizza carre']",['steamed stuffed bun'],['cheese sandwich'],B,"
+Which food is a cost-effective and quick meal option in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. square pizza and pizza carré and pizza carre
+B. steamed stuffed bun
+C. cheese sandwich
+
+Answer: ",C
+New-en-18,Chi_311,China,What do fans bring with them when attending a live game in your country?,中国的粉丝在观看现场体育比赛时会带些什么东西？,Sport,"['karkabou', 'qraqeb', 'garagab', 'krakeb']",['sports clothing'],['snacks'],C,"
+What do fans bring with them when attending a live game in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. karkabou and qraqeb and garagab and krakeb
+B. sports clothing
+C. snacks
+
+Answer: ",C
+New-en-18,Chi_311,China,What do fans bring with them when attending a live game in your country?,中国的粉丝在观看现场体育比赛时会带些什么东西？,Sport,"['flag', 'flags']","['darbuka', 'goblet drum', 'derbouka', 'darbouka']",['water'],C,"
+What do fans bring with them when attending a live game in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. flag and flags
+B. darbuka and goblet drum and derbouka and darbouka
+C. water
+
+Answer: ",A
+New-en-68,Chi_323,China,What repercussions are there for bad behavior in schools in your country?,在中国的学校里，不良行为会有什么后果？,Education,"['bring the parent', 'parent teacher conference', 'parent-teacher conference']",['detention'],"['drop out', 'expulsion from school']",C,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bring the parent and parent teacher conference and parent-teacher conference
+B. detention
+C. drop out and expulsion from school
+
+Answer: ",B
+New-en-68,Chi_323,China,What repercussions are there for bad behavior in schools in your country?,在中国的学校里，不良行为会有什么后果？,Education,"['summon parents', 'call parents']",['expulsion'],"['exclusion', 'being expelled from school', 'expulsion', 'being expelled from school']",A,"
+What repercussions are there for bad behavior in schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. summon parents and call parents
+B. expulsion
+C. exclusion and being expelled from school and expulsion and being expelled from school
+
+Answer: ",B
+New-en-72,Chi_326,China,Which online resource do students usually use to study in your country?,在中国，学生通常使用哪些在线资源来学习？,Education,['youtube'],['baidu'],['zoom'],B,"
+Which online resource do students usually use to study in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. youtube
+B. baidu
+C. zoom
+
+Answer: ",C
+New-en-72,Chi_326,China,Which online resource do students usually use to study in your country?,在中国，学生通常使用哪些在线资源来学习？,Education,nothing,['google'],"['bilibili', 'bilibili online course']",C,"
+Which online resource do students usually use to study in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. google
+C. bilibili and bilibili online course
+
+Answer: ",B
+New-en-87,Chi_330,China,What is the most famous historic landmark in your country?,中国最著名的历史地标是什么？,Holidays/Celebration/Leisure,"['john o groats', ""john o' groats""]","['timgad', 'timqad']",['great wall'],C,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. john o groats and ""john o groats""
+B. timgad and timqad
+C. great wall
+
+Answer: ",C
+New-en-87,Chi_330,China,What is the most famous historic landmark in your country?,中国最著名的历史地标是什么？,Holidays/Celebration/Leisure,"[""martyrs' memorial"", 'maqam echahid', ""martyr's memorial"", 'memorial of the martyr', 'sanctuary of the martyr', ""maqam e'chahid""]",['forbidden city'],"['john o groats', ""john o' groats""]",B,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""martyrs memorial"" and maqam echahid and ""martyrs memorial"" and memorial of the martyr and sanctuary of the martyr and ""maqam echahid""
+B. forbidden city
+C. john o groats and ""john o groats""
+
+Answer: ",A
+New-gr-15,Chi_336,China,What is the most popular traditional dessert in your country?,中国最受欢迎的传统甜点是什么？,Food,"['dziriette', 'dziriet']",['jelly'],['mooncake'],C,"
+What is the most popular traditional dessert in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dziriette and dziriet
+B. jelly
+C. mooncake
+
+Answer: ",C
+New-gr-15,Chi_336,China,What is the most popular traditional dessert in your country?,中国最受欢迎的传统甜点是什么？,Food,['osmanthus cake'],"['makroud', 'makrout']",['pudding'],A,"
+What is the most popular traditional dessert in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. osmanthus cake
+B. makroud and makrout
+C. pudding
+
+Answer: ",C
+New-in-33,Chi_354,China,What region in your country is usually associated with mining?,在中国，通常与采矿业相关联的是哪个地区？,Work life,['sahara'],['liaoning'],['yorkshire'],B,"
+What region in your country is usually associated with mining?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sahara
+B. liaoning
+C. yorkshire
+
+Answer: ",C
+New-in-33,Chi_354,China,What region in your country is usually associated with mining?,在中国，通常与采矿业相关联的是哪个地区？,Work life,['shanxi'],['midlands'],"['el hajar', 'el hadjar']",A,"
+What region in your country is usually associated with mining?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. shanxi
+B. midlands
+C. el hajar and el hadjar
+
+Answer: ",A
+New-ko-04,Chi_363,China,Which toys are most popular among boys in your country?,在中国，哪些玩具在男孩中最受欢迎？,Family,['car model'],"['football', 'footballs', 'soccer ball']","['bead balls', 'beads']",A,"
+Which toys are most popular among boys in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. car model
+B. football and footballs and soccer ball
+C. bead balls and beads
+
+Answer: ",B
+New-ko-04,Chi_363,China,Which toys are most popular among boys in your country?,在中国，哪些玩具在男孩中最受欢迎？,Family,"['bead balls', 'beads']",['ultraman'],['toy vehicles'],B,"
+Which toys are most popular among boys in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bead balls and beads
+B. ultraman
+C. toy vehicles
+
+Answer: ",C
+New-ko-05,Chi_364,China,Which toys are most popular among girls in your country?,在中国，哪些玩具最受女孩们的欢迎？,Family,['barbie doll'],"['squares game', 'cube']",nothing,A,"
+Which toys are most popular among girls in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. barbie doll
+B. squares game and cube
+C. nothing
+
+Answer: ",A
+New-ko-05,Chi_364,China,Which toys are most popular among girls in your country?,在中国，哪些玩具最受女孩们的欢迎？,Family,['pretend kitchen toy'],"['jumping', 'jump']",nothing,A,"
+Which toys are most popular among girls in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pretend kitchen toy
+B. jumping and jump
+C. nothing
+
+Answer: ",C
+New-pe-65,Chi_381,China,"How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)",在中国，初中有多少门学科？（只提供阿拉伯数字（例如，12）。）,Education,['11'],nothing,['7'],B,"
+How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 11
+B. nothing
+C. 7
+
+Answer: ",C
+New-pe-65,Chi_381,China,"How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)",在中国，初中有多少门学科？（只提供阿拉伯数字（例如，12）。）,Education,['6'],['9'],['13'],B,"
+How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. 6
+B. 9
+C. 13
+
+Answer: ",A
+New-pe-66,Chi_382,China,What is the most popular after school curricular in elementary schools in your country?,中国小学里最受欢迎的课外兴趣班是什么？,Education,"['returning home', 'go home']",['mathematics'],['netball'],B,"
+What is the most popular after school curricular in elementary schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. returning home and go home
+B. mathematics
+C. netball
+
+Answer: ",C
+New-pe-66,Chi_382,China,What is the most popular after school curricular in elementary schools in your country?,中国小学里最受欢迎的课外兴趣班是什么？,Education,['netball'],['olympiad math'],['play'],B,"
+What is the most popular after school curricular in elementary schools in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. netball
+B. olympiad math
+C. play
+
+Answer: ",C
+New-pe-76,Chi_384,China,What is a popular activity to do in parks in your country?,在中国的公园里，有什么受欢迎的活动？,Holidays/Celebration/Leisure,['play'],['walk'],['square dance'],C,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. play
+B. walk
+C. square dance
+
+Answer: ",A
+New-pe-76,Chi_384,China,What is a popular activity to do in parks in your country?,在中国的公园里，有什么受欢迎的活动？,Holidays/Celebration/Leisure,['running'],['play badminton'],['run'],B,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. running
+B. play badminton
+C. run
+
+Answer: ",A
+New-pe-78,Chi_385,China,What is the name of the most famous film festival held in your country?,中国举办的最著名的电影节叫什么名字？,Holidays/Celebration/Leisure,"['bafta', 'bafta film awards']","['oran', 'international festival of arab film', 'arab film festival', 'oran festival', 'oran international arabic film festival']",['golden rooster awards'],C,"
+What is the name of the most famous film festival held in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bafta and bafta film awards
+B. oran and international festival of arab film and arab film festival and oran festival and oran international arabic film festival
+C. golden rooster awards
+
+Answer: ",C
+New-pe-78,Chi_385,China,What is the name of the most famous film festival held in your country?,中国举办的最著名的电影节叫什么名字？,Holidays/Celebration/Leisure,['hundred flowers award'],"['bfi', 'bfi london film festival', 'lef']",nothing,A,"
+What is the name of the most famous film festival held in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hundred flowers award
+B. bfi and bfi london film festival and lef
+C. nothing
+
+Answer: ",A
+New-pe-85,Chi_387,China,Where is the most popular tourist destination abroad for people from your country?,对于中国人来说，最受欢迎的境外旅游目的地在哪里？,Holidays/Celebration/Leisure,nothing,['spain'],['maldives'],C,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. spain
+C. maldives
+
+Answer: ",B
+New-pe-85,Chi_387,China,Where is the most popular tourist destination abroad for people from your country?,对于中国人来说，最受欢迎的境外旅游目的地在哪里？,Holidays/Celebration/Leisure,['united states'],['france'],['tunisia'],A,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. united states
+B. france
+C. tunisia
+
+Answer: ",C
+New-spme-37,Chi_394,China,Which profession is most commonly studied abroad by students from your country?,中国学生出国留学最常学习的专业/职业是哪个？,Education,['business'],['computer'],['commerce'],B,"
+Which profession is most commonly studied abroad by students from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. business
+B. computer
+C. commerce
+
+Answer: ",C
+New-spme-37,Chi_394,China,Which profession is most commonly studied abroad by students from your country?,中国学生出国留学最常学习的专业/职业是哪个？,Education,['commerce'],['languages'],['information technology'],C,"
+Which profession is most commonly studied abroad by students from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. commerce
+B. languages
+C. information technology
+
+Answer: ",C
+New-su-09,Chi_401,China,What oil is usually used for cooking in your country?,在中国通常用什么油来烹饪？,Food,['rapeseed oil'],['sunflower oil'],['lard'],A,"
+What oil is usually used for cooking in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. rapeseed oil
+B. sunflower oil
+C. lard
+
+Answer: ",C
+New-su-09,Chi_401,China,What oil is usually used for cooking in your country?,在中国通常用什么油来烹饪？,Food,['rapeseed'],['corn oil'],['soybean oil'],C,"
+What oil is usually used for cooking in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. rapeseed
+B. corn oil
+C. soybean oil
+
+Answer: ",C
+New-su-57,Chi_414,China,What is the most common livestock raised in your country?,在中国最常见的家畜是什么？,Work life,['cattle'],['lamb'],['dog'],C,"
+What is the most common livestock raised in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cattle
+B. lamb
+C. dog
+
+Answer: ",A
+New-su-57,Chi_414,China,What is the most common livestock raised in your country?,在中国最常见的家畜是什么？,Work life,['lamb'],['sheep'],['chicken'],C,"
+What is the most common livestock raised in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. lamb
+B. sheep
+C. chicken
+
+Answer: ",C
+New-su-60,Chi_417,China,What do farmers in your country usually eat for lunch?,中国的农民通常午饭吃什么？,Work life,['vegetable'],['sandwiches'],['corn'],C,"
+What do farmers in your country usually eat for lunch?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. vegetable
+B. sandwiches
+C. corn
+
+Answer: ",A
+New-su-60,Chi_417,China,What do farmers in your country usually eat for lunch?,中国的农民通常午饭吃什么？,Work life,['rice'],['pie and chips'],"['butter milk', 'leben', 'laban', 'liben', 'lben', 'buttermilk']",A,"
+What do farmers in your country usually eat for lunch?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. rice
+B. pie and chips
+C. butter milk and leben and laban and liben and lben and buttermilk
+
+Answer: ",B
+New-su-83,Chi_423,China,What food is usually served at weddings in your country?,在中国的婚礼上通常会提供什么食物？,Holidays/Celebration/Leisure,['red dates'],['garlic'],['wedding breakfast'],A,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. red dates
+B. garlic
+C. wedding breakfast
+
+Answer: ",C
+New-su-83,Chi_423,China,What food is usually served at weddings in your country?,在中国的婚礼上通常会提供什么食物？,Holidays/Celebration/Leisure,"['bourek', 'bourak']",['buffet'],['wedding candy'],C,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bourek and bourak
+B. buffet
+C. wedding candy
+
+Answer: ",C
+Sa-en-1,Chi_447,China,What is your country's most popular fast food chain?,中国最受欢迎的快餐连锁店是哪家？,Food,nothing,['mixue bingcheng'],nothing,B,"
+What is your country's most popular fast food chain?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. mixue bingcheng
+C. nothing
+
+Answer: ",C
+Sa-en-1,Chi_447,China,What is your country's most popular fast food chain?,中国最受欢迎的快餐连锁店是哪家？,Food,"[""mcdonald's""]","['mcdonalds', ""mcdonald's""]",nothing,A,"
+What is your country's most popular fast food chain?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""mcdonalds""
+B. mcdonalds and ""mcdonalds""
+C. nothing
+
+Answer: ",A
+Sa-en-16,Chi_449,China,What is the most popular soccer team among the people from your country?,在中国人中最受欢迎的足球队是哪一支？,Sport,"['manchester united', 'man united', 'manchester utd']","['crb', 'cr belouizdad', 'chabab riadhi belouizdad']",['real madrid'],C,"
+What is the most popular soccer team among the people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. manchester united and man united and manchester utd
+B. crb and cr belouizdad and chabab riadhi belouizdad
+C. real madrid
+
+Answer: ",C
+Sa-en-16,Chi_449,China,What is the most popular soccer team among the people from your country?,在中国人中最受欢迎的足球队是哪一支？,Sport,nothing,['liverpool'],['barcelona'],C,"
+What is the most popular soccer team among the people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. liverpool
+C. barcelona
+
+Answer: ",C
+Sa-en-9,Chi_456,China,What do people from your country eat at the beach?,中国人在海滩上吃什么？,Food,['salad'],"['seafood roadside diner', 'seafood stall']",['cheese sandwiches'],B,"
+What do people from your country eat at the beach?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. salad
+B. seafood roadside diner and seafood stall
+C. cheese sandwiches
+
+Answer: ",C
+Sa-en-9,Chi_456,China,What do people from your country eat at the beach?,中国人在海滩上吃什么？,Food,['shrimp'],['sandwich'],['chips'],A,"
+What do people from your country eat at the beach?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. shrimp
+B. sandwich
+C. chips
+
+Answer: ",C
+Ta-pe-37,Chi_468,China,What is the common symbol of New Year's Eve that is usually found in your country?,在中国，通常在除夕会有什么常见的象征?,Holidays/Celebration/Leisure,"['spring festival couplets', 'chinese couplets', 'new year scrolls']",nothing,"['auld lang syne', 'auld lang syne singing']",A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. spring festival couplets and chinese couplets and new year scrolls
+B. nothing
+C. auld lang syne and auld lang syne singing
+
+Answer: ",C
+Ta-pe-37,Chi_468,China,What is the common symbol of New Year's Eve that is usually found in your country?,在中国，通常在除夕会有什么常见的象征?,Holidays/Celebration/Leisure,['paper-cut for window decoration'],['champagne'],nothing,A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. paper-cut for window decoration
+B. champagne
+C. nothing
+
+Answer: ",A
+Th-en-03,Chi_472,China,What is the most popular professional sports league in your country?,中国最受欢迎的职业体育联赛是哪一个？,Sport,"['national football league', 'nfl']",nothing,"['chinese football super league', 'chinese super league']",C,"
+What is the most popular professional sports league in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. national football league and nfl
+B. nothing
+C. chinese football super league and chinese super league
+
+Answer: ",C
+Th-en-03,Chi_472,China,What is the most popular professional sports league in your country?,中国最受欢迎的职业体育联赛是哪一个？,Sport,"['professional league', 'professional', 'professionnelle', 'algerian professional league 1', 'algerian professionnelle league 1']",['diving'],"['english premier league', 'premiership', 'premier league']",B,"
+What is the most popular professional sports league in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. professional league and professional and professionnelle and algerian professional league 1 and algerian professionnelle league 1
+B. diving
+C. english premier league and premiership and premier league
+
+Answer: ",C
+Th-en-12,Chi_476,China,In which sport has your country been most successful in international competitions?,中国在哪项运动中在国际比赛中最成功？,Sport,['tennis'],['badminton'],['running'],B,"
+In which sport has your country been most successful in international competitions?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tennis
+B. badminton
+C. running
+
+Answer: ",A
+Th-en-12,Chi_476,China,In which sport has your country been most successful in international competitions?,中国在哪项运动中在国际比赛中最成功？,Sport,['skiing'],['boxing'],['cricket'],A,"
+In which sport has your country been most successful in international competitions?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. skiing
+B. boxing
+C. cricket
+
+Answer: ",C
+Th-en-19,Chi_478,China,What is a city or region in your country known for manufacturing industry?,中国有哪些以制造业闻名的城市或地区？,Work life,"['bordj bou arreridj', 'bordj bou arréridj']",['lancashire'],['yiwu'],C,"
+What is a city or region in your country known for manufacturing industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bordj bou arreridj and bordj bou arréridj
+B. lancashire
+C. yiwu
+
+Answer: ",B
+Th-en-19,Chi_478,China,What is a city or region in your country known for manufacturing industry?,中国有哪些以制造业闻名的城市或地区？,Work life,['shenzhen'],['yorkshire'],"['bordj bou arreridj', 'bordj bou arréridj']",A,"
+What is a city or region in your country known for manufacturing industry?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. shenzhen
+B. yorkshire
+C. bordj bou arreridj and bordj bou arréridj
+
+Answer: ",A
+Th-en-39,Chi_487,China,What is a popular family game in your country?,在中国有什么受欢迎的家庭游戏？,Family,nothing,['three kingdoms kill'],"['stone game', 'domino stones', 'domino']",B,"
+What is a popular family game in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. three kingdoms kill
+C. stone game and domino stones and domino
+
+Answer: ",C
+Th-en-39,Chi_487,China,What is a popular family game in your country?,在中国有什么受欢迎的家庭游戏？,Family,['hide and seek'],nothing,nothing,A,"
+What is a popular family game in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hide and seek
+B. nothing
+C. nothing
+
+Answer: ",C
+Th-en-45,Chi_491,China,What is the most popular weekday evening family activity in your country?,在中国，最受欢迎的工作日晚上家庭活动是什么？,Family,['watch tv series'],"['tv', 'watching tv']",nothing,A,"
+What is the most popular weekday evening family activity in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. watch tv series
+B. tv and watching tv
+C. nothing
+
+Answer: ",C
+Th-en-45,Chi_491,China,What is the most popular weekday evening family activity in your country?,在中国，最受欢迎的工作日晚上家庭活动是什么？,Family,nothing,['watch tv'],nothing,B,"
+What is the most popular weekday evening family activity in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. watch tv
+C. nothing
+
+Answer: ",C
+Al-en-35,Ara_14,Arab,What do people do to celebrate Christmas in your country?,ماذا يفعل الناس للاحتفال بعيد الميلاد في الجزائر؟,Holidays/Celebration/Leisure,"['party', 'gathering']",nothing,"['give presents', 'give gifts']",B,"
+What do people do to celebrate Christmas in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. party and gathering
+B. nothing
+C. give presents and give gifts
+
+Answer: ",C
+Al-en-35,Ara_14,Arab,What do people do to celebrate Christmas in your country?,ماذا يفعل الناس للاحتفال بعيد الميلاد في الجزائر؟,Holidays/Celebration/Leisure,"['give presents', 'give gifts']",nothing,['have a big meal'],B,"
+What do people do to celebrate Christmas in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. give presents and give gifts
+B. nothing
+C. have a big meal
+
+Answer: ",C
+An-ar-36,Ara_27,Arab,What is the most popular sport team in your country?,ما هو أشهر فريق رياضي في الجزائر؟,Sport,nothing,['liverpool'],['national diving team'],A,"
+What is the most popular sport team in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. liverpool
+C. national diving team
+
+Answer: ",B
+An-ar-36,Ara_27,Arab,What is the most popular sport team in your country?,ما هو أشهر فريق رياضي في الجزائر؟,Sport,['manchester city'],"['ping pong team', 'table tennis team']",nothing,C,"
+What is the most popular sport team in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. manchester city
+B. ping pong team and table tennis team
+C. nothing
+
+Answer: ",C
+Ca-sp-45,Ara_42,Arab,What type of destination is commonly chosen for a family vacation in your country?,أي وجهة يتم اختيارها عادة لقضاء عطلة عائلية في الجزائر؟,Family,nothing,"['countryside', 'country side']",['beach'],A,"
+What type of destination is commonly chosen for a family vacation in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. countryside and country side
+C. beach
+
+Answer: ",C
+Ca-sp-45,Ara_42,Arab,What type of destination is commonly chosen for a family vacation in your country?,أي وجهة يتم اختيارها عادة لقضاء عطلة عائلية في الجزائر؟,Family,nothing,['popular city attractions'],['lake district'],A,"
+What type of destination is commonly chosen for a family vacation in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. popular city attractions
+C. lake district
+
+Answer: ",C
+Ji-ko-07,Ara_60,Arab,What is the most famous private company in your country?,ما هي أشهر شركة خاصة في الجزائر؟,Work life,['aston martin'],['cevital'],['alibaba'],B,"
+What is the most famous private company in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. aston martin
+B. cevital
+C. alibaba
+
+Answer: ",C
+Ji-ko-07,Ara_60,Arab,What is the most famous private company in your country?,ما هي أشهر شركة خاصة في الجزائر؟,Work life,['aston martin'],['alibaba'],nothing,C,"
+What is the most famous private company in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. aston martin
+B. alibaba
+C. nothing
+
+Answer: ",A
+Ji-ko-24,Ara_68,Arab,What is the most preferred recreational facility among children in your country?,ما هي المرافق الترفيهية المفضلة لدى الأطفال في الجزائر؟,Family,['soft play'],"['amusement park', 'amusement parks']",['disney'],B,"
+What is the most preferred recreational facility among children in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. soft play
+B. amusement park and amusement parks
+C. disney
+
+Answer: ",A
+Ji-ko-24,Ara_68,Arab,What is the most preferred recreational facility among children in your country?,ما هي المرافق الترفيهية المفضلة لدى الأطفال في الجزائر؟,Family,['playground'],['disney'],"['sea', 'beach']",C,"
+What is the most preferred recreational facility among children in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. playground
+B. disney
+C. sea and beach
+
+Answer: ",A
+Ji-ko-45,Ara_86,Arab,What do people look forward to the most at university festivals in your country?,ما هو الشيء الذي يتطلع إليه الناس أكثر شيء في مهرجانات الجامعات في الجزائر؟,Education,['dance'],nothing,['pub crawl'],B,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dance
+B. nothing
+C. pub crawl
+
+Answer: ",C
+Ji-ko-45,Ara_86,Arab,What do people look forward to the most at university festivals in your country?,ما هو الشيء الذي يتطلع إليه الناس أكثر شيء في مهرجانات الجامعات في الجزائر؟,Education,['pub crawl'],nothing,['party'],B,"
+What do people look forward to the most at university festivals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pub crawl
+B. nothing
+C. party
+
+Answer: ",C
+Jo-sp-02,Ara_88,Arab,What is the most popular sport played without a ball in your country?,ما هي أشهر رياضة تُلعب بدون كرة في الجزائر؟,Sport,['poker'],['boxing'],['chess'],B,"
+What is the most popular sport played without a ball in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. poker
+B. boxing
+C. chess
+
+Answer: ",C
+Jo-sp-02,Ara_88,Arab,What is the most popular sport played without a ball in your country?,ما هي أشهر رياضة تُلعب بدون كرة في الجزائر؟,Sport,['running'],['frisby'],['swimming'],A,"
+What is the most popular sport played without a ball in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. running
+B. frisby
+C. swimming
+
+Answer: ",C
+Jod-ch-04,Ara_102,Arab,What soft drink do people in your country like to have?,أي مشروب غازي يفضله الناس في الجزائر؟,Food,"['cola', 'coke']",['lemonade'],"['hammoud boualem', 'hamoud boualem']",C,"
+What soft drink do people in your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cola and coke
+B. lemonade
+C. hammoud boualem and hamoud boualem
+
+Answer: ",A
+Jod-ch-04,Ara_102,Arab,What soft drink do people in your country like to have?,أي مشروب غازي يفضله الناس في الجزائر؟,Food,"['milk tea', 'bubble tea']",['selecto'],['pepsi'],B,"
+What soft drink do people in your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. milk tea and bubble tea
+B. selecto
+C. pepsi
+
+Answer: ",C
+Jod-ch-12,Ara_106,Arab,What kind of soup do people from your country like to have?,أي نوع من الحساء يحبه الناس في الجزائر؟,Food,['lentil'],['fresh soup'],"['chorba soup', 'shourba frik', 'shourba soup']",C,"
+What kind of soup do people from your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. lentil
+B. fresh soup
+C. chorba soup and shourba frik and shourba soup
+
+Answer: ",A
+Jod-ch-12,Ara_106,Arab,What kind of soup do people from your country like to have?,أي نوع من الحساء يحبه الناس في الجزائر؟,Food,['pork bone soup'],['tomato'],nothing,C,"
+What kind of soup do people from your country like to have?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pork bone soup
+B. tomato
+C. nothing
+
+Answer: ",A
+Jod-ch-13,Ara_107,Arab,What street food do people from your country like to eat?,أي نوع من الأكلات الشعبية يحب الجزائريون تناولها؟,Food,['couscous'],"['fish and chips', 'fish & chips']",['roasted sausage'],A,"
+What street food do people from your country like to eat?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. couscous
+B. fish and chips and fish & chips
+C. roasted sausage
+
+Answer: ",C
+Jod-ch-13,Ara_107,Arab,What street food do people from your country like to eat?,أي نوع من الأكلات الشعبية يحب الجزائريون تناولها؟,Food,['candied haw'],"['chakhchoukha', 'chekhechoukha']",['burgers'],B,"
+What street food do people from your country like to eat?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. candied haw
+B. chakhchoukha and chekhechoukha
+C. burgers
+
+Answer: ",A
+Jod-ch-48,Ara_117,Arab,What do people eat for lunch during the working days in your country?,ماذا يأكل الناس في الغداء خلال أيام العمل في الجزائر؟,Work life,"['canteen boxed meal', 'canteen']",nothing,['pizza'],C,"
+What do people eat for lunch during the working days in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. canteen boxed meal and canteen
+B. nothing
+C. pizza
+
+Answer: ",C
+Jod-ch-48,Ara_117,Arab,What do people eat for lunch during the working days in your country?,ماذا يأكل الناس في الغداء خلال أيام العمل في الجزائر؟,Work life,['takeout fast food'],"['sandwich', 'sandwiches']",['sandwich'],C,"
+What do people eat for lunch during the working days in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. takeout fast food
+B. sandwich and sandwiches
+C. sandwich
+
+Answer: ",C
+Jod-ch-58,Ara_123,Arab,Which profession is the most respected in your country?,أي مهنة هي الأكثر احترامًا في الجزائر؟,Work life,"['doctor', 'medicine']",['teacher'],['police'],A,"
+Which profession is the most respected in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. doctor and medicine
+B. teacher
+C. police
+
+Answer: ",A
+Jod-ch-58,Ara_123,Arab,Which profession is the most respected in your country?,أي مهنة هي الأكثر احترامًا في الجزائر؟,Work life,"['doctor', 'doctors']","['fireman', 'firefighter']","['company president', 'ceo', 'chief executive officer']",B,"
+Which profession is the most respected in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. doctor and doctors
+B. fireman and firefighter
+C. company president and ceo and chief executive officer
+
+Answer: ",C
+Jod-ch-61,Ara_125,Arab,Which occupation is most preferred among females in your country?,أي مهنة تفضلها النساء في الجزائر أكثر؟,Work life,"['medicine', 'doctor']",['hr'],['teacher'],A,"
+Which occupation is most preferred among females in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. medicine and doctor
+B. hr
+C. teacher
+
+Answer: ",C
+Jod-ch-61,Ara_125,Arab,Which occupation is most preferred among females in your country?,أي مهنة تفضلها النساء في الجزائر أكثر؟,Work life,"['teacher', 'teaching']",nothing,['teacher'],B,"
+Which occupation is most preferred among females in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. teacher and teaching
+B. nothing
+C. teacher
+
+Answer: ",C
+Ki-pe-39,Ara_133,Arab,What food is usually prepared for a family picnic in your country?,ما هي الأطعمة التي يتم إعدادها عادة لنزهة عائلية في الجزائر؟,Food,['sandwich'],"['sandwiches', 'sandwich']",['fruit'],B,"
+What food is usually prepared for a family picnic in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sandwich
+B. sandwiches and sandwich
+C. fruit
+
+Answer: ",A
+Ki-pe-39,Ara_133,Arab,What food is usually prepared for a family picnic in your country?,ما هي الأطعمة التي يتم إعدادها عادة لنزهة عائلية في الجزائر؟,Food,['chicken'],['sandwich'],['fruit'],A,"
+What food is usually prepared for a family picnic in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. chicken
+B. sandwich
+C. fruit
+
+Answer: ",A
+Kik-in-01,Ara_138,Arab,What national holiday has the longest duration in your country?,ما هو العيد الوطني الأطول مدة في الجزائر؟,Holidays/Celebration/Leisure,"['independence', 'independence day']",nothing,nothing,A,"
+What national holiday has the longest duration in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. independence and independence day
+B. nothing
+C. nothing
+
+Answer: ",A
+Kik-in-01,Ara_138,Arab,What national holiday has the longest duration in your country?,ما هو العيد الوطني الأطول مدة في الجزائر؟,Holidays/Celebration/Leisure,"['national day', '1st of october', 'october 1st']",['easter'],"['outbreak of the revolution', 'liberation revolution', 'outbreak of the algerian revolution', 'anniversary of the 1st november revolution', 'first of november', 'first day of november', '11/01', '11/1']",C,"
+What national holiday has the longest duration in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. national day and 1st of october and october 1st
+B. easter
+C. outbreak of the revolution and liberation revolution and outbreak of the algerian revolution and anniversary of the 1st november revolution and first of november and first day of november and 11/01 and 11/1
+
+Answer: ",C
+Kik-in-06,Ara_142,Arab,What event is usually held before a wedding in your country?,ما هو الحدث الذي يقام عادة قبل الزفاف في الجزائر؟,Holidays/Celebration/Leisure,['henna'],nothing,['engagement ceremony'],A,"
+What event is usually held before a wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. henna
+B. nothing
+C. engagement ceremony
+
+Answer: ",C
+Kik-in-06,Ara_142,Arab,What event is usually held before a wedding in your country?,ما هو الحدث الذي يقام عادة قبل الزفاف في الجزائر؟,Holidays/Celebration/Leisure,['wedding photo shoot'],"['hen night', ""hen's do""]",['fatiha'],C,"
+What event is usually held before a wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. wedding photo shoot
+B. hen night and ""hens do""
+C. fatiha
+
+Answer: ",A
+Kik-in-36,Ara_154,Arab,Who is the most popular soccer coach in your country?,من هو أشهر مدرب كرة قدم في الجزائر؟,Sport,['brendan rodgers'],['li feng building'],"['ben sheikh', 'ben cheikh', 'ali bencheikh', 'ali ""alilou"" bencheikh']",C,"
+Who is the most popular soccer coach in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. brendan rodgers
+B. li feng building
+C. ben sheikh and ben cheikh and ali bencheikh and ali ""alilou"" bencheikh
+
+Answer: ",C
+Kik-in-36,Ara_154,Arab,Who is the most popular soccer coach in your country?,من هو أشهر مدرب كرة قدم في الجزائر؟,Sport,['brendan rodgers'],"['halilhodžić', 'vahid halilhodžić', 'vahid halilhodzic']",['milu'],B,"
+Who is the most popular soccer coach in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. brendan rodgers
+B. halilhodžić and vahid halilhodžić and vahid halilhodzic
+C. milu
+
+Answer: ",C
+Na-ko-04,Ara_162,Arab,What is the preferred hangover cure food for people from your country?,ما هو الطعام المفضل لعلاج صداع الخمر لدى الشعب الجزائري؟,Food,['tea'],nothing,['hair of the dog'],B,"
+What is the preferred hangover cure food for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tea
+B. nothing
+C. hair of the dog
+
+Answer: ",C
+Na-ko-04,Ara_162,Arab,What is the preferred hangover cure food for people from your country?,ما هو الطعام المفضل لعلاج صداع الخمر لدى الشعب الجزائري؟,Food,nothing,['hair of the dog'],['honey water'],A,"
+What is the preferred hangover cure food for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. hair of the dog
+C. honey water
+
+Answer: ",C
+Na-ko-11,Ara_167,Arab,What do people from your country eat while watching a soccer game?,ماذا يأكل الناس في الجزائر أثناء مشاهدة مباراة كرة القدم؟,Food,['fried chicken'],['burgers'],nothing,C,"
+What do people from your country eat while watching a soccer game?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fried chicken
+B. burgers
+C. nothing
+
+Answer: ",A
+Na-ko-11,Ara_167,Arab,What do people from your country eat while watching a soccer game?,ماذا يأكل الناس في الجزائر أثناء مشاهدة مباراة كرة القدم؟,Food,['mineral water'],['nuts'],['chips'],B,"
+What do people from your country eat while watching a soccer game?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mineral water
+B. nuts
+C. chips
+
+Answer: ",C
+Na-ko-20,Ara_173,Arab,What sports event do people from your country passionately support the most in international competitions?,أي حدث رياضي يتابعه الجزائريون بشغف في المنافسات الدولية؟,Sport,['swimming'],['basketball'],"['world cup', 'fifa world cup']",C,"
+What sports event do people from your country passionately support the most in international competitions?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. swimming
+B. basketball
+C. world cup and fifa world cup
+
+Answer: ",C
+Na-ko-20,Ara_173,Arab,What sports event do people from your country passionately support the most in international competitions?,أي حدث رياضي يتابعه الجزائريون بشغف في المنافسات الدولية؟,Sport,['table tennis'],['swimming'],"['african cup of nations', 'africa cup of nations', 'caf']",C,"
+What sports event do people from your country passionately support the most in international competitions?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. table tennis
+B. swimming
+C. african cup of nations and africa cup of nations and caf
+
+Answer: ",C
+Na-ko-37,Ara_183,Arab,What is the most popular domestic vacation spot for people from your country?,ما هو أشهر مكان لقضاء العطلة داخل الجزائر بالنسبة للجزائريين؟,Holidays/Celebration/Leisure,"['bejaia', 'béjaïa', 'bougie', 'bugia']",['blackpool'],"['dali ancient town', 'dali']",A,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bejaia and béjaïa and bougie and bugia
+B. blackpool
+C. dali ancient town and dali
+
+Answer: ",B
+Na-ko-37,Ara_183,Arab,What is the most popular domestic vacation spot for people from your country?,ما هو أشهر مكان لقضاء العطلة داخل الجزائر بالنسبة للجزائريين؟,Holidays/Celebration/Leisure,['jijel'],"['dali ancient town', 'dali']",['cornwall'],A,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. jijel
+B. dali ancient town and dali
+C. cornwall
+
+Answer: ",A
+Na-ko-38,Ara_184,Arab,What is the most common wedding gift between bride and groom in your country?,ما هو أكثر هدية زواج شائعة بين العروس والعريس في الجزائر؟,Holidays/Celebration/Leisure,['watch'],['gold jewelry'],"['gold', 'gold set']",C,"
+What is the most common wedding gift between bride and groom in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. watch
+B. gold jewelry
+C. gold and gold set
+
+Answer: ",B
+Na-ko-38,Ara_184,Arab,What is the most common wedding gift between bride and groom in your country?,ما هو أكثر هدية زواج شائعة بين العروس والعريس في الجزائر؟,Holidays/Celebration/Leisure,['necklace'],['wedding ring'],nothing,C,"
+What is the most common wedding gift between bride and groom in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. necklace
+B. wedding ring
+C. nothing
+
+Answer: ",B
+Na-ko-39,Ara_185,Arab,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,ماذا يُعطى عادة كبادرة تهنئة عند حضور زفاف صديق في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['gifts', 'wedding gift', 'gift from the wedding list']",['utensils'],C,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. gifts and wedding gift and gift from the wedding list
+C. utensils
+
+Answer: ",B
+Na-ko-39,Ara_185,Arab,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,ماذا يُعطى عادة كبادرة تهنئة عند حضور زفاف صديق في الجزائر؟,Holidays/Celebration/Leisure,['cash gift'],['money'],['glass cup'],C,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cash gift
+B. money
+C. glass cup
+
+Answer: ",A
+Ne-ar-39,Ara_212,Arab,What is the cheapest fast food in your country?,ما هي أرخص الوجبات السريعة في الجزائر؟,Food,['noodles'],"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",['couscous'],C,"
+What is the cheapest fast food in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. noodles
+B. mcdonalds and ""mcdonalds"" and macdonalds and ""mcdonalds""
+C. couscous
+
+Answer: ",B
+Ne-ar-39,Ara_212,Arab,What is the cheapest fast food in your country?,ما هي أرخص الوجبات السريعة في الجزائر؟,Food,nothing,['shaxian delicacies'],"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",A,"
+What is the cheapest fast food in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. shaxian delicacies
+C. mcdonalds and ""mcdonalds"" and macdonalds and ""mcdonalds""
+
+Answer: ",C
+New-as-07,Ara_235,Arab,What is the most popular dish cooked with fish in your country?,ما هو أشهر طبق سمك في الجزائر؟,Food,['braised fish'],"['sardines', 'fried sardines']",nothing,B,"
+What is the most popular dish cooked with fish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. braised fish
+B. sardines and fried sardines
+C. nothing
+
+Answer: ",C
+New-as-07,Ara_235,Arab,What is the most popular dish cooked with fish in your country?,ما هو أشهر طبق سمك في الجزائر؟,Food,['braised fish'],nothing,"['fish soup', 'soupe de poisson']",C,"
+What is the most popular dish cooked with fish in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. braised fish
+B. nothing
+C. fish soup and soupe de poisson
+
+Answer: ",C
+New-ch-04,Ara_260,Arab,What kinds of food do people usually eat for late-night snacks in your country?,أي أنواع من الطعام يتناول الناس عادة كوجبات خفيفة في آخر الليل في الجزائر؟,Food,"['barbecue', 'kebabs']",['salad'],['pizza'],B,"
+What kinds of food do people usually eat for late-night snacks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. barbecue and kebabs
+B. salad
+C. pizza
+
+Answer: ",C
+New-ch-04,Ara_260,Arab,What kinds of food do people usually eat for late-night snacks in your country?,أي أنواع من الطعام يتناول الناس عادة كوجبات خفيفة في آخر الليل في الجزائر؟,Food,nothing,['pizza'],"['barbecue', 'kebabs']",A,"
+What kinds of food do people usually eat for late-night snacks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. pizza
+C. barbecue and kebabs
+
+Answer: ",C
+New-ch-08,Ara_263,Arab,What seasoning is indispensable in cooking in your country?,ما هي التوابل الأساسية للطبخ في الجزائر؟,Food,"['pepper', 'salt and pepper']","['ras el hanout', 'rass el hanout', 'head of the shop']",['soy sauce'],B,"
+What seasoning is indispensable in cooking in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pepper and salt and pepper
+B. ras el hanout and rass el hanout and head of the shop
+C. soy sauce
+
+Answer: ",C
+New-ch-08,Ara_263,Arab,What seasoning is indispensable in cooking in your country?,ما هي التوابل الأساسية للطبخ في الجزائر؟,Food,"['msg', 'monosodium glutamate']","['salt', 'salt and pepper']",['black pepper'],C,"
+What seasoning is indispensable in cooking in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. msg and monosodium glutamate
+B. salt and salt and pepper
+C. black pepper
+
+Answer: ",C
+New-ch-16,Ara_268,Arab,What is the most famous sports-related movie in your country?,ما هو أشهر فيلم عن الرياضة في الجزائر؟,Sport,['women basketball team member no. 5'],"['the brothers grimsby', 'brothers of grimsby']",nothing,C,"
+What is the most famous sports-related movie in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. women basketball team member no. 5
+B. the brothers grimsby and brothers of grimsby
+C. nothing
+
+Answer: ",C
+New-ch-16,Ara_268,Arab,What is the most famous sports-related movie in your country?,ما هو أشهر فيلم عن الرياضة في الجزائر؟,Sport,['ferrari'],nothing,['women basketball team member no. 5'],B,"
+What is the most famous sports-related movie in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ferrari
+B. nothing
+C. women basketball team member no. 5
+
+Answer: ",C
+New-ch-83,Ara_298,Arab,Which city in your country hosts festivals the most?,أي مدينة في الجزائر تستضيف أكثر الأعياد والمهرجانات؟,Holidays/Celebration/Leisure,['edinburgh'],['tlemcen'],['shanghai'],B,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. edinburgh
+B. tlemcen
+C. shanghai
+
+Answer: ",A
+New-ch-83,Ara_298,Arab,Which city in your country hosts festivals the most?,أي مدينة في الجزائر تستضيف أكثر الأعياد والمهرجانات؟,Holidays/Celebration/Leisure,['beijing'],['liverpool'],['oran'],C,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. beijing
+B. liverpool
+C. oran
+
+Answer: ",C
+New-en-08,Ara_306,Arab,What is the most popular chocolate brand in your country?,ما هي أشهر ماركة شوكولاتة في الجزائر؟,Food,['maruja'],['gold sand chocolate'],"['cadburys', 'cadbury', ""cadbury's""]",A,"
+What is the most popular chocolate brand in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. maruja
+B. gold sand chocolate
+C. cadburys and cadbury and ""cadburys""
+
+Answer: ",C
+New-en-08,Ara_306,Arab,What is the most popular chocolate brand in your country?,ما هي أشهر ماركة شوكولاتة في الجزائر؟,Food,['nestle'],['moment'],['ferrero'],B,"
+What is the most popular chocolate brand in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nestle
+B. moment
+C. ferrero
+
+Answer: ",C
+New-en-12,Ara_309,Arab,What food is most commonly found in food courts in your country?,ما هو الطعام الأكثر شيوعاً في مطاعم المراكز التجارية في الجزائر؟,Food,['burgers and fries (burger king)'],['pizza'],['shengjian (pan-fried bun)'],B,"
+What food is most commonly found in food courts in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. burgers and fries (burger king)
+B. pizza
+C. shengjian (pan-fried bun)
+
+Answer: ",C
+New-en-12,Ara_309,Arab,What food is most commonly found in food courts in your country?,ما هو الطعام الأكثر شيوعاً في مطاعم المراكز التجارية في الجزائر؟,Food,['roasted sausage'],['chicken'],['burgers and fries (burger king)'],B,"
+What food is most commonly found in food courts in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. roasted sausage
+B. chicken
+C. burgers and fries (burger king)
+
+Answer: ",C
+New-en-38,Ara_315,Arab,Which industries are known for more flexible working hours in your country?,أي المهن معروفة بساعات العمل المرنة في الجزائر؟,Work life,['commerce'],['internet'],['retail industry'],A,"
+Which industries are known for more flexible working hours in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. commerce
+B. internet
+C. retail industry
+
+Answer: ",C
+New-en-38,Ara_315,Arab,Which industries are known for more flexible working hours in your country?,أي المهن معروفة بساعات العمل المرنة في الجزائر؟,Work life,['internet'],"['freelance professions', 'freelance jobs']",['office'],B,"
+Which industries are known for more flexible working hours in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. internet
+B. freelance professions and freelance jobs
+C. office
+
+Answer: ",C
+New-en-69,Ara_324,Arab,Which writers are commonly studied in literature class in your country?,من هم الكتّاب الذين تدرس أعمالهم في حصص الأدب في الجزائر؟,Education,['mouloud mammeri'],"['dickens', 'charles dickens']",['lu xun'],A,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. mouloud mammeri
+B. dickens and charles dickens
+C. lu xun
+
+Answer: ",C
+New-en-69,Ara_324,Arab,Which writers are commonly studied in literature class in your country?,من هم الكتّاب الذين تدرس أعمالهم في حصص الأدب في الجزائر؟,Education,"['steinbeck', 'john steinbeck']",['mouloud feraoun'],['lao she'],B,"
+Which writers are commonly studied in literature class in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. steinbeck and john steinbeck
+B. mouloud feraoun
+C. lao she
+
+Answer: ",C
+New-en-76,Ara_328,Arab,Which airport in your country is the busiest during the holiday season?,ما هو المطار الأكثر ازدحامًا خلال موسم العطل في الجزائر؟,Holidays/Celebration/Leisure,['beijing daxing'],['heathrow'],nothing,C,"
+Which airport in your country is the busiest during the holiday season?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. beijing daxing
+B. heathrow
+C. nothing
+
+Answer: ",C
+New-en-76,Ara_328,Arab,Which airport in your country is the busiest during the holiday season?,ما هو المطار الأكثر ازدحامًا خلال موسم العطل في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['beijing capital airport', 'capital airport']",['stanstead'],A,"
+Which airport in your country is the busiest during the holiday season?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. beijing capital airport and capital airport
+C. stanstead
+
+Answer: ",C
+New-en-79,Ara_329,Arab,Which region of your country is well known for its theatrical performances?,ما هي المنطقة الجزائرية المعروفة بالعروض المسرحية؟,Holidays/Celebration/Leisure,"['sidi bel abbès', 'sidi bel abbes']","['west end', 'west end of london', 'west end london']",['henan'],A,"
+Which region of your country is well known for its theatrical performances?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sidi bel abbès and sidi bel abbes
+B. west end and west end of london and west end london
+C. henan
+
+Answer: ",A
+New-en-79,Ara_329,Arab,Which region of your country is well known for its theatrical performances?,ما هي المنطقة الجزائرية المعروفة بالعروض المسرحية؟,Holidays/Celebration/Leisure,['london'],['oran'],['henan'],B,"
+Which region of your country is well known for its theatrical performances?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. london
+B. oran
+C. henan
+
+Answer: ",A
+New-ha-07,Ara_346,Arab,What food originated from your country and can be found all over the world?,ما هو الطعام الذي أصله من الجزائر ويمكن العثور عليه في جميع أنحاء العالم؟,Food,['noodles'],['potatoes'],nothing,C,"
+What food originated from your country and can be found all over the world?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. noodles
+B. potatoes
+C. nothing
+
+Answer: ",A
+New-ha-07,Ara_346,Arab,What food originated from your country and can be found all over the world?,ما هو الطعام الذي أصله من الجزائر ويمكن العثور عليه في جميع أنحاء العالم؟,Food,['sweet and sour chicken'],['potatoes'],nothing,C,"
+What food originated from your country and can be found all over the world?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sweet and sour chicken
+B. potatoes
+C. nothing
+
+Answer: ",C
+New-in-63,Ara_357,Arab,What university in your country is popular because of its school of medicine? (Provide the official name.), ما هي الجامعة الجزائرية المشهورة بتخصص الطب ؟ (استعمل الاسم الرسمي.),Education,"['oxford', 'university of oxford', 'oxford university']",nothing,['peking university'],B,"
+What university in your country is popular because of its school of medicine? (Provide the official name.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. oxford and university of oxford and oxford university
+B. nothing
+C. peking university
+
+Answer: ",C
+New-in-63,Ara_357,Arab,What university in your country is popular because of its school of medicine? (Provide the official name.), ما هي الجامعة الجزائرية المشهورة بتخصص الطب ؟ (استعمل الاسم الرسمي.),Education,"['ziania medical school', 'algiers faculty of medicine', 'algiers faculty of medicine - ziania', 'zianides', 'faculty of medicine']",['peking university health science center'],['cambridge'],A,"
+What university in your country is popular because of its school of medicine? (Provide the official name.)
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ziania medical school and algiers faculty of medicine and algiers faculty of medicine - ziania and zianides and faculty of medicine
+B. peking university health science center
+C. cambridge
+
+Answer: ",A
+New-ko-04,Ara_363,Arab,Which toys are most popular among boys in your country?,ما هي الألعاب الأكثر شعبية بين الأولاد في الجزائر؟,Family,['hide and seek'],['car model'],"['toy cars', 'cars']",A,"
+Which toys are most popular among boys in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hide and seek
+B. car model
+C. toy cars and cars
+
+Answer: ",B
+New-ko-04,Ara_363,Arab,Which toys are most popular among boys in your country?,ما هي الألعاب الأكثر شعبية بين الأولاد في الجزائر؟,Family,"['bead balls', 'beads']",['lego'],"['football', 'footballs', 'soccer ball']",A,"
+Which toys are most popular among boys in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bead balls and beads
+B. lego
+C. football and footballs and soccer ball
+
+Answer: ",B
+New-pe-02,Ara_370,Arab,What is the most famous edible souvenir for tourists in your country?,ما هو أشهر أكل يقدم للسياح في الجزائر؟,Food,['couscous'],['pineapple cake'],['cornish pasty'],A,"
+What is the most famous edible souvenir for tourists in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. couscous
+B. pineapple cake
+C. cornish pasty
+
+Answer: ",C
+New-pe-02,Ara_370,Arab,What is the most famous edible souvenir for tourists in your country?,ما هو أشهر أكل يقدم للسياح في الجزائر؟,Food,['cornish pasty'],nothing,['green bean cake'],B,"
+What is the most famous edible souvenir for tourists in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cornish pasty
+B. nothing
+C. green bean cake
+
+Answer: ",C
+New-pe-06,Ara_371,Arab,What is the most popular stew in your country?,ما هو أشهر طاجين في الجزائر؟,Food,['braised spare ribs'],['steak and ale'],['chtitha'],C,"
+What is the most popular stew in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. braised spare ribs
+B. steak and ale
+C. chtitha
+
+Answer: ",C
+New-pe-06,Ara_371,Arab,What is the most popular stew in your country?,ما هو أشهر طاجين في الجزائر؟,Food,['pork stew with glass noodles'],['beef'],nothing,C,"
+What is the most popular stew in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. pork stew with glass noodles
+B. beef
+C. nothing
+
+Answer: ",A
+New-pe-53,Ara_378,Arab,What gifts do fathers get on Father's Day (or Parents' Day) in your country?,ما هي الهدايا التي يحصل عليها الآباء في عيد الأب (أو عيد الوالدين) في الجزائر؟,Family,['aftershave'],['flower'],nothing,C,"
+What gifts do fathers get on Father's Day (or Parents' Day) in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. aftershave
+B. flower
+C. nothing
+
+Answer: ",B
+New-pe-53,Ara_378,Arab,What gifts do fathers get on Father's Day (or Parents' Day) in your country?,ما هي الهدايا التي يحصل عليها الآباء في عيد الأب (أو عيد الوالدين) في الجزائر؟,Family,['razor'],['card'],['perfume'],C,"
+What gifts do fathers get on Father's Day (or Parents' Day) in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. razor
+B. card
+C. perfume
+
+Answer: ",B
+New-pe-86,Ara_388,Arab,What is the name of the most famous tower in your country?,ما هو اسم أشهر برج في الجزائر؟,Holidays/Celebration/Leisure,['canton tower'],nothing,"['the blackpool tower', 'blackpool']",B,"
+What is the name of the most famous tower in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. canton tower
+B. nothing
+C. the blackpool tower and blackpool
+
+Answer: ",C
+New-pe-86,Ara_388,Arab,What is the name of the most famous tower in your country?,ما هو اسم أشهر برج في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['oriental pearl', 'pearl of the orient']","['the blackpool tower', 'blackpool']",A,"
+What is the name of the most famous tower in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. oriental pearl and pearl of the orient
+C. the blackpool tower and blackpool
+
+Answer: ",C
+New-spme-05,Ara_391,Arab,What are the most popular sweets in your country?,ما هي أشهر الحلويات في الجزائر؟,Food,['maltesers'],"['halwet ettabaa', 'halwet taba', 'halwet tabe', 'halwet eltaba']",['egg yolk pastry'],B,"
+What are the most popular sweets in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. maltesers
+B. halwet ettabaa and halwet taba and halwet tabe and halwet eltaba
+C. egg yolk pastry
+
+Answer: ",A
+New-spme-05,Ara_391,Arab,What are the most popular sweets in your country?,ما هي أشهر الحلويات في الجزائر؟,Food,['egg roll'],['baklava'],['mars bar'],B,"
+What are the most popular sweets in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. egg roll
+B. baklava
+C. mars bar
+
+Answer: ",C
+New-spme-65,Ara_396,Arab,What is the most popular way to celebrate Independence Day in your country?,ما هي الطريقة الشائعة للاحتفال بعيد الاستقلال في الجزائر؟,Family,nothing,"['watching fireworks', 'firework']","['set off fireworks', 'fireworks']",B,"
+What is the most popular way to celebrate Independence Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. watching fireworks and firework
+C. set off fireworks and fireworks
+
+Answer: ",C
+New-spme-65,Ara_396,Arab,What is the most popular way to celebrate Independence Day in your country?,ما هي الطريقة الشائعة للاحتفال بعيد الاستقلال في الجزائر؟,Family,"['go out for a trip', 'tourism', 'travel']",nothing,"['flag', 'hanging flags']",C,"
+What is the most popular way to celebrate Independence Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. go out for a trip and tourism and travel
+B. nothing
+C. flag and hanging flags
+
+Answer: ",C
+New-spme-76,Ara_398,Arab,What is the most popular place in your country to celebrate Independence Day?,ما هو أشهر مكان في الجزائر للاحتفال بعيد الاستقلال؟,Holidays/Celebration/Leisure,nothing,nothing,['algiers'],C,"
+What is the most popular place in your country to celebrate Independence Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. nothing
+C. algiers
+
+Answer: ",C
+New-spme-76,Ara_398,Arab,What is the most popular place in your country to celebrate Independence Day?,ما هو أشهر مكان في الجزائر للاحتفال بعيد الاستقلال؟,Holidays/Celebration/Leisure,"['tiananmen square', 'tiananmen']",nothing,"['central post office square', 'central post office']",C,"
+What is the most popular place in your country to celebrate Independence Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tiananmen square and tiananmen
+B. nothing
+C. central post office square and central post office
+
+Answer: ",C
+Sa-en-13,Ara_448,Arab,What is the food that is most divisive (either love or hate) in your country?,ما هو الطعام الذي يثير الانقسامات (إما الحب أو الكراهية) في الجزائر؟,Food,['brussel sprouts'],['cilantro'],"[""boiled sheep's head"", 'bozlov', 'bouzalof', 'bouzlouf']",C,"
+What is the food that is most divisive (either love or hate) in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. brussel sprouts
+B. cilantro
+C. ""boiled sheeps head"" and bozlov and bouzalof and bouzlouf
+
+Answer: ",C
+Sa-en-13,Ara_448,Arab,What is the food that is most divisive (either love or hate) in your country?,ما هو الطعام الذي يثير الانقسامات (إما الحب أو الكراهية) في الجزائر؟,Food,['couscous'],['onion'],['zongzi'],A,"
+What is the food that is most divisive (either love or hate) in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. couscous
+B. onion
+C. zongzi
+
+Answer: ",C
+Sa-en-37,Ara_453,Arab,What is the most popular family boardgame in your country?,ما هي أشهر لعبة عائلية في الجزائر؟,Family,['ludo'],nothing,['fight the landlord'],B,"
+What is the most popular family boardgame in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ludo
+B. nothing
+C. fight the landlord
+
+Answer: ",A
+Sa-en-37,Ara_453,Arab,What is the most popular family boardgame in your country?,ما هي أشهر لعبة عائلية في الجزائر؟,Family,nothing,['poker'],['ludo'],A,"
+What is the most popular family boardgame in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. poker
+C. ludo
+
+Answer: ",C
+Ta-pe-37,Ara_468,Arab,What is the common symbol of New Year's Eve that is usually found in your country?,ما هو الرمز المشترك ليلة رأس السنة الذي يوجد عادة في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['auld lang syne', 'auld lang syne singing']","['spring festival couplets', 'chinese couplets', 'new year scrolls']",A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. auld lang syne and auld lang syne singing
+C. spring festival couplets and chinese couplets and new year scrolls
+
+Answer: ",B
+Ta-pe-37,Ara_468,Arab,What is the common symbol of New Year's Eve that is usually found in your country?,ما هو الرمز المشترك ليلة رأس السنة الذي يوجد عادة في الجزائر؟,Holidays/Celebration/Leisure,nothing,['spring festival travel rush'],['fireworks'],A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. spring festival travel rush
+C. fireworks
+
+Answer: ",C
+Th-en-27,Ara_482,Arab,What is the most important industry in your country?,ما هي أهم صناعة في الجزائر؟,Work life,['software development'],['tertiary industry'],nothing,C,"
+What is the most important industry in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. software development
+B. tertiary industry
+C. nothing
+
+Answer: ",C
+Th-en-27,Ara_482,Arab,What is the most important industry in your country?,ما هي أهم صناعة في الجزائر؟,Work life,['finance'],['manufacturing'],['service'],B,"
+What is the most important industry in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. finance
+B. manufacturing
+C. service
+
+Answer: ",A
+Th-en-36,Ara_484,Arab,What is a popular family activity with a child to do on weekends in your country?,ما هي النشاطات العائلية الشائعة التي يمكن القيام بها مع الأطفال في عطلة نهاية الأسبوع في الجزائر؟,Family,"['football', 'soccer']",nothing,['shopping'],B,"
+What is a popular family activity with a child to do on weekends in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. football and soccer
+B. nothing
+C. shopping
+
+Answer: ",C
+Th-en-36,Ara_484,Arab,What is a popular family activity with a child to do on weekends in your country?,ما هي النشاطات العائلية الشائعة التي يمكن القيام بها مع الأطفال في عطلة نهاية الأسبوع في الجزائر؟,Family,"['strolling', 'hiking', 'picnic', 'going out for a picnic to the forest or amusement parks']","['go to the zoo', 'zoo']","['go to the park', 'stroll in the park']",A,"
+What is a popular family activity with a child to do on weekends in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. strolling and hiking and picnic and going out for a picnic to the forest or amusement parks
+B. go to the zoo and zoo
+C. go to the park and stroll in the park
+
+Answer: ",A
