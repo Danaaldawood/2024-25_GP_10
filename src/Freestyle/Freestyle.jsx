@@ -5,15 +5,17 @@ import { Footer } from "../Footer/Footer";
 import { Helmet } from 'react-helmet';
 import "./Freestyle.css";
 
+
 export const ConversationLayout = () => {
   const navigate = useNavigate();
+  
   const [inputMessage, setInputMessage] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [messagesA, setMessagesA] = useState([
-    { type: "ai", content: "Hello, this is Mistral-7B-Instruct. How can I assist you?" },
+    { type: "ai", content: "Hello, this is Model A. How can I assist you?" },
   ]);
   const [messagesB, setMessagesB] = useState([
-    { type: "ai", content: "Hello, this is Llama-2 (7B). How can I assist you?" },
+    { type: "ai", content: "Hello, this is Model B. How can I assist you?" },
   ]);
   const sendLimit = 7;
   const [sendCount, setSendCount] = useState(0);
@@ -21,9 +23,11 @@ export const ConversationLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingA, setIsLoadingA] = useState(false);
   const [isLoadingB, setIsLoadingB] = useState(false);
-
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("");
   const progressWidth = `${(sendCount / sendLimit) * 100}%`;
-
+   
+  
   // Fetch suggestions when component mounts
   useEffect(() => {
     fetch('http://localhost:5000/api/suggestions')
@@ -110,11 +114,48 @@ export const ConversationLayout = () => {
   };
 
   const handleFeedback = (model) => {
-    if (canGiveFeedback) {
-      alert(`${model} 🌟Thank you for voting !`);
-      setCanGiveFeedback(false);
-    }
+    setSelectedModel(model);
+    setShowPopup(true);  
   };
+  
+  const closePopup = () => {
+    setShowPopup(false);  
+  };
+   
+   // Update the handlePopupAction function in ConversationLayout.js
+const handlePopupAction = (action) => {
+  if (action === "yes") {
+    // Get all user messages (questions) - Skip initial greeting
+    const userMessages = messagesA.filter(msg => msg.type === "user");
+    
+    // Get all model responses (excluding the initial greeting)
+    const modelAMessages = messagesA.filter(msg => msg.type === "ai" && messagesA.indexOf(msg) > 0);
+    const modelBMessages = messagesB.filter(msg => msg.type === "ai" && messagesB.indexOf(msg) > 0);
+    
+    // Create structured conversation data with proper question-answer pairing
+    const conversations = [];
+    for (let i = 0; i < userMessages.length; i++) {
+      conversations.push({
+        question: userMessages[i].content,
+        modelA: modelAMessages[i]?.content || "",
+        modelB: modelBMessages[i]?.content || "",
+      });
+    }
+    
+    // Format data for FreeStyleAdd
+    const formattedData = {
+      conversations: conversations,
+      selectedModel: selectedModel
+    };
+    
+    // Save the formatted data
+    localStorage.setItem("lastChatMessages", JSON.stringify(formattedData));
+    
+    navigate("/FreeStyleAdd");
+  } else {
+    navigate("/home");
+  }
+};
 
   return (
     <div className="freestylepage">
@@ -122,24 +163,16 @@ export const ConversationLayout = () => {
         <title>Free style chatting</title>
         <meta name="description" content="Free style chatting page" />
       </Helmet>
-
-      <div className="freestyle-page-header">
+       <div className="freestyle-page-header">
         <button className="freestyle-back-btn" onClick={() => navigate("/plot")}>
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
         <div className="feedback-container mt-4">
-          <button 
-            className="AddToDataset" 
-            style={{ marginLeft: 'auto', display: 'block' }}
-            disabled={!canGiveFeedback} 
-            onClick={() => handleFeedback('AddDataset')}
-          >
-            Add To Dataset
-          </button>
+           
         </div>
       </div>
        
-      <h2 className="freestyle-title">Free Style Chatting 🤖</h2>
+      <h2 className="freestyle-title">Free Style Chatting</h2>
 
       <div className="send-limit-bar">
         <div className="progress" style={{ width: progressWidth }}></div>
@@ -148,7 +181,7 @@ export const ConversationLayout = () => {
 
       <div className="dual-chat-container">
         <div className="chat-model">
-          <h2 className="conversation-title">Model A (Mistral-7B)</h2>
+          <h2 className="conversation-title">Model A</h2>
           <div className="freestyle-message-list">
             {messagesA.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
@@ -160,7 +193,7 @@ export const ConversationLayout = () => {
         </div>
 
         <div className="chat-model">
-          <h2 className="conversation-title">Model B (Llama-2-7B)</h2>
+          <h2 className="conversation-title">Model B</h2>
           <div className="freestyle-message-list">
             {messagesB.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
@@ -172,11 +205,13 @@ export const ConversationLayout = () => {
         </div>
       </div>
 
-      <div className="feedback-container mt-4">
-        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>👍 Model A is better</button>
-        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👍 Model B is better</button>
-        <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Both')}>👎 Both Bad</button>
-      </div>
+      {sendCount === sendLimit && !isLoading && (
+  <div className="feedback-container mt-4">
+    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>👍 Model A is better</button>
+    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👍 Model B is better</button>
+    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('none')}> none</button>
+  </div>
+)}
 
       <div className="freestyle-input-container">
         <input
@@ -198,6 +233,21 @@ export const ConversationLayout = () => {
       </div>
 
       <Footer />
-    </div>
-  );
+
+      {showPopup && (
+      <div className="popup-overlay">
+        <div className="popup-content">
+          <h3>{selectedModel} 🌟 Thank you for voting!</h3>
+          <p>Would you like to add your chat?</p>
+          <div className="popup-buttons">
+            {/* "Yes" button will navigate to FreeStyleAdd */}
+            <button onClick={() => handlePopupAction("yes")}>Yes</button>
+            {/* "Cancel" button will navigate to HomePage */}
+            <button onClick={() => handlePopupAction("cancel")}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+);
 };

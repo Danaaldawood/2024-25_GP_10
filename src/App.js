@@ -29,8 +29,9 @@ import AdminPage from "./Register/AdminPage";
 import AdminLogin from "./Register/AdminLogin";
 import AdminForgetPass from "./AdminPassword/AdminForgetPass";
 import AdminRestPass from "./AdminPassword/AdminRestPass";
-
-function App() {
+import FreeStyleAdd from "./Freestyle/FreeStyleAdd";
+import LensLeaderBoard from "./Freestyle/LensLeaderBoard";
+ function App() {
   const { t, i18n } = useTranslation();
 
   // Handle RTL language setup
@@ -144,6 +145,15 @@ function App() {
         path: "/reportpage", 
         element: <ReportPage />,
       },
+      {
+        path:"/FreeStyleAdd",
+        element:<FreeStyleAdd />
+      },
+      {path:"/LensLeaderBoard",
+        element:<LensLeaderBoard />
+      },
+ 
+       
       
   ]);
 

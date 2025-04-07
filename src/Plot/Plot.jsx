@@ -363,50 +363,16 @@ export const Plot = () => {
             }}
           />
         )}
+<div className="plotsubmit-container">
+  <button
+    className="plotsubmit"
+    onClick={() => navigate("/freestyle")}
+  >
+    {t("freeStyleChatting")}
+  </button>
+</div>
 
-        <div className="explanation">
-          <p>{getCoverageText()}</p>
-        </div>
 
-        <div className="plotsubmit-container">
-          <button className="plotsubmit" onClick={() => setPopupOpen(true)}>
-            {t("freeStyleChatting")}
-          </button>
-        </div>
-
-        {isPopupOpen && (
-          <div className="plotdialog-container">
-            <dialog open className="plotpopup-dialog">
-              <div className="plotpopup-content">
-                <h2>{t("selectTopic")}</h2>
-                <select
-                  name="plotDim"
-                  id="plotDim"
-                  className={`plotDim ${hasError ? "error" : ""}`}
-                  value={selectedDimension}
-                  onChange={handleDimensionChange}
-                >
-                  <option value="" disabled>
-                    {dimensionPlaceholder}
-                  </option>
-                  <option value="All Topics">{t("allTopics")}</option>
-                  <option value="Food">{t("food")}</option>
-                  <option value="Sport">{t("sport")}</option>
-                  <option value="Family">{t("family")}</option>
-                  <option value="Education">{t("education")}</option>
-                  <option value="Holidays">{t("holidays")}</option>
-                  <option value="Work life">{t("worklife")}</option>
-                  <option value="Greeting">{t("greeting")}</option>
-                </select>
-                <div>
-                  <button className="plot-button2" onClick={handleNext}>
-                    {t("next")}
-                  </button>
-                </div>
-              </div>
-            </dialog>
-          </div>
-        )}
       </div>
       <Footer />
     </div>
