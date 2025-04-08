@@ -1,0 +1,793 @@
+cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,textF,Predicted
+Al-en-35,Ara_14,Arab,What do people do to celebrate Christmas in your country?,ماذا يفعل الناس للاحتفال بعيد الميلاد في الجزائر؟,Holidays/Celebration/Leisure,"['party', 'gathering']",nothing,"['give presents', 'give gifts']",B,"
+What do people do to celebrate Christmas in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. party and gathering
+B. nothing
+C. give presents and give gifts
+
+Answer: ",C
+Al-en-35,Ara_14,Arab,What do people do to celebrate Christmas in your country?,ماذا يفعل الناس للاحتفال بعيد الميلاد في الجزائر؟,Holidays/Celebration/Leisure,"['give presents', 'give gifts']",nothing,['have a big meal'],B,"
+What do people do to celebrate Christmas in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. give presents and give gifts
+B. nothing
+C. have a big meal
+
+Answer: ",C
+Kik-in-01,Ara_138,Arab,What national holiday has the longest duration in your country?,ما هو العيد الوطني الأطول مدة في الجزائر؟,Holidays/Celebration/Leisure,"['independence', 'independence day']",nothing,nothing,A,"
+What national holiday has the longest duration in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. independence and independence day
+B. nothing
+C. nothing
+
+Answer: ",A
+Kik-in-01,Ara_138,Arab,What national holiday has the longest duration in your country?,ما هو العيد الوطني الأطول مدة في الجزائر؟,Holidays/Celebration/Leisure,"['national day', '1st of october', 'october 1st']",['easter'],"['outbreak of the revolution', 'liberation revolution', 'outbreak of the algerian revolution', 'anniversary of the 1st november revolution', 'first of november', 'first day of november', '11/01', '11/1']",C,"
+What national holiday has the longest duration in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. national day and 1st of october and october 1st
+B. easter
+C. outbreak of the revolution and liberation revolution and outbreak of the algerian revolution and anniversary of the 1st november revolution and first of november and first day of november and 11/01 and 11/1
+
+Answer: ",C
+Kik-in-06,Ara_142,Arab,What event is usually held before a wedding in your country?,ما هو الحدث الذي يقام عادة قبل الزفاف في الجزائر؟,Holidays/Celebration/Leisure,['henna'],nothing,['engagement ceremony'],A,"
+What event is usually held before a wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. henna
+B. nothing
+C. engagement ceremony
+
+Answer: ",C
+Kik-in-06,Ara_142,Arab,What event is usually held before a wedding in your country?,ما هو الحدث الذي يقام عادة قبل الزفاف في الجزائر؟,Holidays/Celebration/Leisure,['wedding photo shoot'],"['hen night', ""hen's do""]",['fatiha'],C,"
+What event is usually held before a wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. wedding photo shoot
+B. hen night and ""hens do""
+C. fatiha
+
+Answer: ",A
+Na-ko-37,Ara_183,Arab,What is the most popular domestic vacation spot for people from your country?,ما هو أشهر مكان لقضاء العطلة داخل الجزائر بالنسبة للجزائريين؟,Holidays/Celebration/Leisure,"['bejaia', 'béjaïa', 'bougie', 'bugia']",['blackpool'],"['dali ancient town', 'dali']",A,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bejaia and béjaïa and bougie and bugia
+B. blackpool
+C. dali ancient town and dali
+
+Answer: ",B
+Na-ko-37,Ara_183,Arab,What is the most popular domestic vacation spot for people from your country?,ما هو أشهر مكان لقضاء العطلة داخل الجزائر بالنسبة للجزائريين؟,Holidays/Celebration/Leisure,['jijel'],"['dali ancient town', 'dali']",['cornwall'],A,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. jijel
+B. dali ancient town and dali
+C. cornwall
+
+Answer: ",C
+Na-ko-38,Ara_184,Arab,What is the most common wedding gift between bride and groom in your country?,ما هو أكثر هدية زواج شائعة بين العروس والعريس في الجزائر؟,Holidays/Celebration/Leisure,['watch'],['gold jewelry'],"['gold', 'gold set']",C,"
+What is the most common wedding gift between bride and groom in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. watch
+B. gold jewelry
+C. gold and gold set
+
+Answer: ",B
+Na-ko-38,Ara_184,Arab,What is the most common wedding gift between bride and groom in your country?,ما هو أكثر هدية زواج شائعة بين العروس والعريس في الجزائر؟,Holidays/Celebration/Leisure,['necklace'],['wedding ring'],nothing,C,"
+What is the most common wedding gift between bride and groom in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. necklace
+B. wedding ring
+C. nothing
+
+Answer: ",B
+Na-ko-39,Ara_185,Arab,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,ماذا يُعطى عادة كبادرة تهنئة عند حضور زفاف صديق في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['gifts', 'wedding gift', 'gift from the wedding list']",['utensils'],C,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. gifts and wedding gift and gift from the wedding list
+C. utensils
+
+Answer: ",B
+Na-ko-39,Ara_185,Arab,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,ماذا يُعطى عادة كبادرة تهنئة عند حضور زفاف صديق في الجزائر؟,Holidays/Celebration/Leisure,['cash gift'],['money'],['glass cup'],C,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. cash gift
+B. money
+C. glass cup
+
+Answer: ",A
+New-ch-83,Ara_298,Arab,Which city in your country hosts festivals the most?,أي مدينة في الجزائر تستضيف أكثر الأعياد والمهرجانات؟,Holidays/Celebration/Leisure,['edinburgh'],['tlemcen'],['shanghai'],B,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. edinburgh
+B. tlemcen
+C. shanghai
+
+Answer: ",A
+New-ch-83,Ara_298,Arab,Which city in your country hosts festivals the most?,أي مدينة في الجزائر تستضيف أكثر الأعياد والمهرجانات؟,Holidays/Celebration/Leisure,['beijing'],['liverpool'],['oran'],C,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. beijing
+B. liverpool
+C. oran
+
+Answer: ",C
+New-en-76,Ara_328,Arab,Which airport in your country is the busiest during the holiday season?,ما هو المطار الأكثر ازدحامًا خلال موسم العطل في الجزائر؟,Holidays/Celebration/Leisure,['beijing daxing'],['heathrow'],nothing,C,"
+Which airport in your country is the busiest during the holiday season?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. beijing daxing
+B. heathrow
+C. nothing
+
+Answer: ",C
+New-en-76,Ara_328,Arab,Which airport in your country is the busiest during the holiday season?,ما هو المطار الأكثر ازدحامًا خلال موسم العطل في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['beijing capital airport', 'capital airport']",['stanstead'],A,"
+Which airport in your country is the busiest during the holiday season?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. beijing capital airport and capital airport
+C. stanstead
+
+Answer: ",C
+New-en-79,Ara_329,Arab,Which region of your country is well known for its theatrical performances?,ما هي المنطقة الجزائرية المعروفة بالعروض المسرحية؟,Holidays/Celebration/Leisure,"['sidi bel abbès', 'sidi bel abbes']","['west end', 'west end of london', 'west end london']",['henan'],A,"
+Which region of your country is well known for its theatrical performances?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sidi bel abbès and sidi bel abbes
+B. west end and west end of london and west end london
+C. henan
+
+Answer: ",A
+New-en-79,Ara_329,Arab,Which region of your country is well known for its theatrical performances?,ما هي المنطقة الجزائرية المعروفة بالعروض المسرحية؟,Holidays/Celebration/Leisure,['london'],['oran'],['henan'],B,"
+Which region of your country is well known for its theatrical performances?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. london
+B. oran
+C. henan
+
+Answer: ",A
+New-pe-86,Ara_388,Arab,What is the name of the most famous tower in your country?,ما هو اسم أشهر برج في الجزائر؟,Holidays/Celebration/Leisure,['canton tower'],nothing,"['the blackpool tower', 'blackpool']",B,"
+What is the name of the most famous tower in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. canton tower
+B. nothing
+C. the blackpool tower and blackpool
+
+Answer: ",C
+New-pe-86,Ara_388,Arab,What is the name of the most famous tower in your country?,ما هو اسم أشهر برج في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['oriental pearl', 'pearl of the orient']","['the blackpool tower', 'blackpool']",A,"
+What is the name of the most famous tower in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. oriental pearl and pearl of the orient
+C. the blackpool tower and blackpool
+
+Answer: ",C
+New-spme-76,Ara_398,Arab,What is the most popular place in your country to celebrate Independence Day?,ما هو أشهر مكان في الجزائر للاحتفال بعيد الاستقلال؟,Holidays/Celebration/Leisure,nothing,nothing,['algiers'],C,"
+What is the most popular place in your country to celebrate Independence Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. nothing
+C. algiers
+
+Answer: ",C
+New-spme-76,Ara_398,Arab,What is the most popular place in your country to celebrate Independence Day?,ما هو أشهر مكان في الجزائر للاحتفال بعيد الاستقلال؟,Holidays/Celebration/Leisure,"['tiananmen square', 'tiananmen']",nothing,"['central post office square', 'central post office']",C,"
+What is the most popular place in your country to celebrate Independence Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tiananmen square and tiananmen
+B. nothing
+C. central post office square and central post office
+
+Answer: ",C
+Ta-pe-37,Ara_468,Arab,What is the common symbol of New Year's Eve that is usually found in your country?,ما هو الرمز المشترك ليلة رأس السنة الذي يوجد عادة في الجزائر؟,Holidays/Celebration/Leisure,nothing,"['auld lang syne', 'auld lang syne singing']","['spring festival couplets', 'chinese couplets', 'new year scrolls']",A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. auld lang syne and auld lang syne singing
+C. spring festival couplets and chinese couplets and new year scrolls
+
+Answer: ",B
+Ta-pe-37,Ara_468,Arab,What is the common symbol of New Year's Eve that is usually found in your country?,ما هو الرمز المشترك ليلة رأس السنة الذي يوجد عادة في الجزائر؟,Holidays/Celebration/Leisure,nothing,['spring festival travel rush'],['fireworks'],A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. spring festival travel rush
+C. fireworks
+
+Answer: ",C
+Al-en-34,Chi_13,China,What do people do to celebrate New Year's Day in your country?,中国人在新年当天通常会做些什么来庆祝呢？,Holidays/Celebration/Leisure,"['watch fireworks', 'fireworks']",nothing,['have the reunion dinner'],C,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. watch fireworks and fireworks
+B. nothing
+C. have the reunion dinner
+
+Answer: ",C
+Al-en-34,Chi_13,China,What do people do to celebrate New Year's Day in your country?,中国人在新年当天通常会做些什么来庆祝呢？,Holidays/Celebration/Leisure,"['eating sweets', 'eat sweets']","['go to the pub', 'home or pubs']",['dumplings'],C,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. eating sweets and eat sweets
+B. go to the pub and home or pubs
+C. dumplings
+
+Answer: ",C
+Al-en-40,Chi_19,China,What is a popular outdoor place for families to have fun with little kids in your country?,在中国，有哪些受欢迎的户外场所适合家庭带着小孩子去玩乐？,Holidays/Celebration/Leisure,"['local parks', 'park']","['botanical garden hamma', 'public garden', 'garden']","['outdoor playground', 'amusement park']",C,"
+What is a popular outdoor place for families to have fun with little kids in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. local parks and park
+B. botanical garden hamma and public garden and garden
+C. outdoor playground and amusement park
+
+Answer: ",A
+Al-en-40,Chi_19,China,What is a popular outdoor place for families to have fun with little kids in your country?,在中国，有哪些受欢迎的户外场所适合家庭带着小孩子去玩乐？,Holidays/Celebration/Leisure,['adventure parks'],['sea'],nothing,C,"
+What is a popular outdoor place for families to have fun with little kids in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. adventure parks
+B. sea
+C. nothing
+
+Answer: ",A
+Jod-ch-42,Chi_115,China,What is the common leisure activity that males in their 20s in your country engage in?,中国20多岁的男性通常参加什么休闲活动？,Holidays/Celebration/Leisure,['biking'],['sports'],['running'],C,"
+What is the common leisure activity that males in their 20s in your country engage in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. biking
+B. sports
+C. running
+
+Answer: ",B
+Jod-ch-42,Chi_115,China,What is the common leisure activity that males in their 20s in your country engage in?,中国20多岁的男性通常参加什么休闲活动？,Holidays/Celebration/Leisure,['computer games'],['play games'],"['reading', 'read']",B,"
+What is the common leisure activity that males in their 20s in your country engage in?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. computer games
+B. play games
+C. reading and read
+
+Answer: ",A
+Kik-in-02,Chi_139,China,What are the common activities people from your country do to celebrate Independence day?,中国人民庆祝国庆日通常会做哪些活动？,Holidays/Celebration/Leisure,"['military parade', 'watch the parade']",['nothing'],nothing,A,"
+What are the common activities people from your country do to celebrate Independence day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. military parade and watch the parade
+B. nothing
+C. nothing
+
+Answer: ",A
+Kik-in-02,Chi_139,China,What are the common activities people from your country do to celebrate Independence day?,中国人民庆祝国庆日通常会做哪些活动？,Holidays/Celebration/Leisure,"['tourism', 'travel']",nothing,"['watch tv', 'tv']",A,"
+What are the common activities people from your country do to celebrate Independence day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. tourism and travel
+B. nothing
+C. watch tv and tv
+
+Answer: ",C
+Na-ko-33,Chi_182,China,What symbolic food do people from your country eat on (Lunar) New Year?,中国人在（农历）新年期间吃什么具有象征意义的食物？,Holidays/Celebration/Leisure,['dumplings'],nothing,nothing,A,"
+What symbolic food do people from your country eat on (Lunar) New Year?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. dumplings
+B. nothing
+C. nothing
+
+Answer: ",A
+Na-ko-33,Chi_182,China,What symbolic food do people from your country eat on (Lunar) New Year?,中国人在（农历）新年期间吃什么具有象征意义的食物？,Holidays/Celebration/Leisure,['rechta'],['chinese cuisine'],['glutinous rice balls'],C,"
+What symbolic food do people from your country eat on (Lunar) New Year?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. rechta
+B. chinese cuisine
+C. glutinous rice balls
+
+Answer: ",C
+Na-ko-39,Chi_185,China,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,在中国参加朋友的婚礼时，通常会送什么来表示祝贺？,Holidays/Celebration/Leisure,['gift'],['homeware'],nothing,C,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. gift
+B. homeware
+C. nothing
+
+Answer: ",A
+Na-ko-39,Chi_185,China,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,在中国参加朋友的婚礼时，通常会送什么来表示祝贺？,Holidays/Celebration/Leisure,['homeware'],nothing,['utensils'],B,"
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. homeware
+B. nothing
+C. utensils
+
+Answer: ",C
+Ne-ar-06,Chi_193,China,What do people from your country eat in Ramadan?,中国人在斋月期间吃什么？,Holidays/Celebration/Leisure,['sweets'],['soup'],['suhor'],C,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. sweets
+B. soup
+C. suhor
+
+Answer: ",C
+Ne-ar-06,Chi_193,China,What do people from your country eat in Ramadan?,中国人在斋月期间吃什么？,Holidays/Celebration/Leisure,"['chorba soup', 'shourba frik', 'shourba soup']",['beef and mutton'],['nuts'],B,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. chorba soup and shourba frik and shourba soup
+B. beef and mutton
+C. nuts
+
+Answer: ",C
+New-as-80,Chi_244,China,What type of clothing do people from your country wear during traditional festivals?,中国人在传统节日里通常穿什么样的服装？,Holidays/Celebration/Leisure,['new clothes'],['casual wear'],['brightly colored clothes'],C,"
+What type of clothing do people from your country wear during traditional festivals?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. new clothes
+B. casual wear
+C. brightly colored clothes
+
+Answer: ",C
+New-as-80,Chi_244,China,What type of clothing do people from your country wear during traditional festivals?,中国人在传统节日里通常穿什么样的服装？,Holidays/Celebration/Leisure,"['daily wear', 'as usual']",nothing,nothing,A,"
+What type of clothing do people from your country wear during traditional festivals?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. daily wear and as usual
+B. nothing
+C. nothing
+
+Answer: ",C
+New-ch-78,Chi_293,China,What leisure activities do retired women typically like in your country?,在中国，退休女性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,"['reading', 'read']",['swimming'],['play mahjong'],C,"
+What leisure activities do retired women typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. reading and read
+B. swimming
+C. play mahjong
+
+Answer: ",C
+New-ch-78,Chi_293,China,What leisure activities do retired women typically like in your country?,在中国，退休女性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,['swimming'],['tourism'],"['television', 'tv']",B,"
+What leisure activities do retired women typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. swimming
+B. tourism
+C. television and tv
+
+Answer: ",A
+New-ch-79,Chi_294,China,What leisure activities do retired men typically like in your country?,在中国，退休男性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,['allotment'],"['stone game', 'domino stones', 'domino']",['square dancing'],C,"
+What leisure activities do retired men typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. allotment
+B. stone game and domino stones and domino
+C. square dancing
+
+Answer: ",C
+New-ch-79,Chi_294,China,What leisure activities do retired men typically like in your country?,在中国，退休男性通常喜欢什么休闲活动？,Holidays/Celebration/Leisure,['practice tai chi'],['allotment'],"['reading', 'readd']",A,"
+What leisure activities do retired men typically like in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. practice tai chi
+B. allotment
+C. reading and readd
+
+Answer: ",C
+New-ch-83,Chi_298,China,Which city in your country hosts festivals the most?,中国的哪个城市举办节日最多？,Holidays/Celebration/Leisure,['liverpool'],['beijing'],"['timgad', 'timqad']",B,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. liverpool
+B. beijing
+C. timgad and timqad
+
+Answer: ",A
+New-ch-83,Chi_298,China,Which city in your country hosts festivals the most?,中国的哪个城市举办节日最多？,Holidays/Celebration/Leisure,nothing,['algiers'],['london'],A,"
+Which city in your country hosts festivals the most?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. algiers
+C. london
+
+Answer: ",C
+New-en-87,Chi_330,China,What is the most famous historic landmark in your country?,中国最著名的历史地标是什么？,Holidays/Celebration/Leisure,"['john o groats', ""john o' groats""]","['timgad', 'timqad']",['great wall'],C,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. john o groats and ""john o groats""
+B. timgad and timqad
+C. great wall
+
+Answer: ",C
+New-en-87,Chi_330,China,What is the most famous historic landmark in your country?,中国最著名的历史地标是什么？,Holidays/Celebration/Leisure,"[""martyrs' memorial"", 'maqam echahid', ""martyr's memorial"", 'memorial of the martyr', 'sanctuary of the martyr', ""maqam e'chahid""]",['forbidden city'],"['john o groats', ""john o' groats""]",B,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""martyrs memorial"" and maqam echahid and ""martyrs memorial"" and memorial of the martyr and sanctuary of the martyr and ""maqam echahid""
+B. forbidden city
+C. john o groats and ""john o groats""
+
+Answer: ",A
+New-pe-76,Chi_384,China,What is a popular activity to do in parks in your country?,在中国的公园里，有什么受欢迎的活动？,Holidays/Celebration/Leisure,['play'],['walk'],['square dance'],C,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. play
+B. walk
+C. square dance
+
+Answer: ",A
+New-pe-76,Chi_384,China,What is a popular activity to do in parks in your country?,在中国的公园里，有什么受欢迎的活动？,Holidays/Celebration/Leisure,['running'],['play badminton'],['run'],B,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. running
+B. play badminton
+C. run
+
+Answer: ",A
+New-pe-78,Chi_385,China,What is the name of the most famous film festival held in your country?,中国举办的最著名的电影节叫什么名字？,Holidays/Celebration/Leisure,"['bafta', 'bafta film awards']","['oran', 'international festival of arab film', 'arab film festival', 'oran festival', 'oran international arabic film festival']",['golden rooster awards'],C,"
+What is the name of the most famous film festival held in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bafta and bafta film awards
+B. oran and international festival of arab film and arab film festival and oran festival and oran international arabic film festival
+C. golden rooster awards
+
+Answer: ",C
+New-pe-78,Chi_385,China,What is the name of the most famous film festival held in your country?,中国举办的最著名的电影节叫什么名字？,Holidays/Celebration/Leisure,['hundred flowers award'],"['bfi', 'bfi london film festival', 'lef']",nothing,A,"
+What is the name of the most famous film festival held in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. hundred flowers award
+B. bfi and bfi london film festival and lef
+C. nothing
+
+Answer: ",A
+New-pe-85,Chi_387,China,Where is the most popular tourist destination abroad for people from your country?,对于中国人来说，最受欢迎的境外旅游目的地在哪里？,Holidays/Celebration/Leisure,nothing,['spain'],['maldives'],C,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. spain
+C. maldives
+
+Answer: ",B
+New-pe-85,Chi_387,China,Where is the most popular tourist destination abroad for people from your country?,对于中国人来说，最受欢迎的境外旅游目的地在哪里？,Holidays/Celebration/Leisure,['united states'],['france'],['tunisia'],A,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. united states
+B. france
+C. tunisia
+
+Answer: ",C
+New-su-83,Chi_423,China,What food is usually served at weddings in your country?,在中国的婚礼上通常会提供什么食物？,Holidays/Celebration/Leisure,['red dates'],['garlic'],['wedding breakfast'],A,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. red dates
+B. garlic
+C. wedding breakfast
+
+Answer: ",C
+New-su-83,Chi_423,China,What food is usually served at weddings in your country?,在中国的婚礼上通常会提供什么食物？,Holidays/Celebration/Leisure,"['bourek', 'bourak']",['buffet'],['wedding candy'],C,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bourek and bourak
+B. buffet
+C. wedding candy
+
+Answer: ",C
+Ta-pe-37,Chi_468,China,What is the common symbol of New Year's Eve that is usually found in your country?,在中国，通常在除夕会有什么常见的象征?,Holidays/Celebration/Leisure,"['spring festival couplets', 'chinese couplets', 'new year scrolls']",nothing,"['auld lang syne', 'auld lang syne singing']",A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. spring festival couplets and chinese couplets and new year scrolls
+B. nothing
+C. auld lang syne and auld lang syne singing
+
+Answer: ",C
+Ta-pe-37,Chi_468,China,What is the common symbol of New Year's Eve that is usually found in your country?,在中国，通常在除夕会有什么常见的象征?,Holidays/Celebration/Leisure,['paper-cut for window decoration'],['champagne'],nothing,A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. paper-cut for window decoration
+B. champagne
+C. nothing
+
+Answer: ",A
+Al-en-34,Wes_13,Western,What do people do to celebrate New Year's Day in your country?,What do people do to celebrate New Year's Day in the UK?,Holidays/Celebration/Leisure,['have a roast dinner family meal'],"[""pay a new year's visit"", 'new year greetings']",nothing,A,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. have a roast dinner family meal
+B. ""pay a new years visit"" and new year greetings
+C. nothing
+
+Answer: ",C
+Al-en-34,Wes_13,Western,What do people do to celebrate New Year's Day in your country?,What do people do to celebrate New Year's Day in the UK?,Holidays/Celebration/Leisure,nothing,"['watch fireworks', 'fireworks']",['have the reunion dinner'],B,"
+What do people do to celebrate New Year's Day in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. watch fireworks and fireworks
+C. have the reunion dinner
+
+Answer: ",C
+Al-en-43,Wes_20,Western,What is a popular indoor activity for families in your country?,What is a popular indoor activity for families in the UK?,Holidays/Celebration/Leisure,['fight the landlord'],['boardgames'],nothing,B,"
+What is a popular indoor activity for families in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fight the landlord
+B. boardgames
+C. nothing
+
+Answer: ",B
+Al-en-43,Wes_20,Western,What is a popular indoor activity for families in your country?,What is a popular indoor activity for families in the UK?,Holidays/Celebration/Leisure,['fight the landlord'],"['xbox', 'xbox or ps']",nothing,B,"
+What is a popular indoor activity for families in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fight the landlord
+B. xbox and xbox or ps
+C. nothing
+
+Answer: ",C
+Kik-in-10,Wes_145,Western,What is the most popular tourist attraction for foreign visitors in your country?,What is the most popular tourist attraction for foreign visitors in the UK?,Holidays/Celebration/Leisure,['covent garden'],"['terracotta warriors', 'mausoleum of the first qin emperor']",['hoggar mountains'],A,"
+What is the most popular tourist attraction for foreign visitors in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. covent garden
+B. terracotta warriors and mausoleum of the first qin emperor
+C. hoggar mountains
+
+Answer: ",C
+Kik-in-10,Wes_145,Western,What is the most popular tourist attraction for foreign visitors in your country?,What is the most popular tourist attraction for foreign visitors in the UK?,Holidays/Celebration/Leisure,['buckingham palace'],"[""martyrs' memorial"", 'maqam echahid', ""martyr's memorial"", 'memorial of the martyr', 'sanctuary of the martyr', ""maqam e'chahid""]","['terracotta warriors', 'mausoleum of the first qin emperor']",A,"
+What is the most popular tourist attraction for foreign visitors in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. buckingham palace
+B. ""martyrs memorial"" and maqam echahid and ""martyrs memorial"" and memorial of the martyr and sanctuary of the martyr and ""maqam echahid""
+C. terracotta warriors and mausoleum of the first qin emperor
+
+Answer: ",C
+Na-ko-37,Wes_183,Western,What is the most popular domestic vacation spot for people from your country?,What is the most popular domestic vacation spot for people from the UK?,Holidays/Celebration/Leisure,"['bejaia', 'béjaïa', 'bougie', 'bugia']",['great wall'],['cornwall'],C,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bejaia and béjaïa and bougie and bugia
+B. great wall
+C. cornwall
+
+Answer: ",C
+Na-ko-37,Wes_183,Western,What is the most popular domestic vacation spot for people from your country?,What is the most popular domestic vacation spot for people from the UK?,Holidays/Celebration/Leisure,"['bejaia', 'béjaïa', 'bougie', 'bugia']",['butlins'],['great wall'],B,"
+What is the most popular domestic vacation spot for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. bejaia and béjaïa and bougie and bugia
+B. butlins
+C. great wall
+
+Answer: ",A
+Ne-ar-06,Wes_193,Western,What do people from your country eat in Ramadan?,What do people from the UK eat in Ramadan?,Holidays/Celebration/Leisure,['noodles'],['nuts'],['soup'],B,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. noodles
+B. nuts
+C. soup
+
+Answer: ",C
+Ne-ar-06,Wes_193,Western,What do people from your country eat in Ramadan?,What do people from the UK eat in Ramadan?,Holidays/Celebration/Leisure,['beef and mutton'],['sweets'],['soup'],B,"
+What do people from your country eat in Ramadan?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. beef and mutton
+B. sweets
+C. soup
+
+Answer: ",C
+Ne-ar-11,Wes_196,Western,Where do people from your country go to celebrate New Year's Day?,Where do people from the UK go to celebrate New Year's Day?,Holidays/Celebration/Leisure,"[""parents' home""]",nothing,"[""relatives' houses"", 'relatives houses', ""a relative's house"", 'family houses', 'friends or family houses', ""family's house"", ""relative's house""]",C,"
+Where do people from your country go to celebrate New Year's Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""parents home""
+B. nothing
+C. ""relatives houses"" and relatives houses and ""a relatives house"" and family houses and friends or family houses and ""familys house"" and ""relatives house""
+
+Answer: ",C
+Ne-ar-11,Wes_196,Western,Where do people from your country go to celebrate New Year's Day?,Where do people from the UK go to celebrate New Year's Day?,Holidays/Celebration/Leisure,"[""a friend's house"", ""friends' houses"", 'friends or family houses']","[""parents' home""]",nothing,A,"
+Where do people from your country go to celebrate New Year's Day?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. ""a friends house"" and ""friends houses"" and friends or family houses
+B. ""parents home""
+C. nothing
+
+Answer: ",A
+New-as-76,Wes_243,Western,What traditional games do families play during traditional holidays in your country?,What traditional games do families play during traditional holidays in the UK?,Holidays/Celebration/Leisure,['monopoly'],nothing,['shuttlecock kicking'],A,"
+What traditional games do families play during traditional holidays in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. monopoly
+B. nothing
+C. shuttlecock kicking
+
+Answer: ",C
+New-as-76,Wes_243,Western,What traditional games do families play during traditional holidays in your country?,What traditional games do families play during traditional holidays in the UK?,Holidays/Celebration/Leisure,nothing,"['mahjong', 'play mahjong']",['charades'],C,"
+What traditional games do families play during traditional holidays in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. mahjong and play mahjong
+C. charades
+
+Answer: ",C
+New-en-87,Wes_330,Western,What is the most famous historic landmark in your country?,What is the most famous historic landmark in the UK?,Holidays/Celebration/Leisure,"['timgad', 'timqad']",['buckingham palace'],['forbidden city'],B,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. timgad and timqad
+B. buckingham palace
+C. forbidden city
+
+Answer: ",C
+New-en-87,Wes_330,Western,What is the most famous historic landmark in your country?,What is the most famous historic landmark in the UK?,Holidays/Celebration/Leisure,nothing,['big ben'],"['casbah', 'kasbah']",B,"
+What is the most famous historic landmark in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. big ben
+C. casbah and kasbah
+
+Answer: ",B
+New-gr-76,Wes_342,Western,What is the most common food served during Easter in your country?,What is the most common food served during Easter in the UK?,Holidays/Celebration/Leisure,nothing,['ham'],['apple'],B,"
+What is the most common food served during Easter in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. ham
+C. apple
+
+Answer: ",B
+New-gr-76,Wes_342,Western,What is the most common food served during Easter in your country?,What is the most common food served during Easter in the UK?,Holidays/Celebration/Leisure,nothing,['roast lamb'],nothing,B,"
+What is the most common food served during Easter in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. roast lamb
+C. nothing
+
+Answer: ",C
+New-gr-89,Wes_345,Western,What drink is usually offered at weddings in your country?,What drink is usually offered at weddings in the UK?,Holidays/Celebration/Leisure,"['chinese spirits', 'white liquor', 'bai']",['tea'],['champagne'],C,"
+What drink is usually offered at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. chinese spirits and white liquor and bai
+B. tea
+C. champagne
+
+Answer: ",A
+New-gr-89,Wes_345,Western,What drink is usually offered at weddings in your country?,What drink is usually offered at weddings in the UK?,Holidays/Celebration/Leisure,['juice'],['alcohol'],['cava'],C,"
+What drink is usually offered at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. juice
+B. alcohol
+C. cava
+
+Answer: ",C
+New-ko-07,Wes_366,Western,What is the customary symbol of condolence used at funerals in your country?,What is the customary symbol of condolence used at funerals in the UK?,Holidays/Celebration/Leisure,"['wearing black', 'black clothing']",['flower wreath'],nothing,A,"
+What is the customary symbol of condolence used at funerals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. wearing black and black clothing
+B. flower wreath
+C. nothing
+
+Answer: ",B
+New-ko-07,Wes_366,Western,What is the customary symbol of condolence used at funerals in your country?,What is the customary symbol of condolence used at funerals in the UK?,Holidays/Celebration/Leisure,nothing,"['supplication', 'prayer', 'pray']",['flowers'],C,"
+What is the customary symbol of condolence used at funerals in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. nothing
+B. supplication and prayer and pray
+C. flowers
+
+Answer: ",C
+New-pe-76,Wes_384,Western,What is a popular activity to do in parks in your country?,What is a popular activity to do in parks in the UK?,Holidays/Celebration/Leisure,['walk'],['play badminton'],['running'],A,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. walk
+B. play badminton
+C. running
+
+Answer: ",A
+New-pe-76,Wes_384,Western,What is a popular activity to do in parks in your country?,What is a popular activity to do in parks in the UK?,Holidays/Celebration/Leisure,['eating'],['tai chi'],['bbq'],C,"
+What is a popular activity to do in parks in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. eating
+B. tai chi
+C. bbq
+
+Answer: ",C
+New-pe-85,Wes_387,Western,Where is the most popular tourist destination abroad for people from your country?,Where is the most popular tourist destination abroad for people from the UK?,Holidays/Celebration/Leisure,"['balearics', 'balearic islands']","['turkey', 'türkiye']",['united states'],A,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. balearics and balearic islands
+B. turkey and türkiye
+C. united states
+
+Answer: ",C
+New-pe-85,Wes_387,Western,Where is the most popular tourist destination abroad for people from your country?,Where is the most popular tourist destination abroad for people from the UK?,Holidays/Celebration/Leisure,['united states'],['france'],nothing,B,"
+Where is the most popular tourist destination abroad for people from your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. united states
+B. france
+C. nothing
+
+Answer: ",C
+New-su-83,Wes_423,Western,What food is usually served at weddings in your country?,What food is usually served at weddings in the UK?,Holidays/Celebration/Leisure,['fish'],['garlic'],['wedding breakfast'],C,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. fish
+B. garlic
+C. wedding breakfast
+
+Answer: ",C
+New-su-83,Wes_423,Western,What food is usually served at weddings in your country?,What food is usually served at weddings in the UK?,Holidays/Celebration/Leisure,['buffet'],['couscous'],['red dates'],A,"
+What food is usually served at weddings in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. buffet
+B. couscous
+C. red dates
+
+Answer: ",A
+Ta-pe-37,Wes_468,Western,What is the common symbol of New Year's Eve that is usually found in your country?,What is the common symbol of New Year's Eve that is usually found in the UK?,Holidays/Celebration/Leisure,['champagne'],nothing,['paper-cut for window decoration'],A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. champagne
+B. nothing
+C. paper-cut for window decoration
+
+Answer: ",C
+Ta-pe-37,Wes_468,Western,What is the common symbol of New Year's Eve that is usually found in your country?,What is the common symbol of New Year's Eve that is usually found in the UK?,Holidays/Celebration/Leisure,['big ben'],nothing,"['spring festival couplets', 'chinese couplets', 'new year scrolls']",A,"
+What is the common symbol of New Year's Eve that is usually found in your country?
+Choose exactly one option (A, B, or C). Respond with exactly one letter: A, B, or C. No additional words or punctuation.
+
+A. big ben
+B. nothing
+C. spring festival couplets and chinese couplets and new year scrolls
+
+Answer: ",C
