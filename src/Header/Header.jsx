@@ -66,7 +66,9 @@ export const Header = () => {
     { path: '/home', label: t('home') },
     { path: '/culturevalues', label: t('culturalValues') },
     { path: '/compare-result', label: t('Compare') },
-    { path: '/evaluation', label: t('evaluation') }
+    { path: '/evaluation', label: t('evaluation') },
+    { path: '/LensLeaderBoard', label: t('LensLeaderBoard') }
+
   ];
 
   return (

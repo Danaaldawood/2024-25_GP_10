@@ -1,0 +1,136 @@
+/* Overall container styling */
+.LensLeaderbord-container{
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  }
+  .title-wrapper {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .leaderboard-title {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: bold;
+    color: #853c69;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #853c69;
+    padding-bottom: 6px;
+  }
+  
+
+h3 {
+ 
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+/* Header row styling */
+th {
+  background-color:  #853c69;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+td {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Row hover effect */
+tr:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+/* No data row styling */
+tr td[colspan="4"] {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* Alternate row color for better readability */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.dropdown-region {
+  display: flex;
+  justify-content: flex-end;  
+  align-items: center;
+  gap: 12px;
+  margin: 30px 30px 30px auto; 
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+ }
+
+
+.dropdown-region label {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+}
+
+.dropdown-region select {
+  padding: 10px 16px;
+  font-size: 15px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.dropdown-region select:hover {
+  background-color: #ffffff;
+}
+
+.dropdown-region select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px#853c69;
+}
+ 
+/* Responsive design */
+@media (max-width: 768px) {
+  .table-container {
+    width: 95%;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  th {
+    font-size: 14px;
+  }
+
+  td {
+    font-size: 12px;
+  }
+}
