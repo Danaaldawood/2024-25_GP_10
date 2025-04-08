@@ -14,6 +14,7 @@
     "hofstedeLlama": "Hofstede Questions-LLAMA2 Model",
     "hofstedeCohere": "Hofstede Questions-Cohere Model",
     "cohereFineTuned": "Cohere Fine-tuned Model",
+    "LlamaFineTuned":"Llama2 Fine-tuned Model",
     "hofstedeCohereFineTuned": "Hofstede Questions-Cohere Fine-tuned Model",
     "evaluateButton": "Evaluate"
   },
@@ -32,6 +33,7 @@
     "hofstedeLlama": "أسئلة هوفستيد-نموذج LLAMA2",
     "hofstedeCohere": "أسئلة هوفستيد-نموذج Cohere",
     "cohereFineTuned": "النموذج المدرب Cohere",
+    "LlamaFineTuned":"النموذج المدربLlama2",
     "hofstedeCohereFineTuned": "أسئلة هوفستيد-نموذج Cohere المدرب",
     "evaluateButton": "تقييم"
   },
@@ -50,6 +52,7 @@
     "hofstedeLlama": "霍夫斯泰德问题-LLAMA2模型",
     "hofstedeCohere": "霍夫斯泰德问题-Cohere模型",
     "cohereFineTuned": "Cohere微调模型",
+    "LlamaFineTuned":"Llama2微调模型",
     "hofstedeCohereFineTuned": "霍夫斯泰德问题-Cohere微调模型",
     "evaluateButton": "评估"
   }

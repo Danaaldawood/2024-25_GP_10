@@ -23,6 +23,21 @@ llama_hofstede_datasets = {
     "Chinese": pd.read_csv("./hofsted_chin_baselineL.csv", encoding="utf-8"),
 }
 
+# llama_finetuned_hofstede_datasets = {
+#     "Arab": pd.read_csv("./test_bank_arabic_chat_llama2.csv", encoding="utf-8"),
+#     "Western": pd.read_csv("./test_bank_western_chat_llama2.csv", encoding="utf-8"),
+#     "Chinese": pd.read_csv("./test_bank_chinese_chat_llama2.csv", encoding="utf-8"),
+# }
+
+llama_finetuned_datasets = {
+    "All Topics": pd.read_csv("./chatAllTopic_finetundllama.csv"),
+    "Work life": pd.read_csv("./llama_chat_finetundtest_bank_worklife.csv"),
+    "Sport": pd.read_csv("./llama_chat_finetundtest_bank_sport.csv"),
+    "Holidays/Celebration/Leisure": pd.read_csv("./llama_chat_finetundtest_bank_holiday.csv"),
+    "Food": pd.read_csv("./llama_chat_finetundtest_bank_food.csv"),
+    "Family": pd.read_csv("./llama_chat_finetundtest_bank_family.csv"),
+    "Education": pd.read_csv("./llama_chat_finetundtest_bank_education.csv"),
+}
 # Datasets for Hofstede Questions-Cohere Model (Standard Deviation)
 cohere_datasets = {
     "Chinese": pd.read_csv("./hofstede_cohere_chinese.csv", encoding="utf-8"),
@@ -110,6 +125,40 @@ def calculate_standard_deviation_llama(topic=None):
                 "responses": data['Predicted'].tolist()
             }
     return results
+#-----Calculate Coverge score for (Llama2 finetuned)-----
+def calculate_for_all_regions_llama_finetuned(topic):
+    """
+    Calculate coverage scores for all regions for the Llam2 Fine-tuned model.
+    """
+    results = {}
+    topic_df = llama_finetuned_datasets.get(topic, pd.DataFrame())
+
+    if topic_df.empty:
+        return {r: {"coverage_score": 0, "total_questions": 0, "correct_answers": 0} for r in ["Arab", "Chinese", "Western"]}
+
+    # Normalize region names (e.g., 'China' -> 'Chinese')
+    topic_df["region"] = topic_df["region"].replace({"China": "Chinese"})
+
+    for region in ["Arab", "Chinese", "Western"]:
+        region_df = topic_df[topic_df["region"] == region]
+        if not region_df.empty:
+            correct = (region_df["correct"] == region_df["Predicted"]).sum()
+            total = len(region_df)
+            score = (correct / total) * 100 if total > 0 else 0
+        else:
+            correct, total, score = 0, 0, 0
+
+        results[region] = {
+            "coverage_score": score,
+            "total_questions": total,
+            "correct_answers": correct,
+        }
+
+    return results
+def to_serializable(val):
+    if isinstance(val, (np.integer, np.floating)):
+        return val.item()
+    return val
 
 # --- Standard Deviation Calculation (For Hofstede Questions-Cohere Model) ---
 def calculate_standard_deviation_cohere():
@@ -215,6 +264,8 @@ def evaluate():
                 results = calculate_for_all_regions_cohere_finetuned(topic)
             elif eval_type == "Hofstede Questions-Cohere Fine-tuned Model":
                 results = calculate_standard_deviation_cohere_finetuned()
+            elif eval_type == "Llama2 Fine-tuned Model":
+                  results = calculate_for_all_regions_llama_finetuned(topic)
             else:
                 return jsonify({"error": "Invalid evaluation type for Fine-Tuned"}), 400
             serializable_results = {

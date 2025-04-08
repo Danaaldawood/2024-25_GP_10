@@ -194,12 +194,13 @@ export const Plot = () => {
       });
     });
   };
-
   const getModelExplanation = () => {
     if (evalType === "Cohere Fine-tuned Model") {
       return t("tooltips.cohereFineTuned");
     } else if (evalType === "Cohere Baseline") {
       return t("tooltips.cohereBaseline");
+    }else if (evalType === "Llama2 Fine-tuned Model") {
+      return t("tooltips.LlamaFineTuned");
     } else if (evalType === "LLAMA2 Baseline") {
       return t("tooltips.llamaBaseline");
     } else if (evalType === "Hofstede Questions-Cohere Model") {
@@ -303,7 +304,7 @@ export const Plot = () => {
         <h1 className="header-title">{t("headerTitle")}</h1>
         <div className="selection-container">
           <h2 className="underlined">{t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, { defaultValue: evalType })}</h2>
-          {(evalType.includes("Baseline") || evalType === "Cohere Fine-tuned Model") ? (
+          {(evalType.includes("Baseline") || evalType === "Cohere Fine-tuned Model" ||evalType === "Llama2 Fine-tuned Model") ? (
             <select
               className="plot-select"
               value={selectedTopicKey}
