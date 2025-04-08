@@ -1,0 +1,1905 @@
+cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,textF,Predicted
+Al-en-34,Chi_13,China,What do people do to celebrate New Year's Day in your country?,ä¸­å½äººå¨æ°å¹´å½å¤©éå¸¸ä¼åäºä»ä¹æ¥åºç¥å¢ï¼,Holidays/Celebration/Leisure,"['watch fireworks', 'fireworks']",nothing,['have the reunion dinner'],C,"
+
+What do people do to celebrate New Year's Day in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. watch fireworks and fireworks .
+B. nothing
+C. have the reunion dinner
+
+
+
+
+Answer:
+",A
+Al-en-34,Chi_13,China,What do people do to celebrate New Year's Day in your country?,ä¸­å½äººå¨æ°å¹´å½å¤©éå¸¸ä¼åäºä»ä¹æ¥åºç¥å¢ï¼,Holidays/Celebration/Leisure,"['eating sweets', 'eat sweets']","['go to the pub', 'home or pubs']",['dumplings'],C,"
+
+What do people do to celebrate New Year's Day in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. eating sweets and eat sweets .
+B. go to the pub and home or pubs
+C. dumplings
+
+
+
+
+Answer:
+",C
+Al-en-40,Chi_19,China,What is a popular outdoor place for families to have fun with little kids in your country?,å¨ä¸­å½ï¼æåªäºåæ¬¢è¿çæ·å¤åºæéåå®¶åº­å¸¦çå°å­©å­å»ç©ä¹ï¼,Holidays/Celebration/Leisure,"['local parks', 'park']","['botanical garden hamma', 'public garden', 'garden']","['outdoor playground', 'amusement park']",C,"
+
+What is a popular outdoor place for families to have fun with little kids in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. local parks and park .
+B. botanical garden hamma and public garden and garden
+C. outdoor playground and amusement park
+
+
+
+
+Answer:
+",C
+Al-en-40,Chi_19,China,What is a popular outdoor place for families to have fun with little kids in your country?,å¨ä¸­å½ï¼æåªäºåæ¬¢è¿çæ·å¤åºæéåå®¶åº­å¸¦çå°å­©å­å»ç©ä¹ï¼,Holidays/Celebration/Leisure,['adventure parks'],['sea'],nothing,C,"
+
+What is a popular outdoor place for families to have fun with little kids in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. adventure parks .
+B. sea
+C. nothing
+
+
+
+
+Answer:
+",A
+Ca-sp-41,Chi_39,China,Where do the dependent elderly usually live in your country?,å¨ä¸­å½ï¼éè¦ä¾èµä»äººç§é¡¾çèå¹´äººéå¸¸ä½å¨åªéï¼,Family,nothing,"['rural hometown', 'rural area', 'countrysize']",['sheltered accomodation'],B,"
+
+Where do the dependent elderly usually live in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. rural hometown and rural area and countrysize
+C. sheltered accomodation
+
+
+
+
+Answer:
+",A
+Ca-sp-41,Chi_39,China,Where do the dependent elderly usually live in your country?,å¨ä¸­å½ï¼éè¦ä¾èµä»äººç§é¡¾çèå¹´äººéå¸¸ä½å¨åªéï¼,Family,"[""children's home"", 'please take care of the nursing staff']",nothing,"['retirement homes', 'care homes']",A,"
+
+Where do the dependent elderly usually live in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ""childrens home"" and please take care of the nursing staff .
+B. nothing
+C. retirement homes and care homes
+
+
+
+
+Answer:
+",C
+Gu-ch-07,Chi_45,China,Who is the most famous basketball player in your country?,ä¸­å½æèåçç¯®çè¿å¨åæ¯è°ï¼,Sport,nothing,nothing,"['wang zhizhi', 'zhizhi wang']",C,"
+
+Who is the most famous basketball player in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. nothing
+C. wang zhizhi and zhizhi wang
+
+
+
+
+Answer:
+",C
+Gu-ch-07,Chi_45,China,Who is the most famous basketball player in your country?,ä¸­å½æèåçç¯®çè¿å¨åæ¯è°ï¼,Sport,nothing,"['yao ming', 'ming yao']",nothing,B,"
+
+Who is the most famous basketball player in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. yao ming and ming yao
+C. nothing
+
+
+
+
+Answer:
+",B
+Gu-ch-09,Chi_47,China,What sports do women like to play the most in your country?,å¨ä¸­å½ï¼å¥³æ§æåæ¬¢åä¸åªäºè¿å¨ï¼,Sport,['hockey'],['running'],['gymnastics'],B,"
+
+What sports do women like to play the most in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hockey .
+B. running
+C. gymnastics
+
+
+
+
+Answer:
+",B
+Gu-ch-09,Chi_47,China,What sports do women like to play the most in your country?,å¨ä¸­å½ï¼å¥³æ§æåæ¬¢åä¸åªäºè¿å¨ï¼,Sport,['netball'],['gymnastics'],['badminton'],C,"
+
+What sports do women like to play the most in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. netball .
+B. gymnastics
+C. badminton
+
+
+
+
+Answer:
+",A
+Ji-ko-09,Chi_62,China,What do people typically eat during company get-together in your country?,å¨ä¸­å½çå¬å¸èä¼ä¸ï¼äººä»¬éå¸¸åäºä»ä¹ï¼,Work life,['meat'],['cakes'],['hot dishes'],C,"
+
+What do people typically eat during company get-together in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. meat .
+B. cakes
+C. hot dishes
+
+
+
+
+Answer:
+",C
+Ji-ko-09,Chi_62,China,What do people typically eat during company get-together in your country?,å¨ä¸­å½çå¬å¸èä¼ä¸ï¼äººä»¬éå¸¸åäºä»ä¹ï¼,Work life,['meat'],['barbecue'],"['buffet', 'buffet food']",B,"
+
+What do people typically eat during company get-together in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. meat .
+B. barbecue
+C. buffet and buffet food
+
+
+
+
+Answer:
+",C
+Ji-ko-14,Chi_63,China,What is the representative export item of your country?,ä¸­å½çä»£è¡¨æ§åºå£ååæ¯ä»ä¹ï¼,Work life,['cars'],['textile'],nothing,B,"
+
+What is the representative export item of your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. cars .
+B. textile
+C. nothing
+
+
+
+
+Answer:
+",A
+Ji-ko-14,Chi_63,China,What is the representative export item of your country?,ä¸­å½çä»£è¡¨æ§åºå£ååæ¯ä»ä¹ï¼,Work life,nothing,['rice'],nothing,B,"
+
+What is the representative export item of your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. rice
+C. nothing
+
+
+
+
+Answer:
+",B
+Ji-ko-31,Chi_74,China,Where do middle and high school students in your country usually study for exams?,ä¸­å½çä¸­å­¦åé«ä¸­å­¦çéå¸¸å¨åªéä¸ºèè¯å­¦ä¹ ï¼,Education,['classroom'],nothing,['study room'],A,"
+
+Where do middle and high school students in your country usually study for exams?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. classroom .
+B. nothing
+C. study room
+
+
+
+
+Answer:
+",A
+Ji-ko-31,Chi_74,China,Where do middle and high school students in your country usually study for exams?,ä¸­å½çä¸­å­¦åé«ä¸­å­¦çéå¸¸å¨åªéä¸ºèè¯å­¦ä¹ ï¼,Education,"['school', 'in school', 'at school']",['support schools'],['can study anywhere'],C,"
+
+Where do middle and high school students in your country usually study for exams?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. school and in school and at school .
+B. support schools
+C. can study anywhere
+
+
+
+
+Answer:
+",A
+Ji-ko-35,Chi_77,China,What is the most common form of private education in your country?,å¨ä¸­å½ï¼æå¸¸è§çç§ç«æè²å½¢å¼æ¯ä»ä¹ï¼,Education,['support lessons'],"['foreign language school', 'internation school']",nothing,B,"
+
+What is the most common form of private education in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. support lessons .
+B. foreign language school and internation school
+C. nothing
+
+
+
+
+Answer:
+",B
+Ji-ko-35,Chi_77,China,What is the most common form of private education in your country?,å¨ä¸­å½ï¼æå¸¸è§çç§ç«æè²å½¢å¼æ¯ä»ä¹ï¼,Education,['support lessons'],"['boarding schools', 'boarding school']",['international exchange'],C,"
+
+What is the most common form of private education in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. support lessons .
+B. boarding schools and boarding school
+C. international exchange
+
+
+
+
+Answer:
+",A
+Jo-sp-19,Chi_93,China,What region in your country has been traditionally associated with agriculture?,å¨ä¸­å½ï¼åªä¸ªå°åºä¼ ç»ä¸ä¸åä¸æå³ï¼,Work life,"['ain defla', 'aÃ¯n defla']","['northeast', 'northeast plain']",['wales'],B,"
+
+What region in your country has been traditionally associated with agriculture?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ain defla and aÃ¯n defla .
+B. northeast and northeast plain
+C. wales
+
+
+
+
+Answer:
+",B
+Jo-sp-19,Chi_93,China,What region in your country has been traditionally associated with agriculture?,å¨ä¸­å½ï¼åªä¸ªå°åºä¼ ç»ä¸ä¸åä¸æå³ï¼,Work life,['yorkshire'],['north china plain'],nothing,B,"
+
+What region in your country has been traditionally associated with agriculture?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. yorkshire .
+B. north china plain
+C. nothing
+
+
+
+
+Answer:
+",B
+Jod-ch-04,Chi_102,China,What soft drink do people in your country like to have?,ä¸­å½äººåæ¬¢åä»ä¹ä¸å«éç²¾çé¥®æï¼,Food,"['coca cola', 'coke']","['cola', 'coke']","['hammoud boualem', 'hamoud boualem']",B,"
+
+What soft drink do people in your country like to have?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. coca cola and coke .
+B. cola and coke
+C. hammoud boualem and hamoud boualem
+
+
+
+
+Answer:
+",A
+Jod-ch-04,Chi_102,China,What soft drink do people in your country like to have?,ä¸­å½äººåæ¬¢åä»ä¹ä¸å«éç²¾çé¥®æï¼,Food,['green tea'],"['coca cola', 'coke']",nothing,A,"
+
+What soft drink do people in your country like to have?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. green tea .
+B. coca cola and coke
+C. nothing
+
+
+
+
+Answer:
+",C
+Jod-ch-42,Chi_115,China,What is the common leisure activity that males in their 20s in your country engage in?,ä¸­å½20å¤å²çç·æ§éå¸¸åå ä»ä¹ä¼é²æ´»å¨ï¼,Holidays/Celebration/Leisure,['biking'],['sports'],['running'],C,"
+
+What is the common leisure activity that males in their 20s in your country engage in?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. biking .
+B. sports
+C. running
+
+
+
+
+Answer:
+",B
+Jod-ch-42,Chi_115,China,What is the common leisure activity that males in their 20s in your country engage in?,ä¸­å½20å¤å²çç·æ§éå¸¸åå ä»ä¹ä¼é²æ´»å¨ï¼,Holidays/Celebration/Leisure,['computer games'],['play games'],"['reading', 'read']",B,"
+
+What is the common leisure activity that males in their 20s in your country engage in?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. computer games .
+B. play games
+C. reading and read
+
+
+
+
+Answer:
+",A
+Jod-ch-62,Chi_126,China,Which occupation is most preferred among males in your country?,å¨ä¸­å½ï¼ç·æ§æåç±åªç§èä¸ï¼,Work life,['lawyer'],nothing,['investment bank'],C,"
+
+Which occupation is most preferred among males in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. lawyer .
+B. nothing
+C. investment bank
+
+
+
+
+Answer:
+",C
+Jod-ch-62,Chi_126,China,Which occupation is most preferred among males in your country?,å¨ä¸­å½ï¼ç·æ§æåç±åªç§èä¸ï¼,Work life,"['programmer', 'software engineer']",['lawyer'],['commerce'],A,"
+
+Which occupation is most preferred among males in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. programmer and software engineer .
+B. lawyer
+C. commerce
+
+
+
+
+Answer:
+",A
+Kik-in-02,Chi_139,China,What are the common activities people from your country do to celebrate Independence day?,ä¸­å½äººæ°åºç¥å½åºæ¥éå¸¸ä¼ååªäºæ´»å¨ï¼,Holidays/Celebration/Leisure,"['military parade', 'watch the parade']",['nothing'],nothing,A,"
+
+What are the common activities people from your country do to celebrate Independence day?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. military parade and watch the parade .
+B. nothing
+C. nothing
+
+
+
+
+Answer:
+",A
+Kik-in-02,Chi_139,China,What are the common activities people from your country do to celebrate Independence day?,ä¸­å½äººæ°åºç¥å½åºæ¥éå¸¸ä¼ååªäºæ´»å¨ï¼,Holidays/Celebration/Leisure,"['tourism', 'travel']",nothing,"['watch tv', 'tv']",A,"
+
+What are the common activities people from your country do to celebrate Independence day?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. tourism and travel .
+B. nothing
+C. watch tv and tv
+
+
+
+
+Answer:
+",A
+Kik-in-31,Chi_151,China,What is the most famous martial art sports in your country?,ä¸­å½æèåçæ­¦æ¯è¿å¨æ¯ä»ä¹ï¼,Sport,['tai chi'],['wrestling'],['boxing'],A,"
+
+What is the most famous martial art sports in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. tai chi .
+B. wrestling
+C. boxing
+
+
+
+
+Answer:
+",B
+Kik-in-31,Chi_151,China,What is the most famous martial art sports in your country?,ä¸­å½æèåçæ­¦æ¯è¿å¨æ¯ä»ä¹ï¼,Sport,['boxing'],['five-step fist'],['karate'],B,"
+
+What is the most famous martial art sports in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. boxing .
+B. five-step fist
+C. karate
+
+
+
+
+Answer:
+",A
+Kik-in-44,Chi_159,China,What sport gets the most support from the government in your country?,å¨ä¸­å½ï¼åªé¡¹è¿å¨å¾å°äºæ¿åºæå¤çæ¯æï¼,Sport,"['table tennis', 'ping pong']","['athletics', 'atheltics']",nothing,A,"
+
+What sport gets the most support from the government in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. table tennis and ping pong .
+B. athletics and atheltics
+C. nothing
+
+
+
+
+Answer:
+",C
+Kik-in-44,Chi_159,China,What sport gets the most support from the government in your country?,å¨ä¸­å½ï¼åªé¡¹è¿å¨å¾å°äºæ¿åºæå¤çæ¯æï¼,Sport,['diving'],"['football', 'soccer']","['athletics', 'atheltics']",A,"
+
+What sport gets the most support from the government in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. diving .
+B. football and soccer
+C. athletics and atheltics
+
+
+
+
+Answer:
+",B
+Kik-in-45,Chi_160,China,What sports field facilities are usually available at schools in your country?,å¨ä¸­å½çå­¦æ ¡éå¸¸æåªäºè¿å¨åºè®¾æ½ï¼,Sport,nothing,['ping pong table'],"['football pitch', 'football field', 'football', 'soccer']",B,"
+
+What sports field facilities are usually available at schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. ping pong table
+C. football pitch and football field and football and soccer
+
+
+
+
+Answer:
+",C
+Kik-in-45,Chi_160,China,What sports field facilities are usually available at schools in your country?,å¨ä¸­å½çå­¦æ ¡éå¸¸æåªäºè¿å¨åºè®¾æ½ï¼,Sport,"['soccer field', 'soccer stadium']","['basketball hoop', 'basketball court']",['tennis court'],A,"
+
+What sports field facilities are usually available at schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. soccer field and soccer stadium .
+B. basketball hoop and basketball court
+C. tennis court
+
+
+
+
+Answer:
+",B
+Na-ko-04,Chi_162,China,What is the preferred hangover cure food for people from your country?,ä¸­å½äººæåæ¬¢çå®¿éè§£éé£ç©æ¯ä»ä¹ï¼,Food,['alkerseltzer'],nothing,['tea'],C,"
+
+What is the preferred hangover cure food for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. alkerseltzer .
+B. nothing
+C. tea
+
+
+
+
+Answer:
+",C
+Na-ko-04,Chi_162,China,What is the preferred hangover cure food for people from your country?,ä¸­å½äººæåæ¬¢çå®¿éè§£éé£ç©æ¯ä»ä¹ï¼,Food,['bacon sandwich'],['peanuts'],nothing,B,"
+
+What is the preferred hangover cure food for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bacon sandwich .
+B. peanuts
+C. nothing
+
+
+
+
+Answer:
+",A
+Na-ko-15,Chi_168,China,What is the representative nourishing food in your country?,ä¸­å½æåªäºä»£è¡¨æ§çæ»è¡¥é£ç©ï¼,Food,['soup'],['dates'],['goji berries'],C,"
+
+What is the representative nourishing food in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. soup .
+B. dates
+C. goji berries
+
+
+
+
+Answer:
+",A
+Na-ko-15,Chi_168,China,What is the representative nourishing food in your country?,ä¸­å½æåªäºä»£è¡¨æ§çæ»è¡¥é£ç©ï¼,Food,['ginseng'],['vegetables'],['soup'],A,"
+
+What is the representative nourishing food in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ginseng .
+B. vegetables
+C. soup
+
+
+
+
+Answer:
+",B
+Na-ko-33,Chi_182,China,What symbolic food do people from your country eat on (Lunar) New Year?,ä¸­å½äººå¨ï¼ååï¼æ°å¹´æé´åä»ä¹å·æè±¡å¾æä¹çé£ç©ï¼,Holidays/Celebration/Leisure,['dumplings'],nothing,nothing,A,"
+
+What symbolic food do people from your country eat on (Lunar) New Year?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. dumplings .
+B. nothing
+C. nothing
+
+
+
+
+Answer:
+",A
+Na-ko-33,Chi_182,China,What symbolic food do people from your country eat on (Lunar) New Year?,ä¸­å½äººå¨ï¼ååï¼æ°å¹´æé´åä»ä¹å·æè±¡å¾æä¹çé£ç©ï¼,Holidays/Celebration/Leisure,['rechta'],['chinese cuisine'],['glutinous rice balls'],C,"
+
+What symbolic food do people from your country eat on (Lunar) New Year?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. rechta .
+B. chinese cuisine
+C. glutinous rice balls
+
+
+
+
+Answer:
+",A
+Na-ko-39,Chi_185,China,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,å¨ä¸­å½åå æåçå©ç¤¼æ¶ï¼éå¸¸ä¼éä»ä¹æ¥è¡¨ç¤ºç¥è´ºï¼,Holidays/Celebration/Leisure,['gift'],['homeware'],nothing,C,"
+
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. gift .
+B. homeware
+C. nothing
+
+
+
+
+Answer:
+",A
+Na-ko-39,Chi_185,China,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,å¨ä¸­å½åå æåçå©ç¤¼æ¶ï¼éå¸¸ä¼éä»ä¹æ¥è¡¨ç¤ºç¥è´ºï¼,Holidays/Celebration/Leisure,['homeware'],nothing,['utensils'],B,"
+
+What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. homeware .
+B. nothing
+C. utensils
+
+
+
+
+Answer:
+",B
+Ne-ar-06,Chi_193,China,What do people from your country eat in Ramadan?,ä¸­å½äººå¨æææé´åä»ä¹ï¼,Holidays/Celebration/Leisure,['sweets'],['soup'],['suhor'],C,"
+
+What do people from your country eat in Ramadan?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. sweets .
+B. soup
+C. suhor
+
+
+
+
+Answer:
+",C
+Ne-ar-06,Chi_193,China,What do people from your country eat in Ramadan?,ä¸­å½äººå¨æææé´åä»ä¹ï¼,Holidays/Celebration/Leisure,"['chorba soup', 'shourba frik', 'shourba soup']",['beef and mutton'],['nuts'],B,"
+
+What do people from your country eat in Ramadan?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. chorba soup and shourba frik and shourba soup .
+B. beef and mutton
+C. nuts
+
+
+
+
+Answer:
+",A
+Ne-ar-36,Chi_209,China,What is a typical festive meal in your country?,ä¸­å½çå¸åèæ¥å¤§é¤æ¯ä»ä¹ï¼,Food,"['turkey and the trimmings', 'turkey and the trimmings at christmas', 'christmas dinner']",['couscous'],['hot pot'],C,"
+
+What is a typical festive meal in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. turkey and the trimmings and turkey and the trimmings at christmas and christmas dinner .
+B. couscous
+C. hot pot
+
+
+
+
+Answer:
+",A
+Ne-ar-36,Chi_209,China,What is a typical festive meal in your country?,ä¸­å½çå¸åèæ¥å¤§é¤æ¯ä»ä¹ï¼,Food,['dumplings'],['roast meat'],['couscous'],A,"
+
+What is a typical festive meal in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. dumplings .
+B. roast meat
+C. couscous
+
+
+
+
+Answer:
+",A
+Ne-ar-37,Chi_210,China,Which fruit do people usually offer tourists/visitors from abroad in your country?,å¨ä¸­å½ï¼äººä»¬éå¸¸ä¼ç»æ¥èªå½å¤çæ¸¸å®¢/è®¿å®¢æä¾åªç§æ°´æï¼,Food,nothing,['dates'],['orange'],C,"
+
+Which fruit do people usually offer tourists/visitors from abroad in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. dates
+C. orange
+
+
+
+
+Answer:
+",B
+Ne-ar-37,Chi_210,China,Which fruit do people usually offer tourists/visitors from abroad in your country?,å¨ä¸­å½ï¼äººä»¬éå¸¸ä¼ç»æ¥èªå½å¤çæ¸¸å®¢/è®¿å®¢æä¾åªç§æ°´æï¼,Food,nothing,['watermelon'],nothing,B,"
+
+Which fruit do people usually offer tourists/visitors from abroad in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. watermelon
+C. nothing
+
+
+
+
+Answer:
+",B
+New-am-04,Chi_216,China,What is the most popular dipping sauce in your country?,ä¸­å½æåæ¬¢è¿çè¸é±æ¯ä»ä¹ï¼,Food,nothing,['sauce'],['soy sauce'],C,"
+
+What is the most popular dipping sauce in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. sauce
+C. soy sauce
+
+
+
+
+Answer:
+",B
+New-am-04,Chi_216,China,What is the most popular dipping sauce in your country?,ä¸­å½æåæ¬¢è¿çè¸é±æ¯ä»ä¹ï¼,Food,nothing,nothing,['sesame sauce'],C,"
+
+What is the most popular dipping sauce in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. nothing
+C. sesame sauce
+
+
+
+
+Answer:
+",C
+New-am-53,Chi_222,China,Which region in your country is widely known for its coffee/tea industry?,ä¸­å½çåªä¸ªå°åºå å¶åå¡/è¶å¶äº§ä¸èå¹¿ä¸ºäººç¥ï¼,Work life,nothing,['hangzhou'],nothing,B,"
+
+Which region in your country is widely known for its coffee/tea industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. hangzhou
+C. nothing
+
+
+
+
+Answer:
+",B
+New-am-53,Chi_222,China,Which region in your country is widely known for its coffee/tea industry?,ä¸­å½çåªä¸ªå°åºå å¶åå¡/è¶å¶äº§ä¸èå¹¿ä¸ºäººç¥ï¼,Work life,['henan'],nothing,nothing,A,"
+
+Which region in your country is widely known for its coffee/tea industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. henan .
+B. nothing
+C. nothing
+
+
+
+
+Answer:
+",A
+New-am-54,Chi_223,China,Which region in your country is widely known for its livestock industry?,ä¸­å½çåªä¸ªå°åºå å¶çç§ä¸èå¹¿ä¸ºäººç¥ï¼,Work life,['west country'],nothing,['henan'],C,"
+
+Which region in your country is widely known for its livestock industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. west country .
+B. nothing
+C. henan
+
+
+
+
+Answer:
+",A
+New-am-54,Chi_223,China,Which region in your country is widely known for its livestock industry?,ä¸­å½çåªä¸ªå°åºå å¶çç§ä¸èå¹¿ä¸ºäººç¥ï¼,Work life,['west country'],['inner mongolia'],nothing,B,"
+
+Which region in your country is widely known for its livestock industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. west country .
+B. inner mongolia
+C. nothing
+
+
+
+
+Answer:
+",B
+New-am-59,Chi_224,China,What is the main occupation of people living in deserts in your country?,å±ä½å¨ä¸­å½æ²æ¼ ä¸­çäººä»¬çä¸»è¦èä¸æ¯ä»ä¹ï¼,Work life,nothing,['agriculture'],['environmental protection'],C,"
+
+What is the main occupation of people living in deserts in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. agriculture
+C. environmental protection
+
+
+
+
+Answer:
+",A
+New-am-59,Chi_224,China,What is the main occupation of people living in deserts in your country?,å±ä½å¨ä¸­å½æ²æ¼ ä¸­çäººä»¬çä¸»è¦èä¸æ¯ä»ä¹ï¼,Work life,nothing,nothing,"['farmer', 'farming']",C,"
+
+What is the main occupation of people living in deserts in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. nothing
+C. farmer and farming
+
+
+
+
+Answer:
+",B
+New-as-07,Chi_235,China,What is the most popular dish cooked with fish in your country?,å¨ä¸­å½ï¼æåæ¬¢è¿çç¨é±¼åçèæ¯ä»ä¹ï¼,Food,['sour cabbage fish'],nothing,['sardine stew'],A,"
+
+What is the most popular dish cooked with fish in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. sour cabbage fish .
+B. nothing
+C. sardine stew
+
+
+
+
+Answer:
+",C
+New-as-07,Chi_235,China,What is the most popular dish cooked with fish in your country?,å¨ä¸­å½ï¼æåæ¬¢è¿çç¨é±¼åçèæ¯ä»ä¹ï¼,Food,"['sardines', 'fried sardines']",['sichuan boiled fish'],"['fish and chips', 'fish & chips']",B,"
+
+What is the most popular dish cooked with fish in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. sardines and fried sardines .
+B. sichuan boiled fish
+C. fish and chips and fish & chips
+
+
+
+
+Answer:
+",C
+New-as-80,Chi_244,China,What type of clothing do people from your country wear during traditional festivals?,ä¸­å½äººå¨ä¼ ç»èæ¥ééå¸¸ç©¿ä»ä¹æ ·çæè£ï¼,Holidays/Celebration/Leisure,['new clothes'],['casual wear'],['brightly colored clothes'],C,"
+
+What type of clothing do people from your country wear during traditional festivals?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. new clothes .
+B. casual wear
+C. brightly colored clothes
+
+
+
+
+Answer:
+",A
+New-as-80,Chi_244,China,What type of clothing do people from your country wear during traditional festivals?,ä¸­å½äººå¨ä¼ ç»èæ¥ééå¸¸ç©¿ä»ä¹æ ·çæè£ï¼,Holidays/Celebration/Leisure,"['daily wear', 'as usual']",nothing,nothing,A,"
+
+What type of clothing do people from your country wear during traditional festivals?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. daily wear and as usual .
+B. nothing
+C. nothing
+
+
+
+
+Answer:
+",C
+New-az-21,Chi_249,China,Which region in your country is the most popular skiing destination?,ä¸­å½åªä¸ªå°åºæ¯æåæ¬¢è¿çæ»éªç®çå°ï¼,Sport,['scotland'],['jilin songhua lake'],nothing,B,"
+
+Which region in your country is the most popular skiing destination?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. scotland .
+B. jilin songhua lake
+C. nothing
+
+
+
+
+Answer:
+",A
+New-az-21,Chi_249,China,Which region in your country is the most popular skiing destination?,ä¸­å½åªä¸ªå°åºæ¯æåæ¬¢è¿çæ»éªç®çå°ï¼,Sport,['jilin changbai mountain'],nothing,['tikjda'],A,"
+
+Which region in your country is the most popular skiing destination?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. jilin changbai mountain .
+B. nothing
+C. tikjda
+
+
+
+
+Answer:
+",A
+New-ch-09,Chi_264,China,What food do people typically consume when the weather is cold in your country?,å¨ä¸­å½å¤©æ°å¯å·æ¶ï¼äººä»¬éå¸¸ä¼åäºä»ä¹é£ç©ï¼,Food,"['fried potato', 'french fries', 'chips']",['hot sausage roll'],['beef soup'],C,"
+
+What food do people typically consume when the weather is cold in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. fried potato and french fries and chips .
+B. hot sausage roll
+C. beef soup
+
+
+
+
+Answer:
+",C
+New-ch-09,Chi_264,China,What food do people typically consume when the weather is cold in your country?,å¨ä¸­å½å¤©æ°å¯å·æ¶ï¼äººä»¬éå¸¸ä¼åäºä»ä¹é£ç©ï¼,Food,['roast dinner'],"['fried potato', 'french fries', 'chips']",['dumplings'],C,"
+
+What food do people typically consume when the weather is cold in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. roast dinner .
+B. fried potato and french fries and chips
+C. dumplings
+
+
+
+
+Answer:
+",A
+New-ch-38,Chi_278,China,Which cities or regions are known for their import and export activities in your country?,ä¸­å½æåªäºä»¥è¿åºå£é»åçåå¸æå°åºï¼,Work life,['kent'],"['arzew', 'arzeu']",['shanghai'],C,"
+
+Which cities or regions are known for their import and export activities in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. kent .
+B. arzew and arzeu
+C. shanghai
+
+
+
+
+Answer:
+",A
+New-ch-38,Chi_278,China,Which cities or regions are known for their import and export activities in your country?,ä¸­å½æåªäºä»¥è¿åºå£é»åçåå¸æå°åºï¼,Work life,"['coastal ports', 'coast']",['kent'],['qingdao'],C,"
+
+Which cities or regions are known for their import and export activities in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. coastal ports and coast .
+B. kent
+C. qingdao
+
+
+
+
+Answer:
+",C
+New-ch-45,Chi_281,China,Which industries do young people typically choose to start businesses in your country?,å¨ä¸­å½ï¼å¹´è½»äººéå¸¸éæ©åªäºè¡ä¸åä¸ï¼,Work life,['catering'],"['clothes', 'clothing', 'garment']","['information technology', 'it industry']",C,"
+
+Which industries do young people typically choose to start businesses in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. catering .
+B. clothes and clothing and garment
+C. information technology and it industry
+
+
+
+
+Answer:
+",C
+New-ch-45,Chi_281,China,Which industries do young people typically choose to start businesses in your country?,å¨ä¸­å½ï¼å¹´è½»äººéå¸¸éæ©åªäºè¡ä¸åä¸ï¼,Work life,"['commerce', 'commercial']",['creative'],['technology'],C,"
+
+Which industries do young people typically choose to start businesses in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. commerce and commercial .
+B. creative
+C. technology
+
+
+
+
+Answer:
+",A
+New-ch-49,Chi_282,China,What is the most common way for family members to communicate remotely in your country?,å¨ä¸­å½ï¼å®¶åº­æåè¿ç¨äº¤æµæå¸¸ç¨çæ¹å¼æ¯ä»ä¹ï¼,Family,['facebook'],nothing,['whatsapp'],B,"
+
+What is the most common way for family members to communicate remotely in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. facebook .
+B. nothing
+C. whatsapp
+
+
+
+
+Answer:
+",C
+New-ch-49,Chi_282,China,What is the most common way for family members to communicate remotely in your country?,å¨ä¸­å½ï¼å®¶åº­æåè¿ç¨äº¤æµæå¸¸ç¨çæ¹å¼æ¯ä»ä¹ï¼,Family,['whatsapp'],nothing,['social media'],B,"
+
+What is the most common way for family members to communicate remotely in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. whatsapp .
+B. nothing
+C. social media
+
+
+
+
+Answer:
+",A
+New-ch-51,Chi_283,China,What form of accommodation is typically booked for family trips in your country?,å¨ä¸­å½ï¼å®¶åº­æè¡éå¸¸ä¼é¢è®¢åªç§å½¢å¼çä½å®¿ï¼,Family,"['hotel', 'hotels']","['hotel', 'hotels']",nothing,C,"
+
+What form of accommodation is typically booked for family trips in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hotel and hotels .
+B. hotel and hotels
+C. nothing
+
+
+
+
+Answer:
+",B
+New-ch-51,Chi_283,China,What form of accommodation is typically booked for family trips in your country?,å¨ä¸­å½ï¼å®¶åº­æè¡éå¸¸ä¼é¢è®¢åªç§å½¢å¼çä½å®¿ï¼,Family,['caravan'],['chalet'],['homestay'],C,"
+
+What form of accommodation is typically booked for family trips in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. caravan .
+B. chalet
+C. homestay
+
+
+
+
+Answer:
+",A
+New-ch-73,Chi_290,China,What type of clubs are most popular among university students in your country?,å¨ä¸­å½çå¤§å­¦çä¸­ï¼åªç§ç±»åçç¤¾å¢æåæ¬¢è¿ï¼,Education,['golf'],nothing,['street dance club'],C,"
+
+What type of clubs are most popular among university students in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. golf .
+B. nothing
+C. street dance club
+
+
+
+
+Answer:
+",C
+New-ch-73,Chi_290,China,What type of clubs are most popular among university students in your country?,å¨ä¸­å½çå¤§å­¦çä¸­ï¼åªç§ç±»åçç¤¾å¢æåæ¬¢è¿ï¼,Education,['guitar'],"['scientific clubs', 'science']",['nightclubs'],A,"
+
+What type of clubs are most popular among university students in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. guitar .
+B. scientific clubs and science
+C. nightclubs
+
+
+
+
+Answer:
+",A
+New-ch-78,Chi_293,China,What leisure activities do retired women typically like in your country?,å¨ä¸­å½ï¼éä¼å¥³æ§éå¸¸åæ¬¢ä»ä¹ä¼é²æ´»å¨ï¼,Holidays/Celebration/Leisure,"['reading', 'read']",['swimming'],['play mahjong'],C,"
+
+What leisure activities do retired women typically like in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. reading and read .
+B. swimming
+C. play mahjong
+
+
+
+
+Answer:
+",A
+New-ch-78,Chi_293,China,What leisure activities do retired women typically like in your country?,å¨ä¸­å½ï¼éä¼å¥³æ§éå¸¸åæ¬¢ä»ä¹ä¼é²æ´»å¨ï¼,Holidays/Celebration/Leisure,['swimming'],['tourism'],"['television', 'tv']",B,"
+
+What leisure activities do retired women typically like in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. swimming .
+B. tourism
+C. television and tv
+
+
+
+
+Answer:
+",B
+New-ch-79,Chi_294,China,What leisure activities do retired men typically like in your country?,å¨ä¸­å½ï¼éä¼ç·æ§éå¸¸åæ¬¢ä»ä¹ä¼é²æ´»å¨ï¼,Holidays/Celebration/Leisure,['allotment'],"['stone game', 'domino stones', 'domino']",['square dancing'],C,"
+
+What leisure activities do retired men typically like in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. allotment .
+B. stone game and domino stones and domino
+C. square dancing
+
+
+
+
+Answer:
+",A
+New-ch-79,Chi_294,China,What leisure activities do retired men typically like in your country?,å¨ä¸­å½ï¼éä¼ç·æ§éå¸¸åæ¬¢ä»ä¹ä¼é²æ´»å¨ï¼,Holidays/Celebration/Leisure,['practice tai chi'],['allotment'],"['reading', 'readd']",A,"
+
+What leisure activities do retired men typically like in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. practice tai chi .
+B. allotment
+C. reading and readd
+
+
+
+
+Answer:
+",A
+New-ch-83,Chi_298,China,Which city in your country hosts festivals the most?,ä¸­å½çåªä¸ªåå¸ä¸¾åèæ¥æå¤ï¼,Holidays/Celebration/Leisure,['liverpool'],['beijing'],"['timgad', 'timqad']",B,"
+
+Which city in your country hosts festivals the most?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. liverpool .
+B. beijing
+C. timgad and timqad
+
+
+
+
+Answer:
+",A
+New-ch-83,Chi_298,China,Which city in your country hosts festivals the most?,ä¸­å½çåªä¸ªåå¸ä¸¾åèæ¥æå¤ï¼,Holidays/Celebration/Leisure,nothing,['algiers'],['london'],A,"
+
+Which city in your country hosts festivals the most?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. algiers
+C. london
+
+
+
+
+Answer:
+",B
+New-en-05,Chi_304,China,Which food is a cost-effective and quick meal option in your country?,å¨ä¸­å½ï¼åªç§é£ç©æ¯æ§ä»·æ¯é«ä¸å¿«æ·çé¤é¥®éæ©ï¼,Food,['shaxian delicacies'],['pasta'],['bean'],A,"
+
+Which food is a cost-effective and quick meal option in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. shaxian delicacies .
+B. pasta
+C. bean
+
+
+
+
+Answer:
+",A
+New-en-05,Chi_304,China,Which food is a cost-effective and quick meal option in your country?,å¨ä¸­å½ï¼åªç§é£ç©æ¯æ§ä»·æ¯é«ä¸å¿«æ·çé¤é¥®éæ©ï¼,Food,"['square pizza', 'pizza carrÃ©', 'pizza carre']",['steamed stuffed bun'],['cheese sandwich'],B,"
+
+Which food is a cost-effective and quick meal option in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. square pizza and pizza carrÃ© and pizza carre .
+B. steamed stuffed bun
+C. cheese sandwich
+
+
+
+
+Answer:
+",A
+New-en-18,Chi_311,China,What do fans bring with them when attending a live game in your country?,ä¸­å½çç²ä¸å¨è§çç°åºä½è²æ¯èµæ¶ä¼å¸¦äºä»ä¹ä¸è¥¿ï¼,Sport,"['karkabou', 'qraqeb', 'garagab', 'krakeb']",['sports clothing'],['snacks'],C,"
+
+What do fans bring with them when attending a live game in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. karkabou and qraqeb and garagab and krakeb .
+B. sports clothing
+C. snacks
+
+
+
+
+Answer:
+",B
+New-en-18,Chi_311,China,What do fans bring with them when attending a live game in your country?,ä¸­å½çç²ä¸å¨è§çç°åºä½è²æ¯èµæ¶ä¼å¸¦äºä»ä¹ä¸è¥¿ï¼,Sport,"['flag', 'flags']","['darbuka', 'goblet drum', 'derbouka', 'darbouka']",['water'],C,"
+
+What do fans bring with them when attending a live game in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. flag and flags .
+B. darbuka and goblet drum and derbouka and darbouka
+C. water
+
+
+
+
+Answer:
+",C
+New-en-68,Chi_323,China,What repercussions are there for bad behavior in schools in your country?,å¨ä¸­å½çå­¦æ ¡éï¼ä¸è¯è¡ä¸ºä¼æä»ä¹åæï¼,Education,"['bring the parent', 'parent teacher conference', 'parent-teacher conference']",['detention'],"['drop out', 'expulsion from school']",C,"
+
+What repercussions are there for bad behavior in schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bring the parent and parent teacher conference and parent-teacher conference .
+B. detention
+C. drop out and expulsion from school
+
+
+
+
+Answer:
+",A
+New-en-68,Chi_323,China,What repercussions are there for bad behavior in schools in your country?,å¨ä¸­å½çå­¦æ ¡éï¼ä¸è¯è¡ä¸ºä¼æä»ä¹åæï¼,Education,"['summon parents', 'call parents']",['expulsion'],"['exclusion', 'being expelled from school', 'expulsion', 'being expelled from school']",A,"
+
+What repercussions are there for bad behavior in schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. summon parents and call parents .
+B. expulsion
+C. exclusion and being expelled from school and expulsion and being expelled from school
+
+
+
+
+Answer:
+",A
+New-en-72,Chi_326,China,Which online resource do students usually use to study in your country?,å¨ä¸­å½ï¼å­¦çéå¸¸ä½¿ç¨åªäºå¨çº¿èµæºæ¥å­¦ä¹ ï¼,Education,['youtube'],['baidu'],['zoom'],B,"
+
+Which online resource do students usually use to study in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. youtube .
+B. baidu
+C. zoom
+
+
+
+
+Answer:
+",A
+New-en-72,Chi_326,China,Which online resource do students usually use to study in your country?,å¨ä¸­å½ï¼å­¦çéå¸¸ä½¿ç¨åªäºå¨çº¿èµæºæ¥å­¦ä¹ ï¼,Education,nothing,['google'],"['bilibili', 'bilibili online course']",C,"
+
+Which online resource do students usually use to study in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. google
+C. bilibili and bilibili online course
+
+
+
+
+Answer:
+",C
+New-en-87,Chi_330,China,What is the most famous historic landmark in your country?,ä¸­å½æèåçåå²å°æ æ¯ä»ä¹ï¼,Holidays/Celebration/Leisure,"['john o groats', ""john o' groats""]","['timgad', 'timqad']",['great wall'],C,"
+
+What is the most famous historic landmark in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. john o groats and ""john o groats"" .
+B. timgad and timqad
+C. great wall
+
+
+
+
+Answer:
+",C
+New-en-87,Chi_330,China,What is the most famous historic landmark in your country?,ä¸­å½æèåçåå²å°æ æ¯ä»ä¹ï¼,Holidays/Celebration/Leisure,"[""martyrs' memorial"", 'maqam echahid', ""martyr's memorial"", 'memorial of the martyr', 'sanctuary of the martyr', ""maqam e'chahid""]",['forbidden city'],"['john o groats', ""john o' groats""]",B,"
+
+What is the most famous historic landmark in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ""martyrs memorial"" and maqam echahid and ""martyrs memorial"" and memorial of the martyr and sanctuary of the martyr and ""maqam echahid"" .
+B. forbidden city
+C. john o groats and ""john o groats""
+
+
+
+
+Answer:
+",A
+New-gr-15,Chi_336,China,What is the most popular traditional dessert in your country?,ä¸­å½æåæ¬¢è¿çä¼ ç»çç¹æ¯ä»ä¹ï¼,Food,"['dziriette', 'dziriet']",['jelly'],['mooncake'],C,"
+
+What is the most popular traditional dessert in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. dziriette and dziriet .
+B. jelly
+C. mooncake
+
+
+
+
+Answer:
+",A
+New-gr-15,Chi_336,China,What is the most popular traditional dessert in your country?,ä¸­å½æåæ¬¢è¿çä¼ ç»çç¹æ¯ä»ä¹ï¼,Food,['osmanthus cake'],"['makroud', 'makrout']",['pudding'],A,"
+
+What is the most popular traditional dessert in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. osmanthus cake .
+B. makroud and makrout
+C. pudding
+
+
+
+
+Answer:
+",A
+New-in-33,Chi_354,China,What region in your country is usually associated with mining?,å¨ä¸­å½ï¼éå¸¸ä¸éç¿ä¸ç¸å³èçæ¯åªä¸ªå°åºï¼,Work life,['sahara'],['liaoning'],['yorkshire'],B,"
+
+What region in your country is usually associated with mining?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. sahara .
+B. liaoning
+C. yorkshire
+
+
+
+
+Answer:
+",A
+New-in-33,Chi_354,China,What region in your country is usually associated with mining?,å¨ä¸­å½ï¼éå¸¸ä¸éç¿ä¸ç¸å³èçæ¯åªä¸ªå°åºï¼,Work life,['shanxi'],['midlands'],"['el hajar', 'el hadjar']",A,"
+
+What region in your country is usually associated with mining?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. shanxi .
+B. midlands
+C. el hajar and el hadjar
+
+
+
+
+Answer:
+",A
+New-ko-04,Chi_363,China,Which toys are most popular among boys in your country?,å¨ä¸­å½ï¼åªäºç©å·å¨ç·å­©ä¸­æåæ¬¢è¿ï¼,Family,['car model'],"['football', 'footballs', 'soccer ball']","['bead balls', 'beads']",A,"
+
+Which toys are most popular among boys in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. car model .
+B. football and footballs and soccer ball
+C. bead balls and beads
+
+
+
+
+Answer:
+",B
+New-ko-04,Chi_363,China,Which toys are most popular among boys in your country?,å¨ä¸­å½ï¼åªäºç©å·å¨ç·å­©ä¸­æåæ¬¢è¿ï¼,Family,"['bead balls', 'beads']",['ultraman'],['toy vehicles'],B,"
+
+Which toys are most popular among boys in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bead balls and beads .
+B. ultraman
+C. toy vehicles
+
+
+
+
+Answer:
+",C
+New-ko-05,Chi_364,China,Which toys are most popular among girls in your country?,å¨ä¸­å½ï¼åªäºç©å·æåå¥³å­©ä»¬çæ¬¢è¿ï¼,Family,['barbie doll'],"['squares game', 'cube']",nothing,A,"
+
+Which toys are most popular among girls in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. barbie doll .
+B. squares game and cube
+C. nothing
+
+
+
+
+Answer:
+",A
+New-ko-05,Chi_364,China,Which toys are most popular among girls in your country?,å¨ä¸­å½ï¼åªäºç©å·æåå¥³å­©ä»¬çæ¬¢è¿ï¼,Family,['pretend kitchen toy'],"['jumping', 'jump']",nothing,A,"
+
+Which toys are most popular among girls in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. pretend kitchen toy .
+B. jumping and jump
+C. nothing
+
+
+
+
+Answer:
+",A
+New-pe-65,Chi_381,China,"How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)",å¨ä¸­å½ï¼åä¸­æå¤å°é¨å­¦ç§ï¼ï¼åªæä¾é¿æä¼¯æ°å­ï¼ä¾å¦ï¼12ï¼ãï¼,Education,['11'],nothing,['7'],B,"
+
+How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. 11 .
+B. nothing
+C. 7
+
+
+
+
+Answer:
+",A
+New-pe-65,Chi_381,China,"How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)",å¨ä¸­å½ï¼åä¸­æå¤å°é¨å­¦ç§ï¼ï¼åªæä¾é¿æä¼¯æ°å­ï¼ä¾å¦ï¼12ï¼ãï¼,Education,['6'],['9'],['13'],B,"
+
+How many subjects are taught in middle schools in your country? (Provide Arabic numerals (e.g., 12) only.)
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. 6 .
+B. 9
+C. 13
+
+
+
+
+Answer:
+",A
+New-pe-66,Chi_382,China,What is the most popular after school curricular in elementary schools in your country?,ä¸­å½å°å­¦éæåæ¬¢è¿çè¯¾å¤å´è¶£ç­æ¯ä»ä¹ï¼,Education,"['returning home', 'go home']",['mathematics'],['netball'],B,"
+
+What is the most popular after school curricular in elementary schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. returning home and go home .
+B. mathematics
+C. netball
+
+
+
+
+Answer:
+",B
+New-pe-66,Chi_382,China,What is the most popular after school curricular in elementary schools in your country?,ä¸­å½å°å­¦éæåæ¬¢è¿çè¯¾å¤å´è¶£ç­æ¯ä»ä¹ï¼,Education,['netball'],['olympiad math'],['play'],B,"
+
+What is the most popular after school curricular in elementary schools in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. netball .
+B. olympiad math
+C. play
+
+
+
+
+Answer:
+",B
+New-pe-76,Chi_384,China,What is a popular activity to do in parks in your country?,å¨ä¸­å½çå¬å­éï¼æä»ä¹åæ¬¢è¿çæ´»å¨ï¼,Holidays/Celebration/Leisure,['play'],['walk'],['square dance'],C,"
+
+What is a popular activity to do in parks in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. play .
+B. walk
+C. square dance
+
+
+
+
+Answer:
+",A
+New-pe-76,Chi_384,China,What is a popular activity to do in parks in your country?,å¨ä¸­å½çå¬å­éï¼æä»ä¹åæ¬¢è¿çæ´»å¨ï¼,Holidays/Celebration/Leisure,['running'],['play badminton'],['run'],B,"
+
+What is a popular activity to do in parks in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. running .
+B. play badminton
+C. run
+
+
+
+
+Answer:
+",A
+New-pe-78,Chi_385,China,What is the name of the most famous film festival held in your country?,ä¸­å½ä¸¾åçæèåççµå½±èå«ä»ä¹åå­ï¼,Holidays/Celebration/Leisure,"['bafta', 'bafta film awards']","['oran', 'international festival of arab film', 'arab film festival', 'oran festival', 'oran international arabic film festival']",['golden rooster awards'],C,"
+
+What is the name of the most famous film festival held in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bafta and bafta film awards .
+B. oran and international festival of arab film and arab film festival and oran festival and oran international arabic film festival
+C. golden rooster awards
+
+
+
+
+Answer:
+",C
+New-pe-78,Chi_385,China,What is the name of the most famous film festival held in your country?,ä¸­å½ä¸¾åçæèåççµå½±èå«ä»ä¹åå­ï¼,Holidays/Celebration/Leisure,['hundred flowers award'],"['bfi', 'bfi london film festival', 'lef']",nothing,A,"
+
+What is the name of the most famous film festival held in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hundred flowers award .
+B. bfi and bfi london film festival and lef
+C. nothing
+
+
+
+
+Answer:
+",A
+New-pe-85,Chi_387,China,Where is the most popular tourist destination abroad for people from your country?,å¯¹äºä¸­å½äººæ¥è¯´ï¼æåæ¬¢è¿çå¢å¤ææ¸¸ç®çå°å¨åªéï¼,Holidays/Celebration/Leisure,nothing,['spain'],['maldives'],C,"
+
+Where is the most popular tourist destination abroad for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. spain
+C. maldives
+
+
+
+
+Answer:
+",B
+New-pe-85,Chi_387,China,Where is the most popular tourist destination abroad for people from your country?,å¯¹äºä¸­å½äººæ¥è¯´ï¼æåæ¬¢è¿çå¢å¤ææ¸¸ç®çå°å¨åªéï¼,Holidays/Celebration/Leisure,['united states'],['france'],['tunisia'],A,"
+
+Where is the most popular tourist destination abroad for people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. united states .
+B. france
+C. tunisia
+
+
+
+
+Answer:
+",A
+New-spme-37,Chi_394,China,Which profession is most commonly studied abroad by students from your country?,ä¸­å½å­¦çåºå½çå­¦æå¸¸å­¦ä¹ çä¸ä¸/èä¸æ¯åªä¸ªï¼,Education,['business'],['computer'],['commerce'],B,"
+
+Which profession is most commonly studied abroad by students from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. business .
+B. computer
+C. commerce
+
+
+
+
+Answer:
+",A
+New-spme-37,Chi_394,China,Which profession is most commonly studied abroad by students from your country?,ä¸­å½å­¦çåºå½çå­¦æå¸¸å­¦ä¹ çä¸ä¸/èä¸æ¯åªä¸ªï¼,Education,['commerce'],['languages'],['information technology'],C,"
+
+Which profession is most commonly studied abroad by students from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. commerce .
+B. languages
+C. information technology
+
+
+
+
+Answer:
+",A
+New-su-09,Chi_401,China,What oil is usually used for cooking in your country?,å¨ä¸­å½éå¸¸ç¨ä»ä¹æ²¹æ¥ç¹é¥ªï¼,Food,['rapeseed oil'],['sunflower oil'],['lard'],A,"
+
+What oil is usually used for cooking in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. rapeseed oil .
+B. sunflower oil
+C. lard
+
+
+
+
+Answer:
+",A
+New-su-09,Chi_401,China,What oil is usually used for cooking in your country?,å¨ä¸­å½éå¸¸ç¨ä»ä¹æ²¹æ¥ç¹é¥ªï¼,Food,['rapeseed'],['corn oil'],['soybean oil'],C,"
+
+What oil is usually used for cooking in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. rapeseed .
+B. corn oil
+C. soybean oil
+
+
+
+
+Answer:
+",A
+New-su-57,Chi_414,China,What is the most common livestock raised in your country?,å¨ä¸­å½æå¸¸è§çå®¶çæ¯ä»ä¹ï¼,Work life,['cattle'],['lamb'],['dog'],C,"
+
+What is the most common livestock raised in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. cattle .
+B. lamb
+C. dog
+
+
+
+
+Answer:
+",A
+New-su-57,Chi_414,China,What is the most common livestock raised in your country?,å¨ä¸­å½æå¸¸è§çå®¶çæ¯ä»ä¹ï¼,Work life,['lamb'],['sheep'],['chicken'],C,"
+
+What is the most common livestock raised in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. lamb .
+B. sheep
+C. chicken
+
+
+
+
+Answer:
+",B
+New-su-60,Chi_417,China,What do farmers in your country usually eat for lunch?,ä¸­å½çåæ°éå¸¸åé¥­åä»ä¹ï¼,Work life,['vegetable'],['sandwiches'],['corn'],C,"
+
+What do farmers in your country usually eat for lunch?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. vegetable .
+B. sandwiches
+C. corn
+
+
+
+
+Answer:
+",B
+New-su-60,Chi_417,China,What do farmers in your country usually eat for lunch?,ä¸­å½çåæ°éå¸¸åé¥­åä»ä¹ï¼,Work life,['rice'],['pie and chips'],"['butter milk', 'leben', 'laban', 'liben', 'lben', 'buttermilk']",A,"
+
+What do farmers in your country usually eat for lunch?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. rice .
+B. pie and chips
+C. butter milk and leben and laban and liben and lben and buttermilk
+
+
+
+
+Answer:
+",A
+New-su-83,Chi_423,China,What food is usually served at weddings in your country?,å¨ä¸­å½çå©ç¤¼ä¸éå¸¸ä¼æä¾ä»ä¹é£ç©ï¼,Holidays/Celebration/Leisure,['red dates'],['garlic'],['wedding breakfast'],A,"
+
+What food is usually served at weddings in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. red dates .
+B. garlic
+C. wedding breakfast
+
+
+
+
+Answer:
+",C
+New-su-83,Chi_423,China,What food is usually served at weddings in your country?,å¨ä¸­å½çå©ç¤¼ä¸éå¸¸ä¼æä¾ä»ä¹é£ç©ï¼,Holidays/Celebration/Leisure,"['bourek', 'bourak']",['buffet'],['wedding candy'],C,"
+
+What food is usually served at weddings in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bourek and bourak .
+B. buffet
+C. wedding candy
+
+
+
+
+Answer:
+",A
+Sa-en-1,Chi_447,China,What is your country's most popular fast food chain?,ä¸­å½æåæ¬¢è¿çå¿«é¤è¿éåºæ¯åªå®¶ï¼,Food,nothing,['mixue bingcheng'],nothing,B,"
+
+What is your country's most popular fast food chain?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. mixue bingcheng
+C. nothing
+
+
+
+
+Answer:
+",B
+Sa-en-1,Chi_447,China,What is your country's most popular fast food chain?,ä¸­å½æåæ¬¢è¿çå¿«é¤è¿éåºæ¯åªå®¶ï¼,Food,"[""mcdonald's""]","['mcdonalds', ""mcdonald's""]",nothing,A,"
+
+What is your country's most popular fast food chain?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. ""mcdonalds"" .
+B. mcdonalds and ""mcdonalds""
+C. nothing
+
+
+
+
+Answer:
+",A
+Sa-en-16,Chi_449,China,What is the most popular soccer team among the people from your country?,å¨ä¸­å½äººä¸­æåæ¬¢è¿çè¶³çéæ¯åªä¸æ¯ï¼,Sport,"['manchester united', 'man united', 'manchester utd']","['crb', 'cr belouizdad', 'chabab riadhi belouizdad']",['real madrid'],C,"
+
+What is the most popular soccer team among the people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. manchester united and man united and manchester utd .
+B. crb and cr belouizdad and chabab riadhi belouizdad
+C. real madrid
+
+
+
+
+Answer:
+",C
+Sa-en-16,Chi_449,China,What is the most popular soccer team among the people from your country?,å¨ä¸­å½äººä¸­æåæ¬¢è¿çè¶³çéæ¯åªä¸æ¯ï¼,Sport,nothing,['liverpool'],['barcelona'],C,"
+
+What is the most popular soccer team among the people from your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. liverpool
+C. barcelona
+
+
+
+
+Answer:
+",B
+Sa-en-9,Chi_456,China,What do people from your country eat at the beach?,ä¸­å½äººå¨æµ·æ»©ä¸åä»ä¹ï¼,Food,['salad'],"['seafood roadside diner', 'seafood stall']",['cheese sandwiches'],B,"
+
+What do people from your country eat at the beach?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. salad .
+B. seafood roadside diner and seafood stall
+C. cheese sandwiches
+
+
+
+
+Answer:
+",B
+Sa-en-9,Chi_456,China,What do people from your country eat at the beach?,ä¸­å½äººå¨æµ·æ»©ä¸åä»ä¹ï¼,Food,['shrimp'],['sandwich'],['chips'],A,"
+
+What do people from your country eat at the beach?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. shrimp .
+B. sandwich
+C. chips
+
+
+
+
+Answer:
+",A
+Ta-pe-37,Chi_468,China,What is the common symbol of New Year's Eve that is usually found in your country?,å¨ä¸­å½ï¼éå¸¸å¨é¤å¤ä¼æä»ä¹å¸¸è§çè±¡å¾?,Holidays/Celebration/Leisure,"['spring festival couplets', 'chinese couplets', 'new year scrolls']",nothing,"['auld lang syne', 'auld lang syne singing']",A,"
+
+What is the common symbol of New Year's Eve that is usually found in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. spring festival couplets and chinese couplets and new year scrolls .
+B. nothing
+C. auld lang syne and auld lang syne singing
+
+
+
+
+Answer:
+",C
+Ta-pe-37,Chi_468,China,What is the common symbol of New Year's Eve that is usually found in your country?,å¨ä¸­å½ï¼éå¸¸å¨é¤å¤ä¼æä»ä¹å¸¸è§çè±¡å¾?,Holidays/Celebration/Leisure,['paper-cut for window decoration'],['champagne'],nothing,A,"
+
+What is the common symbol of New Year's Eve that is usually found in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. paper-cut for window decoration .
+B. champagne
+C. nothing
+
+
+
+
+Answer:
+",A
+Th-en-03,Chi_472,China,What is the most popular professional sports league in your country?,ä¸­å½æåæ¬¢è¿çèä¸ä½è²èèµæ¯åªä¸ä¸ªï¼,Sport,"['national football league', 'nfl']",nothing,"['chinese football super league', 'chinese super league']",C,"
+
+What is the most popular professional sports league in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. national football league and nfl .
+B. nothing
+C. chinese football super league and chinese super league
+
+
+
+
+Answer:
+",A
+Th-en-03,Chi_472,China,What is the most popular professional sports league in your country?,ä¸­å½æåæ¬¢è¿çèä¸ä½è²èèµæ¯åªä¸ä¸ªï¼,Sport,"['professional league', 'professional', 'professionnelle', 'algerian professional league 1', 'algerian professionnelle league 1']",['diving'],"['english premier league', 'premiership', 'premier league']",B,"
+
+What is the most popular professional sports league in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. professional league and professional and professionnelle and algerian professional league 1 and algerian professionnelle league 1 .
+B. diving
+C. english premier league and premiership and premier league
+
+
+
+
+Answer:
+",C
+Th-en-12,Chi_476,China,In which sport has your country been most successful in international competitions?,ä¸­å½å¨åªé¡¹è¿å¨ä¸­å¨å½éæ¯èµä¸­ææåï¼,Sport,['tennis'],['badminton'],['running'],B,"
+
+In which sport has your country been most successful in international competitions?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. tennis .
+B. badminton
+C. running
+
+
+
+
+Answer:
+",A
+Th-en-12,Chi_476,China,In which sport has your country been most successful in international competitions?,ä¸­å½å¨åªé¡¹è¿å¨ä¸­å¨å½éæ¯èµä¸­ææåï¼,Sport,['skiing'],['boxing'],['cricket'],A,"
+
+In which sport has your country been most successful in international competitions?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. skiing .
+B. boxing
+C. cricket
+
+
+
+
+Answer:
+",A
+Th-en-19,Chi_478,China,What is a city or region in your country known for manufacturing industry?,ä¸­å½æåªäºä»¥å¶é ä¸é»åçåå¸æå°åºï¼,Work life,"['bordj bou arreridj', 'bordj bou arrÃ©ridj']",['lancashire'],['yiwu'],C,"
+
+What is a city or region in your country known for manufacturing industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. bordj bou arreridj and bordj bou arrÃ©ridj .
+B. lancashire
+C. yiwu
+
+
+
+
+Answer:
+",C
+Th-en-19,Chi_478,China,What is a city or region in your country known for manufacturing industry?,ä¸­å½æåªäºä»¥å¶é ä¸é»åçåå¸æå°åºï¼,Work life,['shenzhen'],['yorkshire'],"['bordj bou arreridj', 'bordj bou arrÃ©ridj']",A,"
+
+What is a city or region in your country known for manufacturing industry?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. shenzhen .
+B. yorkshire
+C. bordj bou arreridj and bordj bou arrÃ©ridj
+
+
+
+
+Answer:
+",A
+Th-en-39,Chi_487,China,What is a popular family game in your country?,å¨ä¸­å½æä»ä¹åæ¬¢è¿çå®¶åº­æ¸¸æï¼,Family,nothing,['three kingdoms kill'],"['stone game', 'domino stones', 'domino']",B,"
+
+What is a popular family game in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. three kingdoms kill
+C. stone game and domino stones and domino
+
+
+
+
+Answer:
+",C
+Th-en-39,Chi_487,China,What is a popular family game in your country?,å¨ä¸­å½æä»ä¹åæ¬¢è¿çå®¶åº­æ¸¸æï¼,Family,['hide and seek'],nothing,nothing,A,"
+
+What is a popular family game in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. hide and seek .
+B. nothing
+C. nothing
+
+
+
+
+Answer:
+",A
+Th-en-45,Chi_491,China,What is the most popular weekday evening family activity in your country?,å¨ä¸­å½ï¼æåæ¬¢è¿çå·¥ä½æ¥æä¸å®¶åº­æ´»å¨æ¯ä»ä¹ï¼,Family,['watch tv series'],"['tv', 'watching tv']",nothing,A,"
+
+What is the most popular weekday evening family activity in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. watch tv series .
+B. tv and watching tv
+C. nothing
+
+
+
+
+Answer:
+",A
+Th-en-45,Chi_491,China,What is the most popular weekday evening family activity in your country?,å¨ä¸­å½ï¼æåæ¬¢è¿çå·¥ä½æ¥æä¸å®¶åº­æ´»å¨æ¯ä»ä¹ï¼,Family,nothing,['watch tv'],nothing,B,"
+
+What is the most popular weekday evening family activity in your country?
+Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
+
+A. nothing .
+B. watch tv
+C. nothing
+
+
+
+
+Answer:
+",A

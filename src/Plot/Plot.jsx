@@ -195,19 +195,19 @@ export const Plot = () => {
     });
   };
   const getModelExplanation = () => {
-    if (evalType === "Cohere Fine-tuned Model") {
+    if (evalType === "Mistral Fine-tuned Model") {
       return t("tooltips.cohereFineTuned");
-    } else if (evalType === "Cohere Baseline") {
+    } else if (evalType === "Mistral Baseline") {
       return t("tooltips.cohereBaseline");
     }else if (evalType === "Llama2 Fine-tuned Model") {
       return t("tooltips.LlamaFineTuned");
     } else if (evalType === "LLAMA2 Baseline") {
       return t("tooltips.llamaBaseline");
-    } else if (evalType === "Hofstede Questions-Cohere Model") {
+    } else if (evalType === "Hofstede Questions-Mistral Model") {
       return t("tooltips.hofstedeCohere");
     } else if (evalType === "Hofstede Questions-LLAMA2 Model") {
       return t("tooltips.hofstedeLlama");
-    } else if (evalType === "Hofstede Questions-Cohere Fine-tuned Model") {
+    } else if (evalType === "Hofstede Questions-Mistral Fine-tuned Model") {
       return t("tooltips.hofstedeCohereFineTuned");
     }
     return null;
@@ -304,7 +304,7 @@ export const Plot = () => {
         <h1 className="header-title">{t("headerTitle")}</h1>
         <div className="selection-container">
           <h2 className="underlined">{t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, { defaultValue: evalType })}</h2>
-          {(evalType.includes("Baseline") || evalType === "Cohere Fine-tuned Model" ||evalType === "Llama2 Fine-tuned Model") ? (
+          {(evalType.includes("Baseline") || evalType === "Mistral Fine-tuned Model" ||evalType === "Llama2 Fine-tuned Model") ? (
             <select
               className="plot-select"
               value={selectedTopicKey}

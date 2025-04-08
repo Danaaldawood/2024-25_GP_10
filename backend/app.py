@@ -40,16 +40,16 @@ llama_finetuned_datasets = {
 }
 # Datasets for Hofstede Questions-Cohere Model (Standard Deviation)
 cohere_datasets = {
-    "Chinese": pd.read_csv("./hofstede_cohere_chinese.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./hofstede_cohere_western.csv", encoding="utf-8"),
-    "Arab": pd.read_csv("./hofstede_cohere_arab.csv", encoding="utf-8"),
+    "Chinese": pd.read_csv("./hofstede_mistral_chinese.csv", encoding="utf-8"),
+    "Western": pd.read_csv("./hofstede_mistral_western.csv", encoding="utf-8"),
+    "Arab": pd.read_csv("./hofstede_mistral_arab.csv", encoding="utf-8"),
 }
 
 # Datasets for Cohere Baseline (Coverage Scores)
 cohere_baseline_datasets = {
-    "Arab": pd.read_csv("./test_bank_arabic_chat_aya101.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./test_bank_western_chat_aya101.csv", encoding="utf-8"), 
-    "Chinese": pd.read_csv("./test_bank_chines_chat_aya101.csv", encoding="utf-8"),
+    "Arab": pd.read_csv("./test_bank_arabic_chat_mistral.csv", encoding="utf-8"),
+    "Western": pd.read_csv("./test_bank_western_chat_mistral.csv", encoding="utf-8"), 
+    "Chinese": pd.read_csv("./test_bank_chines_chat_mistral.csv", encoding="utf-8"),
 }
 
 # Datasets for Cohere Fine-Tuned (Coverage Scores)
@@ -260,9 +260,9 @@ def evaluate():
 
         # Fine-Tuned Model Handling
         if model == "Fine-Tuned":
-            if eval_type == "Cohere Fine-tuned Model":
+            if eval_type == "Mistral Fine-tuned Model":
                 results = calculate_for_all_regions_cohere_finetuned(topic)
-            elif eval_type == "Hofstede Questions-Cohere Fine-tuned Model":
+            elif eval_type == "Hofstede Questions-Mistral Fine-tuned Model":
                 results = calculate_standard_deviation_cohere_finetuned()
             elif eval_type == "Llama2 Fine-tuned Model":
                   results = calculate_for_all_regions_llama_finetuned(topic)
@@ -276,13 +276,13 @@ def evaluate():
 
         # Baseline Model Handling
         elif model == "Baseline":
-            if eval_type == "Hofstede Questions-Cohere Model":
+            if eval_type == "Hofstede Questions-Mistral Model":
                 results = calculate_standard_deviation_cohere()
             elif eval_type == "LLAMA2 Baseline":
                 results = calculate_for_all_regions_llama(topic)
             elif eval_type == "Hofstede Questions-LLAMA2 Model":
                 results = calculate_standard_deviation_llama(topic)
-            elif eval_type == "Cohere Baseline":
+            elif eval_type == "Mistral Baseline":
                 results = calculate_for_all_regions_cohere_baseline(topic)
             else:
                 return jsonify({"error": "Invalid evaluation type for Baseline"}), 400

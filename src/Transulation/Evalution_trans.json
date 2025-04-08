@@ -10,12 +10,12 @@
     "baseline": "Baseline",
     "fineTuned": "Fine-Tuned",
     "llamaBaseline": "LLAMA2 Baseline",
-    "cohereBaseline": "Cohere Baseline",
+    "cohereBaseline": "Mistral Baseline",
     "hofstedeLlama": "Hofstede Questions-LLAMA2 Model",
-    "hofstedeCohere": "Hofstede Questions-Cohere Model",
-    "cohereFineTuned": "Cohere Fine-tuned Model",
+    "hofstedeCohere": "Hofstede Questions-Mistral Model",
+    "cohereFineTuned": "Mistral Fine-tuned Model",
     "LlamaFineTuned":"Llama2 Fine-tuned Model",
-    "hofstedeCohereFineTuned": "Hofstede Questions-Cohere Fine-tuned Model",
+    "hofstedeCohereFineTuned": "Hofstede Questions-Mistral Fine-tuned Model",
     "evaluateButton": "Evaluate"
   },
   "ar": {
@@ -29,12 +29,12 @@
     "baseline": "النموذج الأساسي",
     "fineTuned": "نموذج مُدرب",
     "llamaBaseline": "النموذج الأساسي LLAMA2",
-    "cohereBaseline": "النموذج الأساسي Cohere",
+    "cohereBaseline": "النموذج الأساسي Mistral",
     "hofstedeLlama": "أسئلة هوفستيد-نموذج LLAMA2",
-    "hofstedeCohere": "أسئلة هوفستيد-نموذج Cohere",
-    "cohereFineTuned": "النموذج المدرب Cohere",
+    "hofstedeCohere": "أسئلة هوفستيد-نموذج Mistral",
+    "cohereFineTuned": "النموذج المدرب Mistral",
     "LlamaFineTuned":"النموذج المدربLlama2",
-    "hofstedeCohereFineTuned": "أسئلة هوفستيد-نموذج Cohere المدرب",
+    "hofstedeCohereFineTuned": "أسئلة هوفستيد-نموذج Mistral المدرب",
     "evaluateButton": "تقييم"
   },
   "ch": {
@@ -48,12 +48,12 @@
     "baseline": "基线模型",
     "fineTuned": "微调模型",
     "llamaBaseline": "LLAMA2基线模型",
-    "cohereBaseline": "Cohere基线模型",
+    "cohereBaseline": "Mistral基线模型",
     "hofstedeLlama": "霍夫斯泰德问题-LLAMA2模型",
-    "hofstedeCohere": "霍夫斯泰德问题-Cohere模型",
-    "cohereFineTuned": "Cohere微调模型",
+    "hofstedeCohere": "霍夫斯泰德问题-Mistral模型",
+    "cohereFineTuned": "Mistral微调模型",
     "LlamaFineTuned":"Llama2微调模型",
-    "hofstedeCohereFineTuned": "霍夫斯泰德问题-Cohere微调模型",
+    "hofstedeCohereFineTuned": "霍夫斯泰德问题-Mistral微调模型",
     "evaluateButton": "评估"
   }
 }

@@ -77,9 +77,9 @@ export const Evaluation = () => {
                   {t('selectEvaluationTypePlaceholder')}
                 </option>
                 <option value="LLAMA2 Baseline">{t('llamaBaseline')}</option>
-                <option value="Cohere Baseline">{t('cohereBaseline')}</option>
+                <option value="Mistral Baseline">{t('cohereBaseline')}</option>
                 <option value="Hofstede Questions-LLAMA2 Model">{t('hofstedeLlama')}</option>
-                <option value="Hofstede Questions-Cohere Model">{t('hofstedeCohere')}</option>
+                <option value="Hofstede Questions-Mistral Model">{t('hofstedeCohere')}</option>
               </select>
             </div>
           )}
@@ -96,8 +96,8 @@ export const Evaluation = () => {
                 <option value="" disabled>
                   {t('selectEvaluationTypePlaceholder')}
                 </option>
-                <option value="Cohere Fine-tuned Model">{t('cohereFineTuned')}</option>
-                <option value="Hofstede Questions-Cohere Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
+                <option value="Mistral Fine-tuned Model">{t('cohereFineTuned')}</option>
+                <option value="Hofstede Questions-Mistral Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
                 <option value="Llama2 Fine-tuned Model">{t('LlamaFineTuned')}</option>
                 {/* <option value="Hofstede Questions-Cohere Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option> */}
 
