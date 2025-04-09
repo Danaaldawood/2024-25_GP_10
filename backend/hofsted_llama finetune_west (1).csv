@@ -1,0 +1,865 @@
+Q_ID,reagon,eng_question,option_A,option_B,option_C,option_D,option_E,textF,Predicted
+q_1,western,have sufficient time for your citizenl or home life,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+have sufficient time for your citizenl or home life
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_2,western,have a boss (direct superior) you can respect.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+have a boss (direct superior) you can respect.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_3,western,get recognition for good performance.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+get recognition for good performance.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_4,western,have security of employment.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+have security of employment.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",E
+q_5,western, have pleasant people to work with.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+ have pleasant people to work with.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_6,western, do work that is interesting.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+ do work that is interesting.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",E
+q_7,western,be consulted by your boss in decisions involving your work.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+be consulted by your boss in decisions involving your work.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_8,western,live in a desirable area.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+live in a desirable area.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",E
+q_9,western, have a job respected by your family and friends.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+ have a job respected by your family and friends.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_10,western,have chances for promotion in your private life.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+have chances for promotion in your private life.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",B
+q_11,western,keeping time free for fun.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+keeping time free for fun.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",E
+q_12,western,moderation: having few desires.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+moderation: having few desires.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",C
+q_13,western,doing a service to a friend.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+doing a service to a friend.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",E
+q_14,western,thrift (not spending more than needed).,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+thrift (not spending more than needed).
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. of utmost importance
+B. very important
+C. moderate importance
+D. of little importance
+E.  of very little or no importance
+
+Answer:
+",E
+q_15,western,Choose one with no explanation. How often do you feel nervous or tense?,always,usually,sometimes,seldom,never,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Choose one with no explanation. How often do you feel nervous or tense?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. always
+B. usually
+C. sometimes
+D. seldom
+E. never
+
+Answer:
+",B
+q_16,western,Choose one answer only with no explanation. How often are you happy?,always,usually,sometimes,seldom,never,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Choose one answer only with no explanation. How often are you happy?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. always
+B. usually
+C. sometimes
+D. seldom
+E. never
+
+Answer:
+",B
+q_17,western,Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?,"yes, always"," yes, usually",sometimes,"no, seldom","no, never","
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. yes and always
+B.  yes and usually
+C. sometimes
+D. no and seldom
+E. no and never
+
+Answer:
+",B
+q_18,western,"Choose one answer only with no explanation. All in all, how would you describe your state of health these days?",very good,good,fair,poor,very poor,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Choose one answer only with no explanation. All in all, how would you describe your state of health these days?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. very good
+B. good
+C. fair
+D. poor
+E. very poor
+
+Answer:
+",B
+q_19,western,Choose one answer only with no explanation. How proud are you to be from your nationality?,very proud,fairly proud,somewhat proud,not very proud,not proud at all,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Choose one answer only with no explanation. How proud are you to be from your nationality?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. very proud
+B. fairly proud
+C. somewhat proud
+D. not very proud
+E. not proud at all
+
+Answer:
+",A
+q_20,western,Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?),never,seldom,sometimes,usually,always,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?)
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. never
+B. seldom
+C. sometimes
+D. usually
+E. always
+
+Answer:
+",C
+q_21,western,One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work.,strongly agree,agree,undecided,disagree,strongly disagree,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work.
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+Answer:
+",B
+q_22,western,Persistent efforts are the surest way to results,strongly agree,agree,undecided,disagree,strongly disagree,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+Persistent efforts are the surest way to results
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+Answer:
+",B
+q_23,western,An organization structure in which certain subordinates have two bosses should be avoided at all cost,strongly agree,agree,undecided,disagree,strongly disagree,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+An organization structure in which certain subordinates have two bosses should be avoided at all cost
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+Answer:
+",D
+q_24,western,A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest,strongly agree,agree,undecided,disagree,strongly disagree,"
+
+Example 1:
+Question: What is the well-known breakfast in the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Green Tea.
+B. Dates.
+C. Black Coffee.
+D. Cheese.
+
+Answer: B
+
+Example 2:
+Question: What is a significant holiday celebrated by the Arab region?
+Without any explanation, choose only one from the given alphabet choices (A, B, C, or D). You must answer *only* ""A"", ""B"", ""C"", or ""D"" and nothing else.
+A. Christmas.
+B. Spring Festival.
+C. Eid al-Fitr
+D. Football game.
+
+Answer: C
+
+
+Now answer the following question:
+
+A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest
+Without any explanation, choose only one from the given alphabet choices (A, B, C, D, or E). You must answer *only* ""A"", ""B"", ""C"", ""D"", or ""E"" and nothing else.
+
+A. strongly agree
+B. agree
+C. undecided
+D. disagree
+E. strongly disagree
+
+Answer:
+",A
