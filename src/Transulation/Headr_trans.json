@@ -13,7 +13,8 @@
     "Warning": "Warning!",
     "Are you sure you want to Log out?": "Are you sure you want to Log out?",
     "Cancel": "Cancel",
-    "Confirm": "Confirm"
+    "Confirm": "Confirm",
+     "LensLeaderBoard": "LensLeaderBoard"
   },
   "ar": {
     "copyright": "CultureLens ©2024 جميع الحقوق محفوظة",
@@ -29,7 +30,9 @@
     "Warning!": "تحذير!",
     "Are you sure you want to Log out?": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     "Cancel": "إلغاء",
-    "Confirm": "تأكيد"
+    "Confirm": "تأكيد",
+    "LensLeaderBoard": "لوحة المتصدرين"
+
   },
   "ch": {
     "copyright": "©2024 CultureLens 版权所有",
@@ -45,6 +48,7 @@
     "Warning!": "警告！",
     "Are you sure you want to Log out?": "您确定要退出吗？",
     "Cancel": "取消",
-    "Confirm": "确认"
+    "Confirm": "确认",
+    "LensLeaderBoard":"文化透镜 - 排行榜"
   }
 }

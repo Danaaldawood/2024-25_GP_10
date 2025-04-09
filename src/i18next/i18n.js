@@ -74,7 +74,9 @@ import plottrans from '../Transulation/Plot_trans.json';
 import ResetPasswordTrans from '../Transulation/RestPass_tran.json';
 import ForgetPassTrans from '../Transulation/ForgetPass_tran.json';
 import TermsModaltrans from '../Transulation/TermsModal_trans.json';
-
+import FreeStyleTrans from '../Transulation/FreeStyle_trans.json'
+import FreeStyleAddTrans from '../Transulation/FreeStyleAdd_trans.json'
+import LensScoreTran from '../Transulation/LensScore_trans.json'
 i18n.use(initReactI18next).init({
   lng: localStorage.getItem('i18nextLng') || 'en',
   fallbackLng: 'ar',
@@ -112,6 +114,9 @@ i18n.use(initReactI18next).init({
       RestPass: ResetPasswordTrans.en,
       ForgetPass: ForgetPassTrans.en,
       TermsModal: TermsModaltrans.en,
+      FreeStyle:FreeStyleTrans.en,
+      FreeStyleAdd:FreeStyleAddTrans.en,
+      lensScore:LensScoreTran.en,
     },
     ar: {
       headerpage: headertrans.ar,
@@ -130,6 +135,9 @@ i18n.use(initReactI18next).init({
       RestPass: ResetPasswordTrans.ar,
       ForgetPass: ForgetPassTrans.ar,
       TermsModal: TermsModaltrans.ar,
+      FreeStyle:FreeStyleTrans.ar,
+      FreeStyleAdd:FreeStyleAddTrans.ar,
+      lensScore:LensScoreTran.ar,
     },
     ch: {
       headerpage: headertrans.ch,
@@ -148,6 +156,9 @@ i18n.use(initReactI18next).init({
       RestPass: ResetPasswordTrans.ch,
       ForgetPass: ForgetPassTrans.ch,
       TermsModal: TermsModaltrans.ch,
+      FreeStyle:FreeStyleTrans.ch,
+      FreeStyleAdd:FreeStyleAddTrans.ch,
+      lensScore:LensScoreTran.ch,
     },
   },
   interpolation: {
