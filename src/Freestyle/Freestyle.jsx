@@ -4,20 +4,26 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from 'react-helmet';
 import "./Freestyle.css";
-
+import { useTranslation } from 'react-i18next';
 
 export const ConversationLayout = () => {
   const navigate = useNavigate();
-  
+    const { t, i18n } = useTranslation('FreeStyle');
+      const isRTL = i18n.dir() === 'rtl';
+      const formatNumber = (number) => {
+        return new Intl.NumberFormat(i18n.language).format(number);
+      };
+      
   const [inputMessage, setInputMessage] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [messagesA, setMessagesA] = useState([
-    { type: "ai", content: "Hello, this is Model A. How can I assist you?" },
+    { type: "ai", content: t("modelAA") },
   ]);
+  
   const [messagesB, setMessagesB] = useState([
-    { type: "ai", content: "Hello, this is Model B. How can I assist you?" },
-  ]);
-  const sendLimit = 7;
+    { type: "ai", content: t("modelBB") },
+  ]);  
+  const sendLimit = 1;
   const [sendCount, setSendCount] = useState(0);
   const [canGiveFeedback, setCanGiveFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,8 +31,7 @@ export const ConversationLayout = () => {
   const [isLoadingB, setIsLoadingB] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedModel, setSelectedModel] = useState("");
-  const progressWidth = `${(sendCount / sendLimit) * 100}%`;
-   
+  const progressWidth = `${(sendCount / sendLimit) * 100}%`;   
   
   // Fetch suggestions when component mounts
   useEffect(() => {
@@ -67,13 +72,13 @@ export const ConversationLayout = () => {
               // Add AI response to Model A chat
               setMessagesA(prev => [...prev, { type: "ai", content: data.response }]);
             } else {
-              setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, I couldn't process your request." }]);
+              setMessagesA(prev => [...prev, { type: "ai", content:  t("error-processing-request") }]);
             }
             setIsLoadingA(false);
           })
           .catch(error => {
             console.error('Error with Model A:', error);
-            setMessagesA(prev => [...prev, { type: "ai", content: "Sorry, there was an error processing your request." }]);
+            setMessagesA(prev => [...prev, { type: "ai", content: t("processing-request") }]);
             setIsLoadingA(false);
           });
 
@@ -90,13 +95,13 @@ export const ConversationLayout = () => {
               // Add AI response to Model B chat
               setMessagesB(prev => [...prev, { type: "ai", content: data.response }]);
             } else {
-              setMessagesB(prev => [...prev, { type: "ai", content: "Sorry, I couldn't process your request." }]);
+              setMessagesB(prev => [...prev, { type: "ai", content:t("error-processing-request") }]);
             }
             setIsLoadingB(false);
           })
           .catch(error => {
             console.error('Error with Model B:', error);
-            setMessagesB(prev => [...prev, { type: "ai", content: "Sorry, there was an error processing your request." }]);
+            setMessagesB(prev => [...prev, { type: "ai", content: t("processing-request")}]);
             setIsLoadingB(false);
           });
 
@@ -160,11 +165,13 @@ const handlePopupAction = (action) => {
   return (
     <div className="freestylepage">
       <Helmet>
-        <title>Free style chatting</title>
-        <meta name="description" content="Free style chatting page" />
+      <title class="titleFree">Free style chatting</title>
+      <meta name="description" content="Free style chatting page" />
       </Helmet>
        <div className="freestyle-page-header">
-        <button className="freestyle-back-btn" onClick={() => navigate("/plot")}>
+       <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
+  
+
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
         <div className="feedback-container mt-4">
@@ -172,44 +179,44 @@ const handlePopupAction = (action) => {
         </div>
       </div>
        
-      <h2 className="freestyle-title">Free Style Chatting</h2>
+       <h2 class="titleFree">{t('titleFree')}</h2>
 
       <div className="send-limit-bar">
         <div className="progress" style={{ width: progressWidth }}></div>
-        <p>{`${sendCount} / ${sendLimit} Sends`}</p>
-      </div>
+        <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
+        </div>
 
       <div className="dual-chat-container">
         <div className="chat-model">
-          <h2 className="conversation-title">Model A</h2>
+          <h2 className="conversation-title">{t("conversation-titleA")}</h2>
           <div className="freestyle-message-list">
             {messagesA.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
                 <div className="freestyle-message-content">{message.content}</div>
               </div>
             ))}
-            {isLoadingA && <div className="message ai-message">Typing...</div>}
+            {isLoadingA && <div className="message ai-message">{t("message ai-message")}</div>}
           </div>
         </div>
 
         <div className="chat-model">
-          <h2 className="conversation-title">Model B</h2>
+          <h2 className="conversation-title">{t("conversation-titleB")}</h2>
           <div className="freestyle-message-list">
             {messagesB.map((message, index) => (
               <div key={index} className={`message ${message.type}-message`}>
                 <div className="freestyle-message-content">{message.content}</div>
               </div>
             ))}
-            {isLoadingB && <div className="message ai-message">Typing...</div>}
+            {isLoadingB && <div className="message ai-message">{t("message ai-message")}</div>}
           </div>
         </div>
       </div>
 
       {sendCount === sendLimit && !isLoading && (
   <div className="feedback-container mt-4">
-    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>👍 Model A is better</button>
-    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>👍 Model B is better</button>
-    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('none')}> none</button>
+    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>{t("👍 Model A is better")}</button>
+    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>{t("👍 Model B is better")}</button>
+    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('none')}> {("none")}</button>
   </div>
 )}
 
@@ -217,7 +224,7 @@ const handlePopupAction = (action) => {
         <input
           type="text"
           className="freestyle-message-input"
-          placeholder="Enter your message..."
+          placeholder={t("enter-message")} 
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
@@ -228,22 +235,22 @@ const handlePopupAction = (action) => {
           onClick={handleSendMessage} 
           disabled={sendCount >= sendLimit || isLoading}
         >
-          {isLoading ? 'Sending...' : 'Send'}
-        </button>
+ {isLoading ? t('sending') : t('send')}
+         </button>
       </div>
 
       <Footer />
 
       {showPopup && (
-      <div className="popup-overlay">
-        <div className="popup-content">
-          <h3>{selectedModel} 🌟 Thank you for voting!</h3>
-          <p>Would you like to add your chat?</p>
-          <div className="popup-buttons">
-            {/* "Yes" button will navigate to FreeStyleAdd */}
-            <button onClick={() => handlePopupAction("yes")}>Yes</button>
-            {/* "Cancel" button will navigate to HomePage */}
-            <button onClick={() => handlePopupAction("cancel")}>Cancel</button>
+     <div className="popup-overlay">
+     <div className="popup-content">
+       <h3>{t(selectedModel === 'Model A' ? 'modelA' : 'modelB')}{t("thank-you-voting")}🌟</h3>
+       <p>{t("add-chat-question")}</p>
+       <div className="popup-buttons">
+         {/* "Yes" button will navigate to FreeStyleAdd */}
+         <button onClick={() => handlePopupAction("yes")}>{t("yes")}</button>
+         {/* "Cancel" button will navigate to HomePage */}
+         <button onClick={() => handlePopupAction("cancel")}>{t("cancel")}</button>
           </div>
         </div>
       </div>

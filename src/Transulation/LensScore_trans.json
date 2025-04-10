@@ -1,0 +1,81 @@
+{
+    "en": {
+      "CultureLens - LeaderBoard": "CultureLens - LeaderBoard",
+      "Region": "Region",
+      "Model": "Model",
+      "Topic": "Topic",
+      "Lens Score": "Lens Score",
+      "No data available for this region": "No data available for this region",
+      "models": {
+        "Model A": "Model A",
+        "Model B": "Model B"
+      },
+      "topics": {
+        "Food": "Food",
+        "Education": "Education",
+        "Work life": "Work life",
+        "Sport": "Sport",
+        "Holidays": "Holidays",
+        "Family": "Family",
+        "greeting": "Greeting"
+      },
+      "regions": {
+        "Arab": "Arab",
+        "Chinese": "Chinese",
+        "Western": "Western"
+      }
+    },
+    "ar": {
+      "CultureLens - LeaderBoard": "عدسة الثقافة - لوحة المتصدرين",
+      "Region": "المنطقة",
+      "Model": "النموذج",
+      "Topic": "الموضوع",
+      "Lens Score": "درجة العدسة",
+      "No data available for this region": "لا توجد بيانات لهذه المنطقة",
+      "models": {
+        "Model A": "النموذج أ",
+        "Model B": "النموذج ب"
+      },
+      "topics": {
+        "Food": "طعام",
+        "Education": "تعليم",
+        "Work life": "حياة العمل",
+        "Sport": "رياضة",
+        "Holidays": "عطلة",
+        "Family": "عائلة",
+        "greeting": "تحية"
+      },
+      "regions": {
+        "Arab": "عربي",
+        "Chinese": "صيني",
+        "Western": "غربي"
+      }
+    },
+    "ch": {
+      "CultureLens - LeaderBoard": "文化透镜 - 排行榜",
+      "Region": "地区",
+      "Model": "模型",
+      "Topic": "主题",
+      "Lens Score": "透镜评分",
+      "No data available for this region": "该地区无可用数据",
+      "models": {
+        "Model A": "模型A",
+        "Model B": "模型B"
+      },
+      "topics": {
+        "Food": "食物",
+        "Education": "教育",
+        "Work life": "工作生活",
+        "Sport": "运动",
+        "Holidays": "假期",
+        "Family": "家庭",
+        "greeting": "问候"
+      },
+      "regions": {
+        "Arab": "阿拉伯",
+        "Chinese": "中国",
+        "Western": "西方"
+      }
+    }
+  }
+  

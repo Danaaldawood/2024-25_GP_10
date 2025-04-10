@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import "./LensLeaderBoard.css";
 import { ref, onValue } from "firebase/database";
@@ -5,14 +6,17 @@ import { realtimeDb } from "../Register/firebase";
 import { Header } from "../Header/Header";
 import { Helmet } from "react-helmet";
 import { Footer } from "../Footer/Footer";
-
+import { useTranslation } from 'react-i18next';
 const LensLeaderBoard = () => {
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [regionFilter, setRegionFilter] = useState("Arab"); // default region
   const validRegions = ["Arab", "Chinese", "Western"];
-
+  const { t, i18n } = useTranslation('lensScore');
+  const isRTL = i18n.dir() === 'rtl';
   useEffect(() => {
     const evaluationRef = ref(realtimeDb, "model_evaluation");
+  
+  const MAX_EDIT_LENGTH = 50;  
 
     onValue(evaluationRef, (snapshot) => {
       const data = snapshot.val();
@@ -70,16 +74,16 @@ const LensLeaderBoard = () => {
     <div className="LensLeaderbord-container">
       <Header />
       <Helmet>
-        <title>LensLeaderBoard</title>
+        <title>{t("CultureLens - LeaderBoard")}</title>
         <meta name="description" />
       </Helmet>
-
+  
       <div className="title-wrapper">
-        <p className="leaderboard-title">CultureLens - LeaderBoard</p>
+        <p className="leaderboard-title">{t("CultureLens - LeaderBoard")}</p>
       </div>
-
+  
       <div className="dropdown-region">
-        <label htmlFor="regionSelect">Region:</label>
+        <label htmlFor="regionSelect">{t("Region")}:</label>
         <select
           id="regionSelect"
           value={regionFilter}
@@ -87,18 +91,18 @@ const LensLeaderBoard = () => {
         >
           {validRegions.map((region, index) => (
             <option key={index} value={region}>
-              {region}
+              {t(`regions.${region}`)}
             </option>
           ))}
         </select>
       </div>
-
+  
       <table>
         <thead>
           <tr>
-            <th>Model</th>
-            <th>Topic</th>
-            <th>Lens Score</th>
+            <th>{t("Model")}</th>
+            <th>{t("Topic")}</th>
+            <th>{t("Lens Score")}</th>
           </tr>
         </thead>
         <tbody>
@@ -108,19 +112,20 @@ const LensLeaderBoard = () => {
               const averageScore = calculateLensScore(model, topic);
               return (
                 <tr key={index}>
-                  <td>{model}</td>
-                  <td>{topic}</td>
+                  <td>{t(`${model}`)}</td>
+                  <td>{t(`topics.${topic}`)}</td>
                   <td>{averageScore}</td>
                 </tr>
               );
             })
           ) : (
             <tr>
-              <td colSpan="3">No data available for this region</td>
+              <td colSpan="3">{t("No data available for this region")}</td>
             </tr>
           )}
         </tbody>
       </table>
+    
 
       <Footer />  
     </div>

@@ -7,6 +7,8 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { realtimeDb, auth, db } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import { FaCheck } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+
 const FreeStyleAdd = () => {
   const navigate = useNavigate();
   const [chatData, setChatData] = useState(null);
@@ -26,7 +28,8 @@ const FreeStyleAdd = () => {
     setPopupMessage(message);
     setShowPopup(true);
   };
-  
+  const { t, i18n } = useTranslation('FreeStyleAdd');
+        const isRTL = i18n.dir() === 'rtl';
   const MAX_EDIT_LENGTH = 50;  
 
   // Fetch chat data from localStorage once on component mount
@@ -233,7 +236,7 @@ const FreeStyleAdd = () => {
       const entryRef = ref(realtimeDb, `Model_Answer/Details/${newEntryKey}`);
       await set(entryRef, newEntry);
 
-      handlePopup("✅ Entry added successfully!");
+      handlePopup(t("✅ Entry added successfully!"));
       setDisabledButtons(prev => ({ ...prev, [index]: true }));
     } catch (error) {
       console.error("Error adding data:", error);
@@ -271,24 +274,24 @@ const FreeStyleAdd = () => {
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
       </div>
-      <h1 className="add-conversation-title">Add Conversation Page</h1>
+      <h1 className="add-conversation-title">{t("Add Conversation Page")}</h1>
       <h2 className="freestyle-title">
-        Your Voting: {chatData.selectedModel || "Not Selected"}
+      {t("Your Voting:")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
       </h2>
       <h3 className="model-info">
-        Model A: Mistral-7B <br />
-        Model B: Llama-2-7B
+      {t("Model A: Mistral-7B ")}<br /><p>-</p>
+      {t( "Model B: Llama-2-7B")}
       </h3>
       <div className="column-table-container">
         <table className="column-table">
           <thead>
             <tr>
-              <th className="question-col">Question</th>
-              <th className="answer-col">Answer</th>
-              <th className="topic-col">Topic</th>
-              <th className="eval-col">Overall LLM Evaluation</th>
-              <th className="reason-col">Reason</th> 
-              <th className="add-col">Add</th> 
+              <th className="question-col">{t("Question")}</th>
+              <th className="answer-col">{t("Answer")}</th>
+              <th className="topic-col">{t("Topic")}</th>
+              <th className="eval-col">{t("Overall LLM Evaluation")}</th>
+              <th className="reason-col">{t("Reason")}</th> 
+              <th className="add-col">{t("Add")}</th> 
             </tr>
           </thead>
           <tbody>
@@ -301,7 +304,7 @@ const FreeStyleAdd = () => {
                 <td className="answer-cell">
                   {(chatData.selectedModel === "Model A" || chatData.selectedModel === "Both") && (
                     <>
-                      <div className="model-label">Model A (Mistral-7B)</div>
+                      <div className="model-label">{t("Model A (Mistral-7B)")}</div>
                       <div className="content-wrapper">
                         {editing.model === 'A' && editing.index === index ? (
                           <div className="edit-container">
@@ -351,7 +354,7 @@ const FreeStyleAdd = () => {
 
                   {(chatData.selectedModel === "Model B" || chatData.selectedModel === "Both") && (
                     <>
-                      <div className="model-label">Model B (Llama-2-7B)</div>
+                      <div className="model-label">{t("Model B (Llama-2-7B)")}</div>
                       <div className="content-wrapper">
                         {editing.model === 'B' && editing.index === index ? (
                           <div className="edit-container">
@@ -383,8 +386,8 @@ const FreeStyleAdd = () => {
                                   className="see-more-btn"
                                   onClick={() => toggleExpand(`B-${index}`)}
                                 >
-                                  {expandedAnswers[`B-${index}`] ? "Show Less" : "Show More"}
-                                </button>
+{expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
+</button>
                               )}
                               <button 
                                 className="icon-btn edit-btn"
@@ -408,10 +411,11 @@ const FreeStyleAdd = () => {
                   >
                     {topics.length > 0 ? (
                       topics.map((topic, idx) => (
-                        <option key={idx} value={topic}>{topic}</option>
-                      ))
+                        <option key={idx} value={topic}>
+                        {t(`topics.${topic}`)}
+                      </option>                      ))
                     ) : (
-                      <option value="">No topics available</option>
+<option value="">{t("No topics available")}</option>
                     )}
                   </select>
                 </td>
@@ -422,11 +426,12 @@ const FreeStyleAdd = () => {
                     value={selectedEvaluation}
                     onChange={(e) => setSelectedEvaluation(e.target.value)}
                   >
-                    <option value="" disabled>Select Overall Evaluation</option>
-                    <option value="Fully Correct">Fully Correct</option>
-                    <option value="Partially Correct">Partially Correct</option>
-                    <option value="Poor">Poor</option>
-                    <option value="None">None</option>
+                    <option value="" disabled>{t("Select Overall Evaluation")}</option>
+<option value="Fully Correct">{t("Fully Correct")}</option>
+<option value="Partially Correct">{t("Partially Correct")}</option>
+<option value="Poor">{t("Poor")}</option>
+<option value="None">{t("None")}</option>
+
                   </select>
                 </td>
 
@@ -436,9 +441,10 @@ const FreeStyleAdd = () => {
                     value={reasonValues[index] || ""}
                     onChange={(e) => handleReasonChange(index, e.target.value)}
                   >
-                    <option value="" disabled>Select Reason</option>
-                    <option value="variation">Variation</option>
-                    <option value="subculture">Subculture</option>
+                    <option value="" disabled>{t("Select Reason")}</option>
+<option value="variation">{t("Variation")}</option>
+<option value="subculture">{t("Subculture")}</option>
+
                   </select>
                 </td>
 
@@ -449,8 +455,9 @@ const FreeStyleAdd = () => {
   disabled={disabledButtons[index]}
 >
   {disabledButtons[index] ? <FaCheck className="add-icon" /> : <FaPlus className="add-icon" />}
-  Add
+  {t("Add")}
 </button>
+
 
 
                 </td>
