@@ -1,5 +1,5 @@
-Q_ID,reagon,eng_question,option_A,option_B,option_C,option_D,option_E,textF,Predicted
-q_1,western,have sufficient time for your citizenl or home life,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+Q_ID,Region,Question,option_A,option_B,option_C,option_D,option_E,textF,Predicted
+1,western,have sufficient time for your citizenl or home life,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -35,7 +35,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_2,western,have a boss (direct superior) you can respect.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+2,western,have a boss (direct superior) you can respect.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -71,7 +71,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_3,western,get recognition for good performance.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+3,western,get recognition for good performance.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -107,7 +107,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_4,western,have security of employment.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+4,western,have security of employment.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -143,7 +143,7 @@ E.  of very little or no importance
 
 Answer:
 ",E
-q_5,western, have pleasant people to work with.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+5,western, have pleasant people to work with.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -179,7 +179,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_6,western, do work that is interesting.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+6,western, do work that is interesting.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -215,7 +215,7 @@ E.  of very little or no importance
 
 Answer:
 ",E
-q_7,western,be consulted by your boss in decisions involving your work.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+7,western,be consulted by your boss in decisions involving your work.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -251,7 +251,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_8,western,live in a desirable area.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+8,western,live in a desirable area.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -287,7 +287,7 @@ E.  of very little or no importance
 
 Answer:
 ",E
-q_9,western, have a job respected by your family and friends.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+9,western, have a job respected by your family and friends.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -323,7 +323,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_10,western,have chances for promotion in your private life.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+10,western,have chances for promotion in your private life.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -359,7 +359,7 @@ E.  of very little or no importance
 
 Answer:
 ",B
-q_11,western,keeping time free for fun.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+11,western,keeping time free for fun.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -395,7 +395,7 @@ E.  of very little or no importance
 
 Answer:
 ",E
-q_12,western,moderation: having few desires.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+12,western,moderation: having few desires.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -431,7 +431,7 @@ E.  of very little or no importance
 
 Answer:
 ",C
-q_13,western,doing a service to a friend.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+13,western,doing a service to a friend.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -467,7 +467,7 @@ E.  of very little or no importance
 
 Answer:
 ",E
-q_14,western,thrift (not spending more than needed).,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
+14,western,thrift (not spending more than needed).,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -503,7 +503,7 @@ E.  of very little or no importance
 
 Answer:
 ",E
-q_15,western,Choose one with no explanation. How often do you feel nervous or tense?,always,usually,sometimes,seldom,never,"
+15,western,Choose one with no explanation. How often do you feel nervous or tense?,always,usually,sometimes,seldom,never,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -539,7 +539,7 @@ E. never
 
 Answer:
 ",B
-q_16,western,Choose one answer only with no explanation. How often are you happy?,always,usually,sometimes,seldom,never,"
+16,western,Choose one answer only with no explanation. How often are you happy?,always,usually,sometimes,seldom,never,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -575,7 +575,7 @@ E. never
 
 Answer:
 ",B
-q_17,western,Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?,"yes, always"," yes, usually",sometimes,"no, seldom","no, never","
+17,western,Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?,"yes, always"," yes, usually",sometimes,"no, seldom","no, never","
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -611,7 +611,7 @@ E. no and never
 
 Answer:
 ",B
-q_18,western,"Choose one answer only with no explanation. All in all, how would you describe your state of health these days?",very good,good,fair,poor,very poor,"
+18,western,"Choose one answer only with no explanation. All in all, how would you describe your state of health these days?",very good,good,fair,poor,very poor,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -647,7 +647,7 @@ E. very poor
 
 Answer:
 ",B
-q_19,western,Choose one answer only with no explanation. How proud are you to be from your nationality?,very proud,fairly proud,somewhat proud,not very proud,not proud at all,"
+19,western,Choose one answer only with no explanation. How proud are you to be from your nationality?,very proud,fairly proud,somewhat proud,not very proud,not proud at all,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -683,7 +683,7 @@ E. not proud at all
 
 Answer:
 ",A
-q_20,western,Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?),never,seldom,sometimes,usually,always,"
+20,western,Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?),never,seldom,sometimes,usually,always,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -719,7 +719,7 @@ E. always
 
 Answer:
 ",C
-q_21,western,One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work.,strongly agree,agree,undecided,disagree,strongly disagree,"
+21,western,One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work.,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -755,7 +755,7 @@ E. strongly disagree
 
 Answer:
 ",B
-q_22,western,Persistent efforts are the surest way to results,strongly agree,agree,undecided,disagree,strongly disagree,"
+22,western,Persistent efforts are the surest way to results,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -791,7 +791,7 @@ E. strongly disagree
 
 Answer:
 ",B
-q_23,western,An organization structure in which certain subordinates have two bosses should be avoided at all cost,strongly agree,agree,undecided,disagree,strongly disagree,"
+23,western,An organization structure in which certain subordinates have two bosses should be avoided at all cost,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
@@ -827,7 +827,7 @@ E. strongly disagree
 
 Answer:
 ",D
-q_24,western,A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest,strongly agree,agree,undecided,disagree,strongly disagree,"
+24,western,A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
 Question: What is the well-known breakfast in the Arab region?
