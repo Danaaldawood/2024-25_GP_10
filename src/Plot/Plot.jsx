@@ -16,7 +16,9 @@ export const Plot = () => {
   const navigate = useNavigate();
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [selectedDimension, setSelectedDimension] = useState("");
-  const [dimensionPlaceholder, setDimensionPlaceholder] = useState(t("selectATopicPlaceholder"));
+  const [dimensionPlaceholder, setDimensionPlaceholder] = useState(
+    t("selectATopicPlaceholder")
+  );
   const [hasError, setHasError] = useState(false);
   const [isTooltipVisible, setTooltipVisible] = useState(false);
 
@@ -26,7 +28,15 @@ export const Plot = () => {
   const [results, setResults] = useState(null);
   const [showMap, setShowMap] = useState(true);
 
-  const topicKeys = ["allTopics", "food", "sport", "family", "holidays", "worklife", "greeting"];
+  const topicKeys = [
+    "allTopics",
+    "food",
+    "sport",
+    "family",
+    "holidays",
+    "worklife",
+    "greeting",
+  ];
   const topicKeyToApiValue = {
     allTopics: "All Topics",
     food: "Food",
@@ -38,8 +48,14 @@ export const Plot = () => {
   };
 
   const regionToIds = {
-    Western: [840, 124, 826, 250, 276, 380, 724, 620, 528, 56, 756, 40, 372, 752, 578, 208, 246],
-    Arab: [12, 48, 818, 368, 400, 414, 422, 434, 504, 512, 275, 634, 682, 729, 760, 788, 784, 887],
+    Western: [
+      840, 124, 826, 250, 276, 380, 724, 620, 528, 56, 756, 40, 372, 752, 578,
+      208, 246,
+    ],
+    Arab: [
+      12, 48, 818, 368, 400, 414, 422, 434, 504, 512, 275, 634, 682, 729, 760,
+      788, 784, 887,
+    ],
     Chinese: [156, 344, 446, 158, 702],
   };
 
@@ -75,7 +91,11 @@ export const Plot = () => {
       const response = await fetch("http://127.0.0.1:5000/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: apiTopicValue, model: evalLLM, evalType: evalType }),
+        body: JSON.stringify({
+          topic: apiTopicValue,
+          model: evalLLM,
+          evalType: evalType,
+        }),
       });
       const data = await response.json();
       setResults(data);
@@ -93,13 +113,24 @@ export const Plot = () => {
   const renderMap = () => {
     const width = 960;
     const height = 500;
-    const svg = d3.select("#map").append("svg").attr("width", width).attr("height", height);
-    const projection = d3.geoMercator().scale(140).center([0, 30]).translate([width / 2, height / 2]);
+    const svg = d3
+      .select("#map")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+    const projection = d3
+      .geoMercator()
+      .scale(140)
+      .center([0, 30])
+      .translate([width / 2, height / 2]);
 
-    d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then((geoData) => {
+    d3.json(
+      "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+    ).then((geoData) => {
       const countries = feature(geoData, geoData.objects.countries);
 
-      const colorScale = d3.scaleLinear()
+      const colorScale = d3
+        .scaleLinear()
         .domain([0, 2])
         .range(["#f9d1a8", "#f28d27"]);
 
@@ -109,19 +140,26 @@ export const Plot = () => {
       const legendY = height - 50;
 
       const defs = svg.append("defs");
-      const linearGradient = defs.append("linearGradient")
+      const linearGradient = defs
+        .append("linearGradient")
         .attr("id", "legend-gradient")
-        .attr("x1", "0%").attr("x2", "100%").attr("y1", "0%").attr("y2", "0%");
+        .attr("x1", "0%")
+        .attr("x2", "100%")
+        .attr("y1", "0%")
+        .attr("y2", "0%");
 
-      linearGradient.append("stop")
+      linearGradient
+        .append("stop")
         .attr("offset", "0%")
         .style("stop-color", colorScale(0));
 
-      linearGradient.append("stop")
+      linearGradient
+        .append("stop")
         .attr("offset", "100%")
         .style("stop-color", colorScale(2));
 
-      svg.append("rect")
+      svg
+        .append("rect")
         .attr("x", legendX)
         .attr("y", legendY)
         .attr("width", legendWidth)
@@ -130,7 +168,8 @@ export const Plot = () => {
         .style("stroke", "#000")
         .style("stroke-width", 1);
 
-      svg.append("text")
+      svg
+        .append("text")
         .attr("x", legendX)
         .attr("y", legendY + legendHeight + 15)
         .attr("text-anchor", "start")
@@ -138,7 +177,8 @@ export const Plot = () => {
         .style("font-size", "12px")
         .text(evalType.includes("Hofstede") ? "0.00" : "0.00%");
 
-      svg.append("text")
+      svg
+        .append("text")
         .attr("x", legendX + legendWidth)
         .attr("y", legendY + legendHeight + 15)
         .attr("text-anchor", "end")
@@ -146,29 +186,37 @@ export const Plot = () => {
         .style("font-size", "12px")
         .text(evalType.includes("Hofstede") ? "2.00" : "100.00%");
 
-      svg.append("text")
+      svg
+        .append("text")
         .attr("x", legendX + legendWidth / 2)
         .attr("y", legendY - 5)
         .attr("text-anchor", "middle")
         .style("fill", "#722F57")
         .style("font-size", "14px")
-        .text(evalType.includes("Hofstede") ? t("standardDeviation") : t("coverageScore"));
+        .text(
+          evalType.includes("Hofstede")
+            ? t("standardDeviation")
+            : t("coverageScore")
+        );
 
-      svg.append("g")
+      svg
+        .append("g")
         .selectAll("path")
         .data(countries.features)
         .enter()
         .append("path")
         .attr("d", d3.geoPath().projection(projection))
         .attr("fill", (d) => {
-          const region = Object.keys(regionToIds).find((key) => regionToIds[key].includes(parseInt(d.id)));
+          const region = Object.keys(regionToIds).find((key) =>
+            regionToIds[key].includes(parseInt(d.id))
+          );
           if (!region) return "#d3d3d3";
           if (evalType.includes("Hofstede")) {
             const stdDev = results?.[region]?.standard_deviation || 0;
             return colorScale(stdDev);
           } else {
             const coverage = results?.[region]?.coverage_score || 0;
-            return colorScale(coverage / 100 * 2);
+            return colorScale((coverage / 100) * 2);
           }
         })
         .attr("stroke", "#fff");
@@ -176,11 +224,12 @@ export const Plot = () => {
       const regionPositions = {
         Arab: projection([35, 25]),
         Chinese: projection([100, 35]),
-        Western: projection([-110, 40])
+        Western: projection([-110, 40]),
       };
 
       Object.keys(regionPositions).forEach((region) => {
-        svg.append("text")
+        svg
+          .append("text")
           .attr("x", regionPositions[region][0] - 12)
           .attr("y", regionPositions[region][1] - 1)
           .attr("class", "map-label")
@@ -199,7 +248,7 @@ export const Plot = () => {
       return t("tooltips.cohereFineTuned");
     } else if (evalType === "Mistral Baseline") {
       return t("tooltips.cohereBaseline");
-    }else if (evalType === "Llama2 Fine-tuned Model") {
+    } else if (evalType === "Llama2 Fine-tuned Model") {
       return t("tooltips.LlamaFineTuned");
     } else if (evalType === "LLAMA2 Baseline") {
       return t("tooltips.llamaBaseline");
@@ -209,7 +258,10 @@ export const Plot = () => {
       return t("tooltips.hofstedeLlama");
     } else if (evalType === "Hofstede Questions-Mistral Fine-tuned Model") {
       return t("tooltips.hofstedeCohereFineTuned");
+    } else if (evalType === "Hofstede Questions-Llama2 Fine-tuned Model") {
+      return t("tooltips.hofstedeLlama2FineTuned");
     }
+
     return null;
   };
 
@@ -224,13 +276,24 @@ export const Plot = () => {
 
     if (evalType.includes("Hofstede")) {
       const arabStd = results?.Arab?.standard_deviation?.toFixed(2) || "0.00";
-      const chineseStd = results?.Chinese?.standard_deviation?.toFixed(2) || "0.00";
-      const westernStd = results?.Western?.standard_deviation?.toFixed(2) || "0.00";
-      console.log("Hofstede values - Arab:", arabStd, "Chinese:", chineseStd, "Western:", westernStd);
+      const chineseStd =
+        results?.Chinese?.standard_deviation?.toFixed(2) || "0.00";
+      const westernStd =
+        results?.Western?.standard_deviation?.toFixed(2) || "0.00";
+      console.log(
+        "Hofstede values - Arab:",
+        arabStd,
+        "Chinese:",
+        chineseStd,
+        "Western:",
+        westernStd
+      );
 
       const evalTypeKey = evalType.toLowerCase().replace(/ /g, "");
       console.log("evalTypeKey:", evalTypeKey);
-      const translatedEvalType = t(`modelNames.${evalTypeKey}`, { defaultValue: evalType });
+      const translatedEvalType = t(`modelNames.${evalTypeKey}`, {
+        defaultValue: evalType,
+      });
       console.log("Translated evalType:", translatedEvalType);
 
       const explanation = t("explanations.hofstedeText", {
@@ -238,20 +301,27 @@ export const Plot = () => {
         arab: arabStd,
         chinese: chineseStd,
         western: westernStd,
-        defaultValue: "{evalType} evaluated 24 Hofstede Work Life questions. Standard Deviations: Arab - {arab}, Chinese - {chinese}, Western - {western}.",
+        defaultValue:
+          "{evalType} evaluated 24 Hofstede Work Life questions. Standard Deviations: Arab - {arab}, Chinese - {chinese}, Western - {western}.",
       });
       console.log("Generated explanation:", explanation);
 
       // Improved fallback logic: Check if the explanation contains English text when the language is Arabic
-      const containsEnglish = /[a-zA-Z]/.test(explanation) && i18n.language === "ar";
-      if (containsEnglish || explanation.includes("{evalType}") || explanation.includes("{arab}")) {
+      const containsEnglish =
+        /[a-zA-Z]/.test(explanation) && i18n.language === "ar";
+      if (
+        containsEnglish ||
+        explanation.includes("{evalType}") ||
+        explanation.includes("{arab}")
+      ) {
         console.warn("Hofstede explanation translation failed, using fallback");
         const arabLabel = t("regions.arab", { defaultValue: "Arab" });
         const chineseLabel = t("regions.chinese", { defaultValue: "Chinese" });
         const westernLabel = t("regions.western", { defaultValue: "Western" });
-        const fallbackExplanation = i18n.language === "ar"
-          ? `${translatedEvalType} قيّم 24 سؤالًا من أسئلة هوفستيد حول حياة العمل. الانحرافات المعيارية: ${arabLabel} - ${arabStd}، ${chineseLabel} - ${chineseStd}، ${westernLabel} - ${westernStd}.`
-          : `${translatedEvalType} evaluated 24 Hofstede Work Life questions. Standard Deviations: ${arabLabel} - ${arabStd}, ${chineseLabel} - ${chineseStd}, ${westernLabel} - ${westernStd}.`;
+        const fallbackExplanation =
+          i18n.language === "ar"
+            ? `${translatedEvalType} قيّم 24 سؤالًا من أسئلة هوفستيد حول حياة العمل. الانحرافات المعيارية: ${arabLabel} - ${arabStd}، ${chineseLabel} - ${chineseStd}، ${westernLabel} - ${westernStd}.`
+            : `${translatedEvalType} evaluated 24 Hofstede Work Life questions. Standard Deviations: ${arabLabel} - ${arabStd}, ${chineseLabel} - ${chineseStd}, ${westernLabel} - ${westernStd}.`;
         return fallbackExplanation;
       }
       return explanation;
@@ -261,8 +331,13 @@ export const Plot = () => {
     const western = results?.Western?.coverage_score?.toFixed(2) || "0.00";
     const chinese = results?.Chinese?.coverage_score?.toFixed(2) || "0.00";
 
-    const translatedEvalType = t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, { defaultValue: evalType });
-    const translatedTopic = t(selectedTopicKey, { defaultValue: selectedTopicKey });
+    const translatedEvalType = t(
+      `modelNames.${evalType.toLowerCase().replace(/ /g, "")}`,
+      { defaultValue: evalType }
+    );
+    const translatedTopic = t(selectedTopicKey, {
+      defaultValue: selectedTopicKey,
+    });
 
     const coverageText = t("explanations.coverageText", {
       evalType: translatedEvalType,
@@ -270,15 +345,29 @@ export const Plot = () => {
       arab: arab,
       western: western,
       chinese: chinese,
-      defaultValue: '{evalType} evaluated answers for the "{topic}" topic. Coverage Scores: Arab - {arab}%, Western - {western}%, Chinese - {chinese}%.',
+      defaultValue:
+        '{evalType} evaluated answers for the "{topic}" topic. Coverage Scores: Arab - {arab}%, Western - {western}%, Chinese - {chinese}%.',
     });
 
-    const containsEnglish = /[a-zA-Z]/.test(coverageText) && i18n.language === "ar";
-    if (containsEnglish || coverageText.includes("{evalType}") || coverageText.includes("{topic}")) {
-      console.warn("Translation interpolation failed, constructing string manually");
-      const evaluatedAnswers = t("explanations.evaluatedAnswers", { defaultValue: "evaluated answers for the" });
-      const topicLabel = t("explanations.topicLabel", { defaultValue: "topic" });
-      const coverageScores = t("explanations.coverageScores", { defaultValue: "Coverage Scores" });
+    const containsEnglish =
+      /[a-zA-Z]/.test(coverageText) && i18n.language === "ar";
+    if (
+      containsEnglish ||
+      coverageText.includes("{evalType}") ||
+      coverageText.includes("{topic}")
+    ) {
+      console.warn(
+        "Translation interpolation failed, constructing string manually"
+      );
+      const evaluatedAnswers = t("explanations.evaluatedAnswers", {
+        defaultValue: "evaluated answers for the",
+      });
+      const topicLabel = t("explanations.topicLabel", {
+        defaultValue: "topic",
+      });
+      const coverageScores = t("explanations.coverageScores", {
+        defaultValue: "Coverage Scores",
+      });
       const arabLabel = t("regions.arab", { defaultValue: "Arab" });
       const westernLabel = t("regions.western", { defaultValue: "Western" });
       const chineseLabel = t("regions.chinese", { defaultValue: "Chinese" });
@@ -295,7 +384,10 @@ export const Plot = () => {
         <title>{t("pageTitle")}</title>
       </Helmet>
       <div className="plot-page-header">
-        <button className="plot-back-btn" onClick={() => navigate("/evaluation")}>
+        <button
+          className="plot-back-btn"
+          onClick={() => navigate("/evaluation")}
+        >
           <FaArrowLeft className="plot-back-icon" />
         </button>
       </div>
@@ -303,8 +395,14 @@ export const Plot = () => {
       <div className="plotheader">
         <h1 className="header-title">{t("headerTitle")}</h1>
         <div className="selection-container">
-          <h2 className="underlined">{t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, { defaultValue: evalType })}</h2>
-          {(evalType.includes("Baseline") || evalType === "Mistral Fine-tuned Model" ||evalType === "Llama2 Fine-tuned Model") ? (
+          <h2 className="underlined">
+            {t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, {
+              defaultValue: evalType,
+            })}
+          </h2>
+          {evalType.includes("Baseline") ||
+          evalType === "Mistral Fine-tuned Model" ||
+          evalType === "Llama2 Fine-tuned Model" ? (
             <select
               className="plot-select"
               value={selectedTopicKey}
@@ -323,17 +421,30 @@ export const Plot = () => {
 
         <div className="version-container">
           <h2 className="version-main">
-            {t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, { defaultValue: evalType })}
-            <FaInfoCircle className="info-icon" onClick={() => setTooltipVisible(!isTooltipVisible)} />
+            {t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, {
+              defaultValue: evalType,
+            })}
+            <FaInfoCircle
+              className="info-icon"
+              onClick={() => setTooltipVisible(!isTooltipVisible)}
+            />
           </h2>
-          {isTooltipVisible && <div className="tooltip-box">{getModelExplanation()}</div>}
+          {isTooltipVisible && (
+            <div className="tooltip-box">{getModelExplanation()}</div>
+          )}
         </div>
 
         <div className="toggle-container">
-          <button className={`toggle-button ${showMap ? "active" : ""}`} onClick={() => setShowMap(true)}>
+          <button
+            className={`toggle-button ${showMap ? "active" : ""}`}
+            onClick={() => setShowMap(true)}
+          >
             {t("map")}
           </button>
-          <button className={`toggle-button ${!showMap ? "active" : ""}`} onClick={() => setShowMap(false)}>
+          <button
+            className={`toggle-button ${!showMap ? "active" : ""}`}
+            onClick={() => setShowMap(false)}
+          >
             {t("chart")}
           </button>
         </div>
@@ -343,10 +454,16 @@ export const Plot = () => {
         ) : (
           <Bar
             data={{
-              labels: [t("regions.arab"), t("regions.chinese"), t("regions.western")],
+              labels: [
+                t("regions.arab"),
+                t("regions.chinese"),
+                t("regions.western"),
+              ],
               datasets: [
                 {
-                  label: evalType.includes("Hofstede") ? t("standardDeviation") : t("coverageScore"),
+                  label:evalType.includes("Hofstede")
+                    ? t("standardDeviation")
+                    : t("coverageScore"),
                   data: evalType.includes("Hofstede")
                     ? [
                         results?.Arab?.standard_deviation || 0,
@@ -364,16 +481,11 @@ export const Plot = () => {
             }}
           />
         )}
-<div className="plotsubmit-container">
-  <button
-    className="plotsubmit"
-    onClick={() => navigate("/freestyle")}
-  >
-    {t("freeStyleChatting")}
-  </button>
-</div>
-
-
+        <div className="plotsubmit-container">
+          <button className="plotsubmit" onClick={() => navigate("/freestyle")}>
+            {t("freeStyleChatting")}
+          </button>
+        </div>
       </div>
       <Footer />
     </div>

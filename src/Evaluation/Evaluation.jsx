@@ -99,7 +99,8 @@ export const Evaluation = () => {
                 <option value="Mistral Fine-tuned Model">{t('cohereFineTuned')}</option>
                 <option value="Hofstede Questions-Mistral Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
                 <option value="Llama2 Fine-tuned Model">{t('LlamaFineTuned')}</option>
-                {/* <option value="Hofstede Questions-Cohere Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option> */}
+                <option value="Hofstede Questions-Llama2 Fine-tuned Model">{t('hofstedeLlama2FineTuned')}</option>
+
 
               </select>
             </div>

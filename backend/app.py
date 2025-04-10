@@ -23,11 +23,11 @@ llama_hofstede_datasets = {
     "Chinese": pd.read_csv("./hofsted_chin_baselineL.csv", encoding="utf-8"),
 }
 
-# llama_finetuned_hofstede_datasets = {
-#     "Arab": pd.read_csv("./test_bank_arabic_chat_llama2.csv", encoding="utf-8"),
-#     "Western": pd.read_csv("./test_bank_western_chat_llama2.csv", encoding="utf-8"),
-#     "Chinese": pd.read_csv("./test_bank_chinese_chat_llama2.csv", encoding="utf-8"),
-# }
+llama_finetuned_hofstede_datasets = {
+    "Arab": pd.read_csv("./hofsted_llama finetune_arab (1).csv", encoding="utf-8"),
+    "Chinese": pd.read_csv("./hofsted_llama finetune_Chinese (1).csv", encoding="utf-8"),
+    "Western": pd.read_csv("./hofsted_llama finetune_west (1).csv", encoding="utf-8"),   
+}
 
 llama_finetuned_datasets = {
     "All Topics": pd.read_csv("./chatAllTopic_finetundllama.csv"),
@@ -155,10 +155,37 @@ def calculate_for_all_regions_llama_finetuned(topic):
         }
 
     return results
-def to_serializable(val):
-    if isinstance(val, (np.integer, np.floating)):
-        return val.item()
-    return val
+
+# def to_serializable(val):
+#     if isinstance(val, (np.integer, np.floating)):
+#         return val.item()
+#     return val
+
+#-- standred divation  for llama2 finteuned on Hofstede Questions
+def calculate_standard_deviation_llama_finetuned():
+    """
+    Calculate standard deviation within each region across all Hofstede questions for Llama2 Fine-tuned Model.
+    Expects column: 'Predicted'.
+    """
+    results = {}
+    for region, data in llama_finetuned_hofstede_datasets.items():
+        if 'Predicted' not in data.columns or not pd.api.types.is_numeric_dtype(data['Predicted']):
+            results[region] = {
+                "standard_deviation": 0.0,
+                "total_questions": len(data),
+                "responses": data.get('Predicted', []).tolist()
+            }
+        else:
+            std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+            results[region] = {
+                "standard_deviation": std_dev,
+                "total_questions": len(data),
+                "responses": data['Predicted'].tolist()
+            }
+    return results
+
+
+
 
 # --- Standard Deviation Calculation (For Hofstede Questions-Cohere Model) ---
 def calculate_standard_deviation_cohere():
@@ -175,6 +202,8 @@ def calculate_standard_deviation_cohere():
             "responses": data['Predicted'].tolist()
         }
     return results
+
+
 
 # --- Standard Deviation Calculation (For Hofstede Questions-Cohere Fine-tuned Model) ---
 def calculate_standard_deviation_cohere_finetuned():
@@ -266,6 +295,8 @@ def evaluate():
                 results = calculate_standard_deviation_cohere_finetuned()
             elif eval_type == "Llama2 Fine-tuned Model":
                   results = calculate_for_all_regions_llama_finetuned(topic)
+            elif eval_type == "Hofstede Questions-Llama2 Fine-tuned Model":
+                  results = calculate_standard_deviation_llama_finetuned()
             else:
                 return jsonify({"error": "Invalid evaluation type for Fine-Tuned"}), 400
             serializable_results = {

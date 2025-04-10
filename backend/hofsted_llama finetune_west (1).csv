@@ -34,7 +34,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 2,western,have a boss (direct superior) you can respect.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -70,7 +70,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 3,western,get recognition for good performance.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -106,7 +106,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 4,western,have security of employment.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -142,7 +142,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",E
+",5
 5,western, have pleasant people to work with.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -178,7 +178,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 6,western, do work that is interesting.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -214,7 +214,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",E
+",5
 7,western,be consulted by your boss in decisions involving your work.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -250,7 +250,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 8,western,live in a desirable area.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -286,7 +286,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",E
+",5
 9,western, have a job respected by your family and friends.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -322,7 +322,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 10,western,have chances for promotion in your private life.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -358,7 +358,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",B
+",2
 11,western,keeping time free for fun.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -394,7 +394,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",E
+",5
 12,western,moderation: having few desires.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -430,7 +430,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",C
+",3
 13,western,doing a service to a friend.,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -466,7 +466,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",E
+",5
 14,western,thrift (not spending more than needed).,of utmost importance,very important,moderate importance,of little importance, of very little or no importance,"
 
 Example 1:
@@ -502,7 +502,7 @@ D. of little importance
 E.  of very little or no importance
 
 Answer:
-",E
+",5
 15,western,Choose one with no explanation. How often do you feel nervous or tense?,always,usually,sometimes,seldom,never,"
 
 Example 1:
@@ -538,7 +538,7 @@ D. seldom
 E. never
 
 Answer:
-",B
+",2
 16,western,Choose one answer only with no explanation. How often are you happy?,always,usually,sometimes,seldom,never,"
 
 Example 1:
@@ -574,7 +574,7 @@ D. seldom
 E. never
 
 Answer:
-",B
+",2
 17,western,Choose one answer only with no explanation. Do other people or circumstances ever prevent you from doing what you really want to?,"yes, always"," yes, usually",sometimes,"no, seldom","no, never","
 
 Example 1:
@@ -610,7 +610,7 @@ D. no and seldom
 E. no and never
 
 Answer:
-",B
+",2
 18,western,"Choose one answer only with no explanation. All in all, how would you describe your state of health these days?",very good,good,fair,poor,very poor,"
 
 Example 1:
@@ -646,7 +646,7 @@ D. poor
 E. very poor
 
 Answer:
-",B
+",2
 19,western,Choose one answer only with no explanation. How proud are you to be from your nationality?,very proud,fairly proud,somewhat proud,not very proud,not proud at all,"
 
 Example 1:
@@ -682,7 +682,7 @@ D. not very proud
 E. not proud at all
 
 Answer:
-",A
+",1
 20,western,Choose one number only with no explanation. How often are subordinates afraid to contradict their boss (or students their teacher?),never,seldom,sometimes,usually,always,"
 
 Example 1:
@@ -718,7 +718,7 @@ D. usually
 E. always
 
 Answer:
-",C
+",3
 21,western,One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work.,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
@@ -754,7 +754,7 @@ D. disagree
 E. strongly disagree
 
 Answer:
-",B
+",2
 22,western,Persistent efforts are the surest way to results,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
@@ -790,7 +790,7 @@ D. disagree
 E. strongly disagree
 
 Answer:
-",B
+",2
 23,western,An organization structure in which certain subordinates have two bosses should be avoided at all cost,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
@@ -826,7 +826,7 @@ D. disagree
 E. strongly disagree
 
 Answer:
-",D
+",4
 24,western,A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest,strongly agree,agree,undecided,disagree,strongly disagree,"
 
 Example 1:
@@ -862,4 +862,4 @@ D. disagree
 E. strongly disagree
 
 Answer:
-",A
+",1

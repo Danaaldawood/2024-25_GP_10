@@ -16,6 +16,7 @@
     "cohereFineTuned": "Mistral Fine-tuned Model",
     "LlamaFineTuned":"Llama2 Fine-tuned Model",
     "hofstedeCohereFineTuned": "Hofstede Questions-Mistral Fine-tuned Model",
+    "hofstedeLlama2FineTuned":"Hofstede Questions-Llama2 Fine-tuned Model",
     "evaluateButton": "Evaluate"
   },
   "ar": {
@@ -35,6 +36,7 @@
     "cohereFineTuned": "النموذج المدرب Mistral",
     "LlamaFineTuned":"النموذج المدربLlama2",
     "hofstedeCohereFineTuned": "أسئلة هوفستيد-نموذج Mistral المدرب",
+    "hofstedeLlama2FineTuned":"أسئلة هوفستيد-نموذج Llama2 المدرب",
     "evaluateButton": "تقييم"
   },
   "ch": {
@@ -54,6 +56,7 @@
     "cohereFineTuned": "Mistral微调模型",
     "LlamaFineTuned":"Llama2微调模型",
     "hofstedeCohereFineTuned": "霍夫斯泰德问题-Mistral微调模型",
+    "hofstedeLlama2FineTuned":"霍夫斯泰德问题-Llama2微调模型",
     "evaluateButton": "评估"
   }
 }
