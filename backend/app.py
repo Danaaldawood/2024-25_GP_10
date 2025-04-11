@@ -37,7 +37,7 @@ llama_finetuned_datasets = {
     "Food": pd.read_csv("./llama_chat_finetundtest_bank_food.csv"),
     "Family": pd.read_csv("./llama_chat_finetundtest_bank_family.csv"),
     "Education": pd.read_csv("./llama_chat_finetundtest_bank_education.csv"),
-}
+   }
 # Datasets for Hofstede Questions-Cohere Model (Standard Deviation)
 cohere_datasets = {
     "Chinese": pd.read_csv("./hofstede_mistral_chinese.csv", encoding="utf-8"),
@@ -156,10 +156,7 @@ def calculate_for_all_regions_llama_finetuned(topic):
 
     return results
 
-# def to_serializable(val):
-#     if isinstance(val, (np.integer, np.floating)):
-#         return val.item()
-#     return val
+
 
 #-- standred divation  for llama2 finteuned on Hofstede Questions
 def calculate_standard_deviation_llama_finetuned():

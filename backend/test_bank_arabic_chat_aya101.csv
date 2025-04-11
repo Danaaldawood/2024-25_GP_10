@@ -1,1401 +1,0 @@
-cultur_val_ID,region_id,region,eng_question,question,topic,option_A,option_B,option_C,correct,textF,Predicted
-Al-en-35,Ara_14,Arab,What do people do to celebrate Christmas in your country?,ÙØ§Ø°Ø§ ÙÙØ¹Ù Ø§ÙÙØ§Ø³ ÙÙØ§Ø­ØªÙØ§Ù Ø¨Ø¹ÙØ¯ Ø§ÙÙÙÙØ§Ø¯ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,"['party', 'gathering']",nothing,"['give presents', 'give gifts']",B,"
-
-What do people do to celebrate Christmas in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. party and gathering .
-B. nothing
-C. give presents and give gifts
-
-
-
-
-Answer:
-",A
-Al-en-35,Ara_14,Arab,What do people do to celebrate Christmas in your country?,ÙØ§Ø°Ø§ ÙÙØ¹Ù Ø§ÙÙØ§Ø³ ÙÙØ§Ø­ØªÙØ§Ù Ø¨Ø¹ÙØ¯ Ø§ÙÙÙÙØ§Ø¯ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,"['give presents', 'give gifts']",nothing,['have a big meal'],B,"
-
-What do people do to celebrate Christmas in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. give presents and give gifts .
-B. nothing
-C. have a big meal
-
-
-
-
-Answer:
-",C
-An-ar-36,Ara_27,Arab,What is the most popular sport team in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙØ±ÙÙ Ø±ÙØ§Ø¶Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,nothing,['liverpool'],['national diving team'],A,"
-
-What is the most popular sport team in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. liverpool
-C. national diving team
-
-
-
-
-Answer:
-",B
-An-ar-36,Ara_27,Arab,What is the most popular sport team in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙØ±ÙÙ Ø±ÙØ§Ø¶Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['manchester city'],"['ping pong team', 'table tennis team']",nothing,C,"
-
-What is the most popular sport team in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. manchester city .
-B. ping pong team and table tennis team
-C. nothing
-
-
-
-
-Answer:
-",A
-Ca-sp-45,Ara_42,Arab,What type of destination is commonly chosen for a family vacation in your country?,Ø£Ù ÙØ¬ÙØ© ÙØªÙ Ø§Ø®ØªÙØ§Ø±ÙØ§ Ø¹Ø§Ø¯Ø© ÙÙØ¶Ø§Ø¡ Ø¹Ø·ÙØ© Ø¹Ø§Ø¦ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,nothing,"['countryside', 'country side']",['beach'],A,"
-
-What type of destination is commonly chosen for a family vacation in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. countryside and country side
-C. beach
-
-
-
-
-Answer:
-",C
-Ca-sp-45,Ara_42,Arab,What type of destination is commonly chosen for a family vacation in your country?,Ø£Ù ÙØ¬ÙØ© ÙØªÙ Ø§Ø®ØªÙØ§Ø±ÙØ§ Ø¹Ø§Ø¯Ø© ÙÙØ¶Ø§Ø¡ Ø¹Ø·ÙØ© Ø¹Ø§Ø¦ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,nothing,['popular city attractions'],['lake district'],A,"
-
-What type of destination is commonly chosen for a family vacation in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. popular city attractions
-C. lake district
-
-
-
-
-Answer:
-",C
-Ji-ko-07,Ara_60,Arab,What is the most famous private company in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø´Ø±ÙØ© Ø®Ø§ØµØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['aston martin'],['cevital'],['alibaba'],B,"
-
-What is the most famous private company in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. aston martin .
-B. cevital
-C. alibaba
-
-
-
-
-Answer:
-",C
-Ji-ko-07,Ara_60,Arab,What is the most famous private company in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø´Ø±ÙØ© Ø®Ø§ØµØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['aston martin'],['alibaba'],nothing,C,"
-
-What is the most famous private company in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. aston martin .
-B. alibaba
-C. nothing
-
-
-
-
-Answer:
-",B
-Ji-ko-24,Ara_68,Arab,What is the most preferred recreational facility among children in your country?,ÙØ§ ÙÙ Ø§ÙÙØ±Ø§ÙÙ Ø§ÙØªØ±ÙÙÙÙØ© Ø§ÙÙÙØ¶ÙØ© ÙØ¯Ù Ø§ÙØ£Ø·ÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,['soft play'],"['amusement park', 'amusement parks']",['disney'],B,"
-
-What is the most preferred recreational facility among children in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. soft play .
-B. amusement park and amusement parks
-C. disney
-
-
-
-
-Answer:
-",B
-Ji-ko-24,Ara_68,Arab,What is the most preferred recreational facility among children in your country?,ÙØ§ ÙÙ Ø§ÙÙØ±Ø§ÙÙ Ø§ÙØªØ±ÙÙÙÙØ© Ø§ÙÙÙØ¶ÙØ© ÙØ¯Ù Ø§ÙØ£Ø·ÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,['playground'],['disney'],"['sea', 'beach']",C,"
-
-What is the most preferred recreational facility among children in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. playground .
-B. disney
-C. sea and beach
-
-
-
-
-Answer:
-",A
-Ji-ko-45,Ara_86,Arab,What do people look forward to the most at university festivals in your country?,ÙØ§ ÙÙ Ø§ÙØ´ÙØ¡ Ø§ÙØ°Ù ÙØªØ·ÙØ¹ Ø¥ÙÙÙ Ø§ÙÙØ§Ø³ Ø£ÙØ«Ø± Ø´ÙØ¡ ÙÙ ÙÙØ±Ø¬Ø§ÙØ§Øª Ø§ÙØ¬Ø§ÙØ¹Ø§Øª ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Education,['dance'],nothing,['pub crawl'],B,"
-
-What do people look forward to the most at university festivals in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. dance .
-B. nothing
-C. pub crawl
-
-
-
-
-Answer:
-",A
-Ji-ko-45,Ara_86,Arab,What do people look forward to the most at university festivals in your country?,ÙØ§ ÙÙ Ø§ÙØ´ÙØ¡ Ø§ÙØ°Ù ÙØªØ·ÙØ¹ Ø¥ÙÙÙ Ø§ÙÙØ§Ø³ Ø£ÙØ«Ø± Ø´ÙØ¡ ÙÙ ÙÙØ±Ø¬Ø§ÙØ§Øª Ø§ÙØ¬Ø§ÙØ¹Ø§Øª ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Education,['pub crawl'],nothing,['party'],B,"
-
-What do people look forward to the most at university festivals in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. pub crawl .
-B. nothing
-C. party
-
-
-
-
-Answer:
-",C
-Jo-sp-02,Ara_88,Arab,What is the most popular sport played without a ball in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø±ÙØ§Ø¶Ø© ØªÙÙØ¹Ø¨ Ø¨Ø¯ÙÙ ÙØ±Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['poker'],['boxing'],['chess'],B,"
-
-What is the most popular sport played without a ball in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. poker .
-B. boxing
-C. chess
-
-
-
-
-Answer:
-",C
-Jo-sp-02,Ara_88,Arab,What is the most popular sport played without a ball in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø±ÙØ§Ø¶Ø© ØªÙÙØ¹Ø¨ Ø¨Ø¯ÙÙ ÙØ±Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['running'],['frisby'],['swimming'],A,"
-
-What is the most popular sport played without a ball in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. running .
-B. frisby
-C. swimming
-
-
-
-
-Answer:
-",B
-Jod-ch-04,Ara_102,Arab,What soft drink do people in your country like to have?,Ø£Ù ÙØ´Ø±ÙØ¨ ØºØ§Ø²Ù ÙÙØ¶ÙÙ Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,"['cola', 'coke']",['lemonade'],"['hammoud boualem', 'hamoud boualem']",C,"
-
-What soft drink do people in your country like to have?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. cola and coke .
-B. lemonade
-C. hammoud boualem and hamoud boualem
-
-
-
-
-Answer:
-",A
-Jod-ch-04,Ara_102,Arab,What soft drink do people in your country like to have?,Ø£Ù ÙØ´Ø±ÙØ¨ ØºØ§Ø²Ù ÙÙØ¶ÙÙ Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,"['milk tea', 'bubble tea']",['selecto'],['pepsi'],B,"
-
-What soft drink do people in your country like to have?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. milk tea and bubble tea .
-B. selecto
-C. pepsi
-
-
-
-
-Answer:
-",C
-Jod-ch-12,Ara_106,Arab,What kind of soup do people from your country like to have?,Ø£Ù ÙÙØ¹ ÙÙ Ø§ÙØ­Ø³Ø§Ø¡ ÙØ­Ø¨Ù Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['lentil'],['fresh soup'],"['chorba soup', 'shourba frik', 'shourba soup']",C,"
-
-What kind of soup do people from your country like to have?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. lentil .
-B. fresh soup
-C. chorba soup and shourba frik and shourba soup
-
-
-
-
-Answer:
-",C
-Jod-ch-12,Ara_106,Arab,What kind of soup do people from your country like to have?,Ø£Ù ÙÙØ¹ ÙÙ Ø§ÙØ­Ø³Ø§Ø¡ ÙØ­Ø¨Ù Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['pork bone soup'],['tomato'],nothing,C,"
-
-What kind of soup do people from your country like to have?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. pork bone soup .
-B. tomato
-C. nothing
-
-
-
-
-Answer:
-",A
-Jod-ch-13,Ara_107,Arab,What street food do people from your country like to eat?,Ø£Ù ÙÙØ¹ ÙÙ Ø§ÙØ£ÙÙØ§Øª Ø§ÙØ´Ø¹Ø¨ÙØ© ÙØ­Ø¨ Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙÙÙ ØªÙØ§ÙÙÙØ§Ø,Food,['couscous'],"['fish and chips', 'fish & chips']",['roasted sausage'],A,"
-
-What street food do people from your country like to eat?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. couscous .
-B. fish and chips and fish & chips
-C. roasted sausage
-
-
-
-
-Answer:
-",C
-Jod-ch-13,Ara_107,Arab,What street food do people from your country like to eat?,Ø£Ù ÙÙØ¹ ÙÙ Ø§ÙØ£ÙÙØ§Øª Ø§ÙØ´Ø¹Ø¨ÙØ© ÙØ­Ø¨ Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙÙÙ ØªÙØ§ÙÙÙØ§Ø,Food,['candied haw'],"['chakhchoukha', 'chekhechoukha']",['burgers'],B,"
-
-What street food do people from your country like to eat?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. candied haw .
-B. chakhchoukha and chekhechoukha
-C. burgers
-
-
-
-
-Answer:
-",B
-Jod-ch-48,Ara_117,Arab,What do people eat for lunch during the working days in your country?,ÙØ§Ø°Ø§ ÙØ£ÙÙ Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØºØ¯Ø§Ø¡ Ø®ÙØ§Ù Ø£ÙØ§Ù Ø§ÙØ¹ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,"['canteen boxed meal', 'canteen']",nothing,['pizza'],C,"
-
-What do people eat for lunch during the working days in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. canteen boxed meal and canteen .
-B. nothing
-C. pizza
-
-
-
-
-Answer:
-",A
-Jod-ch-48,Ara_117,Arab,What do people eat for lunch during the working days in your country?,ÙØ§Ø°Ø§ ÙØ£ÙÙ Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØºØ¯Ø§Ø¡ Ø®ÙØ§Ù Ø£ÙØ§Ù Ø§ÙØ¹ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['takeout fast food'],"['sandwich', 'sandwiches']",['sandwich'],C,"
-
-What do people eat for lunch during the working days in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. takeout fast food .
-B. sandwich and sandwiches
-C. sandwich
-
-
-
-
-Answer:
-",C
-Jod-ch-58,Ara_123,Arab,Which profession is the most respected in your country?,Ø£Ù ÙÙÙØ© ÙÙ Ø§ÙØ£ÙØ«Ø± Ø§Ø­ØªØ±Ø§ÙÙØ§ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,"['doctor', 'medicine']",['teacher'],['police'],A,"
-
-Which profession is the most respected in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. doctor and medicine .
-B. teacher
-C. police
-
-
-
-
-Answer:
-",C
-Jod-ch-58,Ara_123,Arab,Which profession is the most respected in your country?,Ø£Ù ÙÙÙØ© ÙÙ Ø§ÙØ£ÙØ«Ø± Ø§Ø­ØªØ±Ø§ÙÙØ§ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,"['doctor', 'doctors']","['fireman', 'firefighter']","['company president', 'ceo', 'chief executive officer']",B,"
-
-Which profession is the most respected in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. doctor and doctors .
-B. fireman and firefighter
-C. company president and ceo and chief executive officer
-
-
-
-
-Answer:
-",A
-Jod-ch-61,Ara_125,Arab,Which occupation is most preferred among females in your country?,Ø£Ù ÙÙÙØ© ØªÙØ¶ÙÙØ§ Ø§ÙÙØ³Ø§Ø¡ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± Ø£ÙØ«Ø±Ø,Work life,"['medicine', 'doctor']",['hr'],['teacher'],A,"
-
-Which occupation is most preferred among females in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. medicine and doctor .
-B. hr
-C. teacher
-
-
-
-
-Answer:
-",C
-Jod-ch-61,Ara_125,Arab,Which occupation is most preferred among females in your country?,Ø£Ù ÙÙÙØ© ØªÙØ¶ÙÙØ§ Ø§ÙÙØ³Ø§Ø¡ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± Ø£ÙØ«Ø±Ø,Work life,"['teacher', 'teaching']",nothing,['teacher'],B,"
-
-Which occupation is most preferred among females in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. teacher and teaching .
-B. nothing
-C. teacher
-
-
-
-
-Answer:
-",C
-Ki-pe-39,Ara_133,Arab,What food is usually prepared for a family picnic in your country?,ÙØ§ ÙÙ Ø§ÙØ£Ø·Ø¹ÙØ© Ø§ÙØªÙ ÙØªÙ Ø¥Ø¹Ø¯Ø§Ø¯ÙØ§ Ø¹Ø§Ø¯Ø© ÙÙØ²ÙØ© Ø¹Ø§Ø¦ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['sandwich'],"['sandwiches', 'sandwich']",['fruit'],B,"
-
-What food is usually prepared for a family picnic in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. sandwich .
-B. sandwiches and sandwich
-C. fruit
-
-
-
-
-Answer:
-",C
-Ki-pe-39,Ara_133,Arab,What food is usually prepared for a family picnic in your country?,ÙØ§ ÙÙ Ø§ÙØ£Ø·Ø¹ÙØ© Ø§ÙØªÙ ÙØªÙ Ø¥Ø¹Ø¯Ø§Ø¯ÙØ§ Ø¹Ø§Ø¯Ø© ÙÙØ²ÙØ© Ø¹Ø§Ø¦ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['chicken'],['sandwich'],['fruit'],A,"
-
-What food is usually prepared for a family picnic in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. chicken .
-B. sandwich
-C. fruit
-
-
-
-
-Answer:
-",C
-Kik-in-01,Ara_138,Arab,What national holiday has the longest duration in your country?,ÙØ§ ÙÙ Ø§ÙØ¹ÙØ¯ Ø§ÙÙØ·ÙÙ Ø§ÙØ£Ø·ÙÙ ÙØ¯Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,"['independence', 'independence day']",nothing,nothing,A,"
-
-What national holiday has the longest duration in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. independence and independence day .
-B. nothing
-C. nothing
-
-
-
-
-Answer:
-",A
-Kik-in-01,Ara_138,Arab,What national holiday has the longest duration in your country?,ÙØ§ ÙÙ Ø§ÙØ¹ÙØ¯ Ø§ÙÙØ·ÙÙ Ø§ÙØ£Ø·ÙÙ ÙØ¯Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,"['national day', '1st of october', 'october 1st']",['easter'],"['outbreak of the revolution', 'liberation revolution', 'outbreak of the algerian revolution', 'anniversary of the 1st november revolution', 'first of november', 'first day of november', '11/01', '11/1']",C,"
-
-What national holiday has the longest duration in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. national day and 1st of october and october 1st .
-B. easter
-C. outbreak of the revolution and liberation revolution and outbreak of the algerian revolution and anniversary of the 1st november revolution and first of november and first day of november and 11/01 and 11/1
-
-
-
-
-Answer:
-",C
-Kik-in-06,Ara_142,Arab,What event is usually held before a wedding in your country?,ÙØ§ ÙÙ Ø§ÙØ­Ø¯Ø« Ø§ÙØ°Ù ÙÙØ§Ù Ø¹Ø§Ø¯Ø© ÙØ¨Ù Ø§ÙØ²ÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['henna'],nothing,['engagement ceremony'],A,"
-
-What event is usually held before a wedding in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. henna .
-B. nothing
-C. engagement ceremony
-
-
-
-
-Answer:
-",C
-Kik-in-06,Ara_142,Arab,What event is usually held before a wedding in your country?,ÙØ§ ÙÙ Ø§ÙØ­Ø¯Ø« Ø§ÙØ°Ù ÙÙØ§Ù Ø¹Ø§Ø¯Ø© ÙØ¨Ù Ø§ÙØ²ÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['wedding photo shoot'],"['hen night', ""hen's do""]",['fatiha'],C,"
-
-What event is usually held before a wedding in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. wedding photo shoot .
-B. hen night and ""hens do""
-C. fatiha
-
-
-
-
-Answer:
-",B
-Kik-in-36,Ara_154,Arab,Who is the most popular soccer coach in your country?,ÙÙ ÙÙ Ø£Ø´ÙØ± ÙØ¯Ø±Ø¨ ÙØ±Ø© ÙØ¯Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['brendan rodgers'],['li feng building'],"['ben sheikh', 'ben cheikh', 'ali bencheikh', 'ali ""alilou"" bencheikh']",C,"
-
-Who is the most popular soccer coach in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. brendan rodgers .
-B. li feng building
-C. ben sheikh and ben cheikh and ali bencheikh and ali ""alilou"" bencheikh
-
-
-
-
-Answer:
-",A
-Kik-in-36,Ara_154,Arab,Who is the most popular soccer coach in your country?,ÙÙ ÙÙ Ø£Ø´ÙØ± ÙØ¯Ø±Ø¨ ÙØ±Ø© ÙØ¯Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['brendan rodgers'],"['halilhodÅ¾iÄ', 'vahid halilhodÅ¾iÄ', 'vahid halilhodzic']",['milu'],B,"
-
-Who is the most popular soccer coach in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. brendan rodgers .
-B. halilhodÅ¾iÄ and vahid halilhodÅ¾iÄ and vahid halilhodzic
-C. milu
-
-
-
-
-Answer:
-",A
-Na-ko-04,Ara_162,Arab,What is the preferred hangover cure food for people from your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙÙÙØ¶Ù ÙØ¹ÙØ§Ø¬ ØµØ¯Ø§Ø¹ Ø§ÙØ®ÙØ± ÙØ¯Ù Ø§ÙØ´Ø¹Ø¨ Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙØ,Food,['tea'],nothing,['hair of the dog'],B,"
-
-What is the preferred hangover cure food for people from your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. tea .
-B. nothing
-C. hair of the dog
-
-
-
-
-Answer:
-",A
-Na-ko-04,Ara_162,Arab,What is the preferred hangover cure food for people from your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙÙÙØ¶Ù ÙØ¹ÙØ§Ø¬ ØµØ¯Ø§Ø¹ Ø§ÙØ®ÙØ± ÙØ¯Ù Ø§ÙØ´Ø¹Ø¨ Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙØ,Food,nothing,['hair of the dog'],['honey water'],A,"
-
-What is the preferred hangover cure food for people from your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. hair of the dog
-C. honey water
-
-
-
-
-Answer:
-",C
-Na-ko-11,Ara_167,Arab,What do people from your country eat while watching a soccer game?,ÙØ§Ø°Ø§ ÙØ£ÙÙ Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± Ø£Ø«ÙØ§Ø¡ ÙØ´Ø§ÙØ¯Ø© ÙØ¨Ø§Ø±Ø§Ø© ÙØ±Ø© Ø§ÙÙØ¯ÙØ,Food,['fried chicken'],['burgers'],nothing,C,"
-
-What do people from your country eat while watching a soccer game?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. fried chicken .
-B. burgers
-C. nothing
-
-
-
-
-Answer:
-",B
-Na-ko-11,Ara_167,Arab,What do people from your country eat while watching a soccer game?,ÙØ§Ø°Ø§ ÙØ£ÙÙ Ø§ÙÙØ§Ø³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± Ø£Ø«ÙØ§Ø¡ ÙØ´Ø§ÙØ¯Ø© ÙØ¨Ø§Ø±Ø§Ø© ÙØ±Ø© Ø§ÙÙØ¯ÙØ,Food,['mineral water'],['nuts'],['chips'],B,"
-
-What do people from your country eat while watching a soccer game?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. mineral water .
-B. nuts
-C. chips
-
-
-
-
-Answer:
-",C
-Na-ko-20,Ara_173,Arab,What sports event do people from your country passionately support the most in international competitions?,Ø£Ù Ø­Ø¯Ø« Ø±ÙØ§Ø¶Ù ÙØªØ§Ø¨Ø¹Ù Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙÙÙ Ø¨Ø´ØºÙ ÙÙ Ø§ÙÙÙØ§ÙØ³Ø§Øª Ø§ÙØ¯ÙÙÙØ©Ø,Sport,['swimming'],['basketball'],"['world cup', 'fifa world cup']",C,"
-
-What sports event do people from your country passionately support the most in international competitions?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. swimming .
-B. basketball
-C. world cup and fifa world cup
-
-
-
-
-Answer:
-",C
-Na-ko-20,Ara_173,Arab,What sports event do people from your country passionately support the most in international competitions?,Ø£Ù Ø­Ø¯Ø« Ø±ÙØ§Ø¶Ù ÙØªØ§Ø¨Ø¹Ù Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙÙÙ Ø¨Ø´ØºÙ ÙÙ Ø§ÙÙÙØ§ÙØ³Ø§Øª Ø§ÙØ¯ÙÙÙØ©Ø,Sport,['table tennis'],['swimming'],"['african cup of nations', 'africa cup of nations', 'caf']",C,"
-
-What sports event do people from your country passionately support the most in international competitions?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. table tennis .
-B. swimming
-C. african cup of nations and africa cup of nations and caf
-
-
-
-
-Answer:
-",C
-Na-ko-37,Ara_183,Arab,What is the most popular domestic vacation spot for people from your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙÙØ§Ù ÙÙØ¶Ø§Ø¡ Ø§ÙØ¹Ø·ÙØ© Ø¯Ø§Ø®Ù Ø§ÙØ¬Ø²Ø§Ø¦Ø± Ø¨Ø§ÙÙØ³Ø¨Ø© ÙÙØ¬Ø²Ø§Ø¦Ø±ÙÙÙØ,Holidays/Celebration/Leisure,"['bejaia', 'bÃ©jaÃ¯a', 'bougie', 'bugia']",['blackpool'],"['dali ancient town', 'dali']",A,"
-
-What is the most popular domestic vacation spot for people from your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. bejaia and bÃ©jaÃ¯a and bougie and bugia .
-B. blackpool
-C. dali ancient town and dali
-
-
-
-
-Answer:
-",B
-Na-ko-37,Ara_183,Arab,What is the most popular domestic vacation spot for people from your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙÙØ§Ù ÙÙØ¶Ø§Ø¡ Ø§ÙØ¹Ø·ÙØ© Ø¯Ø§Ø®Ù Ø§ÙØ¬Ø²Ø§Ø¦Ø± Ø¨Ø§ÙÙØ³Ø¨Ø© ÙÙØ¬Ø²Ø§Ø¦Ø±ÙÙÙØ,Holidays/Celebration/Leisure,['jijel'],"['dali ancient town', 'dali']",['cornwall'],A,"
-
-What is the most popular domestic vacation spot for people from your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. jijel .
-B. dali ancient town and dali
-C. cornwall
-
-
-
-
-Answer:
-",C
-Na-ko-38,Ara_184,Arab,What is the most common wedding gift between bride and groom in your country?,ÙØ§ ÙÙ Ø£ÙØ«Ø± ÙØ¯ÙØ© Ø²ÙØ§Ø¬ Ø´Ø§Ø¦Ø¹Ø© Ø¨ÙÙ Ø§ÙØ¹Ø±ÙØ³ ÙØ§ÙØ¹Ø±ÙØ³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['watch'],['gold jewelry'],"['gold', 'gold set']",C,"
-
-What is the most common wedding gift between bride and groom in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. watch .
-B. gold jewelry
-C. gold and gold set
-
-
-
-
-Answer:
-",B
-Na-ko-38,Ara_184,Arab,What is the most common wedding gift between bride and groom in your country?,ÙØ§ ÙÙ Ø£ÙØ«Ø± ÙØ¯ÙØ© Ø²ÙØ§Ø¬ Ø´Ø§Ø¦Ø¹Ø© Ø¨ÙÙ Ø§ÙØ¹Ø±ÙØ³ ÙØ§ÙØ¹Ø±ÙØ³ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['necklace'],['wedding ring'],nothing,C,"
-
-What is the most common wedding gift between bride and groom in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. necklace .
-B. wedding ring
-C. nothing
-
-
-
-
-Answer:
-",B
-Na-ko-39,Ara_185,Arab,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,ÙØ§Ø°Ø§ ÙÙØ¹Ø·Ù Ø¹Ø§Ø¯Ø© ÙØ¨Ø§Ø¯Ø±Ø© ØªÙÙØ¦Ø© Ø¹ÙØ¯ Ø­Ø¶ÙØ± Ø²ÙØ§Ù ØµØ¯ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,nothing,"['gifts', 'wedding gift', 'gift from the wedding list']",['utensils'],C,"
-
-What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. gifts and wedding gift and gift from the wedding list
-C. utensils
-
-
-
-
-Answer:
-",B
-Na-ko-39,Ara_185,Arab,What is typically given as a congratulatory gesture when attending a friend's wedding in your country?,ÙØ§Ø°Ø§ ÙÙØ¹Ø·Ù Ø¹Ø§Ø¯Ø© ÙØ¨Ø§Ø¯Ø±Ø© ØªÙÙØ¦Ø© Ø¹ÙØ¯ Ø­Ø¶ÙØ± Ø²ÙØ§Ù ØµØ¯ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['cash gift'],['money'],['glass cup'],C,"
-
-What is typically given as a congratulatory gesture when attending a friend's wedding in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. cash gift .
-B. money
-C. glass cup
-
-
-
-
-Answer:
-",B
-Ne-ar-39,Ara_212,Arab,What is the cheapest fast food in your country?,ÙØ§ ÙÙ Ø£Ø±Ø®Øµ Ø§ÙÙØ¬Ø¨Ø§Øª Ø§ÙØ³Ø±ÙØ¹Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['noodles'],"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",['couscous'],C,"
-
-What is the cheapest fast food in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. noodles .
-B. mcdonalds and ""mcdonalds"" and macdonalds and ""mcdonalds""
-C. couscous
-
-
-
-
-Answer:
-",B
-Ne-ar-39,Ara_212,Arab,What is the cheapest fast food in your country?,ÙØ§ ÙÙ Ø£Ø±Ø®Øµ Ø§ÙÙØ¬Ø¨Ø§Øª Ø§ÙØ³Ø±ÙØ¹Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,nothing,['shaxian delicacies'],"['mcdonalds', ""mcdonald's"", 'macdonalds', ""mcdonald's""]",A,"
-
-What is the cheapest fast food in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. shaxian delicacies
-C. mcdonalds and ""mcdonalds"" and macdonalds and ""mcdonalds""
-
-
-
-
-Answer:
-",C
-New-as-07,Ara_235,Arab,What is the most popular dish cooked with fish in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø·Ø¨Ù Ø³ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['braised fish'],"['sardines', 'fried sardines']",nothing,B,"
-
-What is the most popular dish cooked with fish in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. braised fish .
-B. sardines and fried sardines
-C. nothing
-
-
-
-
-Answer:
-",A
-New-as-07,Ara_235,Arab,What is the most popular dish cooked with fish in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø·Ø¨Ù Ø³ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['braised fish'],nothing,"['fish soup', 'soupe de poisson']",C,"
-
-What is the most popular dish cooked with fish in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. braised fish .
-B. nothing
-C. fish soup and soupe de poisson
-
-
-
-
-Answer:
-",A
-New-ch-04,Ara_260,Arab,What kinds of food do people usually eat for late-night snacks in your country?,Ø£Ù Ø£ÙÙØ§Ø¹ ÙÙ Ø§ÙØ·Ø¹Ø§Ù ÙØªÙØ§ÙÙ Ø§ÙÙØ§Ø³ Ø¹Ø§Ø¯Ø© ÙÙØ¬Ø¨Ø§Øª Ø®ÙÙÙØ© ÙÙ Ø¢Ø®Ø± Ø§ÙÙÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,"['barbecue', 'kebabs']",['salad'],['pizza'],B,"
-
-What kinds of food do people usually eat for late-night snacks in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. barbecue and kebabs .
-B. salad
-C. pizza
-
-
-
-
-Answer:
-",C
-New-ch-04,Ara_260,Arab,What kinds of food do people usually eat for late-night snacks in your country?,Ø£Ù Ø£ÙÙØ§Ø¹ ÙÙ Ø§ÙØ·Ø¹Ø§Ù ÙØªÙØ§ÙÙ Ø§ÙÙØ§Ø³ Ø¹Ø§Ø¯Ø© ÙÙØ¬Ø¨Ø§Øª Ø®ÙÙÙØ© ÙÙ Ø¢Ø®Ø± Ø§ÙÙÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,nothing,['pizza'],"['barbecue', 'kebabs']",A,"
-
-What kinds of food do people usually eat for late-night snacks in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. pizza
-C. barbecue and kebabs
-
-
-
-
-Answer:
-",C
-New-ch-08,Ara_263,Arab,What seasoning is indispensable in cooking in your country?,ÙØ§ ÙÙ Ø§ÙØªÙØ§Ø¨Ù Ø§ÙØ£Ø³Ø§Ø³ÙØ© ÙÙØ·Ø¨Ø® ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,"['pepper', 'salt and pepper']","['ras el hanout', 'rass el hanout', 'head of the shop']",['soy sauce'],B,"
-
-What seasoning is indispensable in cooking in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. pepper and salt and pepper .
-B. ras el hanout and rass el hanout and head of the shop
-C. soy sauce
-
-
-
-
-Answer:
-",C
-New-ch-08,Ara_263,Arab,What seasoning is indispensable in cooking in your country?,ÙØ§ ÙÙ Ø§ÙØªÙØ§Ø¨Ù Ø§ÙØ£Ø³Ø§Ø³ÙØ© ÙÙØ·Ø¨Ø® ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,"['msg', 'monosodium glutamate']","['salt', 'salt and pepper']",['black pepper'],C,"
-
-What seasoning is indispensable in cooking in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. msg and monosodium glutamate .
-B. salt and salt and pepper
-C. black pepper
-
-
-
-
-Answer:
-",B
-New-ch-16,Ara_268,Arab,What is the most famous sports-related movie in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙÙÙÙ Ø¹Ù Ø§ÙØ±ÙØ§Ø¶Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['women basketball team member no. 5'],"['the brothers grimsby', 'brothers of grimsby']",nothing,C,"
-
-What is the most famous sports-related movie in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. women basketball team member no. 5 .
-B. the brothers grimsby and brothers of grimsby
-C. nothing
-
-
-
-
-Answer:
-",B
-New-ch-16,Ara_268,Arab,What is the most famous sports-related movie in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙÙÙÙ Ø¹Ù Ø§ÙØ±ÙØ§Ø¶Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Sport,['ferrari'],nothing,['women basketball team member no. 5'],B,"
-
-What is the most famous sports-related movie in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. ferrari .
-B. nothing
-C. women basketball team member no. 5
-
-
-
-
-Answer:
-",B
-New-ch-83,Ara_298,Arab,Which city in your country hosts festivals the most?,Ø£Ù ÙØ¯ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± ØªØ³ØªØ¶ÙÙ Ø£ÙØ«Ø± Ø§ÙØ£Ø¹ÙØ§Ø¯ ÙØ§ÙÙÙØ±Ø¬Ø§ÙØ§ØªØ,Holidays/Celebration/Leisure,['edinburgh'],['tlemcen'],['shanghai'],B,"
-
-Which city in your country hosts festivals the most?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. edinburgh .
-B. tlemcen
-C. shanghai
-
-
-
-
-Answer:
-",A
-New-ch-83,Ara_298,Arab,Which city in your country hosts festivals the most?,Ø£Ù ÙØ¯ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± ØªØ³ØªØ¶ÙÙ Ø£ÙØ«Ø± Ø§ÙØ£Ø¹ÙØ§Ø¯ ÙØ§ÙÙÙØ±Ø¬Ø§ÙØ§ØªØ,Holidays/Celebration/Leisure,['beijing'],['liverpool'],['oran'],C,"
-
-Which city in your country hosts festivals the most?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. beijing .
-B. liverpool
-C. oran
-
-
-
-
-Answer:
-",C
-New-en-08,Ara_306,Arab,What is the most popular chocolate brand in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙØ§Ø±ÙØ© Ø´ÙÙÙÙØ§ØªØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['maruja'],['gold sand chocolate'],"['cadburys', 'cadbury', ""cadbury's""]",A,"
-
-What is the most popular chocolate brand in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. maruja .
-B. gold sand chocolate
-C. cadburys and cadbury and ""cadburys""
-
-
-
-
-Answer:
-",C
-New-en-08,Ara_306,Arab,What is the most popular chocolate brand in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙØ§Ø±ÙØ© Ø´ÙÙÙÙØ§ØªØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['nestle'],['moment'],['ferrero'],B,"
-
-What is the most popular chocolate brand in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nestle .
-B. moment
-C. ferrero
-
-
-
-
-Answer:
-",A
-New-en-12,Ara_309,Arab,What food is most commonly found in food courts in your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙØ£ÙØ«Ø± Ø´ÙÙØ¹Ø§Ù ÙÙ ÙØ·Ø§Ø¹Ù Ø§ÙÙØ±Ø§ÙØ² Ø§ÙØªØ¬Ø§Ø±ÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['burgers and fries (burger king)'],['pizza'],['shengjian (pan-fried bun)'],B,"
-
-What food is most commonly found in food courts in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. burgers and fries (burger king) .
-B. pizza
-C. shengjian (pan-fried bun)
-
-
-
-
-Answer:
-",C
-New-en-12,Ara_309,Arab,What food is most commonly found in food courts in your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙØ£ÙØ«Ø± Ø´ÙÙØ¹Ø§Ù ÙÙ ÙØ·Ø§Ø¹Ù Ø§ÙÙØ±Ø§ÙØ² Ø§ÙØªØ¬Ø§Ø±ÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['roasted sausage'],['chicken'],['burgers and fries (burger king)'],B,"
-
-What food is most commonly found in food courts in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. roasted sausage .
-B. chicken
-C. burgers and fries (burger king)
-
-
-
-
-Answer:
-",C
-New-en-38,Ara_315,Arab,Which industries are known for more flexible working hours in your country?,Ø£Ù Ø§ÙÙÙÙ ÙØ¹Ø±ÙÙØ© Ø¨Ø³Ø§Ø¹Ø§Øª Ø§ÙØ¹ÙÙ Ø§ÙÙØ±ÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['commerce'],['internet'],['retail industry'],A,"
-
-Which industries are known for more flexible working hours in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. commerce .
-B. internet
-C. retail industry
-
-
-
-
-Answer:
-",C
-New-en-38,Ara_315,Arab,Which industries are known for more flexible working hours in your country?,Ø£Ù Ø§ÙÙÙÙ ÙØ¹Ø±ÙÙØ© Ø¨Ø³Ø§Ø¹Ø§Øª Ø§ÙØ¹ÙÙ Ø§ÙÙØ±ÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['internet'],"['freelance professions', 'freelance jobs']",['office'],B,"
-
-Which industries are known for more flexible working hours in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. internet .
-B. freelance professions and freelance jobs
-C. office
-
-
-
-
-Answer:
-",B
-New-en-69,Ara_324,Arab,Which writers are commonly studied in literature class in your country?,ÙÙ ÙÙ Ø§ÙÙØªÙØ§Ø¨ Ø§ÙØ°ÙÙ ØªØ¯Ø±Ø³ Ø£Ø¹ÙØ§ÙÙÙ ÙÙ Ø­ØµØµ Ø§ÙØ£Ø¯Ø¨ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Education,['mouloud mammeri'],"['dickens', 'charles dickens']",['lu xun'],A,"
-
-Which writers are commonly studied in literature class in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. mouloud mammeri .
-B. dickens and charles dickens
-C. lu xun
-
-
-
-
-Answer:
-",B
-New-en-69,Ara_324,Arab,Which writers are commonly studied in literature class in your country?,ÙÙ ÙÙ Ø§ÙÙØªÙØ§Ø¨ Ø§ÙØ°ÙÙ ØªØ¯Ø±Ø³ Ø£Ø¹ÙØ§ÙÙÙ ÙÙ Ø­ØµØµ Ø§ÙØ£Ø¯Ø¨ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Education,"['steinbeck', 'john steinbeck']",['mouloud feraoun'],['lao she'],B,"
-
-Which writers are commonly studied in literature class in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. steinbeck and john steinbeck .
-B. mouloud feraoun
-C. lao she
-
-
-
-
-Answer:
-",B
-New-en-76,Ara_328,Arab,Which airport in your country is the busiest during the holiday season?,ÙØ§ ÙÙ Ø§ÙÙØ·Ø§Ø± Ø§ÙØ£ÙØ«Ø± Ø§Ø²Ø¯Ø­Ø§ÙÙØ§ Ø®ÙØ§Ù ÙÙØ³Ù Ø§ÙØ¹Ø·Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['beijing daxing'],['heathrow'],nothing,C,"
-
-Which airport in your country is the busiest during the holiday season?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. beijing daxing .
-B. heathrow
-C. nothing
-
-
-
-
-Answer:
-",A
-New-en-76,Ara_328,Arab,Which airport in your country is the busiest during the holiday season?,ÙØ§ ÙÙ Ø§ÙÙØ·Ø§Ø± Ø§ÙØ£ÙØ«Ø± Ø§Ø²Ø¯Ø­Ø§ÙÙØ§ Ø®ÙØ§Ù ÙÙØ³Ù Ø§ÙØ¹Ø·Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,nothing,"['beijing capital airport', 'capital airport']",['stanstead'],A,"
-
-Which airport in your country is the busiest during the holiday season?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. beijing capital airport and capital airport
-C. stanstead
-
-
-
-
-Answer:
-",C
-New-en-79,Ara_329,Arab,Which region of your country is well known for its theatrical performances?,ÙØ§ ÙÙ Ø§ÙÙÙØ·ÙØ© Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙØ© Ø§ÙÙØ¹Ø±ÙÙØ© Ø¨Ø§ÙØ¹Ø±ÙØ¶ Ø§ÙÙØ³Ø±Ø­ÙØ©Ø,Holidays/Celebration/Leisure,"['sidi bel abbÃ¨s', 'sidi bel abbes']","['west end', 'west end of london', 'west end london']",['henan'],A,"
-
-Which region of your country is well known for its theatrical performances?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. sidi bel abbÃ¨s and sidi bel abbes .
-B. west end and west end of london and west end london
-C. henan
-
-
-
-
-Answer:
-",B
-New-en-79,Ara_329,Arab,Which region of your country is well known for its theatrical performances?,ÙØ§ ÙÙ Ø§ÙÙÙØ·ÙØ© Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙØ© Ø§ÙÙØ¹Ø±ÙÙØ© Ø¨Ø§ÙØ¹Ø±ÙØ¶ Ø§ÙÙØ³Ø±Ø­ÙØ©Ø,Holidays/Celebration/Leisure,['london'],['oran'],['henan'],B,"
-
-Which region of your country is well known for its theatrical performances?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. london .
-B. oran
-C. henan
-
-
-
-
-Answer:
-",B
-New-ha-07,Ara_346,Arab,What food originated from your country and can be found all over the world?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙØ°Ù Ø£ØµÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± ÙÙÙÙÙ Ø§ÙØ¹Ø«ÙØ± Ø¹ÙÙÙ ÙÙ Ø¬ÙÙØ¹ Ø£ÙØ­Ø§Ø¡ Ø§ÙØ¹Ø§ÙÙØ,Food,['noodles'],['potatoes'],nothing,C,"
-
-What food originated from your country and can be found all over the world?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. noodles .
-B. potatoes
-C. nothing
-
-
-
-
-Answer:
-",A
-New-ha-07,Ara_346,Arab,What food originated from your country and can be found all over the world?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙØ°Ù Ø£ØµÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± ÙÙÙÙÙ Ø§ÙØ¹Ø«ÙØ± Ø¹ÙÙÙ ÙÙ Ø¬ÙÙØ¹ Ø£ÙØ­Ø§Ø¡ Ø§ÙØ¹Ø§ÙÙØ,Food,['sweet and sour chicken'],['potatoes'],nothing,C,"
-
-What food originated from your country and can be found all over the world?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. sweet and sour chicken .
-B. potatoes
-C. nothing
-
-
-
-
-Answer:
-",A
-New-in-63,Ara_357,Arab,What university in your country is popular because of its school of medicine? (Provide the official name.), ÙØ§ ÙÙ Ø§ÙØ¬Ø§ÙØ¹Ø© Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙØ© Ø§ÙÙØ´ÙÙØ±Ø© Ø¨ØªØ®ØµØµ Ø§ÙØ·Ø¨ Ø (Ø§Ø³ØªØ¹ÙÙ Ø§ÙØ§Ø³Ù Ø§ÙØ±Ø³ÙÙ.),Education,"['oxford', 'university of oxford', 'oxford university']",nothing,['peking university'],B,"
-
-What university in your country is popular because of its school of medicine? (Provide the official name.)
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. oxford and university of oxford and oxford university .
-B. nothing
-C. peking university
-
-
-
-
-Answer:
-",C
-New-in-63,Ara_357,Arab,What university in your country is popular because of its school of medicine? (Provide the official name.), ÙØ§ ÙÙ Ø§ÙØ¬Ø§ÙØ¹Ø© Ø§ÙØ¬Ø²Ø§Ø¦Ø±ÙØ© Ø§ÙÙØ´ÙÙØ±Ø© Ø¨ØªØ®ØµØµ Ø§ÙØ·Ø¨ Ø (Ø§Ø³ØªØ¹ÙÙ Ø§ÙØ§Ø³Ù Ø§ÙØ±Ø³ÙÙ.),Education,"['ziania medical school', 'algiers faculty of medicine', 'algiers faculty of medicine - ziania', 'zianides', 'faculty of medicine']",['peking university health science center'],['cambridge'],A,"
-
-What university in your country is popular because of its school of medicine? (Provide the official name.)
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. ziania medical school and algiers faculty of medicine and algiers faculty of medicine - ziania and zianides and faculty of medicine .
-B. peking university health science center
-C. cambridge
-
-
-
-
-Answer:
-",B
-New-ko-04,Ara_363,Arab,Which toys are most popular among boys in your country?,ÙØ§ ÙÙ Ø§ÙØ£ÙØ¹Ø§Ø¨ Ø§ÙØ£ÙØ«Ø± Ø´Ø¹Ø¨ÙØ© Ø¨ÙÙ Ø§ÙØ£ÙÙØ§Ø¯ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,['hide and seek'],['car model'],"['toy cars', 'cars']",A,"
-
-Which toys are most popular among boys in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. hide and seek .
-B. car model
-C. toy cars and cars
-
-
-
-
-Answer:
-",C
-New-ko-04,Ara_363,Arab,Which toys are most popular among boys in your country?,ÙØ§ ÙÙ Ø§ÙØ£ÙØ¹Ø§Ø¨ Ø§ÙØ£ÙØ«Ø± Ø´Ø¹Ø¨ÙØ© Ø¨ÙÙ Ø§ÙØ£ÙÙØ§Ø¯ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,"['bead balls', 'beads']",['lego'],"['football', 'footballs', 'soccer ball']",A,"
-
-Which toys are most popular among boys in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. bead balls and beads .
-B. lego
-C. football and footballs and soccer ball
-
-
-
-
-Answer:
-",C
-New-pe-02,Ara_370,Arab,What is the most famous edible souvenir for tourists in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø£ÙÙ ÙÙØ¯Ù ÙÙØ³ÙØ§Ø­ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['couscous'],['pineapple cake'],['cornish pasty'],A,"
-
-What is the most famous edible souvenir for tourists in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. couscous .
-B. pineapple cake
-C. cornish pasty
-
-
-
-
-Answer:
-",C
-New-pe-02,Ara_370,Arab,What is the most famous edible souvenir for tourists in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø£ÙÙ ÙÙØ¯Ù ÙÙØ³ÙØ§Ø­ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['cornish pasty'],nothing,['green bean cake'],B,"
-
-What is the most famous edible souvenir for tourists in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. cornish pasty .
-B. nothing
-C. green bean cake
-
-
-
-
-Answer:
-",C
-New-pe-06,Ara_371,Arab,What is the most popular stew in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø·Ø§Ø¬ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['braised spare ribs'],['steak and ale'],['chtitha'],C,"
-
-What is the most popular stew in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. braised spare ribs .
-B. steak and ale
-C. chtitha
-
-
-
-
-Answer:
-",C
-New-pe-06,Ara_371,Arab,What is the most popular stew in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø·Ø§Ø¬ÙÙ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['pork stew with glass noodles'],['beef'],nothing,C,"
-
-What is the most popular stew in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. pork stew with glass noodles .
-B. beef
-C. nothing
-
-
-
-
-Answer:
-",A
-New-pe-53,Ara_378,Arab,What gifts do fathers get on Father's Day (or Parents' Day) in your country?,ÙØ§ ÙÙ Ø§ÙÙØ¯Ø§ÙØ§ Ø§ÙØªÙ ÙØ­ØµÙ Ø¹ÙÙÙØ§ Ø§ÙØ¢Ø¨Ø§Ø¡ ÙÙ Ø¹ÙØ¯ Ø§ÙØ£Ø¨ (Ø£Ù Ø¹ÙØ¯ Ø§ÙÙØ§ÙØ¯ÙÙ) ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,['aftershave'],['flower'],nothing,C,"
-
-What gifts do fathers get on Father's Day (or Parents' Day) in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. aftershave .
-B. flower
-C. nothing
-
-
-
-
-Answer:
-",B
-New-pe-53,Ara_378,Arab,What gifts do fathers get on Father's Day (or Parents' Day) in your country?,ÙØ§ ÙÙ Ø§ÙÙØ¯Ø§ÙØ§ Ø§ÙØªÙ ÙØ­ØµÙ Ø¹ÙÙÙØ§ Ø§ÙØ¢Ø¨Ø§Ø¡ ÙÙ Ø¹ÙØ¯ Ø§ÙØ£Ø¨ (Ø£Ù Ø¹ÙØ¯ Ø§ÙÙØ§ÙØ¯ÙÙ) ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,['razor'],['card'],['perfume'],C,"
-
-What gifts do fathers get on Father's Day (or Parents' Day) in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. razor .
-B. card
-C. perfume
-
-
-
-
-Answer:
-",B
-New-pe-86,Ara_388,Arab,What is the name of the most famous tower in your country?,ÙØ§ ÙÙ Ø§Ø³Ù Ø£Ø´ÙØ± Ø¨Ø±Ø¬ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,['canton tower'],nothing,"['the blackpool tower', 'blackpool']",B,"
-
-What is the name of the most famous tower in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. canton tower .
-B. nothing
-C. the blackpool tower and blackpool
-
-
-
-
-Answer:
-",C
-New-pe-86,Ara_388,Arab,What is the name of the most famous tower in your country?,ÙØ§ ÙÙ Ø§Ø³Ù Ø£Ø´ÙØ± Ø¨Ø±Ø¬ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,nothing,"['oriental pearl', 'pearl of the orient']","['the blackpool tower', 'blackpool']",A,"
-
-What is the name of the most famous tower in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. oriental pearl and pearl of the orient
-C. the blackpool tower and blackpool
-
-
-
-
-Answer:
-",C
-New-spme-05,Ara_391,Arab,What are the most popular sweets in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø§ÙØ­ÙÙÙØ§Øª ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['maltesers'],"['halwet ettabaa', 'halwet taba', 'halwet tabe', 'halwet eltaba']",['egg yolk pastry'],B,"
-
-What are the most popular sweets in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. maltesers .
-B. halwet ettabaa and halwet taba and halwet tabe and halwet eltaba
-C. egg yolk pastry
-
-
-
-
-Answer:
-",C
-New-spme-05,Ara_391,Arab,What are the most popular sweets in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± Ø§ÙØ­ÙÙÙØ§Øª ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['egg roll'],['baklava'],['mars bar'],B,"
-
-What are the most popular sweets in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. egg roll .
-B. baklava
-C. mars bar
-
-
-
-
-Answer:
-",C
-New-spme-65,Ara_396,Arab,What is the most popular way to celebrate Independence Day in your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø±ÙÙØ© Ø§ÙØ´Ø§Ø¦Ø¹Ø© ÙÙØ§Ø­ØªÙØ§Ù Ø¨Ø¹ÙØ¯ Ø§ÙØ§Ø³ØªÙÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,nothing,"['watching fireworks', 'firework']","['set off fireworks', 'fireworks']",B,"
-
-What is the most popular way to celebrate Independence Day in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. watching fireworks and firework
-C. set off fireworks and fireworks
-
-
-
-
-Answer:
-",C
-New-spme-65,Ara_396,Arab,What is the most popular way to celebrate Independence Day in your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø±ÙÙØ© Ø§ÙØ´Ø§Ø¦Ø¹Ø© ÙÙØ§Ø­ØªÙØ§Ù Ø¨Ø¹ÙØ¯ Ø§ÙØ§Ø³ØªÙÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,"['go out for a trip', 'tourism', 'travel']",nothing,"['flag', 'hanging flags']",C,"
-
-What is the most popular way to celebrate Independence Day in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. go out for a trip and tourism and travel .
-B. nothing
-C. flag and hanging flags
-
-
-
-
-Answer:
-",C
-New-spme-76,Ara_398,Arab,What is the most popular place in your country to celebrate Independence Day?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± ÙÙØ§Ø­ØªÙØ§Ù Ø¨Ø¹ÙØ¯ Ø§ÙØ§Ø³ØªÙÙØ§ÙØ,Holidays/Celebration/Leisure,nothing,nothing,['algiers'],C,"
-
-What is the most popular place in your country to celebrate Independence Day?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. nothing
-C. algiers
-
-
-
-
-Answer:
-",C
-New-spme-76,Ara_398,Arab,What is the most popular place in your country to celebrate Independence Day?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙÙØ§Ù ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø± ÙÙØ§Ø­ØªÙØ§Ù Ø¨Ø¹ÙØ¯ Ø§ÙØ§Ø³ØªÙÙØ§ÙØ,Holidays/Celebration/Leisure,"['tiananmen square', 'tiananmen']",nothing,"['central post office square', 'central post office']",C,"
-
-What is the most popular place in your country to celebrate Independence Day?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. tiananmen square and tiananmen .
-B. nothing
-C. central post office square and central post office
-
-
-
-
-Answer:
-",A
-Sa-en-13,Ara_448,Arab,What is the food that is most divisive (either love or hate) in your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙØ°Ù ÙØ«ÙØ± Ø§ÙØ§ÙÙØ³Ø§ÙØ§Øª (Ø¥ÙØ§ Ø§ÙØ­Ø¨ Ø£Ù Ø§ÙÙØ±Ø§ÙÙØ©) ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['brussel sprouts'],['cilantro'],"[""boiled sheep's head"", 'bozlov', 'bouzalof', 'bouzlouf']",C,"
-
-What is the food that is most divisive (either love or hate) in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. brussel sprouts .
-B. cilantro
-C. ""boiled sheeps head"" and bozlov and bouzalof and bouzlouf
-
-
-
-
-Answer:
-",C
-Sa-en-13,Ara_448,Arab,What is the food that is most divisive (either love or hate) in your country?,ÙØ§ ÙÙ Ø§ÙØ·Ø¹Ø§Ù Ø§ÙØ°Ù ÙØ«ÙØ± Ø§ÙØ§ÙÙØ³Ø§ÙØ§Øª (Ø¥ÙØ§ Ø§ÙØ­Ø¨ Ø£Ù Ø§ÙÙØ±Ø§ÙÙØ©) ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Food,['couscous'],['onion'],['zongzi'],A,"
-
-What is the food that is most divisive (either love or hate) in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. couscous .
-B. onion
-C. zongzi
-
-
-
-
-Answer:
-",C
-Sa-en-37,Ara_453,Arab,What is the most popular family boardgame in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙØ¹Ø¨Ø© Ø¹Ø§Ø¦ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,['ludo'],nothing,['fight the landlord'],B,"
-
-What is the most popular family boardgame in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. ludo .
-B. nothing
-C. fight the landlord
-
-
-
-
-Answer:
-",A
-Sa-en-37,Ara_453,Arab,What is the most popular family boardgame in your country?,ÙØ§ ÙÙ Ø£Ø´ÙØ± ÙØ¹Ø¨Ø© Ø¹Ø§Ø¦ÙÙØ© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,nothing,['poker'],['ludo'],A,"
-
-What is the most popular family boardgame in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. poker
-C. ludo
-
-
-
-
-Answer:
-",C
-Ta-pe-37,Ara_468,Arab,What is the common symbol of New Year's Eve that is usually found in your country?,ÙØ§ ÙÙ Ø§ÙØ±ÙØ² Ø§ÙÙØ´ØªØ±Ù ÙÙÙØ© Ø±Ø£Ø³ Ø§ÙØ³ÙØ© Ø§ÙØ°Ù ÙÙØ¬Ø¯ Ø¹Ø§Ø¯Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,nothing,"['auld lang syne', 'auld lang syne singing']","['spring festival couplets', 'chinese couplets', 'new year scrolls']",A,"
-
-What is the common symbol of New Year's Eve that is usually found in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. auld lang syne and auld lang syne singing
-C. spring festival couplets and chinese couplets and new year scrolls
-
-
-
-
-Answer:
-",A
-Ta-pe-37,Ara_468,Arab,What is the common symbol of New Year's Eve that is usually found in your country?,ÙØ§ ÙÙ Ø§ÙØ±ÙØ² Ø§ÙÙØ´ØªØ±Ù ÙÙÙØ© Ø±Ø£Ø³ Ø§ÙØ³ÙØ© Ø§ÙØ°Ù ÙÙØ¬Ø¯ Ø¹Ø§Ø¯Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Holidays/Celebration/Leisure,nothing,['spring festival travel rush'],['fireworks'],A,"
-
-What is the common symbol of New Year's Eve that is usually found in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. nothing .
-B. spring festival travel rush
-C. fireworks
-
-
-
-
-Answer:
-",C
-Th-en-27,Ara_482,Arab,What is the most important industry in your country?,ÙØ§ ÙÙ Ø£ÙÙ ØµÙØ§Ø¹Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['software development'],['tertiary industry'],nothing,C,"
-
-What is the most important industry in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. software development .
-B. tertiary industry
-C. nothing
-
-
-
-
-Answer:
-",B
-Th-en-27,Ara_482,Arab,What is the most important industry in your country?,ÙØ§ ÙÙ Ø£ÙÙ ØµÙØ§Ø¹Ø© ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Work life,['finance'],['manufacturing'],['service'],B,"
-
-What is the most important industry in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. finance .
-B. manufacturing
-C. service
-
-
-
-
-Answer:
-",C
-Th-en-36,Ara_484,Arab,What is a popular family activity with a child to do on weekends in your country?,ÙØ§ ÙÙ Ø§ÙÙØ´Ø§Ø·Ø§Øª Ø§ÙØ¹Ø§Ø¦ÙÙØ© Ø§ÙØ´Ø§Ø¦Ø¹Ø© Ø§ÙØªÙ ÙÙÙÙ Ø§ÙÙÙØ§Ù Ø¨ÙØ§ ÙØ¹ Ø§ÙØ£Ø·ÙØ§Ù ÙÙ Ø¹Ø·ÙØ© ÙÙØ§ÙØ© Ø§ÙØ£Ø³Ø¨ÙØ¹ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,"['football', 'soccer']",nothing,['shopping'],B,"
-
-What is a popular family activity with a child to do on weekends in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. football and soccer .
-B. nothing
-C. shopping
-
-
-
-
-Answer:
-",A
-Th-en-36,Ara_484,Arab,What is a popular family activity with a child to do on weekends in your country?,ÙØ§ ÙÙ Ø§ÙÙØ´Ø§Ø·Ø§Øª Ø§ÙØ¹Ø§Ø¦ÙÙØ© Ø§ÙØ´Ø§Ø¦Ø¹Ø© Ø§ÙØªÙ ÙÙÙÙ Ø§ÙÙÙØ§Ù Ø¨ÙØ§ ÙØ¹ Ø§ÙØ£Ø·ÙØ§Ù ÙÙ Ø¹Ø·ÙØ© ÙÙØ§ÙØ© Ø§ÙØ£Ø³Ø¨ÙØ¹ ÙÙ Ø§ÙØ¬Ø²Ø§Ø¦Ø±Ø,Family,"['strolling', 'hiking', 'picnic', 'going out for a picnic to the forest or amusement parks']","['go to the zoo', 'zoo']","['go to the park', 'stroll in the park']",A,"
-
-What is a popular family activity with a child to do on weekends in your country?
-Without any explanation, choose only one from the given alphabet choices (A, B, or C). You must answer **only** ""A"", ""B"", or ""C"" and nothing else.
-
-A. strolling and hiking and picnic and going out for a picnic to the forest or amusement parks .
-B. go to the zoo and zoo
-C. go to the park and stroll in the park
-
-
-
-
-Answer:
-",C

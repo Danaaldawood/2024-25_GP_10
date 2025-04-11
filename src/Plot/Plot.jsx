@@ -35,6 +35,7 @@ export const Plot = () => {
     "family",
     "holidays",
     "worklife",
+    "education",
     "greeting",
   ];
   const topicKeyToApiValue = {
@@ -44,7 +45,10 @@ export const Plot = () => {
     family: "Family",
     holidays: "Holidays/Celebration/Leisure",
     worklife: "Work life",
+    education:"Education",
     greeting: "Greeting",
+    
+
   };
 
   const regionToIds = {
