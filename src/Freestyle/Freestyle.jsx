@@ -35,7 +35,7 @@ export const ConversationLayout = () => {
   
   // Fetch suggestions when component mounts
   useEffect(() => {
-    fetch('http://localhost:5000/api/suggestions')
+    fetch('http://localhost:5001/api/suggestions')
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
@@ -60,7 +60,7 @@ export const ConversationLayout = () => {
 
       try {
         // Send message to Mistral model (Model A)
-        const responseA = fetch('http://localhost:5000/api/chat', {
+        const responseA = fetch('http://localhost:5001/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ export const ConversationLayout = () => {
           });
 
         // Send message to Llama model (Model B)
-        const responseB = fetch('http://localhost:5000/api/chat', {
+        const responseB = fetch('http://localhost:5001/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
