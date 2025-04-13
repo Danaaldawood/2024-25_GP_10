@@ -7,16 +7,16 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
 
 .compare-result-content {
   flex: 1;
   padding: 1rem;
-  background-color: white;
-}
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);}
 
 .compare-result-container {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
   border-radius: 10px;
   padding: 20px;
   width: 100%;
@@ -117,7 +117,7 @@
 /* --- Content Wrapper --- */
 .compare-result-content-wrapper {
   margin-top: 1rem;
-  background-color: white;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
   padding: 1rem;
   border-radius: 8px;
 }
@@ -219,11 +219,7 @@
   width: 60px;
   height: 8px;
   background: linear-gradient(
-    to right,
-    /* Red gradient from 0-15% */ #f9d1a8 0%,
-    #f9d1a8 15%,
-    /* Green gradient from 15-100% */ #f9d1a8 15%,
-    #f28d27 100%
+    to right, #095c474f 0%, #12c697 100%
   );
   border-radius: 4px;
 }

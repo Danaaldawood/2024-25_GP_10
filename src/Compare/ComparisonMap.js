@@ -1,3 +1,4 @@
+
 // --- Imports ---
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
@@ -21,13 +22,13 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     
     // Use gray for 0% similarity, and orange gradient for 1-100%
     if (value === 0) {
-      return "#C0C0C0"; // Gray for 0% similarity
+      return "#095c474f"; // Gray for 0% similarity
     }
 
     const orangeScale = d3
       .scaleLinear()
       .domain([1, 100]) // Start from 1% to 100% for the orange gradient
-      .range(["#f9d1a8", "#f28d27"]); // Light orange to dark orange
+      .range(["#095c474f", "#12c697 "]); // Light orange to dark orange
     return orangeScale(value);
   };
 
@@ -46,11 +47,32 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("width", "100%")
           .attr("height", "100%");
 
+        // Define gradient for background
+        const defs = svg.append("defs");
+        const gradient = defs
+          .append("linearGradient")
+          .attr("id", "background-gradient")
+          .attr("x1", "0%")
+          .attr("y1", "0%")
+          .attr("x2", "100%")
+          .attr("y2", "100%");
+          
+        gradient
+          .append("stop")
+          .attr("offset", "0%")
+          .attr("stop-color", "#f5f7fa");
+          
+        gradient
+          .append("stop")
+          .attr("offset", "100%")
+          .attr("stop-color", "#e4e8eb");
+
+        // Apply gradient background instead of white
         svg
           .append("rect")
           .attr("width", width)
           .attr("height", height)
-          .attr("fill", "white");
+          .attr("fill", "url(#background-gradient)");
 
         const projection = d3
           .geoMercator()
@@ -152,9 +174,9 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .attr("x2", "100%")
             .selectAll("stop")
             .data([
-              { offset: "0%", color: "#f9d1a8" }, // Gray for 0%
-              { offset: "10%", color: "#f5bd85" }, // Transition to light orange
-              { offset: "100%", color: "#f28d27" } // Dark orange for 100%
+              { offset: "0%", color: "#095c474f" }, // Gray for 0%
+              { offset: "10%", color: "#095c474f" }, // Transition to light orange
+              { offset: "100%", color: "#12c697" } // Dark orange for 100%
             ])
             .enter()
             .append("stop")
