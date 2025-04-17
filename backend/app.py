@@ -8,16 +8,7 @@ import os
 
 # --- Flask Setup ---
 app = Flask(__name__)
-
-# Configure CORS correctly - only use ONE method of setting CORS headers
-CORS(app, 
-     resources={r"/*": {"origins": "*"}},  # Allow all origins
-     supports_credentials=True,
-     methods=["GET", "POST", "OPTIONS"],
-     allow_headers=["Content-Type", "Authorization", "X-Requested-With"])
-
-# Remove the after_request hook since CORS() already adds these headers
-# and we don't want to add them twice
+CORS(app)  # Enable Cross-Origin Resource Sharing
 
 # --- Load Regional Datasets ---
 # Datasets for LLAMA2 Baseline (Coverage Scores)
@@ -81,7 +72,17 @@ cohere_hofstede_finetuned_datasets = {
     "Western": pd.read_csv("./Hofsted_west_MistralF.csv", encoding="utf-8"),
 }
 
+# # --- Initialize Firebase ---
+# initialize_app(credentials.Certificate("serviceAccountKey.json"), {
+#     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
+# })
+
+
+
 # --- Initialize Firebase ---
+# Replace the existing initialization code
+
+
 # Check if running on Render or locally
 if os.environ.get('FIREBASE_CREDENTIALS'):
     # On Render: Use environment variable
@@ -94,7 +95,6 @@ else:
 initialize_app(cred, {
     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
 })
-
 # --- Coverage Calculation Functions (For LLAMA2 Baseline) ---
 def calculate_coverage(data, topic=None):
     """
@@ -348,13 +348,12 @@ def evaluate():
         print(f"Error during evaluation: {e}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/compare', methods=['POST', 'OPTIONS'])
+@app.route('/api/compare', methods=['POST'])
 def compare():
     """
     Endpoint to calculate similarity scores between regions for selected topics.
     Uses Firebase data.
     """
-    # No need to handle OPTIONS request manually, flask-cors does this automatically
     try:
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
