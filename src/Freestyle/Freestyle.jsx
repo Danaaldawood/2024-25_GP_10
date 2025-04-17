@@ -35,7 +35,8 @@ export const ConversationLayout = () => {
   
   // Fetch suggestions when component mounts
   useEffect(() => {
-    fetch('http://localhost:5001/api/suggestions')
+    // 'http://localhost:5001/api/suggestions'
+    fetch('https://gp-culturelens.onrender.com/api/suggestions')
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
@@ -59,8 +60,8 @@ export const ConversationLayout = () => {
       setSendCount(prev => prev + 1);
 
       try {
-        // Send message to Mistral model (Model A)
-        const responseA = fetch('http://localhost:5001/api/chat', {
+        // Send message to Mistral model (Model A)http://localhost:5001/api/chat'
+        const responseA = fetch('https://gp-culturelens.onrender.com/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -83,7 +84,7 @@ export const ConversationLayout = () => {
           });
 
         // Send message to Llama model (Model B)
-        const responseB = fetch('http://localhost:5001/api/chat', {
+        const responseB = fetch('https://gp-culturelens.onrender.com/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

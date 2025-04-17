@@ -49,7 +49,9 @@ function CompareResult() {
       const comparisonRegions = getComparisonRegions();
       try {
         const promises = comparisonRegions.map(async (compareRegion) => {
-          const response = await fetch("http://127.0.0.1:5000/api/compare", {
+          
+          // "http://127.0.0.1:5000/api/compare"
+          const response = await fetch("https://gp-culturelens.onrender.com/api/compare", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
