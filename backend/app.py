@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import pandas as pd
 import numpy as np
 from firebase_admin import credentials, db, initialize_app
@@ -9,15 +9,9 @@ import os
 # --- Flask Setup ---
 app = Flask(__name__)
 
-# Configure CORS correctly - only use ONE method of setting CORS headers
-CORS(app, 
-     resources={r"/*": {"origins": "*"}},  # Allow all origins
-     supports_credentials=True,
-     methods=["GET", "POST", "OPTIONS"],
-     allow_headers=["Content-Type", "Authorization", "X-Requested-With"])
-
-# Remove the after_request hook since CORS() already adds these headers
-# and we don't want to add them twice
+# Use a simpler CORS setup
+CORS(app, origins="*", allow_headers=["Content-Type", "Authorization"], 
+     methods=["GET", "POST", "OPTIONS"], supports_credentials=False)
 
 # --- Load Regional Datasets ---
 # Datasets for LLAMA2 Baseline (Coverage Scores)
@@ -291,6 +285,7 @@ def to_serializable(val):
 
 # --- Flask Endpoints ---
 @app.route('/evaluate', methods=['POST'])
+@cross_origin()
 def evaluate():
     """
     Endpoint to calculate evaluation metrics based on model and evaluation type.
@@ -348,13 +343,19 @@ def evaluate():
         print(f"Error during evaluation: {e}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/compare', methods=['POST', 'OPTIONS'])
+# Explicit handling for OPTIONS preflight request
+@app.route('/api/compare', methods=['OPTIONS'])
+@cross_origin(origins="*", allow_headers=["Content-Type", "Authorization"])
+def options():
+    return '', 200
+
+@app.route('/api/compare', methods=['POST'])
+@cross_origin(origins="*", allow_headers=["Content-Type", "Authorization"])
 def compare():
     """
     Endpoint to calculate similarity scores between regions for selected topics.
     Uses Firebase data.
     """
-    # No need to handle OPTIONS request manually, flask-cors does this automatically
     try:
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
@@ -393,6 +394,7 @@ def compare():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/test', methods=['GET'])
+@cross_origin()
 def test():
     """
     Simple test endpoint to ensure the server is running.
