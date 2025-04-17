@@ -8,13 +8,24 @@ import os
 
 # --- Flask Setup ---
 app = Flask(__name__)
-CORS(app)  # Enable Cross-Origin Resource Sharing
+# Replace the simple CORS configuration with a more detailed one
+# CORS(app)  # Enable Cross-Origin Resource Sharing
 
-CORS(app, resources={r"/*": {"origins": [
-    "https://gp-frontend-om9b.onrender.com",
-    "http://localhost:3000",  # For local development
-    "*"  # Optional: allow all origins (less secure but easier for testing)
-]}})
+# Configure CORS with explicit settings
+CORS(app, 
+     resources={r"/*": {"origins": "*"}},  # Allow all origins
+     supports_credentials=True,
+     methods=["GET", "POST", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With"])
+
+# Make sure CORS headers are applied to all responses
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+
 # --- Load Regional Datasets ---
 # Datasets for LLAMA2 Baseline (Coverage Scores)
 llama_datasets = {
@@ -353,12 +364,20 @@ def evaluate():
         print(f"Error during evaluation: {e}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/compare', methods=['POST'])
+@app.route('/api/compare', methods=['POST', 'OPTIONS'])
 def compare():
     """
     Endpoint to calculate similarity scores between regions for selected topics.
     Uses Firebase data.
     """
+    # Handle preflight OPTIONS request
+    if request.method == 'OPTIONS':
+        response = app.make_default_options_response()
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+        
     try:
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
