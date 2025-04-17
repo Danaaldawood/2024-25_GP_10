@@ -3,6 +3,8 @@ from flask_cors import CORS
 import pandas as pd
 import numpy as np
 from firebase_admin import credentials, db, initialize_app
+import json
+import os
 
 # --- Flask Setup ---
 app = Flask(__name__)
@@ -70,11 +72,29 @@ cohere_hofstede_finetuned_datasets = {
     "Western": pd.read_csv("./Hofsted_west_MistralF.csv", encoding="utf-8"),
 }
 
+# # --- Initialize Firebase ---
+# initialize_app(credentials.Certificate("serviceAccountKey.json"), {
+#     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
+# })
+
+
+
 # --- Initialize Firebase ---
-initialize_app(credentials.Certificate("serviceAccountKey.json"), {
+# Replace the existing initialization code
+
+
+# Check if running on Render or locally
+if os.environ.get('FIREBASE_CREDENTIALS'):
+    # On Render: Use environment variable
+    firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+    cred = credentials.Certificate(firebase_credentials)
+else:
+    # Locally: Use file
+    cred = credentials.Certificate("serviceAccountKey.json")
+
+initialize_app(cred, {
     'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
 })
-
 # --- Coverage Calculation Functions (For LLAMA2 Baseline) ---
 def calculate_coverage(data, topic=None):
     """
