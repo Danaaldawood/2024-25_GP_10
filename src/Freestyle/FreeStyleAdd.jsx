@@ -8,6 +8,7 @@ import { realtimeDb, auth, db } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import { FaCheck } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { Footer } from "../Footer/Footer";
 
 const FreeStyleAdd = () => {
   const navigate = useNavigate();
@@ -23,13 +24,15 @@ const FreeStyleAdd = () => {
   const [disabledButtons, setDisabledButtons] = useState({});
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  // New state to track which answers have been edited
+  const [editedConversations, setEditedConversations] = useState({});
  
   const handlePopup = (message) => {
     setPopupMessage(message);
     setShowPopup(true);
   };
   const { t, i18n } = useTranslation('FreeStyleAdd');
-        const isRTL = i18n.dir() === 'rtl';
+  const isRTL = i18n.dir() === 'rtl';
   const MAX_EDIT_LENGTH = 50;  
 
   // Fetch chat data from localStorage once on component mount
@@ -141,6 +144,12 @@ const FreeStyleAdd = () => {
     setEditing({});
     
     localStorage.setItem("lastChatMessages", JSON.stringify(updatedChatData));
+    
+    // Mark this conversation as edited
+    setEditedConversations(prev => ({
+      ...prev,
+      [index]: true
+    }));
   };
 
   // Retrieve user region from Firestore
@@ -165,39 +174,91 @@ const FreeStyleAdd = () => {
     });
   }, []);
      
-   const handleAddToDB = async (index) => {
+  const handleAddToDB = async (index) => {
     if (!chatData || !chatData.conversations || !auth.currentUser) return;
+    
+    // Check if the conversation has been edited
+    if (!editedConversations[index]) {
+      handlePopup("⚠️ You must edit the answer before adding");
+      return;
+    }
+    
     if (!userRegion || userRegion === "Unknown") {
       handlePopup("⚠️ User region unknown. Please complete your profile first.");
       return;
     }
-
+  
     const conversation = chatData.conversations[index];
     const question = conversation.question;
     
     let answerContent;
     if (chatData.selectedModel === "Model A") {
-      answerContent = editing.model === 'A' && editing.index === index ? 
-                     editedAnswers.A : 
-                     conversation.modelA;
+      answerContent = editing.model === 'A' && editing.index === index ?
+                      editedAnswers.A :
+                      conversation.modelA;
     } else if (chatData.selectedModel === "Model B") {
-      answerContent = editing.model === 'B' && editing.index === index ? 
-                     editedAnswers.B : 
-                     conversation.modelB;
+      answerContent = editing.model === 'B' && editing.index === index ?
+                      editedAnswers.B :
+                      conversation.modelB;
     } else {
       answerContent = `${editing.model === 'A' && editing.index === index ? editedAnswers.A : conversation.modelA} | ${editing.model === 'B' && editing.index === index ? editedAnswers.B : conversation.modelB}`;
     }
-
+  
     if (
       !answerContent || 
-      (editing.model === 'A' && editing.index === index && !editedAnswers.A) || 
+      (editing.model === 'A' && editing.index === index && !editedAnswers.A) ||
       (editing.model === 'B' && editing.index === index && !editedAnswers.B)
     ) {
       handlePopup("⚠️ You must provide an answer before adding it.");
       return;
     }
-
+  
     try {
+      // First, check if similar question already exists for this region
+      const detailsRef = ref(realtimeDb, "Model_Answer/Details");
+      const detailsSnapshot = await get(detailsRef);
+      
+      // Get user region prefix for comparison (e.g., "Arab" from "ArabC")
+      const regionPrefix = userRegion.replace(/[0-9C]+$/, '');
+      let isDuplicate = false;
+      
+      if (detailsSnapshot.exists()) {
+        const details = detailsSnapshot.val();
+        
+        // Check each entry in the database
+        for (const key in details) {
+          const entry = details[key];
+          
+          // Check if region matches our prefix and question is the same
+          if (
+            entry.region_name && 
+            entry.region_name.startsWith(regionPrefix) &&
+            entry.en_question === question
+          ) {
+            // Check if answer content exists in annotations
+            if (entry.annotations && entry.annotations.length > 0) {
+              for (const annotation of entry.annotations) {
+                if (
+                  annotation.en_values && 
+                  annotation.en_values.some(val => val === answerContent)
+                ) {
+                  isDuplicate = true;
+                  break;
+                }
+              }
+            }
+            
+            if (isDuplicate) break;
+          }
+        }
+      }
+      
+      if (isDuplicate) {
+        handlePopup("⚠️ This question and answer already exist in the database for your region.");
+        return;
+      }
+      
+      // Continue with adding the new entry if not a duplicate
       const evaluationEntry = {
         model_id: chatData.selectedModel || "Both",
         user_id: auth.currentUser.uid,
@@ -214,12 +275,12 @@ const FreeStyleAdd = () => {
         reason: reasonValues[index] ?? "not_specified",
         timestamp: new Date().toISOString(),
       };
-
+      
       const evaluationRef = ref(realtimeDb, "model_evaluation");
       await push(evaluationRef, evaluationEntry);
-
+      
       const newEntryKey = Date.now().toString();
-
+      
       const newEntry = {
         region_name: userRegion,
         en_question: question,
@@ -232,15 +293,15 @@ const FreeStyleAdd = () => {
           },
         ],
       };
-
+      
       const entryRef = ref(realtimeDb, `Model_Answer/Details/${newEntryKey}`);
       await set(entryRef, newEntry);
-
-      handlePopup(t("✅ Entry added successfully!"));
+      
+      handlePopup("✅ Entry added successfully!");
       setDisabledButtons(prev => ({ ...prev, [index]: true }));
     } catch (error) {
-      console.error("Error adding data:", error);
-      handlePopup("❌ An error occurred while adding the data. Please try again.");
+      console.error("Error checking or adding data:", error);
+      handlePopup("❌ An error occurred. Please try again.");
     }
   };
   
@@ -314,7 +375,7 @@ const FreeStyleAdd = () => {
                               className="edit-textarea"
                               maxLength={MAX_EDIT_LENGTH}                            />
                             <div className="character-counter">
-                              {editedAnswers.A ? editedAnswers.A.length : 0}/{  MAX_EDIT_LENGTH}
+                              {editedAnswers.A ? editedAnswers.A.length : 0}/{MAX_EDIT_LENGTH}
                             </div>
                             <button 
                               className="icon-btn save-btn"
@@ -364,7 +425,7 @@ const FreeStyleAdd = () => {
                               className="edit-textarea"
                               maxLength={MAX_EDIT_LENGTH}                            />
                             <div className="character-counter">
-                              {editedAnswers.B ? editedAnswers.B.length : 0}/{ MAX_EDIT_LENGTH}
+                              {editedAnswers.B ? editedAnswers.B.length : 0}/{MAX_EDIT_LENGTH}
                             </div>
                             <button 
                               className="icon-btn save-btn"
@@ -386,8 +447,8 @@ const FreeStyleAdd = () => {
                                   className="see-more-btn"
                                   onClick={() => toggleExpand(`B-${index}`)}
                                 >
-{expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
-</button>
+                                  {expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
+                                </button>
                               )}
                               <button 
                                 className="icon-btn edit-btn"
@@ -412,10 +473,11 @@ const FreeStyleAdd = () => {
                     {topics.length > 0 ? (
                       topics.map((topic, idx) => (
                         <option key={idx} value={topic}>
-                        {t(`topics.${topic}`)}
-                      </option>                      ))
+                          {t(`topics.${topic}`)}
+                        </option>
+                      ))
                     ) : (
-<option value="">{t("No topics available")}</option>
+                      <option value="">{t("No topics available")}</option>
                     )}
                   </select>
                 </td>
@@ -427,11 +489,10 @@ const FreeStyleAdd = () => {
                     onChange={(e) => setSelectedEvaluation(e.target.value)}
                   >
                     <option value="" disabled>{t("Select Overall Evaluation")}</option>
-<option value="Fully Correct">{t("Fully Correct")}</option>
-<option value="Partially Correct">{t("Partially Correct")}</option>
-<option value="Poor">{t("Poor")}</option>
-<option value="None">{t("None")}</option>
-
+                    <option value="Fully Correct">{t("Fully Correct")}</option>
+                    <option value="Partially Correct">{t("Partially Correct")}</option>
+                    <option value="Poor">{t("Poor")}</option>
+                    <option value="None">{t("None")}</option>
                   </select>
                 </td>
 
@@ -442,41 +503,47 @@ const FreeStyleAdd = () => {
                     onChange={(e) => handleReasonChange(index, e.target.value)}
                   >
                     <option value="" disabled>{t("Select Reason")}</option>
-<option value="variation">{t("Variation")}</option>
-<option value="subculture">{t("Subculture")}</option>
-
+                    <option value="variation">{t("Variation")}</option>
+                    <option value="subculture">{t("Subculture")}</option>
                   </select>
                 </td>
 
                 <td className="add-cell">
-                <button
-  className={`add-btn ${disabledButtons[index] ? 'disabled-btn' : ''}`}
-  onClick={() => handleAddToDB(index)}
-  disabled={disabledButtons[index]}
->
-  {disabledButtons[index] ? <FaCheck className="add-icon" /> : <FaPlus className="add-icon" />}
-  {t("Add")}
-</button>
-
-
-
+                  <button
+                    className={`add-btn ${disabledButtons[index] ? 'disabled-btn' : ''}`}
+                    onClick={() => handleAddToDB(index)}
+                    disabled={disabledButtons[index]}
+                  >
+                    {disabledButtons[index] ? (
+                      <FaCheck className="add-icon" />
+                    ) : (
+                      <FaPlus className="add-icon" />
+                    )}
+                    {t("Add")}
+                  </button>
                 </td>
               </tr>
             ))}
+            
           </tbody>
+          
         </table>
       </div>
-      
+       
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
             <p>{popupMessage}</p>
             <button onClick={() => setShowPopup(false)}>OK</button>
           </div>
-        </div>
+          
+         </div>
       )}
+      
     </div>
+    
   );
+ 
 };
 
 export default FreeStyleAdd;

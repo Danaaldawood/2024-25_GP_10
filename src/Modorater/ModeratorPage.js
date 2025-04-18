@@ -538,7 +538,7 @@ const ModeratorPage = () => {
           className="complaints-link"
           onClick={() => (window.location.href = "/ReportPage")}
         >
-          Complaints Page
+          User Report Page
         </a>
 
         <button className="menu-btn" onClick={handleMenuToggle}>

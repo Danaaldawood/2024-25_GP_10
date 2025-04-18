@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
     padding: 1rem;
   }
   
@@ -65,7 +65,7 @@
   
   .Login-input:focus,
   .Login-select:focus {
-    border-color: #004d60;
+    border-color:#853c69;
     outline: none;
   }
   
@@ -89,7 +89,7 @@
   }
   
   .Login-user-type-btn.Login-active {
-    background-color: #004d60;
+    background:linear-gradient(135deg, #853c69 0%, #722F57 100%);
     color: #fff;
   }
   
@@ -105,7 +105,7 @@
      ==================================== */
   .left-section {
     flex: 1;
-    background: linear-gradient(700deg, #004d60, #6084a9);
+    background: #095c474f;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -143,7 +143,7 @@
   .Login-btn {
     width: 100%;
     padding: 0.75rem;
-    background-color: #2d5174;
+    background:linear-gradient(135deg, #853c69 0%, #722F57 100%);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -153,8 +153,9 @@
   }
   
   .Login-btn:hover {
-    background-color: #004d60;
-  }
+       background: linear-gradient(135deg, #722F57 0%, #66244c 100%);
+    }
+      
   
   /* Links and Secondary Actions */
   .Login-login {
@@ -164,7 +165,7 @@
   
   .Login-link,
   .forget-password {
-    color: #3f6da6;
+    color:#A44580;
     text-decoration: none;
     font-weight: bold;
     text-align: right;
@@ -221,7 +222,7 @@
   
     .left-section {
       flex: none;
-      background: linear-gradient(700deg, #004d60, #6084a9);
+      background: #095c474f;
       color: #fff;
       display: flex !important;
       width: 100%;

@@ -132,14 +132,14 @@ export const AddCultureValue = () => {
     if (itemData.region === "Arab") {
       const arabicPattern = /[\u0600-\u06FF]/;
       if (!arabicPattern.test(itemData.nativevalue)) {
-        setErrorMessage(t("addPage.ArabicOnly"));
+        setErrorMessage(t("addPage.errorPopup.ArabicOnly"));
         setShowErrorPopup(true);
         return;
       }
     } else if (itemData.region === "Chinese") {
       const chinesePattern = /[\u4e00-\u9fff]/;
       if (!chinesePattern.test(itemData.nativevalue)) {
-        setErrorMessage(t("addPage.ChineseOnlye"));
+        setErrorMessage(t("addPage.errorPopup.ChineseOnlye"));
         setShowErrorPopup(true);
         return;
       }
@@ -156,20 +156,43 @@ export const AddCultureValue = () => {
       return;
     }
 
-    // Check for duplicate values
-    const newValueLower = itemData.newvalue.toLowerCase();
-    const allValuesLower = itemData.allValues.map(value => {
-      if (typeof value === 'object' && value !== null) {
-        return value.en_values?.[0]?.toLowerCase() || '';
-      }
-      return typeof value === 'string' ? value.toLowerCase() : '';
-    });
+    // Check for duplicate values in both languages
+const newValueLower = itemData.newvalue.toLowerCase();
+const allValuesLower = itemData.allValues.map(value => {
+  if (typeof value === 'object' && value !== null) {
+    return value.en_values?.[0]?.toLowerCase() || '';
+  }
+  return typeof value === 'string' ? value.toLowerCase() : '';
+});
 
-    if (allValuesLower.includes(newValueLower)) {
-      setErrorMessage(t("addPage.errorPopup.duplicateValue", { value: itemData.newvalue }));
-      setShowErrorPopup(true);
-      return;
+ if (allValuesLower.includes(newValueLower)) {
+  console.log("New English value causing duplicate:", itemData.newvalue);
+  setErrorMessage(
+    t("addPage.errorPopup.duplicateValue", { value: itemData.newvalue })
+  );
+  setShowErrorPopup(true);
+  return;
+}
+
+ if ((itemData.region === "Arab" || itemData.region === "Chinese") && itemData.nativevalue) {
+  const newNativeValueLower = itemData.nativevalue.toLowerCase();
+  
+   const allNativeValuesLower = itemData.allValues.map(value => {
+    if (typeof value === 'object' && value !== null && value.values && value.values.length > 0) {
+      return value.values[0].toLowerCase();
     }
+    return '';
+  });
+  
+   if (allNativeValuesLower.includes(newNativeValueLower)) {
+    console.log("New native value causing duplicate:", itemData.nativevalue);
+    setErrorMessage(
+      t("addPage.errorPopup.duplicateValue", { value: itemData.nativevalue })
+    );
+    setShowErrorPopup(true);
+    return;
+  }
+}     
 
     try {
       // Get translated reason
