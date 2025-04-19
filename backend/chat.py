@@ -10,8 +10,12 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
+CORS(app, resources={r"/api/*": {"origins": [
+    "https://gp-frontend-om9b.onrender.com", 
+    "http://localhost:3000"
+]}})
 # Initialize Hugging Face API key
 hf_api_key = os.getenv('HF_API_KEY')
 hf_headers = {"Authorization": f"Bearer {hf_api_key}"}

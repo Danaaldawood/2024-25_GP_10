@@ -8,12 +8,20 @@ import os
 
 # --- Flask Setup ---
 app = Flask(__name__)
-CORS(app)  # Enable Cross-Origin Resource Sharing
+# CORS(app)  # Enable Cross-Origin Resource Sharing
 
-CORS(app, resources={r"/*": {"origins": [
+# CORS(app, resources={r"/*": {"origins": [
+#     "https://gp-frontend-om9b.onrender.com",
+#     "http://localhost:3000",  # For local development
+#     "*"  # Optional: allow all origins (less secure but easier for testing)
+# ]}})
+
+
+
+CORS(app, resources={r"/api/*": {"origins": [
     "https://gp-frontend-om9b.onrender.com",
-    "http://localhost:3000",  # For local development
-    "*"  # Optional: allow all origins (less secure but easier for testing)
+    "http://localhost:3000",
+    "*"  # Optional: allow all origins (less secure)
 ]}})
 # --- Load Regional Datasets ---
 # Datasets for LLAMA2 Baseline (Coverage Scores)
