@@ -466,6 +466,10 @@ hf_headers = {"Authorization": f"Bearer {HF_API_KEY}"}
 MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
 
+hf_headers = {
+    "Authorization": f"Bearer {HF_API_KEY}"
+}
+
 # --- Load Regional Datasets ---
 try:
     llama_datasets = {
@@ -522,7 +526,7 @@ except Exception as e:
 
 # --- Chat Functions ---
 def call_mistral_model(message_text):
-    if not hf_api_key:
+    if not HF_API_KEY:
         return "Error: HF_API_KEY is not set"
     try:
         formatted_prompt = f"<s>[INST] {message_text} [/INST]"
@@ -555,7 +559,7 @@ def call_mistral_model(message_text):
         return f"Sorry, I couldn't generate a response from Mistral model: {str(e)}"
 
 def call_llama_model(message_text):
-    if not hf_api_key:
+    if not HF_API_KEY:
         return "Error: HF_API_KEY is not set"
     try:
         formatted_prompt = f"<s>[INST] {message_text} [/INST]"
