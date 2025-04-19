@@ -459,10 +459,10 @@ except Exception as e:
     print(f"Error initializing Firebase: {str(e)}")
 
 # --- Model API Setup ---
-hf_api_key = os.getenv('HF_API_KEY')
-if not hf_api_key:
+HF_API_KEY = os.getenv('HF_API_KEY')
+if not HF_API_KEY:
     print("Warning: HF_API_KEY is not set")
-hf_headers = {"Authorization": f"Bearer {hf_api_key}"}
+hf_headers = {"Authorization": f"Bearer {HF_API_KEY}"}
 MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
 
