@@ -18,11 +18,11 @@ app = Flask(__name__)
 
 
 
-CORS(app, resources={r"/api/*": {"origins": [
-    "https://gp-frontend-om9b.onrender.com",
+CORS(app, resources={r"/*": {"origins": [
     "http://localhost:3000",
-    "*"  # Optional: allow all origins (less secure)
-]}})
+    "https://gp-frontend-om9b.onrender.com"
+]}}, supports_credentials=True)
+
 
 # --- Load Regional Datasets ---
 # Datasets for LLAMA2 Baseline (Coverage Scores)
