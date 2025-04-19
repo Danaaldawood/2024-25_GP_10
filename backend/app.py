@@ -419,8 +419,6 @@
 
 
 
-
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pandas as pd
@@ -437,103 +435,97 @@ load_dotenv()
 
 # --- Flask Setup ---
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": [
-    "http://localhost:3000",
-    "https://gp-frontend-om9b.onrender.com"
-]}}, supports_credentials=True)
+CORS(app, resources={r"/*": {
+    "origins": [
+        "http://localhost:3000",
+        "https://gp-frontend-om9b.onrender.com"
+    ],
+    "methods": ["GET", "POST", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization"],
+    "supports_credentials": True
+}})
+print("CORS configured for origins: http://localhost:3000, https://gp-frontend-om9b.onrender.com")
+
+# --- Firebase Setup ---
+try:
+    if os.environ.get('FIREBASE_CREDENTIALS'):
+        firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+        cred = credentials.Certificate(firebase_credentials)
+    else:
+        cred = credentials.Certificate("serviceAccountKey.json")
+    initialize_app(cred, {'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'})
+    print("Firebase initialized successfully")
+except Exception as e:
+    print(f"Error initializing Firebase: {str(e)}")
 
 # --- Model API Setup ---
 hf_api_key = os.getenv('HF_API_KEY')
+if not hf_api_key:
+    print("Warning: HF_API_KEY is not set")
 hf_headers = {"Authorization": f"Bearer {hf_api_key}"}
-
-# Model IDs for Mistral and Llama
 MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
 
 # --- Load Regional Datasets ---
-# Datasets for LLAMA2 Baseline (Coverage Scores)
-llama_datasets = {
-    "Arab": pd.read_csv("./test_bank_arabic_chat_llama2.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./test_bank_western_chat_llama2.csv", encoding="utf-8"),
-    "Chinese": pd.read_csv("./test_bank_chinese_chat_llama2.csv", encoding="utf-8"),
-}
+try:
+    llama_datasets = {
+        "Arab": pd.read_csv("./test_bank_arabic_chat_llama2.csv", encoding="utf-8"),
+        "Western": pd.read_csv("./test_bank_western_chat_llama2.csv", encoding="utf-8"),
+        "Chinese": pd.read_csv("./test_bank_chinese_chat_llama2.csv", encoding="utf-8"),
+    }
+    llama_hofstede_datasets = {
+        "Arab": pd.read_csv("./hofsted_arab_baselineL.csv", encoding="utf-8"),
+        "Western": pd.read_csv("./hofsted_west_baslineL.csv", encoding="utf-8"),
+        "Chinese": pd.read_csv("./hofsted_chin_baselineL.csv", encoding="utf-8"),
+    }
+    llama_finetuned_hofstede_datasets = {
+        "Arab": pd.read_csv("./hofsted_llama finetune_arab (1).csv", encoding="utf-8"),
+        "Chinese": pd.read_csv("./hofsted_llama finetune_Chinese (1).csv", encoding="utf-8"),
+        "Western": pd.read_csv("./hofsted_llama finetune_west (1).csv", encoding="utf-8"),
+    }
+    llama_finetuned_datasets = {
+        "All Topics": pd.read_csv("./chatAllTopic_finetundllama.csv"),
+        "Work life": pd.read_csv("./llama_chat_finetundtest_bank_worklife.csv"),
+        "Sport": pd.read_csv("./llama_chat_finetundtest_bank_sport.csv"),
+        "Holidays/Celebration/Leisure": pd.read_csv("./llama_chat_finetundtest_bank_holiday.csv"),
+        "Food": pd.read_csv("./llama_chat_finetundtest_bank_food.csv"),
+        "Family": pd.read_csv("./llama_chat_finetundtest_bank_family.csv"),
+        "Education": pd.read_csv("./llama_chat_finetundtest_bank_education.csv"),
+    }
+    cohere_datasets = {
+        "Chinese": pd.read_csv("./hofstede_mistral_chinese.csv", encoding="utf-8"),
+        "Western": pd.read_csv("./hofstede_mistral_western.csv", encoding="utf-8"),
+        "Arab": pd.read_csv("./hofstede_mistral_arab.csv", encoding="utf-8"),
+    }
+    cohere_baseline_datasets = {
+        "Arab": pd.read_csv("./test_bank_arabic_chat_mistral.csv", encoding="utf-8"),
+        "Western": pd.read_csv("./test_bank_western_chat_mistral.csv", encoding="utf-8"),
+        "Chinese": pd.read_csv("./test_bank_chines_chat_mistral.csv", encoding="utf-8"),
+    }
+    cohere_finetuned_datasets = {
+        "All Topics": pd.read_csv("./results_topic_AllTopics.csv"),
+        "Work life": pd.read_csv("./results_topic_Work_life.csv"),
+        "Sport": pd.read_csv("./results_topic_Sport.csv"),
+        "Holidays/Celebration/Leisure": pd.read_csv("./results_topic_Holidays_Celebration_Leisure.csv"),
+        "Food": pd.read_csv("./results_topic_Food.csv"),
+        "Family": pd.read_csv("./results_topic_Family.csv"),
+        "Education": pd.read_csv("./results_topic_Education.csv"),
+    }
+    cohere_hofstede_finetuned_datasets = {
+        "Arab": pd.read_csv("./Hofsted_arab_MistralF.csv", encoding="utf-8"),
+        "Chinese": pd.read_csv("./Hofsted_chin_MistralF.csv", encoding="utf-8"),
+        "Western": pd.read_csv("./Hofsted_west_MistralF.csv", encoding="utf-8"),
+    }
+    print("All datasets loaded successfully")
+except Exception as e:
+    print(f"Error loading datasets: {str(e)}")
 
-# Datasets for Hofstede Questions-LLAMA2 Model (Standard Deviation)
-llama_hofstede_datasets = {
-    "Arab": pd.read_csv("./hofsted_arab_baselineL.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./hofsted_west_baslineL.csv", encoding="utf-8"),
-    "Chinese": pd.read_csv("./hofsted_chin_baselineL.csv", encoding="utf-8"),
-}
-
-llama_finetuned_hofstede_datasets = {
-    "Arab": pd.read_csv("./hofsted_llama finetune_arab (1).csv", encoding="utf-8"),
-    "Chinese": pd.read_csv("./hofsted_llama finetune_Chinese (1).csv", encoding="utf-8"),
-    "Western": pd.read_csv("./hofsted_llama finetune_west (1).csv", encoding="utf-8"),   
-}
-
-llama_finetuned_datasets = {
-    "All Topics": pd.read_csv("./chatAllTopic_finetundllama.csv"),
-    "Work life": pd.read_csv("./llama_chat_finetundtest_bank_worklife.csv"),
-    "Sport": pd.read_csv("./llama_chat_finetundtest_bank_sport.csv"),
-    "Holidays/Celebration/Leisure": pd.read_csv("./llama_chat_finetundtest_bank_holiday.csv"),
-    "Food": pd.read_csv("./llama_chat_finetundtest_bank_food.csv"),
-    "Family": pd.read_csv("./llama_chat_finetundtest_bank_family.csv"),
-    "Education": pd.read_csv("./llama_chat_finetundtest_bank_education.csv"),
-}
-
-# Datasets for Hofstede Questions-Cohere Model (Standard Deviation)
-cohere_datasets = {
-    "Chinese": pd.read_csv("./hofstede_mistral_chinese.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./hofstede_mistral_western.csv", encoding="utf-8"),
-    "Arab": pd.read_csv("./hofstede_mistral_arab.csv", encoding="utf-8"),
-}
-
-# Datasets for Cohere Baseline (Coverage Scores)
-cohere_baseline_datasets = {
-    "Arab": pd.read_csv("./test_bank_arabic_chat_mistral.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./test_bank_western_chat_mistral.csv", encoding="utf-8"), 
-    "Chinese": pd.read_csv("./test_bank_chines_chat_mistral.csv", encoding="utf-8"),
-}
-
-# Datasets for Cohere Fine-Tuned (Coverage Scores)
-cohere_finetuned_datasets = {
-    "All Topics": pd.read_csv("./results_topic_AllTopics.csv"),
-    "Work life": pd.read_csv("./results_topic_Work_life.csv"),
-    "Sport": pd.read_csv("./results_topic_Sport.csv"),
-    "Holidays/Celebration/Leisure": pd.read_csv("./results_topic_Holidays_Celebration_Leisure.csv"),
-    "Food": pd.read_csv("./results_topic_Food.csv"),
-    "Family": pd.read_csv("./results_topic_Family.csv"),
-    "Education": pd.read_csv("./results_topic_Education.csv"),
-}
-
-# Datasets for Hofstede Questions-Cohere Fine-tuned Model (Standard Deviation)
-cohere_hofstede_finetuned_datasets = {
-    "Arab": pd.read_csv("./Hofsted_arab_MistralF.csv", encoding="utf-8"),
-    "Chinese": pd.read_csv("./Hofsted_chin_MistralF.csv", encoding="utf-8"),
-    "Western": pd.read_csv("./Hofsted_west_MistralF.csv", encoding="utf-8"),
-}
-
-# --- Initialize Firebase ---
-# Check if running on Render or locally
-if os.environ.get('FIREBASE_CREDENTIALS'):
-    # On Render: Use environment variable
-    firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
-    cred = credentials.Certificate(firebase_credentials)
-else:
-    # Locally: Use file
-    cred = credentials.Certificate("serviceAccountKey.json")
-
-initialize_app(cred, {
-    'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'
-})
-
-# --- Chat functions (from chat.py) ---
+# --- Chat Functions ---
 def call_mistral_model(message_text):
+    if not hf_api_key:
+        return "Error: HF_API_KEY is not set"
     try:
-        # Format input as Mistral expects
         formatted_prompt = f"<s>[INST] {message_text} [/INST]"
-        
-        # Call the Mistral model
         payload = {
             "inputs": formatted_prompt,
             "parameters": {
@@ -544,50 +536,29 @@ def call_mistral_model(message_text):
                 "return_full_text": False
             }
         }
-        
-        print(f"Calling Mistral model")
-        
+        print(f"Calling Mistral model: {payload}")
         response = requests.post(
             f"https://api-inference.huggingface.co/models/{MISTRAL_MODEL_ID}",
             headers=hf_headers,
             json=payload,
             timeout=90
         )
-        
+        print(f"Mistral response: {response.status_code}, {response.text}")
         if response.status_code != 200:
-            print(f"Error from Mistral model: {response.status_code}, {response.text}")
-            return f"Sorry, I couldn't generate a response from Mistral model."
-        
+            return f"Error from Mistral model: {response.status_code}, {response.text}"
         result = response.json()
-        
-        # Handle different response formats
-        text_response = ""
-        if isinstance(result, list) and len(result) > 0:
-            if isinstance(result[0], dict) and "generated_text" in result[0]:
-                text_response = result[0]["generated_text"]
-            else:
-                text_response = str(result[0])
-        else:
-            text_response = str(result)
-        
-        # Clean up the response by removing instruction tokens if they appear in the output
-        clean_response = text_response
-        if "[INST]" in clean_response and "[/INST]" in clean_response:
-            try:
-                clean_response = clean_response.split("[/INST]", 1)[1].strip()
-            except:
-                pass
-        
+        text_response = result[0]["generated_text"] if isinstance(result, list) and "generated_text" in result[0] else str(result)
+        clean_response = text_response.split("[/INST]", 1)[1].strip() if "[INST]" in text_response else text_response
         return clean_response
     except Exception as e:
         print(f"Error in call_mistral_model: {str(e)}")
-        return f"Sorry, I couldn't generate a response from Mistral model."
+        return f"Sorry, I couldn't generate a response from Mistral model: {str(e)}"
 
 def call_llama_model(message_text):
+    if not hf_api_key:
+        return "Error: HF_API_KEY is not set"
     try:
-        # Format input as Llama-2 expects
         formatted_prompt = f"<s>[INST] {message_text} [/INST]"
-        
         payload = {
             "inputs": formatted_prompt,
             "parameters": {
@@ -597,44 +568,23 @@ def call_llama_model(message_text):
                 "do_sample": True
             }
         }
-        
-        print(f"Calling Llama model")
-        
+        print(f"Calling Llama model: {payload}")
         response = requests.post(
             f"https://api-inference.huggingface.co/models/{LLAMA_MODEL_ID}",
             headers=hf_headers,
             json=payload,
             timeout=60
         )
-        
+        print(f"Llama response: {response.status_code}, {response.text}")
         if response.status_code != 200:
-            print(f"Error from Llama model: {response.status_code}, {response.text}")
-            return f"Sorry, I couldn't generate a response from Llama model."
-        
+            return f"Error from Llama model: {response.status_code}, {response.text}"
         result = response.json()
-        
-        # Handle different response formats
-        text_response = ""
-        if isinstance(result, list) and len(result) > 0:
-            if isinstance(result[0], dict) and "generated_text" in result[0]:
-                text_response = result[0]["generated_text"]
-            else:
-                text_response = str(result[0])
-        else:
-            text_response = str(result)
-        
-        # Clean up the response by removing instruction tokens if they appear in the output
-        clean_response = text_response
-        if "[INST]" in clean_response and "[/INST]" in clean_response:
-            try:
-                clean_response = clean_response.split("[/INST]", 1)[1].strip()
-            except:
-                pass
-        
+        text_response = result[0]["generated_text"] if isinstance(result, list) and "generated_text" in result[0] else str(result)
+        clean_response = text_response.split("[/INST]", 1)[1].strip() if "[INST]" in text_response else text_response
         return clean_response
     except Exception as e:
         print(f"Error in call_llama_model: {str(e)}")
-        return f"Sorry, I couldn't generate a response from Llama model."
+        return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
 
 def suggest_questions():
     questions = [
@@ -646,12 +596,8 @@ def suggest_questions():
     ]
     return random.sample(questions, 3)
 
-# --- Coverage Calculation Functions (For LLAMA2 Baseline) ---
+# --- Coverage Calculation Functions ---
 def calculate_coverage(data, topic=None):
-    """
-    Calculate the coverage score for a specific topic or all topics for LLAMA2 Baseline.
-    Expects columns: 'topic', 'Predicted', 'correct'.
-    """
     if topic and topic not in ["All Topics", "LLAMA2 Baseline", "Hofstede Questions-LLAMA2 Model"]:
         data = data[data['topic'].str.lower() == topic.lower()].copy()
     data['is_correct'] = data['Predicted'] == data['correct']
@@ -665,31 +611,22 @@ def calculate_coverage(data, topic=None):
     }
 
 def calculate_for_all_regions_llama(topic=None):
-    """
-    Calculate coverage scores for all regions for LLAMA2 Baseline.
-    """
     results = {}
     for region, data in llama_datasets.items():
         results[region] = calculate_coverage(data, topic)
     return results
 
-# --- Standard Deviation Calculation (For Hofstede Questions-LLAMA2 Model) ---
 def calculate_standard_deviation_llama(topic=None):
-    """
-    Calculate standard deviation within each region across all Hofstede questions for LLAMA2 Model.
-    Expects column: 'Predicted'.
-    """
     results = {}
     for region, data in llama_hofstede_datasets.items():
-        # Ensure 'Predicted' column exists and contains numeric data
         if 'Predicted' not in data.columns or not pd.api.types.is_numeric_dtype(data['Predicted']):
             results[region] = {
                 "standard_deviation": 0.0,
                 "total_questions": len(data),
-                "responses": data.get('Predicted', []).tolist()  # Fallback to empty list if no 'Predicted'
+                "responses": data.get('Predicted', []).tolist()
             }
         else:
-            std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+            std_dev = np.std(data['Predicted'], ddof=1)
             results[region] = {
                 "standard_deviation": std_dev,
                 "total_questions": len(data),
@@ -697,20 +634,12 @@ def calculate_standard_deviation_llama(topic=None):
             }
     return results
 
-# --- Calculate Coverage score for (Llama2 finetuned) ---
 def calculate_for_all_regions_llama_finetuned(topic):
-    """
-    Calculate coverage scores for all regions for the Llama2 Fine-tuned model.
-    """
     results = {}
     topic_df = llama_finetuned_datasets.get(topic, pd.DataFrame())
-
     if topic_df.empty:
         return {r: {"coverage_score": 0, "total_questions": 0, "correct_answers": 0} for r in ["Arab", "Chinese", "Western"]}
-
-    # Normalize region names (e.g., 'China' -> 'Chinese')
     topic_df["region"] = topic_df["region"].replace({"China": "Chinese"})
-
     for region in ["Arab", "Chinese", "Western"]:
         region_df = topic_df[topic_df["region"] == region]
         if not region_df.empty:
@@ -719,21 +648,14 @@ def calculate_for_all_regions_llama_finetuned(topic):
             score = (correct / total) * 100 if total > 0 else 0
         else:
             correct, total, score = 0, 0, 0
-
         results[region] = {
             "coverage_score": score,
             "total_questions": total,
             "correct_answers": correct,
         }
-
     return results
 
-# --- Standard deviation for llama2 finetuned on Hofstede Questions ---
 def calculate_standard_deviation_llama_finetuned():
-    """
-    Calculate standard deviation within each region across all Hofstede questions for Llama2 Fine-tuned Model.
-    Expects column: 'Predicted'.
-    """
     results = {}
     for region, data in llama_finetuned_hofstede_datasets.items():
         if 'Predicted' not in data.columns or not pd.api.types.is_numeric_dtype(data['Predicted']):
@@ -743,7 +665,7 @@ def calculate_standard_deviation_llama_finetuned():
                 "responses": data.get('Predicted', []).tolist()
             }
         else:
-            std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+            std_dev = np.std(data['Predicted'], ddof=1)
             results[region] = {
                 "standard_deviation": std_dev,
                 "total_questions": len(data),
@@ -751,15 +673,10 @@ def calculate_standard_deviation_llama_finetuned():
             }
     return results
 
-# --- Standard Deviation Calculation (For Hofstede Questions-Cohere Model) ---
 def calculate_standard_deviation_cohere():
-    """
-    Calculate standard deviation within each region across all Hofstede questions for Cohere Model.
-    Expects column: 'Predicted'.
-    """
     results = {}
     for region, data in cohere_datasets.items():
-        std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+        std_dev = np.std(data['Predicted'], ddof=1)
         results[region] = {
             "standard_deviation": std_dev,
             "total_questions": len(data),
@@ -767,12 +684,7 @@ def calculate_standard_deviation_cohere():
         }
     return results
 
-# --- Standard Deviation Calculation (For Hofstede Questions-Cohere Fine-tuned Model) ---
 def calculate_standard_deviation_cohere_finetuned():
-    """
-    Calculate standard deviation within each region across all Hofstede questions for Cohere Fine-tuned Model.
-    Expects column: 'Predicted'.
-    """
     results = {}
     for region, data in cohere_hofstede_finetuned_datasets.items():
         if 'Predicted' not in data.columns or not pd.api.types.is_numeric_dtype(data['Predicted']):
@@ -782,7 +694,7 @@ def calculate_standard_deviation_cohere_finetuned():
                 "responses": data.get('Predicted', []).tolist()
             }
         else:
-            std_dev = np.std(data['Predicted'], ddof=1)  # Sample standard deviation
+            std_dev = np.std(data['Predicted'], ddof=1)
             results[region] = {
                 "standard_deviation": std_dev,
                 "total_questions": len(data),
@@ -791,27 +703,17 @@ def calculate_standard_deviation_cohere_finetuned():
     return results
 
 def calculate_for_all_regions_cohere_baseline(topic=None):
-    """
-    Calculate coverage scores for all regions for Cohere Baseline.
-    """
     results = {}
     for region, data in cohere_baseline_datasets.items():
         results[region] = calculate_coverage(data, topic)
     return results
 
 def calculate_for_all_regions_cohere_finetuned(topic):
-    """
-    Calculate coverage scores for all regions for the Cohere Fine-tuned model.
-    """
     results = {}
     topic_df = cohere_finetuned_datasets.get(topic, pd.DataFrame())
-
     if topic_df.empty:
         return {r: {"coverage_score": 0, "total_questions": 0, "correct_answers": 0} for r in ["Arab", "Chinese", "Western"]}
-
-    # Normalize region names (e.g., 'China' -> 'Chinese')
     topic_df["region"] = topic_df["region"].replace({"China": "Chinese"})
-
     for region in ["Arab", "Chinese", "Western"]:
         region_df = topic_df[topic_df["region"] == region]
         if not region_df.empty:
@@ -820,13 +722,11 @@ def calculate_for_all_regions_cohere_finetuned(topic):
             score = (correct / total) * 100 if total > 0 else 0
         else:
             correct, total, score = 0, 0, 0
-
         results[region] = {
             "coverage_score": score,
             "total_questions": total,
             "correct_answers": correct,
         }
-
     return results
 
 def to_serializable(val):
@@ -835,50 +735,18 @@ def to_serializable(val):
     return val
 
 # --- Flask Endpoints ---
-# Chat API endpoints from chat.py
-@app.route('/api/chat', methods=['POST'])
-def chat():
-    try:
-        data = request.json
-        user_message = data.get('message', '').strip()
-        model_type = data.get('model_type', 'A')  # Default to Model A if not specified
-        
-        if not user_message:
-            return jsonify({'status': 'error', 'message': 'No message provided'}), 400
-        
-        if model_type == 'A':
-            response = call_mistral_model(user_message)
-        else:  # Model B
-            response = call_llama_model(user_message)
-            
-        return jsonify({'status': 'success', 'response': response})
-    except Exception as e:
-        print(f"Error in chat endpoint: {str(e)}")
-        return jsonify({'status': 'error', 'message': str(e)}), 500
-
-@app.route('/api/suggestions', methods=['GET'])
-def get_suggestions():
-    try:
-        return jsonify({'status': 'success', 'suggestions': suggest_questions()})
-    except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
-
-# Evaluation API endpoints from app.py
-@app.route('/evaluate', methods=['POST'])
+@app.route('/evaluate', methods=['POST', 'OPTIONS'])
 def evaluate():
-    """
-    Endpoint to calculate evaluation metrics based on model and evaluation type.
-    Expects JSON payload with 'topic', 'model', and 'evalType' keys.
-    """
+    if request.method == 'OPTIONS':
+        print("Handling OPTIONS for /evaluate")
+        return '', 200
     try:
+        print(f"Received request for /evaluate: {request.json}")
         request_data = request.json
         topic = request_data.get("topic", "All Topics")
         model = request_data.get("model", "")
         eval_type = request_data.get("evalType", "")
-
-        print(f"Received topic: {topic}, model: {model}, evalType: {eval_type}")
-
-        # Fine-Tuned Model Handling
+        print(f"Processing evaluate: topic={topic}, model={model}, evalType={eval_type}")
         if model == "Fine-Tuned":
             if eval_type == "Mistral Fine-tuned Model":
                 results = calculate_for_all_regions_cohere_finetuned(topic)
@@ -895,8 +763,6 @@ def evaluate():
                 for region, region_data in results.items()
             }
             return jsonify(serializable_results)
-
-        # Baseline Model Handling
         elif model == "Baseline":
             if eval_type == "Hofstede Questions-Mistral Model":
                 results = calculate_standard_deviation_cohere()
@@ -908,47 +774,43 @@ def evaluate():
                 results = calculate_for_all_regions_cohere_baseline(topic)
             else:
                 return jsonify({"error": "Invalid evaluation type for Baseline"}), 400
-
             serializable_results = {
                 region: {k: to_serializable(v) for k, v in region_data.items()}
                 for region, region_data in results.items()
             }
             return jsonify(serializable_results)
-
         else:
             return jsonify({"error": "Invalid model selection"}), 400
-
     except Exception as e:
-        print(f"Error during evaluation: {e}")
+        print(f"Error during evaluation: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/compare', methods=['POST'])
+@app.route('/api/compare', methods=['POST', 'OPTIONS'])
 def compare():
-    """
-    Endpoint to calculate similarity scores between regions for selected topics.
-    Uses Firebase data.
-    """
+    if request.method == 'OPTIONS':
+        print("Handling OPTIONS for /api/compare")
+        return '', 200
     try:
+        print(f"Received request for /api/compare: {request.json}")
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
-        
+        print(f"Processing compare: regions={regions}, topics={topics}")
         if not regions or not topics:
             return jsonify({"error": "Regions and topics are required"}), 400
-
         results = {}
         for topic in topics:
             values = {}
             for region in regions:
+                print(f"Fetching Firebase data for region: {region}")
                 region_data = db.reference(f'/{region}C/Details').get()
+                print(f"Region data for {region}: {region_data}")
                 region_values = set()
-                
                 if region_data:
                     for item in region_data:
                         if item.get("topic") == topic:
                             for annot in item.get("annotations", []):
                                 region_values.update(annot.get("en_values", []))
                 values[region] = region_values
-
             similarities = []
             for i, region1 in enumerate(regions):
                 for region2 in regions[i+1:]:
@@ -956,24 +818,59 @@ def compare():
                     union = len(values[region1] | values[region2])
                     similarity = (intersection / union) if union > 0 else 0
                     similarities.append(similarity)
-
             results[topic] = (sum(similarities) / len(similarities) * 100) if similarities else 0
-
         return jsonify({"similarity_scores": results})
-
     except Exception as e:
-        print(f"Error during comparison: {e}")
+        print(f"Error during comparison: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
+@app.route('/api/chat', methods=['POST', 'OPTIONS'])
+def chat():
+    if request.method == 'OPTIONS':
+        print("Handling OPTIONS for /api/chat")
+        return '', 200
+    try:
+        print(f"Received request for /api/chat: {request.json}")
+        data = request.json
+        user_message = data.get('message', '').strip()
+        model_type = data.get('model_type', 'A')
+        print(f"Processing chat: message={user_message}, model_type={model_type}")
+        if not user_message:
+            return jsonify({'status': 'error', 'message': 'No message provided'}), 400
+        if model_type == 'A':
+            response = call_mistral_model(user_message)
+        else:
+            response = call_llama_model(user_message)
+        return jsonify({'status': 'success', 'response': response})
+    except Exception as e:
+        print(f"Error in chat endpoint: {str(e)}")
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/api/suggestions', methods=['GET', 'OPTIONS'])
+def get_suggestions():
+    if request.method == 'OPTIONS':
+        print("Handling OPTIONS for /api/suggestions")
+        return '', 200
+    try:
+        print("Received request for /api/suggestions")
+        return jsonify({'status': 'success', 'suggestions': suggest_questions()})
+    except Exception as e:
+        print(f"Error in suggestions endpoint: {str(e)}")
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 @app.route('/test', methods=['GET'])
 def test():
-    """
-    Simple test endpoint to ensure the server is running.
-    """
+    print("Received request for /test")
     return jsonify({"message": "Server is running"})
+
+@app.errorhandler(Exception)
+def handle_error(error):
+    print(f"Global error: {str(error)}")
+    response = jsonify({"error": "Internal server error"})
+    response.status_code = 500
+    return response
 
 # --- Main Application Entry ---
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000)) 
-    app.run(host='0.0.0.0', port=port, debug=True)
-    
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
