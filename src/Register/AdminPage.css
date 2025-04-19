@@ -1,24 +1,33 @@
 /* ====================================
    1. ADMIN HEADER STYLES
    ==================================== */
+   body{
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+
+   }
    .header-admin {
-    background: linear-gradient(700deg, #2d5174, #6084a9);
+    background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color:  #fff;
-    padding: 20px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+     padding: 20px 30px;
     border-radius: 10px;
   }
    
   .header-admin h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #10a37f 0%, #095c47 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0; 
+    padding: 0;
+    line-height: 1.2; 
   }
   
   .header-admin .Adminlogout-btn {
-    background-color:#0c6650;
+    background: linear-gradient(135deg, #A44580 0%, #722F57 100%);
     padding: 10px 20px;
     color: #ffffff;
     border: none;
@@ -57,19 +66,19 @@ button {
 }
 
  .approve-btn {
-  background-color: #1b8066;
+  background-color: #10a37f;
 }
 
 .approve-btn:hover {
-  background-color: #0e8a6e;
+  background-color: #0e8a69;
  }
 
 .deny-btn {
-  background-color: #ba2b2b;
+  background-color: #d00c4d;
 }
 
 .deny-btn:hover {
-  background-color: #b22929;
+  background-color: #b10a42;
  }
 
  .requests-table .approve-btn,
@@ -116,7 +125,7 @@ button {
 }
 
 .requests-table th {
-  background-color:#2d5174;
+  background:  #853c69;
   font-size: 15px;
   font-weight: 700;
   white-space: nowrap;  
@@ -191,7 +200,7 @@ button {
   
   .filterAdmin-container select:hover,
   .filterAdmin-container select:focus {
-      border-color: #10a37f;
+    border-color:#853c69;
       box-shadow: 0 0 8px rgba(16, 163, 127, 0.3);
   }
   
@@ -246,7 +255,7 @@ button {
     padding: 10px 20px;
     margin: 0 10px;
     border: none;
-    background-color: #8d9fb0;
+    background-color: #cccaca;
         color: white;
     cursor: pointer;
     font-size: 16px;
@@ -254,11 +263,10 @@ button {
   }
   
   .admin-toggle-buttons button.active {
-    background-color: #6084a9;
+    background:linear-gradient(135deg, #853c69 0%, #722F57 100%);
     }
   
-  .admin-toggle-buttons button:hover {
-    background-color: #456b90;  }
+   
   
   .requests-section {
     display: flex;
@@ -393,21 +401,20 @@ button {
      ==================================== */
      
   .footer-admin {
-    background: linear-gradient(700deg, #2d5174, #6084a9);
-  display: flex; 
+    background: rgba(255, 255, 255, 0.95);
+    display: flex; 
   justify-content: center; 
   align-items: center;  
-  color: #ffffff; 
+  color: #095c47;
   padding: 20px 30px;
   margin-top: auto;
   text-align: center;  
 }
-
+ 
 .footer-admin p {
   font-size: 1rem;
   margin: 0;  
-  color: #ffffff;  
-}
+  color: #095c47;}
 
   
   /* ====================================

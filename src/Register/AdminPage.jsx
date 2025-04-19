@@ -310,22 +310,7 @@ export const AdminPage = () => {
         <h1>Admins Dashboard</h1>
       </div>
 
-      {/* Toggle buttons for moderator requests and model upload */}
-
-      <div className="admin-toggle-buttons">
-        <button
-          className={view === "moderator-requests" ? "active" : ""}
-          onClick={() => setView("moderator-requests")}
-        >
-          Moderator Requests
-        </button>
-        <button
-          className={view === "model-upload" ? "active" : ""}
-          onClick={() => setView("model-upload")}
-        >
-          Upload
-        </button>
-      </div>
+     
 
       {loading && <div>Loading...</div>}
       {error && <div className="error">{error}</div>}
@@ -440,65 +425,8 @@ export const AdminPage = () => {
 
       )}
 
-      {/* Model upload section */}
-
-      {view === "model-upload" && (
-        <div className="model-upload-section">
-          <h2>Upload Fine-Tuned Model</h2>
-          <form className="model-upload-form" onSubmit={handleModelUpload}>
-            <div className="form-group">
-              <label htmlFor="modelName">Language Model Name:</label>
-              <input
-                type="text"
-                id="modelName"
-                placeholder="Enter Language Model Name"
-                className={`input-field ${errors.modelName ? "error" : ""}`}
-                value={modelName}
-                onChange={(e) => handleInputChange(e, "modelName")}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="modelVision">Language Model Vision:</label>
-              <input
-                type="text"
-                id="modelVision"
-                placeholder="Enter Language Model Vision"
-                className={`input-field ${errors.modelVision ? "error" : ""}`}
-                value={modelVision}
-                onChange={(e) => handleInputChange(e, "modelVision")}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="fineTuneRegion">Fine-Tune Region:</label>
-              <input
-                type="text"
-                id="fineTuneRegion"
-                placeholder="Enter Fine-Tune Region"
-                className={`input-field ${
-                  errors.fineTuneRegion ? "error" : ""
-                }`}
-                value={fineTuneRegion}
-                onChange={(e) => handleInputChange(e, "fineTuneRegion")}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="cloudLink">Link to Cloud Fine-Tuned LLM:</label>
-              <input
-                type="url"
-                id="cloudLink"
-                placeholder="Enter a valid URL"
-                className={`input-field ${errors.cloudLink ? "error" : ""}`}
-                value={cloudLink}
-                onChange={(e) => handleInputChange(e, "cloudLink")}
-              />
-            </div>
-            <button type="submit" className="upload-btn">
-              Upload
-            </button>
-          </form>
-        </div>
-      )}
-
+ 
+       
       {showPopup.type && (
         <div
           className={

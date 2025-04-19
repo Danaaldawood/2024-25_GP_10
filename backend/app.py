@@ -23,6 +23,7 @@ CORS(app, resources={r"/api/*": {"origins": [
     "http://localhost:3000",
     "*"  # Optional: allow all origins (less secure)
 ]}})
+
 # --- Load Regional Datasets ---
 # Datasets for LLAMA2 Baseline (Coverage Scores)
 llama_datasets = {

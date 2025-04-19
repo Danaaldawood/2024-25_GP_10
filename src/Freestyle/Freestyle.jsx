@@ -23,7 +23,7 @@ export const ConversationLayout = () => {
   const [messagesB, setMessagesB] = useState([
     { type: "ai", content: t("modelBB") },
   ]);  
-  const sendLimit = 1;
+  const sendLimit = 7;
   const [sendCount, setSendCount] = useState(0);
   const [canGiveFeedback, setCanGiveFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -181,8 +181,7 @@ const handlePopupAction = (action) => {
       </div>
        
        <h2 class="titleFree">{t('titleFree')}</h2>
-
-      <div className="send-limit-bar">
+       <div className="send-limit-bar">
         <div className="progress" style={{ width: progressWidth }}></div>
         <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
         </div>
@@ -245,7 +244,7 @@ const handlePopupAction = (action) => {
       {showPopup && (
      <div className="popup-overlay">
      <div className="popup-content">
-       <h3>{t(selectedModel === 'Model A' ? 'modelA' : 'modelB')}{t("thank-you-voting")}🌟</h3>
+       <h3>{t(selectedModel === 'Model A' ? 'modelA' : 'modelB')} {t("thank-you-voting")}🌟</h3>
        <p>{t("add-chat-question")}</p>
        <div className="popup-buttons">
          {/* "Yes" button will navigate to FreeStyleAdd */}

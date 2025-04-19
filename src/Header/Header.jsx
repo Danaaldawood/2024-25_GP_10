@@ -5,7 +5,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../Register/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import SignOutConfirmation from '../Modorater/SignOutConfirmation';
+import SignOutConfirmationUser from '../Modorater/SignOutConfirmationUser';
 import NotificationBell from './NotificationBell';
 import logo from '../images/Logo.png';
 import Switcher from "../Switcher";
@@ -109,7 +109,7 @@ export const Header = () => {
       </div>
 
       {showSignOutModal && (
-        <SignOutConfirmation 
+        <SignOutConfirmationUser 
           onConfirm={confirmSignOut} 
           onCancel={cancelSignOut} 
         />

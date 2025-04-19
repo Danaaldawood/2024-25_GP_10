@@ -5,32 +5,35 @@
   justify-content: space-between;
   min-height: 100vh;
   background-color: #ffffff;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+
 }
 
 /* --- Header Section --- */
 .profile-header {
   display: flex;
   align-items: center;
-  background-color: #003f5c; 
+  background: rgba(255, 255, 255, 0.95);
   border-bottom-left-radius: 15px; 
   border-bottom-right-radius: 15px;
   padding: 22px 22px;
   color: white;
   width: 100%;
+  
 }
 
 .profile-header h1 {
   flex-grow: 1;
   text-align: center;
   font-size: 24px;
-  color: #ffffff;
+  color: #095c47;
 }
 
 /* Back button styling */
 .back-btn {
   background: none;  
   border: none;  
-  color: white;  
+  color:#853c69;  
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -41,7 +44,7 @@
 }
 
 .back-btn:hover {
-  color: #ffffff; 
+  color:#853c69; 
 }
 
 .back-icon {
@@ -58,7 +61,7 @@
   max-width: 900px;
   width: 100%;
   text-align: center;
-  color: #072040;
+  color:  #853c69;
   font-family: 'Lucida Sans', sans-serif;
   font-weight: bold;
   padding: 0 10px;
@@ -67,7 +70,7 @@
 /* --- Profile Details Section --- */
 .profile-details {
   flex: 1 1;
-  background: linear-gradient(700deg, #004D60, #6084a9);
+  background:#095c474f;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -83,7 +86,7 @@
   height: 120px;
   margin-bottom: 15px;
   border-radius: 50%;
-  border: 5px solid white;
+  border: 5px solid, #ffffff ;
 }
 
 .profile-details h3 {
@@ -127,7 +130,7 @@
 .form-row label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: #072040; 
+  color:  #000000; 
 }
 
 /* --- Input Fields --- */
@@ -137,7 +140,7 @@
   width: 100%;
   padding: 12px;
   margin: 5px;
-  border: 2px solid #3F7EA6;
+  border: 2px solid #853c69;
   border-radius: 8px;
   font-size: 16px;
   background-color: #f4f6f9;
@@ -151,7 +154,7 @@
 /* --- Action Buttons --- */
 /* Save button styling */
 .save-button {
-  background-color: #2b5a77;
+  background-color:#10a37f;
   width: auto;  
   padding: 12px 100px;  
   margin: 10px auto;  
@@ -167,7 +170,7 @@
 }
 
 .save-button:hover {
-  background-color: #366994;
+  background-color:#095c47;
 }
 
 .delete-button {
@@ -193,4 +196,65 @@
 .trash-icon {
   font-size: 18px;
   margin-left: 10px;  
+}
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+  .profile-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .profile-details,
+  .profile-form-container {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .save-button,
+  .delete-button {
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .form-row {
+    width: 100%;
+  }
+
+  .formProf-input {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-header h1 {
+    font-size: 20px;
+  }
+
+  .back-btn {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+
+  .back-icon {
+    font-size: 20px;
+  }
+
+  .profile-pic {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-details h3 {
+    font-size: 20px;
+  }
+
+  .profile-form-container {
+    padding: 20px;
+  }
+
+  .save-button,
+  .delete-button {
+    font-size: 14px;
+  }
 }
