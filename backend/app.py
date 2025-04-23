@@ -464,7 +464,9 @@ if not HF_API_KEY:
     print("Warning: HF_API_KEY is not set")
 hf_headers = {"Authorization": f"Bearer {HF_API_KEY}"}
 MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
-LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
+LLAMA_MODEL_ID ="GPCUL/llama_fine_tuned"                 
+#  "meta-llama/Llama-2-7b-chat-hf"
+
 
 hf_headers = {
     "Authorization": f"Bearer {HF_API_KEY}"
