@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "./LensLeaderBoard.css";
 import { ref, onValue } from "firebase/database";
@@ -7,16 +6,23 @@ import { Header } from "../Header/Header";
 import { Helmet } from "react-helmet";
 import { Footer } from "../Footer/Footer";
 import { useTranslation } from 'react-i18next';
+import { AlertCircle } from "lucide-react";
+
 const LensLeaderBoard = () => {
+  const [showTooltip, setShowTooltip] = useState(false);
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const [regionFilter, setRegionFilter] = useState("Arab"); // default region
+  const [regionFilter, setRegionFilter] = useState("Arab");
   const validRegions = ["Arab", "Chinese", "Western"];
   const { t, i18n } = useTranslation('lensScore');
   const isRTL = i18n.dir() === 'rtl';
+
+  // ⛳️ fix: move toggleTooltip out here
+  const toggleTooltip = () => {
+    setShowTooltip((prev) => !prev);
+  };
+
   useEffect(() => {
     const evaluationRef = ref(realtimeDb, "model_evaluation");
-  
-  const MAX_EDIT_LENGTH = 50;  
 
     onValue(evaluationRef, (snapshot) => {
       const data = snapshot.val();
@@ -48,27 +54,51 @@ const LensLeaderBoard = () => {
     });
   }, []);
 
-   const filteredData = leaderboardData.filter(
+  const filteredData = leaderboardData.filter(
     (entry) => entry.userRegion === regionFilter
   );
 
-  const calculateLensScore = (model, topic) => {
+   //Calculate LensScore:
+   const uniqueCombos = [
+    ...new Set(filteredData.map((entry) => `${entry.model}||${entry.topic}`)),
+  ];
+  const averageScores = uniqueCombos.map((combo) => {
+    const [model, topic] = combo.split("||");
     const relevantEntries = filteredData.filter(
       (entry) => entry.model === model && entry.topic === topic
     );
-
+  
     const totalVotes = relevantEntries.length;
-
     const totalScore = relevantEntries.reduce((acc, entry) => {
       return acc + (parseFloat(entry.lensScore) || 0);
     }, 0);
-
-    return totalVotes ? (totalScore / totalVotes).toFixed(2) : "No score";
+  
+    const avg = totalVotes ? totalScore / totalVotes : null;
+    return { combo, avg };
+  });
+  const validAverages = averageScores
+    .map((item) => item.avg)
+    .filter((val) => val !== null);
+  
+  const minScore = Math.min(...validAverages);
+  const maxScore = Math.max(...validAverages);
+  
+  //  Normalize function
+  const calculateLensScore = (model, topic) => {
+    const combo = `${model}||${topic}`;
+    const modelTopicScore = averageScores.find((item) => item.combo === combo);
+  
+    if (!modelTopicScore || modelTopicScore.avg === null) return "No score";
+  
+    if (maxScore === minScore) return "100%";  
+  
+    const normalized =
+      ((modelTopicScore.avg - minScore) / (maxScore - minScore)) * 100;
+  
+    return normalized.toFixed(2) + "%";
   };
-
-  const uniqueCombos = [
-    ...new Set(filteredData.map((entry) => `${entry.model}||${entry.topic}`)),
-  ];
+  
+  
 
   return (
     <div className="LensLeaderbord-container">
@@ -77,12 +107,24 @@ const LensLeaderBoard = () => {
         <title>{t("CultureLens - LeaderBoard")}</title>
         <meta name="description" />
       </Helmet>
-  
-      <div className="title-wrapper">
-        <p className="leaderboard-title">{t("CultureLens - LeaderBoard")}</p>
-      </div>
-  
-      <div className="dropdown-region">
+
+      <div className="leaderboard-header">
+  <p className="leaderboard-title">{t("CultureLens - LeaderBoard")}</p>
+</div>
+
+<div className={`leaderboard-description ${isRTL ? "rtl" : "ltr"}`}>
+   <p>
+    A dynamic table that displays each language model's performance across
+    various topics, based on the average Lens Score—a metric representing
+    the collective assessment of a model’s responses by users from a
+    specific cultural region. This score reflects how users from that region
+    evaluate the quality and relevance of a model’s answer for a given topic
+    after direct interaction.
+  </p>
+</div>
+
+
+      <div className="Filterdropdown-region">
         <label htmlFor="regionSelect">{t("Region")}:</label>
         <select
           id="regionSelect"
@@ -96,7 +138,7 @@ const LensLeaderBoard = () => {
           ))}
         </select>
       </div>
-  
+      <div class="tableLeaderBoard-container">
       <table>
         <thead>
           <tr>
@@ -125,11 +167,12 @@ const LensLeaderBoard = () => {
           )}
         </tbody>
       </table>
-    
+      </div>
 
-      <Footer />  
+      <Footer />
     </div>
-  );
+    
+  );<Footer />
 };
 
 export default LensLeaderBoard;

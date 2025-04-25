@@ -465,12 +465,16 @@ if not HF_API_KEY:
 hf_headers = {"Authorization": f"Bearer {HF_API_KEY}"}
 MISTRAL_MODEL_ID ="mistralai/Mistral-7B-Instruct-v0.3"
 LLAMA_MODEL_ID ="meta-llama/Llama-2-7b-chat-hf"               
-#"GPCUL/llama_fine_tuned"
- 
-
-
-hf_headers = {
-    "Authorization": f"Bearer {HF_API_KEY}"
+#"GPCUL/llama_fine_tuned"                
+#  "meta-llama/Llama-2-7b-chat-hf"
+# Ollama Llama model configuration
+OLLAMA_MODEL_URL = "http://localhost:11434/api/generate"
+OLLAMA_CONFIG = {
+    'model': 'llama2:latest  ', 
+    'max_tokens': 128,
+    'temperature': 0.8,
+    'repeat_penalty': 1.1,
+    'stream': False
 }
 
 # --- Load Regional Datasets ---
@@ -562,33 +566,37 @@ def call_mistral_model(message_text):
         return f"Sorry, I couldn't generate a response from Mistral model: {str(e)}"
 
 def call_llama_model(message_text):
-    if not HF_API_KEY:
-        return "Error: HF_API_KEY is not set"
     try:
-        formatted_prompt = f"<s>[INST] {message_text} [/INST]"
+        # Format input for Ollama model
+        system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
+        formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
+        
         payload = {
-            "inputs": formatted_prompt,
-            "parameters": {
-                "max_new_tokens": 200,
-                "temperature": 0.3,
-                "top_p": 0.9,
-                "do_sample": True
+            "model": OLLAMA_CONFIG["model"],
+            "prompt": formatted_prompt,
+            "stream": OLLAMA_CONFIG["stream"],
+            "options": {
+                "temperature": OLLAMA_CONFIG["temperature"],
+                "num_predict": OLLAMA_CONFIG["max_tokens"],
+                "repeat_penalty": OLLAMA_CONFIG["repeat_penalty"]
             }
         }
-        print(f"Calling Llama model: {payload}")
-        response = requests.post(
-            f"https://api-inference.huggingface.co/models/{LLAMA_MODEL_ID}",
-            headers=hf_headers,
-            json=payload,
-            timeout=60
-        )
-        print(f"Llama response: {response.status_code}, {response.text}")
-        if response.status_code != 200:
-            return f"Error from Llama model: {response.status_code}, {response.text}"
-        result = response.json()
-        text_response = result[0]["generated_text"] if isinstance(result, list) and "generated_text" in result[0] else str(result)
-        clean_response = text_response.split("[/INST]", 1)[1].strip() if "[INST]" in text_response else text_response
-        return clean_response
+        
+        print(f"Calling Ollama Llama model: {payload}")
+        
+        response = requests.post(OLLAMA_MODEL_URL, json=payload)
+        
+        print(f"Ollama Llama response: {response.status_code}, {response.text[:100]}...")
+        
+        if response.status_code == 200:
+            response_json = response.json()
+            response_text = response_json.get('response', '')
+            return response_text
+        else:
+            error_msg = f"Error from Ollama API: {response.status_code}, {response.text}"
+            print(error_msg)
+            return error_msg
+            
     except Exception as e:
         print(f"Error in call_llama_model: {str(e)}")
         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"

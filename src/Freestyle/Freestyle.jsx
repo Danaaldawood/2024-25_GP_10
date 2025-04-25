@@ -83,7 +83,7 @@ export const ConversationLayout = () => {
             setIsLoadingA(false);
           });
 
-        // Send message to Llama model (Model B)
+        // Send message to Llama model (Model B):http://localhost:5000/api/chat
         const responseB = fetch('https://gp-culturelens.onrender.com/api/chat', {
           method: 'POST',
           headers: {
