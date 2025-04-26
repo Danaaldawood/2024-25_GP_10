@@ -473,7 +473,7 @@ if not HF_TOKEN_FINETUNE:
 MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
 MISTRAL_FINETUNED_ID = "GPCUL/mistral_finetunedAllAfter-zeq"
-LLAMA_FINETUNED_ID = "GPCUL/llama_fine_tuned"
+LLAMA_FINETUNED_ID = "GPCUL/llama-fine-tuned-uat"
 
 # Ollama Llama model configuration for Model B
 OLLAMA_MODEL_URL = "http://localhost:11434/api/generate"
@@ -596,7 +596,6 @@ def call_model_b(message_text):
     except Exception as e:
         logger.error(f"Error in call_model_b: {str(e)}")
         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
-
 def call_fine_tuned_mistral(message_text):
     try:
         api_url = "https://uphvkd82jwgsup9d.us-east-1.aws.endpoints.huggingface.cloud"
@@ -604,7 +603,7 @@ def call_fine_tuned_mistral(message_text):
         payload = {
             "inputs": prompt,
             "parameters": {
-                "max_new_tokens": 200,
+                "max_new_tokens": 200,  
                 "temperature": 0.3,
                 "top_p": 0.9,
                 "do_sample": True,
@@ -615,13 +614,19 @@ def call_fine_tuned_mistral(message_text):
             "Authorization": f"Bearer {HF_TOKEN_FINETUNE}",
             "Content-Type": "application/json"
         }
+        
         if not HF_TOKEN_FINETUNE:
             logger.error("HF_TOKEN_FINETUNE environment variable is not set or empty")
             return "Error: API token for fine-tuned Mistral model is missing"
-        logger.info(f"Calling fine-tuned Mistral model at: {api_url}")
-        response = requests.post(api_url, headers=headers, json=payload, timeout=60)
-        logger.info(f"Response status: {response.status_code}")
+            
+        logger.info(f"Calling fine-tuned Mistral model at: {api_url} with request size: {len(str(payload))} bytes")
+        
+        # Increase timeout to 120 seconds
+        response = requests.post(api_url, headers=headers, json=payload, timeout=120)
+        
+        logger.info(f"Response received. Status: {response.status_code}, Size: {len(response.content)} bytes")
         response.raise_for_status()
+        
         result = response.json()
         if isinstance(result, list) and len(result) > 0 and "generated_text" in result[0]:
             generated_text = result[0]["generated_text"]
@@ -631,6 +636,7 @@ def call_fine_tuned_mistral(message_text):
         else:
             logger.error(f"Unexpected response structure: {result}")
             return "Error: Unexpected response format from model API"
+            
     except requests.exceptions.RequestException as e:
         error_msg = f"Request error: {str(e)}"
         if hasattr(e, 'response') and e.response is not None:
@@ -642,12 +648,16 @@ def call_fine_tuned_mistral(message_text):
                 error_msg += f" | Body: {e.response.text[:200]}"
         logger.error(error_msg)
         return f"Error connecting to model API: {error_msg}"
+        
     except Exception as e:
         logger.error(f"Unexpected error in call_fine_tuned_mistral: {str(e)}")
         return f"Unexpected error: {str(e)}"
-
+    
 def call_fine_tuned_llama(message_text):
     try:
+        # Use your custom endpoint URL from AWS
+        api_url = "https://muc8o2qk8qhncicd.us-east-1.aws.endpoints.huggingface.cloud"
+        
         prompt = f"<s>[INST] {message_text} [/INST]"
         payload = {
             "inputs": prompt,
@@ -663,18 +673,16 @@ def call_fine_tuned_llama(message_text):
             "Authorization": f"Bearer {HF_TOKEN_FINETUNE}",
             "Content-Type": "application/json"
         }
+        
         if not HF_TOKEN_FINETUNE:
             logger.error("HF_TOKEN_FINETUNE environment variable is not set or empty")
             return "Error: API token for fine-tuned LLaMA model is missing"
-        logger.info(f"Calling fine-tuned LLaMA model: {LLAMA_FINETUNED_ID}")
-        response = requests.post(
-            f"https://api-inference.huggingface.co/models/{LLAMA_FINETUNED_ID}",
-            headers=headers,
-            json=payload,
-            timeout=60
-        )
+            
+        logger.info(f"Calling fine-tuned LLaMA model at: {api_url}")
+        response = requests.post(api_url, headers=headers, json=payload, timeout=60)
         logger.info(f"Response status: {response.status_code}")
         response.raise_for_status()
+        
         result = response.json()
         if isinstance(result, list) and len(result) > 0 and "generated_text" in result[0]:
             generated_text = result[0]["generated_text"]
@@ -684,6 +692,7 @@ def call_fine_tuned_llama(message_text):
         else:
             logger.error(f"Unexpected response structure: {result}")
             return "Error: Unexpected response format from model API"
+            
     except requests.exceptions.RequestException as e:
         error_msg = f"Request error: {str(e)}"
         if hasattr(e, 'response') and e.response is not None:
@@ -695,6 +704,7 @@ def call_fine_tuned_llama(message_text):
                 error_msg += f" | Body: {e.response.text[:200]}"
         logger.error(error_msg)
         return f"Error connecting to model API: {error_msg}"
+        
     except Exception as e:
         logger.error(f"Unexpected error in call_fine_tuned_llama: {str(e)}")
         return f"Unexpected error: {str(e)}"
