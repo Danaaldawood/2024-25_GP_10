@@ -564,6 +564,8 @@ def call_model_a(message_text):
         response.raise_for_status()
         result = response.json()
         return result[0]["generated_text"].strip()
+
+        
     except Exception as e:
         logger.error(f"Error in call_model_a: {e}")
         return f"Error from baseline Mistral: {str(e)}"
@@ -1005,4 +1007,4 @@ def handle_error(error):
 # --- Main Application Entry ---
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
