@@ -32,8 +32,8 @@ export const ConversationLayout = () => {
   const progressWidth = `${(sendCount / sendLimit) * 100}%`;
 
   // Backend URL (configurable for local or deployed environments)
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-  // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://gp-culturelens.onrender.com/api/chat';
+  // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env --'http://localhost:5000'
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/api/suggestions`)

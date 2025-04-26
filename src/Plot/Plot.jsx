@@ -92,7 +92,9 @@ export const Plot = () => {
   const fetchResults = async () => {
     try {
       const apiTopicValue = topicKeyToApiValue[selectedTopicKey];
-      const response = await fetch("http://127.0.0.1:5000/evaluate", {
+   
+        // await fetch("http://127.0.0.1:5000/evaluate"
+      const response =await fetch("https://gp-culturelens.onrender.com/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
