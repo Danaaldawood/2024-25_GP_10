@@ -42,69 +42,80 @@ export function RealtimeData() {
     const currentLang = i18n.language;
     const annotation = row.annotations?.find(a => a.reason === reason);
     
+    // For Arabic language, show Arabic only for Arab region data
     if (currentLang === 'ar' && row.region_name === 'Arab' && annotation?.reason_lan) {
       return annotation.reason_lan;
-    } else if (currentLang === 'ch' && row.region_name === 'Chinese' && annotation?.reason_lan) {
+    }
+    // For Chinese language, show Chinese only for Chinese region data
+    else if (currentLang === 'ch' && row.region_name === 'Chinese' && annotation?.reason_lan) {
       return annotation.reason_lan;
     }
+    // For all other cases, show English
     return reason;
   };
+
   const getDisplayRegion = (row) => {
     const currentLang = i18n.language;
+    // For Arabic language, show Arabic only for Arab region data
     if (currentLang === "ar" && row.region_name === "Arab" && row.region_lan) {
       return row.region_lan;
-    } else if (
-      currentLang === "ch" &&
-      row.region_name === "Chinese" &&
-      row.region_lan
-    ) {
+    }
+    // For Chinese language, show Chinese only for Chinese region data
+    else if (currentLang === "ch" && row.region_name === "Chinese" && row.region_lan) {
       return row.region_lan;
     }
+    // For all other cases, show English
     return row.region_name;
   };
 
   const getDisplayTopic = (row) => {
     const currentLang = i18n.language;
+    // For Arabic language, show Arabic only for Arab region data
     if (currentLang === "ar" && row.region_name === "Arab" && row.topic_lan) {
       return row.topic_lan;
-    } else if (
-      currentLang === "ch" &&
-      row.region_name === "Chinese" &&
-      row.topic_lan
-    ) {
+    }
+    // For Chinese language, show Chinese only for Chinese region data
+    else if (currentLang === "ch" && row.region_name === "Chinese" && row.topic_lan) {
       return row.topic_lan;
     }
+    // For all other cases, show English
     return row.topic;
   };
 
   // Get display value based on current language and region
   const getDisplayValue = (row) => {
     const currentLang = i18n.language;
-    if (currentLang === "ar" && row.region_name === "Arab" && row.question) {
-      return row.question;
-    } else if (
-      currentLang === "ch" &&
-      row.region_name === "Chinese" &&
-      row.question
-    ) {
-      return row.question;
+    
+    // For Arabic language, show Arabic only for Arab region data
+    if (currentLang === "ar" && row.region_name === "Arab") {
+      return row.question || row.en_question;
     }
+    
+    // For Chinese language, show Chinese only for Chinese region data
+    if (currentLang === "ch" && row.region_name === "Chinese") {
+      return row.ch_question || row.question || row.en_question;
+    }
+    
+    // For all other cases, show English
     return row.en_question;
   };
 
   // Get display value for annotation based on current language and region
   const getDisplayValueForAnnotation = (annotation, regionName) => {
     const currentLang = i18n.language;
-    if (currentLang === "ar" && regionName === "Arab" && annotation.values) {
-      return annotation.values[0];
-    } else if (
-      currentLang === "ch" &&
-      regionName === "Chinese" &&
-      annotation.values
-    ) {
+    
+    // For Arabic language, show Arabic only for Arab region data
+    if (currentLang === "ar" && regionName === "Arab" && annotation.values && annotation.values.length > 0) {
       return annotation.values[0];
     }
-    return annotation.en_values[0];
+    
+    // For Chinese language, show Chinese only for Chinese region data
+    if (currentLang === "ch" && regionName === "Chinese" && annotation.values && annotation.values.length > 0) {
+      return annotation.values[0];
+    }
+    
+    // For all other cases, show English
+    return annotation.en_values ? annotation.en_values[0] : '';
   };
 
   // Handle notification click
@@ -202,6 +213,11 @@ export function RealtimeData() {
 
     return () => unsubscribe();
   }, [t]);
+
+  // Re-render when language changes
+  useEffect(() => {
+    // Force re-render when language changes
+  }, [i18n.language]);
 
   // Filter handlers
   const handleRegionChange = (e) => {

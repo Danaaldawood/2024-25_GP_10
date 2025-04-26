@@ -173,7 +173,60 @@ const FreeStyleAdd = () => {
       }
     });
   }, []);
-     
+  
+  // Function to detect language
+  const detectLanguage = (text) => {
+    // Simple language detection based on character ranges
+    const arabicPattern = /[\u0600-\u06FF]/;
+    const chinesePattern = /[\u4e00-\u9fa5]/;
+    
+    if (arabicPattern.test(text)) return 'ar';
+    if (chinesePattern.test(text)) return 'zh';
+    return 'en'; // Default to English
+  };
+
+  // Function to translate text using OpenAI API
+  const translateText = async (text, targetLanguage) => {
+    try {
+      const detectedLanguage = detectLanguage(text);
+      // If already in target language, return original
+      if (detectedLanguage === targetLanguage) return text;
+      
+      const languageMap = {
+        'ar': 'Arabic',
+        'zh': 'Chinese',
+        'en': 'English'
+      };
+      
+      // Using the official OpenAI API endpoint
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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'
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {"role": "system", "content": `You are a professional translator. Translate the following ${languageMap[detectedLanguage]} text to ${languageMap[targetLanguage]}. Provide only the translation, no explanations.`},
+            {"role": "user", "content": text}
+          ],
+          temperature: 0.3
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`OpenAI API error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data.choices[0].message.content.trim();
+    } catch (error) {
+      console.error("Translation error:", error);
+      return text; // Return original text if translation fails
+    }
+  };
+
   const handleAddToDB = async (index) => {
     if (!chatData || !chatData.conversations || !auth.currentUser) return;
     
@@ -214,33 +267,102 @@ const FreeStyleAdd = () => {
     }
   
     try {
-      // First, check if similar question already exists for this region
-      const detailsRef = ref(realtimeDb, "Model_Answer/Details");
+      // Get user region prefix for comparison
+      const regionPrefix = userRegion.replace(/[0-9C]+$/, '');
+      
+      // Determine translation target based on region
+      let englishQuestion, translatedQuestion;
+      let englishAnswer, translatedAnswer;
+      
+      if (regionPrefix === "Arab") {
+        // For Arab users, we need English and Arabic versions
+        const questionLang = detectLanguage(question);
+        if (questionLang === 'ar') {
+          // Question is in Arabic, translate to English
+          englishQuestion = await translateText(question, 'en');
+          translatedQuestion = question;
+        } else {
+          // Question is in English, translate to Arabic
+          englishQuestion = question;
+          translatedQuestion = await translateText(question, 'ar');
+        }
+        
+        const answerLang = detectLanguage(answerContent);
+        if (answerLang === 'ar') {
+          // Answer is in Arabic, translate to English
+          englishAnswer = await translateText(answerContent, 'en');
+          translatedAnswer = answerContent;
+        } else {
+          // Answer is in English, translate to Arabic
+          englishAnswer = answerContent;
+          translatedAnswer = await translateText(answerContent, 'ar');
+        }
+      } else if (regionPrefix === "Chinese") {
+        // For Chinese users, we need English and Chinese versions
+        const questionLang = detectLanguage(question);
+        if (questionLang === 'zh') {
+          // Question is in Chinese, translate to English
+          englishQuestion = await translateText(question, 'en');
+          translatedQuestion = question;
+        } else {
+          // Question is in English, translate to Chinese
+          englishQuestion = question;
+          translatedQuestion = await translateText(question, 'zh');
+        }
+        
+        const answerLang = detectLanguage(answerContent);
+        if (answerLang === 'zh') {
+          // Answer is in Chinese, translate to English
+          englishAnswer = await translateText(answerContent, 'en');
+          translatedAnswer = answerContent;
+        } else {
+          // Answer is in English, translate to Chinese
+          englishAnswer = answerContent;
+          translatedAnswer = await translateText(answerContent, 'zh');
+        }
+      } else {
+        // For other regions, default to English
+        englishQuestion = question;
+        translatedQuestion = question;
+        englishAnswer = answerContent;
+        translatedAnswer = answerContent;
+      }
+      
+      // Determine the correct database path based on region
+      let databasePath;
+      if (regionPrefix === "Arab") {
+        databasePath = "ArabC/Details";
+      } else if (regionPrefix === "Chinese") {
+        databasePath = "ChineseC/Details";
+      } else if (regionPrefix === "Western") {
+        databasePath = "WesternC/Details";
+      } else {
+        // Default to WesternC for any other region
+        databasePath = "WesternC/Details";
+      }
+      
+      // Check for duplicates
+      const detailsRef = ref(realtimeDb, databasePath);
       const detailsSnapshot = await get(detailsRef);
       
-      // Get user region prefix for comparison (e.g., "Arab" from "ArabC")
-      const regionPrefix = userRegion.replace(/[0-9C]+$/, '');
       let isDuplicate = false;
       
       if (detailsSnapshot.exists()) {
         const details = detailsSnapshot.val();
         
-        // Check each entry in the database
         for (const key in details) {
           const entry = details[key];
           
-          // Check if region matches our prefix and question is the same
           if (
             entry.region_name && 
             entry.region_name.startsWith(regionPrefix) &&
-            entry.en_question === question
+            entry.en_question === englishQuestion
           ) {
-            // Check if answer content exists in annotations
             if (entry.annotations && entry.annotations.length > 0) {
               for (const annotation of entry.annotations) {
                 if (
                   annotation.en_values && 
-                  annotation.en_values.some(val => val === answerContent)
+                  annotation.en_values.some(val => val === englishAnswer)
                 ) {
                   isDuplicate = true;
                   break;
@@ -281,20 +403,79 @@ const FreeStyleAdd = () => {
       
       const newEntryKey = Date.now().toString();
       
+      // Static translations for reason
+      const reasonTranslations = {
+        "ar": {
+          "variation": "اختلاف",
+          "subculture": "ثقافة فرعية"
+        },
+        "zh": {
+          "variation": "变异",
+          "subculture": "亚文化"
+        }
+      };
+      
+      // Map region for language
+      const regionLan = regionPrefix === "Arab" ? "العرب" : 
+                       regionPrefix === "Chinese" ? "中国" : regionPrefix;
+      
+      // Static topic translations
+      const topicTranslations = {
+        "ar": {
+          "Food": "الطعام",
+          "Education": "تعليم",
+          "Work life": "حياة العمل",
+          "Sport": "رياضة",
+          "Holidays/Celebration/Leisure": "عطلة",
+          "Family": "عائلة",
+          "greeting": "تحية"
+        },
+        "zh": {
+          "Food": "食物",
+          "Education": "教育",
+          "Work life": "工作生活",
+          "Sport": "运动",
+          "Holidays/Celebration/Leisure": "假期",
+          "Family": "家庭",
+          "greeting": "问候"
+        }
+      };
+      
+      const reason = reasonValues[index] || "variation";
+      const reasonLang = regionPrefix === "Arab" ? reasonTranslations.ar[reason] :
+                        regionPrefix === "Chinese" ? reasonTranslations.zh[reason] : reason;
+      const topicLang = regionPrefix === "Arab" ? topicTranslations.ar[selectedTopic] :
+                       regionPrefix === "Chinese" ? topicTranslations.zh[selectedTopic] : selectedTopic;
+      
       const newEntry = {
         region_name: userRegion,
-        en_question: question,
+        region_lan: regionLan,
+        region_id: `${regionPrefix}_0`,
+        cultur_val_ID: `${regionPrefix}-en-${newEntryKey.slice(-2)}`,
+        en_question: englishQuestion,
+        question: translatedQuestion,
         topic: selectedTopic,
+        topic_lan: topicLang || selectedTopic,
         annotations: [
           {
-            en_values: [answerContent],
-            reason: reasonValues[index] ?? "user_submitted",
-            values: [],
+            en_values: [englishAnswer],
+            values: [translatedAnswer],
+            reason: reason,
+            reason_lan: reasonLang || reason,
+            user_id: `user_${auth.currentUser.uid.slice(-4)}`,
           },
         ],
       };
       
-      const entryRef = ref(realtimeDb, `Model_Answer/Details/${newEntryKey}`);
+      console.log("Saving entry with translations:", {
+        path: databasePath,
+        en_question: englishQuestion,
+        question: translatedQuestion,
+        en_values: [englishAnswer],
+        values: [translatedAnswer]
+      });
+      
+      const entryRef = ref(realtimeDb, `${databasePath}/${newEntryKey}`);
       await set(entryRef, newEntry);
       
       handlePopup("✅ Entry added successfully!");
@@ -309,7 +490,7 @@ const FreeStyleAdd = () => {
   if (!chatData || !chatData.conversations) {
     return (
       <div className="freestyle-add-page">
-        <div className="freestyle-page-header">
+<div className="freestyle-page-header">
           <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
             <FaArrowLeft className="freestyle-back-icon" />
           </button>
