@@ -8,13 +8,12 @@ import { useTranslation } from 'react-i18next';
 
 export const Evaluation = () => {
   const { t } = useTranslation(['evalutionpage']);
-  const [evalLLM, setEvalLLM] = useState(""); // Selected model
-  const [evalType, setEvalType] = useState(""); // Evaluation type selection for Baseline
+  const [evalLLM, setEvalLLM] = useState("");
+  const [evalType, setEvalType] = useState("");
   const [llmPlaceholder, setLLMPlaceholder] = useState("");
   const [hasError, setHasError] = useState(false);
   const navigate = useNavigate();
 
-  // Update placeholder when language changes
   useEffect(() => {
     setLLMPlaceholder(hasError ? t('pleaseSelectModel') : t('selectModelPlaceholder'));
   }, [t, hasError]);
@@ -33,6 +32,7 @@ export const Evaluation = () => {
     setHasError(error);
     if (error) return;
 
+    console.log("Navigating to Plot with:", { evalLLM, evalType });
     navigate("/plot", { state: { evalLLM, evalType } });
   };
 
@@ -43,7 +43,6 @@ export const Evaluation = () => {
         <title>{t('pageTitle')}</title>
         <meta name="description" content="Evaluation page" />
       </Helmet>
-
       <div className="evalcontainer">
         <h3 className="eval-title">{t('title')}</h3>
         <div className="evalinputs">
@@ -56,14 +55,12 @@ export const Evaluation = () => {
               value={evalLLM}
               onChange={(e) => setEvalLLM(e.target.value)}
             >
-              <option value="" disabled>
-                {llmPlaceholder}
-              </option>
+              <option value="" disabled>{llmPlaceholder}</option>
               <option value="Baseline">{t('baseline')}</option>
               <option value="Fine-Tuned">{t('fineTuned')}</option>
             </select>
           </div>
-          {evalLLM === "Baseline" && (
+          {evalLLM && (
             <div className="evalinput">
               <label className="evallabel">{t('evaluationType')}</label>
               <select
@@ -73,35 +70,22 @@ export const Evaluation = () => {
                 value={evalType}
                 onChange={(e) => setEvalType(e.target.value)}
               >
-                <option value="" disabled>
-                  {t('selectEvaluationTypePlaceholder')}
-                </option>
-                <option value="LLAMA2 Baseline">{t('llamaBaseline')}</option>
-                <option value="Mistral Baseline">{t('cohereBaseline')}</option>
-                <option value="Hofstede Questions-LLAMA2 Model">{t('hofstedeLlama')}</option>
-                <option value="Hofstede Questions-Mistral Model">{t('hofstedeCohere')}</option>
-              </select>
-            </div>
-          )}
-          {evalLLM === "Fine-Tuned" && (
-            <div className="evalinput">
-              <label className="evallabel">{t('evaluationType')}</label>
-              <select
-                name="evalType"
-                id="evalType"
-                className="llm"
-                value={evalType}
-                onChange={(e) => setEvalType(e.target.value)}
-              >
-                <option value="" disabled>
-                  {t('selectEvaluationTypePlaceholder')}
-                </option>
-                <option value="Mistral Fine-tuned Model">{t('cohereFineTuned')}</option>
-                <option value="Hofstede Questions-Mistral Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
-                <option value="Llama2 Fine-tuned Model">{t('LlamaFineTuned')}</option>
-                <option value="Hofstede Questions-Llama2 Fine-tuned Model">{t('hofstedeLlama2FineTuned')}</option>
-
-
+                <option value="" disabled>{t('selectEvaluationTypePlaceholder')}</option>
+                {evalLLM === "Baseline" ? (
+                  <>
+                    <option value="LLAMA2 Baseline">{t('llamaBaseline')}</option>
+                    <option value="Mistral Baseline">{t('cohereBaseline')}</option>
+                    <option value="Hofstede Questions-LLAMA2 Model">{t('hofstedeLlama')}</option>
+                    <option value="Hofstede Questions-Mistral Model">{t('hofstedeCohere')}</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="Mistral Fine-tuned Model">{t('cohereFineTuned')}</option>
+                    <option value="Hofstede Questions-Mistral Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
+                    <option value="Llama2 Fine-tuned Model">{t('LlamaFineTuned')}</option>
+                    <option value="Hofstede Questions-Llama2 Fine-tuned Model">{t('hofstedeLlama2FineTuned')}</option>
+                  </>
+                )}
               </select>
             </div>
           )}

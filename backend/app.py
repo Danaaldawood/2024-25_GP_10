@@ -417,8 +417,6 @@
 #     port = int(os.environ.get("PORT", 5000)) 
 #     app.run(host='0.0.0.0', port=port, debug=True)
 
-
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pandas as pd
@@ -429,6 +427,7 @@ import os
 import random
 import requests
 from dotenv import load_dotenv
+import logging
 
 # Load environment variables
 load_dotenv()
@@ -444,7 +443,11 @@ CORS(app, resources={r"/*": {
     "allow_headers": ["Content-Type", "Authorization"],
     "supports_credentials": True
 }})
-print("CORS configured for origins: http://localhost:3000, https://gp-frontend-om9b.onrender.com")
+
+# --- Logging Setup ---
+logging.basicConfig(level=logging.INFO, 
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 # --- Firebase Setup ---
 try:
@@ -454,23 +457,28 @@ try:
     else:
         cred = credentials.Certificate("serviceAccountKey.json")
     initialize_app(cred, {'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'})
-    print("Firebase initialized successfully")
+    logger.info("Firebase initialized successfully")
 except Exception as e:
-    print(f"Error initializing Firebase: {str(e)}")
+    logger.error(f"Error initializing Firebase: {str(e)}")
 
 # --- Model API Setup ---
-HF_API_KEY = os.getenv('HF_API_KEY')
-if not HF_API_KEY:
-    print("Warning: HF_API_KEY is not set")
-hf_headers = {"Authorization": f"Bearer {HF_API_KEY}"}
-MISTRAL_MODEL_ID ="mistralai/Mistral-7B-Instruct-v0.3"
-LLAMA_MODEL_ID ="meta-llama/Llama-2-7b-chat-hf"               
-#"GPCUL/llama_fine_tuned"                
-#  "meta-llama/Llama-2-7b-chat-hf"
-# Ollama Llama model configuration
+HF_TOKEN_BASELINE = os.getenv('HF_API_KEY')
+HF_TOKEN_FINETUNE = os.getenv('HF_TOKEN_FINETUNE')
+if not HF_TOKEN_BASELINE:
+    logger.warning("HF_API_KEY is not set")
+if not HF_TOKEN_FINETUNE:
+    logger.warning("HF_TOKEN_FINETUNE is not set")
+
+# Model IDs
+MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
+LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
+MISTRAL_FINETUNED_ID = "GPCUL/mistral_finetunedAllAfter-zeq"
+LLAMA_FINETUNED_ID = "GPCUL/llama_fine_tuned"
+
+# Ollama Llama model configuration for Model B
 OLLAMA_MODEL_URL = "http://localhost:11434/api/generate"
 OLLAMA_CONFIG = {
-    'model': 'llama2:latest  ', 
+    'model': 'llama2:latest',
     'max_tokens': 128,
     'temperature': 0.8,
     'repeat_penalty': 1.1,
@@ -527,18 +535,16 @@ try:
         "Chinese": pd.read_csv("./Hofsted_chin_MistralF.csv", encoding="utf-8"),
         "Western": pd.read_csv("./Hofsted_west_MistralF.csv", encoding="utf-8"),
     }
-    print("All datasets loaded successfully")
+    logger.info("All datasets loaded successfully")
 except Exception as e:
-    print(f"Error loading datasets: {str(e)}")
+    logger.error(f"Error loading datasets: {str(e)}")
 
 # --- Chat Functions ---
-def call_mistral_model(message_text):
-    if not HF_API_KEY:
-        return "Error: HF_API_KEY is not set"
+def call_model_a(message_text):
     try:
-        formatted_prompt = f"<s>[INST] {message_text} [/INST]"
+        prompt = f"<s>[INST] {message_text} [/INST]"
         payload = {
-            "inputs": formatted_prompt,
+            "inputs": prompt,
             "parameters": {
                 "max_new_tokens": 200,
                 "temperature": 0.3,
@@ -547,30 +553,25 @@ def call_mistral_model(message_text):
                 "return_full_text": False
             }
         }
-        print(f"Calling Mistral model: {payload}")
+        headers = {"Authorization": f"Bearer {HF_TOKEN_BASELINE}"}
+        logger.info(f"Calling baseline Mistral model: {MISTRAL_MODEL_ID}")
         response = requests.post(
             f"https://api-inference.huggingface.co/models/{MISTRAL_MODEL_ID}",
-            headers=hf_headers,
+            headers=headers,
             json=payload,
-            timeout=90
+            timeout=60
         )
-        print(f"Mistral response: {response.status_code}, {response.text}")
-        if response.status_code != 200:
-            return f"Error from Mistral model: {response.status_code}, {response.text}"
+        response.raise_for_status()
         result = response.json()
-        text_response = result[0]["generated_text"] if isinstance(result, list) and "generated_text" in result[0] else str(result)
-        clean_response = text_response.split("[/INST]", 1)[1].strip() if "[INST]" in text_response else text_response
-        return clean_response
+        return result[0]["generated_text"].strip()
     except Exception as e:
-        print(f"Error in call_mistral_model: {str(e)}")
-        return f"Sorry, I couldn't generate a response from Mistral model: {str(e)}"
+        logger.error(f"Error in call_model_a: {e}")
+        return f"Error from baseline Mistral: {str(e)}"
 
-def call_llama_model(message_text):
+def call_model_b(message_text):
     try:
-        # Format input for Ollama model
         system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
         formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
-        
         payload = {
             "model": OLLAMA_CONFIG["model"],
             "prompt": formatted_prompt,
@@ -581,25 +582,122 @@ def call_llama_model(message_text):
                 "repeat_penalty": OLLAMA_CONFIG["repeat_penalty"]
             }
         }
-        
-        print(f"Calling Ollama Llama model: {payload}")
-        
-        response = requests.post(OLLAMA_MODEL_URL, json=payload)
-        
-        print(f"Ollama Llama response: {response.status_code}, {response.text[:100]}...")
-        
+        logger.info(f"Calling Ollama Llama model: {OLLAMA_CONFIG['model']}")
+        response = requests.post(OLLAMA_MODEL_URL, json=payload, timeout=60)
+        logger.info(f"Ollama Llama response: {response.status_code}, {response.text[:100]}...")
         if response.status_code == 200:
             response_json = response.json()
             response_text = response_json.get('response', '')
             return response_text
         else:
             error_msg = f"Error from Ollama API: {response.status_code}, {response.text}"
-            print(error_msg)
+            logger.error(error_msg)
             return error_msg
-            
     except Exception as e:
-        print(f"Error in call_llama_model: {str(e)}")
+        logger.error(f"Error in call_model_b: {str(e)}")
         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+
+def call_fine_tuned_mistral(message_text):
+    try:
+        api_url = "https://uphvkd82jwgsup9d.us-east-1.aws.endpoints.huggingface.cloud"
+        prompt = f"<s>[INST] {message_text} [/INST]"
+        payload = {
+            "inputs": prompt,
+            "parameters": {
+                "max_new_tokens": 200,
+                "temperature": 0.3,
+                "top_p": 0.9,
+                "do_sample": True,
+                "return_full_text": False
+            }
+        }
+        headers = {
+            "Authorization": f"Bearer {HF_TOKEN_FINETUNE}",
+            "Content-Type": "application/json"
+        }
+        if not HF_TOKEN_FINETUNE:
+            logger.error("HF_TOKEN_FINETUNE environment variable is not set or empty")
+            return "Error: API token for fine-tuned Mistral model is missing"
+        logger.info(f"Calling fine-tuned Mistral model at: {api_url}")
+        response = requests.post(api_url, headers=headers, json=payload, timeout=60)
+        logger.info(f"Response status: {response.status_code}")
+        response.raise_for_status()
+        result = response.json()
+        if isinstance(result, list) and len(result) > 0 and "generated_text" in result[0]:
+            generated_text = result[0]["generated_text"]
+            if "[/INST]" in generated_text:
+                return generated_text.split("[/INST]")[-1].strip()
+            return generated_text.strip()
+        else:
+            logger.error(f"Unexpected response structure: {result}")
+            return "Error: Unexpected response format from model API"
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Request error: {str(e)}"
+        if hasattr(e, 'response') and e.response is not None:
+            error_msg += f" | Status: {e.response.status_code}"
+            try:
+                error_data = e.response.json()
+                error_msg += f" | Error: {error_data}"
+            except:
+                error_msg += f" | Body: {e.response.text[:200]}"
+        logger.error(error_msg)
+        return f"Error connecting to model API: {error_msg}"
+    except Exception as e:
+        logger.error(f"Unexpected error in call_fine_tuned_mistral: {str(e)}")
+        return f"Unexpected error: {str(e)}"
+
+def call_fine_tuned_llama(message_text):
+    try:
+        prompt = f"<s>[INST] {message_text} [/INST]"
+        payload = {
+            "inputs": prompt,
+            "parameters": {
+                "max_new_tokens": 200,
+                "temperature": 0.3,
+                "top_p": 0.9,
+                "do_sample": True,
+                "return_full_text": False
+            }
+        }
+        headers = {
+            "Authorization": f"Bearer {HF_TOKEN_FINETUNE}",
+            "Content-Type": "application/json"
+        }
+        if not HF_TOKEN_FINETUNE:
+            logger.error("HF_TOKEN_FINETUNE environment variable is not set or empty")
+            return "Error: API token for fine-tuned LLaMA model is missing"
+        logger.info(f"Calling fine-tuned LLaMA model: {LLAMA_FINETUNED_ID}")
+        response = requests.post(
+            f"https://api-inference.huggingface.co/models/{LLAMA_FINETUNED_ID}",
+            headers=headers,
+            json=payload,
+            timeout=60
+        )
+        logger.info(f"Response status: {response.status_code}")
+        response.raise_for_status()
+        result = response.json()
+        if isinstance(result, list) and len(result) > 0 and "generated_text" in result[0]:
+            generated_text = result[0]["generated_text"]
+            if "[/INST]" in generated_text:
+                return generated_text.split("[/INST]")[-1].strip()
+            return generated_text.strip()
+        else:
+            logger.error(f"Unexpected response structure: {result}")
+            return "Error: Unexpected response format from model API"
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Request error: {str(e)}"
+        if hasattr(e, 'response') and e.response is not None:
+            error_msg += f" | Status: {e.response.status_code}"
+            try:
+                error_data = e.response.json()
+                error_msg += f" | Error: {error_data}"
+            except:
+                error_msg += f" | Body: {e.response.text[:200]}"
+        logger.error(error_msg)
+        return f"Error connecting to model API: {error_msg}"
+    except Exception as e:
+        logger.error(f"Unexpected error in call_fine_tuned_llama: {str(e)}")
+        return f"Unexpected error: {str(e)}"
 
 def suggest_questions():
     questions = [
@@ -753,15 +851,14 @@ def to_serializable(val):
 @app.route('/evaluate', methods=['POST', 'OPTIONS'])
 def evaluate():
     if request.method == 'OPTIONS':
-        print("Handling OPTIONS for /evaluate")
+        logger.info("Handling OPTIONS for /evaluate")
         return '', 200
     try:
-        print(f"Received request for /evaluate: {request.json}")
         request_data = request.json
         topic = request_data.get("topic", "All Topics")
         model = request_data.get("model", "")
         eval_type = request_data.get("evalType", "")
-        print(f"Processing evaluate: topic={topic}, model={model}, evalType={eval_type}")
+        logger.info(f"Processing evaluate: topic={topic}, model={model}, evalType={eval_type}")
         if model == "Fine-Tuned":
             if eval_type == "Mistral Fine-tuned Model":
                 results = calculate_for_all_regions_cohere_finetuned(topic)
@@ -773,11 +870,6 @@ def evaluate():
                 results = calculate_standard_deviation_llama_finetuned()
             else:
                 return jsonify({"error": "Invalid evaluation type for Fine-Tuned"}), 400
-            serializable_results = {
-                region: {k: to_serializable(v) for k, v in region_data.items()}
-                for region, region_data in results.items()
-            }
-            return jsonify(serializable_results)
         elif model == "Baseline":
             if eval_type == "Hofstede Questions-Mistral Model":
                 results = calculate_standard_deviation_cohere()
@@ -789,43 +881,46 @@ def evaluate():
                 results = calculate_for_all_regions_cohere_baseline(topic)
             else:
                 return jsonify({"error": "Invalid evaluation type for Baseline"}), 400
-            serializable_results = {
-                region: {k: to_serializable(v) for k, v in region_data.items()}
-                for region, region_data in results.items()
-            }
-            return jsonify(serializable_results)
         else:
             return jsonify({"error": "Invalid model selection"}), 400
+        serializable_results = {
+            region: {k: to_serializable(v) for k, v in region_data.items()}
+            for region, region_data in results.items()
+        }
+        return jsonify(serializable_results)
     except Exception as e:
-        print(f"Error during evaluation: {str(e)}")
+        logger.error(f"Error during evaluation: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/compare', methods=['POST', 'OPTIONS'])
+
+
+@app.route('/api/compare', methods=['POST'])
 def compare():
-    if request.method == 'OPTIONS':
-        print("Handling OPTIONS for /api/compare")
-        return '', 200
+    """
+    Endpoint to calculate similarity scores between regions for selected topics.
+    Uses Firebase data.
+    """
     try:
-        print(f"Received request for /api/compare: {request.json}")
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
-        print(f"Processing compare: regions={regions}, topics={topics}")
+        
         if not regions or not topics:
             return jsonify({"error": "Regions and topics are required"}), 400
+
         results = {}
         for topic in topics:
             values = {}
             for region in regions:
-                print(f"Fetching Firebase data for region: {region}")
                 region_data = db.reference(f'/{region}C/Details').get()
-                print(f"Region data for {region}: {region_data}")
                 region_values = set()
+                
                 if region_data:
                     for item in region_data:
                         if item.get("topic") == topic:
                             for annot in item.get("annotations", []):
                                 region_values.update(annot.get("en_values", []))
                 values[region] = region_values
+
             similarities = []
             for i, region1 in enumerate(regions):
                 for region2 in regions[i+1:]:
@@ -833,54 +928,66 @@ def compare():
                     union = len(values[region1] | values[region2])
                     similarity = (intersection / union) if union > 0 else 0
                     similarities.append(similarity)
+
             results[topic] = (sum(similarities) / len(similarities) * 100) if similarities else 0
+
         return jsonify({"similarity_scores": results})
+
     except Exception as e:
-        print(f"Error during comparison: {str(e)}")
+        print(f"Error during comparison: {e}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/chat', methods=['POST', 'OPTIONS'])
 def chat():
     if request.method == 'OPTIONS':
-        print("Handling OPTIONS for /api/chat")
+        logger.info("Handling OPTIONS for /api/chat")
         return '', 200
     try:
-        print(f"Received request for /api/chat: {request.json}")
         data = request.json
-        user_message = data.get('message', '').strip()
-        model_type = data.get('model_type', 'A')
-        print(f"Processing chat: message={user_message}, model_type={model_type}")
-        if not user_message:
-            return jsonify({'status': 'error', 'message': 'No message provided'}), 400
-        if model_type == 'A':
-            response = call_mistral_model(user_message)
+        message = data.get("message", "").strip()
+        model_type = data.get("model_type")
+        logger.info(f"Processing chat: message={message}, model_type={model_type}")
+        if not message:
+            return jsonify({"status": "error", "message": "No message provided"}), 400
+        if model_type == "A":
+            result = call_model_a(message)
+        elif model_type == "B":
+            result = call_model_b(message)
+        elif model_type == "FA":
+            result = call_fine_tuned_mistral(message)
+        elif model_type == "FB":
+            result = call_fine_tuned_llama(message)
         else:
-            response = call_llama_model(user_message)
-        return jsonify({'status': 'success', 'response': response})
+            return jsonify({"status": "error", "message": "Invalid model type"}), 400
+        return jsonify({"status": "success", "response": result})
     except Exception as e:
-        print(f"Error in chat endpoint: {str(e)}")
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        logger.error(f"Error in chat endpoint: {str(e)}")
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/api/suggestions', methods=['GET', 'OPTIONS'])
 def get_suggestions():
     if request.method == 'OPTIONS':
-        print("Handling OPTIONS for /api/suggestions")
+        logger.info("Handling OPTIONS for /api/suggestions")
         return '', 200
     try:
-        print("Received request for /api/suggestions")
+        logger.info("Processing suggestions request")
         return jsonify({'status': 'success', 'suggestions': suggest_questions()})
     except Exception as e:
-        print(f"Error in suggestions endpoint: {str(e)}")
+        logger.error(f"Error in suggestions endpoint: {str(e)}")
         return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/api/healthcheck', methods=['GET'])
+def healthcheck():
+    return jsonify({"status": "ok", "message": "Server is running"}), 200
 
 @app.route('/test', methods=['GET'])
 def test():
-    print("Received request for /test")
+    logger.info("Processing test request")
     return jsonify({"message": "Server is running"})
 
 @app.errorhandler(Exception)
 def handle_error(error):
-    print(f"Global error: {str(error)}")
+    logger.error(f"Global error: {str(error)}")
     response = jsonify({"error": "Internal server error"})
     response.status_code = 500
     return response
@@ -888,4 +995,4 @@ def handle_error(error):
 # --- Main Application Entry ---
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='0.0.0.0', port=port, debug=True)

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from 'react-helmet';
@@ -8,22 +8,20 @@ import { useTranslation } from 'react-i18next';
 
 export const ConversationLayout = () => {
   const navigate = useNavigate();
-    const { t, i18n } = useTranslation('FreeStyle');
-      const isRTL = i18n.dir() === 'rtl';
-      const formatNumber = (number) => {
-        return new Intl.NumberFormat(i18n.language).format(number);
-      };
-      
+  const location = useLocation();
+  const { evalType } = location.state || {};
+  const { t, i18n } = useTranslation('FreeStyle');
+
+  console.log("In Freestyle.jsx, received evalType:", evalType);
+
+  const isRTL = i18n.dir() === 'rtl';
+  const formatNumber = (number) => new Intl.NumberFormat(i18n.language).format(number);
+
   const [inputMessage, setInputMessage] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [messagesA, setMessagesA] = useState([
-    { type: "ai", content: t("modelAA") },
-  ]);
-  
-  const [messagesB, setMessagesB] = useState([
-    { type: "ai", content: t("modelBB") },
-  ]);  
-  const sendLimit = 7;
+  const [messagesA, setMessagesA] = useState([{ type: "ai", content: t("modelAA") }]);
+  const [messagesB, setMessagesB] = useState([{ type: "ai", content: t("modelBB") }]);
+  const sendLimit = 7; // Updated to match first Freestyle.jsx
   const [sendCount, setSendCount] = useState(0);
   const [canGiveFeedback, setCanGiveFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,12 +29,14 @@ export const ConversationLayout = () => {
   const [isLoadingB, setIsLoadingB] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedModel, setSelectedModel] = useState("");
-  const progressWidth = `${(sendCount / sendLimit) * 100}%`;   
-  
-  // Fetch suggestions when component mounts
+  const progressWidth = `${(sendCount / sendLimit) * 100}%`;
+
+  // Backend URL (configurable for local or deployed environments)
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+  // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env
+
   useEffect(() => {
-    // 'http://localhost:5001/api/suggestions'
-    fetch('https://gp-culturelens.onrender.com/api/suggestions')
+    fetch(`${BACKEND_URL}/api/suggestions`)
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
@@ -46,67 +46,85 @@ export const ConversationLayout = () => {
       .catch(error => console.error('Error fetching suggestions:', error));
   }, []);
 
+  const determineModelTypes = () => {
+    console.log("Determining model types for evalType:", evalType);
+
+    if (!evalType) {
+      console.warn("evalType is undefined, defaulting to baseline models A and B");
+      return ['A', 'B'];
+    }
+
+    switch (evalType) {
+      // Baseline Models
+      case "Mistral Baseline":
+      case "LLAMA2 Baseline":
+      case "Hofstede Questions-Mistral Model":
+      case "Hofstede Questions-LLAMA2 Model":
+        return ['A', 'B']; // Model A: Baseline Mistral, Model B: Baseline LLaMA (Ollama)
+
+      // Fine-Tuned Models
+      case "Mistral Fine-tuned Model":
+      case "Llama2 Fine-tuned Model":
+      case "Hofstede Questions-Mistral Fine-tuned Model":
+      case "Hofstede Questions-Llama2 Fine-tuned Model":
+        return ['FA', 'FB']; // Model A: Fine-tuned Mistral, Model B: Fine-tuned LLaMA
+
+      default:
+        console.warn(`Unrecognized evalType: ${evalType}, defaulting to baseline models A and B`);
+        return ['A', 'B'];
+    }
+  };
+
   const handleSendMessage = async () => {
     if (inputMessage.trim() !== "" && sendCount < sendLimit) {
-      // Add user message to both chats
       const userMessage = { type: "user", content: inputMessage };
       setMessagesA(prev => [...prev, userMessage]);
       setMessagesB(prev => [...prev, userMessage]);
-      
+
       setIsLoading(true);
       setIsLoadingA(true);
       setIsLoadingB(true);
       setInputMessage("");
       setSendCount(prev => prev + 1);
 
+      const [modelTypeA, modelTypeB] = determineModelTypes();
+      console.log("Model types selected:", { modelTypeA, modelTypeB });
+
       try {
-        // Send message to Mistral model (Model A)http://localhost:5001/api/chat'
-        const responseA = fetch('https://gp-culturelens.onrender.com/api/chat', {
+        const responseA = fetch(`${BACKEND_URL}/api/chat`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: inputMessage, model_type: 'A' }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: inputMessage, model_type: modelTypeA }),
         }).then(res => res.json())
           .then(data => {
-            if (data.status === 'success') {
-              // Add AI response to Model A chat
-              setMessagesA(prev => [...prev, { type: "ai", content: data.response }]);
-            } else {
-              setMessagesA(prev => [...prev, { type: "ai", content:  t("error-processing-request") }]);
-            }
+            setMessagesA(prev => [...prev, { 
+              type: "ai", 
+              content: data.status === 'success' ? data.response : t("error-processing-request") 
+            }]);
             setIsLoadingA(false);
-          })
-          .catch(error => {
+          }).catch(error => {
             console.error('Error with Model A:', error);
             setMessagesA(prev => [...prev, { type: "ai", content: t("processing-request") }]);
             setIsLoadingA(false);
           });
 
-        // Send message to Llama model (Model B):http://localhost:5000/api/chat
-        const responseB = fetch('https://gp-culturelens.onrender.com/api/chat', {
+        const responseB = fetch(`${BACKEND_URL}/api/chat`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: inputMessage, model_type: 'B' }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: inputMessage, model_type: modelTypeB }),
         }).then(res => res.json())
           .then(data => {
-            if (data.status === 'success') {
-              // Add AI response to Model B chat
-              setMessagesB(prev => [...prev, { type: "ai", content: data.response }]);
-            } else {
-              setMessagesB(prev => [...prev, { type: "ai", content:t("error-processing-request") }]);
-            }
+            setMessagesB(prev => [...prev, { 
+              type: "ai", 
+              content: data.status === 'success' ? data.response : t("error-processing-request") 
+            }]);
             setIsLoadingB(false);
-          })
-          .catch(error => {
+          }).catch(error => {
             console.error('Error with Model B:', error);
-            setMessagesB(prev => [...prev, { type: "ai", content: t("processing-request")}]);
+            setMessagesB(prev => [...prev, { type: "ai", content: t("processing-request") }]);
             setIsLoadingB(false);
           });
 
-        // Wait for both requests to complete
         await Promise.all([responseA, responseB]);
         setCanGiveFeedback(true);
         setIsLoading(false);
@@ -121,70 +139,53 @@ export const ConversationLayout = () => {
 
   const handleFeedback = (model) => {
     setSelectedModel(model);
-    setShowPopup(true);  
+    setShowPopup(true);
   };
-  
-  const closePopup = () => {
-    setShowPopup(false);  
-  };
-   
-   // Update the handlePopupAction function in ConversationLayout.js
-const handlePopupAction = (action) => {
-  if (action === "yes") {
-    // Get all user messages (questions) - Skip initial greeting
-    const userMessages = messagesA.filter(msg => msg.type === "user");
-    
-    // Get all model responses (excluding the initial greeting)
-    const modelAMessages = messagesA.filter(msg => msg.type === "ai" && messagesA.indexOf(msg) > 0);
-    const modelBMessages = messagesB.filter(msg => msg.type === "ai" && messagesB.indexOf(msg) > 0);
-    
-    // Create structured conversation data with proper question-answer pairing
-    const conversations = [];
-    for (let i = 0; i < userMessages.length; i++) {
-      conversations.push({
-        question: userMessages[i].content,
+
+  const handlePopupAction = (action) => {
+    if (action === "yes") {
+      const userMessages = messagesA.filter(msg => msg.type === "user");
+      const modelAMessages = messagesA.filter(msg => msg.type === "ai" && messagesA.indexOf(msg) > 0);
+      const modelBMessages = messagesB.filter(msg => msg.type === "ai" && messagesB.indexOf(msg) > 0);
+      const conversations = userMessages.map((msg, i) => ({
+        question: msg.content,
         modelA: modelAMessages[i]?.content || "",
         modelB: modelBMessages[i]?.content || "",
-      });
-    }
-    
-    // Format data for FreeStyleAdd
-    const formattedData = {
-      conversations: conversations,
-      selectedModel: selectedModel
-    };
-    
-    // Save the formatted data
-    localStorage.setItem("lastChatMessages", JSON.stringify(formattedData));
-    
-    navigate("/FreeStyleAdd");
-  } else {
-    navigate("/home");
-  }
+      }));
+// Format data for FreeStyleAdd
+const formattedData = {
+  conversations: conversations,
+  selectedModel: selectedModel
 };
+      localStorage.setItem("lastChatMessages", JSON.stringify({
+        conversations,
+        selectedModel
+      }));
+      navigate("/FreeStyleAdd");
+    } else {
+      navigate("/home");
+    }
+  };
 
   return (
     <div className="freestylepage">
       <Helmet>
-      <title class="titleFree">Free style chatting</title>
-      <meta name="description" content="Free style chatting page" />
+        <title className="titleFree">Free style chatting</title>
+        <meta name="description" content="Free style chatting page" />
       </Helmet>
-       <div className="freestyle-page-header">
-       <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
-  
 
+      <div className="freestyle-page-header">
+        <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
-        <div className="feedback-container mt-4">
-           
-        </div>
       </div>
-       
-       <h2 class="titleFree">{t('titleFree')}</h2>
-       <div className="send-limit-bar">
+
+      <h2 className="titleFree">{t('titleFree')}</h2>
+
+      <div className="send-limit-bar">
         <div className="progress" style={{ width: progressWidth }}></div>
         <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
-        </div>
+      </div>
 
       <div className="dual-chat-container">
         <div className="chat-model">
@@ -213,48 +214,55 @@ const handlePopupAction = (action) => {
       </div>
 
       {sendCount === sendLimit && !isLoading && (
-  <div className="feedback-container mt-4">
-    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>{t("👍 Model A is better")}</button>
-    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>{t("👍 Model B is better")}</button>
-    <button disabled={!canGiveFeedback} onClick={() => handleFeedback('none')}> {("none")}</button>
-  </div>
-)}
+        <div className="feedback-container mt-4">
+          <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>
+            {t("👍 Model A is better")}
+          </button>
+          <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>
+            {t("👍 Model B is better")}
+          </button>
+          <button disabled={!canGiveFeedback} onClick={() => handleFeedback('none')}>
+            {t("none")}
+          </button>
+        </div>
+      )}
 
       <div className="freestyle-input-container">
         <input
           type="text"
           className="freestyle-message-input"
-          placeholder={t("enter-message")} 
+          placeholder={t("enter-message")}
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
           disabled={sendCount >= sendLimit || isLoading}
         />
-        <button 
-          className="freestyle-send-button" 
-          onClick={handleSendMessage} 
+        <button
+          className="freestyle-send-button"
+          onClick={handleSendMessage}
           disabled={sendCount >= sendLimit || isLoading}
         >
- {isLoading ? t('sending') : t('send')}
-         </button>
+          {isLoading ? t('sending') : t('send')}
+        </button>
       </div>
 
       <Footer />
 
       {showPopup && (
-     <div className="popup-overlay">
-     <div className="popup-content">
-       <h3>{t(selectedModel === 'Model A' ? 'modelA' : 'modelB')} {t("thank-you-voting")}🌟</h3>
-       <p>{t("add-chat-question")}</p>
-       <div className="popup-buttons">
-         {/* "Yes" button will navigate to FreeStyleAdd */}
-         <button onClick={() => handlePopupAction("yes")}>{t("yes")}</button>
-         {/* "Cancel" button will navigate to HomePage */}
-         <button onClick={() => handlePopupAction("cancel")}>{t("cancel")}</button>
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h3>
+              {t(selectedModel === 'Model A' ? 'modelA' : selectedModel === 'Model B' ? 'modelB' : 'none')}
+              {t("thank-you-voting")}🌟
+            </h3>
+            <p>{t("add-chat-question")}</p>
+            <div className="popup-buttons">
+              <button onClick={() => handlePopupAction("yes")}>{t("yes")}</button>
+              <button onClick={() => handlePopupAction("cancel")}>{t("cancel")}</button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
 };

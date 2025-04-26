@@ -28,6 +28,8 @@ export const Plot = () => {
   const [results, setResults] = useState(null);
   const [showMap, setShowMap] = useState(true);
 
+  console.log("In Plot.jsx, received state:", { evalLLM, evalType });
+
   const topicKeys = [
     "allTopics",
     "food",
@@ -45,10 +47,8 @@ export const Plot = () => {
     family: "Family",
     holidays: "Holidays/Celebration/Leisure",
     worklife: "Work life",
-    education:"Education",
+    education: "Education",
     greeting: "Greeting",
-    
-
   };
 
   const regionToIds = {
@@ -79,7 +79,7 @@ export const Plot = () => {
       return;
     }
     setPopupOpen(false);
-    navigate("/Freestyle");
+    navigate("/freestyle", { state: { evalLLM, evalType } });
   };
 
   useEffect(() => {
@@ -92,9 +92,7 @@ export const Plot = () => {
   const fetchResults = async () => {
     try {
       const apiTopicValue = topicKeyToApiValue[selectedTopicKey];
-      // http://127.0.0.1:5000/evaluate
-
-      const response = await fetch("https://gp-culturelens.onrender.com/evaluate", {
+      const response = await fetch("http://127.0.0.1:5000/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -249,6 +247,7 @@ export const Plot = () => {
       });
     });
   };
+
   const getModelExplanation = () => {
     if (evalType === "Mistral Fine-tuned Model") {
       return t("tooltips.cohereFineTuned");
@@ -312,7 +311,6 @@ export const Plot = () => {
       });
       console.log("Generated explanation:", explanation);
 
-      // Improved fallback logic: Check if the explanation contains English text when the language is Arabic
       const containsEnglish =
         /[a-zA-Z]/.test(explanation) && i18n.language === "ar";
       if (
@@ -467,7 +465,7 @@ export const Plot = () => {
               ],
               datasets: [
                 {
-                  label:evalType.includes("Hofstede")
+                  label: evalType.includes("Hofstede")
                     ? t("standardDeviation")
                     : t("coverageScore"),
                   data: evalType.includes("Hofstede")
@@ -488,7 +486,7 @@ export const Plot = () => {
           />
         )}
         <div className="plotsubmit-container">
-          <button className="plotsubmit" onClick={() => navigate("/freestyle")}>
+          <button className="plotsubmit" onClick={() => navigate("/freestyle", { state: { evalLLM, evalType } })}>
             {t("freeStyleChatting")}
           </button>
         </div>

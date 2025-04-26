@@ -34,6 +34,10 @@ function CompareResult() {
     { api: "Greeting", translation: "greeting" }
   ];
 
+  // Backend URL (configurable for local or deployed environments)
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+  // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env
+
   const getComparisonRegions = () => {
     return allRegions.filter((region) => region !== baseRegion);
   };
@@ -49,9 +53,7 @@ function CompareResult() {
       const comparisonRegions = getComparisonRegions();
       try {
         const promises = comparisonRegions.map(async (compareRegion) => {
-          
-          // "http://127.0.0.1:5000/api/compare"
-          const response = await fetch("https://gp-culturelens.onrender.com/api/compare", {
+          const response = await fetch(`${BACKEND_URL}/api/compare`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -62,7 +64,10 @@ function CompareResult() {
             }),
           });
 
-          if (!response.ok) throw new Error(`Server error: ${response.status}`);
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `Server error: ${response.status}`);
+          }
           const data = await response.json();
           return { region: compareRegion, data };
         });
@@ -70,11 +75,12 @@ function CompareResult() {
         const results = await Promise.all(promises);
         const newSimilarities = {};
         results.forEach(({ region, data }) => {
-          newSimilarities[region] = data.similarity_scores[selectedTopic];
+          newSimilarities[region] = data.similarity_scores?.[selectedTopic] ?? 0;
         });
 
         setSimilarities(newSimilarities);
       } catch (err) {
+        console.error("Fetch error:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -82,7 +88,7 @@ function CompareResult() {
     };
 
     fetchComparisonData();
-  }, [baseRegion, selectedTopic]);
+  }, [baseRegion, selectedTopic, BACKEND_URL]);
 
   return (
     <div className="compare-result-page" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
@@ -144,7 +150,6 @@ function CompareResult() {
               >
                 <AlertCircle className="h-5 w-5" />
               </button>
-              {/* Info Popup */}
               {showInfo && (
                 <div className="info-popup">
                   <div className="info-content">
@@ -180,47 +185,46 @@ function CompareResult() {
           {/* Error State */}
           {error && (
             <div className="compare-result-error">
-              <p>{error}</p>
+              <p>{t('comparepage.error', { message: error })}</p>
             </div>
           )}
 
           {/* Similarity Results Display with RTL Support */}
           {baseRegion && selectedTopic && !loading && !error && (
-  <div className="compare-result-similarity-container">
-    {getComparisonRegions().map((region) => (
-      <div key={region} className="compare-result-comparison-info">
-        {/* In RTL mode, put similarity score at the beginning (left side) */}
-        {i18n.language === 'ar' ? (
-          <>
-            <span className="compare-result-similarity-score rtl-score">
-              {`: ${(similarities[region] || 0).toFixed(2)}%`}
-            </span>
-            <span className="compare-result-region-name">
-              {t(`comparepage.regions.${region.toLowerCase()}`)}
-            </span>
-            <span>{t('comparepage.comparison.and')}</span>
-            <span className="compare-result-region-name">
-              {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
-            </span>
-          </>
-        ) : (
-          <>
-            <span className="compare-result-region-name">
-              {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
-            </span>
-            <span>{t('comparepage.comparison.and')}</span>
-            <span className="compare-result-region-name">
-              {t(`comparepage.regions.${region.toLowerCase()}`)}
-            </span>
-            <span className="compare-result-similarity-score">
-              {`: ${(similarities[region] || 0).toFixed(2)}%`}
-            </span>
-          </>
-        )}
-      </div>
-    ))}
-  </div>
-)}
+            <div className="compare-result-similarity-container">
+              {getComparisonRegions().map((region) => (
+                <div key={region} className="compare-result-comparison-info">
+                  {i18n.language === 'ar' ? (
+                    <>
+                      <span className="compare-result-similarity-score rtl-score">
+                        {`: ${(similarities[region] || 0).toFixed(2)}%`}
+                      </span>
+                      <span className="compare-result-region-name">
+                        {t(`comparepage.regions.${region.toLowerCase()}`)}
+                      </span>
+                      <span>{t('comparepage.comparison.and')}</span>
+                      <span className="compare-result-region-name">
+                        {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="compare-result-region-name">
+                        {t(`comparepage.regions.${baseRegion.toLowerCase()}`)}
+                      </span>
+                      <span>{t('comparepage.comparison.and')}</span>
+                      <span className="compare-result-region-name">
+                        {t(`comparepage.regions.${region.toLowerCase()}`)}
+                      </span>
+                      <span className="compare-result-similarity-score">
+                        {`: ${(similarities[region] || 0).toFixed(2)}%`}
+                      </span>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
