@@ -432,26 +432,6 @@ import logging
 # Load environment variables
 load_dotenv()
 
-try:
-    logger.info("Starting Firebase initialization...")
-    if os.environ.get('FIREBASE_CREDENTIALS'):
-        logger.info("Using credentials from environment variable")
-        firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
-        cred = credentials.Certificate(firebase_credentials)
-    else:
-        logger.info("Using credentials from serviceAccountKey.json")
-        cred = credentials.Certificate("serviceAccountKey.json")
-    
-    initialize_app(cred, {'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'})
-    logger.info("Firebase initialized successfully")
-except Exception as e:
-    logger.error(f"Error initializing Firebase: {str(e)}")
-
-
-
-
-
-
 
 # --- Flask Setup ---
 app = Flask(__name__)
@@ -472,16 +452,16 @@ logging.basicConfig(level=logging.INFO,
 logger = logging.getLogger(__name__)
 
 # --- Firebase Setup ---
-# try:
-#     if os.environ.get('FIREBASE_CREDENTIALS'):
-#         firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
-#         cred = credentials.Certificate(firebase_credentials)
-#     else:
-#         cred = credentials.Certificate("serviceAccountKey.json")
-#     initialize_app(cred, {'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'})
-#     logger.info("Firebase initialized successfully")
-# except Exception as e:
-#     logger.error(f"Error initializing Firebase: {str(e)}")
+try:
+    if os.environ.get('FIREBASE_CREDENTIALS'):
+        firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+        cred = credentials.Certificate(firebase_credentials)
+    else:
+        cred = credentials.Certificate("serviceAccountKey.json")
+    initialize_app(cred, {'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'})
+    logger.info("Firebase initialized successfully")
+except Exception as e:
+    logger.error(f"Error initializing Firebase: {str(e)}")
 
 # --- Model API Setup ---
 HF_TOKEN_BASELINE = os.getenv('HF_API_KEY')
