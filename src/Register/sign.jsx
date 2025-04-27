@@ -179,7 +179,7 @@
            "i"
          );
          if (!emailPattern.test(email)) {
-           setErrorMessage("allowedEmail");
+          setErrorMessage(t("allowedEmail"));
            return;
          }
    
