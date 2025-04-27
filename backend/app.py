@@ -432,6 +432,39 @@ import logging
 # Load environment variables
 load_dotenv()
 
+try:
+    logger.info("Starting Firebase initialization...")
+    if os.environ.get('FIREBASE_CREDENTIALS'):
+        logger.info("Using credentials from environment variable")
+        firebase_credentials = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+        cred = credentials.Certificate(firebase_credentials)
+    else:
+        logger.info("Using credentials from serviceAccountKey.json")
+        cred = credentials.Certificate("serviceAccountKey.json")
+    
+    initialize_app(cred, {'databaseURL': 'https://culturelens-4872c-default-rtdb.firebaseio.com/'})
+    logger.info("Firebase initialized successfully")
+except Exception as e:
+    logger.error(f"Error initializing Firebase: {str(e)}")
+
+# Create the Flask app
+app = Flask(__name__)
+
+# Then your route handlers
+@app.route('/api/compare', methods=['POST', 'OPTIONS'])
+def compare():
+    # Your existing handler code
+    # ...
+
+
+
+
+
+
+
+
+
+
 # --- Flask Setup ---
 app = Flask(__name__)
 CORS(app, resources={r"/*": {
