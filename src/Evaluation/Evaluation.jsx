@@ -11,19 +11,18 @@ export const Evaluation = () => {
   const [evalLLM, setEvalLLM] = useState("");
   const [evalType, setEvalType] = useState("");
   const [llmPlaceholder, setLLMPlaceholder] = useState("");
-  const [evalTypePlaceholder, setEvalTypePlaceholder] = useState("");
-  const [hasLLMError, setHasLLMError] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [hasTypeError, setHasTypeError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLLMPlaceholder(hasLLMError ? t('pleaseSelectModel') : t('selectModelPlaceholder'));
-    setEvalTypePlaceholder(t('selectEvaluationTypePlaceholder'));
-  }, [t, hasLLMError]);
+    setLLMPlaceholder(hasError ? t('pleaseSelectModel') : t('selectModelPlaceholder'));
+  }, [t, hasError]);
 
+  // Clear error state when a selection is made
   useEffect(() => {
     if (evalLLM) {
-      setHasLLMError(false);
+      setHasError(false);
     }
   }, [evalLLM]);
 
@@ -39,10 +38,10 @@ export const Evaluation = () => {
 
     if (!evalLLM) {
       setLLMPlaceholder(t('pleaseSelectModel'));
-      setHasLLMError(true);
+      setHasError(true);
       error = true;
     } else {
-      setHasLLMError(false);
+      setHasError(false);
     }
 
     if (!evalType && evalLLM) {
@@ -73,8 +72,7 @@ export const Evaluation = () => {
             <select
               name="evalLLM"
               id="evalLLM"
-              className={`llm ${hasError && !evalLLM ? "error" : ""}`}
-              className={`llm ${hasLLMError ? "error" : ""}`}
+              className={`llm ${hasError ? "error" : ""}`}
               value={evalLLM}
               onChange={(e) => setEvalLLM(e.target.value)}
             >
@@ -93,7 +91,7 @@ export const Evaluation = () => {
                 value={evalType}
                 onChange={(e) => setEvalType(e.target.value)}
               >
-                <option value="" disabled>{evalTypePlaceholder}</option>
+                <option value="" disabled>{t('selectEvaluationTypePlaceholder')}</option>
                 {evalLLM === "Baseline" ? (
                   <>
                     <option value="LLAMA2 Baseline">{t('llamaBaseline')}</option>
