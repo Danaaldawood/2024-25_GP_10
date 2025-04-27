@@ -40,17 +40,72 @@ function CompareResult() {
   };
 
   // --- Data Fetching Effect ---
+  // useEffect(() => {
+  //   const fetchComparisonData = async () => {
+  //     if (!baseRegion || !selectedTopic) return;
+
+  //     setLoading(true);
+  //     setError(null);
+
+  //     const comparisonRegions = getComparisonRegions();
+  //     try {
+  //       const promises = comparisonRegions.map(async (compareRegion) => {
+  //     const response = await fetch("https://gp-culturelens.onrender.com/api/compare",  {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             regions: [baseRegion, compareRegion],
+  //             topics: [selectedTopic],
+  //           }),
+  //         });
+
+  //         if (!response.ok) {
+  //           const errorData = await response.json().catch(() => ({}));
+  //           throw new Error(errorData.error || `Server error: ${response.status}`);
+  //         }
+  //         const data = await response.json();
+  //         return { region: compareRegion, data };
+  //       });
+
+  //       const results = await Promise.all(promises);
+  //       const newSimilarities = {};
+  //       results.forEach(({ region, data }) => {
+  //         newSimilarities[region] = data.similarity_scores?.[selectedTopic] ?? 0;
+  //       });
+
+  //       setSimilarities(newSimilarities);
+  //     } catch (err) {
+  //       console.error("Fetch error:", err);
+  //       setError(err.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchComparisonData();
+  // }, [baseRegion, selectedTopic]);
+
+
+
   useEffect(() => {
     const fetchComparisonData = async () => {
       if (!baseRegion || !selectedTopic) return;
-
+  
       setLoading(true);
       setError(null);
-
+  
       const comparisonRegions = getComparisonRegions();
+      if (!comparisonRegions || comparisonRegions.length === 0) {
+        console.error("No comparison regions found");
+        setLoading(false);
+        return; // Stop here if no regions to compare
+      }
+  
       try {
         const promises = comparisonRegions.map(async (compareRegion) => {
-      const response = await fetch("https://gp-culturelens.onrender.com/api/compare",  {
+          const response = await fetch("https://gp-culturelens.onrender.com/api/compare", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -60,7 +115,7 @@ function CompareResult() {
               topics: [selectedTopic],
             }),
           });
-
+  
           if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             throw new Error(errorData.error || `Server error: ${response.status}`);
@@ -68,24 +123,25 @@ function CompareResult() {
           const data = await response.json();
           return { region: compareRegion, data };
         });
-
+  
         const results = await Promise.all(promises);
         const newSimilarities = {};
         results.forEach(({ region, data }) => {
           newSimilarities[region] = data.similarity_scores?.[selectedTopic] ?? 0;
         });
-
+  
         setSimilarities(newSimilarities);
       } catch (err) {
         console.error("Fetch error:", err);
-        setError(err.message);
+        setError(err.message || "Unknown error occurred");
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchComparisonData();
   }, [baseRegion, selectedTopic]);
+  
 
   return (
     <div className="compare-result-page" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
