@@ -905,18 +905,22 @@ def evaluate():
         logger.error(f"Error during evaluation: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-
-
-@app.route('/api/compare', methods=['POST'])
+@app.route('/api/compare', methods=['POST', 'OPTIONS'])
 def compare():
     """
     Endpoint to calculate similarity scores between regions for selected topics.
     Uses Firebase data.
     """
+    if request.method == 'OPTIONS':
+        print("Handling OPTIONS for /api/compare")
+        return '', 200
+
     try:
+        print(f"Received request for /api/compare: {request.json}")
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
-        
+        print(f"Processing compare: regions={regions}, topics={topics}")
+
         if not regions or not topics:
             return jsonify({"error": "Regions and topics are required"}), 400
 
@@ -924,9 +928,11 @@ def compare():
         for topic in topics:
             values = {}
             for region in regions:
+                print(f"Fetching Firebase data for region: {region}")
                 region_data = db.reference(f'/{region}C/Details').get()
+                print(f"Region data for {region}: {region_data}")
+
                 region_values = set()
-                
                 if region_data:
                     for item in region_data:
                         if item.get("topic") == topic:
@@ -949,6 +955,7 @@ def compare():
     except Exception as e:
         print(f"Error during comparison: {e}")
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/api/chat', methods=['POST', 'OPTIONS'])
 def chat():

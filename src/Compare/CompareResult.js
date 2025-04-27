@@ -34,10 +34,7 @@ function CompareResult() {
     { api: "Greeting", translation: "greeting" }
   ];
 
-  // Backend URL (configurable for local or deployed environments)
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://gp-culturelens.onrender.com';
-  // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env/'http://localhost:5000'
-
+ 
   const getComparisonRegions = () => {
     return allRegions.filter((region) => region !== baseRegion);
   };
@@ -53,7 +50,7 @@ function CompareResult() {
       const comparisonRegions = getComparisonRegions();
       try {
         const promises = comparisonRegions.map(async (compareRegion) => {
-          const response = await fetch(`${BACKEND_URL}/api/compare`, {
+      const response = await fetch("https://gp-culturelens.onrender.com/api/compare",  {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -88,7 +85,7 @@ function CompareResult() {
     };
 
     fetchComparisonData();
-  }, [baseRegion, selectedTopic, BACKEND_URL]);
+  }, [baseRegion, selectedTopic]);
 
   return (
     <div className="compare-result-page" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
