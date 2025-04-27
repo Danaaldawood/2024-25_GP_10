@@ -1,165 +1,164 @@
 {
-    "en": {
-      "addPage": {
-        "helmetTitle": "Add Page",
-        "helmetDescription": "Add new cultural values",
-        "errorPopup": {
-          "title": "Error",
-          "okButton": "OK",
-          "englishOnly": "Please enter the value in English only for the English field.",
-"duplicateValue": "The value \"{{value}}\" already exists in the dataset.",
-          "requiredFields": "Please fill in all required fields",
-          "ArabicOnly":"Please enter the value in Arabic only for the Arabic field.",
-          "ChineseOnlye":"Please enter the value in Chinese only for the Chinese field."
-        },
-        "header": {
-          "title": "Add Culture Value"
-        },
-        "form": {
-          "labels": {
-            "attribute": "Attribute:",
-            "topic": "Topic:",
-            "allValues": "All Values:",
-            "newValue": "New Value",
-            "reason": "Reason:",
-            "region": "Region:",
-            "english": "English",
-            "arabic": "Arabic",
-            "chinese": "Chinese"
-          },
-          "placeholders": {
-            "newValue": "Enter a new value",
-            "newValueError": "Please enter a new value",
-            "newValueArabic": "Enter value in Arabic",
-            "newValueChinese": "Enter value in Chinese",
-            "reason": "Select your reason",
-            "reasonError": "Please select your reason"
-          },
-          "reasonOptions": {
-            "variation": "Variation",
-            "subculture": "Subculture"
-          }
-        },
-        "buttons": {
-          "add": "Add",
-          "loading": "Loading..."
-        },
-        "successPopup": {
-          "message": "Value added successfully."
-        },
-        "alerts": {
-          "noData": "No data available to add",
-          "bothLanguagesRequired": "Please enter values in both English and {language}"
-        }
+  "en": {
+    "helmetTitle": "Add Page",
+    "helmetDescription": "Add new cultural values",
+    "errorPopup": {
+      "title": "Error",
+      "okButton": "OK",
+      "englishOnly": "Please enter the value in English only for the English field.",
+      "duplicateValue": "The value \"{{value}}\" already exists in the dataset.",
+      "requiredFields": "Please fill in all required fields",
+      "ArabicOnly": "Please enter the value in Arabic only for the Arabic field.",
+      "ChineseOnly": "Please enter the value in Chinese only for the Chinese field.",
+      "updateFailed": "Failed to update data. Please try again.",
+      "translationFailed": "Translation failed. Please try again."
+    },
+    "header": {
+      "title": "Add Culture Value"
+    },
+    "form": {
+      "labels": {
+        "attribute": "Attribute:",
+        "topic": "Topic:",
+        "allValues": "All Values:",
+        "newValue": "New Value",
+        "reason": "Reason:",
+        "region": "Region:",
+        "english": "English",
+        "arabic": "Arabic",
+        "chinese": "Chinese"
+      },
+      "placeholders": {
+        "newValue": "Enter a new value",
+        "newValueError": "Please enter a new value",
+        "newValueArabic": "Enter value in Arabic",
+        "newValueChinese": "Enter value in Chinese",
+        "reason": "Select your reason",
+        "reasonError": "Please select your reason"
+      },
+      "reasonOptions": {
+        "variation": "Variation",
+        "subculture": "Subculture"
       }
     },
-    "ar": {
-      "addPage": {
-        "helmetTitle": "صفحة الإضافة",
-        "helmetDescription": "إضافة قيم ثقافية جديدة",
-        "errorPopup": {
-          "title": "خطأ",
-          "okButton": "موافق",
-          "englishOnly": "الرجاء إدخال القيمة باللغة الإنجليزية فقط في حقل اللغة الإنجليزية",
-"duplicateValue": "القيمة \"{{value}}\" موجودة بالفعل في قاعدة البيانات",
-          "requiredFields": "يرجى ملء جميع الحقول المطلوبة",
-            "ArabicOnly": "يرجى إدخال القيمة باللغة العربية فقط للحقل العربي.",
-            "ChineseOnlye": "يرجى إدخال القيمة باللغة الصينية فقط للحقل الصيني."
-           
-        },
-        "header": {
-          "title": "إضافة قيمة ثقافية"
-        },
-        "form": {
-          "labels": {
-            "attribute": "السمة:",
-            "topic": "الموضوع:",
-            "allValues": "جميع القيم:",
-            "newValue": "قيمة جديدة",
-            "reason": "السبب:",
-            "region": "المنطقة:",
-            "english": "الإنجليزية",
-            "arabic": "العربية",
-            "chinese": "الصينية"
-          },
-          "placeholders": {
-            "newValue": "أدخل قيمة جديدة",
-            "newValueError": "الرجاء إدخال قيمة جديدة",
-            "newValueArabic": "أدخل القيمة بالعربية",
-            "newValueChinese": "أدخل القيمة بالصينية",
-            "reason": "اختر السبب",
-            "reasonError": "الرجاء اختيار السبب"
-          },
-          "reasonOptions": {
-            "variation": "تنوع",
-            "subculture": "ثقافة فرعية"
-          }
-        },
-        "buttons": {
-          "add": "إضافة",
-          "loading": "جارِ التحميل..."
-        },
-        "successPopup": {
-          "message": "تمت إضافة القيمة بنجاح"
-        },
-        "alerts": {
-          "noData": "لا توجد بيانات متاحة للإضافة",
-          "bothLanguagesRequired": "الرجاء إدخال القيم باللغتين الإنجليزية والعربية"
-        }
+    "buttons": {
+      "add": "Add",
+      "loading": "Loading..."
+    },
+    "successPopup": {
+      "message": "Value added successfully."
+    },
+    "alerts": {
+      "noData": "No data available to add",
+      "bothLanguagesRequired": "Please enter values in both English and {language}"
+    }
+  },
+  "ar": {
+    "helmetTitle": "صفحة الإضافة",
+    "helmetDescription": "إضافة قيم ثقافية جديدة",
+    "errorPopup": {
+      "title": "خطأ",
+      "okButton": "موافق",
+      "englishOnly": "الرجاء إدخال القيمة باللغة الإنجليزية فقط في حقل اللغة الإنجليزية",
+      "duplicateValue": "القيمة \"{{value}}\" موجودة بالفعل في قاعدة البيانات",
+      "requiredFields": "يرجى ملء جميع الحقول المطلوبة",
+      "ArabicOnly": "يرجى إدخال القيمة باللغة العربية فقط للحقل العربي.",
+      "ChineseOnly": "يرجى إدخال القيمة باللغة الصينية فقط للحقل الصيني.",
+      "updateFailed": "فشل في تحديث البيانات. يرجى المحاولة مرة أخرى.",
+      "translationFailed": "فشل في الترجمة. يرجى المحاولة مرة أخرى."
+    },
+    "header": {
+      "title": "إضافة قيمة ثقافية"
+    },
+    "form": {
+      "labels": {
+        "attribute": "السمة:",
+        "topic": "الموضوع:",
+        "allValues": "جميع القيم:",
+        "newValue": "قيمة جديدة",
+        "reason": "السبب:",
+        "region": "المنطقة:",
+        "english": "الإنجليزية",
+        "arabic": "العربية",
+        "chinese": "الصينية"
+      },
+      "placeholders": {
+        "newValue": "أدخل قيمة جديدة",
+        "newValueError": "الرجاء إدخال قيمة جديدة",
+        "newValueArabic": "أدخل القيمة بالعربية",
+        "newValueChinese": "أدخل القيمة بالصينية",
+        "reason": "اختر السبب",
+        "reasonError": "الرجاء اختيار السبب"
+      },
+      "reasonOptions": {
+        "variation": "تنوع",
+        "subculture": "ثقافة فرعية"
       }
     },
-    "ch": {
-      "addPage": {
-        "helmetTitle": "添加页面",
-        "helmetDescription": "添加新的文化价值",
-        "errorPopup": {
-          "title": "错误",
-          "okButton": "确定",
-          "englishOnly": "英语字段请仅输入英语",
-"duplicateValue": "数据集中已存在值 \"{{value}}\"",
-          "requiredFields": "请填写所有必填字段",
-          "ArabicOnly": "请仅在阿拉伯字段中输入阿拉伯语的值。",
-  "ChineseOnlye": "请仅在中文字段中输入中文的值。"
-        },
-        "header": {
-          "title": "添加文化价值"
-        },
-        "form": {
-          "labels": {
-            "attribute": "属性：",
-            "topic": "主题：",
-            "allValues": "所有值：",
-            "newValue": "新值",
-            "reason": "原因：",
-            "region": "地区：",
-            "english": "英语",
-            "arabic": "阿拉伯语",
-            "chinese": "中文"
-          },
-          "placeholders": {
-            "newValue": "输入新值",
-            "newValueError": "请输入新值",
-            "newValueArabic": "用阿拉伯语输入值",
-            "newValueChinese": "用中文输入值",
-            "reason": "选择原因",
-            "reasonError": "请选择原因"
-          },
-          "reasonOptions": {
-            "variation": "变体",
-            "subculture": "亚文化"
-          }
-        },
-        "buttons": {
-          "add": "添加",
-          "loading": "加载中..."
-        },
-        "successPopup": {
-          "message": "值添加成功"
-        },
-        "alerts": {
-          "noData": "没有可添加的数据",
-          "bothLanguagesRequired": "请用英语和中文输入值"
-        }
+    "buttons": {
+      "add": "إضافة",
+      "loading": "جارِ التحميل..."
+    },
+    "successPopup": {
+      "message": "تمت إضافة القيمة بنجاح"
+    },
+    "alerts": {
+      "noData": "لا توجد بيانات متاحة للإضافة",
+      "bothLanguagesRequired": "الرجاء إدخال القيم باللغتين الإنجليزية والعربية"
+    }
+  },
+  "ch": {
+    "helmetTitle": "添加页面",
+    "helmetDescription": "添加新的文化价值",
+    "errorPopup": {
+      "title": "错误",
+      "okButton": "确定",
+      "englishOnly": "英文字段请仅输入英文内容",
+      "duplicateValue": "值 \"{{value}}\" 已存在于数据库中",
+      "requiredFields": "请填写所有必填字段",
+      "ArabicOnly": "阿拉伯语字段请仅输入阿拉伯语内容",
+      "ChineseOnly": "中文字段请仅输入中文内容",
+      "updateFailed": "数据更新失败，请重试。",
+      "translationFailed": "翻译失败，请重试。"
+    },
+    "header": {
+      "title": "添加文化价值"
+    },
+    "form": {
+      "labels": {
+        "attribute": "属性：",
+        "topic": "主题：",
+        "allValues": "所有值：",
+        "newValue": "新值",
+        "reason": "原因：",
+        "region": "地区：",
+        "english": "英语",
+        "arabic": "阿拉伯语",
+        "chinese": "中文"
+      },
+      "placeholders": {
+        "newValue": "输入新值",
+        "newValueError": "请输入新值",
+        "newValueArabic": "用阿拉伯语输入值",
+        "newValueChinese": "用中文输入值",
+        "reason": "选择原因",
+        "reasonError": "请选择原因"
+      },
+      "reasonOptions": {
+        "variation": "差异",
+        "subculture": "亚文化"
       }
+    },
+    "buttons": {
+      "add": "添加",
+      "loading": "加载中..."
+    },
+    "successPopup": {
+      "message": "值添加成功"
+    },
+    "alerts": {
+      "noData": "没有可添加的数据",
+      "bothLanguagesRequired": "请同时输入英文和中文值"
     }
   }
+}

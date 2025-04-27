@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { ref, update, push } from 'firebase/database';
+import { ref, update, push, get } from 'firebase/database';
 import { realtimeDb, auth } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import "./Add.css";
@@ -42,11 +42,43 @@ export const AddCultureValue = () => {
     region_lan: location.state?.region_lan || "",
     allValues: location.state?.allValues || [],
     newvalue: "",
-    nativevalue: "",
     reason: "",
-    showPlaceholderError: false,
-    showNativePlaceholderError: false
+    showPlaceholderError: false
   });
+
+  // Function to translate text using OpenAI API
+  const translateText = async (text, targetLanguage) => {
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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'
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              "role": "system", 
+              "content": `You are a professional translator. Translate the following text to ${targetLanguage}. Provide only the translation, no explanations.`
+            },
+            {"role": "user", "content": text}
+          ],
+          temperature: 0.3
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`OpenAI API error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data.choices[0].message.content.trim();
+    } catch (error) {
+      console.error("Translation error:", error);
+      throw error;
+    }
+  };
 
   // Helper function to get the correct display attribute based on region and language
   const getDisplayAttribute = () => {
@@ -88,7 +120,7 @@ export const AddCultureValue = () => {
   // Check for valid location state on component mount
   useEffect(() => {
     if (!location.state) {
-      alert(t("addPage.alerts.noData"));
+      alert(t("alerts.noData"));
       navigate("/view");
     }
   }, [location.state, navigate, t]);
@@ -118,83 +150,107 @@ export const AddCultureValue = () => {
     }));
   };
 
+  // Function to detect language
+  const detectLanguage = (text) => {
+    const arabicPattern = /[\u0600-\u06FF]/;
+    const chinesePattern = /[\u4e00-\u9fa5]/;
+    
+    if (arabicPattern.test(text)) return 'ar';
+    if (chinesePattern.test(text)) return 'zh';
+    return 'en';
+  };
+
   // Handle form submission
   const handleAddClick = async () => {
-    // Check for non-English characters in English input
-    const nonEnglishPattern = /[^\x00-\x7F]+/;
-    if (nonEnglishPattern.test(itemData.newvalue)) {
-      setErrorMessage(t("addPage.errorPopup.englishOnly"));
-      setShowErrorPopup(true);
-      return;
-    }
-    
-    // Validate Arabic/Chinese input based on region
-    if (itemData.region === "Arab") {
-      const arabicPattern = /[\u0600-\u06FF]/;
-      if (!arabicPattern.test(itemData.nativevalue)) {
-        setErrorMessage(t("addPage.errorPopup.ArabicOnly"));
-        setShowErrorPopup(true);
-        return;
-      }
-    } else if (itemData.region === "Chinese") {
-      const chinesePattern = /[\u4e00-\u9fff]/;
-      if (!chinesePattern.test(itemData.nativevalue)) {
-        setErrorMessage(t("addPage.errorPopup.ChineseOnlye"));
-        setShowErrorPopup(true);
-        return;
-      }
-    }
-
     // Validate required fields
-    const needsNativeValue = (itemData.region === "Arab" || itemData.region === "Chinese");
-    if (!itemData.newvalue || !itemData.reason || (needsNativeValue && !itemData.nativevalue)) {
+    if (!itemData.newvalue || !itemData.reason) {
       setItemData(prev => ({
         ...prev,
-        showPlaceholderError: !itemData.newvalue || !itemData.reason,
-        showNativePlaceholderError: needsNativeValue && !itemData.nativevalue
+        showPlaceholderError: !itemData.newvalue || !itemData.reason
       }));
       return;
     }
 
-    // Check for duplicate values in both languages
-const newValueLower = itemData.newvalue.toLowerCase();
-const allValuesLower = itemData.allValues.map(value => {
-  if (typeof value === 'object' && value !== null) {
-    return value.en_values?.[0]?.toLowerCase() || '';
-  }
-  return typeof value === 'string' ? value.toLowerCase() : '';
-});
-
- if (allValuesLower.includes(newValueLower)) {
-  console.log("New English value causing duplicate:", itemData.newvalue);
-  setErrorMessage(
-    t("addPage.errorPopup.duplicateValue", { value: itemData.newvalue })
-  );
-  setShowErrorPopup(true);
-  return;
-}
-
- if ((itemData.region === "Arab" || itemData.region === "Chinese") && itemData.nativevalue) {
-  const newNativeValueLower = itemData.nativevalue.toLowerCase();
-  
-   const allNativeValuesLower = itemData.allValues.map(value => {
-    if (typeof value === 'object' && value !== null && value.values && value.values.length > 0) {
-      return value.values[0].toLowerCase();
-    }
-    return '';
-  });
-  
-   if (allNativeValuesLower.includes(newNativeValueLower)) {
-    console.log("New native value causing duplicate:", itemData.nativevalue);
-    setErrorMessage(
-      t("addPage.errorPopup.duplicateValue", { value: itemData.nativevalue })
-    );
-    setShowErrorPopup(true);
-    return;
-  }
-}     
+    // Detect input language
+    const inputLanguage = detectLanguage(itemData.newvalue);
+    let englishValue = itemData.newvalue;
+    let nativeValue = itemData.newvalue;
 
     try {
+      // Handle translation based on input language and region
+      if (itemData.region === "Arab") {
+        if (inputLanguage === 'ar') {
+          // Input is Arabic, translate to English
+          englishValue = await translateText(itemData.newvalue, "English");
+          nativeValue = itemData.newvalue;
+        } else {
+          // Input is English, translate to Arabic
+          englishValue = itemData.newvalue;
+          nativeValue = await translateText(itemData.newvalue, "Arabic");
+        }
+      } else if (itemData.region === "Chinese") {
+        if (inputLanguage === 'zh') {
+          // Input is Chinese, translate to English
+          englishValue = await translateText(itemData.newvalue, "English");
+          nativeValue = itemData.newvalue;
+        } else {
+          // Input is English, translate to Chinese
+          englishValue = itemData.newvalue;
+          nativeValue = await translateText(itemData.newvalue, "Chinese");
+        }
+      } else {
+        // Western region - keep as is
+        englishValue = itemData.newvalue;
+        nativeValue = itemData.newvalue;
+      }
+
+      // Get the current question's values directly from the database
+      const questionRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations`);
+      const snapshot = await get(questionRef);
+      let currentQuestionValues = [];
+      
+      if (snapshot.exists()) {
+        currentQuestionValues = snapshot.val();
+      }
+
+      // Check for duplicate values in English for this specific question
+      const newValueLower = englishValue.toLowerCase();
+      const existingEnglishValues = currentQuestionValues.map(value => {
+        if (value && value.en_values && value.en_values[0]) {
+          return value.en_values[0].toLowerCase();
+        }
+        return '';
+      }).filter(val => val !== '');
+
+      if (existingEnglishValues.includes(newValueLower)) {
+        console.log("New English value causing duplicate:", englishValue);
+        setErrorMessage(
+          t("errorPopup.duplicateValue", { value: itemData.newvalue }) // Use the original input value
+        );
+        setShowErrorPopup(true);
+        return;
+      }
+
+      // Check for duplicate values in native language for this specific question
+      if (itemData.region === "Arab" || itemData.region === "Chinese") {
+        const newNativeValueLower = nativeValue.toLowerCase();
+        const existingNativeValues = currentQuestionValues.map(value => {
+          if (value && value.values && value.values[0]) {
+            return value.values[0].toLowerCase();
+          }
+          return '';
+        }).filter(val => val !== '');
+
+        if (existingNativeValues.includes(newNativeValueLower)) {
+          console.log("New native value causing duplicate:", nativeValue);
+          setErrorMessage(
+            t("errorPopup.duplicateValue", { value: itemData.newvalue }) // Use the original input value
+          );
+          setShowErrorPopup(true);
+          return;
+        }
+      }
+
       // Get translated reason
       let reasonTranslation = null;
       if (itemData.region === "Arab" || itemData.region === "Chinese") {
@@ -206,19 +262,16 @@ const allValuesLower = itemData.allValues.map(value => {
       }
 
       // Update annotations in database
-      const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${itemData.allValues.length}`);
+      const newAnnotationIndex = currentQuestionValues.length;
+      const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${newAnnotationIndex}`);
       const newAnnotation = {
-        en_values: [itemData.newvalue],
+        en_values: [englishValue],
         reason: itemData.reason,
         reason_lan: reasonTranslation,
         user_id: userId.shortId || "user_undefined",
         userId: userId.fullId || "undefined",
         modAction: "noaction",
-        values: [
-          (itemData.region === "Arab" || itemData.region === "Chinese") 
-            ? itemData.nativevalue 
-            : itemData.newvalue
-        ]
+        values: [nativeValue]
       };
       await update(itemRef, newAnnotation);
 
@@ -233,8 +286,8 @@ const allValuesLower = itemData.allValues.map(value => {
         region_lan: itemData.region_lan || null,
         topic: itemData.topic,
         topic_lan: itemData.topic_lan || null,
-        value: itemData.newvalue,
-        native_value: needsNativeValue ? itemData.nativevalue : null,
+        value: englishValue,
+        native_value: (itemData.region === "Arab" || itemData.region === "Chinese") ? nativeValue : null,
         reason: itemData.reason,
         reason_lan: reasonTranslation,
         modAction: "noaction"
@@ -255,7 +308,7 @@ const allValuesLower = itemData.allValues.map(value => {
       }, 1000);
     } catch (error) {
       console.error("Error updating data:", error);
-      setErrorMessage(t("addPage.errorPopup.updateFailed"));
+      setErrorMessage(t("errorPopup.updateFailed"));
       setShowErrorPopup(true);
     }
   };
@@ -265,21 +318,21 @@ const allValuesLower = itemData.allValues.map(value => {
       <Header />
       <div className="addformcontainer">
         <Helmet>
-          <title>{t("addPage.helmetTitle")}</title>
-          <meta name="description" content={t("addPage.helmetDescription")} />
+          <title>{t("helmetTitle")}</title>
+          <meta name="description" content={t("helmetDescription")} />
         </Helmet>
 
         {/* Error Popup */}
         {showErrorPopup && (
           <div className="error-popup">
-            <div className="error-title">{t("addPage.errorPopup.title")}</div>
+            <div className="error-title">{t("errorPopup.title")}</div>
             <div className="error-message">{errorMessage}</div>
             <div className="error-actions">
               <button 
                 className="confirm-btn" 
                 onClick={() => setShowErrorPopup(false)}
               >
-                {t("addPage.errorPopup.okButton")}
+                {t("errorPopup.okButton")}
               </button>
             </div>
           </div>
@@ -287,7 +340,7 @@ const allValuesLower = itemData.allValues.map(value => {
 
         {/* Page Header */}
         <div className="addheader">
-          <div className="add-title">{t("addPage.header.title")}</div>
+          <div className="add-title">{t("header.title")}</div>
           <div className="underline"></div>
         </div>
 
@@ -300,7 +353,7 @@ const allValuesLower = itemData.allValues.map(value => {
 
           {/* Topic Input */}
           <div className="add-input">
-            <label className="label">{t("addPage.form.labels.topic")}</label>
+            <label className="label">{t("form.labels.topic")}</label>
             <input
               type="text"
               id="topic"
@@ -312,7 +365,7 @@ const allValuesLower = itemData.allValues.map(value => {
 
           {/* All Values List */}
           <div className="add-input">
-            <label className="label">{t("addPage.form.labels.allValues")}</label>
+            <label className="label">{t("form.labels.allValues")}</label>
             <ul className="all-values-list">
               {Array.isArray(itemData.allValues) && itemData.allValues.map((item, index) => {
                 let displayValues = [];
@@ -337,10 +390,10 @@ const allValuesLower = itemData.allValues.map(value => {
             </ul>
           </div>
 
-          {/* New Value Input (English) */}
+          {/* New Value Input */}
           <div className="add-input">
             <label className="label">
-              {t("addPage.form.labels.newValue")} ({t("addPage.form.labels.english")})
+              {t("form.labels.newValue")}
             </label>
             <input
               type="text"
@@ -349,38 +402,16 @@ const allValuesLower = itemData.allValues.map(value => {
               value={itemData.newvalue}
               onChange={handleInputChange}
               placeholder={itemData.showPlaceholderError && !itemData.newvalue 
-                ? t("addPage.form.placeholders.newValueError")
-                : t("addPage.form.placeholders.newValue")}
+                ? t("form.placeholders.newValueError")
+                : t("form.placeholders.newValue")}
               className={itemData.showPlaceholderError && !itemData.newvalue ? "error-placeholder" : ""}
+              dir={i18n.language === "ar" ? "rtl" : "ltr"}
             />
           </div>
 
-          {/* Native Value Input (Arabic/Chinese) */}
-          {(itemData.region === "Arab" || itemData.region === "Chinese") && (
-            <div className="add-input">
-              <label className="label">
-                {t("addPage.form.labels.newValue")} ({itemData.region === "Arab" 
-                  ? t("addPage.form.labels.arabic") 
-                  : t("addPage.form.labels.chinese")})
-              </label>
-              <input
-                type="text"
-                id="nativevalue"
-                name="nativevalue"
-                value={itemData.nativevalue}
-                onChange={handleInputChange}
-                placeholder={itemData.showNativePlaceholderError && !itemData.nativevalue
-                  ? t("addPage.form.placeholders.newValueError")
-                  : t(`addPage.form.placeholders.newValue${itemData.region === "Arab" ? "Arabic" : "Chinese"}`)}
-                className={itemData.showNativePlaceholderError && !itemData.nativevalue ? "error-placeholder" : ""}
-                dir={itemData.region === "Arab" ? "rtl" : "ltr"}
-              />
-            </div>
-          )}
-
           {/* Reason Select */}
           <div className="add-input">
-            <label className="label">{t("addPage.form.labels.reason")}</label>
+            <label className="label">{t("form.labels.reason")}</label>
             <select
               id="reason"
               name="reason"
@@ -390,17 +421,17 @@ const allValuesLower = itemData.allValues.map(value => {
             >
               <option value="" disabled>
                 {itemData.showPlaceholderError && !itemData.reason 
-                  ? t("addPage.form.placeholders.reasonError")
-                  : t("addPage.form.placeholders.reason")}
+                  ? t("form.placeholders.reasonError")
+                  : t("form.placeholders.reason")}
               </option>
-              <option value="Variation">{t("addPage.form.reasonOptions.variation")}</option>
-              <option value="subculture">{t("addPage.form.reasonOptions.subculture")}</option>
+              <option value="Variation">{t("form.reasonOptions.variation")}</option>
+              <option value="subculture">{t("form.reasonOptions.subculture")}</option>
             </select>
           </div>
 
           {/* Region Input */}
           <div className="add-input">
-            <label className="label">{t("addPage.form.labels.region")}</label>
+            <label className="label">{t("form.labels.region")}</label>
             <input
               type="text"
               id="region"
@@ -415,7 +446,7 @@ const allValuesLower = itemData.allValues.map(value => {
         <div className="addsubmit-container">
           <div className="add-submit">
             <button onClick={handleAddClick} disabled={!userId.shortId}>
-              {userId.shortId ? t("addPage.buttons.add") : t("addPage.buttons.loading")}
+              {userId.shortId ? t("buttons.add") : t("buttons.loading")}
             </button>
           </div>
         </div>
@@ -424,7 +455,7 @@ const allValuesLower = itemData.allValues.map(value => {
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-            <p className="success-message">{t("addPage.successPopup.message")}</p>
+            <p className="success-message">{t("successPopup.message")}</p>
           </div>
         )}
       </div>
