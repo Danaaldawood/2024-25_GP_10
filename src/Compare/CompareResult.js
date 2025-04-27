@@ -35,7 +35,7 @@ function CompareResult() {
   ];
 
   // Backend URL (configurable for local or deployed environments)
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ||'https://gp-culturelens.onrender.com';
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://gp-culturelens.onrender.com';
   // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env/'http://localhost:5000'
 
   const getComparisonRegions = () => {

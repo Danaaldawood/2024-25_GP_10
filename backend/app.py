@@ -444,6 +444,7 @@ CORS(app, resources={r"/*": {
     "supports_credentials": True
 }})
 
+
 # --- Logging Setup ---
 logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

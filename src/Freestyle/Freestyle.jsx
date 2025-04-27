@@ -32,11 +32,11 @@ export const ConversationLayout = () => {
   const progressWidth = `${(sendCount / sendLimit) * 100}%`;
 
   // Backend URL (configurable for local or deployed environments)
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://gp-culturelens.onrender.com/api/chat';
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ||'https://gp-culturelens.onrender.com/api/chat';
   // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env --'http://localhost:5000'
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/api/suggestions`)
+    fetch(`https://gp-culturelens.onrender.com/api/suggestions`)
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
@@ -91,7 +91,7 @@ export const ConversationLayout = () => {
       console.log("Model types selected:", { modelTypeA, modelTypeB });
 
       try {
-        const responseA = fetch(`${BACKEND_URL}/api/chat`, {
+        const responseA = fetch(`https://gp-culturelens.onrender.com/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: inputMessage, model_type: modelTypeA }),
