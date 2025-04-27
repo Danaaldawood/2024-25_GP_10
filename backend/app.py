@@ -918,6 +918,7 @@ def compare():
 
     try:
         print(f"Received request for /api/compare: {request.json}")
+        data = request.get_json()
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
         print(f"Processing compare: regions={regions}, topics={topics}")
