@@ -108,7 +108,7 @@ export const ConversationLayout = () => {
             setIsLoadingA(false);
           });
 
-        const responseB = fetch(`${BACKEND_URL}/api/chat`, {
+        const responseB = fetch(`https://gp-culturelens.onrender.com/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: inputMessage, model_type: modelTypeB }),
