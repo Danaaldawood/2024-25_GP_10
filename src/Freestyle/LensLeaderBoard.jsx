@@ -14,6 +14,7 @@ const LensLeaderBoard = () => {
   const [regionFilter, setRegionFilter] = useState("Arab");
   const validRegions = ["Arab", "Chinese", "Western"];
   const { t, i18n } = useTranslation('lensScore');
+  const [showInfo, setShowInfo] = useState(false);
   const isRTL = i18n.dir() === 'rtl';
 
   // ⛳️ fix: move toggleTooltip out here
@@ -109,19 +110,33 @@ const LensLeaderBoard = () => {
       </Helmet>
 
       <div className="leaderboard-header">
-  <p className="leaderboard-title">{t("CultureLens - LeaderBoard")}</p>
+  <div className="leaderboard-container-inline">
+    <h2 className="leaderboard-title">
+      {t("CultureLens - LeaderBoard")}
+    </h2>     <div
+          className="info-button"
+          onMouseEnter={() => setShowInfo(true)}
+          onMouseLeave={() => setShowInfo(false)}
+        >
+          <AlertCircle className="h-5 w-5" />
+        </div>
+    
+    
+    <div className="leaderboard-popup">
+      <div className="leaderboard-content">
+        <p>
+          A dynamic table that displays each language model's performance across
+          various topics, based on the average Lens Score—a metric representing
+          the collective assessment of a model’s responses by users from a
+          specific cultural region. This score reflects how users from that region
+          evaluate the quality and relevance of a model’s answer for a given topic
+          after direct interaction.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div className={`leaderboard-description ${isRTL ? "rtl" : "ltr"}`}>
-   <p>
-    A dynamic table that displays each language model's performance across
-    various topics, based on the average Lens Score—a metric representing
-    the collective assessment of a model’s responses by users from a
-    specific cultural region. This score reflects how users from that region
-    evaluate the quality and relevance of a model’s answer for a given topic
-    after direct interaction.
-  </p>
-</div>
 
 
       <div className="Filterdropdown-region">
@@ -139,12 +154,12 @@ const LensLeaderBoard = () => {
         </select>
       </div>
       <div class="tableLeaderBoard-container">
-      <table>
+      <table className="LeaderBoardTable">
         <thead>
           <tr>
             <th>{t("Model")}</th>
             <th>{t("Topic")}</th>
-            <th>{t("Lens Score")}</th>
+            <th>{t("LensLeaderBoard-Score")}</th>
           </tr>
         </thead>
         <tbody>
@@ -166,13 +181,14 @@ const LensLeaderBoard = () => {
             </tr>
           )}
         </tbody>
+        
       </table>
       </div>
-
       <Footer />
-    </div>
+
+     </div>
     
-  );<Footer />
+  );
 };
 
 export default LensLeaderBoard;

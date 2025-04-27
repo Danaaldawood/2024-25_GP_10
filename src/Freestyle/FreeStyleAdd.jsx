@@ -516,14 +516,16 @@ const FreeStyleAdd = () => {
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
       </div>
-      <h1 className="add-conversation-title">{t("Add Conversation Page")}</h1>
+      <h1 className="add-conversation-title">{t("Add Conversation")}</h1>
       <h2 className="freestyle-title">
-      {t("Your Voting:")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
-      </h2>
-      <h3 className="model-info">
-      {t("Model A: Mistral-7B ")}<br /><p>-</p>
-      {t( "Model B: Llama-2-7B")}
-      </h3>
+  {t("Your Voting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
+</h2>
+
+<div className="model-info">
+  <span>{t("Model A: Mistral-7B")}</span>
+  <span>{t("Model B: Llama-2-7B")}</span>
+</div>
+
       <div className="column-table-container">
         <table className="column-table">
           <thead>

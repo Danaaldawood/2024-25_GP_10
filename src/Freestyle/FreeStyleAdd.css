@@ -24,45 +24,123 @@
 }
 
 
-
+/* Title Style */
+ /* Title Style */
 .freestyle-title {
- font-size: 26px;
- font-weight: bold;
- text-align: center;
- margin-bottom: 30px;
- color: rgb(0, 0, 0);
+  font-size: 30px;
+  font-weight: 800;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;  
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+  animation: fadeInDown 0.8s ease;
 }
 
+.freestyle-title::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  border-bottom: 4px solid #722F57;
+  display: block;
+  margin: 12px auto 0;  
+  border-radius: 2px;
+}
+
+/* Model Info Section - Left Aligned */
 .model-info {
- font-size: 20px;
- font-weight: 500;
- color: #000000;
- text-align: center;
- margin-top: 20px;
-}
-
-.model-info br {
- display: none;
+  font-size: 19px;
+  font-weight: 400;
+  color: #333;
+  text-align: left;  
+  margin-top: 30px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.9;
+  padding: 0 15px;
+  animation: fadeIn 1s ease-out;
+  direction: ltr;  
 }
 
 .model-info span {
- display: block;
- margin-bottom: 12px;
+  display: block;
+  margin-bottom: 14px;
+  font-size: 18px;
+}
+
+
+.model-info br {
+  display: none;
+}
+
+/* Optional: Simple Fade-in Animation */
+@keyframes fadeIn {
+  0% {opacity: 0; transform: translateY(20px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+
+/* Animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .freestyle-title {
+    font-size: 26px;
+  }
+
+  .model-info {
+    font-size: 16px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .freestyle-title {
+    font-size: 24px;
+  }
+
+  .model-info {
+    font-size: 15px;
+  }
 }
 
 .column-table-container {
  margin-top: 30px;
  padding: 15px;
- background-color: white;
- border-radius: 10px;
- box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
+ }
 
 .column-table {
- width: 100%;
- border-collapse: collapse;
- margin: 0;
- font-size: 14px;
+  border-collapse: collapse;
+  width: 90%;
+  min-width: 800px;
+  margin: 0 auto 60px auto;
+   background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .answer-text {
   white-space: pre-wrap;
@@ -71,17 +149,19 @@
 .column-table th, .column-table td {
  padding: 15px;
  text-align: left;
- border: 1px solid #ddd;
+  
 }
 
 .column-table th {
- background-color: #853c69; /* Burgundy */
- color: white;
+  background-color: #853c69;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .column-table td {
- background-color: #fff;
-}
+  font-size: 14px;
+  color: #555;}
 
 .column-table tr:hover {
  background-color: #f6f6f6;
@@ -265,22 +345,22 @@
    font-size: 18px;
  }
 }
-/* General Page Styling */
-.add-conversation-page {
-  padding: 20px;
-  background: linear-gradient(135deg, #800020, #2E8B57); /* Burgundy to Green gradient */
-  font-family: 'Roboto', sans-serif;
-  color: white;
-}
+ 
 
 /* Title Styling */
 .add-conversation-title {
- font-size: 36px;
- font-weight: bold;
- text-align: center;
- color:  #811d1d;
- margin-bottom: 30px;
- text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Adding text shadow for depth */
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  color: #722F57;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid #722F57;
+    
+    
+   padding-bottom: 5px;
+  margin: 10px auto;
+  text-align: center;
 }
 
  

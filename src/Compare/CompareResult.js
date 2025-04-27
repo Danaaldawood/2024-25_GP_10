@@ -142,28 +142,31 @@ function CompareResult() {
 
           {/* Similarity Information Header */}
           <div className="similarity-header">
-            <h2 className="similarity-title">{t('comparepage.similarity.title')}</h2>
-            <div className="info-container-inline">
-              <button
-                className="info-button"
-                onClick={() => setShowInfo(!showInfo)}
-              >
-                <AlertCircle className="h-5 w-5" />
-              </button>
-              {showInfo && (
-                <div className="info-popup">
-                  <div className="info-content">
-                    <h3>{t('comparepage.similarity.info.title')}</h3>
-                    <p>{t('comparepage.similarity.info.description')}</p>
-                    <div className="gradient-legend">
-                      <div className="gradient-bar"></div>
-                      <span>{t('comparepage.similarity.info.legend')}</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+  <h2 className="similarity-title">{t('comparepage.similarity.title')}</h2>
+  <div className="info-container-inline">
+    <div
+      className="info-button"
+      onMouseEnter={() => setShowInfo(true)}
+      onMouseLeave={() => setShowInfo(false)}
+    >
+      <AlertCircle className="h-5 w-5" />
+    </div>
+
+    {showInfo && (
+      <div className="info-popup">
+        <div className="info-content">
+          <h3>{t('comparepage.similarity.info.title')}</h3>
+          <p>{t('comparepage.similarity.info.description')}</p>
+          <div className="gradient-legend">
+            <div className="gradient-bar"></div>
+            <span>{t('comparepage.similarity.info.legend')}</span>
           </div>
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
 
           {/* Comparison Map Component */}
           <div className="compare-result-content-wrapper">
