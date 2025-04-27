@@ -270,20 +270,15 @@ const ModeratorPage = () => {
       actionType: "delete",
       onConfirm: async () => {
         try {
-          console.log("Entry being deleted:", entry); // Debug log
-  
-          // Use fullUserId instead of userId
           const fullUserId = entry.fullUserId || entry.userId;
-          console.log("Using userId for notification:", fullUserId); // Debug log
   
-          // Prepare notification value with translations
+          // Prepare notification translations
           const notificationValue = {
             en: entry.value || "",
             ar: entry.region === "Arab" ? entry.native_value || "" : "",
             ch: entry.region === "Chinese" ? entry.native_value || "" : ""
           };
   
-          // Prepare notification attribute with translations
           const notificationAttribute = {
             en: entry.en_question || "",
             ar: entry.question || "",
@@ -300,11 +295,10 @@ const ModeratorPage = () => {
               if (detailValue.topic === entry.topic) {
                 const annotations = detailValue.annotations || [];
                 const filteredAnnotations = annotations.filter((annotation) => {
-                  const shouldKeep = !(
+                  return !(
                     annotation.user_id === entry.userId &&
                     (annotation.en_values || []).includes(entry.value)
                   );
-                  return shouldKeep;
                 });
   
                 if (filteredAnnotations.length < annotations.length) {
@@ -320,7 +314,7 @@ const ModeratorPage = () => {
             }
           }
   
-          // Update the view edit entry status
+          // Update the Viewedit entry
           await update(
             ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`),
             {
@@ -328,23 +322,30 @@ const ModeratorPage = () => {
             }
           );
   
-          // Create notification with proper translations
-          const actionTranslations = {
-            deleted: {
-              en: "your request has been deleted",
-              ar: "تم حذف طلبك",
-              ch: "您的请求已被删除"
+          // Cross update: Also update notifications if exist
+          const notificationsRef = ref(realtimeDb, `notifications`);
+          const notificationsSnap = await get(notificationsRef);
+          if (notificationsSnap.exists()) {
+            const notificationsData = notificationsSnap.val();
+            for (const [notifId, notifDetails] of Object.entries(notificationsData)) {
+              const notifArray = notifDetails.notifications || [];
+              const updatedNotifArray = notifArray.map((n) => {
+                if (
+                  n.userId.shortId === entry.userId &&
+                  n.attribute.en === entry.en_question &&
+                  n.PreviousValue.en === entry.value
+                ) {
+                  return { ...n, modAction: "action" };
+                }
+                return n;
+              });
+              await update(ref(realtimeDb, `notifications/${notifId}`), {
+                notifications: updatedNotifArray,
+              });
             }
-          };
+          }
   
-          console.log("Creating notification with data:", {
-            userId: fullUserId,
-            attribute: notificationAttribute,
-            value: notificationValue,
-            action: actionTranslations.deleted
-          });
-  
-          // Create user notification with the full user ID
+          // Create user notification
           await createUserNotification(
             fullUserId,
             notificationAttribute,
@@ -362,6 +363,7 @@ const ModeratorPage = () => {
       },
     });
   };
+  
 
   const handleDeleteValue = async (notification) => {
     setConfirmModal({
@@ -370,33 +372,26 @@ const ModeratorPage = () => {
       actionType: "delete",
       onConfirm: async () => {
         try {
-          // First handle the dataset update
-          const regionDatasetRef = ref(
-            realtimeDb,
-            `${notification.region}C/Details`
-          );
+          // First handle dataset update
+          const regionDatasetRef = ref(realtimeDb, `${notification.region}C/Details`);
+          
           const snapshot = await get(regionDatasetRef);
-
+  
           if (snapshot.exists()) {
             const details = snapshot.val();
             for (const [detailKey, detailValue] of Object.entries(details)) {
               if (detailValue.en_question === notification.attribute.en) {
                 const annotations = detailValue.annotations || [];
                 const filteredAnnotations = annotations.filter(
-                  (annotation) =>
-                    !(
-                      annotation.en_values?.includes(
-                        notification.PreviousValue.en
-                      ) && annotation.user_id === notification.userId.shortId
-                    )
+                  (annotation) => !(
+                    annotation.en_values?.includes(notification.PreviousValue.en) &&
+                    annotation.user_id === notification.userId.shortId
+                  )
                 );
-
+  
                 if (filteredAnnotations.length < annotations.length) {
                   await update(
-                    ref(
-                      realtimeDb,
-                      `${notification.region}C/Details/${detailKey}`
-                    ),
+                    ref(realtimeDb, `${notification.region}C/Details/${detailKey}`),
                     {
                       ...detailValue,
                       annotations: filteredAnnotations,
@@ -406,38 +401,53 @@ const ModeratorPage = () => {
               }
             }
           }
-
-          // Then update the notification status
+  
+          // Update notifications array
           const notificationRef = ref(
             realtimeDb,
             `notifications/${notification.id}/notifications`
           );
           const notifSnapshot = await get(notificationRef);
-
+  
           if (notifSnapshot.exists()) {
             const notificationArray = notifSnapshot.val();
-
-            // Find the index of the notification to update
             const notificationIndex = notificationArray.findIndex(
               (n) =>
                 n.userId.shortId === notification.userId.shortId &&
                 n.attribute.en === notification.attribute.en &&
                 n.PreviousValue.en === notification.PreviousValue.en
             );
-
+  
             if (notificationIndex !== -1) {
-              // Create updated array with modAction changed
               const updatedNotifications = [...notificationArray];
               updatedNotifications[notificationIndex] = {
                 ...updatedNotifications[notificationIndex],
                 modAction: "action",
               };
-
-              // Update the notifications array in Firebase
+  
               await set(notificationRef, updatedNotifications);
             }
           }
-
+  
+          // Cross update: Also update Viewedit if exist
+          const vieweditRef = ref(realtimeDb, `Viewedit/${notification.region}`);
+          const vieweditSnap = await get(vieweditRef);
+          if (vieweditSnap.exists()) {
+            const vieweditEntries = vieweditSnap.val();
+            for (const [entryId, entryData] of Object.entries(vieweditEntries)) {
+              if (
+                entryData.userId === notification.userId.shortId &&
+                entryData.en_question === notification.attribute.en &&
+                entryData.value === notification.PreviousValue.en
+              ) {
+                await update(
+                  ref(realtimeDb, `Viewedit/${notification.region}/${entryId}`),
+                  { modAction: "action" }
+                );
+              }
+            }
+          }
+  
           // Create user notification
           await createUserNotification(
             notification.userId.fullId,
@@ -445,7 +455,7 @@ const ModeratorPage = () => {
             notification.PreviousValue,
             "deleted"
           );
-
+  
           // Update local state
           setNotifications((prev) =>
             prev.filter(
@@ -457,6 +467,7 @@ const ModeratorPage = () => {
                 )
             )
           );
+  
         } catch (error) {
           console.error("Error deleting value:", error);
         }
@@ -464,7 +475,7 @@ const ModeratorPage = () => {
       },
     });
   };
-
+  
   const handleDenyRequest = async (notification) => {
     setConfirmModal({
       isOpen: true,
