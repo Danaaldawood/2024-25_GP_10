@@ -11,12 +11,27 @@ export const Evaluation = () => {
   const [evalLLM, setEvalLLM] = useState("");
   const [evalType, setEvalType] = useState("");
   const [llmPlaceholder, setLLMPlaceholder] = useState("");
-  const [hasError, setHasError] = useState(false);
+  const [evalTypePlaceholder, setEvalTypePlaceholder] = useState("");
+  const [hasLLMError, setHasLLMError] = useState(false);
+  const [hasTypeError, setHasTypeError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLLMPlaceholder(hasError ? t('pleaseSelectModel') : t('selectModelPlaceholder'));
-  }, [t, hasError]);
+    setLLMPlaceholder(hasLLMError ? t('pleaseSelectModel') : t('selectModelPlaceholder'));
+    setEvalTypePlaceholder(t('selectEvaluationTypePlaceholder'));
+  }, [t, hasLLMError]);
+
+  useEffect(() => {
+    if (evalLLM) {
+      setHasLLMError(false);
+    }
+  }, [evalLLM]);
+
+  useEffect(() => {
+    if (evalType) {
+      setHasTypeError(false);
+    }
+  }, [evalType]);
 
   const handleEvaluateClick = (e) => {
     e.preventDefault();
@@ -24,12 +39,19 @@ export const Evaluation = () => {
 
     if (!evalLLM) {
       setLLMPlaceholder(t('pleaseSelectModel'));
+      setHasLLMError(true);
       error = true;
     } else {
-      setLLMPlaceholder(t('selectModelPlaceholder'));
+      setHasLLMError(false);
     }
 
-    setHasError(error);
+    if (!evalType && evalLLM) {
+      setHasTypeError(true);
+      error = true;
+    } else {
+      setHasTypeError(false);
+    }
+
     if (error) return;
 
     console.log("Navigating to Plot with:", { evalLLM, evalType });
@@ -52,6 +74,7 @@ export const Evaluation = () => {
               name="evalLLM"
               id="evalLLM"
               className={`llm ${hasError && !evalLLM ? "error" : ""}`}
+              className={`llm ${hasLLMError ? "error" : ""}`}
               value={evalLLM}
               onChange={(e) => setEvalLLM(e.target.value)}
             >
@@ -66,11 +89,11 @@ export const Evaluation = () => {
               <select
                 name="evalType"
                 id="evalType"
-                className="llm"
+                className={`llm ${hasTypeError ? "error" : ""}`}
                 value={evalType}
                 onChange={(e) => setEvalType(e.target.value)}
               >
-                <option value="" disabled>{t('selectEvaluationTypePlaceholder')}</option>
+                <option value="" disabled>{evalTypePlaceholder}</option>
                 {evalLLM === "Baseline" ? (
                   <>
                     <option value="LLAMA2 Baseline">{t('llamaBaseline')}</option>
