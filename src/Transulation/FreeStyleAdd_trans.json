@@ -1,16 +1,16 @@
 {
     "en": {
-      "Model A: Mistral-7B ": "Model A: Mistral-7B",
+      "Model A: Mistral-7B": "Model A: Mistral-7B",
       "Model B: Llama-2-7B": "Model B: Llama-2-7B",
       "Model B (Llama-2-7B)":"Model B (Llama-2-7B)",
-      "Your Voting:": "Your Voting:",
+      "YourVoting": "Your Voting:",
       "Question": "Question",
       "Answer": "Answer",
       "Topic": "Topic",
         "Show More": "Show More",
   "Show Less": "Show Less",
-  
   "OK": "OK",
+  "Warning!":"Warning!",
   "You must edit the answer before adding": "You must edit the answer before adding",
   "User region unknown. Please complete your profile first.": "User region unknown. Please complete your profile first.",
   "Please select a topic before adding.": "Please select a topic before adding.",
@@ -47,7 +47,7 @@
       }
     },
     "ar": {
-"Your Voting": "تصويتك",
+"YourVoting": "تصويتك",
     "modelA": "النموذج أ",
     "modelB": "النموذج ب",
     "Model A: Mistral-7B": "النموذج أ: Mistral-7B",

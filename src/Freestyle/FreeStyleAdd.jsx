@@ -100,7 +100,7 @@ const FreeStyleAdd = () => {
     popupBackground.style.justifyContent = 'center';
     popupBackground.style.zIndex = '1000';
   
-     const popup = document.createElement('div');
+    const popup = document.createElement('div');
     popup.style.backgroundColor = '#fff';
     popup.style.color = '#28a745';  
     popup.style.padding = '20px';
@@ -114,13 +114,14 @@ const FreeStyleAdd = () => {
     popup.style.transform = 'translate(-50%, -50%)';   
     popup.style.zIndex = '1000';
   
-     const icon = document.createElement('span');
- icon.innerHTML = `<i class="fa-solid fa-circle-check success-icon"></i>`;
-popup.appendChild(icon);
-    
-
-    icon.style.fontSize = '48px';  
-    icon.style.color = '#28a745';   
+    // Create SVG icon (circle with check mark)
+    const icon = document.createElement('div');
+    icon.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#28a745">
+        <circle cx="12" cy="12" r="10" fill="#28a745"/>
+        <path d="M16 9l-5.5 5.5L8 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `;
     icon.style.marginBottom = '15px';   
   
     // Success title
@@ -135,18 +136,18 @@ popup.appendChild(icon);
     messageText.style.marginBottom = '20px';
     messageText.style.fontSize = '18px';
     messageText.style.color = '#28a745';
+  
     popup.appendChild(icon);
     popup.appendChild(title);
     popup.appendChild(messageText);
-     
-     popupBackground.appendChild(popup);
   
-     document.body.appendChild(popupBackground);
+    popupBackground.appendChild(popup);
   
-     setTimeout(() => {
+    document.body.appendChild(popupBackground);
+  
+    setTimeout(() => {
       document.body.removeChild(popupBackground);
-    }, 3000);  
-    
+    }, 3000);
   }
   
 
@@ -654,7 +655,7 @@ popup.appendChild(icon);
       </div>
       <h1 className="add-conversation-title">{t("Add Conversation")}</h1>
       <h2 className="freestyle-title">
-      {t("Your Voting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
+      {t("YourVoting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
 </h2>
 
 <div className="model-info">
