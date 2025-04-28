@@ -105,7 +105,7 @@ const LensLeaderBoard = () => {
     <div className="LensLeaderbord-container">
       <Header />
       <Helmet>
-        <title>{t("CultureLens - LeaderBoard")}</title>
+        <title>{t("LeaderBoard")}</title>
         <meta name="description" />
       </Helmet>
 

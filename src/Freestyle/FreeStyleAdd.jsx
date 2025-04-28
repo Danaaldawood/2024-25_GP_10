@@ -9,7 +9,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { FaCheck } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { Footer } from "../Footer/Footer";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from "react-helmet";
 const FreeStyleAdd = () => {
   const navigate = useNavigate();
   const [chatData, setChatData] = useState(null);
@@ -27,16 +29,132 @@ const FreeStyleAdd = () => {
   // New state to track which answers have been edited
   const [editedConversations, setEditedConversations] = useState({});
  
+  function handlePopupError(message) {
+    // Create the popup background
+    const popupBackground = document.createElement('div');
+    popupBackground.style.position = 'fixed';
+    popupBackground.style.top = '0';
+    popupBackground.style.left = '0';
+    popupBackground.style.width = '100%';
+    popupBackground.style.height = '100%';
+    popupBackground.style.backgroundColor = 'rgba(0,0,0,0.3)';
+    popupBackground.style.display = 'flex';
+    popupBackground.style.alignItems = 'center';
+    popupBackground.style.justifyContent = 'center';
+    popupBackground.style.zIndex = '1000';
+  
+    // Create the popup container
+    const popup = document.createElement('div');
+    popup.style.backgroundColor = '#fff';
+    popup.style.padding = '30px';
+    popup.style.borderRadius = '8px';
+    popup.style.textAlign = 'center';
+    popup.style.color = 'red';
+    popup.style.fontFamily = 'Arial, sans-serif';
+    
+    // Error title
+    const title = document.createElement('h2');
+    title.innerText = t(('Warning!'));
+    title.style.marginBottom = '20px';
+    title.style.color = 'crimson';
+    
+    // Error message
+    const messageText = document.createElement('p');
+    messageText.innerText = message;
+    messageText.style.marginBottom = '20px';
+    messageText.style.fontSize = '18px';
+    messageText.style.color = 'crimson';
+
+    // OK button
+    const okButton = document.createElement('button');
+    okButton.innerText = t('OK');
+    okButton.style.backgroundColor = 'crimson';
+    okButton.style.color = 'white';
+    okButton.style.border = 'none';
+    okButton.style.padding = '10px 20px';
+    okButton.style.fontSize = '16px';
+    okButton.style.borderRadius = '6px';
+    okButton.style.cursor = 'pointer';
+    
+    okButton.onclick = () => {
+      document.body.removeChild(popupBackground);
+    };
+  
+    popup.appendChild(title);
+    popup.appendChild(messageText);
+    popup.appendChild(okButton);
+    popupBackground.appendChild(popup);
+    document.body.appendChild(popupBackground);
+  }
+   
   const handlePopup = (message) => {
-    setPopupMessage(message);
-    setShowPopup(true);
-  };
+    const popupBackground = document.createElement('div');
+    popupBackground.style.position = 'fixed';
+    popupBackground.style.top = '0';
+    popupBackground.style.left = '0';
+    popupBackground.style.width = '100%';
+    popupBackground.style.height = '100%';
+    popupBackground.style.backgroundColor = 'rgba(0,0,0,0.3)';
+    popupBackground.style.display = 'flex';
+    popupBackground.style.alignItems = 'center';
+    popupBackground.style.justifyContent = 'center';
+    popupBackground.style.zIndex = '1000';
+  
+     const popup = document.createElement('div');
+    popup.style.backgroundColor = '#fff';
+    popup.style.color = '#28a745';  
+    popup.style.padding = '20px';
+    popup.style.borderRadius = '10px';
+    popup.style.width = '300px';   
+    popup.style.textAlign = 'center';
+    popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';   
+    popup.style.zIndex = '1000';
+  
+     const icon = document.createElement('span');
+ icon.innerHTML = `<i class="fa-solid fa-circle-check success-icon"></i>`;
+popup.appendChild(icon);
+    
+
+    icon.style.fontSize = '48px';  
+    icon.style.color = '#28a745';   
+    icon.style.marginBottom = '15px';   
+  
+    // Success title
+    const title = document.createElement('h2');
+    title.innerText = 'Success';
+    title.style.marginBottom = '15px';
+    title.style.color = '#28a745';   
+  
+    // Success message
+    const messageText = document.createElement('p');
+    messageText.innerText = message;
+    messageText.style.marginBottom = '20px';
+    messageText.style.fontSize = '18px';
+    messageText.style.color = '#28a745';
+    popup.appendChild(icon);
+    popup.appendChild(title);
+    popup.appendChild(messageText);
+     
+     popupBackground.appendChild(popup);
+  
+     document.body.appendChild(popupBackground);
+  
+     setTimeout(() => {
+      document.body.removeChild(popupBackground);
+    }, 3000);  
+    
+  }
+  
+
   const { t, i18n } = useTranslation('FreeStyleAdd');
   const isRTL = i18n.dir() === 'rtl';
   const MAX_EDIT_LENGTH = 50;  
 
-  // Fetch chat data from localStorage once on component mount
-  useEffect(() => {
+   useEffect(() => {
     const storedData = localStorage.getItem("lastChatMessages");
     if (storedData) {
       try {
@@ -232,15 +350,29 @@ const FreeStyleAdd = () => {
     
     // Check if the conversation has been edited
     if (!editedConversations[index]) {
-      handlePopup("⚠️ You must edit the answer before adding");
+      handlePopupError(t("You must edit the answer before adding"));
       return;
     }
     
     if (!userRegion || userRegion === "Unknown") {
-      handlePopup("⚠️ User region unknown. Please complete your profile first.");
+      handlePopupError(t("User region unknown. Please complete your profile first."));
       return;
     }
-  
+  // Validate that user has selected all required fields
+  if (!selectedTopic || selectedTopic === "") {
+    handlePopupError(t("Please select a topic before adding."));
+    return;
+  }
+
+  if (!selectedEvaluation || selectedEvaluation === "") {
+    handlePopupError(t("Please select an overall LLM evaluation before adding."));
+    return;
+  }
+
+  if (!reasonValues[index] || reasonValues[index] === "") {
+    handlePopupError(t("Please select a reason before adding."));
+    return;
+  }
     const conversation = chatData.conversations[index];
     const question = conversation.question;
     
@@ -262,7 +394,7 @@ const FreeStyleAdd = () => {
       (editing.model === 'A' && editing.index === index && !editedAnswers.A) ||
       (editing.model === 'B' && editing.index === index && !editedAnswers.B)
     ) {
-      handlePopup("⚠️ You must provide an answer before adding it.");
+      handlePopupError(t("You must provide an answer before adding it."));
       return;
     }
   
@@ -376,7 +508,7 @@ const FreeStyleAdd = () => {
       }
       
       if (isDuplicate) {
-        handlePopup("⚠️ This question and answer already exist in the database for your region.");
+        handlePopupError("This question and answer already exist in the database for your region.");
         return;
       }
       
@@ -478,11 +610,11 @@ const FreeStyleAdd = () => {
       const entryRef = ref(realtimeDb, `${databasePath}/${newEntryKey}`);
       await set(entryRef, newEntry);
       
-      handlePopup("✅ Entry added successfully!");
+      handlePopup(t("Entry added successfully!"));
       setDisabledButtons(prev => ({ ...prev, [index]: true }));
     } catch (error) {
       console.error("Error checking or adding data:", error);
-      handlePopup("❌ An error occurred. Please try again.");
+      handlePopupError(t("An error occurred. Please try again."));
     }
   };
   
@@ -490,6 +622,10 @@ const FreeStyleAdd = () => {
   if (!chatData || !chatData.conversations) {
     return (
       <div className="freestyle-add-page">
+         <Helmet>
+        <title>{t("FreeStyleAdd")}</title>
+        <meta name="description" />
+      </Helmet>
 <div className="freestyle-page-header">
           <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
             <FaArrowLeft className="freestyle-back-icon" />
@@ -518,12 +654,12 @@ const FreeStyleAdd = () => {
       </div>
       <h1 className="add-conversation-title">{t("Add Conversation")}</h1>
       <h2 className="freestyle-title">
-  {t("Your Voting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
+      {t("Your Voting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
 </h2>
 
 <div className="model-info">
-  <span>{t("Model A: Mistral-7B")}</span>
-  <span>{t("Model B: Llama-2-7B")}</span>
+  <h5>{t("Model A: Mistral-7B")}</h5>
+  <h5>{t("Model B: Llama-2-7B")}</h5>
 </div>
 
       <div className="column-table-container">
@@ -580,8 +716,8 @@ const FreeStyleAdd = () => {
                                   className="see-more-btn"
                                   onClick={() => toggleExpand(`A-${index}`)}
                                 >
-                                  {expandedAnswers[`A-${index}`] ? "Show Less" : "Show More"}
-                                </button>
+{expandedAnswers[`A-${index}`] ? t("Show Less") : t("Show More")}
+</button>
                               )}
                               <button 
                                 className="icon-btn edit-btn"
@@ -630,8 +766,8 @@ const FreeStyleAdd = () => {
                                   className="see-more-btn"
                                   onClick={() => toggleExpand(`B-${index}`)}
                                 >
-                                  {expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
-                                </button>
+{expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
+</button>
                               )}
                               <button 
                                 className="icon-btn edit-btn"
@@ -652,7 +788,7 @@ const FreeStyleAdd = () => {
                     className="table-select topic-select"
                     value={selectedTopic}
                     onChange={(e) => setSelectedTopic(e.target.value)}
-                  >
+                  ><option value="" disabled>{t("Select Topic")}</option>
                     {topics.length > 0 ? (
                       topics.map((topic, idx) => (
                         <option key={idx} value={topic}>

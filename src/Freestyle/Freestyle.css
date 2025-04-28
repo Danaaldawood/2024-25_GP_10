@@ -254,6 +254,14 @@
   background-color: #c82333;
   transform: translateY(-2px);  
 }
+.freestyle-send-button {
+  direction: ltr;  
+  text-align: center;
+}
+.freestyle-send-button[dir="rtl"] {
+  direction: rtl; 
+  text-align: right;  
+}
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
