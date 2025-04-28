@@ -473,19 +473,10 @@ if not HF_TOKEN_FINETUNE:
 
 # Model IDs
 MISTRAL_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
-LLAMA_MODEL_ID = "meta-llama/Llama-2-7b-chat-hf"
+LLAMA_MODEL_ID = "meta-llama/Llama-2-13b-chat-hf"
 MISTRAL_FINETUNED_ID = "GPCUL/mistral_finetunedAllAfter-zeq"
 LLAMA_FINETUNED_ID = "GPCUL/llama-fine-tuned-uat"
 
-# Ollama Llama model configuration for Model B
-OLLAMA_MODEL_URL = "http://localhost:11434/api/generate"
-OLLAMA_CONFIG = {
-    'model': 'llama2:latest',
-    'max_tokens': 128,
-    'temperature': 0.8,
-    'repeat_penalty': 1.1,
-    'stream': False
-}
 
 # --- Load Regional Datasets ---
 try:
@@ -571,35 +562,36 @@ def call_model_a(message_text):
     except Exception as e:
         logger.error(f"Error in call_model_a: {e}")
         return f"Error from baseline Mistral: {str(e)}"
-
 def call_model_b(message_text):
     try:
         system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
         formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
         payload = {
-            "model": OLLAMA_CONFIG["model"],
-            "prompt": formatted_prompt,
-            "stream": OLLAMA_CONFIG["stream"],
-            "options": {
-                "temperature": OLLAMA_CONFIG["temperature"],
-                "num_predict": OLLAMA_CONFIG["max_tokens"],
-                "repeat_penalty": OLLAMA_CONFIG["repeat_penalty"]
+            "inputs":formatted_prompt,
+            "parameters": {
+                "max_new_tokens": 200,
+                "temperature": 0.3,
+                "top_p": 0.9,
+                "do_sample": True,
+                "return_full_text": False
             }
         }
-        logger.info(f"Calling Ollama Llama model: {OLLAMA_CONFIG['model']}")
-        response = requests.post(OLLAMA_MODEL_URL, json=payload, timeout=60)
-        logger.info(f"Ollama Llama response: {response.status_code}, {response.text[:100]}...")
-        if response.status_code == 200:
-            response_json = response.json()
-            response_text = response_json.get('response', '')
-            return response_text
-        else:
-            error_msg = f"Error from Ollama API: {response.status_code}, {response.text}"
-            logger.error(error_msg)
-            return error_msg
+        headers = {"Authorization": f"Bearer {HF_TOKEN_BASELINE}"}
+        logger.info(f"Calling baseline Llama2-13B model: meta-llama/Llama-2-13b-chat-hf")
+        response = requests.post(
+            "https://api-inference.huggingface.co/models/meta-llama/Llama-2-13b-chat-hf",
+            headers=headers,
+            json=payload,
+            timeout=60
+        )
+        response.raise_for_status()
+        result = response.json()
+        return result[0]["generated_text"].strip()
     except Exception as e:
         logger.error(f"Error in call_model_b: {str(e)}")
         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+
+
 def call_fine_tuned_mistral(message_text):
     try:
         api_url = "https://uphvkd82jwgsup9d.us-east-1.aws.endpoints.huggingface.cloud"
