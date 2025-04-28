@@ -25,7 +25,7 @@
     "Sport": "Sport",
     "Holidays": "Holiday",
     "Family": "Family",
-    "Greeting": "Greeting"
+    "greeting": "Greeting"
   },
   "regions": {
     "Western": "Western",
@@ -60,7 +60,7 @@
         "Sport": "رياضة",
         "Holidays": "عطلة",
         "Family": "عائلة",
-        "Greeting": "تحية"
+        "greeting": "تحية"
   },
   "regions": {
     "Arab": "عربي",
@@ -96,7 +96,7 @@
         "Sport": "运动",
         "Holidays": "假期",
         "Family": "家庭",
-        "Greeting": "问候"
+        "greeting": "问候"
   },
   "regions": {
    "Western": "西方",

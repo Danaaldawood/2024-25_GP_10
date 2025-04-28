@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./UserProfilePage.css";
 import Notification from "../Modorater/Notification";
 import DeleteConfirmation from "../Modorater/DeleteConfirmation";
-import defaultProfilePic from "../Modorater/userpro.jpg";
+import defaultProfilePic from "../images/Photo-Profile.jpg";
 import { FaArrowLeft, FaTrash } from "react-icons/fa"; // Import FaTrash
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../Register/firebase";
@@ -181,8 +181,8 @@ const UserProfilePage = () => {
         <div className="profile-details">
           <img src={defaultProfilePic} alt="Profile" className="profile-pic" />
           <h3>{profileName}</h3>
-          <p>{region}</p>
-        </div>
+          <p>{t(`userProfile.region.${region}`)}</p>
+          </div>
 
         {/* Profile Form */}
         <div className="profile-form-container">

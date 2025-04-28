@@ -4,7 +4,8 @@
       "Region": "Region",
       "Model": "Model",
       "Topic": "Topic",
-      "Lens Score": "Lens Score",
+      "LeaderBoard":"LeaderBoard",
+      "LensLeaderBoard-Score": "LensLeaderBoard-Score",
       "No data available for this region": "No data available for this region",
       "models": {
         "Model A": "Model A",
@@ -27,10 +28,11 @@
     },
     "ar": {
       "CultureLens - LeaderBoard": "عدسة الثقافة - لوحة المتصدرين",
+      "LeaderBoard":"لوحة المتصدرين",
       "Region": "المنطقة",
       "Model": "النموذج",
       "Topic": "الموضوع",
-      "Lens Score": "درجة العدسة",
+      "LensLeaderBoard-Score": " نتيجة لوحة صدارة العدسات",
       "No data available for this region": "لا توجد بيانات لهذه المنطقة",
       "models": {
         "Model A": "النموذج أ",
@@ -55,8 +57,9 @@
       "CultureLens - LeaderBoard": "文化透镜 - 排行榜",
       "Region": "地区",
       "Model": "模型",
+      "LeaderBoard":"排行榜",
       "Topic": "主题",
-      "Lens Score": "透镜评分",
+      "LensLeaderBoard-Score": "镜头排行榜得分",
       "No data available for this region": "该地区无可用数据",
       "models": {
         "Model A": "模型A",
