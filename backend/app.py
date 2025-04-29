@@ -567,7 +567,7 @@ def call_model_b(message_text):
         system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
         formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
         payload = {
-            "inputs":formatted_prompt,
+            "inputs": formatted_prompt,
             "parameters": {
                 "max_new_tokens": 200,
                 "temperature": 0.3,
@@ -576,7 +576,7 @@ def call_model_b(message_text):
                 "return_full_text": False
             }
         }
-        headers = {"Authorization": f"Bearer {HF_TOKEN_BASELINE}"}
+        headers = {"Authorization": f"Bearer {HF_TOKEN_LLAMA}"}  # Using LLaMA token
         logger.info(f"Calling baseline Llama2-13B model: meta-llama/Llama-2-13b-chat-hf")
         response = requests.post(
             "https://api-inference.huggingface.co/models/meta-llama/Llama-2-13b-chat-hf",
@@ -590,6 +590,7 @@ def call_model_b(message_text):
     except Exception as e:
         logger.error(f"Error in call_model_b: {str(e)}")
         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+
 
 def call_fine_tuned_mistral(message_text):
     try:
