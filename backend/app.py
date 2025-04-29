@@ -615,7 +615,7 @@ def call_fine_tuned_mistral(message_text):
             return "Error: API token for fine-tuned Mistral model is missing"
         logger.info(f"Calling fine-tuned Mistral model at: {api_url} with request size: {len(str(payload))} bytes")
         response = requests.post(api_url, headers=headers, json=payload, timeout=160)
-           logger.info(f"Response received. Status: {response.status_code}, Size: {len(response.content)} bytes")
+        
         response.raise_for_status()
         result = response.json()
 
