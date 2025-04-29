@@ -21,6 +21,7 @@
     "standardDeviation": "Standard Deviation",
     "coverageScore": "Coverage Score",
     "tooltips": {
+      "infoTitle": "About This Result",
       "hofstedeCohere": "This evaluation uses the Mistral-7B model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.",
       "hofstedeLlama": "This evaluation uses the Llama-2-7B model to answer 24 Hofstede Work Life questions for each region (Arab, Western, and Chinese) in Arabic, English, and Chinese. The standard deviation is calculated to measure the variability in responses across these questions and regions, reflecting the diversity of cultural perspectives on work life.",
       "cohereBaseline": "This evaluation uses the Mistral-7B model to answer multiple-choice questions based on selected topics and datasets. The evaluation includes 100 samples per region, and accuracy is determined by the ratio of correct predictions to total questions.",
@@ -85,6 +86,7 @@
     "standardDeviation": "الانحراف المعياري",
     "coverageScore": "نسبة التغطية",
     "tooltips": {
+      "infoTitle": "عن هذه النتيجة",
       "hofstedeCohere": "يستخدم هذا التقييم نموذج Mistral-7B للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
       "hofstedeLlama": "يستخدم هذا التقييم نموذج Llama2-7B للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
       "cohereBaseline": "يستخدم هذا التقييم نموذج Mistral-7B للإجابة على أسئلة متعددة الخيارات بناءً على مواضيع ومجموعات بيانات مختارة. يشمل التقييم 100 عينة لكل منطقة، ويتم تحديد الدقة من خلال نسبة التنبؤات الصحيحة إلى إجمالي الأسئلة.",
@@ -93,7 +95,6 @@
      "hofstedeCohereFineTuned": "يستخدم هذا التقييم نموذج Mistral-7B المدرب (Mistral-7B) للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
      "hofstedeLlama2FineTuned":"يستخدم هذا التقييم نموذج Llama2-7B المدرب (Llama2-7B) للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل لكل منطقة (العربية والغربية والصينية) باللغات العربية والإنجليزية والصينية. يتم حساب الانحراف المعياري لقياس التباين في الردود عبر هذه الأسئلة والمناطق، مما يعكس تنوع وجهات النظر الثقافية حول حياة العمل.",
      "LlamaFineTuned":"تم تهيئة هذا النموذج المدرب على نموذج Llama2-7B باستخدام مجموعة بيانات متوافقة ثقافيًا تغطي مواضيع ولغات متعددة (العربية والإنجليزية والصينية). تم تدريب النموذج باستخدام أسئلة متعددة الخيارات خاصة بالمنطقة لضمان تمثيل دقيق للقيم الاجتماعية والثقافية. يحسن هذا النهج دقة التغطية عبر المناطق العربية والغربية والصينية، خاصة لمواضيع ."
-    
     },
     "explanations": {
     "hofstedeCohere": "يستخدم هذا التقييم Mistral-7B للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
@@ -150,6 +151,7 @@
     "standardDeviation": "标准偏差",
     "coverageScore": "覆盖率分数",
     "tooltips": {
+      "infoTitle": "关于此结果",
       "hofstedeCohere": "此评估使用Mistral-7B模型用阿拉伯语、英语和中文回答每个地区（阿拉伯、西方和中国）的24个霍夫斯泰德工作生活问题。计算标准偏差来衡量这些问题和地区之间回答的变异性，反映了对工作生活的文化观点的多样性。",
       "hofstedeLlama": "此评估使用Llama-2-7B模型用阿拉伯语、英语和中文回答每个地区（阿拉伯、西方和中国）的24个霍夫斯泰德工作生活问题。计算标准偏差来衡量这些问题和地区之间回答的变异性，反映了对工作生活的文化观点的多样性。",
       "cohereBaseline": "此评估使用Mistral-7B模型回答基于选定主题和数据集的多项选择题。评估包括每个地区100个样本，准确性由正确预测与总问题的比率决定。",
@@ -190,7 +192,6 @@
       "hofstedeCohereFineTuned": "霍夫斯泰德问题-Mistral-7B微调模型",
       "LlamaFineTuned":"霍夫斯泰德问题-Llama2微调模型",
       "hofstedeLlama2FineTuned":"霍夫斯泰德问题-Llama2-7B微调模型"
-    
     }
   }
 }

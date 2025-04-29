@@ -27,7 +27,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
 
     const orangeScale = d3
       .scaleLinear()
-      .domain([1, 100]) // Start from 1% to 100% for the orange gradient
+      .domain([0, 100]) // Start from 1% to 100% for the orange gradient
       .range(["#095c474f", "#12c697 "]); // Light orange to dark orange
     return orangeScale(value);
   };

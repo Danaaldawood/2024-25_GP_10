@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import { feature } from "topojson-client";
 import "./Plot.css";
 import { FaArrowLeft, FaInfoCircle } from "react-icons/fa";
+import { AlertCircle } from "lucide-react";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 import { Bar } from "react-chartjs-2";
@@ -21,6 +22,7 @@ export const Plot = () => {
   );
   const [hasError, setHasError] = useState(false);
   const [isTooltipVisible, setTooltipVisible] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const evalLLM = state?.evalLLM || "";
   const evalType = state?.evalType || "";
@@ -92,9 +94,7 @@ export const Plot = () => {
   const fetchResults = async () => {
     try {
       const apiTopicValue = topicKeyToApiValue[selectedTopicKey];
-   
-        // await fetch("http://127.0.0.1:5000/evaluate"
-      const response =await fetch("https://gp-culturelens.onrender.com/evaluate", {
+      const response = await fetch("https://gp-culturelens.onrender.com/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -138,7 +138,7 @@ export const Plot = () => {
       const colorScale = d3
         .scaleLinear()
         .domain([0, 2])
-        .range(["#f9d1a8", "#f28d27"]);
+        .range(["#095c474f", "#12c697 "]);
 
       const legendWidth = 200;
       const legendHeight = 20;
@@ -270,6 +270,26 @@ export const Plot = () => {
     }
 
     return null;
+  };
+
+  // Function to get the data for the side-by-side region comparison
+  const getRegionScores = () => {
+    if (!results) return [];
+    
+    const regions = ["Arab", "Western", "Chinese"];
+    return regions.map(region => {
+      let score;
+      if (evalType.includes("Hofstede")) {
+        score = results[region]?.standard_deviation?.toFixed(2) || "0.00";
+      } else {
+        score = results[region]?.coverage_score?.toFixed(2) || "0.00";
+      }
+      
+      return {
+        region,
+        score: evalType.includes("Hofstede") ? score : `${score}%`
+      };
+    });
   };
 
   const getCoverageText = () => {
@@ -425,19 +445,28 @@ export const Plot = () => {
           )}
         </div>
 
-        <div className="version-container">
-          <h2 className="version-main">
-            {t(`modelNames.${evalType.toLowerCase().replace(/ /g, "")}`, {
-              defaultValue: evalType,
-            })}
-            <FaInfoCircle
-              className="info-icon"
-              onClick={() => setTooltipVisible(!isTooltipVisible)}
-            />
+        <div className="plot-header">
+          <h2 className="plot-title">
+            {evalType.includes("Hofstede") ? t("standardDeviation") : t("coverageScore")}
           </h2>
-          {isTooltipVisible && (
-            <div className="tooltip-box">{getModelExplanation()}</div>
-          )}
+          <div className="info-container-inline">
+            <div
+              className="info-button"
+              onMouseEnter={() => setShowInfo(true)}
+              onMouseLeave={() => setShowInfo(false)}
+            >
+              <AlertCircle className="h-5 w-5" />
+            </div>
+
+            {showInfo && (
+              <div className="info-popup">
+                <div className="info-content">
+                  <h3>{t("tooltips.infoTitle", { defaultValue: "About This Result" })}</h3>
+                  <p>{getModelExplanation()}</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="toggle-container">
@@ -481,12 +510,42 @@ export const Plot = () => {
                         results?.Chinese?.coverage_score || 0,
                         results?.Western?.coverage_score || 0,
                       ],
-                  backgroundColor: ["#4BC0C0", "#9966FF", "#FF9F40"],
+                  backgroundColor: ["#095c474f", "#0a926f", "#12c697"],
                 },
               ],
             }}
           />
         )}
+
+        {/* Side-by-side region results display */}
+        {results && (
+          <div className="plot-result-similarity-container">
+            {getRegionScores().map((item) => (
+              <div key={item.region} className="plot-result-region-box">
+                {i18n.language === 'ar' ? (
+                  <>
+                    <span className="plot-result-similarity-score">
+                      {item.score} :
+                    </span>
+                    <span className="plot-result-region-name">
+                      {t(`regions.${item.region.toLowerCase()}`)}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="plot-result-region-name">
+                      {t(`regions.${item.region.toLowerCase()}`)}
+                    </span>
+                    <span className="plot-result-similarity-score">
+                      : {item.score}
+                    </span>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="plotsubmit-container">
           <button className="plotsubmit" onClick={() => navigate("/freestyle", { state: { evalLLM, evalType } })}>
             {t("freeStyleChatting")}

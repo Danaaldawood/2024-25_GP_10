@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaPaperPlane } from "react-icons/fa";
 import { Footer } from "../Footer/Footer";
 import { Helmet } from 'react-helmet';
 import "./Freestyle.css";
@@ -152,11 +152,11 @@ export const ConversationLayout = () => {
         modelA: modelAMessages[i]?.content || "",
         modelB: modelBMessages[i]?.content || "",
       }));
-// Format data for FreeStyleAdd
-const formattedData = {
-  conversations: conversations,
-  selectedModel: selectedModel
-};
+      // Format data for FreeStyleAdd
+      const formattedData = {
+        conversations: conversations,
+        selectedModel: selectedModel
+      };
       localStorage.setItem("lastChatMessages", JSON.stringify({
         conversations,
         selectedModel
@@ -169,81 +169,102 @@ const formattedData = {
 
   return (
     <div className="freestylepage">
-      <Helmet>
-        <title className="titleFree">Free style chatting</title>
-        <meta name="description" content="Free style chatting page" />
-      </Helmet>
+      <div className="main-content">
+        <Helmet>
+          <title className="titleFree">Free style chatting</title>
+          <meta name="description" content="Free style chatting page" />
+        </Helmet>
 
-      <div className="freestyle-page-header">
-        <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
-          <FaArrowLeft className="freestyle-back-icon" />
-        </button>
-      </div>
+        <div className="freestyle-page-header">
+          <button className="freestylechat-back-btn" onClick={() => navigate(-1)}>
+            <FaArrowLeft className="freestyle-back-icon" />
+          </button>
+        </div>
 
-      <h2 className="titleFree">{t('titleFree')}</h2>
+        <h2 className="titleFree">{t('titleFree')}</h2>
 
-      <div className="send-limit-bar">
-        <div className="progress" style={{ width: progressWidth }}></div>
-        <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
-      </div>
-
-      <div className="dual-chat-container">
-        <div className="chat-model">
-          <h2 className="conversation-title">{t("conversation-titleA")}</h2>
-          <div className="freestyle-message-list">
-            {messagesA.map((message, index) => (
-              <div key={index} className={`message ${message.type}-message`}>
-                <div className="freestyle-message-content">{message.content}</div>
-              </div>
-            ))}
-            {isLoadingA && <div className="message ai-message">{t("message ai-message")}</div>}
+        <div className="send-limit-container">
+          <div className="send-limit-bar">
+            <div className="progress" style={{ width: progressWidth }}></div>
+            <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
           </div>
         </div>
 
-        <div className="chat-model">
-          <h2 className="conversation-title">{t("conversation-titleB")}</h2>
-          <div className="freestyle-message-list">
-            {messagesB.map((message, index) => (
-              <div key={index} className={`message ${message.type}-message`}>
-                <div className="freestyle-message-content">{message.content}</div>
-              </div>
-            ))}
-            {isLoadingB && <div className="message ai-message">{t("message ai-message")}</div>}
+        <div className="dual-chat-container">
+          <div className="chat-model">
+            <h2 className="conversation-title">{t("conversation-titleA")}</h2>
+            <div className="freestyle-message-list">
+              {messagesA.map((message, index) => (
+                <div key={index} className={`message ${message.type}-message`}>
+                  <div className="freestyle-message-content">{message.content}</div>
+                </div>
+              ))}
+              {isLoadingA && <div className="message ai-message loading-message">{t("message ai-message")}</div>}
+            </div>
+          </div>
+
+          <div className="chat-model">
+            <h2 className="conversation-title">{t("conversation-titleB")}</h2>
+            <div className="freestyle-message-list">
+              {messagesB.map((message, index) => (
+                <div key={index} className={`message ${message.type}-message`}>
+                  <div className="freestyle-message-content">{message.content}</div>
+                </div>
+              ))}
+              {isLoadingB && <div className="message ai-message loading-message">{t("message ai-message")}</div>}
+            </div>
           </div>
         </div>
-      </div>
 
-      {sendCount === sendLimit && !isLoading && (
-        <div className="feedback-container mt-4">
-          <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model A')}>
-            {t("👍 Model A is better")}
-          </button>
-          <button disabled={!canGiveFeedback} onClick={() => handleFeedback('Model B')}>
-            {t("👍 Model B is better")}
-          </button>
-          <button disabled={!canGiveFeedback} onClick={() => handleFeedback('none')}>
-            {t("none")}
+        {sendCount === sendLimit && !isLoading && (
+          <div className="feedback-container">
+            <button 
+              className="feedback-button model-a" 
+              disabled={!canGiveFeedback} 
+              onClick={() => handleFeedback('Model A')}
+            >
+              {t("👍 Model A is better")}
+            </button>
+            <button 
+              className="feedback-button model-b" 
+              disabled={!canGiveFeedback} 
+              onClick={() => handleFeedback('Model B')}
+            >
+              {t("👍 Model B is better")}
+            </button>
+            <button 
+              className="feedback-button model-none" 
+              disabled={!canGiveFeedback} 
+              onClick={() => handleFeedback('none')}
+            >
+              {t("none")}
+            </button>
+          </div>
+        )}
+
+        <div className="freestyle-input-container">
+          <input
+            type="text"
+            className="freestyle-message-input"
+            placeholder={t("enter-message")}
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+            disabled={sendCount >= sendLimit || isLoading}
+          />
+          <button
+            className="freestyle-send-button"
+            dir={isRTL ? "rtl" : "ltr"}
+            onClick={handleSendMessage}
+            disabled={sendCount >= sendLimit || isLoading}
+          >
+            {isLoading ? t('sending') : (
+              <>
+                {t('send')} <FaPaperPlane className="send-icon" />
+              </>
+            )}
           </button>
         </div>
-      )}
-
-      <div className="freestyle-input-container">
-        <input
-          type="text"
-          className="freestyle-message-input"
-          placeholder={t("enter-message")}
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-          disabled={sendCount >= sendLimit || isLoading}
-        />
-        <button
-          className="freestyle-send-button"
-          onClick={handleSendMessage}
-          disabled={sendCount >= sendLimit || isLoading}
-        >
-          {isLoading ? t('sending') : t('send')}
-        </button>
       </div>
 
       <Footer />
@@ -251,14 +272,14 @@ const formattedData = {
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h3>
+            <h3 className="popup-title">
               {t(selectedModel === 'Model A' ? 'modelA' : selectedModel === 'Model B' ? 'modelB' : 'none')}
               {t("thank-you-voting")}🌟
             </h3>
-            <p>{t("add-chat-question")}</p>
+            <p className="popup-message">{t("add-chat-question")}</p>
             <div className="popup-buttons">
-              <button onClick={() => handlePopupAction("yes")}>{t("yes")}</button>
-              <button onClick={() => handlePopupAction("cancel")}>{t("cancel")}</button>
+              <button className="popup-button confirm" onClick={() => handlePopupAction("yes")}>{t("yes")}</button>
+              <button className="popup-button cancel" onClick={() => handlePopupAction("cancel")}>{t("cancel")}</button>
             </div>
           </div>
         </div>
