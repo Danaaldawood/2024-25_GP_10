@@ -438,7 +438,9 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {
     "origins": [
         "http://localhost:3000",
-        "https://gp-frontend-om9b.onrender.com"
+        "https://gp-frontend-om9b.onrender.com",
+        "https://culturelens.info",
+        "https://www.culturelens.info"
     ],
     "methods": ["GET", "POST", "OPTIONS"],
     "allow_headers": ["Content-Type", "Authorization"],
@@ -917,7 +919,7 @@ def compare():
         regions = request.json.get("regions", [])
         topics = request.json.get("topics", [])
         print(f"Processing compare: regions={regions}, topics={topics}")
-
+        
         if not regions or not topics:
             return jsonify({"error": "Regions and topics are required"}), 400
 
