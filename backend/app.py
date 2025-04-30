@@ -568,34 +568,81 @@ def call_model_a(message_text):
     except Exception as e:
         logger.error(f"Error in call_model_a: {e}")
         return f"Error from baseline Mistral: {str(e)}"
+# def call_model_b(message_text):
+#     try:
+#         system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
+#         formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
+#         payload = {
+#             "inputs":formatted_prompt,
+#             "parameters": {
+#                 "max_new_tokens": 200,
+#                 "temperature": 0.3,
+#                 "top_p": 0.9,
+#                 "do_sample": True,
+#                 "return_full_text": False
+#             }
+#         }
+#         headers = {"Authorization": f"Bearer {HF_TOKEN_LLAMA}"}
+#         logger.info(f"Calling baseline Llama2-13B model: meta-llama/Llama-2-13b-chat-hf")
+#         response = requests.post(
+#             "https://api-inference.huggingface.co/models/meta-llama/Llama-2-13b-chat-hf",
+#             headers=headers,
+#             json=payload,
+#             timeout=60
+#         )
+#         response.raise_for_status()
+#         result = response.json()
+#         return result[0]["generated_text"].strip()
+#     except Exception as e:
+#         logger.error(f"Error in call_model_b: {str(e)}")
+#         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+
+
 def call_model_b(message_text):
     try:
-        system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
-        formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
         payload = {
-            "inputs":formatted_prompt,
-            "parameters": {
-                "max_new_tokens": 200,
-                "temperature": 0.3,
-                "top_p": 0.9,
-                "do_sample": True,
-                "return_full_text": False
-            }
+            "model": "meta-llama/Llama-2-13b-chat-hf",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
+                },
+                {
+                    "role": "user",
+                    "content": message_text
+                }
+            ],
+            "max_tokens": 200,
+            "temperature": 0.3,
+            "top_p": 0.9
         }
-        headers = {"Authorization": f"Bearer {HF_TOKEN_LLAMA}"}
-        logger.info(f"Calling baseline Llama2-13B model: meta-llama/Llama-2-13b-chat-hf")
+
+        headers = {
+            "Authorization": f"Bearer {HF_TOKEN_LLAMA}",
+            "Content-Type": "application/json"
+        }
+
+        logger.info("Calling Llama2-13B chat model: meta-llama/Llama-2-13b-chat-hf")
         response = requests.post(
-            "https://api-inference.huggingface.co/models/meta-llama/Llama-2-13b-chat-hf",
+            "https://api-inference.huggingface.co/chat/completions",
             headers=headers,
             json=payload,
             timeout=60
         )
         response.raise_for_status()
         result = response.json()
-        return result[0]["generated_text"].strip()
+        return result["choices"][0]["message"]["content"].strip()
+
     except Exception as e:
         logger.error(f"Error in call_model_b: {str(e)}")
         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+
+
+
+
+
+
+
 
 def call_fine_tuned_mistral(message_text):
     try:
