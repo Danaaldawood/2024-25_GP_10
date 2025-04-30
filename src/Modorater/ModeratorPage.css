@@ -8,6 +8,7 @@
   --dark-gray: #737272;
   --hover-danger-color: #ff5264;
 }
+ 
 
 /* --- Main Container --- */
 .moderator-container {
@@ -28,7 +29,7 @@
 }
 
 .header-banner h1 {
-  color: var(--font-color);
+  color: #722F57;
   margin: 0;
   font-size: 1.75rem;
   font-weight: bold;
@@ -46,8 +47,8 @@
 .toggle-buttons button {
   padding: 10px 20px;
   border: none;
-  background-color: var(--secondary-color);
-  color: white;
+   color: white;
+   background-color: #bb5a96 ;
   cursor: pointer;
   font-size: 16px;
   border-radius: 4px;
@@ -55,18 +56,18 @@
 }
 
 .toggle-buttons button.active {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, #A44580 0%, #722F57 100%);
 }
 
 .toggle-buttons button:hover {
-  background-color: var(--primary-color);
+  background-color:#722F57 ;
 }
 
 /* --- Page Title --- */
 .pagename {
   text-align: center;
   font-weight: bold;
-  color: #072040;
+  color: #10a37f;
   margin: 20px 0;
 }
 
@@ -97,7 +98,7 @@
 }
 
 .styled-table th {
-  background-color: #003f5c99;
+  background-color: #853c69;
   color: white;
   font-weight: bold;
 }
