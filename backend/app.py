@@ -595,12 +595,14 @@ def call_model_a(message_text):
 #         return result[0]["generated_text"].strip()
 #     except Exception as e:
 #         logger.error(f"Error in call_model_b: {str(e)}")
-#         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"def call_model_b(message_text):
+#         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+
 def call_model_b(message_text):
     try:
+        
         system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
         formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
-        
+
         payload = {
             "inputs": formatted_prompt,
             "parameters": {
@@ -612,40 +614,44 @@ def call_model_b(message_text):
             }
         }
 
-        headers = {"Authorization": f"Bearer {HF_TOKEN_LLAMA}"}
-        
-        logger.info(f"Calling self-hosted Llama2 model")
-        
-        # Replace this URL with your endpoint URL from the screenshot
-        api_url = "https://wi05j8oxq5tj8lm2.us-east-1.aws.endpoints.huggingface.cloud/v1"
-        
-        response = requests.post(
-            api_url,
-            headers=headers,
-            json=payload,
-            timeout=60
-        )
-        
+        headers = {
+            "Authorization": f"Bearer {HF_TOKEN_LLAMA}",
+            "Content-Type": "application/json"
+        }
+
+        api_url = "https://wi05j8oxq5tj8lm2.us-east-1.aws.endpoints.huggingface.cloud"
+
+        logger.info(f"Calling LLaMA model bound to endpoint: {LLAMA_MODEL_ID}")
+        response = requests.post(api_url, headers=headers, json=payload, timeout=60)
         logger.info(f"Response status: {response.status_code}")
-        
         response.raise_for_status()
+
         result = response.json()
-        
+
         if isinstance(result, list) and len(result) > 0 and "generated_text" in result[0]:
             return result[0]["generated_text"].strip()
         elif isinstance(result, dict) and "generated_text" in result:
             return result["generated_text"].strip()
         else:
-            return str(result)
+            logger.error(f"Unexpected response structure: {result}")
+            return "Error: Unexpected response format from LLaMA model API"
 
-    except requests.exceptions.HTTPError as e:
-        logger.error(f"HTTP Error: {str(e)}")
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Request error: {str(e)}"
         if hasattr(e, 'response') and e.response is not None:
-            logger.error(f"Response content: {e.response.text}")
-        return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+            error_msg += f" | Status: {e.response.status_code}"
+            try:
+                error_data = e.response.json()
+                error_msg += f" | Error: {error_data}"
+            except:
+                error_msg += f" | Body: {e.response.text[:200]}"
+        logger.error(error_msg)
+        return f"Error connecting to LLaMA model API: {error_msg}"
+
     except Exception as e:
-        logger.error(f"Error: {str(e)}")
-        return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+        logger.error(f"Unexpected error in call_model_b: {str(e)}")
+        return f"Unexpected error: {str(e)}"
+
 def call_fine_tuned_mistral(message_text):
     try:
         api_url = "https://uphvkd82jwgsup9d.us-east-1.aws.endpoints.huggingface.cloud"
