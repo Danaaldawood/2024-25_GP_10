@@ -596,51 +596,57 @@ def call_model_a(message_text):
 #     except Exception as e:
 #         logger.error(f"Error in call_model_b: {str(e)}")
 #         return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
-
-
 def call_model_b(message_text):
-    try:
-        payload = {
-            "model": "meta-llama/Llama-2-13b-chat-hf",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
-                },
-                {
-                    "role": "user",
-                    "content": message_text
-                }
-            ],
-            "max_tokens": 200,
-            "temperature": 0.3,
-            "top_p": 0.9
-        }
+   try:
+       system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
+       formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
+       
+       payload = {
+           "inputs": formatted_prompt,
+           "parameters": {
+               "max_new_tokens": 200,
+               "temperature": 0.3,
+               "top_p": 0.9,
+               "do_sample": True,
+               "return_full_text": False
+           }
+       }
 
-        headers = {
-            "Authorization": f"Bearer {HF_TOKEN_LLAMA}",
-            "Content-Type": "application/json"
-        }
+       headers = {"Authorization": f"Bearer {HF_TOKEN_LLAMA}"}
+       
+       logger.info(f"Calling baseline Llama2-13B model: meta-llama/Llama-2-13b-chat-hf")
+       logger.info(f"Payload: {payload}")
 
-        logger.info("Calling Llama2-13B chat model: meta-llama/Llama-2-13b-chat-hf")
-        response = requests.post(
-            "https://api-inference.huggingface.co/chat/completions",
-            headers=headers,
-            json=payload,
-            timeout=60
-        )
-        response.raise_for_status()
-        result = response.json()
-        return result["choices"][0]["message"]["content"].strip()
+       response = requests.post(
+           "https://api-inference.huggingface.co/models/meta-llama/Llama-2-13b-chat-hf",
+           headers=headers,
+           json=payload,
+           timeout=60
+       )
+       
+       logger.info(f"Response status: {response.status_code}")
+       logger.info(f"Response text: {response.text[:500]}")
+       
+       response.raise_for_status()
 
-    except Exception as e:
-        logger.error(f"Error in call_model_b: {str(e)}")
-        return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+       result = response.json()
+       logger.info(f"Parsed result: {result}")
+       
+       if isinstance(result, list) and len(result) > 0 and "generated_text" in result[0]:
+           return result[0]["generated_text"].strip()
+       elif isinstance(result, dict) and "generated_text" in result:
+           return result["generated_text"].strip()
+       else:
+           return str(result)
 
-
-
-
-
+   except requests.exceptions.HTTPError as e:
+       logger.error(f"HTTP Error: {str(e)}")
+       if hasattr(e, 'response') and e.response is not None:
+           logger.error(f"Response content: {e.response.text}")
+       return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
+   except Exception as e:
+       logger.error(f"Error: {str(e)}")
+       return f"Sorry, I couldn't generate a response from Llama model: {str(e)}"
 
 
 
