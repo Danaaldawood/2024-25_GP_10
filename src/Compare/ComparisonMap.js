@@ -19,7 +19,7 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
   const customGreenColors = ["#edf8e9", "#095c474f", "#12c697"];
 
   const getRegionColor = (value) => {
-    if (value === undefined || value === null || value === 0) return "#d3d3d3";
+    if (value === undefined || value === null || value === 0) return "#095c474f";
     const greenScale = d3
       .scaleLinear()
       .domain([0, 15, 100])
