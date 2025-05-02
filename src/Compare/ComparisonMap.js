@@ -1,4 +1,3 @@
-
 // --- Imports ---
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
@@ -17,19 +16,15 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
     Chinese: [156, 344, 446, 158, 702],
   };
 
-  const getRegionColor = (value) => {
-    if (value === undefined || value === null) return "#e0e0e0";
-    
-    // Use gray for 0% similarity, and orange gradient for 1-100%
-    if (value === 0) {
-      return "#095c474f"; // Gray for 0% similarity
-    }
+  const customGreenColors = ["#edf8e9", "#095c474f", "#12c697"];
 
-    const orangeScale = d3
+  const getRegionColor = (value) => {
+    if (value === undefined || value === null || value === 0) return "#d3d3d3";
+    const greenScale = d3
       .scaleLinear()
-      .domain([0, 100]) // Start from 1% to 100% for the orange gradient
-      .range(["#095c474f", "#12c697 "]); // Light orange to dark orange
-    return orangeScale(value);
+      .domain([0, 15, 100])
+      .range(customGreenColors);
+    return greenScale(value);
   };
 
   useEffect(() => {
@@ -47,7 +42,6 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("width", "100%")
           .attr("height", "100%");
 
-        // Define gradient for background
         const defs = svg.append("defs");
         const gradient = defs
           .append("linearGradient")
@@ -56,30 +50,13 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           .attr("y1", "0%")
           .attr("x2", "100%")
           .attr("y2", "100%");
-          
-        gradient
-          .append("stop")
-          .attr("offset", "0%")
-          .attr("stop-color", "#f5f7fa");
-          
-        gradient
-          .append("stop")
-          .attr("offset", "100%")
-          .attr("stop-color", "#e4e8eb");
 
-        // Apply gradient background instead of white
-        svg
-          .append("rect")
-          .attr("width", width)
-          .attr("height", height)
-          .attr("fill", "url(#background-gradient)");
+        gradient.append("stop").attr("offset", "0%").attr("stop-color", "#f5f7fa");
+        gradient.append("stop").attr("offset", "100%").attr("stop-color", "#e4e8eb");
 
-        const projection = d3
-          .geoMercator()
-          .scale(140)
-          .center([0, 30])
-          .translate([width / 2, height / 2]);
+        svg.append("rect").attr("width", width).attr("height", height).attr("fill", "url(#background-gradient)");
 
+        const projection = d3.geoMercator().scale(140).center([0, 30]).translate([width / 2, height / 2]);
         const path = d3.geoPath().projection(projection);
 
         const response = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
@@ -165,19 +142,22 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
           const legendY = height - 70;
 
           const gradients = svg.append("defs");
-
           // Define gradients for the legend: gray for 0%, then orange for 1-100%
-          gradients
+          const linearGradient = gradients
             .append("linearGradient")
-            .attr("id", "legend-gradient-orange")
+            .attr("id", "legend-gradient-green")
             .attr("x1", "0%")
             .attr("x2", "100%")
+            .attr("y1", "0%")
+            .attr("y2", "0%");
+
+            linearGradient
             .selectAll("stop")
             .data([
-              { offset: "0%", color: "#095c474f" }, // Gray for 0%
-              { offset: "10%", color: "#095c474f" }, // Transition to light orange
-              { offset: "100%", color: "#12c697" } // Dark orange for 100%
+              { offset: "0%", color: "#095c474f" },
+              { offset: "100%", color: "#12c697" },
             ])
+          
             .enter()
             .append("stop")
             .attr("offset", d => d.offset)
@@ -191,27 +171,44 @@ function ComparisonMap({ baseRegion = "", similarities = {}, topic = "" }) {
             .append("rect")
             .attr("width", legendWidth)
             .attr("height", legendHeight)
-            .style("fill", "url(#legend-gradient-orange)");
-
-          const legendScale = d3.scaleLinear()
-            .domain([0, 100])
-            .range([0, legendWidth]);
-
-          const legendAxis = d3.axisBottom(legendScale)
-            .tickValues([0, 15, 50, 100])
-            .tickFormat(d => `${d}%`);
+            .style("fill", "url(#legend-gradient-green)")
+            .style("stroke", "#000")
+            .style("stroke-width", 1);
 
           legend
-            .append("g")
-            .attr("transform", `translate(0, ${legendHeight})`)
-            .call(legendAxis);
+            .append("text")
+            .attr("x", 0)
+            .attr("y", legendHeight + 15)
+            .attr("text-anchor", "start")
+            .style("fill", "#722F57")
+            .style("font-size", "12px")
+            .text("0%");
+
+          legend
+            .append("text")
+            .attr("x", legendWidth * 0.15)
+            .attr("y", legendHeight + 15)
+            .attr("text-anchor", "middle")
+            .style("fill", "#722F57")
+            .style("font-size", "12px")
+            .text("15%");
+
+          legend
+            .append("text")
+            .attr("x", legendWidth)
+            .attr("y", legendHeight + 15)
+            .attr("text-anchor", "end")
+            .style("fill", "#722F57")
+            .style("font-size", "12px")
+            .text("100%");
 
           legend
             .append("text")
             .attr("x", legendWidth / 2)
-            .attr("y", legendHeight + 30)
+            .attr("y", -5)
             .attr("text-anchor", "middle")
-            .style("font-size", "12px")
+            .style("fill", "#722F57")
+            .style("font-size", "14px")
             .text(t('comparepage.similarity.title'));
         }
       } catch (error) {
