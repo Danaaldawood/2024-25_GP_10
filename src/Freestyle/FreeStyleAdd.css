@@ -1,93 +1,109 @@
 /* General Page Styling */
 .freestyle-add-page {
-  padding: 20px;
+  padding: 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .freestyle-page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  margin: 0;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 10;
+  background: white;
 }
 
+/* Page content container */
+.column-table-container {
+  margin: 0;
+  padding: 15px;
+  flex-grow: 1;
+  overflow-x: auto;
+}
+
+
+
+/* Header Styles */
 .freestyle-back-btn {
-  background-color: #853c69; /* Burgundy */
-  color: white;
+  background: none;
   border: none;
-  padding: 12px 18px;
-  font-size: 16px;
-  font-weight: bold;
+  color: #722F57;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
 }
 
 .freestyle-back-btn:hover {
-  background-color: #722F57; /* Darker Burgundy */
-  transform: translateY(-2px); /* Button hover effect */
+  color: #c0c0c0;
 }
 
-.freestyle-back-btn:active {
-  transform: translateY(0); /* Button press effect */
+.freestyle-back-icon {
+  margin-right: 8px;
+  font-size: 22px;
+}
+
+.freestyle-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.header-title {
+  display: block; 
+  font-size: 28px;
+  font-weight: bold;
+  color: #722F57;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid #722F57;
+  padding-bottom: 5px;
+  margin: 10px auto;
+  width: fit-content;
+  text-align: center;
 }
 
 /* Title Style */
 .freestyle-title {
-  font-size: 32px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 600;
   color: #333;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px 0;
   letter-spacing: 1px;
-  position: relative;
-  display: inline-block;
-  animation: fadeInDown 0.8s ease;
-}
-
-.freestyle-title::after {
-  content: '';
-  width: 60px;
-  height: 3px;
-  border-bottom: 4px solid #722F57;
-  display: block;
-  margin: 12px auto 0;
-  border-radius: 2px;
-}
-
-/* Optional: Simple Fade-in Animation */
-@keyframes fadeIn {
-  0% {opacity: 0; transform: translateY(20px);}
-  100% {opacity: 1; transform: translateY(0);}
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Table Row Styling */
-.column-table-container {
-  margin-top: 30px;
-  padding: 15px;
-}
-
 .column-table {
   border-collapse: collapse;
   width: 90%;
   min-width: 800px;
-  margin: 0 auto 60px auto;
+  margin: 0 auto 30px auto;
   background: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added shadow for a modern look */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .column-table th,
@@ -126,7 +142,7 @@
   white-space: pre-line;
 }
 
-/* Select Box Styling */
+
 .table-select {
   width: 100%;
   padding: 10px;
@@ -138,7 +154,7 @@
 }
 
 .table-select:focus {
-  border-color: #04752f; /* Burgundy focus border */
+  border-color: #04752f;
 }
 
 /* Icon Button Styling */
@@ -150,15 +166,15 @@
 }
 
 .icon-btn.save-btn {
-  color: #28a745; /* Green for save */
+  color: #28a745;
 }
 
 .icon-btn.edit-btn {
-  color: #ffc107; /* Yellow for edit */
+  color: #ffc107;
 }
 
 .add-btn {
-  background-color: #2E8B57; /* Green button */
+  background-color: #2E8B57;
   color: white;
   border: none;
   padding: 12px 18px;
@@ -170,12 +186,12 @@
 }
 
 .add-btn:hover {
-  background-color: #257241; /* Darker Green on hover */
-  transform: translateY(-2px); /* Button hover effect */
+  background-color: #257241;
+  transform: translateY(-2px);
 }
 
 .add-btn:active {
-  transform: translateY(0); /* Button press effect */
+  transform: translateY(0);
 }
 
 .disabled-btn {
@@ -221,55 +237,54 @@
   color: #0056b3;
 }
 
-/* Page Content */
-.add-conversation-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #722F57;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-align: center;
+/* Model Info */
+.model-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.model-info h5 {
+  font-size: 16px;
+  color: #555;
   margin: 0;
-  padding-bottom: 5px;
-  width: 100%;
 }
 
-.add-conversation-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
-}
-
-.add-conversation-btn {
-  background-color: #2E8B57; /* Green */
+/* Back to Chat Button */
+.back-to-chat-btn {
+  background-color: #2E8B57;
   color: white;
   border: none;
   padding: 12px 18px;
-  font-size: 16px;
   border-radius: 6px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 10px 0;
 }
 
-.add-conversation-btn:hover {
-  background-color: #238d49; /* Darker Green */
+.back-to-chat-btn:hover {
+  background-color: #238d49;
 }
 
-.add-conversation-form {
-  margin-top: 30px;
+/* No Data Section */
+.no-data {
+  text-align: center;
+  margin: 50px auto;
+  padding: 0 20px;
 }
 
-.success-icon {
-  font-size: 48px;
-  color: #28a745;
-  margin-bottom: 15px;
+.no-data p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .column-table th, .column-table td {
-    padding: 12px;
+    padding: 8px;
     font-size: 12px;
   }
 
@@ -279,13 +294,41 @@
 
   .table-select {
     font-size: 12px;
+    padding: 8px;
   }
 
   .freestyle-title {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .model-info {
-    font-size: 18px;
+    font-size: 14px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .header-title {
+    font-size: 22px;
   }
 }
+
+/* RTL Support */
+[dir="rtl"] .freestyle-back-btn .freestyle-back-icon {
+  transform: rotate(180deg);
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+[dir="rtl"] .column-table th,
+[dir="rtl"] .column-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .edit-container {
+  align-items: flex-end;
+}
+
+[dir="rtl"] .character-counter {
+  text-align: right;
+}
+

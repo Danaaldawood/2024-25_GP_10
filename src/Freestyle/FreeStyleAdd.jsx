@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaEdit, FaSave, FaPlus } from 'react-icons/fa';
+import { FaArrowLeft, FaEdit, FaSave, FaPlus, FaCheck } from 'react-icons/fa';
 import "./FreeStyleAdd.css";
 import { ref, onValue, push, update, get, set } from "firebase/database";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { realtimeDb, auth, db } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
-import { FaCheck } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from "react-helmet";
+import { Footer } from '../Footer/Footer'; 
 
 const FreeStyleAdd = () => {
   const navigate = useNavigate();
@@ -31,6 +29,10 @@ const FreeStyleAdd = () => {
   const [translationData, setTranslationData] = useState(null);
   const [editableQuestion, setEditableQuestion] = useState("");
   const [editableAnswer, setEditableAnswer] = useState("");
+
+  const { t, i18n } = useTranslation('FreeStyleAdd');
+  const isRTL = i18n.dir() === 'rtl';
+  const MAX_EDIT_LENGTH = 50;  
 
   function handlePopupError(message) {
     const popupBackground = document.createElement('div');
@@ -54,7 +56,7 @@ const FreeStyleAdd = () => {
     popup.style.fontFamily = 'Arial, sans-serif';
     
     const title = document.createElement('h2');
-    title.innerText = t(('Warning!'));
+    title.innerText = t('Warning!');
     title.style.marginBottom = '20px';
     title.style.color = 'crimson';
     
@@ -154,11 +156,9 @@ const FreeStyleAdd = () => {
         databasePath, evaluationEntry, newEntryKey, reason, topicLang, reasonLang, regionLan
       } = translationData;
   
-      // Use edited translations from the popup
       const finalQuestion = editableQuestion || translationData.translatedQuestion;
       const finalAnswer = editableAnswer || translationData.translatedAnswer;
   
-      // Update the newEntry with edited translations
       const newEntry = {
         region_name: userRegion,
         region_lan: regionLan,
@@ -181,18 +181,16 @@ const FreeStyleAdd = () => {
   
       console.log("Saving entry with translations:", {
         path: databasePath,
-        index: newEntryKey, // This should now be a sequential index
+        index: newEntryKey,
         en_question: englishQuestion,
         question: finalQuestion,
         en_values: [englishAnswer],
         values: [finalAnswer]
       });
   
-      // Save to Firebase using array index
       const evaluationRef = ref(realtimeDb, "model_evaluation");
       await push(evaluationRef, evaluationEntry);
   
-      // Always use numeric index (newEntryKey should be a number as string)
       const entryRef = ref(realtimeDb, `${databasePath}/${newEntryKey}`);
       await set(entryRef, newEntry);
   
@@ -215,10 +213,6 @@ const FreeStyleAdd = () => {
     setEditableQuestion("");
     setEditableAnswer("");
   };
-
-  const { t, i18n } = useTranslation('FreeStyleAdd');
-  const isRTL = i18n.dir() === 'rtl';
-  const MAX_EDIT_LENGTH = 50;  
 
   useEffect(() => {
     const storedData = localStorage.getItem("lastChatMessages");
@@ -349,7 +343,7 @@ const FreeStyleAdd = () => {
   }, []);
   
   const detectLanguage = (text) => {
-    if (!text || text.trim().length < 2) return 'en'; // Fallback for short or empty text
+    if (!text || text.trim().length < 2) return 'en';
     const arabicPattern = /[\u0600-\u06FF]/;
     const chinesePattern = /[\u4e00-\u9fa5]/;
     
@@ -362,7 +356,7 @@ const FreeStyleAdd = () => {
     try {
       if (!text || text.trim().length < 2) {
         console.log("Skipping translation for short text:", text);
-        return text; // Skip translation for very short texts
+        return text;
       }
 
       const detectedLanguage = detectLanguage(text);
@@ -378,7 +372,7 @@ const FreeStyleAdd = () => {
 
       console.log("Translating:", { text, source: detectedLanguage, target: targetLanguage });
       
-      const API_KEY = process.env.REACT_APP_LIBRETRANSLATE_API_KEY || "cde32ed0-56f2-499b-9f62-5a520be921f3"; // Replace with your actual key
+      const API_KEY = process.env.REACT_APP_LIBRETRANSLATE_API_KEY || "cde32ed0-56f2-499b-9f62-5a520be921f3";
       const response = await fetch('https://libretranslate.com/translate', {
         method: 'POST',
         headers: {
@@ -417,10 +411,31 @@ const FreeStyleAdd = () => {
   const handleAddToDB = async (index) => {
     if (!chatData || !chatData.conversations || !auth.currentUser) return;
     
-    // Check if the conversation has been edited
-    if (!editedConversations[index]) {
-      handlePopupError(t("You must edit the answer before adding"));
-      return;
+    const conversation = chatData.conversations[index];
+    let originalAnswer;
+    
+    if (chatData.selectedModel === "Model A") {
+      originalAnswer = editing.model === 'A' && editing.index === index ?
+                      editedAnswers.A :
+                      conversation.modelA;
+    } else if (chatData.selectedModel === "Model B") {
+      originalAnswer = editing.model === 'B' && editing.index === index ?
+                      editedAnswers.B :
+                      conversation.modelB;
+    } else {
+      originalAnswer = `${editing.model === 'A' && editing.index === index ? editedAnswers.A : conversation.modelA} | ${editing.model === 'B' && editing.index === index ? editedAnswers.B : conversation.modelB}`;
+    }
+    
+    if (originalAnswer && originalAnswer.length > 50) {
+      if (!editedConversations[index]) {
+        handlePopupError(t("You must edit the answer before adding"));
+        return;
+      }
+    } else {
+      setEditedConversations(prev => ({
+        ...prev,
+        [index]: true
+      }));
     }
     
     if (!userRegion || userRegion === "Unknown") {
@@ -428,7 +443,6 @@ const FreeStyleAdd = () => {
       return;
     }
     
-    // Validate that user has selected all required fields
     if (!selectedTopic || selectedTopic === "") {
       handlePopupError(t("Please select a topic before adding."));
       return;
@@ -444,22 +458,6 @@ const FreeStyleAdd = () => {
       return;
     }
     
-    const conversation = chatData.conversations[index];
-    const originalQuestion = conversation.question;
-    
-    let originalAnswer;
-    if (chatData.selectedModel === "Model A") {
-      originalAnswer = editing.model === 'A' && editing.index === index ?
-                      editedAnswers.A :
-                      conversation.modelA;
-    } else if (chatData.selectedModel === "Model B") {
-      originalAnswer = editing.model === 'B' && editing.index === index ?
-                      editedAnswers.B :
-                      conversation.modelB;
-    } else {
-      originalAnswer = `${editing.model === 'A' && editing.index === index ? editedAnswers.A : conversation.modelA} | ${editing.model === 'B' && editing.index === index ? editedAnswers.B : conversation.modelB}`;
-    }
-  
     if (
       !originalAnswer || 
       (editing.model === 'A' && editing.index === index && !editedAnswers.A) ||
@@ -475,54 +473,52 @@ const FreeStyleAdd = () => {
       let englishQuestion, translatedQuestion, questionTargetLang;
       let englishAnswer, translatedAnswer, answerTargetLang;
       
-      const questionLang = detectLanguage(originalQuestion);
+      const questionLang = detectLanguage(conversation.question);
       const answerLang = detectLanguage(originalAnswer);
   
-      // Always get the English version for database storage
-      englishQuestion = questionLang !== 'en' ? await translateText(originalQuestion, 'en') : originalQuestion;
+      englishQuestion = questionLang !== 'en' ? await translateText(conversation.question, 'en') : conversation.question;
       englishAnswer = answerLang !== 'en' ? await translateText(originalAnswer, 'en') : originalAnswer;
   
-      // Determine the target language for the translated fields
       if (regionPrefix === "Arab") {
         if (questionLang === 'ar') {
-          translatedQuestion = originalQuestion; // Keep original Arabic
+          translatedQuestion = conversation.question;
           questionTargetLang = 'ar';
         } else {
-          translatedQuestion = await translateText(originalQuestion, 'ar'); // Translate to Arabic
+          translatedQuestion = await translateText(conversation.question, 'ar');
           questionTargetLang = 'ar';
         }
         
         if (answerLang === 'ar') {
-          translatedAnswer = originalAnswer; // Keep original Arabic
+          translatedAnswer = originalAnswer;
           answerTargetLang = 'ar';
         } else {
-          translatedAnswer = await translateText(originalAnswer, 'ar'); // Translate to Arabic
+          translatedAnswer = await translateText(originalAnswer, 'ar');
           answerTargetLang = 'ar';
         }
       } else if (regionPrefix === "Chinese") {
         if (questionLang === 'zh') {
-          translatedQuestion = originalQuestion; // Keep original Chinese
+          translatedQuestion = conversation.question;
           questionTargetLang = 'zh';
         } else {
-          translatedQuestion = await translateText(originalQuestion, 'zh'); // Translate to Chinese
+          translatedQuestion = await translateText(conversation.question, 'zh');
           questionTargetLang = 'zh';
         }
         
         if (answerLang === 'zh') {
-          translatedAnswer = originalAnswer; // Keep original Chinese
+          translatedAnswer = originalAnswer;
           answerTargetLang = 'zh';
         } else {
-          translatedAnswer = await translateText(originalAnswer, 'zh'); // Translate to Chinese
+          translatedAnswer = await translateText(originalAnswer, 'zh');
           answerTargetLang = 'zh';
         }
       } else {
-        translatedQuestion = originalQuestion; // No translation needed
+        translatedQuestion = conversation.question;
         questionTargetLang = 'en';
         translatedAnswer = originalAnswer;
         answerTargetLang = 'en';
       }
       
-      if (translatedQuestion === originalQuestion && translatedAnswer === originalAnswer && regionPrefix !== "Western") {
+      if (translatedQuestion === conversation.question && translatedAnswer === originalAnswer && regionPrefix !== "Western") {
         console.warn("Translation failed, using original text.");
         handlePopupError(t("Translation service is unavailable. Translations can be edited in the next step."));
       }
@@ -538,7 +534,6 @@ const FreeStyleAdd = () => {
         databasePath = "WesternC/Details";
       }
       
-      // Fetch existing data to check for duplicates and determine structure
       const detailsRef = ref(realtimeDb, databasePath);
       const detailsSnapshot = await get(detailsRef);
       
@@ -549,15 +544,12 @@ const FreeStyleAdd = () => {
       if (detailsSnapshot.exists()) {
         const details = detailsSnapshot.val();
         
-        // If it's an object, convert to array for checking
         if (Array.isArray(details)) {
           existingData = details;
           nextIndex = details.length;
         } else {
-          // If it's an object, convert to array and also find the highest numeric key + 1
           existingData = Object.values(details);
           
-          // Find the highest numeric key to determine next index
           const numericKeys = Object.keys(details)
             .filter(key => !isNaN(parseInt(key)))
             .map(key => parseInt(key));
@@ -565,7 +557,6 @@ const FreeStyleAdd = () => {
           nextIndex = numericKeys.length > 0 ? Math.max(...numericKeys) + 1 : 0;
         }
         
-        // Check for duplicates in the converted array
         for (const entry of existingData) {
           if (
             entry && 
@@ -655,7 +646,6 @@ const FreeStyleAdd = () => {
       const topicLang = regionPrefix === "Arab" ? topicTranslations.ar[selectedTopic] :
                        regionPrefix === "Chinese" ? topicTranslations.zh[selectedTopic] : selectedTopic;
       
-      // Create the new entry
       const newEntry = {
         region_name: userRegion,
         region_lan: regionLan,
@@ -684,11 +674,10 @@ const FreeStyleAdd = () => {
         values: [translatedAnswer]
       });
       
-      // Save translations data for the popup
       setTranslationData({
         index,
         regionPrefix,
-        originalQuestion,
+        originalQuestion: conversation.question,
         originalAnswer,
         englishQuestion,
         englishAnswer,
@@ -698,7 +687,7 @@ const FreeStyleAdd = () => {
         answerTargetLang,
         databasePath,
         evaluationEntry,
-        newEntryKey: nextIndex.toString(), // Use sequential index instead of timestamp
+        newEntryKey: nextIndex.toString(),
         reason,
         topicLang,
         reasonLang,
@@ -716,47 +705,52 @@ const FreeStyleAdd = () => {
   
   if (!chatData || !chatData.conversations) {
     return (
-      <div className="freestyle-add-page">
+      <div className="freestyle-add-page" dir={isRTL ? "rtl" : "ltr"}>
         <Helmet>
           <title>{t("FreeStyleAdd")}</title>
-          <meta name="description" />
+          <meta name="description" content="Add comparison results for model conversations" />
         </Helmet>
         <div className="freestyle-page-header">
           <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
             <FaArrowLeft className="freestyle-back-icon" />
           </button>
         </div>
-        <h2 className="freestyle-title">Add Comparison Results</h2>
+        <h1 className="header-title">{t("Add Conversation")}</h1>
         <div className="no-data">
-          <p>No chat data found. Please compare models first.</p>
+          <p>{t("No chat data found. Please compare models first.")}</p>
           <button 
             className="back-to-chat-btn"
             onClick={() => navigate("/freestyle")}
           >
-            Go to Chat Page
+            {t("Go to Chat Page")}
           </button>
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="freestyle-add-page">
+    <div className="freestyle-add-page" dir={isRTL ? "rtl" : "ltr"}>
+      <Helmet>
+        <title>{t("FreeStyleAdd")}</title>
+        <meta name="description" content="Add comparison results for model conversations" />
+      </Helmet>
       <div className="freestyle-page-header">
         <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
       </div>
-      <h1 className="add-conversation-title">{t("Add Conversation")}</h1>
-      <h2 className="freestyle-title">
-        {t("YourVoting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
-      </h2>
-
-      <div className="model-info">
-        <h5>{t("Model A: Mistral-7B")}</h5>
-        <h5>{t("Model B: Llama-2-7B")}</h5>
+      <div className="freestyle-header">
+        <h1 className="header-title">{t("Add Conversation")}</h1>
+        <h2 className="freestyle-title">
+          {t("YourVoting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
+        </h2>
+        <div className="model-info">
+          <h5>{t("Model A: Mistral-7B")}</h5>
+          <h5>{t("Model B: Llama-2-7B")}</h5>
+        </div>
       </div>
-
       <div className="column-table-container">
         <table className="column-table">
           <thead>
@@ -775,7 +769,6 @@ const FreeStyleAdd = () => {
                 <td className="question-cell">
                   <div className="content-wrapper">{conversation.question}</div>
                 </td>
-
                 <td className="answer-cell">
                   {(chatData.selectedModel === "Model A" || chatData.selectedModel === "Both") && (
                     <>
@@ -827,7 +820,6 @@ const FreeStyleAdd = () => {
                       </div>
                     </>
                   )}
-
                   {(chatData.selectedModel === "Model B" || chatData.selectedModel === "Both") && (
                     <>
                       <div className="model-label">{t("Model B (Llama-2-7B)")}</div>
@@ -879,7 +871,6 @@ const FreeStyleAdd = () => {
                     </>
                   )}
                 </td>
-
                 <td className="topic-cell">
                   <select 
                     className="table-select topic-select"
@@ -898,7 +889,6 @@ const FreeStyleAdd = () => {
                     )}
                   </select>
                 </td>
-
                 <td className="eval-cell">
                   <select 
                     className="table-select evaluation-select"
@@ -912,7 +902,6 @@ const FreeStyleAdd = () => {
                     <option value="None">{t("None")}</option>
                   </select>
                 </td>
-
                 <td className="reason-cell">
                   <select
                     className="table-select reason-select"
@@ -924,7 +913,6 @@ const FreeStyleAdd = () => {
                     <option value="subculture">{t("Subculture")}</option>
                   </select>
                 </td>
-
                 <td className="add-cell">
                   <button
                     className={`add-btn ${disabledButtons[index] ? 'disabled-btn' : ''}`}
@@ -949,130 +937,134 @@ const FreeStyleAdd = () => {
         <div className="popup-overlay">
           <div className="popup-content">
             <p>{popupMessage}</p>
-            <button onClick={() => setShowPopup(false)}>OK</button>
+            <button onClick={() => setShowPopup(false)}>{t("OK")}</button>
           </div>
         </div>
       )}
-
       {showTranslationPopup && translationData && (
-        <div className="popup-overlay" style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0,0,0,0.3)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000
+  <div className="popup-overlay" style={{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000
+  }}>
+    <div className="popup-content" style={{
+      backgroundColor: '#fff',
+      padding: '20px',
+      borderRadius: '10px',
+      width: '600px',
+      maxWidth: '90%',
+      textAlign: 'left',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+    }}>
+      <h2 style={{ color: '#333', marginBottom: '20px' }}>{t("Review Translations")}</h2>
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+          {t("Original Question")}
+        </label>
+        <div style={{
+          padding: '10px',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          backgroundColor: '#f9f9f9'
         }}>
-          <div className="popup-content" style={{
-            backgroundColor: '#fff',
-            padding: '20px',
-            borderRadius: '10px',
-            width: '600px',
-            maxWidth: '90%',
-            textAlign: 'left',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
-          }}>
-            <h2 style={{ color: '#333', marginBottom: '20px' }}>{t("Review Translations")}</h2>
-            
-            <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-                {t("Original Question")}
-              </label>
-              <div style={{
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                backgroundColor: '#f9f9f9'
-              }}>
-                {translationData.originalQuestion}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-                {t("Translated Question")} ({translationData.questionTargetLang === 'ar' ? 'Arabic' : translationData.questionTargetLang === 'zh' ? 'Chinese' : 'English'})
-              </label>
-              <textarea
-                value={editableQuestion}
-                onChange={(e) => setEditableQuestion(e.target.value)}
-                style={{
-                  width: '100%',
-                  minHeight: '80px',
-                  padding: '10px',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  resize: 'vertical'
-                }}
-              />
-            </div>
-
-            <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-                {t("Original Answer")}
-              </label>
-              <div style={{
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                backgroundColor: '#f9f9f9'
-              }}>
-                {translationData.originalAnswer}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-                {t("Translated Answer")} ({translationData.answerTargetLang === 'ar' ? 'Arabic' : translationData.answerTargetLang === 'zh' ? 'Chinese' : 'English'})
-              </label>
-              <textarea
-                value={editableAnswer}
-                onChange={(e) => setEditableAnswer(e.target.value)}
-                style={{
-                  width: '100%',
-                  minHeight: '80px',
-                  padding: '10px',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  resize: 'vertical'
-                }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-              <button
-                onClick={handleTranslationCancel}
-                style={{
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '4px',
-                  backgroundColor: '#dc3545',
-                  color: 'white',
-                  cursor: 'pointer'
-                }}
-              >
-                {t("Cancel")}
-              </button>
-              <button
-                onClick={handleTranslationConfirm}
-                style={{
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '4px',
-                  backgroundColor: '#28a745',
-                  color: 'white',
-                  cursor: 'pointer'
-                }}
-              >
-                {t("Confirm")}
-              </button>
-            </div>
-          </div>
+          {translationData.originalQuestion}
         </div>
-      )}
+      </div>
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+          {t("Translated Question")} ({translationData.questionTargetLang === 'ar' ? 'Arabic' : translationData.questionTargetLang === 'zh' ? 'Chinese' : 'English'})
+        </label>
+        <textarea
+          value={editableQuestion}
+          onChange={(e) => setEditableQuestion(e.target.value)}
+          style={{
+            width: '100%',
+            minHeight: '80px',
+            padding: '10px',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            resize: 'vertical'
+          }}
+        />
+      </div>
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+          {t("Original Answer")}
+        </label>
+        <div style={{
+          padding: '10px',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          backgroundColor: '#f9f9f9'
+        }}>
+          {translationData.originalAnswer}
+        </div>
+      </div>
+      <div style={{ marginBottom: '20px' }}>
+        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+          {t("Translated Answer")} ({translationData.answerTargetLang === 'ar' ? 'Arabic' : translationData.answerTargetLang === 'zh' ? 'Chinese' : 'English'})
+        </label>
+        <textarea
+          value={editableAnswer}
+          onChange={(e) => setEditableAnswer(e.target.value)}
+          style={{
+            width: '100%',
+            minHeight: '80px',
+            padding: '10px',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            resize: 'vertical'
+          }}
+        />
+      </div>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        gap: '20px',
+        marginTop: '25px'
+      }}>
+        <button
+          onClick={handleTranslationCancel}
+          style={{
+            padding: '10px 25px',
+            border: 'none',
+            borderRadius: '4px',
+            backgroundColor: '#dc3545',
+            color: 'white',
+            cursor: 'pointer',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }}
+        >
+          {t("Cancel")}
+        </button>
+        <button
+          onClick={handleTranslationConfirm}
+          style={{
+            padding: '10px 25px',
+            border: 'none',
+            borderRadius: '4px',
+            backgroundColor: '#28a745',
+            color: 'white',
+            cursor: 'pointer',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }}
+        >
+          {t("Confirm")}
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+      <Footer />
     </div>
   );
 };
