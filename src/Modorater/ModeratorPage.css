@@ -22,16 +22,17 @@
 .header-banner {
   width: 100%;
   text-align: center;
-  color: white;
-  padding: 20px 0;
-  margin: 20px 0 10px;
+  color: #0c6650;
+  padding: 20px;
+  margin: 20px 0;
   border-radius: 10px;
+  background: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header-banner h1 {
-  color: #722F57;
   margin: 0;
-  font-size: 1.75rem;
+  font-size: 28px;
   font-weight: bold;
 }
 
@@ -67,7 +68,7 @@
 .pagename {
   text-align: center;
   font-weight: bold;
-  color: #10a37f;
+  color: #0c6650;
   margin: 20px 0;
 }
 

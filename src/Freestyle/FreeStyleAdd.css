@@ -8,6 +8,22 @@
   flex-direction: column;
   margin: 0;
 }
+.Done-button {
+  position: fixed; /* أو absolute */
+  top: 180px;       /* المسافة من الأعلى (يمكنك تغييرها) */
+  right: 20px;     /* محاذاة لليمين */
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+
+.Done-button:hover {
+  background-color: #45a049; /* تغيير اللون عند التمرير */
+}
 
 body {
   margin: 0;
@@ -163,6 +179,7 @@ body {
   border: none;
   cursor: pointer;
   padding: 6px;
+  font-size: 20px;
 }
 
 .icon-btn.save-btn {
@@ -183,6 +200,16 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;   
+  height: 40px;  
+  padding: 5px 10px;  
+  gap: 10px;  
+}
+.add-icon {
+  font-size: 20px;   
 }
 
 .add-btn:hover {
@@ -197,7 +224,7 @@ body {
 .disabled-btn {
   background-color: #4caf50;
   cursor: not-allowed;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 /* Edit Mode Styling */

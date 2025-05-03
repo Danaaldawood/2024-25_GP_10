@@ -262,10 +262,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-width: 120px;
+  min-width: 120px; 
+  gap: 0.5rem;
+}
+.send-content {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
+.rtl .send-icon {
+  transform: rotateY(180deg);
+}
 .freestyle-send-button:hover:not(:disabled) {
   background: linear-gradient(135deg, #9a4579 0%, #853c69 100%);
 }

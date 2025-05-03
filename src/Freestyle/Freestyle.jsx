@@ -21,7 +21,7 @@ export const ConversationLayout = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [messagesA, setMessagesA] = useState([{ type: "ai", content: t("modelAA") }]);
   const [messagesB, setMessagesB] = useState([{ type: "ai", content: t("modelBB") }]);
-  const sendLimit = 1; // Updated to match first Freestyle.jsx
+  const sendLimit = 7; // Updated to match first Freestyle.jsx
   const [sendCount, setSendCount] = useState(0);
   const [canGiveFeedback, setCanGiveFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -253,17 +253,20 @@ export const ConversationLayout = () => {
             disabled={sendCount >= sendLimit || isLoading}
           />
           <button
-            className="freestyle-send-button"
-            dir={isRTL ? "rtl" : "ltr"}
-            onClick={handleSendMessage}
-            disabled={sendCount >= sendLimit || isLoading}
-          >
-            {isLoading ? t('sending') : (
-              <>
-                {t('send')} <FaPaperPlane className="send-icon" />
-              </>
-            )}
-          </button>
+  className={`freestyle-send-button ${isRTL ? 'rtl' : 'ltr'}`}
+  dir={isRTL ? "rtl" : "ltr"}
+  onClick={handleSendMessage}
+  disabled={sendCount >= sendLimit || isLoading}
+>
+  {isLoading ? t('sending') : (
+    <span className="send-content">
+      {isRTL ? <FaPaperPlane className="send-icon" /> : null}
+      {t('send')}
+      {!isRTL ? <FaPaperPlane className="send-icon" /> : null}
+    </span>
+  )}
+</button>
+
         </div>
       </div>
 

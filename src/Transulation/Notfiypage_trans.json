@@ -23,7 +23,7 @@
           "Sport": "Sport",
           "Holidays/Celebration/Leisure": "Holiday",
           "Family": "Family",
-          "Greeting": "Greeting"
+          "greeting": "Greeting"
         }
       }
     },

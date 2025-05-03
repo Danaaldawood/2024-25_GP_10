@@ -750,13 +750,17 @@ const FreeStyleAdd = () => {
           <h5>{t("Model A: Mistral-7B")}</h5>
           <h5>{t("Model B: Llama-2-7B")}</h5>
         </div>
-      </div>
+
+        <button className="Done-button" onClick={() => navigate('/LensLeaderBoard')}>
+      Done
+    </button>
+       </div>
       <div className="column-table-container">
         <table className="column-table">
           <thead>
             <tr>
-              <th className="question-col">{t("Question")}</th>
-              <th className="answer-col">{t("Answer")}</th>
+              <th className="question-col">{t("Attribute")}</th>
+              <th className="answer-col">{t("Value")}</th>
               <th className="topic-col">{t("Topic")}</th>
               <th className="eval-col">{t("Overall LLM Evaluation")}</th>
               <th className="reason-col">{t("Reason")}</th> 
@@ -914,18 +918,19 @@ const FreeStyleAdd = () => {
                   </select>
                 </td>
                 <td className="add-cell">
-                  <button
-                    className={`add-btn ${disabledButtons[index] ? 'disabled-btn' : ''}`}
-                    onClick={() => handleAddToDB(index)}
-                    disabled={disabledButtons[index]}
-                  >
-                    {disabledButtons[index] ? (
-                      <FaCheck className="add-icon" />
-                    ) : (
-                      <FaPlus className="add-icon" />
-                    )}
-                    {t("Add")}
-                  </button>
+                <button
+  className={`add-btn ${disabledButtons[index] ? 'disabled-btn' : ''}`}
+  onClick={() => handleAddToDB(index)}
+  disabled={disabledButtons[index]}
+>
+  {disabledButtons[index] ? (
+    <FaCheck className="add-icon" />
+  ) : (
+    <FaPlus className="add-icon" />
+  )}
+  <span>{t("Add")}</span>
+</button>
+
                 </td>
               </tr>
             ))}
