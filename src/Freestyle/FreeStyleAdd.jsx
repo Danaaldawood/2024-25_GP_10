@@ -8,10 +8,10 @@ import { realtimeDb, auth, db } from '../Register/firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import { FaCheck } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { Footer } from "../Footer/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from "react-helmet";
+
 const FreeStyleAdd = () => {
   const navigate = useNavigate();
   const [chatData, setChatData] = useState(null);
@@ -26,11 +26,13 @@ const FreeStyleAdd = () => {
   const [disabledButtons, setDisabledButtons] = useState({});
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
-  // New state to track which answers have been edited
   const [editedConversations, setEditedConversations] = useState({});
- 
+  const [showTranslationPopup, setShowTranslationPopup] = useState(false);
+  const [translationData, setTranslationData] = useState(null);
+  const [editableQuestion, setEditableQuestion] = useState("");
+  const [editableAnswer, setEditableAnswer] = useState("");
+
   function handlePopupError(message) {
-    // Create the popup background
     const popupBackground = document.createElement('div');
     popupBackground.style.position = 'fixed';
     popupBackground.style.top = '0';
@@ -43,7 +45,6 @@ const FreeStyleAdd = () => {
     popupBackground.style.justifyContent = 'center';
     popupBackground.style.zIndex = '1000';
   
-    // Create the popup container
     const popup = document.createElement('div');
     popup.style.backgroundColor = '#fff';
     popup.style.padding = '30px';
@@ -52,20 +53,17 @@ const FreeStyleAdd = () => {
     popup.style.color = 'red';
     popup.style.fontFamily = 'Arial, sans-serif';
     
-    // Error title
     const title = document.createElement('h2');
     title.innerText = t(('Warning!'));
     title.style.marginBottom = '20px';
     title.style.color = 'crimson';
     
-    // Error message
     const messageText = document.createElement('p');
     messageText.innerText = message;
     messageText.style.marginBottom = '20px';
     messageText.style.fontSize = '18px';
     messageText.style.color = 'crimson';
 
-    // OK button
     const okButton = document.createElement('button');
     okButton.innerText = t('OK');
     okButton.style.backgroundColor = 'crimson';
@@ -114,7 +112,6 @@ const FreeStyleAdd = () => {
     popup.style.transform = 'translate(-50%, -50%)';   
     popup.style.zIndex = '1000';
   
-    // Create SVG icon (circle with check mark)
     const icon = document.createElement('div');
     icon.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#28a745">
@@ -124,13 +121,11 @@ const FreeStyleAdd = () => {
     `;
     icon.style.marginBottom = '15px';   
   
-    // Success title
     const title = document.createElement('h2');
     title.innerText = 'Success';
     title.style.marginBottom = '15px';
     title.style.color = '#28a745';   
   
-    // Success message
     const messageText = document.createElement('p');
     messageText.innerText = message;
     messageText.style.marginBottom = '20px';
@@ -149,13 +144,83 @@ const FreeStyleAdd = () => {
       document.body.removeChild(popupBackground);
     }, 3000);
   }
+
+  const handleTranslationConfirm = async () => {
+    if (!translationData) return;
   
+    try {
+      const {
+        index, regionPrefix, originalQuestion, originalAnswer, englishQuestion, englishAnswer,
+        databasePath, evaluationEntry, newEntryKey, reason, topicLang, reasonLang, regionLan
+      } = translationData;
+  
+      // Use edited translations from the popup
+      const finalQuestion = editableQuestion || translationData.translatedQuestion;
+      const finalAnswer = editableAnswer || translationData.translatedAnswer;
+  
+      // Update the newEntry with edited translations
+      const newEntry = {
+        region_name: userRegion,
+        region_lan: regionLan,
+        region_id: `${regionPrefix}_0`,
+        cultur_val_ID: `${regionPrefix}-en-${Date.now().toString().slice(-2)}`,
+        en_question: englishQuestion,
+        question: finalQuestion,
+        topic: selectedTopic,
+        topic_lan: topicLang || selectedTopic,
+        annotations: [
+          {
+            en_values: [englishAnswer],
+            values: [finalAnswer],
+            reason: reason,
+            reason_lan: reasonLang || reason,
+            user_id: `user_${auth.currentUser.uid.slice(-4)}`,
+          },
+        ],
+      };
+  
+      console.log("Saving entry with translations:", {
+        path: databasePath,
+        index: newEntryKey, // This should now be a sequential index
+        en_question: englishQuestion,
+        question: finalQuestion,
+        en_values: [englishAnswer],
+        values: [finalAnswer]
+      });
+  
+      // Save to Firebase using array index
+      const evaluationRef = ref(realtimeDb, "model_evaluation");
+      await push(evaluationRef, evaluationEntry);
+  
+      // Always use numeric index (newEntryKey should be a number as string)
+      const entryRef = ref(realtimeDb, `${databasePath}/${newEntryKey}`);
+      await set(entryRef, newEntry);
+  
+      handlePopup(t("Entry added successfully!"));
+      setDisabledButtons(prev => ({ ...prev, [index]: true }));
+    } catch (error) {
+      console.error("Error saving data:", error);
+      handlePopupError(t("An error occurred. Please try again."));
+    } finally {
+      setShowTranslationPopup(false);
+      setTranslationData(null);
+      setEditableQuestion("");
+      setEditableAnswer("");
+    }
+  };
+
+  const handleTranslationCancel = () => {
+    setShowTranslationPopup(false);
+    setTranslationData(null);
+    setEditableQuestion("");
+    setEditableAnswer("");
+  };
 
   const { t, i18n } = useTranslation('FreeStyleAdd');
   const isRTL = i18n.dir() === 'rtl';
   const MAX_EDIT_LENGTH = 50;  
 
-   useEffect(() => {
+  useEffect(() => {
     const storedData = localStorage.getItem("lastChatMessages");
     if (storedData) {
       try {
@@ -174,7 +239,6 @@ const FreeStyleAdd = () => {
     setReasonValues((prev) => ({ ...prev, [rowIndex]: value }));
   };
 
-  // Fetch topics from Firebase database
   const fetchTopics = async () => {
     try {
       const rootRef = ref(realtimeDb);
@@ -215,14 +279,11 @@ const FreeStyleAdd = () => {
     }
   };
   
-  // Handle expansion of answer content (Model A / B)
   const toggleExpand = (key) => {
     setExpandedAnswers(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
-  // Start editing the model answer
   const handleEdit = (model, index) => {
-    // Get the current conversation
     const conversation = chatData.conversations[index];
     const answerToEdit = model === 'A' ? conversation.modelA : conversation.modelB;
     
@@ -233,7 +294,6 @@ const FreeStyleAdd = () => {
     }));
   };
   
-  // Handle the change in answer while editing
   const handleChange = (e, model) => {
     const value = e.target.value;
     const originalText = chatData.conversations[editing.index][model === 'A' ? 'modelA' : 'modelB'] || '';
@@ -243,12 +303,10 @@ const FreeStyleAdd = () => {
     }
   };
   
-  // Save the edited answer
   const handleSave = (model, index) => {
     const updatedChatData = { ...chatData };
     const modelKey = model === 'A' ? 'modelA' : 'modelB';
     
-    // Create a new conversations array with the updated answer
     updatedChatData.conversations = updatedChatData.conversations.map((convo, i) => {
       if (i === index) {
         return {
@@ -264,14 +322,12 @@ const FreeStyleAdd = () => {
     
     localStorage.setItem("lastChatMessages", JSON.stringify(updatedChatData));
     
-    // Mark this conversation as edited
     setEditedConversations(prev => ({
       ...prev,
       [index]: true
     }));
   };
 
-  // Retrieve user region from Firestore
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -281,7 +337,6 @@ const FreeStyleAdd = () => {
         if (userDocSnap.exists()) {
           setUserRegion(userDocSnap.data().region || "Unknown");
         } else {
-          // Try alternative collection name
           const altUserDocRef = doc(db, "Users", user.uid);
           const altUserDocSnap = await getDoc(altUserDocRef);
           
@@ -293,56 +348,69 @@ const FreeStyleAdd = () => {
     });
   }, []);
   
-  // Function to detect language
   const detectLanguage = (text) => {
-    // Simple language detection based on character ranges
+    if (!text || text.trim().length < 2) return 'en'; // Fallback for short or empty text
     const arabicPattern = /[\u0600-\u06FF]/;
     const chinesePattern = /[\u4e00-\u9fa5]/;
     
     if (arabicPattern.test(text)) return 'ar';
     if (chinesePattern.test(text)) return 'zh';
-    return 'en'; // Default to English
+    return 'en';
   };
 
-  // Function to translate text using OpenAI API
   const translateText = async (text, targetLanguage) => {
     try {
+      if (!text || text.trim().length < 2) {
+        console.log("Skipping translation for short text:", text);
+        return text; // Skip translation for very short texts
+      }
+
       const detectedLanguage = detectLanguage(text);
-      // If already in target language, return original
-      if (detectedLanguage === targetLanguage) return text;
+      if (detectedLanguage === targetLanguage) {
+        console.log("No translation needed, same language:", detectedLanguage);
+        return text;
+      }
+
+      if (text.length > 500) {
+        console.log("Text too long for translation, returning original");
+        return text;
+      }
+
+      console.log("Translating:", { text, source: detectedLanguage, target: targetLanguage });
       
-      const languageMap = {
-        'ar': 'Arabic',
-        'zh': 'Chinese',
-        'en': 'English'
-      };
-      
-      // Using the official OpenAI API endpoint
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const API_KEY = process.env.REACT_APP_LIBRETRANSLATE_API_KEY || "cde32ed0-56f2-499b-9f62-5a520be921f3"; // Replace with your actual key
+      const response = await fetch('https://libretranslate.com/translate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer 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'
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [
-            {"role": "system", "content": `You are a professional translator. Translate the following ${languageMap[detectedLanguage]} text to ${languageMap[targetLanguage]}. Provide only the translation, no explanations.`},
-            {"role": "user", "content": text}
-          ],
-          temperature: 0.3
+          q: text,
+          source: detectedLanguage,
+          target: targetLanguage,
+          format: 'text',
+          api_key: API_KEY
         })
       });
       
       if (!response.ok) {
-        throw new Error(`OpenAI API error: ${response.status}`);
+        const errorData = await response.json();
+        console.error("LibreTranslate API error response:", errorData);
+        throw new Error(`LibreTranslate API error: ${response.status}`);
       }
       
       const data = await response.json();
-      return data.choices[0].message.content.trim();
+      if (!data.translatedText) {
+        console.log("No translation returned, using original text");
+        return text;
+      }
+      
+      console.log("Translation result:", data);
+      return data.translatedText.trim();
     } catch (error) {
       console.error("Translation error:", error);
-      return text; // Return original text if translation fails
+      return text;
     }
   };
 
@@ -359,39 +427,41 @@ const FreeStyleAdd = () => {
       handlePopupError(t("User region unknown. Please complete your profile first."));
       return;
     }
-  // Validate that user has selected all required fields
-  if (!selectedTopic || selectedTopic === "") {
-    handlePopupError(t("Please select a topic before adding."));
-    return;
-  }
-
-  if (!selectedEvaluation || selectedEvaluation === "") {
-    handlePopupError(t("Please select an overall LLM evaluation before adding."));
-    return;
-  }
-
-  if (!reasonValues[index] || reasonValues[index] === "") {
-    handlePopupError(t("Please select a reason before adding."));
-    return;
-  }
-    const conversation = chatData.conversations[index];
-    const question = conversation.question;
     
-    let answerContent;
+    // Validate that user has selected all required fields
+    if (!selectedTopic || selectedTopic === "") {
+      handlePopupError(t("Please select a topic before adding."));
+      return;
+    }
+  
+    if (!selectedEvaluation || selectedEvaluation === "") {
+      handlePopupError(t("Please select an overall LLM evaluation before adding."));
+      return;
+    }
+  
+    if (!reasonValues[index] || reasonValues[index] === "") {
+      handlePopupError(t("Please select a reason before adding."));
+      return;
+    }
+    
+    const conversation = chatData.conversations[index];
+    const originalQuestion = conversation.question;
+    
+    let originalAnswer;
     if (chatData.selectedModel === "Model A") {
-      answerContent = editing.model === 'A' && editing.index === index ?
+      originalAnswer = editing.model === 'A' && editing.index === index ?
                       editedAnswers.A :
                       conversation.modelA;
     } else if (chatData.selectedModel === "Model B") {
-      answerContent = editing.model === 'B' && editing.index === index ?
+      originalAnswer = editing.model === 'B' && editing.index === index ?
                       editedAnswers.B :
                       conversation.modelB;
     } else {
-      answerContent = `${editing.model === 'A' && editing.index === index ? editedAnswers.A : conversation.modelA} | ${editing.model === 'B' && editing.index === index ? editedAnswers.B : conversation.modelB}`;
+      originalAnswer = `${editing.model === 'A' && editing.index === index ? editedAnswers.A : conversation.modelA} | ${editing.model === 'B' && editing.index === index ? editedAnswers.B : conversation.modelB}`;
     }
   
     if (
-      !answerContent || 
+      !originalAnswer || 
       (editing.model === 'A' && editing.index === index && !editedAnswers.A) ||
       (editing.model === 'B' && editing.index === index && !editedAnswers.B)
     ) {
@@ -400,68 +470,63 @@ const FreeStyleAdd = () => {
     }
   
     try {
-      // Get user region prefix for comparison
       const regionPrefix = userRegion.replace(/[0-9C]+$/, '');
       
-      // Determine translation target based on region
-      let englishQuestion, translatedQuestion;
-      let englishAnswer, translatedAnswer;
+      let englishQuestion, translatedQuestion, questionTargetLang;
+      let englishAnswer, translatedAnswer, answerTargetLang;
       
+      const questionLang = detectLanguage(originalQuestion);
+      const answerLang = detectLanguage(originalAnswer);
+  
+      // Always get the English version for database storage
+      englishQuestion = questionLang !== 'en' ? await translateText(originalQuestion, 'en') : originalQuestion;
+      englishAnswer = answerLang !== 'en' ? await translateText(originalAnswer, 'en') : originalAnswer;
+  
+      // Determine the target language for the translated fields
       if (regionPrefix === "Arab") {
-        // For Arab users, we need English and Arabic versions
-        const questionLang = detectLanguage(question);
         if (questionLang === 'ar') {
-          // Question is in Arabic, translate to English
-          englishQuestion = await translateText(question, 'en');
-          translatedQuestion = question;
+          translatedQuestion = originalQuestion; // Keep original Arabic
+          questionTargetLang = 'ar';
         } else {
-          // Question is in English, translate to Arabic
-          englishQuestion = question;
-          translatedQuestion = await translateText(question, 'ar');
+          translatedQuestion = await translateText(originalQuestion, 'ar'); // Translate to Arabic
+          questionTargetLang = 'ar';
         }
         
-        const answerLang = detectLanguage(answerContent);
         if (answerLang === 'ar') {
-          // Answer is in Arabic, translate to English
-          englishAnswer = await translateText(answerContent, 'en');
-          translatedAnswer = answerContent;
+          translatedAnswer = originalAnswer; // Keep original Arabic
+          answerTargetLang = 'ar';
         } else {
-          // Answer is in English, translate to Arabic
-          englishAnswer = answerContent;
-          translatedAnswer = await translateText(answerContent, 'ar');
+          translatedAnswer = await translateText(originalAnswer, 'ar'); // Translate to Arabic
+          answerTargetLang = 'ar';
         }
       } else if (regionPrefix === "Chinese") {
-        // For Chinese users, we need English and Chinese versions
-        const questionLang = detectLanguage(question);
         if (questionLang === 'zh') {
-          // Question is in Chinese, translate to English
-          englishQuestion = await translateText(question, 'en');
-          translatedQuestion = question;
+          translatedQuestion = originalQuestion; // Keep original Chinese
+          questionTargetLang = 'zh';
         } else {
-          // Question is in English, translate to Chinese
-          englishQuestion = question;
-          translatedQuestion = await translateText(question, 'zh');
+          translatedQuestion = await translateText(originalQuestion, 'zh'); // Translate to Chinese
+          questionTargetLang = 'zh';
         }
         
-        const answerLang = detectLanguage(answerContent);
         if (answerLang === 'zh') {
-          // Answer is in Chinese, translate to English
-          englishAnswer = await translateText(answerContent, 'en');
-          translatedAnswer = answerContent;
+          translatedAnswer = originalAnswer; // Keep original Chinese
+          answerTargetLang = 'zh';
         } else {
-          // Answer is in English, translate to Chinese
-          englishAnswer = answerContent;
-          translatedAnswer = await translateText(answerContent, 'zh');
+          translatedAnswer = await translateText(originalAnswer, 'zh'); // Translate to Chinese
+          answerTargetLang = 'zh';
         }
       } else {
-        // For other regions, default to English
-        englishQuestion = question;
-        translatedQuestion = question;
-        englishAnswer = answerContent;
-        translatedAnswer = answerContent;
+        translatedQuestion = originalQuestion; // No translation needed
+        questionTargetLang = 'en';
+        translatedAnswer = originalAnswer;
+        answerTargetLang = 'en';
       }
       
-      // Determine the correct database path based on region
+      if (translatedQuestion === originalQuestion && translatedAnswer === originalAnswer && regionPrefix !== "Western") {
+        console.warn("Translation failed, using original text.");
+        handlePopupError(t("Translation service is unavailable. Translations can be edited in the next step."));
+      }
+      
       let databasePath;
       if (regionPrefix === "Arab") {
         databasePath = "ArabC/Details";
@@ -470,23 +535,40 @@ const FreeStyleAdd = () => {
       } else if (regionPrefix === "Western") {
         databasePath = "WesternC/Details";
       } else {
-        // Default to WesternC for any other region
         databasePath = "WesternC/Details";
       }
       
-      // Check for duplicates
+      // Fetch existing data to check for duplicates and determine structure
       const detailsRef = ref(realtimeDb, databasePath);
       const detailsSnapshot = await get(detailsRef);
       
       let isDuplicate = false;
+      let existingData = [];
+      let nextIndex = 0;
       
       if (detailsSnapshot.exists()) {
         const details = detailsSnapshot.val();
         
-        for (const key in details) {
-          const entry = details[key];
+        // If it's an object, convert to array for checking
+        if (Array.isArray(details)) {
+          existingData = details;
+          nextIndex = details.length;
+        } else {
+          // If it's an object, convert to array and also find the highest numeric key + 1
+          existingData = Object.values(details);
           
+          // Find the highest numeric key to determine next index
+          const numericKeys = Object.keys(details)
+            .filter(key => !isNaN(parseInt(key)))
+            .map(key => parseInt(key));
+          
+          nextIndex = numericKeys.length > 0 ? Math.max(...numericKeys) + 1 : 0;
+        }
+        
+        // Check for duplicates in the converted array
+        for (const entry of existingData) {
           if (
+            entry && 
             entry.region_name && 
             entry.region_name.startsWith(regionPrefix) &&
             entry.en_question === englishQuestion
@@ -509,11 +591,10 @@ const FreeStyleAdd = () => {
       }
       
       if (isDuplicate) {
-        handlePopupError("This question and answer already exist in the database for your region.");
+        handlePopupError(t("This question and answer already exist in the database for your region."));
         return;
       }
       
-      // Continue with adding the new entry if not a duplicate
       const evaluationEntry = {
         model_id: chatData.selectedModel || "Both",
         user_id: auth.currentUser.uid,
@@ -531,28 +612,22 @@ const FreeStyleAdd = () => {
         timestamp: new Date().toISOString(),
       };
       
-      const evaluationRef = ref(realtimeDb, "model_evaluation");
-      await push(evaluationRef, evaluationEntry);
-      
       const newEntryKey = Date.now().toString();
       
-      // Static translations for reason
       const reasonTranslations = {
         "ar": {
           "variation": "اختلاف",
           "subculture": "ثقافة فرعية"
         },
         "zh": {
-          "variation": "变异",
+          "variation": "变化",
           "subculture": "亚文化"
         }
       };
       
-      // Map region for language
       const regionLan = regionPrefix === "Arab" ? "العرب" : 
                        regionPrefix === "Chinese" ? "中国" : regionPrefix;
       
-      // Static topic translations
       const topicTranslations = {
         "ar": {
           "Food": "الطعام",
@@ -568,7 +643,7 @@ const FreeStyleAdd = () => {
           "Education": "教育",
           "Work life": "工作生活",
           "Sport": "运动",
-          "Holidays/Celebration/Leisure": "假期",
+          "Holidays/Celebration/Leisure": "节日/庆祝/休闲",
           "Family": "家庭",
           "greeting": "问候"
         }
@@ -580,6 +655,7 @@ const FreeStyleAdd = () => {
       const topicLang = regionPrefix === "Arab" ? topicTranslations.ar[selectedTopic] :
                        regionPrefix === "Chinese" ? topicTranslations.zh[selectedTopic] : selectedTopic;
       
+      // Create the new entry
       const newEntry = {
         region_name: userRegion,
         region_lan: regionLan,
@@ -608,26 +684,44 @@ const FreeStyleAdd = () => {
         values: [translatedAnswer]
       });
       
-      const entryRef = ref(realtimeDb, `${databasePath}/${newEntryKey}`);
-      await set(entryRef, newEntry);
+      // Save translations data for the popup
+      setTranslationData({
+        index,
+        regionPrefix,
+        originalQuestion,
+        originalAnswer,
+        englishQuestion,
+        englishAnswer,
+        translatedQuestion,
+        questionTargetLang,
+        translatedAnswer,
+        answerTargetLang,
+        databasePath,
+        evaluationEntry,
+        newEntryKey: nextIndex.toString(), // Use sequential index instead of timestamp
+        reason,
+        topicLang,
+        reasonLang,
+        regionLan
+      });
       
-      handlePopup(t("Entry added successfully!"));
-      setDisabledButtons(prev => ({ ...prev, [index]: true }));
+      setEditableQuestion(translatedQuestion);
+      setEditableAnswer(translatedAnswer);
+      setShowTranslationPopup(true);
     } catch (error) {
       console.error("Error checking or adding data:", error);
       handlePopupError(t("An error occurred. Please try again."));
     }
   };
   
-  // If there's no data to display
   if (!chatData || !chatData.conversations) {
     return (
       <div className="freestyle-add-page">
-         <Helmet>
-        <title>{t("FreeStyleAdd")}</title>
-        <meta name="description" />
-      </Helmet>
-<div className="freestyle-page-header">
+        <Helmet>
+          <title>{t("FreeStyleAdd")}</title>
+          <meta name="description" />
+        </Helmet>
+        <div className="freestyle-page-header">
           <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
             <FaArrowLeft className="freestyle-back-icon" />
           </button>
@@ -655,13 +749,13 @@ const FreeStyleAdd = () => {
       </div>
       <h1 className="add-conversation-title">{t("Add Conversation")}</h1>
       <h2 className="freestyle-title">
-      {t("YourVoting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
-</h2>
+        {t("YourVoting")} {t(chatData.selectedModel === 'Model A' ? 'modelA' : 'modelB') || t("Not Selected")}
+      </h2>
 
-<div className="model-info">
-  <h5>{t("Model A: Mistral-7B")}</h5>
-  <h5>{t("Model B: Llama-2-7B")}</h5>
-</div>
+      <div className="model-info">
+        <h5>{t("Model A: Mistral-7B")}</h5>
+        <h5>{t("Model B: Llama-2-7B")}</h5>
+      </div>
 
       <div className="column-table-container">
         <table className="column-table">
@@ -693,7 +787,8 @@ const FreeStyleAdd = () => {
                               value={editedAnswers.A}
                               onChange={(e) => handleChange(e, 'A')}
                               className="edit-textarea"
-                              maxLength={MAX_EDIT_LENGTH}                            />
+                              maxLength={MAX_EDIT_LENGTH}                            
+                            />
                             <div className="character-counter">
                               {editedAnswers.A ? editedAnswers.A.length : 0}/{MAX_EDIT_LENGTH}
                             </div>
@@ -717,8 +812,8 @@ const FreeStyleAdd = () => {
                                   className="see-more-btn"
                                   onClick={() => toggleExpand(`A-${index}`)}
                                 >
-{expandedAnswers[`A-${index}`] ? t("Show Less") : t("Show More")}
-</button>
+                                  {expandedAnswers[`A-${index}`] ? t("Show Less") : t("Show More")}
+                                </button>
                               )}
                               <button 
                                 className="icon-btn edit-btn"
@@ -743,7 +838,8 @@ const FreeStyleAdd = () => {
                               value={editedAnswers.B}
                               onChange={(e) => handleChange(e, 'B')}
                               className="edit-textarea"
-                              maxLength={MAX_EDIT_LENGTH}                            />
+                              maxLength={MAX_EDIT_LENGTH}                            
+                            />
                             <div className="character-counter">
                               {editedAnswers.B ? editedAnswers.B.length : 0}/{MAX_EDIT_LENGTH}
                             </div>
@@ -767,8 +863,8 @@ const FreeStyleAdd = () => {
                                   className="see-more-btn"
                                   onClick={() => toggleExpand(`B-${index}`)}
                                 >
-{expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
-</button>
+                                  {expandedAnswers[`B-${index}`] ? t("Show Less") : t("Show More")}
+                                </button>
                               )}
                               <button 
                                 className="icon-btn edit-btn"
@@ -789,7 +885,8 @@ const FreeStyleAdd = () => {
                     className="table-select topic-select"
                     value={selectedTopic}
                     onChange={(e) => setSelectedTopic(e.target.value)}
-                  ><option value="" disabled>{t("Select Topic")}</option>
+                  >
+                    <option value="" disabled>{t("Select Topic")}</option>
                     {topics.length > 0 ? (
                       topics.map((topic, idx) => (
                         <option key={idx} value={topic}>
@@ -844,9 +941,7 @@ const FreeStyleAdd = () => {
                 </td>
               </tr>
             ))}
-            
           </tbody>
-          
         </table>
       </div>
        
@@ -856,14 +951,130 @@ const FreeStyleAdd = () => {
             <p>{popupMessage}</p>
             <button onClick={() => setShowPopup(false)}>OK</button>
           </div>
-          
-         </div>
+        </div>
       )}
-      
+
+      {showTranslationPopup && translationData && (
+        <div className="popup-overlay" style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0,0,0,0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
+        }}>
+          <div className="popup-content" style={{
+            backgroundColor: '#fff',
+            padding: '20px',
+            borderRadius: '10px',
+            width: '600px',
+            maxWidth: '90%',
+            textAlign: 'left',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h2 style={{ color: '#333', marginBottom: '20px' }}>{t("Review Translations")}</h2>
+            
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+                {t("Original Question")}
+              </label>
+              <div style={{
+                padding: '10px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                backgroundColor: '#f9f9f9'
+              }}>
+                {translationData.originalQuestion}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+                {t("Translated Question")} ({translationData.questionTargetLang === 'ar' ? 'Arabic' : translationData.questionTargetLang === 'zh' ? 'Chinese' : 'English'})
+              </label>
+              <textarea
+                value={editableQuestion}
+                onChange={(e) => setEditableQuestion(e.target.value)}
+                style={{
+                  width: '100%',
+                  minHeight: '80px',
+                  padding: '10px',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+                {t("Original Answer")}
+              </label>
+              <div style={{
+                padding: '10px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                backgroundColor: '#f9f9f9'
+              }}>
+                {translationData.originalAnswer}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+                {t("Translated Answer")} ({translationData.answerTargetLang === 'ar' ? 'Arabic' : translationData.answerTargetLang === 'zh' ? 'Chinese' : 'English'})
+              </label>
+              <textarea
+                value={editableAnswer}
+                onChange={(e) => setEditableAnswer(e.target.value)}
+                style={{
+                  width: '100%',
+                  minHeight: '80px',
+                  padding: '10px',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+              <button
+                onClick={handleTranslationCancel}
+                style={{
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '4px',
+                  backgroundColor: '#dc3545',
+                  color: 'white',
+                  cursor: 'pointer'
+                }}
+              >
+                {t("Cancel")}
+              </button>
+              <button
+                onClick={handleTranslationConfirm}
+                style={{
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '4px',
+                  backgroundColor: '#28a745',
+                  color: 'white',
+                  cursor: 'pointer'
+                }}
+              >
+                {t("Confirm")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-    
   );
- 
 };
 
 export default FreeStyleAdd;
