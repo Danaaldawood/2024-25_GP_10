@@ -51,7 +51,15 @@
     "alerts": {
       "noData": "No data available to add",
       "bothLanguagesRequired": "Please enter values in both English and {language}"
-    }
+    },
+    "Review Translations": "Review Translations",
+    "Original Value": "Original Value",
+    "Translated Value": "Translated Value",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "Arabic": "Arabic",
+    "Chinese": "Chinese",
+    "English": "English"
   },
   "ar": {
     "helmetTitle": "صفحة الإضافة",
@@ -105,7 +113,15 @@
     "alerts": {
       "noData": "لا توجد بيانات متاحة للإضافة",
       "bothLanguagesRequired": "الرجاء إدخال القيم باللغتين الإنجليزية والعربية"
-    }
+    },
+    "Review Translations": "مراجعة الترجمات",
+    "Original Value": "القيمة الأصلية",
+    "Translated Value": "القيمة المترجمة",
+    "Cancel": "إلغاء",
+    "Confirm": "تأكيد",
+    "Arabic": "العربية",
+    "Chinese": "الصينية",
+    "English": "الإنجليزية"
   },
   "ch": {
     "helmetTitle": "添加页面",
@@ -159,6 +175,14 @@
     "alerts": {
       "noData": "没有可添加的数据",
       "bothLanguagesRequired": "请同时输入英文和中文值"
-    }
+    },
+    "Review Translations": "审查翻译",
+    "Original Value": "原始值",
+    "Translated Value": "翻译后的值",
+    "Cancel": "取消",
+    "Confirm": "确认",
+    "Arabic": "阿拉伯语",
+    "Chinese": "中文",
+    "English": "英语"
   }
 }

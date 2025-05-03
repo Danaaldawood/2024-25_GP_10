@@ -960,26 +960,46 @@ const FreeStyleAdd = () => {
       borderRadius: '10px',
       width: '600px',
       maxWidth: '90%',
-      textAlign: 'left',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      // Set both direction and text alignment based on the language
+      direction: i18n.language === 'ar' ? 'rtl' : 'ltr',
+      textAlign: i18n.language === 'ar' ? 'right' : 'left'
     }}>
-      <h2 style={{ color: '#333', marginBottom: '20px' }}>{t("Review Translations")}</h2>
+      <h2 style={{ 
+        color: '#333', 
+        marginBottom: '20px'
+      }}>
+        {t("Review Translations")}
+      </h2>
+      
       <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+        <label style={{ 
+          display: 'block', 
+          marginBottom: '5px', 
+          fontWeight: 'bold'
+        }}>
           {t("Original Question")}
         </label>
         <div style={{
           padding: '10px',
           border: '1px solid #ccc',
           borderRadius: '4px',
-          backgroundColor: '#f9f9f9'
+          backgroundColor: '#f9f9f9',
+          // Set direction based on the content's language, not the UI language
+          direction: detectLanguage(translationData.originalQuestion) === 'ar' ? 'rtl' : 'ltr',
+          textAlign: detectLanguage(translationData.originalQuestion) === 'ar' ? 'right' : 'left'
         }}>
           {translationData.originalQuestion}
         </div>
       </div>
+      
       <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          {t("Translated Question")} ({translationData.questionTargetLang === 'ar' ? 'Arabic' : translationData.questionTargetLang === 'zh' ? 'Chinese' : 'English'})
+        <label style={{ 
+          display: 'block', 
+          marginBottom: '5px', 
+          fontWeight: 'bold'
+        }}>
+          {t("Translated Question")}
         </label>
         <textarea
           value={editableQuestion}
@@ -990,26 +1010,41 @@ const FreeStyleAdd = () => {
             padding: '10px',
             border: '1px solid #ccc',
             borderRadius: '4px',
-            resize: 'vertical'
+            resize: 'vertical',
+            // Set direction based on the content's language
+            direction: translationData.questionTargetLang === 'ar' ? 'rtl' : 'ltr',
+            textAlign: translationData.questionTargetLang === 'ar' ? 'right' : 'left'
           }}
         />
       </div>
+      
       <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+        <label style={{ 
+          display: 'block', 
+          marginBottom: '5px', 
+          fontWeight: 'bold'
+        }}>
           {t("Original Answer")}
         </label>
         <div style={{
           padding: '10px',
           border: '1px solid #ccc',
           borderRadius: '4px',
-          backgroundColor: '#f9f9f9'
+          backgroundColor: '#f9f9f9',
+          direction: detectLanguage(translationData.originalAnswer) === 'ar' ? 'rtl' : 'ltr',
+          textAlign: detectLanguage(translationData.originalAnswer) === 'ar' ? 'right' : 'left'
         }}>
           {translationData.originalAnswer}
         </div>
       </div>
+      
       <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-          {t("Translated Answer")} ({translationData.answerTargetLang === 'ar' ? 'Arabic' : translationData.answerTargetLang === 'zh' ? 'Chinese' : 'English'})
+        <label style={{ 
+          display: 'block', 
+          marginBottom: '5px', 
+          fontWeight: 'bold'
+        }}>
+          {t("Translated Answer")}
         </label>
         <textarea
           value={editableAnswer}
@@ -1020,15 +1055,20 @@ const FreeStyleAdd = () => {
             padding: '10px',
             border: '1px solid #ccc',
             borderRadius: '4px',
-            resize: 'vertical'
+            resize: 'vertical',
+            direction: translationData.answerTargetLang === 'ar' ? 'rtl' : 'ltr',
+            textAlign: translationData.answerTargetLang === 'ar' ? 'right' : 'left'
           }}
         />
       </div>
+      
       <div style={{ 
         display: 'flex', 
         justifyContent: 'center', 
         gap: '20px',
-        marginTop: '25px'
+        marginTop: '25px',
+        // Reverse button order in RTL mode
+        flexDirection: i18n.language === 'ar' ? 'row-reverse' : 'row'
       }}>
         <button
           onClick={handleTranslationCancel}

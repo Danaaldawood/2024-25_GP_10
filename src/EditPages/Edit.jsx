@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { ref, update, push, get } from 'firebase/database';
-import { realtimeDb, auth } from '../Register/firebase';
+import { ref, update, push, get } from "firebase/database";
+import { realtimeDb, auth } from "../Register/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import "./Add.css";
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
-import { Helmet } from 'react-helmet';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { useTranslation } from 'react-i18next';
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
+import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 export const AddCultureValue = () => {
   // Initialize translation hook
@@ -17,15 +17,18 @@ export const AddCultureValue = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   // State management
   const [showSuccess, setShowSuccess] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [userId, setUserId] = useState({
     fullId: "",
-    shortId: ""
+    shortId: "",
   });
+  const [showTranslationPopup, setShowTranslationPopup] = useState(false);
+  const [translationData, setTranslationData] = useState(null);
+  const [editableTranslation, setEditableTranslation] = useState("");
 
   // Split the ID parameter into region code and detail ID
   const [regionCode, detailId] = (id || "").split("-");
@@ -38,58 +41,102 @@ export const AddCultureValue = () => {
     question: location.state?.question || "",
     en_question: location.state?.en_question || "",
     value: location.state?.selectedValue || "",
-    region: location.state?.region || localStorage.getItem('region') || "",
+    region: location.state?.region || localStorage.getItem("region") || "",
     region_lan: location.state?.region_lan || "",
     allValues: location.state?.allValues || [],
     newvalue: "",
     reason: "",
-    showPlaceholderError: false
+    showPlaceholderError: false,
   });
 
-  // Function to translate text using OpenAI API
+  // Function to detect language
+  const detectLanguage = (text) => {
+    if (!text || text.trim().length < 2) return "en";
+    const arabicPattern = /[\u0600-\u06FF]/;
+    const chinesePattern = /[\u4e00-\u9fa5]/;
+
+    if (arabicPattern.test(text)) return "ar";
+    if (chinesePattern.test(text)) return "zh";
+    return "en";
+  };
+
+  // Function to translate text using LibreTranslate
   const translateText = async (text, targetLanguage) => {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
+      if (!text || text.trim().length < 2) {
+        console.log("Skipping translation for short text:", text);
+        return text;
+      }
+
+      const detectedLanguage = detectLanguage(text);
+      if (detectedLanguage === targetLanguage) {
+        console.log("No translation needed, same language:", detectedLanguage);
+        return text;
+      }
+
+      if (text.length > 500) {
+        console.log("Text too long for translation, returning original");
+        return text;
+      }
+
+      console.log("Translating:", {
+        text,
+        source: detectedLanguage,
+        target: targetLanguage,
+      });
+
+      const API_KEY =
+        process.env.REACT_APP_LIBRETRANSLATE_API_KEY ||
+        "cde32ed0-56f2-499b-9f62-5a520be921f3";
+      const response = await fetch("https://libretranslate.com/translate", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer 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'
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [
-            {
-              "role": "system", 
-              "content": `You are a professional translator. Translate the following text to ${targetLanguage}. Provide only the translation, no explanations.`
-            },
-            {"role": "user", "content": text}
-          ],
-          temperature: 0.3
-        })
+          q: text,
+          source: detectedLanguage === "zh" ? "zh" : detectedLanguage,
+          target: targetLanguage === "zh" ? "zh" : targetLanguage,
+          format: "text",
+          api_key: API_KEY,
+        }),
       });
-      
+
       if (!response.ok) {
-        throw new Error(`OpenAI API error: ${response.status}`);
+        const errorData = await response.json();
+        console.error("LibreTranslate API error response:", errorData);
+        throw new Error(`LibreTranslate API error: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      return data.choices[0].message.content.trim();
+      if (!data.translatedText) {
+        console.log("No translation returned, using original text");
+        return text;
+      }
+
+      console.log("Translation result:", data);
+      return data.translatedText.trim();
     } catch (error) {
       console.error("Translation error:", error);
-      throw error;
+      return text;
     }
   };
 
   // Helper function to get the correct display attribute based on region and language
   const getDisplayAttribute = () => {
     if (itemData.region === "Western") return itemData.en_question;
-    
+
     if (itemData.region === "Arab") {
-      return i18n.language === "ar" && itemData.question ? itemData.question : itemData.en_question;
+      return i18n.language === "ar" && itemData.question
+        ? itemData.question
+        : itemData.en_question;
     }
-    
+
     if (itemData.region === "Chinese") {
-      return i18n.language === "ch" && itemData.question ? itemData.question : itemData.en_question;
+      return i18n.language === "ch" && itemData.question
+        ? itemData.question
+        : itemData.en_question;
     }
 
     return itemData.en_question;
@@ -98,9 +145,17 @@ export const AddCultureValue = () => {
   // Helper function to get the correct display region based on language
   const getDisplayRegion = () => {
     const currentLang = i18n.language;
-    if (currentLang === "ar" && itemData.region === "Arab" && itemData.region_lan) {
+    if (
+      currentLang === "ar" &&
+      itemData.region === "Arab" &&
+      itemData.region_lan
+    ) {
       return itemData.region_lan;
-    } else if (currentLang === "ch" && itemData.region === "Chinese" && itemData.region_lan) {
+    } else if (
+      currentLang === "ch" &&
+      itemData.region === "Chinese" &&
+      itemData.region_lan
+    ) {
       return itemData.region_lan;
     }
     return itemData.region;
@@ -109,9 +164,17 @@ export const AddCultureValue = () => {
   // Helper function to get the correct display topic based on language
   const getDisplayTopic = () => {
     const currentLang = i18n.language;
-    if (currentLang === "ar" && itemData.region === "Arab" && itemData.topic_lan) {
+    if (
+      currentLang === "ar" &&
+      itemData.region === "Arab" &&
+      itemData.topic_lan
+    ) {
       return itemData.topic_lan;
-    } else if (currentLang === "ch" && itemData.region === "Chinese" && itemData.topic_lan) {
+    } else if (
+      currentLang === "ch" &&
+      itemData.region === "Chinese" &&
+      itemData.topic_lan
+    ) {
       return itemData.topic_lan;
     }
     return itemData.topic;
@@ -131,7 +194,7 @@ export const AddCultureValue = () => {
       if (user) {
         setUserId({
           fullId: user.uid,
-          shortId: `user_${user.uid.slice(-4)}`
+          shortId: `user_${user.uid.slice(-4)}`,
         });
       } else {
         console.error("User is not authenticated");
@@ -143,135 +206,200 @@ export const AddCultureValue = () => {
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setItemData(prevState => ({
+    setItemData((prevState) => ({
       ...prevState,
       [name]: value,
-      showPlaceholderError: false
+      showPlaceholderError: false,
     }));
   };
 
-  // Function to detect language
-  const detectLanguage = (text) => {
-    const arabicPattern = /[\u0600-\u06FF]/;
-    const chinesePattern = /[\u4e00-\u9fa5]/;
-    
-    if (arabicPattern.test(text)) return 'ar';
-    if (chinesePattern.test(text)) return 'zh';
-    return 'en';
+  // Functions for the translation popup
+  const handleTranslationConfirm = () => {
+    if (!translationData) return;
+
+    // Use the edited translation if provided
+    const finalTranslation = editableTranslation || translationData.translation;
+
+    // Continue with the form submission process using finalTranslation
+    completeAddProcess(translationData.originalValue, finalTranslation);
+
+    // Clear translation data and close popup
+    setShowTranslationPopup(false);
+    setTranslationData(null);
+    setEditableTranslation("");
+  };
+
+  const handleTranslationCancel = () => {
+    setShowTranslationPopup(false);
+    setTranslationData(null);
+    setEditableTranslation("");
   };
 
   // Handle form submission
   const handleAddClick = async () => {
     // Validate required fields
     if (!itemData.newvalue || !itemData.reason) {
-      setItemData(prev => ({
+      setItemData((prev) => ({
         ...prev,
-        showPlaceholderError: !itemData.newvalue || !itemData.reason
+        showPlaceholderError: !itemData.newvalue || !itemData.reason,
       }));
       return;
     }
 
     // Detect input language
     const inputLanguage = detectLanguage(itemData.newvalue);
-    let englishValue = itemData.newvalue;
-    let nativeValue = itemData.newvalue;
+    let targetLanguage = "en";
+    let isTranslationNeeded = false;
+
+    // Determine if translation is needed and the target language
+    if (itemData.region === "Arab") {
+      targetLanguage = inputLanguage === "ar" ? "en" : "ar";
+      isTranslationNeeded = true;
+    } else if (itemData.region === "Chinese") {
+      targetLanguage = inputLanguage === "zh" ? "en" : "zh";
+      isTranslationNeeded = true;
+    } else {
+      // Western region doesn't need translation
+      isTranslationNeeded = false;
+    }
 
     try {
-      // Handle translation based on input language and region
-      if (itemData.region === "Arab") {
-        if (inputLanguage === 'ar') {
-          // Input is Arabic, translate to English
-          englishValue = await translateText(itemData.newvalue, "English");
-          nativeValue = itemData.newvalue;
-        } else {
-          // Input is English, translate to Arabic
-          englishValue = itemData.newvalue;
-          nativeValue = await translateText(itemData.newvalue, "Arabic");
-        }
-      } else if (itemData.region === "Chinese") {
-        if (inputLanguage === 'zh') {
-          // Input is Chinese, translate to English
-          englishValue = await translateText(itemData.newvalue, "English");
-          nativeValue = itemData.newvalue;
-        } else {
-          // Input is English, translate to Chinese
-          englishValue = itemData.newvalue;
-          nativeValue = await translateText(itemData.newvalue, "Chinese");
-        }
-      } else {
-        // Western region - keep as is
-        englishValue = itemData.newvalue;
-        nativeValue = itemData.newvalue;
-      }
-
-      // Get the current question's values directly from the database
-      const questionRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations`);
+      // Check for duplicates first
+      const questionRef = ref(
+        realtimeDb,
+        `${regionCode}/Details/${detailId}/annotations`
+      );
       const snapshot = await get(questionRef);
       let currentQuestionValues = [];
-      
+
       if (snapshot.exists()) {
         currentQuestionValues = snapshot.val();
       }
 
-      // Check for duplicate values in English for this specific question
-      const newValueLower = englishValue.toLowerCase();
-      const existingEnglishValues = currentQuestionValues.map(value => {
-        if (value && value.en_values && value.en_values[0]) {
-          return value.en_values[0].toLowerCase();
-        }
-        return '';
-      }).filter(val => val !== '');
+      // Check for duplicate values
+      const newValueLower = itemData.newvalue.toLowerCase();
+      const existingEnglishValues = currentQuestionValues
+        .map((value) => {
+          if (value && value.en_values && value.en_values[0]) {
+            return value.en_values[0].toLowerCase();
+          }
+          return "";
+        })
+        .filter((val) => val !== "");
 
       if (existingEnglishValues.includes(newValueLower)) {
-        console.log("New English value causing duplicate:", englishValue);
         setErrorMessage(
-          t("errorPopup.duplicateValue", { value: itemData.newvalue }) // Use the original input value
+          t("errorPopup.duplicateValue", { value: itemData.newvalue })
         );
         setShowErrorPopup(true);
         return;
       }
 
-      // Check for duplicate values in native language for this specific question
-      if (itemData.region === "Arab" || itemData.region === "Chinese") {
-        const newNativeValueLower = nativeValue.toLowerCase();
-        const existingNativeValues = currentQuestionValues.map(value => {
-          if (value && value.values && value.values[0]) {
-            return value.values[0].toLowerCase();
-          }
-          return '';
-        }).filter(val => val !== '');
-
-        if (existingNativeValues.includes(newNativeValueLower)) {
-          console.log("New native value causing duplicate:", nativeValue);
-          setErrorMessage(
-            t("errorPopup.duplicateValue", { value: itemData.newvalue }) // Use the original input value
+      // If translation is needed, show the translation popup
+      if (isTranslationNeeded) {
+        try {
+          const translatedText = await translateText(
+            itemData.newvalue,
+            targetLanguage
           );
-          setShowErrorPopup(true);
-          return;
-        }
-      }
 
-      // Get translated reason
+          // Determine which is the English value and which is the native value
+          let englishValue, nativeValue;
+          if (inputLanguage === "en") {
+            englishValue = itemData.newvalue;
+            nativeValue = translatedText;
+          } else {
+            englishValue = translatedText;
+            nativeValue = itemData.newvalue;
+          }
+
+          // Set up translation popup data
+          setTranslationData({
+            originalValue: itemData.newvalue,
+            translation: translatedText,
+            inputLanguage,
+            targetLanguage,
+            englishValue,
+            nativeValue,
+            reason: itemData.reason,
+          });
+
+          setEditableTranslation(translatedText);
+          setShowTranslationPopup(true);
+        } catch (error) {
+          console.error("Translation error:", error);
+          setErrorMessage(t("errorPopup.translationFailed"));
+          setShowErrorPopup(true);
+        }
+      } else {
+        // No translation needed, proceed with adding the value
+        completeAddProcess(itemData.newvalue, itemData.newvalue);
+      }
+    } catch (error) {
+      console.error("Error checking data:", error);
+      setErrorMessage(t("errorPopup.updateFailed"));
+      setShowErrorPopup(true);
+    }
+  };
+
+  // Function to complete the add process after translation
+  const completeAddProcess = async (englishValue, nativeValue) => {
+    try {
+      // Get reason translation
       let reasonTranslation = null;
       if (itemData.region === "Arab" || itemData.region === "Chinese") {
         if (itemData.reason === "Variation") {
           reasonTranslation = itemData.region === "Arab" ? "تنوع" : "变化";
         } else if (itemData.reason === "subculture") {
-          reasonTranslation = itemData.region === "Arab" ? "ثقافة فرعية" : "亚文化";
+          reasonTranslation =
+            itemData.region === "Arab" ? "ثقافة فرعية" : "亚文化";
         }
+      }
+
+      // Determine which value is English and which is native
+      let finalEnglishValue, finalNativeValue;
+
+      if (itemData.region === "Western") {
+        finalEnglishValue = englishValue;
+        finalNativeValue = englishValue;
+      } else {
+        // For Arab or Chinese regions
+        const inputLang = detectLanguage(englishValue);
+        if (inputLang === "en") {
+          finalEnglishValue = englishValue;
+          finalNativeValue = nativeValue;
+        } else {
+          finalEnglishValue = nativeValue;
+          finalNativeValue = englishValue;
+        }
+      }
+
+      // Get the current question's values directly from the database
+      const questionRef = ref(
+        realtimeDb,
+        `${regionCode}/Details/${detailId}/annotations`
+      );
+      const snapshot = await get(questionRef);
+      let currentQuestionValues = [];
+
+      if (snapshot.exists()) {
+        currentQuestionValues = snapshot.val();
       }
 
       // Update annotations in database
       const newAnnotationIndex = currentQuestionValues.length;
-      const itemRef = ref(realtimeDb, `${regionCode}/Details/${detailId}/annotations/${newAnnotationIndex}`);
+      const itemRef = ref(
+        realtimeDb,
+        `${regionCode}/Details/${detailId}/annotations/${newAnnotationIndex}`
+      );
       const newAnnotation = {
-        en_values: [englishValue],
+        en_values: [finalEnglishValue],
         reason: itemData.reason,
         reason_lan: reasonTranslation,
         user_id: userId.shortId || "user_undefined",
         userId: userId.fullId || "undefined",
         modAction: "noaction",
-        values: [nativeValue]
+        values: [finalNativeValue],
       };
       await update(itemRef, newAnnotation);
 
@@ -286,16 +414,21 @@ export const AddCultureValue = () => {
         region_lan: itemData.region_lan || null,
         topic: itemData.topic,
         topic_lan: itemData.topic_lan || null,
-        value: englishValue,
-        native_value: (itemData.region === "Arab" || itemData.region === "Chinese") ? nativeValue : null,
+        value: finalEnglishValue,
+        native_value:
+          itemData.region === "Arab" || itemData.region === "Chinese"
+            ? finalNativeValue
+            : null,
         reason: itemData.reason,
         reason_lan: reasonTranslation,
-        modAction: "noaction"
+        modAction: "noaction",
       };
 
       // Remove undefined/null values
-      Object.keys(newEntry).forEach(key => 
-        (newEntry[key] === undefined || newEntry[key] === null) && delete newEntry[key]
+      Object.keys(newEntry).forEach(
+        (key) =>
+          (newEntry[key] === undefined || newEntry[key] === null) &&
+          delete newEntry[key]
       );
 
       await push(viewEditRef, newEntry);
@@ -328,8 +461,8 @@ export const AddCultureValue = () => {
             <div className="error-title">{t("errorPopup.title")}</div>
             <div className="error-message">{errorMessage}</div>
             <div className="error-actions">
-              <button 
-                className="confirm-btn" 
+              <button
+                className="confirm-btn"
                 onClick={() => setShowErrorPopup(false)}
               >
                 {t("errorPopup.okButton")}
@@ -367,44 +500,53 @@ export const AddCultureValue = () => {
           <div className="add-input">
             <label className="label">{t("form.labels.allValues")}</label>
             <ul className="all-values-list">
-              {Array.isArray(itemData.allValues) && itemData.allValues.map((item, index) => {
-                let displayValues = [];
-                
-                if (item && typeof item === 'object') {
-                  if ((i18n.language === "ar" && itemData.region === "Arab") ||
-                      (i18n.language === "ch" && itemData.region === "Chinese")) {
-                    displayValues = [item.values?.[0] || ''];
-                  } else {
-                    displayValues = [item.en_values?.[0] || ''];
-                  }
-                }
+              {Array.isArray(itemData.allValues) &&
+                itemData.allValues.map((item, index) => {
+                  let displayValues = [];
 
-                return displayValues.map((value, valueIndex) => (
-                  <li key={`${index}-${valueIndex}`} 
+                  if (item && typeof item === "object") {
+                    if (
+                      (i18n.language === "ar" && itemData.region === "Arab") ||
+                      (i18n.language === "ch" && itemData.region === "Chinese")
+                    ) {
+                      displayValues = [item.values?.[0] || ""];
+                    } else {
+                      displayValues = [item.en_values?.[0] || ""];
+                    }
+                  }
+
+                  return displayValues.map((value, valueIndex) => (
+                    <li
+                      key={`${index}-${valueIndex}`}
                       className="value-item"
-                      dir={i18n.language === "ar" ? "rtl" : "ltr"}>
-                    {value}
-                  </li>
-                ));
-              })}
+                      dir={i18n.language === "ar" ? "rtl" : "ltr"}
+                    >
+                      {value}
+                    </li>
+                  ));
+                })}
             </ul>
           </div>
 
           {/* New Value Input */}
           <div className="add-input">
-            <label className="label">
-              {t("form.labels.newValue")}
-            </label>
+            <label className="label">{t("form.labels.newValue")}</label>
             <input
               type="text"
               id="newvalue"
               name="newvalue"
               value={itemData.newvalue}
               onChange={handleInputChange}
-              placeholder={itemData.showPlaceholderError && !itemData.newvalue 
-                ? t("form.placeholders.newValueError")
-                : t("form.placeholders.newValue")}
-              className={itemData.showPlaceholderError && !itemData.newvalue ? "error-placeholder" : ""}
+              placeholder={
+                itemData.showPlaceholderError && !itemData.newvalue
+                  ? t("form.placeholders.newValueError")
+                  : t("form.placeholders.newValue")
+              }
+              className={
+                itemData.showPlaceholderError && !itemData.newvalue
+                  ? "error-placeholder"
+                  : ""
+              }
               dir={i18n.language === "ar" ? "rtl" : "ltr"}
             />
           </div>
@@ -417,15 +559,23 @@ export const AddCultureValue = () => {
               name="reason"
               value={itemData.reason}
               onChange={handleInputChange}
-              className={itemData.showPlaceholderError && !itemData.reason ? "reason-error-placeholder" : ""}
+              className={
+                itemData.showPlaceholderError && !itemData.reason
+                  ? "reason-error-placeholder"
+                  : ""
+              }
             >
               <option value="" disabled>
-                {itemData.showPlaceholderError && !itemData.reason 
+                {itemData.showPlaceholderError && !itemData.reason
                   ? t("form.placeholders.reasonError")
                   : t("form.placeholders.reason")}
               </option>
-              <option value="Variation">{t("form.reasonOptions.variation")}</option>
-              <option value="subculture">{t("form.reasonOptions.subculture")}</option>
+              <option value="Variation">
+                {t("form.reasonOptions.variation")}
+              </option>
+              <option value="subculture">
+                {t("form.reasonOptions.subculture")}
+              </option>
             </select>
           </div>
 
@@ -456,6 +606,168 @@ export const AddCultureValue = () => {
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
             <p className="success-message">{t("successPopup.message")}</p>
+          </div>
+        )}
+
+        {/* Translation Popup */}
+        {showTranslationPopup && translationData && (
+          <div
+            className="popup-overlay"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0,0,0,0.3)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1000,
+            }}
+          >
+            <div
+              className="popup-content"
+              style={{
+                backgroundColor: "#fff",
+                padding: "20px",
+                borderRadius: "10px",
+                width: "600px",
+                maxWidth: "90%",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                direction:
+                  translationData.targetLanguage === "ar" ? "rtl" : "ltr",
+              }}
+            >
+              <h2
+                style={{
+                  color: "#333",
+                  marginBottom: "20px",
+                  textAlign:
+                    translationData.targetLanguage === "ar" ? "right" : "left",
+                }}
+              >
+                {t("Review Translations")}
+              </h2>
+
+              <div style={{ marginBottom: "15px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "5px",
+                    fontWeight: "bold",
+                    textAlign:
+                      translationData.targetLanguage === "ar"
+                        ? "right"
+                        : "left",
+                  }}
+                >
+                  {t("Original Value")}
+                </label>
+                <div
+                  style={{
+                    padding: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    backgroundColor: "#f9f9f9",
+                    direction:
+                      detectLanguage(translationData.originalValue) === "ar"
+                        ? "rtl"
+                        : "ltr",
+                    textAlign:
+                      detectLanguage(translationData.originalValue) === "ar"
+                        ? "right"
+                        : "left",
+                  }}
+                >
+                  {translationData.originalValue}
+                </div>
+              </div>
+
+              <div style={{ marginBottom: "20px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "5px",
+                    fontWeight: "bold",
+                    textAlign:
+                      translationData.targetLanguage === "ar"
+                        ? "right"
+                        : "left",
+                  }}
+                >
+                  {t("Translated Value")}
+                </label>
+                <textarea
+                  value={editableTranslation}
+                  onChange={(e) => setEditableTranslation(e.target.value)}
+                  style={{
+                    width: "100%",
+                    minHeight: "80px",
+                    padding: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    resize: "vertical",
+                    direction:
+                      translationData.targetLanguage === "ar"
+                        ? "ltr"
+                        : translationData.targetLanguage === "zh"
+                        ? "ltr"
+                        : "rtl",
+                    textAlign:
+                      translationData.targetLanguage === "ar"
+                        ? "left"
+                        : translationData.targetLanguage === "zh"
+                        ? "left"
+                        : "right",
+                  }}
+                />
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "20px",
+                  marginTop: "25px",
+                  flexDirection:
+                    translationData.targetLanguage === "ar"
+                      ? "row-reverse"
+                      : "row",
+                }}
+              >
+                <button
+                  onClick={handleTranslationConfirm}
+                  style={{
+                    padding: "10px 25px",
+                    border: "none",
+                    borderRadius: "4px",
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {t("Confirm")}
+                </button>
+                <button
+                  onClick={handleTranslationCancel}
+                  style={{
+                    padding: "10px 25px",
+                    border: "none",
+                    borderRadius: "4px",
+                    backgroundColor: "#dc3545",
+                    color: "white",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {t("Cancel")}
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
