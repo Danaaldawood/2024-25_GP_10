@@ -221,43 +221,102 @@ const ModeratorPage = () => {
 
   const handleToggleReviewed = async (entry) => {
     try {
-      console.log("Entry data:", entry); // Debug log
-  
+      console.log("Marking as reviewed entry:", entry);
+      
       // Use fullUserId instead of userId
       const fullUserId = entry.fullUserId || entry.userId;
       
+      // 1. Update the Viewedit entry
       await update(ref(realtimeDb, `Viewedit/${entry.region}/${entry.id}`), {
         modAction: "action",
       });
-  
-      // Create notification with proper translations
+      
+      // 2. Find and deny any matching notifications
+      const notificationsRef = ref(realtimeDb, `notifications`);
+      const notificationsSnap = await get(notificationsRef);
+      
+      if (notificationsSnap.exists()) {
+        const notificationsData = notificationsSnap.val();
+        
+        for (const [notifId, notifDetails] of Object.entries(notificationsData)) {
+          if (!notifDetails.notifications) continue;
+          
+          const updatedNotifications = notifDetails.notifications.map(n => {
+            // Check if this notification matches the entry
+            if (
+              n.attribute?.en === entry.en_question &&
+              n.PreviousValue?.en === entry.value &&
+              n.region === entry.region
+            ) {
+              console.log("Found matching notification to deny:", n);
+              return { ...n, modAction: "action" };
+            }
+            return n;
+          });
+          
+          // If modifications were made, update the notifications
+          if (JSON.stringify(updatedNotifications) !== JSON.stringify(notifDetails.notifications)) {
+            console.log(`Updating notifications at ${notifId} to mark as denied`);
+            await set(ref(realtimeDb, `notifications/${notifId}`), { 
+              notifications: updatedNotifications 
+            });
+            
+            // If we find a match, send a "denied" notification to the user
+            const matchingNotifications = notifDetails.notifications.filter(n => 
+              n.attribute?.en === entry.en_question &&
+              n.PreviousValue?.en === entry.value &&
+              n.region === entry.region
+            );
+            
+            if (matchingNotifications.length > 0) {
+              const notification = matchingNotifications[0];
+              if (notification.userId?.fullId) {
+                console.log(`Sending denial notification to user: ${notification.userId.fullId}`);
+                await createUserNotification(
+                  notification.userId.fullId,
+                  notification.attribute,
+                  notification.PreviousValue,
+                  "denied"
+                );
+              }
+            }
+          }
+        }
+      }
+      
+      // 3. Create notification with proper translations for the review action
       const notificationValue = {
         en: entry.value || "",
         ar: entry.region === "Arab" ? entry.native_value || "" : "",
         ch: entry.region === "Chinese" ? entry.native_value || "" : ""
       };
-  
+      
       const notificationAttribute = {
         en: entry.en_question || "",
         ar: entry.question || "",
         ch: entry.ch_question || ""
       };
-  
-      console.log("Creating notification with:", {
-        userId: fullUserId,
-        attribute: notificationAttribute,
-        value: notificationValue
-      });
-  
-      // Create notification with the full user ID
+      
+      // 4. Create notification with the full user ID for the review action
       await createUserNotification(
-        fullUserId, // Using fullUserId instead of userId
+        fullUserId,
         notificationAttribute,
         notificationValue,
         "reviewed"
       );
-  
+      
+      // 5. Update local state
       setViewEditEntries((prev) => prev.filter((e) => e.id !== entry.id));
+      
+      // Also update notifications state if necessary
+      setNotifications((prev) => 
+        prev.filter((n) => 
+          !(n.attribute?.en === entry.en_question && 
+            n.PreviousValue?.en === entry.value &&
+            n.region === entry.region)
+        )
+      );
+      
     } catch (error) {
       console.error("Error in handleToggleReviewed:", error);
     }
@@ -391,78 +450,148 @@ const ModeratorPage = () => {
       actionType: "delete",
       onConfirm: async () => {
         try {
-          // حذف من dataset
+          console.log("Starting delete process for:", notification);
+          
+          // Get the user ID in both formats for more robust matching
+          const shortId = notification.userId.shortId;
+          const fullId = notification.userId.fullId;
+          const valueToDelete = notification.PreviousValue.en;
+          const attributeName = notification.attribute.en;
+          
+          console.log(`Attempting to delete value "${valueToDelete}" for attribute "${attributeName}" by user ${shortId}`);
+          
+          // 1. Delete from dataset - handle array structure correctly
           const regionDatasetRef = ref(realtimeDb, `${notification.region}C/Details`);
           const snapshot = await get(regionDatasetRef);
-  
+          
           if (snapshot.exists()) {
             const details = snapshot.val();
-            for (const [detailKey, detailValue] of Object.entries(details)) {
-              if (detailValue.en_question === notification.attribute.en) {
-                const annotations = detailValue.annotations || [];
-                const filteredAnnotations = annotations.filter(
-                  (annotation) =>
-                    !(
-                      annotation.en_values?.includes(notification.PreviousValue.en) &&
-                      annotation.user_id === notification.userId.shortId
-                    )
-                );
-  
-                if (filteredAnnotations.length < annotations.length) {
+            
+            // Since Details is an array, we need to iterate through it
+            for (let i = 0; i < details.length; i++) {
+              const detailValue = details[i];
+              
+              // Match by question/attribute
+              if (detailValue.en_question === attributeName) {
+                console.log(`Found matching question at index ${i}`);
+                
+                if (!detailValue.annotations) {
+                  console.log("No annotations found for this question");
+                  continue;
+                }
+                
+                // Create a copy of the annotations array to modify
+                const annotations = [...detailValue.annotations];
+                let removed = false;
+                
+                // Print all annotations to help debug
+                console.log("Current annotations:", JSON.stringify(annotations));
+                
+                // Find the annotation to remove - IGNORING USER ID for moderators
+                const updatedAnnotations = annotations.filter(annotation => {
+                  // Only check for value match, ignore user ID
+                  let valueMatches = false;
+                  if (Array.isArray(annotation.en_values)) {
+                    valueMatches = annotation.en_values.includes(valueToDelete);
+                  } else if (typeof annotation.en_values === 'string') {
+                    valueMatches = annotation.en_values === valueToDelete;
+                  }
+                  
+                  // Log each annotation evaluation
+                  console.log(`Checking annotation - User: ${annotation.user_id}, Values: ${JSON.stringify(annotation.en_values)}`);
+                  console.log(`Value match: ${valueMatches}`);
+                  
+                  // If value matches, remove it regardless of user ID
+                  if (valueMatches) {
+                    console.log("Found matching annotation to remove!");
+                    removed = true;
+                    return false; // Remove this annotation
+                  }
+                  return true; // Keep this annotation
+                });
+                
+                // If we removed something, update the database
+                if (removed) {
+                  console.log(`Updating dataset at path: ${notification.region}C/Details/${i} with ${updatedAnnotations.length} annotations (was ${annotations.length})`);
                   await update(
-                    ref(realtimeDb, `${notification.region}C/Details/${detailKey}`),
+                    ref(realtimeDb, `${notification.region}C/Details/${i}`),
                     {
                       ...detailValue,
-                      annotations: filteredAnnotations,
+                      annotations: updatedAnnotations,
                     }
                   );
+                } else {
+                  console.log("No matching annotation found to remove. Value to delete:", valueToDelete);
                 }
               }
             }
+          } else {
+            console.log(`No data found at path: ${notification.region}C/Details`);
           }
-  
-          // تحديث Viewedit إن وجد
+          
+          // 2. Update Viewedit - handle all potential matches
           const vieweditRef = ref(realtimeDb, `Viewedit/${notification.region}`);
           const vieweditSnap = await get(vieweditRef);
+          
           if (vieweditSnap.exists()) {
+            console.log("Checking Viewedit entries");
             const vieweditEntries = vieweditSnap.val();
+            
             for (const [entryId, entryData] of Object.entries(vieweditEntries)) {
-              if (
-                entryData.userId === notification.userId.shortId &&
-                entryData.en_question === notification.attribute.en &&
-                entryData.value === notification.PreviousValue.en
-              ) {
+              // Check for value matches only (ignore user ID for moderators)
+              const attributeMatches = 
+                entryData.en_question === attributeName || 
+                entryData.attribute?.en === attributeName;
+              
+              const valueMatches = 
+                entryData.value === valueToDelete || 
+                entryData.PreviousValue?.en === valueToDelete;
+              
+              if (attributeMatches && valueMatches) {
+                console.log(`Updating Viewedit entry: ${entryId}`);
                 await update(
                   ref(realtimeDb, `Viewedit/${notification.region}/${entryId}`),
                   { modAction: "action" }
                 );
               }
             }
+          } else {
+            console.log(`No Viewedit entries found for: ${notification.region}`);
           }
-  
-          // تحديث notifications: حذف العنصر المطابق
+          
+          // 3. Update notifications status
           if (notification.id) {
+            console.log(`Updating notification: ${notification.id}`);
             const notificationRef = ref(realtimeDb, `notifications/${notification.id}/notifications`);
             const notifSnapshot = await get(notificationRef);
-  
+            
             if (notifSnapshot.exists()) {
               const notificationArray = notifSnapshot.val();
-  
-              const cleanedNotifications = notificationArray.filter(
-                (n) =>
-                  !(
-                    n.userId.shortId === notification.userId.shortId &&
-                    n.attribute.en === notification.attribute.en &&
-                    n.PreviousValue.en === notification.PreviousValue.en
-                  )
-              );
-  
-              await set(notificationRef, cleanedNotifications);
+              
+              // Filter out the matching notification
+              const cleanedNotifications = notificationArray.filter(n => {
+                const attributeMatches = 
+                  n.attribute?.en === attributeName;
+                
+                const valueMatches = 
+                  n.PreviousValue?.en === valueToDelete;
+                
+                // Keep all notifications that DON'T match (remove the one that matches)
+                return !(attributeMatches && valueMatches);
+              });
+              
+              if (cleanedNotifications.length < notificationArray.length) {
+                console.log("Removing notification from the list");
+                await set(notificationRef, cleanedNotifications);
+              } else {
+                console.log("No matching notification found to remove");
+              }
             }
           }
-  
-          // إرسال إشعار للمستخدم
+          
+          // 4. Send user notification about the deletion
           if (notification.userId?.fullId) {
+            console.log(`Sending notification to user: ${notification.userId.fullId}`);
             await createUserNotification(
               notification.userId.fullId,
               notification.attribute,
@@ -470,22 +599,21 @@ const ModeratorPage = () => {
               "deleted"
             );
           }
-  
-          // تحديث الواجهة (state)
-          setNotifications((prev) =>
-            prev.filter(
-              (n) =>
-                !(
-                  n.userId.shortId === notification.userId.shortId &&
-                  n.attribute.en === notification.attribute.en &&
-                  n.PreviousValue.en === notification.PreviousValue.en
-                )
+          
+          // 5. Update UI
+          console.log("Updating UI state");
+          setNotifications(prev =>
+            prev.filter(n => 
+              !(n.attribute.en === notification.attribute.en &&
+                n.PreviousValue.en === notification.PreviousValue.en)
             )
           );
+          
+          console.log("Delete operation completed successfully");
         } catch (error) {
           console.error("Error deleting value:", error);
         }
-  
+        
         setConfirmModal({ isOpen: false, message: "", onConfirm: null });
       },
     });
@@ -499,63 +627,76 @@ const ModeratorPage = () => {
       actionType: "deny",
       onConfirm: async () => {
         try {
+          console.log("Denying notification:", notification);
+          
+          // 1. Update the notification
           const notificationRef = ref(
             realtimeDb,
             `notifications/${notification.id}`
           );
           const snapshot = await get(notificationRef);
           const notificationData = snapshot.val();
-
+  
           if (notificationData?.notifications) {
             const updatedNotifications = notificationData.notifications.map(
               (n) => {
                 if (
-                  n.userId.shortId === notification.userId.shortId &&
-                  n.attribute.en === notification.attribute.en &&
-                  n.PreviousValue.en === notification.PreviousValue.en
+                  n.attribute?.en === notification.attribute.en &&
+                  n.PreviousValue?.en === notification.PreviousValue.en &&
+                  n.region === notification.region
                 ) {
                   return { ...n, modAction: "action" };
                 }
                 return n;
               }
             );
-
+  
             await set(notificationRef, { notifications: updatedNotifications });
-
+            
+            // 2. Find and mark as reviewed any matching view edit entries
+            const vieweditRef = ref(realtimeDb, `Viewedit/${notification.region}`);
+            const vieweditSnap = await get(vieweditRef);
+  
+            if (vieweditSnap.exists()) {
+              const vieweditEntries = vieweditSnap.val();
+              for (const [entryId, entryData] of Object.entries(vieweditEntries)) {
+                // Match by attribute and value
+                const attributeMatches = 
+                  entryData.en_question === notification.attribute.en ||
+                  entryData.attribute?.en === notification.attribute.en;
+                
+                const valueMatches = 
+                  entryData.value === notification.PreviousValue.en ||
+                  entryData.PreviousValue?.en === notification.PreviousValue.en;
+                
+                if (attributeMatches && valueMatches) {
+                  console.log(`Marking as reviewed Viewedit entry: ${entryId}`);
+                  await update(
+                    ref(realtimeDb, `Viewedit/${notification.region}/${entryId}`),
+                    { modAction: "action" }
+                  );
+                }
+              }
+            }
+  
+            // 3. Send notification to user
             await createUserNotification(
               notification.userId.fullId,
               notification.attribute,
               notification.PreviousValue,
               "denied"
             );
-
+  
+            // 4. Update UI state
             setNotifications((prev) =>
               prev.filter(
                 (n) =>
                   !(
-                    n.userId.shortId === notification.userId.shortId &&
                     n.attribute.en === notification.attribute.en &&
                     n.PreviousValue.en === notification.PreviousValue.en
                   )
               )
             );
-            // Remove related entry from Viewedit
-const vieweditRef = ref(realtimeDb, `Viewedit/${notification.region}`);
-const vieweditSnap = await get(vieweditRef);
-
-if (vieweditSnap.exists()) {
-  const vieweditEntries = vieweditSnap.val();
-  for (const [entryId, entryData] of Object.entries(vieweditEntries)) {
-    if (
-      entryData.userId === notification.userId.shortId &&
-      entryData.en_question === notification.attribute.en &&
-      entryData.value === notification.PreviousValue.en
-    ) {
-      await remove(ref(realtimeDb, `Viewedit/${notification.region}/${entryId}`));
-    }
-  }
-}
-
           }
         } catch (error) {
           console.error("Error denying request:", error);
