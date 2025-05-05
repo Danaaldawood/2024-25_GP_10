@@ -11,7 +11,8 @@
       "ArabicOnly": "Please enter the value in Arabic only for the Arabic field.",
       "ChineseOnly": "Please enter the value in Chinese only for the Chinese field.",
       "updateFailed": "Failed to update data. Please try again.",
-      "translationFailed": "Translation failed. Please try again."
+      "translationFailed": "Translation failed. Please try again.",
+      "invalidLanguage": "Please enter text in {{language}} or English only."
     },
     "header": {
       "title": "Add Culture Value"
@@ -34,7 +35,14 @@
         "newValueArabic": "Enter value in Arabic",
         "newValueChinese": "Enter value in Chinese",
         "reason": "Select your reason",
-        "reasonError": "Please select your reason"
+        "reasonError": "Please select your reason",
+        "enterArabicOrEnglish": "Enter value in Arabic or English",
+        "enterChineseOrEnglish": "Enter value in Chinese or English"
+      },
+      "hints": {
+        "arabicOrEnglishOnly": "You can only enter Arabic or English text",
+        "chineseOrEnglishOnly": "You can only enter Chinese or English text",
+        "englishOnly": "You can only enter English text"
       },
       "reasonOptions": {
         "variation": "Variation",
@@ -73,7 +81,8 @@
       "ArabicOnly": "يرجى إدخال القيمة باللغة العربية فقط للحقل العربي.",
       "ChineseOnly": "يرجى إدخال القيمة باللغة الصينية فقط للحقل الصيني.",
       "updateFailed": "فشل في تحديث البيانات. يرجى المحاولة مرة أخرى.",
-      "translationFailed": "فشل في الترجمة. يرجى المحاولة مرة أخرى."
+      "translationFailed": "فشل في الترجمة. يرجى المحاولة مرة أخرى.",
+      "invalidLanguage": "الرجاء إدخال النص باللغة {{language}} أو الإنجليزية فقط."
     },
     "header": {
       "title": "إضافة قيمة ثقافية"
@@ -96,7 +105,14 @@
         "newValueArabic": "أدخل القيمة بالعربية",
         "newValueChinese": "أدخل القيمة بالصينية",
         "reason": "اختر السبب",
-        "reasonError": "الرجاء اختيار السبب"
+        "reasonError": "الرجاء اختيار السبب",
+        "enterArabicOrEnglish": "أدخل القيمة بالعربية أو الإنجليزية",
+        "enterChineseOrEnglish": "أدخل القيمة بالصينية أو الإنجليزية"
+      },
+      "hints": {
+        "arabicOrEnglishOnly": "يمكنك إدخال النص باللغة العربية أو الإنجليزية فقط",
+        "chineseOrEnglishOnly": "يمكنك إدخال النص باللغة الصينية أو الإنجليزية فقط",
+        "englishOnly": "يمكنك إدخال النص باللغة الإنجليزية فقط"
       },
       "reasonOptions": {
         "variation": "تنوع",
@@ -135,7 +151,8 @@
       "ArabicOnly": "阿拉伯语字段请仅输入阿拉伯语内容",
       "ChineseOnly": "中文字段请仅输入中文内容",
       "updateFailed": "数据更新失败，请重试。",
-      "translationFailed": "翻译失败，请重试。"
+      "translationFailed": "翻译失败，请重试。",
+      "invalidLanguage": "请只输入{{language}}或英文文本。"
     },
     "header": {
       "title": "添加文化价值"
@@ -158,7 +175,14 @@
         "newValueArabic": "用阿拉伯语输入值",
         "newValueChinese": "用中文输入值",
         "reason": "选择原因",
-        "reasonError": "请选择原因"
+        "reasonError": "请选择原因",
+        "enterArabicOrEnglish": "请用阿拉伯语或英语输入值",
+        "enterChineseOrEnglish": "请用中文或英语输入值"
+      },
+      "hints": {
+        "arabicOrEnglishOnly": "您只能输入阿拉伯语或英语文本",
+        "chineseOrEnglishOnly": "您只能输入中文或英语文本",
+        "englishOnly": "您只能输入英语文本"
       },
       "reasonOptions": {
         "variation": "差异",

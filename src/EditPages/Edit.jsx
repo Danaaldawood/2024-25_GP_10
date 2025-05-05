@@ -60,6 +60,24 @@ export const AddCultureValue = () => {
     return "en";
   };
 
+  // Function to validate the input language based on region
+  const validateLanguageInput = (text, region) => {
+    if (!text || text.trim().length < 2) return true;
+    
+    const detectedLang = detectLanguage(text);
+    
+    // Check if the language matches the region's native language or English
+    if (region === "Arab") {
+      return detectedLang === "ar" || detectedLang === "en";
+    } else if (region === "Chinese") {
+      return detectedLang === "zh" || detectedLang === "en";
+    } else if (region === "Western") {
+      return detectedLang === "en";
+    }
+    
+    return true;
+  };
+
   // Function to translate text using LibreTranslate
   const translateText = async (text, targetLanguage) => {
     try {
@@ -206,6 +224,8 @@ export const AddCultureValue = () => {
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    // Basic change handling for all inputs
     setItemData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -245,6 +265,26 @@ export const AddCultureValue = () => {
       }));
       return;
     }
+    
+    // Validate the language input
+    const isValidLanguage = validateLanguageInput(itemData.newvalue, itemData.region);
+    if (!isValidLanguage) {
+      // Set error message for language validation
+      let errorMsg = "";
+      if (itemData.region === "Arab") {
+        errorMsg = t("errorPopup.invalidLanguage", { language: t("Arabic") }) || 
+                  "Please enter text in Arabic or English only.";
+      } else if (itemData.region === "Chinese") {
+        errorMsg = t("errorPopup.invalidLanguage", { language: t("Chinese") }) || 
+                  "Please enter text in Chinese or English only.";
+      } else {
+        errorMsg = t("errorPopup.englishOnly");
+      }
+      
+      setErrorMessage(errorMsg);
+      setShowErrorPopup(true);
+      return;
+    }
 
     // Detect input language
     const inputLanguage = detectLanguage(itemData.newvalue);
@@ -277,34 +317,34 @@ export const AddCultureValue = () => {
       }
 
       // Check for duplicate values
- let translatedToEnglish = itemData.newvalue;
-try {
-  if (inputLanguage !== "en") {
-    translatedToEnglish = await translateText(itemData.newvalue, "en");
-  }
-} catch (translationError) {
-  console.error("Translation error for duplication check:", translationError);
-   
-}
+      let translatedToEnglish = itemData.newvalue;
+      try {
+        if (inputLanguage !== "en") {
+          translatedToEnglish = await translateText(itemData.newvalue, "en");
+        }
+      } catch (translationError) {
+        console.error("Translation error for duplication check:", translationError);
+         
+      }
 
- const newValueLower = translatedToEnglish.toLowerCase();
+      const newValueLower = translatedToEnglish.toLowerCase();
 
-const existingEnglishValues = currentQuestionValues
-  .map((value) => {
-    if (value && value.en_values && value.en_values[0]) {
-      return value.en_values[0].toLowerCase();
-    }
-    return "";
-  })
-  .filter((val) => val !== "");
+      const existingEnglishValues = currentQuestionValues
+        .map((value) => {
+          if (value && value.en_values && value.en_values[0]) {
+            return value.en_values[0].toLowerCase();
+          }
+          return "";
+        })
+        .filter((val) => val !== "");
 
-if (existingEnglishValues.includes(newValueLower)) {
-  setErrorMessage(
-    t("errorPopup.duplicateValue", { value: itemData.newvalue })
-  );
-  setShowErrorPopup(true);
-  return;
-}
+      if (existingEnglishValues.includes(newValueLower)) {
+        setErrorMessage(
+          t("errorPopup.duplicateValue", { value: itemData.newvalue })
+        );
+        setShowErrorPopup(true);
+        return;
+      }
 
       // If translation is needed, show the translation popup
       if (isTranslationNeeded) {
@@ -551,7 +591,7 @@ if (existingEnglishValues.includes(newValueLower)) {
               placeholder={
                 itemData.showPlaceholderError && !itemData.newvalue
                   ? t("form.placeholders.newValueError")
-                  : t("form.placeholders.newValue")
+                  : getInputPlaceholder()
               }
               className={
                 itemData.showPlaceholderError && !itemData.newvalue
@@ -721,16 +761,16 @@ if (existingEnglishValues.includes(newValueLower)) {
                     resize: "vertical",
                     direction:
                       translationData.targetLanguage === "ar"
-                        ? "ltr"
+                        ? "rtl"
                         : translationData.targetLanguage === "zh"
                         ? "ltr"
-                        : "rtl",
+                        : "ltr",
                     textAlign:
                       translationData.targetLanguage === "ar"
-                        ? "left"
+                        ? "right"
                         : translationData.targetLanguage === "zh"
                         ? "left"
-                        : "right",
+                        : "left",
                   }}
                 />
               </div>
@@ -785,6 +825,17 @@ if (existingEnglishValues.includes(newValueLower)) {
       <Footer />
     </div>
   );
+  
+  // Helper function to get appropriate input placeholder based on region
+  function getInputPlaceholder() {
+    if (itemData.region === "Arab") {
+      return t("form.placeholders.enterArabicOrEnglish") || "Enter value in Arabic or English";
+    } else if (itemData.region === "Chinese") {
+      return t("form.placeholders.enterChineseOrEnglish") || "Enter value in Chinese or English";
+    } else {
+      return t("form.placeholders.newValue");
+    }
+  }
 };
 
 export default AddCultureValue;
