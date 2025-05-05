@@ -9,21 +9,23 @@
   margin: 0;
 }
 .Done-button {
-  position: fixed; 
-  top: 180px;      
-  right: 20px;     
+  position: fixed;
+  top: 150px;    
+  right: 20px;   
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4CAF50;
   color: white;
   border: none;
   cursor: pointer;
+  z-index: 9999;   
+}
+
+ .Done-button:hover {
+  background-color: #45a049;
 }
 
 
-.Done-button:hover {
-  background-color: #45a049;  
-}
 
 body {
   margin: 0;
@@ -310,15 +312,7 @@ body {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .column-table {
-    width: 100%;
-    min-width: unset;
-    display: block;
-    overflow-x: auto;
-  }
-
-  .column-table th,
-  .column-table td {
+  .column-table th, .column-table td {
     padding: 8px;
     font-size: 12px;
   }
@@ -340,26 +334,10 @@ body {
     font-size: 14px;
     flex-direction: column;
     gap: 5px;
-    align-items: center;
   }
 
   .header-title {
     font-size: 22px;
-  }
-
-  .Done-button {
-    top: auto;
-    bottom: 20px;
-    right: 20px;
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  .add-btn,
-  .back-to-chat-btn {
-    width: 100%;
-    font-size: 14px;
-    padding: 10px;
   }
 }
 
@@ -382,3 +360,4 @@ body {
 [dir="rtl"] .character-counter {
   text-align: right;
 }
+

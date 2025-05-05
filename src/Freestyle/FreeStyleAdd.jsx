@@ -736,7 +736,12 @@ const FreeStyleAdd = () => {
         <title>{t("FreeStyleAdd")}</title>
         <meta name="description" content="Add comparison results for model conversations" />
       </Helmet>
+      
       <div className="freestyle-page-header">
+      <button className="Done-button" onClick={() => navigate('/LensLeaderBoard')}>
+  Done
+</button>
+
         <button className="freestyle-back-btn" onClick={() => navigate(-1)}>
           <FaArrowLeft className="freestyle-back-icon" />
         </button>
@@ -750,10 +755,8 @@ const FreeStyleAdd = () => {
           <h5>{t("Model A: Mistral-7B")}</h5>
           <h5>{t("Model B: Llama-2-7B")}</h5>
         </div>
+        
 
-        <button className="Done-button" onClick={() => navigate('/LensLeaderBoard')}>
-      Done
-    </button>
        </div>
       <div className="column-table-container">
         <table className="column-table">
