@@ -277,23 +277,34 @@ export const AddCultureValue = () => {
       }
 
       // Check for duplicate values
-      const newValueLower = itemData.newvalue.toLowerCase();
-      const existingEnglishValues = currentQuestionValues
-        .map((value) => {
-          if (value && value.en_values && value.en_values[0]) {
-            return value.en_values[0].toLowerCase();
-          }
-          return "";
-        })
-        .filter((val) => val !== "");
+ let translatedToEnglish = itemData.newvalue;
+try {
+  if (inputLanguage !== "en") {
+    translatedToEnglish = await translateText(itemData.newvalue, "en");
+  }
+} catch (translationError) {
+  console.error("Translation error for duplication check:", translationError);
+   
+}
 
-      if (existingEnglishValues.includes(newValueLower)) {
-        setErrorMessage(
-          t("errorPopup.duplicateValue", { value: itemData.newvalue })
-        );
-        setShowErrorPopup(true);
-        return;
-      }
+ const newValueLower = translatedToEnglish.toLowerCase();
+
+const existingEnglishValues = currentQuestionValues
+  .map((value) => {
+    if (value && value.en_values && value.en_values[0]) {
+      return value.en_values[0].toLowerCase();
+    }
+    return "";
+  })
+  .filter((val) => val !== "");
+
+if (existingEnglishValues.includes(newValueLower)) {
+  setErrorMessage(
+    t("errorPopup.duplicateValue", { value: itemData.newvalue })
+  );
+  setShowErrorPopup(true);
+  return;
+}
 
       // If translation is needed, show the translation popup
       if (isTranslationNeeded) {

@@ -1,16 +1,19 @@
 {
     "en": {
+      "leaderboard-content":"Is a metric that represents the average assessment score of a language model’s response for a specific topic within a particular region. This score reflects how users from that region evaluate the model’s responses after interacting with it on that specific topic",
       "CultureLens - LeaderBoard": "CultureLens - LeaderBoard",
       "Region": "Region",
       "Model": "Model",
       "Topic": "Topic",
       "LeaderBoard":"LeaderBoard",
+      
       "LensLeaderBoard-Score": "LensLeaderBoard-Score",
       "No data available for this region": "No data available for this region",
+      
       "models": {
         "Model A": "Model A",
         "Model B": "Model B"
-      },
+            },
       "topics": {
         "Food": "Food",
         "Education": "Education",
@@ -28,6 +31,7 @@
     },
     "ar": {
       "CultureLens - LeaderBoard": "عدسة الثقافة - لوحة المتصدرين",
+      "leaderboard-content":"هو مقياس يُمثل متوسط درجة التقييم لاستجابة نموذج اللغة لموضوع معين ضمن منطقة معينة. تعكس هذه الدرجة كيفية تقييم المستخدمين من تلك المنطقة لاستجابات النموذج بعد التفاعل معه بشأن هذا الموضوع المحدد.",
       "LeaderBoard":"لوحة المتصدرين",
       "Region": "المنطقة",
       "Model": "النموذج",
@@ -37,13 +41,13 @@
       "models": {
         "Model A": "النموذج أ",
         "Model B": "النموذج ب"
-      },
+            },
       "topics": {
         "Food": "طعام",
         "Education": "تعليم",
         "Work life": "حياة العمل",
         "Sport": "رياضة",
-        "Holidays": "عطلة",
+        "Holidays/Celebration/Leisure": "عطلة",
         "Family": "عائلة",
         "greeting": "تحية"
       },
@@ -55,6 +59,7 @@
     },
     "ch": {
       "CultureLens - LeaderBoard": "文化透镜 - 排行榜",
+      "leaderboard-content":"是一个衡量指标，表示语言模型在特定区域内对特定主题的平均评估得分。该得分反映了该地区用户在与模型就该特定主题互动后对其响应的评价。",
       "Region": "地区",
       "Model": "模型",
       "LeaderBoard":"排行榜",
@@ -64,13 +69,13 @@
       "models": {
         "Model A": "模型A",
         "Model B": "模型B"
-      },
+       },
       "topics": {
         "Food": "食物",
         "Education": "教育",
         "Work life": "工作生活",
         "Sport": "运动",
-        "Holidays": "假期",
+        "Holidays/Celebration/Leisure": "假期",
         "Family": "家庭",
         "greeting": "问候"
       },

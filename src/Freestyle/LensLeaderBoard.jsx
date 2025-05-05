@@ -17,8 +17,7 @@ const LensLeaderBoard = () => {
   const [showInfo, setShowInfo] = useState(false);
   const isRTL = i18n.dir() === 'rtl';
 
-  // ⛳️ fix: move toggleTooltip out here
-  const toggleTooltip = () => {
+   const toggleTooltip = () => {
     setShowTooltip((prev) => !prev);
   };
 
@@ -123,15 +122,9 @@ const LensLeaderBoard = () => {
     
     
     <div className="leaderboard-popup">
-      <div className="leaderboard-content">
-        <p>
-          A dynamic table that displays each language model's performance across
-          various topics, based on the average Lens Score—a metric representing
-          the collective assessment of a model’s responses by users from a
-          specific cultural region. This score reflects how users from that region
-          evaluate the quality and relevance of a model’s answer for a given topic
-          after direct interaction.
-        </p>
+      <div className={t("leaderboard-content")}>
+      <p>{t("leaderboard-content")}</p>
+
       </div>
     </div>
   </div>

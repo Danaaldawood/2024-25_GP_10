@@ -252,7 +252,7 @@ export const ConversationLayout = () => {
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
             disabled={sendCount >= sendLimit || isLoading}
           />
-          <button
+         <button
   className={`freestyle-send-button ${isRTL ? 'rtl' : 'ltr'}`}
   dir={isRTL ? "rtl" : "ltr"}
   onClick={handleSendMessage}
@@ -260,9 +260,8 @@ export const ConversationLayout = () => {
 >
   {isLoading ? t('sending') : (
     <span className="send-content">
-      {isRTL ? <FaPaperPlane className="send-icon" /> : null}
-      {t('send')}
-      {!isRTL ? <FaPaperPlane className="send-icon" /> : null}
+      <FaPaperPlane className="send-icon" />
+      <span>{t('send')}</span>
     </span>
   )}
 </button>
