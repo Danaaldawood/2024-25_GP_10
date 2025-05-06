@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
     padding: 1rem;
   }
   
@@ -56,7 +56,7 @@
   }
   
   .Adminreset-password-input:focus {
-    border-color:  rgb(58, 120, 75);
+    border-color:#853c69;
     outline: none;
   }
   
@@ -84,7 +84,7 @@
   .Adminreset-password-btn {
     width: 100%;
     padding: 0.75rem;
-    background-color: rgb(58, 120, 75);
+    background:linear-gradient(135deg, #853c69 0%, #722F57 100%);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -95,14 +95,14 @@
   }
   
   .Adminreset-password-btn:hover {
-    background-color:  rgb(73, 148, 93);
+    background: linear-gradient(135deg, #722F57 0%, #66244c 100%);
   }
   
 
   
   .Adminreset-password-left-section {
     flex: 1;
-    background: rgb(72, 141, 92);
+    background: #095c474f;
     color: #fff;
     display: flex;
     flex-direction: column;

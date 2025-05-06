@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
   padding: 1rem;
 }
 
@@ -51,14 +51,14 @@
 }
 
 .Adminforgot-password-input:focus {
-  border-color: #004d60;
+  border-color:#853c69;
   outline: none;
 }
 
 .Adminforgot-password-btn {
   width: 100%;
   padding: 0.75rem;
-  background-color: #456b90;
+  background:linear-gradient(135deg, #853c69 0%, #722F57 100%);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -69,12 +69,12 @@
 }
 
 .Adminforgot-password-btn:hover {
-  background-color:#254d75;
+  background: linear-gradient(135deg, #722F57 0%, #66244c 100%);
 }
 
 .Adminforgot-password-left-section {
   flex: 1;
-  background: #2d5174;
+  background: #095c474f;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@
 }
 
 .Adminforgot-link {
-  color: #254d75;;
+  color:#A44580;
   text-decoration: none;
   font-weight: bold;
 }
