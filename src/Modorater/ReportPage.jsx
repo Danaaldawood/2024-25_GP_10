@@ -42,6 +42,8 @@ const ReportPage = () => {
               if (viewEditSnapshot.exists()) {
                 const viewEditData = viewEditSnapshot.val();
                 Object.entries(viewEditData).forEach(([key, entry]) => {
+                  if (!entry || !entry.fullUserId) return; // Skip invalid entries
+                  
                   const userId = entry.fullUserId;
                   if (!userMap.has(userId)) {
                     userMap.set(userId, {
@@ -54,7 +56,7 @@ const ReportPage = () => {
                   }
   
                   userMap.get(userId).addedValues.push({
-                    value:  entry.value,
+                    value: entry.value,
                     topic: entry.topic,
                     attribute: entry.en_question || entry.attribute,
                     modAction: entry.modAction || 'noaction'
@@ -68,9 +70,9 @@ const ReportPage = () => {
               if (notifSnapshot.exists()) {
                 const notifData = notifSnapshot.val();
                 Object.entries(notifData).forEach(([groupId, group]) => {
-                  if (group.notifications) {
+                  if (group && group.notifications) {
                     group.notifications.forEach(notification => {
-                      if (notification.region === regionM && notification.userId?.fullId) {
+                      if (notification && notification.region === regionM && notification.userId?.fullId) {
                         const userId = notification.userId.fullId;
                         if (!userMap.has(userId)) {
                           userMap.set(userId, {
@@ -138,6 +140,7 @@ const ReportPage = () => {
       [userId]: !prevState[userId]
     }));
   };
+  
   const handleBlock = async (userId) => {
     try {
       const updates = {
@@ -183,19 +186,18 @@ const ReportPage = () => {
         <h1 className="reportpage-title">User Reports - {moderatorRegion} Region</h1>
         
         <div className="filterReportPage-container">
-        <label htmlFor="status-filter" className="filter-label">Filter by Status:</label>
-  <select
-    id="status-filter"
-    className="filterReportPage-select"
-    value={statusFilter}
-    onChange={(e) => setStatusFilter(e.target.value)}
-  >
-    <option value="all">All</option>
-    <option value="active">Active</option>
-    <option value="blocked">Blocked</option>
-  </select>
-</div>
-
+          <label htmlFor="status-filter" className="filter-label">Filter by Status:</label>
+          <select
+            id="status-filter"
+            className="filterReportPage-select"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="blocked">Blocked</option>
+          </select>
+        </div>
 
         <table className="report-table">
           <thead>
@@ -208,83 +210,78 @@ const ReportPage = () => {
             </tr>
           </thead>
           <tbody>
-  {filteredUsers.length > 0 ? (
-    filteredUsers.map((user) => (
-      <tr key={user.userId}>
-        <td>{user.shortId}</td>
-        <td>
-  <div className="card-group">
-    {user.addedValues
-      .slice(0, showMoreAddedValues[user.userId] ? user.addedValues.length : maxItemsToShow)
-      .map((value, index) => (
-        <div className="mini-card value-card" key={index}>
-          <strong>{value.attribute}</strong>
-          <p>Value: {value.value}</p>
-        </div>
-      ))}
-  </div>
-  {user.addedValues.length > maxItemsToShow && (
-  <button
-    className="show-more-btn"
-    onClick={() => toggleShowMoreAddedValues(user.userId)}
-  >
-    {showMoreAddedValues[user.userId] ? "Show Less" : "Show More"}
-  </button>
-)}
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((user) => (
+                <tr key={user.userId}>
+                  <td>{user.shortId}</td>
+                  <td>
+                    <div className="card-group">
+                      {(user.addedValues || [])
+                        .slice(0, showMoreAddedValues[user.userId] ? (user.addedValues || []).length : maxItemsToShow)
+                        .map((value, index) => (
+                          <div className="mini-card value-card" key={index}>
+                            <strong>{value.attribute}</strong>
+                            <p>Value: {value.value}</p>
+                          </div>
+                        ))}
+                    </div>
+                    {(user.addedValues || []).length > maxItemsToShow && (
+                      <button
+                        className="show-more-btn"
+                        onClick={() => toggleShowMoreAddedValues(user.userId)}
+                      >
+                        {showMoreAddedValues[user.userId] ? "Show Less" : "Show More"}
+                      </button>
+                    )}
+                  </td>
 
-</td>
+                  <td>
+                    <div className="card-group">
+                      {(user.notifications || [])
+                        .slice(0, showMoreNotifications[user.userId] ? (user.notifications || []).length : maxItemsToShow)
+                        .map((notification, index) => (
+                          <div className="mini-card notif-card" key={index}>
+                            <strong>{notification.attribute}</strong>
+                            <p>Previous: {notification.previousValue || 'N/A'}</p>
+                            <p>Description: {notification.description}</p>
+                          </div>
+                        ))}
+                    </div>
+                    {(user.notifications || []).length > maxItemsToShow && (
+                      <button
+                        className="show-more-btn"
+                        onClick={() => toggleShowMoreNotifications(user.userId)}
+                      >
+                        {showMoreNotifications[user.userId] ? "Show Less " : "Show More "}
+                      </button>
+                    )}
+                  </td>
 
-<td>
-  <div className="card-group">
-    {user.notifications
-      .slice(0, showMoreNotifications[user.userId] ? user.notifications.length : maxItemsToShow)
-      .map((notification, index) => (
-        <div className="mini-card notif-card" key={index}>
-          <strong>{notification.attribute}</strong>
-          <p>Previous: {notification.previousValue || 'N/A'}</p>
-          <p>Description: {notification.description}</p>
-        </div>
-      ))}
-  </div>
-  {user.notifications.length > maxItemsToShow && (
-  <button
-    className="show-more-btn"
-    onClick={() => toggleShowMoreNotifications(user.userId)}
-  >
-    {showMoreNotifications[user.userId] ? "Show Less " : "Show More "}
-  </button>
-)}
-
-</td>
-
-        <td>
-          <span className={`status-badge ${user.status}`}>
-            {user.status}
-          </span>
-        </td>
-        <td>
-          {user.status !== 'blocked' && (
-            <button className="block-button" onClick={() => handleBlock(user.userId)}>
-              Block User
-            </button>
-          )}
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="5" className="no-data">
-        No users to display
-      </td>
-    </tr>
-  )}
-</tbody>
- 
+                  <td>
+                    <span className={`status-badge ${user.status}`}>
+                      {user.status}
+                    </span>
+                  </td>
+                  <td>
+                    {user.status !== 'blocked' && (
+                      <button className="block-button" onClick={() => handleBlock(user.userId)}>
+                        Block User
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="no-data">
+                  No users to display
+                </td>
+              </tr>
+            )}
+          </tbody>
         </table>
-        
       </div>
       <Footer />
-
     </div>
   );
 };
