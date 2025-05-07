@@ -23,6 +23,7 @@ export const Notifymodrator = () => {
   const [showError, setShowError] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [notificationType, setNotificationType] = useState("value"); // Default to 'value'
 
   // Function to get the correct display attribute based on language
   const getDisplayAttribute = () => {
@@ -82,7 +83,8 @@ export const Notifymodrator = () => {
     userId: { fullId: "", shortId: "" },
     region: location.state?.region || "",
     region_lan: location.state?.region_lan || "",
-    modAction: "noaction"
+    modAction: "noaction",
+    notificationType: "value" // Default notification type
   });
 
   // Update topic translation when language changes
@@ -126,7 +128,13 @@ export const Notifymodrator = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     
-    if (name === "PreviousValue") {
+    if (name === "notificationType") {
+      setNotificationType(value);
+      setNotificationData(prevState => ({
+        ...prevState,
+        notificationType: value
+      }));
+    } else if (name === "PreviousValue") {
       // Find the selected value object from allValues
       const selectedValueObj = location.state?.allValues?.find(val => 
         getDisplayValue(val) === value
@@ -179,10 +187,12 @@ export const Notifymodrator = () => {
       const sameAttribute = notification.attribute.en === notificationData.attribute.en;
       // Check if same previous value
       const samePreviousValue = notification.PreviousValue.en === notificationData.PreviousValue.en;
+      // Check if same notification type
+      const sameType = notification.notificationType === notificationData.notificationType;
       // Check if no action taken yet
       const isPending = notification.modAction === "noaction";
       
-      return sameAttribute && samePreviousValue && isPending;
+      return sameAttribute && samePreviousValue && sameType && isPending;
     });
   
     // If we find any pending notifications, return true to prevent submission
@@ -266,6 +276,20 @@ export const Notifymodrator = () => {
         </div>
 
         <div className="notify-inputs">
+          {/* New Notification Type Dropdown */}
+          <div className="notify-input">
+            <label className="label">{t("notifyPage.notificationType") || "Notification Type"}</label>
+            <select
+              name="notificationType"
+              value={notificationType}
+              onChange={handleInputChange}
+              className="notify-select"
+            >
+              <option value="value">{t("notifyPage.valueType") || "Value"}</option>
+              <option value="attribute">{t("notifyPage.attributeType") || "Attribute"}</option>
+            </select>
+          </div>
+
           <div className="notify-input">
             <label className="label">{t("notifyPage.label")}</label>
             <input
@@ -276,31 +300,42 @@ export const Notifymodrator = () => {
             />
           </div>
 
-          <div className="notify-input">
-            <label className="label2">{t("notifyPage.label2")}</label>
-            <select
-              name="PreviousValue"
-              value={getDisplayValue(location.state?.allValues?.find(v => 
-                v.en_values?.[0] === notificationData.PreviousValue.en
-              ) || {})}
-              onChange={handleInputChange}
-              className="notify-select"
-            >
-              {location.state?.allValues?.map((value, index) => (
-                <option key={index} value={getDisplayValue(value)}>
-                  {getDisplayValue(value)}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Only show value selection if notification type is "value" */}
+          {notificationType === "value" && (
+            <div className="notify-input">
+              <label className="label2">{t("notifyPage.label2")}</label>
+              <select
+                name="PreviousValue"
+                value={getDisplayValue(location.state?.allValues?.find(v => 
+                  v.en_values?.[0] === notificationData.PreviousValue.en
+                ) || {})}
+                onChange={handleInputChange}
+                className="notify-select"
+              >
+                {location.state?.allValues?.map((value, index) => (
+                  <option key={index} value={getDisplayValue(value)}>
+                    {getDisplayValue(value)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
           <div className="notify-input">
-            <label className="label3">{t("notifyPage.label3")}</label>
+            <label className="label3">
+              {notificationType === "attribute" 
+                ? t("notifyPage.attributeDescription") || "Please describe your issue with this attribute"
+                : t("notifyPage.label3")}
+            </label>
             <textarea
               name="description"
               value={notificationData.description}
               onChange={handleInputChange}
-              placeholder={showError ? t("notifyPage.errorPlaceholder") : t("notifyPage.detailPlaceholder")}
+              placeholder={showError 
+                ? t("notifyPage.errorPlaceholder") 
+                : notificationType === "attribute" 
+                  ? t("notifyPage.attributePlaceholder") || "Describe your issue with this attribute"
+                  : t("notifyPage.detailPlaceholder")}
               className={showError && !notificationData.description ? "error-input" : ""}
               rows={4}
             />

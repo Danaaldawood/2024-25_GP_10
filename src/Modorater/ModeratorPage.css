@@ -346,6 +346,43 @@
   background-color: rgba(9, 92, 71, 0.1);
   border-radius: 4px;
 }
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: flex-end;
+  margin: 10px 0; 
+  padding: 15px;
+  position: relative;
+  top: -50px;  
+  
+}
+
+
+.filter-container label {
+  font-weight: bold;
+  color: #242424;
+  font-size: 15px;
+}
+
+.filter-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  min-width: 120px;
+  margin-left: 10px;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+  border-color: #853c69;
+  box-shadow: 0 0 8px rgba(16, 163, 127, 0.3);
+}
 
 /* --- Media Queries for Responsiveness --- */
 @media screen and (max-width: 1400px) {

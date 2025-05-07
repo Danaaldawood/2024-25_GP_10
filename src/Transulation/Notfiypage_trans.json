@@ -1,87 +1,100 @@
 {
-    "en": {
-      "notifyPage": {
-        "notify-title": "Notify Moderator",
-        "label": "Topic",
-        "label2": "Previous Values:",
-        "label3": "Description:",
-        "label4": "Suggestion for New Value (optional):",
-        "placeholder1": "Suggest a new value",
-        "errorPlaceholder": "Please provide a description",
-        "detailPlaceholder": "Describe the issue in detail",
-        "submitButton": "Notify",
-        "successMessage": "Notification submitted successfully.",
-        "errorTitle": "Error",
-        "errorOkButton": "OK",
-        "noDataAlert": "No data available for notification.",
-        "suggestionError": "Please enter the suggestion in English only.",
-        "pendingNotificationError": "A notification for this attribute and value is already pending.",
-        "Topic_Names": {
-          "Food": "Food",
-          "Education": "Education",
-          "Work life": "Work Life",
-          "Sport": "Sport",
-          "Holidays/Celebration/Leisure": "Holiday",
-          "Family": "Family",
-          "greeting": "Greeting"
-        }
+  "en": {
+    "notifyPage": {
+      "notify-title": "Notify Moderator",
+      "label": "Topic",
+      "label2": "Previous Values:",
+      "label3": "Description:",
+      "label4": "Suggestion for New Value (optional):",
+      "placeholder1": "Suggest a new value",
+      "errorPlaceholder": "Please provide a description",
+      "detailPlaceholder": "Describe the issue in detail",
+      "attributePlaceholder": "Describe the issue in detail",
+      "submitButton": "Notify",
+      "successMessage": "Notification submitted successfully.",
+      "errorTitle": "Error",
+      "errorOkButton": "OK",
+      "noDataAlert": "No data available for notification.",
+      "suggestionError": "Please enter the suggestion in English only.",
+      "pendingNotificationError": "A notification for this attribute and value is already pending.",
+      "valueType": "Value",
+      "attributeType": "Attribute",
+      "notificationType": "Notification Type",
+      "attributeDescription": "Describe your issue with this attribute",
+      "Topic_Names": {
+        "Food": "Food",
+        "Education": "Education",
+        "Work life": "Work Life",
+        "Sport": "Sport",
+        "Holidays/Celebration/Leisure": "Holiday",
+        "Family": "Family",
+        "greeting": "Greeting"
       }
-    },
-    "ar": {
-      "notifyPage": {
-        "notify-title": "إخطار المشرف",
-        "label": "الموضوع",
-        "label2": "القيم السابقة:",
-        "label3": "الوصف:",
-        "label4": "اقتراح لقيمة جديدة (اختياري):",
-        "placeholder1": "اقترح قيمة جديدة",
-        "errorPlaceholder": "يرجى تقديم وصف",
-        "detailPlaceholder": "اشرح المشكلة بالتفصيل",
-        "submitButton": "إخطار",
-        "successMessage": "تم إرسال الإخطار بنجاح.",
-        "errorTitle": "خطأ",
-        "errorOkButton": "حسناً",
-        "noDataAlert": "لا توجد بيانات للإخطار.",
-        "suggestionError": "يرجى إدخال الاقتراح باللغة الإنجليزية فقط.",
-        "pendingNotificationError": "يوجد إشعار معلق بالفعل لهذه الخاصية والقيمة.",
-        "Topic_Names": {
-          "Food": "طعام",
-          "Education": "تعليم",
-          "Work life": "حياة العمل",
-          "Sport": "رياضة",
-          "Holidays/Celebration/Leisure": "عطلة",
-          "Family": "عائلة",
-          "Greeting": "تحية"
-        }
+    }
+  },
+  "ar": {
+    "notifyPage": {
+      "notify-title": "إخطار المشرف",
+      "label": "الموضوع",
+      "label2": "القيم السابقة:",
+      "label3": "الوصف:",
+      "label4": "اقتراح لقيمة جديدة (اختياري):",
+      "placeholder1": "اقترح قيمة جديدة",
+      "errorPlaceholder": "يرجى تقديم وصف",
+      "detailPlaceholder": "اشرح المشكلة بالتفصيل",
+      "attributePlaceholder": "اشرح المشكلة بالتفصيل",
+      "notificationType": "نوع الإشعار" ,
+      "submitButton": "إخطار",
+      "successMessage": "تم إرسال الإشعار بنجاح.",
+      "errorTitle": "خطأ",
+      "errorOkButton": "حسناً",
+      "noDataAlert": "لا توجد بيانات للإخطار.",
+      "suggestionError": "يرجى إدخال الاقتراح باللغة الإنجليزية فقط.",
+      "pendingNotificationError": "يوجد إشعار معلق بالفعل لهذه السؤال اوالقيمة.",
+      "valueType": "قيمة",
+      "attributeType": "السؤال",
+      "attributeDescription": "اشرح المشكلة المتعلقة بهذه السؤال ",
+      "Topic_Names": {
+        "Food": "طعام",
+        "Education": "تعليم",
+        "Work life": "حياة العمل",
+        "Sport": "رياضة",
+        "Holidays/Celebration/Leisure": "عطلة",
+        "Family": "عائلة",
+        "Greeting": "تحية"
       }
-    },
-    "ch": {
-      "notifyPage": {
-        "notify-title": "通知管理员",
-        "label": "话题",
-        "label2": "以前的值:",
-        "label3": "描述:",
-        "label4": "建议新值（可选）:",
-        "placeholder1": "建议一个新值",
-        "errorPlaceholder": "请提供描述",
-        "detailPlaceholder": "详细描述问题",
-        "submitButton": "通知",
-        "successMessage": "通知已成功提交。",
-        "errorTitle": "错误",
-        "errorOkButton": "确定",
-        "noDataAlert": "没有可用的通知数据。",
-        "suggestionError": "请仅以英语输入建议。",
-        "pendingNotificationError": "此属性和值的通知已在处理中。",
-        "Topic_Names": {
-          "Food": "食物",
-          "Education": "教育",
-          "Work life": "工作生活",
-          "Sport": "体育",
-          "Holidays/Celebration/Leisure": "假期",
-          "Family": "家庭",
-          "Greeting": "问候"
-        }
+    }
+  },
+  "ch": {
+    "notifyPage": {
+      "notify-title": "通知管理员",
+      "label": "话题",
+      "label2": "以前的值:",
+      "label3": "描述:",
+      "label4": "建议新值（可选）:",
+      "placeholder1": "建议一个新值",
+      "errorPlaceholder": "请提供描述",
+      "detailPlaceholder": "详细描述问题",
+      "attributePlaceholder": "详细描述问题",
+      "submitButton": "通知",
+      "successMessage": "通知已成功提交。",
+      "errorTitle": "错误",
+      "errorOkButton": "确定",
+      "noDataAlert": "没有可用的通知数据。",
+      "suggestionError": "请仅以英语输入建议。",
+      "pendingNotificationError": "此属性和值的通知已处理中。",
+      "valueType": "值",
+      "attributeType": "属性",
+      "attributeDescription": "说明您对该属性的问题",
+      "Topic_Names": {
+        "Food": "食物",
+        "Education": "教育",
+        "Work life": "工作生活",
+        "Sport": "体育",
+        "Holidays/Celebration/Leisure": "假期",
+        "Family": "家庭",
+        "Greeting": "问候"
       }
     }
   }
-  
+}
