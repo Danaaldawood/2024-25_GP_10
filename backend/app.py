@@ -568,7 +568,7 @@ def call_model_a(message_text):
     except Exception as e:
         logger.error(f"Error in call_model_a: {e}")
         return f"Error from baseline Mistral: {str(e)}"
-# def call_model_b(message_text):
+# def call_model_b(message_text):""
 #     try:
 #         system_message = "You are a helpful assistant. Respond directly to the user's message without adding tags or special formatting."
 #         formatted_prompt = f"[INST] <<SYS>>{system_message}<</SYS>> {message_text} [/INST]"
