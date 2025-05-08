@@ -180,8 +180,7 @@ button {
       background: #f8f9fa;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       justify-content: flex-end;  
-      min-height: 60px; /* تضيف ارتفاع حتى لو المحتوى فاضي */
-
+ 
   }
   
   .filterAdmin-container label {
@@ -223,7 +222,10 @@ button {
       position: absolute;
       bottom: 250px;  
       width: 100%;
+      text-align: left;
+      padding: 20px;
     }
+    
     
   
   /* ====================================
@@ -260,7 +262,7 @@ button {
     margin: 0 10px;
     border: none;
     background-color: #cccaca;
-        color: white;
+    color: white;
     cursor: pointer;
     font-size: 16px;
     border-radius: 4px;
@@ -290,11 +292,11 @@ button {
   
   .model-upload-section h2 {
     font-size: 22px;
-    color: #1e4862;
+    color: #853c69;
   }
   
   .model-upload-form {
-    max-width: 500px;
+    width: 500px;
     margin: 0 auto;
     text-align: left;
     background-color: #f9fbfc;
@@ -340,7 +342,7 @@ button {
   .upload-btn {
     width: 100%;
     padding: 10px 20px;
-    background-color: #456b90;
+    background-color:  #853c69;
     color: white;
     border: none;
     border-radius: 5px;
@@ -350,7 +352,7 @@ button {
   }
   
   .upload-btn:hover {
-    background-color: #254d75;
+    background-color:#722F57;
   }
   
   /* ====================================
