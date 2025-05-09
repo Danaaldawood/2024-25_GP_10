@@ -1,5 +1,4 @@
-/* General Page Styling */
-.freestyle-add-page {
+ .freestyle-add-page {
   padding: 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -102,8 +101,7 @@ body {
   text-align: center;
 }
 
-/* Title Style */
-.freestyle-title {
+ .freestyle-title {
   font-size: 24px;
   font-weight: 600;
   color: #333;
@@ -112,8 +110,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* Table Row Styling */
-.column-table {
+ .column-table {
   border-collapse: collapse;
   width: 90%;
   min-width: 800px;
@@ -175,8 +172,7 @@ body {
   border-color: #04752f;
 }
 
-/* Icon Button Styling */
-.icon-btn {
+ .icon-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -229,8 +225,7 @@ body {
   opacity: 0.5;
 }
 
-/* Edit Mode Styling */
-.edit-container {
+ .edit-container {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -266,8 +261,7 @@ body {
   color: #0056b3;
 }
 
-/* Model Info */
-.model-info {
+ .model-info {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -280,8 +274,7 @@ body {
   margin: 0;
 }
 
-/* Back to Chat Button */
-.back-to-chat-btn {
+ .back-to-chat-btn {
   background-color: #2E8B57;
   color: white;
   border: none;
@@ -297,7 +290,7 @@ body {
   background-color: #238d49;
 }
 
-/* No Data Section */
+ 
 .no-data {
   text-align: center;
   margin: 50px auto;
@@ -310,7 +303,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* Responsive Design */
+/* Responsive style */
 @media screen and (max-width: 768px) {
   .column-table th, .column-table td {
     padding: 8px;
@@ -341,7 +334,7 @@ body {
   }
 }
 
-/* RTL Support */
+/* RTL*/
 [dir="rtl"] .freestyle-back-btn .freestyle-back-icon {
   transform: rotate(180deg);
   margin-right: 0;

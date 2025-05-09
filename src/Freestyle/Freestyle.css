@@ -1,5 +1,5 @@
 
-/* --- FreeStyle Page Layout --- */
+/* --- FreeStyle Page  --- */
 .freestylepage {
   display: flex;
   flex-direction: column;
@@ -445,7 +445,7 @@
   box-shadow: 0 5px 15px rgba(255, 92, 92, 0.3);
 }
 
-/* RTL Support */
+/* RTL  */
 .freestyle-send-button {
   direction: ltr;
   text-align: center;
@@ -456,19 +456,17 @@
   text-align: right;
 }
 
-/* Added specific styling for RTL send button */
-.freestyle-send-button[dir="rtl"] .send-icon {
+ .freestyle-send-button[dir="rtl"] .send-icon {
   margin-right: 0;
   margin-left: 4px;
 }
 
-/* RTL transform for the icon animation */
-.freestyle-send-button[dir="rtl"]:hover:not(:disabled) .send-icon {
+ .freestyle-send-button[dir="rtl"]:hover:not(:disabled) .send-icon {
   transform: translateX(-3px);
 }
 
 [dir="rtl"] .freestylechat-back-btn .freestyle-back-icon {
-  transform: rotate(180deg); /* Flip the arrow icon to point right instead of left */
+  transform: rotate(180deg); 
 }
 
 [dir="rtl"] .freestylechat-back-btn {

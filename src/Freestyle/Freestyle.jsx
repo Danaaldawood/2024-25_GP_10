@@ -139,8 +139,7 @@ export const ConversationLayout = () => {
     }
   };
 
-  // Handel user voting which model is better
-  const handleFeedback = (model) => {
+   const handleFeedback = (model) => {
     setSelectedModel(model);
     setShowPopup(true);
   };
@@ -193,8 +192,7 @@ export const ConversationLayout = () => {
             <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
           </div>
         </div>
-         {/* Chat view for both models */}
-        <div className="dual-chat-container">
+         <div className="dual-chat-container">
           <div className="chat-model">
             <h2 className="conversation-title">{t("conversation-titleA")}</h2>
             <div className="freestyle-message-list">
@@ -246,8 +244,7 @@ export const ConversationLayout = () => {
             </button>
           </div>
         )}
-         {/* Input field and send button */}
-        <div className="freestyle-input-container">
+         <div className="freestyle-input-container">
           <input
             type="text"
             className="freestyle-message-input"
@@ -275,8 +272,7 @@ export const ConversationLayout = () => {
       </div>
 
       <Footer />
-   {/* Popup after feedback is given */}
-      {showPopup && (
+       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
             <h3 className="popup-title">
