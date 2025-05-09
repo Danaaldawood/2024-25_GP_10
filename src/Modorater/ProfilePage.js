@@ -19,8 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const ProfilePage = () => {
-  // --- State Management ---
-  const [profileName, setProfileName] = useState(
+   const [profileName, setProfileName] = useState(
     localStorage.getItem("profileName") || ""
   );
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
@@ -58,8 +57,7 @@ const ProfilePage = () => {
   }, []);
 
   // --- Event Handlers ---
-  // Handle profile save
-  const handleSaveProfile = async () => {
+   const handleSaveProfile = async () => {
     if (!profileName.trim()) {
       setNotification({
         type: "error",
@@ -78,8 +76,7 @@ const ProfilePage = () => {
           email: email,
         });
 
-        // Update local storage
-        localStorage.setItem("profileName", profileName);
+         localStorage.setItem("profileName", profileName);
         localStorage.setItem("email", email);
 
         // Show success notification
@@ -99,13 +96,11 @@ const ProfilePage = () => {
     }
   };
 
-  // Handle account deletion
-  const handleDeleteAccount = () => {
+   const handleDeleteAccount = () => {
     setShowModal(true);
   };
 
-  // Confirm account deletion
-  const handleConfirmDelete = async () => {
+   const handleConfirmDelete = async () => {
     try {
       const user = auth.currentUser;
       if (!user) {
@@ -113,8 +108,7 @@ const ProfilePage = () => {
         return;
       }
 
-      // Delete user authentication and document
-      await deleteUser(user);
+       await deleteUser(user);
       const userDocRef = doc(db, "Moderators", user.uid);
       await deleteDoc(userDocRef);
 
@@ -137,31 +131,27 @@ const ProfilePage = () => {
     setShowModal(false);
   };
 
-  // Close notification
-  const closeNotification = () => {
+   const closeNotification = () => {
     setNotification(null);
   };
 
   return (
     <div className="profile-page-container">
-      {/* Meta Tags */}
+     
       <Helmet>
         <title>Profile</title>
         <meta name="description" content="This is Profile page" />
       </Helmet>
 
-      {/* Header Section */}
-      <header className="profile-header">
+       <header className="profile-header">
         <button className="back-btn" onClick={() => navigate("/moderator")}>
           <FaArrowLeft className="back-icon" />
         </button>
         <h1>Moderator Profile</h1>
       </header>
 
-      {/* Main Content */}
-      <div className="profile-content">
-        {/* Profile Details */}
-        <div className="profile-details">
+       <div className="profile-content">
+         <div className="profile-details">
           <img src={defaultProfilePic} alt="Profile" className="profile-pic" />
           <h3>{profileName}</h3>
         </div>

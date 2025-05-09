@@ -20,7 +20,7 @@ const ReportPage = () => {
   const [moderatorRegion, setModeratorRegion] = useState("");
   const [showMoreAddedValues, setShowMoreAddedValues] = useState({});
   const [showMoreNotifications, setShowMoreNotifications] = useState({});
-  const [statusFilter, setStatusFilter] = useState('all'); // 'all', 'active', 'blocked'
+  const [statusFilter, setStatusFilter] = useState('all'); // 'userstatus'
 
   const maxItemsToShow = 3;
 
@@ -42,7 +42,7 @@ const ReportPage = () => {
               if (viewEditSnapshot.exists()) {
                 const viewEditData = viewEditSnapshot.val();
                 Object.entries(viewEditData).forEach(([key, entry]) => {
-                  if (!entry || !entry.fullUserId) return; // Skip invalid entries
+                  if (!entry || !entry.fullUserId) return; 
                   
                   const userId = entry.fullUserId;
                   if (!userMap.has(userId)) {

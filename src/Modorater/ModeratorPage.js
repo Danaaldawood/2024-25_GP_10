@@ -237,7 +237,7 @@ const ModeratorPage = () => {
 
     return () => unsubscribeAuth();
   }, []);
-
+/* Make value reviewed */
   const handleToggleReviewed = useCallback(
     async (entry) => {
       setError(null);
@@ -316,7 +316,7 @@ const ModeratorPage = () => {
     },
     [createUserNotification]
   );
-
+/* Delete value from the dataset */
   const handleDeleteViewEntry = useCallback(
     async (entry) => {
       setConfirmModal({
@@ -430,7 +430,7 @@ const ModeratorPage = () => {
     },
     [createUserNotification]
   );
-
+/* Delete value sent from user notification  */
   const handleDeleteValue = useCallback(
     async (notification) => {
       setConfirmModal({
@@ -559,7 +559,7 @@ const ModeratorPage = () => {
     },
     [createUserNotification]
   );
-
+/* Delete attribute sent from user notification  */
   const handleDeleteAttribute = useCallback(
     async (notification) => {
       setConfirmModal({
@@ -644,7 +644,7 @@ const ModeratorPage = () => {
     },
     [createUserNotification]
   );
-
+/* Dent request  sent from user notification  */
   const handleDenyRequest = useCallback(
     async (notification) => {
       setConfirmModal({
@@ -798,8 +798,7 @@ const ModeratorPage = () => {
       
       {loading ? (
         <div className="loading-indicator">
-          {/* You can add a spinner or loading animation here if needed */}
-        </div>
+         </div>
       ) : (
         <>
           {view === "view-edit" && (
