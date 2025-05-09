@@ -53,6 +53,7 @@ export const Plot = () => {
     greeting: "Greeting",
   };
 
+  // Mapping of regions to their corresponding country codes
   const regionToIds = {
     Western: [
       840, 124, 826, 250, 276, 380, 724, 620, 528, 56, 756, 40, 372, 752, 578,
@@ -65,15 +66,16 @@ export const Plot = () => {
     Chinese: [156, 344, 446, 158, 702],
   };
 
+   // Update placeholder when language changes
   useEffect(() => {
     setDimensionPlaceholder(t("selectATopicPlaceholder"));
   }, [i18n.language, t]);
 
+// Handle dropdown change for topic selection
   const handleDimensionChange = (event) => {
     setSelectedDimension(event.target.value);
     setHasError(false);
   };
-
   const handleNext = () => {
     if (!selectedDimension) {
       setDimensionPlaceholder(t("pleaseSelectATopic"));
@@ -84,6 +86,7 @@ export const Plot = () => {
     navigate("/freestyle", { state: { evalLLM, evalType } });
   };
 
+// When map or language or results change, re-render the map
   useEffect(() => {
     if (showMap) {
       d3.select("#map").selectAll("*").remove();
@@ -91,6 +94,7 @@ export const Plot = () => {
     }
   }, [showMap, results, i18n.language]);
 
+// Fetch results from backend 
   const fetchResults = async () => {
     try {
       const apiTopicValue = topicKeyToApiValue[selectedTopicKey];
@@ -227,6 +231,7 @@ export const Plot = () => {
         })
         .attr("stroke", "#fff");
 
+  // Overlay text labels per region
       const regionPositions = {
         Arab: projection([35, 25]),
         Chinese: projection([100, 35]),
@@ -249,7 +254,7 @@ export const Plot = () => {
       });
     });
   };
-
+ // Explanation text depending on selected model
   const getModelExplanation = () => {
     if (evalType === "Mistral Fine-tuned Model") {
       return t("tooltips.cohereFineTuned");
@@ -272,7 +277,7 @@ export const Plot = () => {
     return null;
   };
 
-  // Function to get the data for the side-by-side region comparison
+  // Prepares scores for region result display
   const getRegionScores = () => {
     if (!results) return [];
     
@@ -545,7 +550,7 @@ export const Plot = () => {
             ))}
           </div>
         )}
-
+             {/* Navigation to freestyle chat */}
         <div className="plotsubmit-container">
           <button className="plotsubmit" onClick={() => navigate("/freestyle", { state: { evalLLM, evalType } })}>
             {t("freeStyleChatting")}
