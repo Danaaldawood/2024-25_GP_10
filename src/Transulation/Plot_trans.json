@@ -54,9 +54,9 @@
     },
     "modelNames": {
       "cohereBaseline": "Mistral-7B Baseline",
-      "llamaBaseline": "LLAMA2 Baseline",
+      "llamaBaseline": "Llama2 Baseline",
       "hofstedeCohere": "Hofstede Questions-Mistral-7B Model",
-      "hofstedeLlama": "Hofstede Questions-LLAMA2 Model",
+      "hofstedeLlama": "Hofstede Questions-Llama2 Model",
       "hofstedeQuestions": "Hofstede Questions",
       "cohereFineTuned": "Mistral-7B Fine-tuned Model",
       "hofstedeCohereFineTuned": "Hofstede Questions-Mistral-7B Fine-tuned Model",
@@ -98,7 +98,7 @@
     },
     "explanations": {
     "hofstedeCohere": "يستخدم هذا التقييم Mistral-7B للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
-      "hofstedeLlama": "يستخدم هذا التقييم LLAMA2 للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
+      "hofstedeLlama": "يستخدم هذا التقييم Llama2 للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
       "hofstedeCohereFineTuned": "يستخدم هذا التقييم نموذج Mistral-7B المدرب للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
       "hofstedeLlama2FineTuned":"يستخدم هذا التقييم نموذج Llama2-7B المدرب للإجابة على 24 سؤالًا من أسئلة هوفستيد حول حياة العمل عبر ثلاث مناطق (العربية والصينية والغربية). يعكس الانحراف المعياري التباين في الردود داخل كل منطقة.",
       "hofstedeText": "قيّم {evalType} 24 سؤالًا من أسئلة هوفستيد حول حياة العمل. الانحرافات المعيارية: العربية - {arab}، الصينية - {chinese}، الغربية - {western}.",
@@ -119,9 +119,9 @@
     },
     "modelNames": {
       "cohereBaseline": "النموذج الأساسي Mistral-7B",
-      "llamaBaseline": "النموذج الأساسي LLAMA2",
+      "llamaBaseline": "النموذج الأساسي Llama2",
       "hofstedeCohere": "أسئلة هوفستيد-نموذج Mistral-7B",
-      "hofstedeLlama": "أسئلة هوفستيد-نموذج LLAMA2",
+      "hofstedeLlama": "أسئلة هوفستيد-نموذج Llama2",
       "hofstedeQuestions": "أسئلة هوفستيد",
       "cohereFineTuned": "النموذج المدرب Mistral-7B",
       "hofstedeCohereFineTuned": "أسئلة هوفستيد-نموذج Mistral-7B المدرب",

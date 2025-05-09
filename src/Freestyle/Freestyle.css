@@ -1,9 +1,11 @@
+
+/* --- FreeStyle Page Layout --- */
 .freestylepage {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   align-items: center;
-  justify-content: space-between; /* Changed from flex-start to space-between */
+  justify-content: space-between; 
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
   font-family: 'Roboto', 'Arial', sans-serif;
 }
@@ -484,7 +486,8 @@
   border-bottom-right-radius: 4px;
 }
 
-/* Responsive adjustments */
+/* --- Responsive Styles --- */
+
 @media (max-width: 768px) {
   .dual-chat-container {
     flex-direction: column;

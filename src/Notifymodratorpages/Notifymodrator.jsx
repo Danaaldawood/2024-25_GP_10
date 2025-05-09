@@ -199,6 +199,7 @@ export const Notifymodrator = () => {
     return pendingNotifications.length > 0;
   };
 
+    // Prepare notification object for saving
   const prepareNotificationData = () => {
     let prepared = {
       ...notificationData,
@@ -217,6 +218,7 @@ export const Notifymodrator = () => {
     return prepared;
   };
 
+  // Handle submission logic
   const handleSubmitNotification = async () => {
     if (!notificationData.description) {
       setShowError(true);
@@ -275,8 +277,8 @@ export const Notifymodrator = () => {
           </div>
         </div>
 
+           {/* Form Inputs */}
         <div className="notify-inputs">
-          {/* New Notification Type Dropdown */}
           <div className="notify-input">
             <label className="label">{t("notifyPage.notificationType") || "Notification Type"}</label>
             <select
@@ -289,7 +291,7 @@ export const Notifymodrator = () => {
               <option value="attribute">{t("notifyPage.attributeType") || "Attribute"}</option>
             </select>
           </div>
-
+      
           <div className="notify-input">
             <label className="label">{t("notifyPage.label")}</label>
             <input
@@ -321,6 +323,7 @@ export const Notifymodrator = () => {
             </div>
           )}
 
+           {/* Description Input */}
           <div className="notify-input">
             <label className="label3">
               {notificationType === "attribute" 
@@ -341,20 +344,23 @@ export const Notifymodrator = () => {
             />
           </div>
         </div>
-
+         
+         {/* Submit Button */}
         <div className="notify-submit-container">
           <button onClick={handleSubmitNotification} className="notify-submit-button">
             {t("notifyPage.submitButton")}
           </button>
         </div>
-
+        
+        {/* Success Popup */}
         {showSuccess && (
           <div className="success-popup">
             <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
             <p className="success-message">{t("notifyPage.successMessage")}</p>
           </div>
         )}
-
+         
+         {/* Error Popup */}
         {showErrorPopup && (
           <div className="error-popup">
             <div className="error-title">{t("notifyPage.errorTitle")}</div>

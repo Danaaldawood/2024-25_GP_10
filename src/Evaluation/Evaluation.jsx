@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from 'react-i18next';
 
 export const Evaluation = () => {
-  const { t } = useTranslation(['evalutionpage']);
+  const { t } = useTranslation(['evalutionpage']);  // Load translations
   const [evalLLM, setEvalLLM] = useState("");
   const [evalType, setEvalType] = useState("");
   const [llmPlaceholder, setLLMPlaceholder] = useState("");
@@ -15,6 +15,7 @@ export const Evaluation = () => {
   const [hasTypeError, setHasTypeError] = useState(false);
   const navigate = useNavigate();
 
+// Update placeholder text based on error state and language
   useEffect(() => {
     setLLMPlaceholder(hasError ? t('pleaseSelectModel') : t('selectModelPlaceholder'));
   }, [t, hasError]);
@@ -32,10 +33,12 @@ export const Evaluation = () => {
     }
   }, [evalType]);
 
+   // Submit Handler for Evaluation Button 
   const handleEvaluateClick = (e) => {
     e.preventDefault();
     let error = false;
 
+   // Validate LLM selection
     if (!evalLLM) {
       setLLMPlaceholder(t('pleaseSelectModel'));
       setHasError(true);
@@ -44,6 +47,7 @@ export const Evaluation = () => {
       setHasError(false);
     }
 
+   // Validate evaluation type only if LLM is selected
     if (!evalType && evalLLM) {
       setHasTypeError(true);
       error = true;
@@ -52,7 +56,7 @@ export const Evaluation = () => {
     }
 
     if (error) return;
-
+    // If valid, navigate to the /plot page and pass state
     console.log("Navigating to Plot with:", { evalLLM, evalType });
     navigate("/plot", { state: { evalLLM, evalType } });
   };
@@ -68,6 +72,7 @@ export const Evaluation = () => {
         <h3 className="eval-title">{t('title')}</h3>
         <div className="evalinputs">
           <div className="evalinput">
+              {/* Dropdown: Select LLM Model Type */}
             <label className="evallabel">{t('languageModel')}</label>
             <select
               name="evalLLM"
@@ -81,6 +86,8 @@ export const Evaluation = () => {
               <option value="Fine-Tuned">{t('fineTuned')}</option>
             </select>
           </div>
+
+          {/*Select Evaluation Type (appears only after model is selected) */} 
           {evalLLM && (
             <div className="evalinput">
               <label className="evallabel">{t('evaluationType')}</label>
@@ -92,19 +99,22 @@ export const Evaluation = () => {
                 onChange={(e) => setEvalType(e.target.value)}
               >
                 <option value="" disabled>{t('selectEvaluationTypePlaceholder')}</option>
+
+                 {/* Options depend on model type selected */}
+                 
                 {evalLLM === "Baseline" ? (
                   <>
                     <option value="LLAMA2 Baseline">{t('llamaBaseline')}</option>
-                    <option value="Mistral Baseline">{t('cohereBaseline')}</option>
                     <option value="Hofstede Questions-LLAMA2 Model">{t('hofstedeLlama')}</option>
+                    <option value="Mistral Baseline">{t('cohereBaseline')}</option>
                     <option value="Hofstede Questions-Mistral Model">{t('hofstedeCohere')}</option>
                   </>
                 ) : (
                   <>
-                    <option value="Mistral Fine-tuned Model">{t('cohereFineTuned')}</option>
-                    <option value="Hofstede Questions-Mistral Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
                     <option value="Llama2 Fine-tuned Model">{t('LlamaFineTuned')}</option>
                     <option value="Hofstede Questions-Llama2 Fine-tuned Model">{t('hofstedeLlama2FineTuned')}</option>
+                      <option value="Mistral Fine-tuned Model">{t('cohereFineTuned')}</option>
+                    <option value="Hofstede Questions-Mistral Fine-tuned Model">{t('hofstedeCohereFineTuned')}</option>
                   </>
                 )}
               </select>

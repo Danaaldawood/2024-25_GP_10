@@ -21,7 +21,7 @@ export const ConversationLayout = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [messagesA, setMessagesA] = useState([{ type: "ai", content: t("modelAA") }]);
   const [messagesB, setMessagesB] = useState([{ type: "ai", content: t("modelBB") }]);
-  const sendLimit = 7; // Updated to match first Freestyle.jsx
+  const sendLimit = 7; 
   const [sendCount, setSendCount] = useState(0);
   const [canGiveFeedback, setCanGiveFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,10 +31,10 @@ export const ConversationLayout = () => {
   const [selectedModel, setSelectedModel] = useState("");
   const progressWidth = `${(sendCount / sendLimit) * 100}%`;
 
-  // Backend URL (configurable for local or deployed environments)
+  // Backend URL 
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL ||'https://gp-culturelens.onrender.com/api/chat';
-  // For production, set REACT_APP_BACKEND_URL=https://gp-culturelens.onrender.com in .env --'http://localhost:5000'
 
+  // Fetch predefined suggestions from the server on first load
   useEffect(() => {
     fetch(`https://gp-culturelens.onrender.com/api/suggestions`)
       .then(response => response.json())
@@ -46,6 +46,8 @@ export const ConversationLayout = () => {
       .catch(error => console.error('Error fetching suggestions:', error));
   }, []);
 
+
+  // Determines model versions (baseline or fine-tuned) based on evalType
   const determineModelTypes = () => {
     console.log("Determining model types for evalType:", evalType);
 
@@ -53,21 +55,20 @@ export const ConversationLayout = () => {
       console.warn("evalType is undefined, defaulting to baseline models A and B");
       return ['A', 'B'];
     }
-
     switch (evalType) {
       // Baseline Models
       case "Mistral Baseline":
       case "LLAMA2 Baseline":
       case "Hofstede Questions-Mistral Model":
       case "Hofstede Questions-LLAMA2 Model":
-        return ['A', 'B']; // Model A: Baseline Mistral, Model B: Baseline LLaMA (Ollama)
+        return ['A', 'B']; // Model A: Baseline Mistral, Model B: Baseline Llama
 
       // Fine-Tuned Models
       case "Mistral Fine-tuned Model":
       case "Llama2 Fine-tuned Model":
       case "Hofstede Questions-Mistral Fine-tuned Model":
       case "Hofstede Questions-Llama2 Fine-tuned Model":
-        return ['FA', 'FB']; // Model A: Fine-tuned Mistral, Model B: Fine-tuned LLaMA
+        return ['FA', 'FB']; // Model A: Fine-tuned Mistral, Model B: Fine-tuned Llama
 
       default:
         console.warn(`Unrecognized evalType: ${evalType}, defaulting to baseline models A and B`);
@@ -75,6 +76,7 @@ export const ConversationLayout = () => {
     }
   };
 
+  // Handles sending a user message and fetching model responses
   const handleSendMessage = async () => {
     if (inputMessage.trim() !== "" && sendCount < sendLimit) {
       const userMessage = { type: "user", content: inputMessage };
@@ -137,6 +139,7 @@ export const ConversationLayout = () => {
     }
   };
 
+  // Handel user voting which model is better
   const handleFeedback = (model) => {
     setSelectedModel(model);
     setShowPopup(true);
@@ -182,14 +185,15 @@ export const ConversationLayout = () => {
         </div>
 
         <h2 className="titleFree">{t('titleFree')}</h2>
-
+             
+           {/* Send progress bar */}
         <div className="send-limit-container">
           <div className="send-limit-bar">
             <div className="progress" style={{ width: progressWidth }}></div>
             <p>{`${formatNumber(sendCount)} / ${formatNumber(sendLimit)} ${t("Sends")}`}</p>
           </div>
         </div>
-
+         {/* Chat view for both models */}
         <div className="dual-chat-container">
           <div className="chat-model">
             <h2 className="conversation-title">{t("conversation-titleA")}</h2>
@@ -215,7 +219,8 @@ export const ConversationLayout = () => {
             </div>
           </div>
         </div>
-
+       
+       {/* Feedback section after all messages are sent */}
         {sendCount === sendLimit && !isLoading && (
           <div className="feedback-container">
             <button 
@@ -241,7 +246,7 @@ export const ConversationLayout = () => {
             </button>
           </div>
         )}
-
+         {/* Input field and send button */}
         <div className="freestyle-input-container">
           <input
             type="text"
@@ -270,7 +275,7 @@ export const ConversationLayout = () => {
       </div>
 
       <Footer />
-
+   {/* Popup after feedback is given */}
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
