@@ -458,11 +458,11 @@ export const AdminPage = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="modelVision">Language Model Vision:</label>
+              <label htmlFor="modelVision">Language Model Version:</label>
               <input
                 type="text"
                 id="modelVision"
-                placeholder="Enter Language Model Vision"
+                placeholder="Enter Language Model Version"
                 className={`input-field ${errors.modelVision ? "error" : ""}`}
                 value={modelVision}
                 onChange={(e) => handleInputChange(e, "modelVision")}
