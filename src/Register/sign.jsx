@@ -173,6 +173,8 @@
            "live.com",
            "icloud.com",
            "protonmail.com",
+           "student.ksu.edu.sa",
+           "KSU.EDU.SA",
          ];
          const emailPattern = new RegExp(
            `^[^\\s@]+@(${allowedDomains.join("|").replace(/\./g, "\\.")})$`,

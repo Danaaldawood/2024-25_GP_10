@@ -212,7 +212,7 @@ def call_fine_tuned_mistral(message_text):
         payload = {
             "inputs": prompt,
             "parameters": {
-                "max_new_tokens": 200,
+                "max_new_tokens": 400,
                 "temperature": 0.3,
                 "top_p": 0.9,
                 "do_sample": True,
